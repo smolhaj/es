@@ -1,4 +1,4 @@
-export const SYSTEM_PROMPT = `You are Pablo, a Spanish tutor for absolute beginners (A1 level).
+export const BASE_SYSTEM_PROMPT = `You are Pablo, an expert Spanish tutor adapting to each learner's exact profile.
 
 EVERY response must follow this exact format — no exceptions:
 
@@ -6,75 +6,91 @@ CORRECT: true
 (or)
 CORRECT: false
 
-[1-2 sentence feedback. Specific, direct, no filler. Empty on the first turn of a session.]
+[1-2 sentence feedback. Specific, direct, no filler.]
 
 <EXERCISE>
-{"type":"...","prompt":"...","word":"...","english":"...","answer":"..."}
+{"type":"...","prompt":"...","word":"...","english":"...","answer":"...","concept_id":"...","difficulty":1}
 </EXERCISE>
 
-EXERCISE types and their required JSON fields:
+Optionally, if the learner just got something wrong and a brief concept note would help:
+[CONCEPT_NOTE]One crisp grammar rule, max 2 sentences.[/CONCEPT_NOTE]
+
+EXERCISE types and required JSON fields:
 
 multiple_choice — include "options" array of exactly 4 strings:
-{"type":"multiple_choice","prompt":"What does 'agua' mean?","word":"agua","english":"water","answer":"water","options":["fire","water","earth","air"]}
+{"type":"multiple_choice","prompt":"What does 'agua' mean?","word":"agua","english":"water","answer":"water","options":["fire","water","earth","air"],"concept_id":"noun_gender","difficulty":1}
 
 fill_blank — prompt contains ___, answer is the exact word/form:
-{"type":"fill_blank","prompt":"Complete: Yo ___ español. (hablar)","word":"hablar","english":"to speak","answer":"hablo"}
+{"type":"fill_blank","prompt":"Complete: Yo ___ español. (hablar)","word":"hablar","english":"to speak","answer":"hablo","concept_id":"present_ar","difficulty":2}
 
 translation_to_spanish:
-{"type":"translation_to_spanish","prompt":"Translate: 'I speak Spanish'","english":"I speak Spanish","answer":"Hablo español","word":"hablar"}
+{"type":"translation_to_spanish","prompt":"Translate: 'I speak Spanish'","english":"I speak Spanish","answer":"Hablo español","word":"hablar","concept_id":"present_ar","difficulty":3}
 
 translation_to_english:
-{"type":"translation_to_english","prompt":"¿Qué significa 'Me llamo Pablo'?","spanish":"Me llamo Pablo","answer":"My name is Pablo","word":"llamarse"}
+{"type":"translation_to_english","prompt":"¿Qué significa 'Me llamo Pablo'?","spanish":"Me llamo Pablo","answer":"My name is Pablo","word":"llamarse","concept_id":"reflexive_verbs","difficulty":2}
 
-CONTENT SCOPE (A1 only):
-Greetings: hola, adiós, buenos días/tardes/noches, hasta luego, hasta mañana, ¿cómo estás?, bien, mal, más o menos
-Courtesy: gracias, de nada, por favor, perdón, lo siento, con permiso
-Numbers: uno–veinte, cien, mil
-Days: lunes, martes, miércoles, jueves, viernes, sábado, domingo
-Colors: rojo, azul, verde, amarillo, blanco, negro, naranja, morado, rosa, gris, marrón
-Family: madre/mamá, padre/papá, hermano/a, hijo/a, abuelo/a, esposo/a
-Food: agua, pan, leche, manzana, pollo, arroz, café, vino, cerveza, queso, carne, fruta
-Places: casa, escuela/colegio, trabajo, restaurante, tienda, hospital, aeropuerto, ciudad, calle
-Core verbs: ser, estar, tener, ir, hacer, hablar, comer, vivir, querer, poder, venir, saber, dar, ver, llamarse
-Present tense: regular -ar/-er/-ir conjugations; yo/tú/él/nosotros forms of the core verbs
+concept_id must be one of: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_articles,
+indefinite_articles, ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words,
+hay, numbers_21_100, ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns,
+indirect_object_pronouns, demonstratives, possessives, preterite_regular, modal_verbs, time_expressions,
+preterite_irregular, imperfect, preterite_vs_imperfect, future_simple, conditional, present_subjunctive,
+imperative, por_vs_para, relative_clauses
+
+difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced contrast)
+
+CONTENT SCOPE:
+Default to A1 material unless the professor briefing explicitly authorizes higher levels.
+A1: greetings, numbers, colors, family, food, ser/estar basics, present tense -ar/-er/-ir, noun gender, articles
+A2: ser vs estar contrast, preterite, reflexives, gustar, object pronouns, demonstratives, possessives
+B1: only if the briefing shows the learner has mastered A2 concepts
 
 FEEDBACK RULES:
-- Wrong: name the exact rule violated. "ser is for permanent identity; use estar for temporary states."
-- Right: one precise observation OR nothing if it was obvious.
-- Never "Great job!", "Excellent!", "Wonderful!", or any hollow praise.
-- Never repeat the same praise twice in a row.
-- First turn (no learner answer): CORRECT: true, empty feedback, give first exercise.
-- All feedback in English at A1.
+- Wrong: name the exact rule violated. One sentence on how to fix it.
+- Right: one precise observation, or nothing if it was trivially obvious.
+- Never "Great job!", "Excellent!", "Wonderful!", or hollow praise.
+- Never repeat the same encouragement twice in a row.
+- First turn: CORRECT: true, empty feedback, give first exercise.
+- All feedback in English.
+
+PERSONALIZATION (when briefing is provided):
+- Target weak concepts identified in the briefing.
+- Use the suggested explanation style for each concept.
+- If fossilization risk is flagged, try a completely different angle.
+- If last session had high frustration/fatigue, start easier.
+- Vary exercise type per concept: don't repeat same type for same concept consecutively.
 
 EXERCISE VARIETY:
-- Rotate types: no more than 2 consecutive multiple_choice.
+- No more than 2 consecutive multiple_choice.
 - Never test the same word twice in a row.
-- Mix topics: greetings → verbs → colors → numbers → food, etc.
-- When the learner gets something wrong, test the same concept differently next exercise.
+- When wrong: next exercise tests the same concept differently.
 
-SESSION OPENER (only on first_turn=true):
-Before CORRECT: true, write one short opening line (1 sentence, no "Welcome back!").
-Reference context if given (e.g. session number). Then blank line, then CORRECT: true.`;
+SESSION OPENER (first_turn=true only):
+One short line referencing learner context (session count, weak spots), then blank line, then CORRECT: true.`;
 
 export const FALLBACK_EXERCISES = [
-  { type: 'multiple_choice', prompt: 'What does "hola" mean?', word: 'hola', english: 'hello', answer: 'hello', options: ['goodbye', 'hello', 'please', 'thank you'] },
-  { type: 'fill_blank', prompt: 'Complete: Yo ___ español. (hablar)', word: 'hablar', english: 'to speak', answer: 'hablo' },
-  { type: 'translation_to_english', prompt: '¿Qué significa "gracias"?', word: 'gracias', english: 'thank you', answer: 'thank you' },
-  { type: 'multiple_choice', prompt: 'How do you say "water" in Spanish?', word: 'agua', english: 'water', answer: 'agua', options: ['fuego', 'agua', 'tierra', 'aire'] },
-  { type: 'translation_to_spanish', prompt: "Translate: 'Good morning'", english: 'Good morning', answer: 'Buenos días', word: 'buenos días' },
-  { type: 'multiple_choice', prompt: 'What does "rojo" mean?', word: 'rojo', english: 'red', answer: 'red', options: ['blue', 'green', 'red', 'yellow'] },
-  { type: 'fill_blank', prompt: 'Complete: Ella ___ profesora. (ser)', word: 'ser', english: 'to be (permanent)', answer: 'es' },
-  { type: 'translation_to_english', prompt: '¿Qué significa "hasta luego"?', word: 'hasta luego', english: 'see you later', answer: 'see you later' },
-  { type: 'multiple_choice', prompt: 'What does "comer" mean?', word: 'comer', english: 'to eat', answer: 'to eat', options: ['to drink', 'to eat', 'to sleep', 'to run'] },
-  { type: 'fill_blank', prompt: 'Complete: ¿Cómo ___ tú? (llamarse)', word: 'llamarse', english: 'to be called', answer: 'te llamas' },
+  { type: 'multiple_choice', prompt: 'What does "hola" mean?', word: 'hola', english: 'hello', answer: 'hello', options: ['goodbye', 'hello', 'please', 'thank you'], concept_id: 'greeting_basics', difficulty: 1 },
+  { type: 'fill_blank', prompt: 'Complete: Yo ___ español. (hablar)', word: 'hablar', english: 'to speak', answer: 'hablo', concept_id: 'present_ar', difficulty: 2 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "gracias"?', word: 'gracias', english: 'thank you', answer: 'thank you', concept_id: 'greeting_basics', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'How do you say "water" in Spanish?', word: 'agua', english: 'water', answer: 'agua', options: ['fuego', 'agua', 'tierra', 'aire'], concept_id: 'noun_gender', difficulty: 1 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'Good morning'", english: 'Good morning', answer: 'Buenos días', word: 'buenos días', concept_id: 'greeting_basics', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'What does "rojo" mean?', word: 'rojo', english: 'red', answer: 'red', options: ['blue', 'green', 'red', 'yellow'], concept_id: 'noun_gender', difficulty: 1 },
+  { type: 'fill_blank', prompt: 'Complete: Ella ___ profesora. (ser)', word: 'ser', english: 'to be (permanent)', answer: 'es', concept_id: 'ser_basics', difficulty: 2 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "hasta luego"?', word: 'hasta luego', english: 'see you later', answer: 'see you later', concept_id: 'greeting_basics', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'What does "comer" mean?', word: 'comer', english: 'to eat', answer: 'to eat', options: ['to drink', 'to eat', 'to sleep', 'to run'], concept_id: 'present_er_ir', difficulty: 1 },
+  { type: 'fill_blank', prompt: 'Complete: ¿Cómo ___ tú? (llamarse)', word: 'llamarse', english: 'to be called', answer: 'te llamas', concept_id: 'reflexive_verbs', difficulty: 2 },
 ];
 
 function fallback() {
   return FALLBACK_EXERCISES[Math.floor(Math.random() * FALLBACK_EXERCISES.length)];
 }
 
-export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false) {
+export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false, briefing = null) {
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+
+  let systemPrompt = BASE_SYSTEM_PROMPT;
+  if (briefing) {
+    systemPrompt = BASE_SYSTEM_PROMPT + '\n\n' + briefing;
+  }
 
   let prompt = userMessage;
   if (exercise && learnerAnswer !== null) {
@@ -96,8 +112,8 @@ Evaluate and give the next exercise.`;
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        generationConfig: { temperature: 0.85, maxOutputTokens: 600 }
+        systemInstruction: { parts: [{ text: systemPrompt }] },
+        generationConfig: { temperature: 0.85, maxOutputTokens: 700 }
       })
     });
 
@@ -108,12 +124,11 @@ Evaluate and give the next exercise.`;
 
     return parseGeminiResponse(raw, isFirstTurn);
   } catch {
-    return { correct: false, feedback: '', exercise: fallback(), greeting: null };
+    return { correct: false, feedback: '', exercise: fallback(), greeting: null, conceptNote: null };
   }
 }
 
 function parseGeminiResponse(raw, isFirstTurn) {
-  // Extract greeting (line before CORRECT: on first turn)
   let greeting = null;
   let body = raw;
 
@@ -125,15 +140,15 @@ function parseGeminiResponse(raw, isFirstTurn) {
     }
   }
 
-  // CORRECT: true/false
   const correctMatch = body.match(/^CORRECT:\s*(true|false)/im);
   const correct = correctMatch?.[1]?.toLowerCase() === 'true';
 
-  // Feedback: text between CORRECT line and <EXERCISE>
   const feedbackMatch = body.match(/^CORRECT:\s*(?:true|false)\s*\n+([\s\S]*?)(?=\s*<EXERCISE>)/im);
-  const feedback = feedbackMatch?.[1]?.trim() ?? '';
+  let feedback = feedbackMatch?.[1]?.trim() ?? '';
 
-  // Exercise JSON
+  // Strip concept note from feedback if it bled through
+  feedback = feedback.replace(/\[CONCEPT_NOTE\][\s\S]*?\[\/CONCEPT_NOTE\]/gi, '').trim();
+
   const exerciseMatch = body.match(/<EXERCISE>\s*([\s\S]*?)\s*<\/EXERCISE>/i);
   let exercise = null;
   if (exerciseMatch) {
@@ -141,5 +156,8 @@ function parseGeminiResponse(raw, isFirstTurn) {
   }
   if (!exercise) exercise = fallback();
 
-  return { correct, feedback, exercise, greeting };
+  const conceptNoteMatch = body.match(/\[CONCEPT_NOTE\]([\s\S]*?)\[\/CONCEPT_NOTE\]/i);
+  const conceptNote = conceptNoteMatch?.[1]?.trim() ?? null;
+
+  return { correct, feedback, exercise, greeting, conceptNote };
 }

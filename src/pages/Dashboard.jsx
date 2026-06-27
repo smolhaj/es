@@ -6,6 +6,21 @@ import NavBar from '../components/NavBar.jsx';
 import CefrBadge from '../components/CefrBadge.jsx';
 import styles from './Dashboard.module.css';
 
+const CONCEPT_LABELS = {
+  greeting_basics: 'Greetings', numbers_1_20: 'Numbers 1–20', subject_pronouns: 'Subject pronouns',
+  noun_gender: 'Noun gender', definite_articles: 'Articles (el/la)', indefinite_articles: 'Articles (un/una)',
+  ser_basics: 'Ser', estar_basics: 'Estar', present_ar: 'Present -ar', present_er_ir: 'Present -er/-ir',
+  adjective_agreement: 'Adjective agreement', question_words: 'Question words', hay: 'Hay',
+  numbers_21_100: 'Numbers 21–100', ser_vs_estar: 'Ser vs. estar', reflexive_verbs: 'Reflexive verbs',
+  gustar_type: 'Gustar-type', direct_object_pronouns: 'Direct obj. pronouns',
+  indirect_object_pronouns: 'Indirect obj. pronouns', demonstratives: 'Demonstratives',
+  possessives: 'Possessives', preterite_regular: 'Preterite (regular)', modal_verbs: 'Modal verbs',
+  time_expressions: 'Time expressions', preterite_irregular: 'Preterite (irregular)',
+  imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
+  future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',
+  imperative: 'Imperative', por_vs_para: 'Por vs. para', relative_clauses: 'Relative clauses',
+};
+
 function StatCard({ label, value, sub }) {
   return (
     <div className={styles.stat}>
@@ -52,6 +67,8 @@ export default function Dashboard() {
     : '—';
   const wordsMastered = profile?.vocabulary?.mastered ?? 0;
   const wordsSeen = profile?.vocabulary?.seen ?? 0;
+  const dueForReview = profile?.vocabulary?.dueForReview ?? 0;
+  const weakConcepts = profile?.weakConcepts ?? [];
 
   return (
     <div className={styles.page}>
@@ -79,9 +96,12 @@ export default function Dashboard() {
             <Link to="/session" className={`btn btn-primary ${styles.startBtn}`}>
               Start session →
             </Link>
-            <p className={styles.startNote}>
-              Sessions are 10 exercises. Quit any time.
-            </p>
+            {dueForReview > 0 && (
+              <Link to="/vocab-review" className={`btn btn-secondary ${styles.reviewBtn}`}>
+                Review {dueForReview} word{dueForReview !== 1 ? 's' : ''} due
+              </Link>
+            )}
+            <p className={styles.startNote}>Sessions are 10 exercises. Quit any time.</p>
           </section>
 
           {/* Stats */}
@@ -89,31 +109,36 @@ export default function Dashboard() {
             <section className={styles.statsSection}>
               <h2 className={styles.sectionTitle}>Your progress</h2>
               <div className={styles.statsGrid}>
-                <StatCard
-                  label="Sessions"
-                  value={totalSessions}
-                />
-                <StatCard
-                  label="Accuracy"
-                  value={accuracy}
-                  sub="all time"
-                />
-                <StatCard
-                  label="Words seen"
-                  value={wordsSeen}
-                  sub={`${wordsMastered} mastered`}
-                />
-                <StatCard
-                  label="Level"
-                  value={cefr}
-                  sub="CEFR"
-                />
+                <StatCard label="Sessions" value={totalSessions} />
+                <StatCard label="Accuracy" value={accuracy} sub="all time" />
+                <StatCard label="Words seen" value={wordsSeen} sub={`${wordsMastered} mastered`} />
+                <StatCard label="Level" value={cefr} sub="CEFR" />
               </div>
             </section>
           )}
 
           {loading && <p className={styles.loading}>Loading your profile…</p>}
           {error && <p className={styles.error}>{error}</p>}
+
+          {/* Weak concepts */}
+          {weakConcepts.length > 0 && (
+            <section className={styles.weakSection}>
+              <h2 className={styles.sectionTitle}>Needs work</h2>
+              <ul className={styles.weakList}>
+                {weakConcepts.map(c => (
+                  <li key={c.concept_id} className={styles.weakItem}>
+                    <span className={styles.weakName}>
+                      {CONCEPT_LABELS[c.concept_id] ?? c.concept_id}
+                      {c.fossilization_flagged ? <span className={styles.fossilTag}>persistent</span> : null}
+                    </span>
+                    <span className={styles.weakMastery}>
+                      {Math.round((c.mastery_score ?? 0) * 100)}%
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* Recent sessions */}
           {profile?.recentSessions?.length > 0 && (
@@ -131,6 +156,12 @@ export default function Dashboard() {
               </ul>
             </section>
           )}
+
+          {/* Reference links */}
+          <section className={styles.refSection}>
+            <Link to="/grammar" className={styles.refLink}>Grammar reference →</Link>
+            <Link to="/false-friends" className={styles.refLink}>False friends →</Link>
+          </section>
         </div>
       </main>
     </div>

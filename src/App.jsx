@@ -4,6 +4,9 @@ import Landing from './pages/Landing.jsx';
 import Auth from './pages/Auth.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Session from './pages/Session.jsx';
+import GrammarRef from './pages/GrammarRef.jsx';
+import VocabReview from './pages/VocabReview.jsx';
+import FalseFriends from './pages/FalseFriends.jsx';
 
 function Protected({ children }) {
   const { isLoggedIn } = useAuth();
@@ -24,6 +27,9 @@ export default function App() {
         <Route path="/register" element={<Guest><Auth mode="register" /></Guest>} />
         <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
         <Route path="/session" element={<Protected><Session /></Protected>} />
+        <Route path="/vocab-review" element={<Protected><VocabReview /></Protected>} />
+        <Route path="/grammar" element={<Protected><GrammarRef /></Protected>} />
+        <Route path="/false-friends" element={<Protected><FalseFriends /></Protected>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>

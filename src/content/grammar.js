@@ -1,0 +1,542 @@
+// Grammar reference cards — A1 through B1
+// concept_id matches functions/_lib/concepts.js keys
+
+export const GRAMMAR_CARDS = [
+  // ── A1 ─────────────────────────────────────────────────────────────────
+  {
+    id: 'noun_gender',
+    concept_id: 'noun_gender',
+    cefr: 'A1',
+    category: 'Morphology',
+    title: 'Noun Gender',
+    rule: 'Every Spanish noun is masculine or feminine. Most nouns ending in -o are masculine; most ending in -a are feminine. The article must match.',
+    examples: [
+      { es: 'el libro (masculine)', en: 'the book' },
+      { es: 'la casa (feminine)', en: 'the house' },
+      { es: 'el problema (exception)', en: 'the problem — masculine despite -a' },
+      { es: 'la mano (exception)', en: 'the hand — feminine despite -o' },
+    ],
+    exceptions: [
+      'Words from Greek ending in -ma are masculine: el tema, el sistema, el programa.',
+      'la mano (hand) is feminine despite ending in -o.',
+      'Some nouns change meaning with gender: el capital (money/capital) vs. la capital (capital city).',
+    ],
+    related: ['definite_articles', 'adjective_agreement'],
+  },
+  {
+    id: 'definite_articles',
+    concept_id: 'definite_articles',
+    cefr: 'A1',
+    category: 'Morphology',
+    title: 'Definite Articles — el / la / los / las',
+    rule: 'Use definite articles (the) to refer to specific or known nouns. They must agree in gender and number with the noun.',
+    examples: [
+      { es: 'el chico / los chicos', en: 'the boy / the boys' },
+      { es: 'la chica / las chicas', en: 'the girl / the girls' },
+      { es: 'el agua (f)', en: 'the water — feminine noun uses el before stressed a-' },
+    ],
+    exceptions: [
+      'Feminine nouns starting with stressed a- or ha- use el in singular: el agua, el hacha.',
+      'al = a + el (never "a el"). del = de + el.',
+    ],
+    related: ['noun_gender', 'indefinite_articles'],
+  },
+  {
+    id: 'indefinite_articles',
+    concept_id: 'indefinite_articles',
+    cefr: 'A1',
+    category: 'Morphology',
+    title: 'Indefinite Articles — un / una / unos / unas',
+    rule: 'Use indefinite articles (a/an, some) to introduce nouns for the first time or when referring to non-specific nouns.',
+    examples: [
+      { es: 'un libro', en: 'a book' },
+      { es: 'una mesa', en: 'a table' },
+      { es: 'unos chicos', en: 'some boys' },
+      { es: 'Soy profesora.', en: 'I am a teacher. (no article with professions after ser)' },
+    ],
+    exceptions: [
+      'After ser, omit the indefinite article before professions unless modified: Soy profesora / Soy una profesora excelente.',
+    ],
+    related: ['noun_gender', 'definite_articles'],
+  },
+  {
+    id: 'subject_pronouns',
+    concept_id: 'subject_pronouns',
+    cefr: 'A1',
+    category: 'Pronouns',
+    title: 'Subject Pronouns',
+    rule: 'Subject pronouns replace the noun doing the action. Spanish often omits them because verb endings make the subject clear.',
+    examples: [
+      { es: 'yo, tú, él/ella/usted', en: 'I, you (informal), he/she/you (formal)' },
+      { es: 'nosotros/as, vosotros/as, ellos/ellas/ustedes', en: 'we, you all (Spain), they/you all' },
+      { es: 'Hablo español. (no yo needed)', en: 'I speak Spanish.' },
+    ],
+    exceptions: [
+      'Usted (Ud.) is formal "you" — uses él/ella verb forms.',
+      'Vosotros is used in Spain; Latin America uses ustedes for both formal and informal plural.',
+    ],
+    related: ['ser_basics', 'present_ar'],
+  },
+  {
+    id: 'ser_basics',
+    concept_id: 'ser_basics',
+    cefr: 'A1',
+    category: 'Verbs',
+    title: 'Ser — Identity, Origin, Profession',
+    rule: 'Ser is used for permanent or defining characteristics: identity, origin, material, profession, and time.',
+    examples: [
+      { es: 'Soy estudiante.', en: 'I am a student.' },
+      { es: 'Ella es de México.', en: 'She is from Mexico.' },
+      { es: 'Son las tres.', en: 'It is three o\'clock.' },
+      { es: 'La mesa es de madera.', en: 'The table is made of wood.' },
+    ],
+    exceptions: [
+      'Ser is used for events with location: La fiesta es en mi casa.',
+      'Conjugation: soy, eres, es, somos, sois, son',
+    ],
+    related: ['estar_basics', 'ser_vs_estar'],
+  },
+  {
+    id: 'estar_basics',
+    concept_id: 'estar_basics',
+    cefr: 'A1',
+    category: 'Verbs',
+    title: 'Estar — Location, Temporary State',
+    rule: 'Estar is used for temporary conditions, emotions, locations, and progressive tenses.',
+    examples: [
+      { es: 'Estoy cansado.', en: 'I am tired. (temporary state)' },
+      { es: 'El banco está en la calle Mayor.', en: 'The bank is on Main Street. (location)' },
+      { es: 'Estamos comiendo.', en: 'We are eating. (progressive)' },
+    ],
+    exceptions: [
+      'Conjugation: estoy, estás, está, estamos, estáis, están',
+      'Dead people use estar: Einstein está muerto.',
+    ],
+    related: ['ser_basics', 'ser_vs_estar'],
+  },
+  {
+    id: 'present_ar',
+    concept_id: 'present_ar',
+    cefr: 'A1',
+    category: 'Verbs',
+    title: 'Present Tense — -ar Verbs',
+    rule: 'Remove -ar and add: -o, -as, -a, -amos, -áis, -an.',
+    examples: [
+      { es: 'hablar → hablo, hablas, habla, hablamos, habláis, hablan', en: 'to speak → I speak, you speak…' },
+      { es: 'Trabajo todos los días.', en: 'I work every day.' },
+      { es: '¿Estudias español?', en: 'Do you study Spanish?' },
+    ],
+    exceptions: [
+      'Many -ar verbs have stem changes: e→ie (pensar→pienso), o→ue (contar→cuento), e→i (some).',
+    ],
+    related: ['present_er_ir', 'reflexive_verbs'],
+  },
+  {
+    id: 'present_er_ir',
+    concept_id: 'present_er_ir',
+    cefr: 'A1',
+    category: 'Verbs',
+    title: 'Present Tense — -er / -ir Verbs',
+    rule: '-er: remove -er, add -o, -es, -e, -emos, -éis, -en. -ir: same but -imos/-ís in nosotros/vosotros.',
+    examples: [
+      { es: 'comer → como, comes, come, comemos, coméis, comen', en: 'to eat' },
+      { es: 'vivir → vivo, vives, vive, vivimos, vivís, viven', en: 'to live' },
+      { es: 'Vivo en Madrid y como tapas.', en: 'I live in Madrid and eat tapas.' },
+    ],
+    exceptions: [
+      'Irregular yo forms: hago (hacer), pongo (poner), traigo (traer), salgo (salir), conozco (conocer).',
+      'Stem-changing: poder→puedo, querer→quiero, volver→vuelvo.',
+    ],
+    related: ['present_ar', 'modal_verbs'],
+  },
+  {
+    id: 'adjective_agreement',
+    concept_id: 'adjective_agreement',
+    cefr: 'A1',
+    category: 'Morphology',
+    title: 'Adjective Agreement',
+    rule: 'Adjectives agree in gender (m/f) and number (sg/pl) with the noun they describe. Most adjectives follow the noun.',
+    examples: [
+      { es: 'un libro rojo / una casa roja', en: 'a red book / a red house' },
+      { es: 'los chicos altos / las chicas altas', en: 'the tall boys / the tall girls' },
+      { es: 'un estudiante inteligente (no gender change)', en: 'an intelligent student — -e endings don\'t change for gender' },
+    ],
+    exceptions: [
+      'Adjectives ending in -e or consonant (except nationalities) don\'t change for gender: fácil, grande.',
+      'Some adjectives go before the noun and shorten: buen/mal/gran/primer/tercer.',
+    ],
+    related: ['noun_gender', 'definite_articles'],
+  },
+  {
+    id: 'hay',
+    concept_id: 'hay',
+    cefr: 'A1',
+    category: 'Verbs',
+    title: 'Hay — There is / There are',
+    rule: 'Hay is the impersonal form of haber. It is invariable — the same for singular and plural. Use with indefinite articles or bare nouns.',
+    examples: [
+      { es: 'Hay un banco cerca.', en: 'There is a bank nearby.' },
+      { es: 'Hay tres estudiantes.', en: 'There are three students.' },
+      { es: '¿Hay leche? — No, no hay.', en: 'Is there milk? — No, there isn\'t.' },
+    ],
+    exceptions: [
+      'Never "hay el/la" — don\'t use definite articles with hay.',
+      'Past: había (there was/were). Future: habrá (there will be).',
+    ],
+    related: ['indefinite_articles', 'estar_basics'],
+  },
+  {
+    id: 'question_words',
+    concept_id: 'question_words',
+    cefr: 'A1',
+    category: 'Syntax',
+    title: 'Question Words',
+    rule: 'Spanish question words always carry a written accent. The verb often comes before the subject in questions.',
+    examples: [
+      { es: '¿Qué haces? / ¿Cómo te llamas?', en: 'What do you do? / What\'s your name?' },
+      { es: '¿Dónde vives? / ¿Cuándo llegaste?', en: 'Where do you live? / When did you arrive?' },
+      { es: '¿Quién es? / ¿Por qué estudias español?', en: 'Who is it? / Why do you study Spanish?' },
+      { es: '¿Cuánto cuesta? / ¿Cuántos años tienes?', en: 'How much does it cost? / How old are you?' },
+    ],
+    exceptions: [
+      'Cuál vs. qué: ¿Cuál es tu nombre? (which one from a set) vs. ¿Qué es un tango? (what is the nature of).',
+    ],
+    related: ['ser_basics', 'present_ar'],
+  },
+
+  // ── A2 ─────────────────────────────────────────────────────────────────
+  {
+    id: 'ser_vs_estar',
+    concept_id: 'ser_vs_estar',
+    cefr: 'A2',
+    category: 'Verbs',
+    title: 'Ser vs. Estar — The Core Contrast',
+    rule: 'Ser = permanent/defining identity. Estar = temporary state or location. Some adjectives change meaning depending on which verb they follow.',
+    examples: [
+      { es: 'Él es aburrido. / Él está aburrido.', en: 'He is boring (personality). / He is bored (right now).' },
+      { es: 'La sopa es buena. / La sopa está buena.', en: 'Soup is good (in general). / The soup is good (today, to my taste).' },
+      { es: 'Soy listo. / Estoy listo.', en: 'I am clever. / I am ready.' },
+    ],
+    exceptions: [
+      'Location: always usar estar, except events → ser (La reunión es en Madrid).',
+      'Civil/marital status: can use both — Es casado / Está casado (both acceptable).',
+    ],
+    related: ['ser_basics', 'estar_basics'],
+  },
+  {
+    id: 'reflexive_verbs',
+    concept_id: 'reflexive_verbs',
+    cefr: 'A2',
+    category: 'Verbs',
+    title: 'Reflexive Verbs',
+    rule: 'Reflexive verbs use reflexive pronouns (me, te, se, nos, os, se) to show the action reflects back on the subject.',
+    examples: [
+      { es: 'Me llamo Ana.', en: 'My name is Ana. (I call myself Ana.)' },
+      { es: 'Me levanto a las siete.', en: 'I get up at seven.' },
+      { es: 'Se ducha cada mañana.', en: 'She showers every morning.' },
+    ],
+    exceptions: [
+      'Some verbs change meaning when reflexive: ir (to go) vs. irse (to leave/go away); dormir (to sleep) vs. dormirse (to fall asleep).',
+      'Placement: before conjugated verb, or attached to infinitive/gerund.',
+    ],
+    related: ['present_ar', 'present_er_ir'],
+  },
+  {
+    id: 'direct_object_pronouns',
+    concept_id: 'direct_object_pronouns',
+    cefr: 'A2',
+    category: 'Pronouns',
+    title: 'Direct Object Pronouns',
+    rule: 'Replace the direct object (who/what receives the action) with: me, te, lo/la, nos, os, los/las.',
+    examples: [
+      { es: 'Veo la película → La veo.', en: 'I watch the movie → I watch it.' },
+      { es: '¿Tienes el libro? — Sí, lo tengo.', en: 'Do you have the book? — Yes, I have it.' },
+      { es: 'Te quiero.', en: 'I love you.' },
+    ],
+    exceptions: [
+      'In Spain, le/les are also used for masculine human direct objects (leísmo).',
+      'With infinitives, attach or place before the conjugated verb: Lo quiero ver / Quiero verlo.',
+    ],
+    related: ['indirect_object_pronouns'],
+  },
+  {
+    id: 'indirect_object_pronouns',
+    concept_id: 'indirect_object_pronouns',
+    cefr: 'A2',
+    category: 'Pronouns',
+    title: 'Indirect Object Pronouns',
+    rule: 'Replace the indirect object (to/for whom) with: me, te, le, nos, os, les.',
+    examples: [
+      { es: 'Le doy el libro a María → Le doy el libro.', en: 'I give the book to María → I give her the book.' },
+      { es: 'Me escribe cartas.', en: 'She writes letters to me.' },
+      { es: '¿Les hablas en español?', en: 'Do you speak to them in Spanish?' },
+    ],
+    exceptions: [
+      'When le/les come before lo/la/los/las, they change to se: se lo doy (I give it to him/her).',
+    ],
+    related: ['direct_object_pronouns', 'gustar_type'],
+  },
+  {
+    id: 'gustar_type',
+    concept_id: 'gustar_type',
+    cefr: 'A2',
+    category: 'Verbs',
+    title: 'Gustar-type Verbs',
+    rule: 'Gustar and similar verbs work "backwards" — the thing liked is the subject, and the person who likes it is an indirect object. Use gusta (singular) or gustan (plural).',
+    examples: [
+      { es: 'Me gusta el café.', en: 'I like coffee. (Coffee pleases me.)' },
+      { es: 'Me gustan las películas.', en: 'I like movies.' },
+      { es: 'A ella le encanta bailar.', en: 'She loves to dance.' },
+    ],
+    exceptions: [
+      'Similar verbs: encantar (love), molestar (bother), interesar (interest), doler (hurt), faltar (lack).',
+      'A + pronoun emphasizes or clarifies: A mí me gusta, pero a ti no.',
+    ],
+    related: ['indirect_object_pronouns'],
+  },
+  {
+    id: 'demonstratives',
+    concept_id: 'demonstratives',
+    cefr: 'A2',
+    category: 'Morphology',
+    title: 'Demonstratives — este / ese / aquel',
+    rule: 'Three distances: este (this, near me), ese (that, near you), aquel (that, far from both). They agree in gender and number.',
+    examples: [
+      { es: 'este libro / esta mesa / estos libros / estas mesas', en: 'this book / this table / these books / these tables' },
+      { es: 'ese chico / esa chica', en: 'that boy / that girl (near you)' },
+      { es: 'aquel edificio', en: 'that building over there' },
+    ],
+    exceptions: [
+      'Neuter forms (no noun reference): esto, eso, aquello — never carry an accent.',
+    ],
+    related: ['adjective_agreement'],
+  },
+  {
+    id: 'possessives',
+    concept_id: 'possessives',
+    cefr: 'A2',
+    category: 'Morphology',
+    title: 'Possessives',
+    rule: 'Short possessives go before the noun and agree in number (mi/mis, tu/tus, su/sus, nuestro/nuestra/nuestros/nuestras).',
+    examples: [
+      { es: 'mi libro / mis libros', en: 'my book / my books' },
+      { es: 'nuestra casa / nuestros amigos', en: 'our house / our friends' },
+      { es: 'el libro mío (long form)', en: 'the book of mine (emphatic/after noun)' },
+    ],
+    exceptions: [
+      'Su/sus is ambiguous (his/her/your/their). Clarify with de + pronoun: el coche de ella.',
+    ],
+    related: ['adjective_agreement'],
+  },
+  {
+    id: 'preterite_regular',
+    concept_id: 'preterite_regular',
+    cefr: 'A2',
+    category: 'Verbs',
+    title: 'Preterite Tense — Regular Verbs',
+    rule: 'The preterite describes completed past actions. -ar: -é, -aste, -ó, -amos, -asteis, -aron. -er/-ir: -í, -iste, -ió, -imos, -isteis, -ieron.',
+    examples: [
+      { es: 'Hablé con ella ayer.', en: 'I spoke with her yesterday.' },
+      { es: 'Comiste demasiado.', en: 'You ate too much.' },
+      { es: 'Vivieron en París.', en: 'They lived in Paris.' },
+    ],
+    exceptions: [
+      '-ar/-er verbs with stem changes do NOT change in preterite (only -ir do: e→i, o→u in él/ellos).',
+      'Watch spelling-change verbs: buscar→busqué, llegar→llegué, empezar→empecé.',
+    ],
+    related: ['imperfect', 'preterite_irregular', 'preterite_vs_imperfect'],
+  },
+  {
+    id: 'modal_verbs',
+    concept_id: 'modal_verbs',
+    cefr: 'A2',
+    category: 'Verbs',
+    title: 'Modal Verbs — poder, querer, deber',
+    rule: 'Modal verbs are followed by an infinitive. They are stem-changing: poder (o→ue), querer (e→ie). Deber expresses obligation.',
+    examples: [
+      { es: 'Puedo hablar español.', en: 'I can speak Spanish.' },
+      { es: 'Quiero aprender más.', en: 'I want to learn more.' },
+      { es: 'Debes estudiar más.', en: 'You should/must study more.' },
+    ],
+    exceptions: [
+      'Poder vs. saber: poder = physical/circumstantial ability; saber = knowledge/skill.',
+      'Deber de (probability): Debe de ser tarde — It must be late.',
+    ],
+    related: ['present_er_ir', 'future_simple'],
+  },
+
+  // ── B1 ─────────────────────────────────────────────────────────────────
+  {
+    id: 'preterite_irregular',
+    concept_id: 'preterite_irregular',
+    cefr: 'B1',
+    category: 'Verbs',
+    title: 'Preterite — Irregular Verbs',
+    rule: 'Key irregular preterites must be memorized. Ir and ser share identical forms (context distinguishes them). Irregular stems drop the accent marks.',
+    examples: [
+      { es: 'ir/ser: fui, fuiste, fue, fuimos, fuisteis, fueron', en: 'went / was (same forms)' },
+      { es: 'tener: tuve, tuviste, tuvo, tuvimos, tuvisteis, tuvieron', en: 'had' },
+      { es: 'hacer: hice, hiciste, hizo, hicimos, hicisteis, hicieron', en: 'did / made' },
+    ],
+    exceptions: [
+      'Other common irregulars: estar (estuv-), poder (pud-), poner (pus-), venir (vin-), querer (quis-), saber (sup-).',
+      'Note: hizo (not *hicó) — spelling change c→z before o.',
+    ],
+    related: ['preterite_regular', 'preterite_vs_imperfect'],
+  },
+  {
+    id: 'imperfect',
+    concept_id: 'imperfect',
+    cefr: 'B1',
+    category: 'Verbs',
+    title: 'Imperfect Tense',
+    rule: 'The imperfect describes habitual or ongoing past actions, background states, and descriptions. -ar: -aba, -abas, -aba, -ábamos, -abais, -aban. -er/-ir: -ía, -ías, -ía, -íamos, -íais, -ían.',
+    examples: [
+      { es: 'Cuando era niño, vivía en el campo.', en: 'When I was a child, I lived in the countryside. (habitual/state)' },
+      { es: 'Todos los veranos íbamos a la playa.', en: 'Every summer we went to the beach. (repeated)' },
+      { es: 'Eran las diez y llovía.', en: 'It was ten o\'clock and it was raining. (background)' },
+    ],
+    exceptions: [
+      'Only 3 irregular imperfects: ser (era), ir (iba), ver (veía).',
+    ],
+    related: ['preterite_regular', 'preterite_vs_imperfect'],
+  },
+  {
+    id: 'preterite_vs_imperfect',
+    concept_id: 'preterite_vs_imperfect',
+    cefr: 'B1',
+    category: 'Verbs',
+    title: 'Preterite vs. Imperfect',
+    rule: 'Preterite = completed event with clear beginning/end or a counted number of times. Imperfect = background, habit, state, or ongoing action that was interrupted.',
+    examples: [
+      { es: 'Dormía cuando sonó el teléfono.', en: 'I was sleeping (imperfect) when the phone rang (preterite).' },
+      { es: 'De niño jugaba al fútbol, pero ayer jugué al tenis.', en: 'As a child I played (habit) football, but yesterday I played (completed) tennis.' },
+    ],
+    exceptions: [
+      'Time markers hint at which to use: ayer/una vez → preterite; siempre/todos los días/cuando era → imperfect.',
+      'Saber/conocer change meaning: supe (I found out) vs. sabía (I knew); conocí (I met) vs. conocía (I knew).',
+    ],
+    related: ['preterite_regular', 'imperfect'],
+  },
+  {
+    id: 'future_simple',
+    concept_id: 'future_simple',
+    cefr: 'B1',
+    category: 'Verbs',
+    title: 'Simple Future Tense',
+    rule: 'Add endings to the infinitive: -é, -ás, -á, -emos, -éis, -án. Used for predictions, promises, and future events.',
+    examples: [
+      { es: 'Mañana hablaré con el jefe.', en: 'Tomorrow I will speak with the boss.' },
+      { es: '¿Vendrás a la fiesta?', en: 'Will you come to the party?' },
+      { es: 'Habrá mucha gente.', en: 'There will be a lot of people.' },
+    ],
+    exceptions: [
+      'Irregular stems: tener→tendr-, poder→podr-, hacer→har-, saber→sabr-, haber→habr-, decir→dir-, venir→vendr-.',
+      'Ir a + infinitive is more common in speech for near-future plans: Voy a comer.',
+    ],
+    related: ['conditional', 'modal_verbs'],
+  },
+  {
+    id: 'conditional',
+    concept_id: 'conditional',
+    cefr: 'B1',
+    category: 'Verbs',
+    title: 'Conditional Tense',
+    rule: 'Add -ía, -ías, -ía, -íamos, -íais, -ían to the infinitive (same irregular stems as future). Used for hypotheticals, polite requests, and reported speech.',
+    examples: [
+      { es: '¿Podrías ayudarme? (polite)', en: 'Could you help me?' },
+      { es: 'Si tuviera dinero, viajaría por el mundo.', en: 'If I had money, I would travel the world.' },
+      { es: 'Dijo que vendría.', en: 'He said he would come. (reported speech)' },
+    ],
+    exceptions: [
+      'Same irregular stems as future: tendr-, podr-, har-, sabr-, habr-, dir-, vendr-.',
+    ],
+    related: ['future_simple', 'present_subjunctive'],
+  },
+  {
+    id: 'present_subjunctive',
+    concept_id: 'present_subjunctive',
+    cefr: 'B1',
+    category: 'Verbs',
+    title: 'Present Subjunctive',
+    rule: 'The subjunctive expresses doubt, emotion, desire, or unreality in a subordinate clause after que. Form: start from yo present indicative, swap -ar endings to -e, -er/-ir endings to -a.',
+    examples: [
+      { es: 'Quiero que vengas.', en: 'I want you to come.' },
+      { es: 'Es importante que estudies.', en: 'It\'s important that you study.' },
+      { es: 'Dudo que sea verdad.', en: 'I doubt it\'s true.' },
+    ],
+    exceptions: [
+      'Common triggers (WEIRDO): Wishes, Emotion, Impersonal expressions, Recommendations, Doubt/Denial, Ojalá.',
+      'Irregular yo forms carry into subjunctive: tener→tenga, hacer→haga, ir→vaya, ser→sea, estar→esté, dar→dé.',
+    ],
+    related: ['imperative', 'relative_clauses'],
+  },
+  {
+    id: 'imperative',
+    concept_id: 'imperative',
+    cefr: 'B1',
+    category: 'Verbs',
+    title: 'Imperative — Commands',
+    rule: 'Tú affirmative: 3rd person singular present (habla, come, vive). Tú negative: present subjunctive (no hables, no comas). Usted: always present subjunctive.',
+    examples: [
+      { es: '¡Habla más despacio!', en: 'Speak more slowly! (tú, affirmative)' },
+      { es: '¡No hables tan rápido!', en: 'Don\'t speak so fast! (tú, negative)' },
+      { es: 'Siéntese, por favor.', en: 'Please sit down. (usted)' },
+    ],
+    exceptions: [
+      'Irregular tú imperatives: di, haz, ve, pon, sal, sé, ten, ven.',
+      'Reflexive pronouns attach to affirmative commands: ¡Levántate! but ¡No te levantes!',
+    ],
+    related: ['present_subjunctive', 'reflexive_verbs'],
+  },
+  {
+    id: 'por_vs_para',
+    concept_id: 'por_vs_para',
+    cefr: 'B1',
+    category: 'Prepositions',
+    title: 'Por vs. Para',
+    rule: 'Para = purpose/goal/recipient/deadline. Por = cause/exchange/duration/means/agent in passive.',
+    examples: [
+      { es: 'Este regalo es para ti. (recipient)', en: 'This gift is for you.' },
+      { es: 'Estudio para aprender. (purpose)', en: 'I study in order to learn.' },
+      { es: 'Lo hice por amor. (cause/motive)', en: 'I did it for love.' },
+      { es: 'Caminé por el parque. (movement through)', en: 'I walked through the park.' },
+    ],
+    exceptions: [
+      'Por + time = duration: Estudié por dos horas. Para + time = deadline: Lo necesito para el lunes.',
+    ],
+    related: ['preterite_regular'],
+  },
+  {
+    id: 'relative_clauses',
+    concept_id: 'relative_clauses',
+    cefr: 'B1',
+    category: 'Syntax',
+    title: 'Relative Clauses',
+    rule: 'Que (that/which/who) is the most common relative pronoun and refers to people or things. Quien(es) refers only to people. Donde refers to places.',
+    examples: [
+      { es: 'El libro que leí es bueno.', en: 'The book that I read is good.' },
+      { es: 'La chica con quien hablo es mi amiga.', en: 'The girl with whom I speak is my friend.' },
+      { es: 'La ciudad donde nací es pequeña.', en: 'The city where I was born is small.' },
+    ],
+    exceptions: [
+      'After prepositions, use el que/la que/los que/las que for things, or quien(es) for people: la mesa sobre la que escribo.',
+    ],
+    related: ['present_subjunctive', 'question_words'],
+  },
+];
+
+export function getCardById(id) {
+  return GRAMMAR_CARDS.find(c => c.id === id) ?? null;
+}
+
+export function getCardsByCategory(category) {
+  return GRAMMAR_CARDS.filter(c => c.category === category);
+}
+
+export function getCardsByCefr(level) {
+  return GRAMMAR_CARDS.filter(c => c.cefr === level);
+}
+
+export const CATEGORIES = [...new Set(GRAMMAR_CARDS.map(c => c.category))].sort();
+export const CEFR_LEVELS = ['A1', 'A2', 'B1'];

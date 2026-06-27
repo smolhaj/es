@@ -46,5 +46,15 @@ export const api = {
 
   learner: {
     profile: (token) => req('/learner/profile', {}, token)
+  },
+
+  vocabulary: {
+    due: (token) => req('/vocabulary/due', {}, token),
+
+    review: (token, wordId, grade) =>
+      req('/vocabulary/review', {
+        method: 'POST',
+        body: JSON.stringify({ wordId, grade })
+      }, token)
   }
 };

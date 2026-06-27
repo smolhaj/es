@@ -20,7 +20,7 @@ export default function Session() {
   const [greeting, setGreeting] = useState(null);
   const [exercise, setExercise] = useState(null);
   const [nextExercise, setNextExercise] = useState(null);
-  const [feedback, setFeedback] = useState(null);   // { correct, text, correctAnswer }
+  const [feedback, setFeedback] = useState(null);   // { correct, text, correctAnswer, conceptNote }
   const [stats, setStats] = useState({ count: 0, correct: 0 });
   const [summary, setSummary] = useState(null);
   const [error, setError] = useState('');
@@ -47,7 +47,8 @@ export default function Session() {
       setFeedback({
         correct: result.correct,
         text: result.feedback,
-        correctAnswer: result.correct ? null : exercise.answer
+        correctAnswer: result.correct ? null : exercise.answer,
+        conceptNote: result.conceptNote ?? null,
       });
       setNextExercise(result.exercise);
 
@@ -144,6 +145,7 @@ export default function Session() {
                   correct={feedback?.correct}
                   text={feedback?.text}
                   correctAnswer={feedback?.correctAnswer}
+                  conceptNote={feedback?.conceptNote}
                   onNext={handleNext}
                   loading={phase === 'checking'}
                 />
