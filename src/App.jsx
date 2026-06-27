@@ -6,7 +6,10 @@ import Dashboard from './pages/Dashboard.jsx';
 import Session from './pages/Session.jsx';
 import GrammarRef from './pages/GrammarRef.jsx';
 import VocabReview from './pages/VocabReview.jsx';
+import VocabBrowser from './pages/VocabBrowser.jsx';
 import FalseFriends from './pages/FalseFriends.jsx';
+import Idioms from './pages/Idioms.jsx';
+import Pronunciation from './pages/Pronunciation.jsx';
 
 function Protected({ children }) {
   const { isLoggedIn } = useAuth();
@@ -28,8 +31,11 @@ export default function App() {
         <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
         <Route path="/session" element={<Protected><Session /></Protected>} />
         <Route path="/vocab-review" element={<Protected><VocabReview /></Protected>} />
+        <Route path="/vocab" element={<Protected><VocabBrowser /></Protected>} />
         <Route path="/grammar" element={<Protected><GrammarRef /></Protected>} />
         <Route path="/false-friends" element={<Protected><FalseFriends /></Protected>} />
+        <Route path="/idioms" element={<Protected><Idioms /></Protected>} />
+        <Route path="/pronunciation" element={<Protected><Pronunciation /></Protected>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>

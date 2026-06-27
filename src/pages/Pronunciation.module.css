@@ -1,0 +1,231 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+}
+
+.inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.backLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--sp-3);
+}
+.backLink:hover { color: var(--text); }
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin-top: var(--sp-2);
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.filterRow {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.filterBtn:hover { border-color: var(--accent); color: var(--accent); }
+.filterActive { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-8);
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  overflow: hidden;
+}
+.card:hover { border-color: var(--accent); }
+.cardExpanded { border-color: var(--accent); }
+
+.cardHeader {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: var(--sp-1) var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  align-items: center;
+}
+
+.cardMeta {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.chevron {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+  align-self: center;
+}
+.chevronOpen { transform: rotate(180deg); }
+
+/* Card body */
+.cardBody {
+  padding: 0 var(--sp-5) var(--sp-5);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  cursor: default;
+}
+
+.ruleText {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text);
+  padding-top: var(--sp-4);
+}
+
+.subhead {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-3);
+}
+
+/* Sound grid */
+.soundGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.soundRow {
+  display: grid;
+  grid-template-columns: 60px 60px 1fr 1fr;
+  gap: var(--sp-3);
+  align-items: baseline;
+  font-size: 0.875rem;
+}
+
+.soundLetter {
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+}
+
+.soundIpa {
+  font-family: monospace;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.soundLike {
+  color: var(--text);
+  font-style: italic;
+}
+
+.soundExample {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+/* Tips */
+.tipList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.tipItem {
+  font-size: 0.875rem;
+  color: var(--text);
+  line-height: 1.55;
+  padding-left: var(--sp-3);
+  border-left: 2px solid var(--accent);
+}
+
+/* Examples */
+.exampleList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.exampleItem {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: baseline;
+  font-size: 0.875rem;
+}
+
+.exWord {
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--font-serif);
+  white-space: nowrap;
+}
+
+.exNote {
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .main { padding: var(--sp-5); }
+  .title { font-size: 1.75rem; }
+  .soundRow { grid-template-columns: 50px 55px 1fr; }
+  .soundExample { display: none; }
+}
