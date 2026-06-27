@@ -1,0 +1,80 @@
+.feedback {
+  border-radius: var(--r-md);
+  padding: var(--sp-5) var(--sp-6);
+  border-left: 4px solid;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.correct {
+  background: var(--correct-bg);
+  border-color: var(--correct);
+  color: var(--correct);
+}
+
+.incorrect {
+  background: var(--incorrect-bg);
+  border-color: var(--incorrect);
+  color: var(--incorrect);
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.label { line-height: 1; }
+
+.correctAnswer {
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+.correctLabel {
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.text {
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+.nextBtn {
+  margin-top: var(--sp-1);
+  align-self: flex-start;
+  color: var(--text);
+}
+
+/* Loading spinner */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-6);
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

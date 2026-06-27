@@ -1,0 +1,158 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+}
+
+.inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-10);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-top: var(--sp-4);
+}
+
+.greeting {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.subGreeting {
+  margin-top: var(--sp-2);
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+/* Start section */
+.startSection {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+.startBtn {
+  font-size: 1rem;
+  padding: 0 var(--sp-8);
+  height: 48px;
+}
+
+.startNote {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Stats */
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-5);
+  font-weight: 400;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-5) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.statValue {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--text);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statSub {
+  font-size: 0.8125rem;
+  color: var(--text-placeholder);
+}
+
+/* Recent sessions */
+.sessionList {
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+
+.sessionHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--bg-alt);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.sessionRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: var(--sp-4) var(--sp-5);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+}
+
+.sessionDate { color: var(--text-muted); }
+.sessionAcc  { font-weight: 500; }
+
+/* States */
+.loading {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.error {
+  color: var(--incorrect);
+  font-size: 0.9375rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .main { padding: var(--sp-5); }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .startSection { flex-direction: column; align-items: flex-start; }
+  .startBtn { width: 100%; }
+  .header { flex-direction: column; }
+}
+
+@media (max-width: 400px) {
+  .statsGrid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,139 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Hero ── */
+.hero {
+  max-width: calc(var(--content-w) + 2 * var(--sp-6));
+  margin: 0 auto;
+  padding: var(--sp-16) var(--sp-6) var(--sp-12);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--sp-10);
+  align-items: center;
+}
+
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.subline {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 480px;
+}
+
+.ctas {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  padding-top: var(--sp-2);
+}
+
+.mascotWrap {
+  flex-shrink: 0;
+}
+
+.fox {
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 8px 24px color-mix(in srgb, var(--accent) 20%, transparent));
+}
+
+/* ── Features ── */
+.features {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-12) var(--sp-6);
+}
+
+.featuresGrid {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-8);
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.featureLabel {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  color: var(--text);
+}
+
+.featureBody {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── CTA section ── */
+.cta {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: var(--sp-12) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-4);
+}
+
+.ctaHeadline {
+  font-size: 2rem;
+}
+
+.ctaBody {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding: var(--sp-5) var(--sp-6);
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: var(--sp-10) var(--sp-5) var(--sp-8);
+  }
+  .mascotWrap { order: -1; }
+  .fox { width: 120px; height: 120px; }
+  .featuresGrid { grid-template-columns: 1fr; gap: var(--sp-6); }
+}
