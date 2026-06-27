@@ -1,6 +1,6 @@
 import styles from './Feedback.module.css';
 
-export default function Feedback({ correct, text, correctAnswer, onNext, loading }) {
+export default function Feedback({ correct, text, correctAnswer, conceptNote, onNext, loading }) {
   if (loading) {
     return (
       <div className={styles.loading} aria-live="polite" aria-label="Checking answer">
@@ -39,6 +39,13 @@ export default function Feedback({ correct, text, correctAnswer, onNext, loading
       )}
 
       {text && <p className={styles.text}>{text}</p>}
+
+      {conceptNote && (
+        <div className={styles.conceptNote}>
+          <span className={styles.conceptNoteLabel}>Professor's note</span>
+          <p className={styles.conceptNoteText}>{conceptNote}</p>
+        </div>
+      )}
 
       <button
         className={`btn btn-secondary ${styles.nextBtn}`}
