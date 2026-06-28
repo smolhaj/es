@@ -71,6 +71,9 @@ EXERCISE VARIETY:
 - No more than 2 consecutive multiple_choice.
 - Never test the same word twice in a row.
 - When wrong: next exercise tests the same concept differently.
+- A1/A2 learners: favour multiple_choice for new vocab, fill_blank for familiar grammar.
+- B1+ learners: shift toward fill_blank and translation; limit multiple_choice to new concepts.
+- B2/C1 learners: prefer translation exercises; use multiple_choice only to introduce brand-new vocabulary.
 
 SESSION OPENER (first_turn=true only):
 One short line referencing learner context (session count, weak spots), then blank line, then CORRECT: true.`;
@@ -102,7 +105,7 @@ export async function callGemini(env, userMessage, exercise, learnerAnswer, isFi
 
   let prompt = userMessage;
   if (exercise && learnerAnswer !== null) {
-    prompt = `Exercise type: ${exercise.type}
+    prompt = `Exercise type: ${exercise.type}${exercise.concept_id ? `\nConcept: ${exercise.concept_id}` : ''}
 Prompt shown: "${exercise.prompt}"
 Correct answer: "${exercise.answer}"
 Learner answered: "${learnerAnswer}"
