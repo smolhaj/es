@@ -51,6 +51,16 @@
   text-align: right;
 }
 
+/* Focus mode banner */
+.focusBanner {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: var(--sp-2) var(--sp-4);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--r-sm);
+}
+
 /* Greeting */
 .greeting {
   font-size: 0.9375rem;

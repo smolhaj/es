@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
@@ -58,6 +59,13 @@ function ConceptRow({ concept }) {
         ) : (
           <span className={styles.unstarted}>—</span>
         )}
+        <Link
+          to={`/session?focus=${concept.id}`}
+          className={styles.drillLink}
+          title={`Drill ${concept.label}`}
+        >
+          Drill →
+        </Link>
       </div>
     </div>
   );

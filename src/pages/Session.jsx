@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
@@ -39,6 +39,8 @@ const SESSION_LENGTH = 10;
 export default function Session() {
   const { token } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const focusConcept = searchParams.get('focus') ?? null;
 
   const [phase, setPhase] = useState('starting');
   const [sessionId, setSessionId] = useState(null);
@@ -52,7 +54,7 @@ export default function Session() {
 
   // Start session on mount
   useEffect(() => {
-    api.sessions.start(token)
+    api.sessions.start(token, focusConcept)
       .then(({ sessionId: sid, exercise: ex, greeting: gr }) => {
         setSessionId(sid);
         setExercise(ex);
@@ -143,8 +145,15 @@ export default function Session() {
             </div>
           )}
 
+          {/* Focus mode banner */}
+          {focusConcept && (phase === 'exercise' || phase === 'checking' || phase === 'feedback') && (
+            <p className={styles.focusBanner}>
+              Drilling: <strong>{CONCEPT_LABELS[focusConcept] ?? focusConcept}</strong>
+            </p>
+          )}
+
           {/* Greeting */}
-          {greeting && phase === 'exercise' && stats.count === 0 && (
+          {greeting && phase === 'exercise' && stats.count === 0 && !focusConcept && (
             <p className={styles.greeting}>{greeting}</p>
           )}
 

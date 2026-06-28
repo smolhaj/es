@@ -28,8 +28,11 @@ export const api = {
   },
 
   sessions: {
-    start: (token) =>
-      req('/sessions/start', { method: 'POST' }, token),
+    start: (token, focusConcept = null) =>
+      req('/sessions/start', {
+        method: 'POST',
+        body: JSON.stringify({ focusConcept }),
+      }, token),
 
     turn: (token, sessionId, exercise, learnerAnswer) =>
       req('/sessions/turn', {

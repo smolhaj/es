@@ -232,6 +232,20 @@
   text-align: right;
 }
 
+.drillLink {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.row:hover .drillLink {
+  opacity: 1;
+}
+
 .loading,
 .error {
   font-size: 0.9rem;
