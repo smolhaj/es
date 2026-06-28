@@ -8,16 +8,24 @@ const FEATURES = [
     body: 'Rules explained explicitly, drilled in context, tracked across sessions. Not "just pick it up."'
   },
   {
-    label: 'No streaks',
-    body: 'No guilt mechanics, no lives, no XP. Progress indicators that reflect actual language ability.'
+    label: 'Adapts to you',
+    body: 'A built-in professor reads your error history, weak concepts, and personal context before every session. Each exercise is chosen specifically for where you are.'
   },
   {
-    label: 'A1 to C2',
-    body: 'A full curriculum built to CEFR standards, from zero to near-native fluency. No artificial ceiling.'
+    label: 'A1 to C1',
+    body: 'A full curriculum built to CEFR standards — 33 tracked grammar concepts, 230+ vocabulary items, idioms, regional differences, verb conjugation tables.'
+  },
+  {
+    label: 'Spaced repetition',
+    body: 'Vocabulary is scheduled with FSRS-4.5, the most accurate open spaced-repetition algorithm. Words appear right when you\'re about to forget them.'
   },
   {
     label: 'It remembers',
-    body: 'Every mistake is tracked. The system resurfaces your weak spots until they\'re no longer weak.'
+    body: 'Every mistake is tracked. Concepts with persistent errors get flagged as fossilised and drilled harder. You can\'t hide from your weak spots.'
+  },
+  {
+    label: 'Built-in references',
+    body: 'Grammar rules, verb conjugations, 40 idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.'
   }
 ];
 
