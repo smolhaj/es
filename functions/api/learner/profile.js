@@ -24,7 +24,11 @@ export async function onRequestGet({ env, data }) {
     ).bind(userId, now).first(),
 
     env.DB.prepare(
-      'SELECT concept_id, mastery_score, error_count, fossilization_flagged FROM concept_mastery WHERE user_id = ? ORDER BY error_count DESC LIMIT 5'
+      `SELECT concept_id, mastery_score, error_count, fossilization_flagged
+       FROM concept_mastery
+       WHERE user_id = ? AND sessions_seen >= 2
+       ORDER BY mastery_score ASC, error_count DESC
+       LIMIT 5`
     ).bind(userId).all(),
 
     env.DB.prepare(

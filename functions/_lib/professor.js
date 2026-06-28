@@ -12,8 +12,8 @@ export async function compileBriefing(db, userId) {
       SELECT cm.concept_id, cm.mastery_score, cm.error_count, cm.session_error_count,
              cm.sessions_seen, cm.explanation_styles_tried, cm.fossilization_flagged
       FROM concept_mastery cm
-      WHERE cm.user_id = ?
-      ORDER BY cm.error_count DESC LIMIT 8
+      WHERE cm.user_id = ? AND cm.sessions_seen >= 1
+      ORDER BY cm.mastery_score ASC, cm.error_count DESC LIMIT 8
     `).bind(userId).all(),
 
     db.prepare(`
@@ -97,6 +97,16 @@ export async function compileBriefing(db, userId) {
       .map(id => `${CONCEPTS[id]?.label ?? id} [${CONCEPTS[id]?.cefr ?? '?'}]`)
       .join(', ');
     lines.push(`READY TO INTRODUCE (prereqs met, not yet taught): ${labels}. Consider introducing one this session.`);
+  }
+
+  // Strong concepts (mastery ≥ 80%) — let the professor skip drilling these
+  const strongConcepts = Object.entries(fullMasteryMap)
+    .filter(([, v]) => (v.mastery_score ?? 0) >= 0.8)
+    .map(([id]) => CONCEPTS[id]?.label)
+    .filter(Boolean)
+    .slice(0, 10);
+  if (strongConcepts.length > 0) {
+    lines.push(`MASTERED (don't re-drill unless requested): ${strongConcepts.join(', ')}.`);
   }
 
   // Fossilization warnings
