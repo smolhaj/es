@@ -1,3 +1,52 @@
+const CONCEPT_LABELS = {
+  greeting_basics: 'Greetings', numbers_1_20: 'Numbers 1–20', subject_pronouns: 'Subject pronouns',
+  noun_gender: 'Noun gender', definite_articles: 'Articles (el/la)', indefinite_articles: 'Articles (un/una)',
+  ser_basics: 'Ser', estar_basics: 'Estar', present_ar: 'Present -ar', present_er_ir: 'Present -er/-ir',
+  adjective_agreement: 'Adjective agreement', question_words: 'Question words', hay: 'Hay',
+  numbers_21_100: 'Numbers 21–100', ser_vs_estar: 'Ser vs. estar', reflexive_verbs: 'Reflexive verbs',
+  gustar_type: 'Gustar-type', direct_object_pronouns: 'Direct obj. pronouns',
+  indirect_object_pronouns: 'Indirect obj. pronouns', demonstratives: 'Demonstratives',
+  possessives: 'Possessives', preterite_regular: 'Preterite (regular)', modal_verbs: 'Modal verbs',
+  time_expressions: 'Time expressions', preterite_irregular: 'Preterite (irregular)',
+  imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
+  future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',
+  imperative: 'Imperative', por_vs_para: 'Por vs. para', relative_clauses: 'Relative clauses',
+  present_perfect: 'Present perfect', pluperfect: 'Pluperfect', future_perfect: 'Future perfect',
+  conditional_perfect: 'Conditional perfect', passive_voice: 'Passive voice', passive_se: 'Passive se',
+  imperfect_subjunctive: 'Imperfect subjunctive', si_clauses: 'Si-clauses',
+  subjunctive_adverbial: 'Subjunctive (adverbial)', comparatives: 'Comparatives',
+  ser_estar_participle: 'Ser/estar + participio', diminutives_augmentatives: 'Diminutives',
+  relative_pronouns_advanced: 'Relative pronouns (adv.)', subjunctive_noun_clauses: 'Subjunctive (noun clauses)',
+  subjunctive_adjective_clauses: 'Subjunctive (adj. clauses)', gerund_advanced: 'Gerund (advanced)',
+  ser_passive: 'Ser passive', estilo_indirecto: 'Indirect speech', nominalisation: 'Nominalisation',
+  subjunctive_temporal: 'Subjunctive (temporal)', cuantificadores: 'Quantifiers',
+};
+
+function buildSessionNotes({ itemsReviewed, accuracy, abandoned, errors, cefrChanged }) {
+  if (itemsReviewed < 3) return null;
+  const pct = Math.round(accuracy * 100);
+  const parts = [];
+
+  if (abandoned) {
+    parts.push(`Session ended early after ${itemsReviewed} exercise${itemsReviewed !== 1 ? 's' : ''} (${pct}% correct).`);
+  } else {
+    const verdict = pct >= 90 ? 'Excellent' : pct >= 75 ? 'Good' : pct >= 60 ? 'OK' : 'Tough';
+    parts.push(`${verdict} session — ${itemsReviewed} exercises, ${pct}% correct.`);
+  }
+
+  const topErrors = errors.filter(e => e.concept_id).slice(0, 3);
+  if (topErrors.length > 0) {
+    const names = topErrors.map(e => CONCEPT_LABELS[e.concept_id] ?? e.concept_id).join(', ');
+    parts.push(`Errors in: ${names}.`);
+  }
+
+  if (cefrChanged) {
+    parts.push(`Level advanced: ${cefrChanged.from} → ${cefrChanged.to}! 🎉`);
+  }
+
+  return parts.join(' ');
+}
+
 function computeCefrLevel(accuracy, sessionCount, current) {
   const order = ['A1', 'A2', 'B1', 'B2', 'C1'];
   const thresholds = {
@@ -111,6 +160,19 @@ export async function onRequestPost({ request, env, data }) {
       LIMIT 20
     `).bind(data.user.sub, session.started_at).all(),
   ]);
+
+  // Build a short session notes string from structured data (no extra AI call)
+  const notes = buildSessionNotes({
+    itemsReviewed: session.items_reviewed,
+    accuracy,
+    abandoned: !!abandoned,
+    errors: errorsResult.results ?? [],
+    cefrChanged: prevCefr !== newCefr ? { from: prevCefr, to: newCefr } : null,
+  });
+  if (notes) {
+    await env.DB.prepare('UPDATE sessions SET session_notes = ? WHERE id = ?')
+      .bind(notes, sessionId).run().catch(() => {});
+  }
 
   return Response.json({
     accuracy,

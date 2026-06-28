@@ -1,11 +1,13 @@
 import { callGemini } from './_gemini.js';
 import { compileBriefing } from '../../_lib/professor.js';
+import { CONCEPTS } from '../../_lib/concepts.js';
 
 export async function onRequestPost({ request, env, data }) {
   let body = {};
   try { body = await request.json(); } catch {}
 
-  const focusConcept = typeof body.focusConcept === 'string' ? body.focusConcept : null;
+  const rawFocus = typeof body.focusConcept === 'string' ? body.focusConcept.trim() : null;
+  const focusConcept = (rawFocus && CONCEPTS[rawFocus]) ? rawFocus : null;
 
   const sessionId = crypto.randomUUID();
   const now = new Date().toISOString();
