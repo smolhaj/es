@@ -95,13 +95,15 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
           </div>
         )}
 
-        <button
-          type="submit"
-          className={`btn btn-primary ${styles.submitBtn}`}
-          disabled={!canSubmit || disabled}
-        >
-          Check answer
-        </button>
+        {!isMultiple && (
+          <button
+            type="submit"
+            className={`btn btn-primary ${styles.submitBtn}`}
+            disabled={!canSubmit || disabled}
+          >
+            Check answer
+          </button>
+        )}
       </form>
     </div>
   );

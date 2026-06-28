@@ -69,8 +69,10 @@
     --text-placeholder: #6a5e4a;
     --accent:           #d4622a;
     --accent-hover:     #e27040;
+    --correct:          #5aad68;
     --correct-bg:       #0e1f10;
     --correct-border:   #2a5c30;
+    --incorrect:        #d4698a;
     --incorrect-bg:     #1f0c10;
     --incorrect-border: #5c2030;
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
