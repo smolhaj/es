@@ -72,6 +72,15 @@ function GrammarCard({ card, expanded, onToggle }) {
               ))}
             </div>
           )}
+
+          <div className={styles.cardActions}>
+            <Link
+              to={`/session?focus=${card.id}`}
+              className={`btn btn-secondary ${styles.drillBtn}`}
+            >
+              Drill this concept →
+            </Link>
+          </div>
         </div>
       )}
     </article>

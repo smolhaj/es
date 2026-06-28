@@ -260,6 +260,16 @@
   text-decoration: underline;
 }
 
+.cardActions {
+  display: flex;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+
+.drillBtn {
+  font-size: 0.875rem;
+}
+
 @media (max-width: 640px) {
   .main { padding: var(--sp-5); }
   .title { font-size: 1.75rem; }
