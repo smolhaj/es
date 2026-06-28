@@ -75,6 +75,7 @@ export default function NavBar({ cefrLevel }) {
               <>
                 <Link to="/session"   className={styles.mobileLink} role="menuitem">Practice</Link>
                 <Link to="/dashboard" className={styles.mobileLink} role="menuitem">Dashboard</Link>
+                <Link to="/concepts"  className={styles.mobileLink} role="menuitem">Concepts</Link>
                 <Link to="/grammar"   className={styles.mobileLink} role="menuitem">Grammar</Link>
                 <Link to="/verbs"     className={styles.mobileLink} role="menuitem">Verbs</Link>
                 <Link to="/vocab"     className={styles.mobileLink} role="menuitem">Vocabulary</Link>

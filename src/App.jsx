@@ -15,6 +15,7 @@ import Profile from './pages/Profile.jsx';
 import History from './pages/History.jsx';
 import Regional from './pages/Regional.jsx';
 import Writing from './pages/Writing.jsx';
+import Concepts from './pages/Concepts.jsx';
 
 function Protected({ children }) {
   const { isLoggedIn } = useAuth();
@@ -46,6 +47,7 @@ export default function App() {
         <Route path="/history" element={<Protected><History /></Protected>} />
         <Route path="/regional" element={<Protected><Regional /></Protected>} />
         <Route path="/writing" element={<Protected><Writing /></Protected>} />
+        <Route path="/concepts" element={<Protected><Concepts /></Protected>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>

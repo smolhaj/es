@@ -44,11 +44,17 @@ export async function onRequestPost({ request, env, data }) {
 
   const now = new Date().toISOString();
 
+  // Frustration: error rate above 30% triggers it; scales 0→1 as accuracy 50%→0%
+  const frustrationScore = Math.max(0, Math.min(1, (0.5 - accuracy) * 2));
+
+  // Fatigue: completed a full session (≥8 items) but accuracy was poor
+  const fatigueSignal = (session.items_reviewed >= 8 && accuracy < 0.55) ? 1 : 0;
+
   await env.DB.prepare(`
     UPDATE sessions
-    SET ended_at = ?, overall_accuracy = ?
+    SET ended_at = ?, overall_accuracy = ?, frustration_score = ?, fatigue_signal = ?
     WHERE id = ?
-  `).bind(now, accuracy, sessionId).run();
+  `).bind(now, accuracy, frustrationScore, fatigueSignal, sessionId).run();
 
   // Update skill profiles and track CEFR level progression
   const prevSkill = await env.DB.prepare(
