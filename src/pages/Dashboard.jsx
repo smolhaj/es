@@ -143,8 +143,16 @@ export default function Dashboard() {
                       {CONCEPT_LABELS[c.concept_id] ?? c.concept_id}
                       {c.fossilization_flagged ? <span className={styles.fossilTag}>persistent</span> : null}
                     </span>
-                    <span className={styles.weakMastery}>
-                      {Math.round((c.mastery_score ?? 0) * 100)}%
+                    <span className={styles.weakRight}>
+                      <span className={styles.weakMastery}>
+                        {Math.round((c.mastery_score ?? 0) * 100)}%
+                      </span>
+                      <Link
+                        to={`/session?focus=${c.concept_id}`}
+                        className={styles.weakDrill}
+                      >
+                        Drill →
+                      </Link>
                     </span>
                   </li>
                 ))}
