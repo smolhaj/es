@@ -184,6 +184,22 @@
   color: var(--incorrect);
 }
 
+.wordChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.wordChip {
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-size: 0.875rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
 .summaryActions {
   display: flex;
   gap: var(--sp-3);

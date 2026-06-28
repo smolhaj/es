@@ -7,6 +7,21 @@ import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import styles from './Session.module.css';
 
+const CONCEPT_LABELS = {
+  greeting_basics: 'Greetings', numbers_1_20: 'Numbers 1–20', subject_pronouns: 'Subject pronouns',
+  noun_gender: 'Noun gender', definite_articles: 'Articles (el/la)', indefinite_articles: 'Articles (un/una)',
+  ser_basics: 'Ser', estar_basics: 'Estar', present_ar: 'Present -ar', present_er_ir: 'Present -er/-ir',
+  adjective_agreement: 'Adjective agreement', question_words: 'Question words', hay: 'Hay',
+  numbers_21_100: 'Numbers 21–100', ser_vs_estar: 'Ser vs. estar', reflexive_verbs: 'Reflexive verbs',
+  gustar_type: 'Gustar-type', direct_object_pronouns: 'Direct obj. pronouns',
+  indirect_object_pronouns: 'Indirect obj. pronouns', demonstratives: 'Demonstratives',
+  possessives: 'Possessives', preterite_regular: 'Preterite (regular)', modal_verbs: 'Modal verbs',
+  time_expressions: 'Time expressions', preterite_irregular: 'Preterite (irregular)',
+  imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
+  future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',
+  imperative: 'Imperative', por_vs_para: 'Por vs. para', relative_clauses: 'Relative clauses',
+};
+
 const SESSION_LENGTH = 10;
 
 // phase: 'starting' | 'exercise' | 'checking' | 'feedback' | 'ending' | 'summary' | 'error'
@@ -185,15 +200,32 @@ export default function Session() {
 
               {summary.errors?.length > 0 && (
                 <div className={styles.weakSpots}>
-                  <h2 className={styles.weakTitle}>Needs work</h2>
+                  <h2 className={styles.weakTitle}>Errors this session</h2>
                   <ul className={styles.weakList}>
-                    {summary.errors.map(e => (
-                      <li key={e.exercise_type} className={styles.weakItem}>
-                        <span className={styles.weakType}>{formatType(e.exercise_type)}</span>
-                        <span className={styles.weakCount}>{e.count} error{e.count !== 1 ? 's' : ''}</span>
+                    {summary.errors.map((e, i) => (
+                      <li key={i} className={styles.weakItem}>
+                        <span className={styles.weakType}>
+                          {e.concept_id
+                            ? (CONCEPT_LABELS[e.concept_id] ?? e.concept_id)
+                            : formatType(e.exercise_type)}
+                        </span>
+                        <span className={styles.weakCount}>{e.count}×</span>
                       </li>
                     ))}
                   </ul>
+                </div>
+              )}
+
+              {summary.wordsReviewed?.length > 0 && (
+                <div className={styles.weakSpots}>
+                  <h2 className={styles.weakTitle}>Words practiced</h2>
+                  <div className={styles.wordChips}>
+                    {summary.wordsReviewed.map(w => (
+                      <span key={w.word} className={styles.wordChip} title={w.translation}>
+                        {w.word}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
 

@@ -39,18 +39,30 @@ export async function onRequestPost({ request, env, data }) {
       updated_at = excluded.updated_at
   `).bind(data.user.sub, accuracy, now).run();
 
-  // Error breakdown for summary
-  const { results: errors } = await env.DB.prepare(`
-    SELECT exercise_type, COUNT(*) as count
-    FROM error_events
-    WHERE session_id = ?
-    GROUP BY exercise_type
-  `).bind(sessionId).all();
+  // Concept-level error breakdown for summary
+  const [errorsResult, wordsResult] = await Promise.all([
+    env.DB.prepare(`
+      SELECT concept_id, exercise_type, COUNT(*) as count
+      FROM error_events
+      WHERE session_id = ?
+      GROUP BY concept_id, exercise_type
+      ORDER BY count DESC
+    `).bind(sessionId).all(),
+
+    env.DB.prepare(`
+      SELECT DISTINCT word, translation
+      FROM vocabulary_items
+      WHERE user_id = ? AND last_reviewed_at >= ?
+      ORDER BY word
+      LIMIT 20
+    `).bind(data.user.sub, session.started_at).all(),
+  ]);
 
   return Response.json({
     accuracy,
     itemsReviewed: session.items_reviewed,
     correctCount: session.correct_count,
-    errors
+    errors: errorsResult.results ?? [],
+    wordsReviewed: wordsResult.results ?? [],
   });
 }
