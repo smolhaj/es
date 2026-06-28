@@ -27,7 +27,7 @@ export async function onRequestPost({ request, env, data }) {
     return Response.json({ error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const { sessionId } = body;
+  const { sessionId, abandoned } = body;
   if (!sessionId) return Response.json({ error: 'sessionId required' }, { status: 400 });
 
   const session = await env.DB.prepare(
@@ -52,40 +52,45 @@ export async function onRequestPost({ request, env, data }) {
 
   await env.DB.prepare(`
     UPDATE sessions
-    SET ended_at = ?, overall_accuracy = ?, frustration_score = ?, fatigue_signal = ?
+    SET ended_at = ?, overall_accuracy = ?, frustration_score = ?, fatigue_signal = ?, abandoned = ?
     WHERE id = ?
-  `).bind(now, accuracy, frustrationScore, fatigueSignal, sessionId).run();
+  `).bind(now, accuracy, frustrationScore, fatigueSignal, abandoned ? 1 : 0, sessionId).run();
 
   // Update skill profiles and track CEFR level progression
+  // Skip accuracy update for short abandoned sessions to avoid skewing the rolling average
+  const skipCefrUpdate = abandoned && session.items_reviewed < 5;
+
   const prevSkill = await env.DB.prepare(
     'SELECT cefr_level, accuracy, session_count FROM skill_profiles WHERE user_id = ? AND skill = ?'
   ).bind(data.user.sub, 'grammar').first();
 
-  // Compute new CEFR level based on rolling accuracy and session count
-  const newSessionCount = (prevSkill?.session_count ?? 0) + 1;
-  const prevAcc = prevSkill?.accuracy ?? 0;
-  const newAcc = prevSkill
-    ? (prevAcc * prevSkill.session_count + accuracy) / newSessionCount
-    : accuracy;
   const prevCefr = prevSkill?.cefr_level ?? 'A1';
-  const newCefr = computeCefrLevel(newAcc, newSessionCount, prevCefr);
+  let newCefr = prevCefr;
 
-  await env.DB.prepare(`
-    INSERT INTO skill_profiles (user_id, skill, accuracy, cefr_level, session_count, updated_at)
-    VALUES (?, 'grammar', ?, ?, 1, ?)
-    ON CONFLICT(user_id, skill) DO UPDATE SET
-      accuracy = ?,
-      cefr_level = ?,
-      session_count = session_count + 1,
-      updated_at = excluded.updated_at
-  `).bind(data.user.sub, newAcc, newCefr, now, newAcc, newCefr).run();
+  if (!skipCefrUpdate) {
+    const newSessionCount = (prevSkill?.session_count ?? 0) + 1;
+    const prevAcc = prevSkill?.accuracy ?? 0;
+    const newAcc = prevSkill
+      ? (prevAcc * prevSkill.session_count + accuracy) / newSessionCount
+      : accuracy;
+    newCefr = computeCefrLevel(newAcc, newSessionCount, prevCefr);
 
-  // Record CEFR level change
-  if (prevCefr !== newCefr) {
     await env.DB.prepare(`
-      INSERT INTO cefr_history (id, user_id, skill, from_level, to_level, transitioned_at, session_id)
-      VALUES (?, ?, 'grammar', ?, ?, ?, ?)
-    `).bind(crypto.randomUUID(), data.user.sub, prevCefr, newCefr, now, sessionId).run();
+      INSERT INTO skill_profiles (user_id, skill, accuracy, cefr_level, session_count, updated_at)
+      VALUES (?, 'grammar', ?, ?, 1, ?)
+      ON CONFLICT(user_id, skill) DO UPDATE SET
+        accuracy = ?,
+        cefr_level = ?,
+        session_count = session_count + 1,
+        updated_at = excluded.updated_at
+    `).bind(data.user.sub, newAcc, newCefr, now, newAcc, newCefr).run();
+
+    if (prevCefr !== newCefr) {
+      await env.DB.prepare(`
+        INSERT INTO cefr_history (id, user_id, skill, from_level, to_level, transitioned_at, session_id)
+        VALUES (?, ?, 'grammar', ?, ?, ?, ?)
+      `).bind(crypto.randomUUID(), data.user.sub, prevCefr, newCefr, now, sessionId).run();
+    }
   }
 
   // Concept-level error breakdown for summary

@@ -116,7 +116,7 @@ export default function Session() {
   async function handleEndEarly() {
     if (!sessionId) { navigate('/dashboard'); return; }
     try {
-      await api.sessions.end(token, sessionId);
+      await api.sessions.end(token, sessionId, true);
     } catch {}
     navigate('/dashboard');
   }

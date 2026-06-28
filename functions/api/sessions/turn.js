@@ -1,5 +1,6 @@
 import { callGemini } from './_gemini.js';
 import { scheduleReview } from '../../_lib/fsrs.js';
+import { getNextExplanationStyle } from '../../_lib/concepts.js';
 
 export async function onRequestPost({ request, env, data }) {
   let body;
@@ -73,38 +74,51 @@ export async function onRequestPost({ request, env, data }) {
     // Update concept mastery
     if (exercise.concept_id) {
       const existing = await env.DB.prepare(
-        'SELECT mastery_score, error_count, session_error_count, sessions_seen, explanation_styles_tried, fossilization_flagged FROM concept_mastery WHERE user_id = ? AND concept_id = ?'
+        'SELECT mastery_score, error_count, session_error_count, sessions_seen, explanation_styles_tried, fossilization_flagged, last_session_id FROM concept_mastery WHERE user_id = ? AND concept_id = ?'
       ).bind(data.user.sub, exercise.concept_id).first();
 
       const errorDelta = correct ? 0 : 1;
-      // Mastery: exponential moving average toward 1 on correct, toward 0 on error
       const prevMastery = existing?.mastery_score ?? 0;
       const newMastery = Math.min(1, Math.max(0, prevMastery + (correct ? 0.1 : -0.15)));
       const newErrorCount = (existing?.error_count ?? 0) + errorDelta;
       const newSessionErrors = (existing?.session_error_count ?? 0) + errorDelta;
       const sessionsSeen = existing?.sessions_seen ?? 1;
 
-      // Fossilization: error in 3+ sessions (track via error_count relative to sessions_seen)
+      // Fossilization: error in 3+ distinct sessions
       const fossilized = newErrorCount >= 3 && sessionsSeen >= 3 && newMastery < 0.4 ? 1 : (existing?.fossilization_flagged ?? 0);
 
       if (!existing) {
+        const firstStyle = getNextExplanationStyle(exercise.concept_id, []);
         await env.DB.prepare(`
           INSERT INTO concept_mastery
             (user_id, concept_id, mastery_score, error_count, session_error_count, sessions_seen,
-             explanation_styles_tried, last_seen, first_seen, fossilization_flagged)
-          VALUES (?, ?, ?, ?, ?, 1, '[]', ?, ?, ?)
+             explanation_styles_tried, last_seen, first_seen, fossilization_flagged, last_session_id)
+          VALUES (?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?)
         `).bind(
           data.user.sub, exercise.concept_id, newMastery, newErrorCount, newSessionErrors,
-          now, now, fossilized
+          JSON.stringify([firstStyle]), now, now, fossilized, sessionId
         ).run();
       } else {
+        // Only increment sessions_seen once per session, not once per turn
+        const sessionsSeenDelta = existing.last_session_id !== sessionId ? 1 : 0;
+
+        // Record the explanation style used this session so the professor rotates next time
+        let triedStylesJson = existing.explanation_styles_tried ?? '[]';
+        if (sessionsSeenDelta === 1) {
+          let tried = [];
+          try { tried = JSON.parse(triedStylesJson); } catch {}
+          tried.push(getNextExplanationStyle(exercise.concept_id, tried));
+          triedStylesJson = JSON.stringify(tried);
+        }
+
         await env.DB.prepare(`
           UPDATE concept_mastery SET
             mastery_score = ?, error_count = ?, session_error_count = ?,
-            sessions_seen = sessions_seen + 1,
-            last_seen = ?, fossilization_flagged = ?
+            sessions_seen = sessions_seen + ?,
+            last_seen = ?, fossilization_flagged = ?, last_session_id = ?,
+            explanation_styles_tried = ?
           WHERE user_id = ? AND concept_id = ?
-        `).bind(newMastery, newErrorCount, newSessionErrors, now, fossilized, data.user.sub, exercise.concept_id).run();
+        `).bind(newMastery, newErrorCount, newSessionErrors, sessionsSeenDelta, now, fossilized, sessionId, triedStylesJson, data.user.sub, exercise.concept_id).run();
       }
     }
 

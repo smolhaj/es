@@ -39,8 +39,13 @@ export default function VocabBrowser() {
     setAddStatus('');
     setAddError('');
     try {
-      await api.vocabulary.add(token, addWord.trim(), addTranslation.trim());
-      setAddStatus(`"${addWord.trim()}" added to your review queue.`);
+      const word = addWord.trim();
+      await api.vocabulary.add(token, word, addTranslation.trim());
+      setWordStatus(prev => ({
+        ...prev,
+        [word]: { reviewCount: 0, correctCount: 0, dueAt: new Date().toISOString() }
+      }));
+      setAddStatus(`"${word}" added to your review queue.`);
       setAddWord('');
       setAddTranslation('');
       setTimeout(() => setAddStatus(''), 3000);

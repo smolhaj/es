@@ -58,26 +58,6 @@ export default function VocabReview() {
     }
   }
 
-  // Keyboard shortcuts: Space/Enter reveal; 1-4 grade
-  useEffect(() => {
-    function onKey(e) {
-      if (e.target.tagName === 'BUTTON' && e.key !== ' ') return;
-      if ((e.key === ' ' || e.key === 'Enter') && !revealed && current && !grading) {
-        e.preventDefault();
-        setRevealed(true);
-      }
-      if (revealed && !grading && current) {
-        const map = { '1': 1, '2': 2, '3': 3, '4': 4 };
-        if (map[e.key] && !e.metaKey && !e.ctrlKey) {
-          e.preventDefault();
-          handleGrade(map[e.key]);
-        }
-      }
-    }
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [revealed, current, grading, handleGrade]);
-
   const current = items[idx] ?? null;
 
   const handleGrade = useCallback(async (grade) => {
@@ -98,6 +78,26 @@ export default function VocabReview() {
       setGrading(false);
     }
   }, [current, grading, idx, items.length, token]);
+
+  // Keyboard shortcuts: Space/Enter reveal; 1-4 grade
+  useEffect(() => {
+    function onKey(e) {
+      if (e.target.tagName === 'BUTTON' && e.key !== ' ') return;
+      if ((e.key === ' ' || e.key === 'Enter') && !revealed && current && !grading) {
+        e.preventDefault();
+        setRevealed(true);
+      }
+      if (revealed && !grading && current) {
+        const map = { '1': 1, '2': 2, '3': 3, '4': 4 };
+        if (map[e.key] && !e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          handleGrade(map[e.key]);
+        }
+      }
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [revealed, current, grading, handleGrade]);
 
   if (loading) {
     return (

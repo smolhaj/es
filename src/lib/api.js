@@ -40,10 +40,10 @@ export const api = {
         body: JSON.stringify({ sessionId, exercise, learnerAnswer })
       }, token),
 
-    end: (token, sessionId) =>
+    end: (token, sessionId, abandoned = false) =>
       req('/sessions/end', {
         method: 'POST',
-        body: JSON.stringify({ sessionId })
+        body: JSON.stringify({ sessionId, abandoned })
       }, token)
   },
 

@@ -182,8 +182,6 @@ export const VOCABULARY = [
   { es: 'de hecho', en: 'in fact / actually', cefr: 'B1', domain: 'connectors', frequencyRank: 160, example: 'De hecho, no estaba de acuerdo.', exampleEn: 'In fact, I didn\'t agree.' },
   { es: 'en cambio', en: 'on the other hand', cefr: 'B1', domain: 'connectors', frequencyRank: 170, example: 'Él es serio; en cambio, ella es divertida.', exampleEn: 'He is serious; she, on the other hand, is fun.' },
   { es: 'por lo tanto', en: 'therefore', cefr: 'B1', domain: 'connectors', frequencyRank: 190, example: 'Llueve; por lo tanto, me quedo en casa.', exampleEn: 'It\'s raining; therefore, I\'m staying home.' },
-  { es: 'sin embargo', en: 'however', cefr: 'B1', domain: 'connectors', frequencyRank: 105, example: 'Es difícil; sin embargo, posible.', exampleEn: 'It\'s difficult; however, possible.' },
-  { es: 'aunque', en: 'even though / although', cefr: 'B1', domain: 'connectors', frequencyRank: 95, example: 'Aunque no quiera, tiene que hacerlo.', exampleEn: 'Even though he doesn\'t want to, he has to do it.' },
   { es: 'darse cuenta de', en: 'to realize', cefr: 'B1', domain: 'verbs', frequencyRank: 180, example: 'Me di cuenta de mi error.', exampleEn: 'I realized my mistake.' },
   { es: 'tardar', en: 'to take time / to be late', cefr: 'B1', domain: 'verbs', frequencyRank: 200, example: '¿Cuánto tardas?', exampleEn: 'How long will you take?' },
   { es: 'lograr', en: 'to achieve / to manage to', cefr: 'B1', domain: 'verbs', frequencyRank: 150, example: 'Logré terminar a tiempo.', exampleEn: 'I managed to finish on time.' },
@@ -208,7 +206,6 @@ export const VOCABULARY = [
   { es: 'no obstante', en: 'nevertheless / however', cefr: 'B2', domain: 'connectors', frequencyRank: 280, example: 'No obstante, seguimos adelante.', exampleEn: 'Nevertheless, we pressed on.' },
   { es: 'por consiguiente', en: 'consequently / therefore', cefr: 'B2', domain: 'connectors', frequencyRank: 300, example: 'Es tarde; por consiguiente, nos vamos.', exampleEn: "It's late; consequently, we're leaving." },
   { es: 'a diferencia de', en: 'unlike / in contrast to', cefr: 'B2', domain: 'connectors', frequencyRank: 260, example: 'A diferencia de su hermano, estudia mucho.', exampleEn: 'Unlike his brother, he studies a lot.' },
-  { es: 'en cambio', en: 'on the other hand / instead', cefr: 'B2', domain: 'connectors', frequencyRank: 240, example: 'Yo prefiero el café; ella, en cambio, prefiere el té.', exampleEn: 'I prefer coffee; she, on the other hand, prefers tea.' },
   { es: 'a lo largo de', en: 'throughout / along', cefr: 'B2', domain: 'connectors', frequencyRank: 220, example: 'A lo largo de su carrera ganó varios premios.', exampleEn: 'Throughout his career he won several prizes.' },
   { es: 'en cuanto a', en: 'as for / regarding', cefr: 'B2', domain: 'connectors', frequencyRank: 250, example: 'En cuanto al precio, es razonable.', exampleEn: 'As for the price, it is reasonable.' },
   // Verbs (formal/academic)
@@ -243,8 +240,6 @@ export const VOCABULARY = [
 
   // ── C1 ─────────────────────────────────────────────────────────────────
   // Discourse connectors
-  { es: 'no obstante', en: 'nonetheless / however', cefr: 'C1', domain: 'connectors', frequencyRank: 280, example: 'No obstante, los datos muestran lo contrario.', exampleEn: 'Nonetheless, the data shows the opposite.' },
-  { es: 'por consiguiente', en: 'consequently / therefore', cefr: 'C1', domain: 'connectors', frequencyRank: 310, example: 'Por consiguiente, decidimos actuar.', exampleEn: 'Consequently, we decided to act.' },
   { es: 'asimismo', en: 'likewise / also / moreover', cefr: 'C1', domain: 'connectors', frequencyRank: 260, example: 'Asimismo, cabe destacar su contribución.', exampleEn: "Likewise, his contribution deserves mention." },
   { es: 'en definitiva', en: 'in short / ultimately', cefr: 'C1', domain: 'connectors', frequencyRank: 290, example: 'En definitiva, el proyecto fue un éxito.', exampleEn: 'In short, the project was a success.' },
   { es: 'a raíz de', en: 'as a result of / following', cefr: 'C1', domain: 'connectors', frequencyRank: 320, example: 'A raíz de los cambios, surgieron nuevas oportunidades.', exampleEn: 'As a result of the changes, new opportunities arose.' },

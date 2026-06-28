@@ -12,14 +12,15 @@ export async function onRequestGet({ env, data }) {
 
   if (!sessions?.length) return Response.json({ sessions: [] });
 
-  const sessionIds = sessions.map(s => `'${s.id}'`).join(',');
+  const placeholders = sessions.map(() => '?').join(',');
+  const sessionIdValues = sessions.map(s => s.id);
 
   const { results: errors } = await env.DB.prepare(
     `SELECT session_id, concept_id, grammatical_category, exercise_type, COUNT(*) as count
      FROM error_events
-     WHERE session_id IN (${sessionIds})
+     WHERE session_id IN (${placeholders})
      GROUP BY session_id, concept_id, grammatical_category`
-  ).all();
+  ).bind(...sessionIdValues).all();
 
   const errorsBySession = {};
   for (const e of errors ?? []) {

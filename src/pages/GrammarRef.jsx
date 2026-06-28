@@ -118,7 +118,7 @@ export default function GrammarRef() {
             <div>
               <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
               <h1 className={styles.title}>Grammar Reference</h1>
-              <p className={styles.subtitle}>{GRAMMAR_CARDS.length} cards · A1 through B1</p>
+              <p className={styles.subtitle}>{GRAMMAR_CARDS.length} cards · A1 through C1</p>
             </div>
           </header>
 
