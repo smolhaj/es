@@ -51,8 +51,11 @@ function SessionRow({ session }) {
   return (
     <li className={styles.sessionRow}>
       <span className={styles.sessionDate}>{date}</span>
-      <span className={styles.sessionItems}>{session.items_reviewed} exercises</span>
+      <span className={styles.sessionItems}>{session.items_reviewed} ex.</span>
       <span className={styles.sessionAcc}>{accuracy}</span>
+      {session.durationMinutes != null && (
+        <span className={styles.sessionDuration}>{session.durationMinutes}m</span>
+      )}
     </li>
   );
 }
@@ -80,7 +83,9 @@ export default function Dashboard() {
   const dueForReview = profile?.vocabulary?.dueForReview ?? 0;
   const weakConcepts = profile?.weakConcepts ?? [];
   const streak = profile?.streak ?? 0;
-  const showSeedPrompt = !loading && !error && wordsSeen === 0 && totalSessions >= 1;
+  // Show seed prompt when user has done sessions but hasn't imported the bulk vocab list.
+  // Session exercises auto-add words, so we use a low threshold (< 30) rather than === 0.
+  const showSeedPrompt = !loading && !error && totalSessions >= 2 && wordsSeen < 30;
 
   return (
     <div className={styles.page}>
@@ -180,8 +185,9 @@ export default function Dashboard() {
               <ul className={styles.sessionList}>
                 <li className={styles.sessionHeader}>
                   <span>Date</span>
-                  <span>Exercises</span>
+                  <span>Ex.</span>
                   <span>Accuracy</span>
+                  <span>Time</span>
                 </li>
                 {profile.recentSessions.map(s => (
                   <SessionRow key={s.id} session={s} />

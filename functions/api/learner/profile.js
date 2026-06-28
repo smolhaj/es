@@ -70,7 +70,12 @@ export async function onRequestGet({ env, data }) {
     },
     cefr: overallLevel,
     skills,
-    recentSessions: recentResult.results,
+    recentSessions: (recentResult.results ?? []).map(s => ({
+      ...s,
+      durationMinutes: s.ended_at
+        ? Math.round((new Date(s.ended_at) - new Date(s.started_at)) / 60000)
+        : null,
+    })),
     weakConcepts: weakConcepts.results,
     streak,
     cefrHistory: cefrHistory.results ?? [],

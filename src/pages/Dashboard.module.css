@@ -141,7 +141,7 @@
 
 .sessionHeader {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 0.6fr 0.7fr 0.5fr;
   padding: var(--sp-3) var(--sp-5);
   background: var(--bg-alt);
   font-size: 0.75rem;
@@ -153,15 +153,16 @@
 
 .sessionRow {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 0.6fr 0.7fr 0.5fr;
   padding: var(--sp-4) var(--sp-5);
   font-size: 0.9rem;
   border-top: 1px solid var(--border);
   color: var(--text);
 }
 
-.sessionDate { color: var(--text-muted); }
-.sessionAcc  { font-weight: 500; }
+.sessionDate     { color: var(--text-muted); }
+.sessionAcc      { font-weight: 500; }
+.sessionDuration { color: var(--text-muted); font-size: 0.8125rem; }
 
 /* Weak concepts */
 .weakSection {}

@@ -204,6 +204,81 @@ export const GRAMMAR_CARDS = [
     related: ['ser_basics', 'present_ar'],
   },
 
+  {
+    id: 'greeting_basics',
+    concept_id: 'greeting_basics',
+    cefr: 'A1',
+    category: 'Vocabulary',
+    title: 'Greetings & Farewells',
+    rule: 'Spanish greetings change by time of day. Use hola at any time. Formal address switches tú → usted.',
+    examples: [
+      { es: 'Hola / Buenos días / Buenas tardes / Buenas noches', en: 'Hi / Good morning / Good afternoon / Good evening' },
+      { es: 'Adiós / Hasta luego / Hasta mañana', en: 'Goodbye / See you later / See you tomorrow' },
+      { es: '¿Cómo estás? (informal) / ¿Cómo está usted? (formal)', en: 'How are you?' },
+      { es: 'Mucho gusto / Encantado/a', en: 'Nice to meet you' },
+    ],
+    exceptions: [
+      'Buenas noches is used for both "good evening" (greeting) and "good night" (farewell).',
+      'Chao (from ciao) is widely used informally across Latin America.',
+    ],
+    related: ['subject_pronouns', 'question_words'],
+  },
+  {
+    id: 'numbers_1_20',
+    concept_id: 'numbers_1_20',
+    cefr: 'A1',
+    category: 'Vocabulary',
+    title: 'Numbers 1–20',
+    rule: '1–15 are unique words. 16–19 merge diez + siete/ocho/nueve into one word (dieciséis, diecisiete…). 20 = veinte.',
+    examples: [
+      { es: 'uno, dos, tres, cuatro, cinco', en: '1, 2, 3, 4, 5' },
+      { es: 'diez, once, doce, trece, catorce, quince', en: '10, 11, 12, 13, 14, 15' },
+      { es: 'dieciséis, diecisiete, dieciocho, diecinueve, veinte', en: '16, 17, 18, 19, 20' },
+    ],
+    exceptions: [
+      'Uno becomes un before a masculine noun: un libro, but una mesa.',
+      'Written as one word: dieciséis (not diez y seis), veintiuno (not veinte y uno).',
+    ],
+    related: ['numbers_21_100', 'noun_gender'],
+  },
+  {
+    id: 'numbers_21_100',
+    concept_id: 'numbers_21_100',
+    cefr: 'A1',
+    category: 'Vocabulary',
+    title: 'Numbers 21–100',
+    rule: '21–29 are one word with y (veintiuno, veintidós…). 30–99 use the pattern: tens + y + units (treinta y uno). 100 = cien.',
+    examples: [
+      { es: 'veintiuno, veintidós, treinta, treinta y uno', en: '21, 22, 30, 31' },
+      { es: 'cuarenta, cincuenta, sesenta, setenta, ochenta, noventa', en: '40, 50, 60, 70, 80, 90' },
+      { es: 'cien libros / ciento uno', en: '100 books / 101 (cien before a noun, ciento + more)' },
+    ],
+    exceptions: [
+      'Cien = exactly 100; ciento = 100+ (ciento dos = 102).',
+      'Veintiún, treinta y un before masculine nouns; veintiuna/treinta y una before feminine.',
+    ],
+    related: ['numbers_1_20', 'noun_gender'],
+  },
+  {
+    id: 'time_expressions',
+    concept_id: 'time_expressions',
+    cefr: 'A2',
+    category: 'Vocabulary',
+    title: 'Time Expressions',
+    rule: 'Use hace + time period to say "ago" or "for". Combine with preterite for completed actions, present for ongoing.',
+    examples: [
+      { es: 'ayer, hoy, mañana', en: 'yesterday, today, tomorrow' },
+      { es: 'Llegué hace dos horas. (preterite + ago)', en: 'I arrived two hours ago.' },
+      { es: 'Vivo aquí desde hace un año. (present + for)', en: 'I have lived here for a year.' },
+      { es: 'la semana pasada / el año próximo', en: 'last week / next year' },
+    ],
+    exceptions: [
+      'Hace + time + que + present = duration still ongoing: Hace dos años que estudio español.',
+      'Desde hace vs. hace: desde hace for ongoing (desde hace años), hace for completed (hace años llegué).',
+    ],
+    related: ['preterite_regular', 'present_ar'],
+  },
+
   // ── A2 ─────────────────────────────────────────────────────────────────
   {
     id: 'ser_vs_estar',

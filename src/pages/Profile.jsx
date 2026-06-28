@@ -21,6 +21,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
+  const [valuePlaceholder, setValuePlaceholder] = useState('Value');
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
 
@@ -50,6 +51,7 @@ export default function Profile() {
       }
       setKey('');
       setValue('');
+      setValuePlaceholder('Value');
       setStatus('Saved.');
       setTimeout(() => setStatus(''), 2000);
     } catch (err) {
@@ -69,6 +71,7 @@ export default function Profile() {
   function fillSuggestion(sug) {
     setKey(sug.key);
     setValue('');
+    setValuePlaceholder(sug.placeholder || 'Value');
   }
 
   const existingKeys = new Set(context.map(c => c.key));
@@ -100,7 +103,7 @@ export default function Profile() {
                 />
                 <input
                   className={`${styles.input} ${styles.inputLarge}`}
-                  placeholder="Value"
+                  placeholder={valuePlaceholder}
                   value={value}
                   onChange={e => setValue(e.target.value)}
                 />
