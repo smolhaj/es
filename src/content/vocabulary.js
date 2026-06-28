@@ -202,6 +202,44 @@ export const VOCABULARY = [
   { es: 'ventaja', en: 'advantage', cefr: 'B1', domain: 'nouns', frequencyRank: 220, example: 'Tiene muchas ventajas.', exampleEn: 'It has many advantages.' },
   { es: 'desventaja', en: 'disadvantage', cefr: 'B1', domain: 'nouns', frequencyRank: 230, example: 'La principal desventaja es el coste.', exampleEn: 'The main disadvantage is the cost.' },
   { es: 'conjunto', en: 'set / group / overall', cefr: 'B1', domain: 'nouns', frequencyRank: 130, example: 'En conjunto, salió bien.', exampleEn: 'Overall, it went well.' },
+
+  // ── B2 ──────────────────────────────────────────────────────────────────
+  // Connectors & discourse markers
+  { es: 'no obstante', en: 'nevertheless / however', cefr: 'B2', domain: 'connectors', frequencyRank: 280, example: 'No obstante, seguimos adelante.', exampleEn: 'Nevertheless, we pressed on.' },
+  { es: 'por consiguiente', en: 'consequently / therefore', cefr: 'B2', domain: 'connectors', frequencyRank: 300, example: 'Es tarde; por consiguiente, nos vamos.', exampleEn: "It's late; consequently, we're leaving." },
+  { es: 'a diferencia de', en: 'unlike / in contrast to', cefr: 'B2', domain: 'connectors', frequencyRank: 260, example: 'A diferencia de su hermano, estudia mucho.', exampleEn: 'Unlike his brother, he studies a lot.' },
+  { es: 'en cambio', en: 'on the other hand / instead', cefr: 'B2', domain: 'connectors', frequencyRank: 240, example: 'Yo prefiero el café; ella, en cambio, prefiere el té.', exampleEn: 'I prefer coffee; she, on the other hand, prefers tea.' },
+  { es: 'a lo largo de', en: 'throughout / along', cefr: 'B2', domain: 'connectors', frequencyRank: 220, example: 'A lo largo de su carrera ganó varios premios.', exampleEn: 'Throughout his career he won several prizes.' },
+  { es: 'en cuanto a', en: 'as for / regarding', cefr: 'B2', domain: 'connectors', frequencyRank: 250, example: 'En cuanto al precio, es razonable.', exampleEn: 'As for the price, it is reasonable.' },
+  // Verbs (formal/academic)
+  { es: 'destacar', en: 'to stand out / to emphasise', cefr: 'B2', domain: 'verbs', frequencyRank: 110, example: 'Quiero destacar la importancia de esto.', exampleEn: 'I want to emphasise the importance of this.' },
+  { es: 'plantear', en: 'to raise / to put forward', cefr: 'B2', domain: 'verbs', frequencyRank: 120, example: 'Planteó una pregunta interesante.', exampleEn: 'He raised an interesting question.' },
+  { es: 'suponer', en: 'to suppose / to entail', cefr: 'B2', domain: 'verbs', frequencyRank: 70, example: 'Eso supone un gran esfuerzo.', exampleEn: 'That entails a great effort.' },
+  { es: 'abordar', en: 'to tackle / to address', cefr: 'B2', domain: 'verbs', frequencyRank: 160, example: 'Hay que abordar el problema.', exampleEn: 'We need to tackle the problem.' },
+  { es: 'prevenir', en: 'to prevent / to warn', cefr: 'B2', domain: 'verbs', frequencyRank: 200, example: 'Más vale prevenir que curar.', exampleEn: 'Prevention is better than cure.' },
+  { es: 'cuestionar', en: 'to question / to challenge', cefr: 'B2', domain: 'verbs', frequencyRank: 220, example: 'Nadie cuestiona su autoridad.', exampleEn: "Nobody questions his authority." },
+  { es: 'surgir', en: 'to arise / to emerge', cefr: 'B2', domain: 'verbs', frequencyRank: 130, example: 'Surgieron varios problemas.', exampleEn: 'Several problems arose.' },
+  { es: 'carecer', en: 'to lack', cefr: 'B2', domain: 'verbs', frequencyRank: 190, example: 'El proyecto carece de financiación.', exampleEn: 'The project lacks funding.' },
+  // Nouns (abstract / academic)
+  { es: 'ámbito', en: 'sphere / field / scope', cefr: 'B2', domain: 'nouns', frequencyRank: 120, example: 'En el ámbito profesional es muy respetado.', exampleEn: 'In the professional field he is highly respected.' },
+  { es: 'matiz', en: 'nuance / shade', cefr: 'B2', domain: 'nouns', frequencyRank: 280, example: 'Hay que entender los matices del idioma.', exampleEn: 'You need to understand the nuances of the language.' },
+  { es: 'índole', en: 'nature / kind', cefr: 'B2', domain: 'nouns', frequencyRank: 290, example: 'Es un problema de índole económica.', exampleEn: 'It is an economic problem by nature.' },
+  { es: 'contraste', en: 'contrast', cefr: 'B2', domain: 'nouns', frequencyRank: 230, example: 'Hay un fuerte contraste entre los dos estilos.', exampleEn: 'There is a strong contrast between the two styles.' },
+  { es: 'inquietud', en: 'concern / unease / curiosity', cefr: 'B2', domain: 'nouns', frequencyRank: 310, example: 'Tengo inquietudes sobre el futuro.', exampleEn: 'I have concerns about the future.' },
+  { es: 'logro', en: 'achievement / accomplishment', cefr: 'B2', domain: 'nouns', frequencyRank: 200, example: 'Es su mayor logro profesional.', exampleEn: "It's their greatest professional achievement." },
+  { es: 'vínculo', en: 'link / bond / tie', cefr: 'B2', domain: 'nouns', frequencyRank: 210, example: 'Mantiene vínculos con su país de origen.', exampleEn: 'She keeps ties with her home country.' },
+  { es: 'entorno', en: 'environment / surroundings', cefr: 'B2', domain: 'nouns', frequencyRank: 140, example: 'Necesita un entorno tranquilo para trabajar.', exampleEn: 'He needs a calm environment to work.' },
+  { es: 'repercusión', en: 'impact / repercussion', cefr: 'B2', domain: 'nouns', frequencyRank: 260, example: 'La decisión tuvo grandes repercusiones.', exampleEn: 'The decision had major repercussions.' },
+  // Adjectives
+  { es: 'imprescindible', en: 'indispensable / essential', cefr: 'B2', domain: 'adjectives', frequencyRank: 220, example: 'El agua es imprescindible para la vida.', exampleEn: 'Water is essential for life.' },
+  { es: 'escaso', en: 'scarce / limited', cefr: 'B2', domain: 'adjectives', frequencyRank: 230, example: 'Los recursos son escasos.', exampleEn: 'Resources are scarce.' },
+  { es: 'vigente', en: 'current / in force / valid', cefr: 'B2', domain: 'adjectives', frequencyRank: 250, example: 'La ley vigente no lo permite.', exampleEn: 'The current law does not allow it.' },
+  { es: 'exhaustivo', en: 'thorough / exhaustive', cefr: 'B2', domain: 'adjectives', frequencyRank: 310, example: 'Hicieron un análisis exhaustivo.', exampleEn: 'They carried out a thorough analysis.' },
+  { es: 'eficaz', en: 'effective / efficient', cefr: 'B2', domain: 'adjectives', frequencyRank: 190, example: 'Es el método más eficaz.', exampleEn: 'It is the most effective method.' },
+  // Emotions
+  { es: 'angustia', en: 'anguish / anxiety / distress', cefr: 'B2', domain: 'nouns', frequencyRank: 300, example: 'Le invadió una profunda angustia.', exampleEn: 'A deep anguish came over him.' },
+  { es: 'añoranza', en: 'longing / nostalgia', cefr: 'B2', domain: 'nouns', frequencyRank: 400, example: 'Siente añoranza de su tierra.', exampleEn: 'She feels nostalgia for her homeland.' },
+  { es: 'euforia', en: 'euphoria / elation', cefr: 'B2', domain: 'nouns', frequencyRank: 350, example: 'El triunfo provocó una gran euforia.', exampleEn: 'The victory caused great elation.' },
 ];
 
 // Group by domain
@@ -215,7 +253,7 @@ export function getByCefr(level) {
 }
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();
-export const CEFR_LEVELS = ['A1', 'A2', 'B1'];
+export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2'];
 
 // Sorted by frequency (most common first)
 export const BY_FREQUENCY = [...VOCABULARY].sort((a, b) => a.frequencyRank - b.frequencyRank);
