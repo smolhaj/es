@@ -165,6 +165,7 @@ export default function Dashboard() {
             <Link to="/idioms" className={styles.refLink}>Idioms →</Link>
             <Link to="/false-friends" className={styles.refLink}>False friends →</Link>
             <Link to="/pronunciation" className={styles.refLink}>Pronunciation →</Link>
+            <Link to="/regional" className={styles.refLink}>Regional →</Link>
             <Link to="/history" className={styles.refLink}>History →</Link>
             <Link to="/profile" className={styles.refLink}>Profile →</Link>
           </section>

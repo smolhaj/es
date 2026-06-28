@@ -1,0 +1,132 @@
+// Regional Spanish differences — Spain (Castilian) vs Latin America
+// Organised by category with side-by-side comparisons
+
+export const REGIONAL_SECTIONS = [
+  {
+    id: 'vosotros',
+    category: 'Pronouns',
+    title: 'Vosotros vs. Ustedes',
+    summary: 'Spain uses vosotros (informal plural "you"); Latin America uses ustedes for both formal and informal.',
+    comparisons: [
+      { context: 'Talking to friends (plural)',        spain: 'Vosotros tenéis razón.', latam: 'Ustedes tienen razón.' },
+      { context: 'Asking friends (plural)',             spain: '¿Adónde vais?',         latam: '¿Adónde van?' },
+      { context: 'Imperative (plural informal)',        spain: '¡Comed despacio!',       latam: '¡Coman despacio!' },
+      { context: 'Reflexive (plural informal)',         spain: 'Sentaos.',               latam: 'Siéntense.' },
+    ],
+    tip: 'If you learn vosotros, you\'ll be understood everywhere. If you skip it, use ustedes — Latin Americans never use vosotros.',
+  },
+  {
+    id: 'vos',
+    category: 'Pronouns',
+    title: 'Vos (Argentina, Uruguay, Central America)',
+    summary: 'In Argentina, Uruguay, and much of Central America, vos replaces tú. It has its own conjugation.',
+    comparisons: [
+      { context: 'Present (hablar)',   spain: 'tú hablas',    latam: 'vos hablás (AR/UY)' },
+      { context: 'Present (tener)',    spain: 'tú tienes',    latam: 'vos tenés' },
+      { context: 'Present (ir)',       spain: 'tú vas',       latam: 'vos vas (same)' },
+      { context: 'Present (ser)',      spain: 'tú eres',      latam: 'vos sos' },
+      { context: 'Imperative',        spain: 'habla (tú)',    latam: 'hablá (vos)' },
+    ],
+    tip: 'Vos conjugation: drop the -r from infinitive, add stress on final syllable — habla→hablás, tene→tenés, veni→venís.',
+  },
+  {
+    id: 'pronunciation',
+    category: 'Pronunciation',
+    title: 'Seseo, Ceceo & Distinción',
+    summary: 'Spain (most regions) distinguishes s/z sounds. Latin America uses seseo — c/z are pronounced like s.',
+    comparisons: [
+      { context: 'zapato (shoe)',   spain: 'tha-PAH-toh (z=θ)',     latam: 'sah-PAH-toh (z=s)' },
+      { context: 'cerveza (beer)', spain: 'ther-VEH-tha',           latam: 'ser-VEH-sah' },
+      { context: 'gracias',        spain: 'GRAH-thyahs',            latam: 'GRAH-syahs' },
+      { context: 'ciudad',         spain: 'thyoo-DAHD',             latam: 'syoo-DAHD' },
+    ],
+    tip: 'Southern Spain (Andalucía) and the Canary Islands use seseo like Latin America. Only central/northern Spain uses the θ sound.',
+  },
+  {
+    id: 'll_y',
+    category: 'Pronunciation',
+    title: 'Lleísmo vs. Yeísmo',
+    summary: 'Most of Latin America (and much of Spain) merges ll and y into the same sound (yeísmo). Rio Plata Spanish (Argentina/Uruguay) pronounces both like "sh" or "zh".',
+    comparisons: [
+      { context: 'llover (to rain)',   spain: 'ʎo-VER (traditional)', latam: 'yo-VER (most) / sho-VER (AR)' },
+      { context: 'yo (I)',             spain: 'yo',                    latam: 'yo / sho (AR/UY)' },
+      { context: 'pollo (chicken)',    spain: 'POH-ʎo',               latam: 'POH-yo / POH-sho (AR)' },
+      { context: 'calle (street)',     spain: 'KAH-ʎe',               latam: 'KAH-ye / KAH-she (AR)' },
+    ],
+    tip: 'Argentina\'s distinctive "sh" sound (sheísmo) is one of the most recognisable accents in Spanish.',
+  },
+  {
+    id: 'perfecto_preterite',
+    category: 'Grammar',
+    title: 'Present Perfect vs. Preterite',
+    summary: 'Spain uses the present perfect (he comido) for recent past events. Latin America uses the preterite (comí) for the same situations.',
+    comparisons: [
+      { context: 'I already ate',         spain: 'Ya he comido.',         latam: 'Ya comí.' },
+      { context: 'I saw him today',       spain: 'Le he visto hoy.',      latam: 'Lo vi hoy.' },
+      { context: 'She just arrived',      spain: 'Acaba de llegar / Ha llegado.', latam: 'Llegó.' },
+      { context: 'We\'ve finished',       spain: 'Ya hemos terminado.',   latam: 'Ya terminamos.' },
+    ],
+    tip: 'This is one of the biggest grammar differences. In Latin America, the preterite does the heavy lifting even for very recent events.',
+  },
+  {
+    id: 'le_lo',
+    category: 'Grammar',
+    title: 'Leísmo (Spain)',
+    summary: 'In Spain, le is often used instead of lo as a direct object pronoun when the referent is a male person. Latin America follows the standard lo rule.',
+    comparisons: [
+      { context: 'I saw him (a man)',  spain: 'Le vi. (leísmo, accepted)', latam: 'Lo vi.' },
+      { context: 'I called him',      spain: 'Le llamé.',                  latam: 'Lo llamé.' },
+      { context: 'I met him',         spain: 'Le conocí.',                 latam: 'Lo conocí.' },
+    ],
+    tip: 'RAE officially accepts personal leísmo in Spain. In Latin America le is strictly for indirect objects only.',
+  },
+  {
+    id: 'vocab_common',
+    category: 'Vocabulary',
+    title: 'Common vocabulary differences',
+    summary: 'Many everyday words differ between Spain and Latin America. Neither is wrong — they\'re regional standards.',
+    comparisons: [
+      { context: 'Car',            spain: 'el coche',       latam: 'el carro / el auto' },
+      { context: 'Computer',       spain: 'el ordenador',   latam: 'la computadora / el computador' },
+      { context: 'Mobile phone',   spain: 'el móvil',       latam: 'el celular' },
+      { context: 'Apartment',      spain: 'el piso',        latam: 'el apartamento / el departamento' },
+      { context: 'Potato',         spain: 'la patata',      latam: 'la papa' },
+      { context: 'Bus',            spain: 'el autobús',     latam: 'el camión (MX) / la micro (CL) / el colectivo (AR)' },
+      { context: 'Pen',            spain: 'el bolígrafo (boli)', latam: 'la pluma (MX) / el lapicero (PE) / la birome (AR)' },
+      { context: 'Juice',          spain: 'el zumo',        latam: 'el jugo' },
+      { context: 'Popcorn',        spain: 'las palomitas',  latam: 'las pochoclos (AR) / las cotufas (VE) / el popcorn (MX)' },
+      { context: 'Swimming pool',  spain: 'la piscina',     latam: 'la pileta (AR) / la alberca (MX) / la piscina' },
+    ],
+    tip: 'Latin America itself has significant internal variation — Mexican, Argentine, and Colombian Spanish all differ from each other.',
+  },
+  {
+    id: 'slang_spain',
+    category: 'Vocabulary',
+    title: 'Spanish slang (Spain)',
+    summary: 'Common colloquial expressions from Spain that may not be understood in Latin America.',
+    comparisons: [
+      { context: 'Cool / great',    spain: 'mola / guay / chachi',  latam: 'chévere (VE/CO) / bacán (AR) / padre (MX)' },
+      { context: 'Kid',             spain: 'chaval/a',              latam: 'chico/a / pibe (AR) / chamaco (MX)' },
+      { context: 'Drunk',           spain: 'borracho / pedo',       latam: 'borracho / cuete (MX)' },
+      { context: 'Money',           spain: 'pasta / guita',         latam: 'plata / lana (MX)' },
+      { context: 'Friend',          spain: 'tío/tía (informal)',    latam: 'mano/a (MX) / pana (VE) / che (AR)' },
+      { context: 'Party',           spain: 'juerga / fiesta',       latam: 'fiesta / pachanga' },
+    ],
+    tip: 'Tío/tía in Spain = mate/pal (not aunt/uncle in slang context). In Latin America calling someone tío still just means aunt/uncle.',
+  },
+  {
+    id: 'tuteo',
+    category: 'Grammar',
+    title: 'Imperative: tú commands',
+    summary: 'Informal (tú) imperatives work the same across most regions, but vos imperatives in Argentina/Uruguay differ.',
+    comparisons: [
+      { context: 'Speak! (hablar)', spain: '¡Habla! (tú)',       latam: '¡Hablá! (vos AR/UY) · ¡Habla! (tú elsewhere)' },
+      { context: 'Come! (venir)',   spain: '¡Ven! (tú)',         latam: '¡Vení! (vos) · ¡Ven! (tú)' },
+      { context: 'Go! (ir)',        spain: '¡Ve! / ¡Vete!',      latam: '¡Andá! (vos AR) · ¡Ve! (tú)' },
+      { context: 'Sit! (sentar)',   spain: '¡Siéntate!',         latam: '¡Sentate! (vos) · ¡Siéntate! (tú)' },
+    ],
+    tip: 'Vos imperatives: drop the -r and add a stress accent — habla→hablá, veni→vení, senti→sentite.',
+  },
+];
+
+export const CATEGORIES = [...new Set(REGIONAL_SECTIONS.map(s => s.category))];

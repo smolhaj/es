@@ -13,6 +13,7 @@ import Idioms from './pages/Idioms.jsx';
 import Pronunciation from './pages/Pronunciation.jsx';
 import Profile from './pages/Profile.jsx';
 import History from './pages/History.jsx';
+import Regional from './pages/Regional.jsx';
 
 function Protected({ children }) {
   const { isLoggedIn } = useAuth();
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/verbs" element={<Protected><VerbsRef /></Protected>} />
         <Route path="/profile" element={<Protected><Profile /></Protected>} />
         <Route path="/history" element={<Protected><History /></Protected>} />
+        <Route path="/regional" element={<Protected><Regional /></Protected>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>

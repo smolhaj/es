@@ -116,5 +116,21 @@ export async function onRequestPost({ request, env, data }) {
     `).bind(correct ? 1 : 0, sessionId).run();
   }
 
+  // Capture writing samples for translation-to-spanish exercises
+  if (exercise?.type === 'translation_to_spanish' && learnerAnswer?.trim().length > 3) {
+    await env.DB.prepare(`
+      INSERT INTO writing_samples
+        (id, user_id, session_id, created_at, prompt, content, word_count, estimated_cefr, professor_notes)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).bind(
+      crypto.randomUUID(), data.user.id, sessionId, now,
+      exercise.prompt ?? null,
+      learnerAnswer.trim(),
+      learnerAnswer.trim().split(/\s+/).filter(Boolean).length,
+      exercise.difficulty ?? null,
+      correct ? null : (feedback ?? null)
+    ).run().catch(() => {});
+  }
+
   return Response.json({ correct, feedback, exercise: nextExercise, conceptNote });
 }

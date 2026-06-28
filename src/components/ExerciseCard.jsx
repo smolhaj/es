@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './ExerciseCard.module.css';
 
 export default function ExerciseCard({ exercise, onSubmit, disabled }) {
@@ -29,6 +29,21 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
     setSelected(option);
   }
 
+  // Keyboard shortcuts: 1–4 select + immediately submit MC option
+  useEffect(() => {
+    if (exercise?.type !== 'multiple_choice' || disabled) return;
+    const opts = exercise.options ?? [];
+    function onKey(e) {
+      const idx = parseInt(e.key, 10) - 1;
+      if (idx >= 0 && idx < opts.length && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        onSubmit(opts[idx]);
+      }
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [exercise?.type, exercise?.options, disabled, onSubmit]);
+
   const isMultiple = exercise.type === 'multiple_choice';
   const canSubmit = isMultiple ? !!selected : answer.trim().length > 0;
 
@@ -44,16 +59,17 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
       <form onSubmit={handleSubmit} className={styles.form}>
         {isMultiple ? (
           <ul className={styles.options} role="listbox" aria-label="Answer options">
-            {(exercise.options ?? []).map((opt) => (
+            {(exercise.options ?? []).map((opt, i) => (
               <li key={opt}>
                 <button
                   type="button"
                   role="option"
                   aria-selected={selected === opt}
                   className={`${styles.option} ${selected === opt ? styles.optionSelected : ''}`}
-                  onClick={() => handleOptionSelect(opt)}
+                  onClick={() => { handleOptionSelect(opt); onSubmit(opt); }}
                   disabled={disabled}
                 >
+                  <span className={styles.optionKey}>{i + 1}</span>
                   {opt}
                 </button>
               </li>
