@@ -1,8 +1,8 @@
 export async function onRequestGet({ env, data }) {
-  const userId = data.user.id;
+  const userId = data.user.sub;
   const now = new Date().toISOString();
 
-  const [sessionsResult, vocabResult, skillsResult, recentResult, dueVocab, weakConcepts] = await Promise.all([
+  const [sessionsResult, vocabResult, skillsResult, recentResult, dueVocab, weakConcepts, streakDates] = await Promise.all([
     env.DB.prepare(
       'SELECT COUNT(*) as total, SUM(CASE WHEN ended_at IS NOT NULL THEN 1 ELSE 0 END) as completed, AVG(overall_accuracy) as avg_accuracy FROM sessions WHERE user_id = ?'
     ).bind(userId).first(),
@@ -26,6 +26,12 @@ export async function onRequestGet({ env, data }) {
     env.DB.prepare(
       'SELECT concept_id, mastery_score, error_count, fossilization_flagged FROM concept_mastery WHERE user_id = ? ORDER BY error_count DESC LIMIT 5'
     ).bind(userId).all(),
+
+    env.DB.prepare(
+      `SELECT DISTINCT date(started_at) as day FROM sessions
+       WHERE user_id = ? AND ended_at IS NOT NULL
+       ORDER BY day DESC LIMIT 60`
+    ).bind(userId).all(),
   ]);
 
   const skills = {};
@@ -38,6 +44,8 @@ export async function onRequestGet({ env, data }) {
   const overallLevel = skillLevels.length > 0
     ? levels[Math.min(...skillLevels)]
     : 'A1';
+
+  const streak = computeStreak(streakDates?.results ?? []);
 
   return Response.json({
     sessions: {
@@ -54,5 +62,23 @@ export async function onRequestGet({ env, data }) {
     skills,
     recentSessions: recentResult.results,
     weakConcepts: weakConcepts.results,
+    streak,
   });
+}
+
+function computeStreak(rows) {
+  if (!rows.length) return 0;
+  const days = rows.map(r => r.day).sort().reverse();
+  const today = new Date().toISOString().slice(0, 10);
+  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  if (days[0] !== today && days[0] !== yesterday) return 0;
+  let streak = 1;
+  for (let i = 1; i < days.length; i++) {
+    const prev = new Date(days[i - 1]);
+    const curr = new Date(days[i]);
+    const diff = (prev - curr) / 86400000;
+    if (diff === 1) streak++;
+    else break;
+  }
+  return streak;
 }

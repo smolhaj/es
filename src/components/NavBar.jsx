@@ -27,8 +27,14 @@ export default function NavBar({ cefrLevel }) {
 
           {isLoggedIn ? (
             <>
+              <Link to="/session" className={`btn btn-ghost ${styles.navLink}`}>
+                Practice
+              </Link>
               <Link to="/dashboard" className={`btn btn-ghost ${styles.navLink}`}>
                 Dashboard
+              </Link>
+              <Link to="/profile" className={`btn btn-ghost ${styles.navLink}`}>
+                Profile
               </Link>
               <button onClick={handleLogout} className={`btn btn-ghost ${styles.navLink}`}>
                 Sign out

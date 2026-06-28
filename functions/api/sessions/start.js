@@ -7,14 +7,14 @@ export async function onRequestPost({ env, data }) {
 
   await env.DB.prepare(
     'INSERT INTO sessions (id, user_id, started_at) VALUES (?, ?, ?)'
-  ).bind(sessionId, data.user.id, now).run();
+  ).bind(sessionId, data.user.sub, now).run();
 
   const [sessionsResult, briefing] = await Promise.all([
     env.DB.prepare(
       'SELECT COUNT(*) as cnt FROM sessions WHERE user_id = ? AND ended_at IS NOT NULL'
-    ).bind(data.user.id).first(),
+    ).bind(data.user.sub).first(),
 
-    compileBriefing(env.DB, data.user.id).catch(() => null),
+    compileBriefing(env.DB, data.user.sub).catch(() => null),
   ]);
 
   const sessionCount = sessionsResult?.cnt ?? 0;

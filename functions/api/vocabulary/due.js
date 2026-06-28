@@ -8,7 +8,7 @@ export async function onRequestGet({ env, data }) {
     WHERE user_id = ? AND due_at IS NOT NULL AND due_at <= ?
     ORDER BY due_at ASC
     LIMIT 30
-  `).bind(data.user.id, now).all();
+  `).bind(data.user.sub, now).all();
 
   return Response.json({ items: results, count: results.length });
 }

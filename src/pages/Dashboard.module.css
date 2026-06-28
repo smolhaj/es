@@ -71,7 +71,7 @@
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: var(--sp-4);
 }
 
@@ -212,7 +212,7 @@
 /* Responsive */
 @media (max-width: 640px) {
   .main { padding: var(--sp-5); }
-  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .statsGrid { grid-template-columns: repeat(3, 1fr); }
   .startSection { flex-direction: column; align-items: flex-start; }
   .startBtn { width: 100%; }
   .header { flex-direction: column; }

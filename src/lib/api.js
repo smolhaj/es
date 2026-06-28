@@ -49,6 +49,8 @@ export const api = {
 
     history: (token) => req('/learner/history', {}, token),
 
+    writing: (token) => req('/learner/writing', {}, token),
+
     context: (token) => req('/learner/context', {}, token),
 
     saveContext: (token, key, value) =>

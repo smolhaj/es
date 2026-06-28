@@ -11,7 +11,7 @@ export async function onRequestPost({ request, env, data }) {
 
   const session = await env.DB.prepare(
     'SELECT * FROM sessions WHERE id = ? AND user_id = ? AND ended_at IS NULL'
-  ).bind(sessionId, data.user.id).first();
+  ).bind(sessionId, data.user.sub).first();
 
   if (!session) {
     return Response.json({ error: 'Session not found' }, { status: 404 });
@@ -37,7 +37,7 @@ export async function onRequestPost({ request, env, data }) {
       accuracy = (accuracy * session_count + excluded.accuracy) / (session_count + 1),
       session_count = session_count + 1,
       updated_at = excluded.updated_at
-  `).bind(data.user.id, accuracy, now).run();
+  `).bind(data.user.sub, accuracy, now).run();
 
   // Error breakdown for summary
   const { results: errors } = await env.DB.prepare(`

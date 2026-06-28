@@ -14,7 +14,7 @@ export async function onRequestPost({ request, env, data }) {
 
   const session = await env.DB.prepare(
     'SELECT id FROM sessions WHERE id = ? AND user_id = ? AND ended_at IS NULL'
-  ).bind(sessionId, data.user.id).first();
+  ).bind(sessionId, data.user.sub).first();
 
   if (!session) return Response.json({ error: 'Session not found' }, { status: 404 });
 
@@ -32,7 +32,7 @@ export async function onRequestPost({ request, env, data }) {
           (id, user_id, session_id, occurred_at, exercise_type, item_text, correct_text, word, concept_id)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
       `).bind(
-        crypto.randomUUID(), data.user.id, sessionId, now,
+        crypto.randomUUID(), data.user.sub, sessionId, now,
         exercise.type, learnerAnswer, exercise.answer, exercise.word ?? null,
         exercise.concept_id ?? null
       ).run();
@@ -42,7 +42,7 @@ export async function onRequestPost({ request, env, data }) {
     if (exercise.word && exercise.english) {
       const existingVocab = await env.DB.prepare(
         'SELECT stability, difficulty, retrievability, review_count, correct_count, last_reviewed_at FROM vocabulary_items WHERE user_id = ? AND word = ?'
-      ).bind(data.user.id, exercise.word).first();
+      ).bind(data.user.sub, exercise.word).first();
 
       const grade = correct ? 3 : 1; // Good(3) if correct, Again(1) if wrong
       const fsrs = scheduleReview(existingVocab ?? {}, grade);
@@ -61,7 +61,7 @@ export async function onRequestPost({ request, env, data }) {
           retrievability = ?,
           due_at = ?
       `).bind(
-        crypto.randomUUID(), data.user.id, exercise.word, exercise.english,
+        crypto.randomUUID(), data.user.sub, exercise.word, exercise.english,
         fsrs.review_count, fsrs.correct_count, now, now,
         fsrs.stability, fsrs.difficulty, fsrs.retrievability, fsrs.due_at,
         // ON CONFLICT updates
@@ -74,7 +74,7 @@ export async function onRequestPost({ request, env, data }) {
     if (exercise.concept_id) {
       const existing = await env.DB.prepare(
         'SELECT mastery_score, error_count, session_error_count, sessions_seen, explanation_styles_tried, fossilization_flagged FROM concept_mastery WHERE user_id = ? AND concept_id = ?'
-      ).bind(data.user.id, exercise.concept_id).first();
+      ).bind(data.user.sub, exercise.concept_id).first();
 
       const errorDelta = correct ? 0 : 1;
       // Mastery: exponential moving average toward 1 on correct, toward 0 on error
@@ -94,7 +94,7 @@ export async function onRequestPost({ request, env, data }) {
              explanation_styles_tried, last_seen, first_seen, fossilization_flagged)
           VALUES (?, ?, ?, ?, ?, 1, '[]', ?, ?, ?)
         `).bind(
-          data.user.id, exercise.concept_id, newMastery, newErrorCount, newSessionErrors,
+          data.user.sub, exercise.concept_id, newMastery, newErrorCount, newSessionErrors,
           now, now, fossilized
         ).run();
       } else {
@@ -103,7 +103,7 @@ export async function onRequestPost({ request, env, data }) {
             mastery_score = ?, error_count = ?, session_error_count = ?,
             last_seen = ?, fossilization_flagged = ?
           WHERE user_id = ? AND concept_id = ?
-        `).bind(newMastery, newErrorCount, newSessionErrors, now, fossilized, data.user.id, exercise.concept_id).run();
+        `).bind(newMastery, newErrorCount, newSessionErrors, now, fossilized, data.user.sub, exercise.concept_id).run();
       }
     }
 
@@ -123,7 +123,7 @@ export async function onRequestPost({ request, env, data }) {
         (id, user_id, session_id, created_at, prompt, content, word_count, estimated_cefr, professor_notes)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).bind(
-      crypto.randomUUID(), data.user.id, sessionId, now,
+      crypto.randomUUID(), data.user.sub, sessionId, now,
       exercise.prompt ?? null,
       learnerAnswer.trim(),
       learnerAnswer.trim().split(/\s+/).filter(Boolean).length,

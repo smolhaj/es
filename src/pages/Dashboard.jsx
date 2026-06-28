@@ -69,6 +69,7 @@ export default function Dashboard() {
   const wordsSeen = profile?.vocabulary?.seen ?? 0;
   const dueForReview = profile?.vocabulary?.dueForReview ?? 0;
   const weakConcepts = profile?.weakConcepts ?? [];
+  const streak = profile?.streak ?? 0;
 
   return (
     <div className={styles.page}>
@@ -112,6 +113,7 @@ export default function Dashboard() {
                 <StatCard label="Sessions" value={totalSessions} />
                 <StatCard label="Accuracy" value={accuracy} sub="all time" />
                 <StatCard label="Words seen" value={wordsSeen} sub={`${wordsMastered} mastered`} />
+                <StatCard label="Streak" value={streak} sub={streak === 1 ? 'day' : 'days'} />
                 <StatCard label="Level" value={cefr} sub="CEFR" />
               </div>
             </section>
@@ -166,6 +168,7 @@ export default function Dashboard() {
             <Link to="/false-friends" className={styles.refLink}>False friends →</Link>
             <Link to="/pronunciation" className={styles.refLink}>Pronunciation →</Link>
             <Link to="/regional" className={styles.refLink}>Regional →</Link>
+            <Link to="/writing" className={styles.refLink}>Writing →</Link>
             <Link to="/history" className={styles.refLink}>History →</Link>
             <Link to="/profile" className={styles.refLink}>Profile →</Link>
           </section>
