@@ -147,7 +147,7 @@ export default function VocabReview() {
                 disabled={seeding}
                 style={{ marginBottom: 'var(--sp-3)' }}
               >
-                {seeding ? 'Importing…' : 'Import 230+ words →'}
+                {seeding ? 'Importing…' : 'Import vocabulary for my level →'}
               </button>
             )}
             {seedMsg && <p className={styles.doneSub}>{seedMsg}</p>}

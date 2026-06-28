@@ -5,7 +5,6 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import CefrBadge from '../components/CefrBadge.jsx';
 import styles from './Dashboard.module.css';
-import { VOCABULARY } from '../content/vocabulary.js';
 
 const CONCEPT_LABELS = {
   greeting_basics: 'Greetings', numbers_1_20: 'Numbers 1–20', subject_pronouns: 'Subject pronouns',
@@ -138,7 +137,7 @@ export default function Dashboard() {
           {showSeedPrompt && (
             <section className={styles.seedCard}>
               <p className={styles.seedText}>
-                Add {VOCABULARY.length}+ vocabulary words to your spaced repetition queue and review them alongside your grammar sessions.
+                Import vocabulary at your level into the spaced repetition queue. New words unlock as your grammar level advances.
               </p>
               <Link to="/vocab-review" className={`btn btn-secondary ${styles.seedBtn}`}>
                 Set up vocabulary →
