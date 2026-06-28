@@ -1,0 +1,298 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+}
+
+.inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+}
+
+.backLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--sp-3);
+}
+.backLink:hover { color: var(--text); }
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin-top: var(--sp-2);
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9375rem;
+  outline: none;
+  font-family: inherit;
+}
+.searchInput:focus { border-color: var(--accent); }
+
+.filterRow {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.filterBtn:hover { border-color: var(--accent); color: var(--accent); }
+.filterActive { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.count {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Verb list */
+.verbList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding-bottom: var(--sp-8);
+}
+
+/* Verb card */
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.cardExpanded { border-color: var(--accent); }
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-4) var(--sp-5);
+  cursor: pointer;
+  gap: var(--sp-4);
+}
+.cardHeader:hover { background: var(--bg-alt); }
+
+.headerLeft {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-4);
+  flex: 1;
+  min-width: 0;
+}
+
+.infinitive {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.meaning {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-shrink: 0;
+}
+
+.typeBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.typeStemChanging { background: rgba(200,134,10,0.1); color: var(--accent-gold); border-color: transparent; }
+.typeIrregular    { background: rgba(196,81,26,0.1);  color: var(--accent);      border-color: transparent; }
+
+.cefrBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+.cefrA1 { background: rgba(196,81,26,0.1); color: var(--accent); }
+.cefrA2 { background: rgba(196,81,26,0.1); color: var(--accent); }
+.cefrB1 { background: rgba(200,134,10,0.1); color: var(--accent-gold); }
+.cefrB2 { background: rgba(96,130,182,0.12); color: #4a7aad; }
+
+.chevron {
+  color: var(--text-muted);
+  transition: transform 0.2s;
+  font-size: 0.75rem;
+}
+.chevronOpen { transform: rotate(180deg); }
+
+/* Card body */
+.cardBody {
+  border-top: 1px solid var(--border);
+  padding: var(--sp-5);
+  cursor: default;
+}
+
+.note {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: var(--sp-5);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg-alt);
+  border-radius: var(--r-sm);
+  border-left: 2px solid var(--accent);
+}
+
+/* Tense tabs */
+.tenseTabs {
+  display: flex;
+  gap: var(--sp-1);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-4);
+}
+
+.tenseTab {
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.12s;
+}
+.tenseTab:hover { border-color: var(--accent); color: var(--accent); }
+.tenseTabActive { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Conjugation table */
+.conjTable {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px var(--sp-6);
+}
+
+.conjRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--sp-2) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.conjRow:nth-child(3),
+.conjRow:nth-child(6) { border-bottom: none; }
+
+.pronoun {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  min-width: 100px;
+}
+
+.form {
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+}
+
+/* All tenses view */
+.allTenses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--sp-5);
+}
+
+.tenseBlock {}
+
+.tenseLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: var(--sp-2);
+}
+
+.miniConj {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.miniRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  padding: 2px 0;
+}
+.miniPronoun { color: var(--text-muted); }
+.miniForm    { font-weight: 500; color: var(--text); }
+
+@media (max-width: 640px) {
+  .main { padding: var(--sp-5); }
+  .title { font-size: 1.75rem; }
+  .headerLeft { flex-direction: column; gap: var(--sp-1); }
+  .meaning { white-space: normal; }
+  .conjTable { grid-template-columns: 1fr; }
+  .allTenses { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 400px) {
+  .allTenses { grid-template-columns: 1fr; }
+}

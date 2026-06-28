@@ -45,7 +45,23 @@ export const api = {
   },
 
   learner: {
-    profile: (token) => req('/learner/profile', {}, token)
+    profile: (token) => req('/learner/profile', {}, token),
+
+    history: (token) => req('/learner/history', {}, token),
+
+    context: (token) => req('/learner/context', {}, token),
+
+    saveContext: (token, key, value) =>
+      req('/learner/context', {
+        method: 'POST',
+        body: JSON.stringify({ key, value })
+      }, token),
+
+    deleteContext: (token, key) =>
+      req('/learner/context', {
+        method: 'DELETE',
+        body: JSON.stringify({ key })
+      }, token),
   },
 
   vocabulary: {
@@ -55,6 +71,9 @@ export const api = {
       req('/vocabulary/review', {
         method: 'POST',
         body: JSON.stringify({ wordId, grade })
-      }, token)
+      }, token),
+
+    seed: (token) =>
+      req('/vocabulary/seed', { method: 'POST' }, token),
   }
 };
