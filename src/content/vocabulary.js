@@ -1,0 +1,221 @@
+// Thematic vocabulary lists A1–B1
+// Each entry: { es, en, cefr, domain, example, exampleEn, frequencyRank }
+// frequencyRank: approximate rank in Spanish corpus (lower = more common)
+
+export const VOCABULARY = [
+  // ── GREETINGS & COURTESY ────────────────────────────────────────────────
+  { es: 'hola', en: 'hello', cefr: 'A1', domain: 'greetings', frequencyRank: 50, example: '¡Hola! ¿Cómo estás?', exampleEn: 'Hello! How are you?' },
+  { es: 'adiós', en: 'goodbye', cefr: 'A1', domain: 'greetings', frequencyRank: 200, example: 'Adiós, hasta mañana.', exampleEn: 'Goodbye, see you tomorrow.' },
+  { es: 'buenos días', en: 'good morning', cefr: 'A1', domain: 'greetings', frequencyRank: 300, example: '—Buenos días. ¿Qué tal?', exampleEn: 'Good morning. How are things?' },
+  { es: 'buenas tardes', en: 'good afternoon', cefr: 'A1', domain: 'greetings', frequencyRank: 350, example: 'Buenas tardes, señora García.', exampleEn: 'Good afternoon, Mrs García.' },
+  { es: 'buenas noches', en: 'good evening / good night', cefr: 'A1', domain: 'greetings', frequencyRank: 360, example: '—Buenas noches. —Hasta mañana.', exampleEn: 'Good night. — See you tomorrow.' },
+  { es: 'hasta luego', en: 'see you later', cefr: 'A1', domain: 'greetings', frequencyRank: 400, example: 'Hasta luego, amigo.', exampleEn: 'See you later, friend.' },
+  { es: 'hasta mañana', en: 'see you tomorrow', cefr: 'A1', domain: 'greetings', frequencyRank: 420, example: '—Buenas noches. —Hasta mañana.', exampleEn: 'Good night. — See you tomorrow.' },
+  { es: 'por favor', en: 'please', cefr: 'A1', domain: 'greetings', frequencyRank: 80, example: 'Un café, por favor.', exampleEn: 'A coffee, please.' },
+  { es: 'gracias', en: 'thank you', cefr: 'A1', domain: 'greetings', frequencyRank: 90, example: '—Gracias. —De nada.', exampleEn: 'Thank you. — You\'re welcome.' },
+  { es: 'de nada', en: 'you\'re welcome', cefr: 'A1', domain: 'greetings', frequencyRank: 350, example: '—Gracias. —De nada.', exampleEn: 'Thank you. — You\'re welcome.' },
+  { es: 'perdón', en: 'excuse me / sorry', cefr: 'A1', domain: 'greetings', frequencyRank: 450, example: 'Perdón, ¿dónde está el baño?', exampleEn: 'Excuse me, where is the bathroom?' },
+  { es: 'lo siento', en: 'I\'m sorry', cefr: 'A1', domain: 'greetings', frequencyRank: 500, example: 'Lo siento, llegué tarde.', exampleEn: 'I\'m sorry, I arrived late.' },
+
+  // ── NUMBERS ──────────────────────────────────────────────────────────────
+  { es: 'uno', en: 'one', cefr: 'A1', domain: 'numbers', frequencyRank: 30, example: 'Tengo un hermano.', exampleEn: 'I have one brother.' },
+  { es: 'dos', en: 'two', cefr: 'A1', domain: 'numbers', frequencyRank: 35, example: 'Hay dos puertas.', exampleEn: 'There are two doors.' },
+  { es: 'tres', en: 'three', cefr: 'A1', domain: 'numbers', frequencyRank: 40, example: 'Compré tres manzanas.', exampleEn: 'I bought three apples.' },
+  { es: 'cuatro', en: 'four', cefr: 'A1', domain: 'numbers', frequencyRank: 55, example: 'Son las cuatro en punto.', exampleEn: 'It\'s four o\'clock exactly.' },
+  { es: 'cinco', en: 'five', cefr: 'A1', domain: 'numbers', frequencyRank: 60, example: 'Cinco más cinco son diez.', exampleEn: 'Five plus five is ten.' },
+  { es: 'diez', en: 'ten', cefr: 'A1', domain: 'numbers', frequencyRank: 70, example: 'Cuesta diez euros.', exampleEn: 'It costs ten euros.' },
+  { es: 'veinte', en: 'twenty', cefr: 'A1', domain: 'numbers', frequencyRank: 120, example: 'Tengo veinte años.', exampleEn: 'I am twenty years old.' },
+  { es: 'cien', en: 'a hundred', cefr: 'A1', domain: 'numbers', frequencyRank: 150, example: 'Cien personas vinieron.', exampleEn: 'A hundred people came.' },
+  { es: 'mil', en: 'a thousand', cefr: 'A1', domain: 'numbers', frequencyRank: 180, example: 'El coche cuesta diez mil euros.', exampleEn: 'The car costs ten thousand euros.' },
+
+  // ── DAYS & TIME ──────────────────────────────────────────────────────────
+  { es: 'lunes', en: 'Monday', cefr: 'A1', domain: 'time', frequencyRank: 600, example: 'El lunes tengo clase.', exampleEn: 'On Monday I have class.' },
+  { es: 'martes', en: 'Tuesday', cefr: 'A1', domain: 'time', frequencyRank: 620, example: 'El martes hay reunión.', exampleEn: 'On Tuesday there\'s a meeting.' },
+  { es: 'miércoles', en: 'Wednesday', cefr: 'A1', domain: 'time', frequencyRank: 640, example: 'Miércoles es el día de la semana.', exampleEn: 'Wednesday is the middle of the week.' },
+  { es: 'jueves', en: 'Thursday', cefr: 'A1', domain: 'time', frequencyRank: 660, example: 'El jueves comemos juntos.', exampleEn: 'On Thursday we eat together.' },
+  { es: 'viernes', en: 'Friday', cefr: 'A1', domain: 'time', frequencyRank: 680, example: 'El viernes salimos de fiesta.', exampleEn: 'On Friday we go out.' },
+  { es: 'sábado', en: 'Saturday', cefr: 'A1', domain: 'time', frequencyRank: 700, example: 'El sábado descanso.', exampleEn: 'On Saturday I rest.' },
+  { es: 'domingo', en: 'Sunday', cefr: 'A1', domain: 'time', frequencyRank: 720, example: 'El domingo voy a la iglesia.', exampleEn: 'On Sunday I go to church.' },
+  { es: 'hoy', en: 'today', cefr: 'A1', domain: 'time', frequencyRank: 85, example: 'Hoy es lunes.', exampleEn: 'Today is Monday.' },
+  { es: 'mañana', en: 'tomorrow / morning', cefr: 'A1', domain: 'time', frequencyRank: 100, example: 'Mañana viene Ana.', exampleEn: 'Tomorrow Ana is coming.' },
+  { es: 'ayer', en: 'yesterday', cefr: 'A1', domain: 'time', frequencyRank: 130, example: 'Ayer fui al médico.', exampleEn: 'Yesterday I went to the doctor.' },
+  { es: 'ahora', en: 'now', cefr: 'A1', domain: 'time', frequencyRank: 45, example: '¿Puedes venir ahora?', exampleEn: 'Can you come now?' },
+  { es: 'siempre', en: 'always', cefr: 'A1', domain: 'time', frequencyRank: 110, example: 'Siempre llega tarde.', exampleEn: 'He always arrives late.' },
+  { es: 'nunca', en: 'never', cefr: 'A1', domain: 'time', frequencyRank: 115, example: 'Nunca como carne.', exampleEn: 'I never eat meat.' },
+
+  // ── COLORS ──────────────────────────────────────────────────────────────
+  { es: 'rojo', en: 'red', cefr: 'A1', domain: 'colors', frequencyRank: 800, example: 'El semáforo está en rojo.', exampleEn: 'The traffic light is red.' },
+  { es: 'azul', en: 'blue', cefr: 'A1', domain: 'colors', frequencyRank: 820, example: 'El cielo es azul.', exampleEn: 'The sky is blue.' },
+  { es: 'verde', en: 'green', cefr: 'A1', domain: 'colors', frequencyRank: 840, example: 'La hierba es verde.', exampleEn: 'The grass is green.' },
+  { es: 'amarillo', en: 'yellow', cefr: 'A1', domain: 'colors', frequencyRank: 860, example: 'El sol es amarillo.', exampleEn: 'The sun is yellow.' },
+  { es: 'blanco', en: 'white', cefr: 'A1', domain: 'colors', frequencyRank: 750, example: 'La nieve es blanca.', exampleEn: 'The snow is white.' },
+  { es: 'negro', en: 'black', cefr: 'A1', domain: 'colors', frequencyRank: 760, example: 'Llevo un vestido negro.', exampleEn: 'I\'m wearing a black dress.' },
+  { es: 'naranja', en: 'orange', cefr: 'A1', domain: 'colors', frequencyRank: 900, example: 'Le gusta el color naranja.', exampleEn: 'She likes the color orange.' },
+  { es: 'morado', en: 'purple', cefr: 'A1', domain: 'colors', frequencyRank: 920, example: 'Las flores son moradas.', exampleEn: 'The flowers are purple.' },
+  { es: 'rosa', en: 'pink', cefr: 'A1', domain: 'colors', frequencyRank: 910, example: 'El flamenco es rosa.', exampleEn: 'The flamingo is pink.' },
+  { es: 'gris', en: 'grey', cefr: 'A1', domain: 'colors', frequencyRank: 870, example: 'El cielo está gris hoy.', exampleEn: 'The sky is grey today.' },
+  { es: 'marrón', en: 'brown', cefr: 'A1', domain: 'colors', frequencyRank: 890, example: 'Tiene los ojos marrones.', exampleEn: 'She has brown eyes.' },
+
+  // ── FAMILY ──────────────────────────────────────────────────────────────
+  { es: 'madre', en: 'mother', cefr: 'A1', domain: 'family', frequencyRank: 180, example: 'Mi madre cocina muy bien.', exampleEn: 'My mother cooks very well.' },
+  { es: 'padre', en: 'father', cefr: 'A1', domain: 'family', frequencyRank: 190, example: 'Mi padre trabaja en un banco.', exampleEn: 'My father works in a bank.' },
+  { es: 'hermano', en: 'brother', cefr: 'A1', domain: 'family', frequencyRank: 210, example: 'Tengo un hermano mayor.', exampleEn: 'I have an older brother.' },
+  { es: 'hermana', en: 'sister', cefr: 'A1', domain: 'family', frequencyRank: 215, example: 'Mi hermana vive en Barcelona.', exampleEn: 'My sister lives in Barcelona.' },
+  { es: 'hijo', en: 'son', cefr: 'A1', domain: 'family', frequencyRank: 160, example: 'Mi hijo tiene cinco años.', exampleEn: 'My son is five years old.' },
+  { es: 'hija', en: 'daughter', cefr: 'A1', domain: 'family', frequencyRank: 165, example: 'Su hija estudia medicina.', exampleEn: 'His daughter studies medicine.' },
+  { es: 'abuelo', en: 'grandfather', cefr: 'A1', domain: 'family', frequencyRank: 300, example: 'Mi abuelo tiene ochenta años.', exampleEn: 'My grandfather is eighty years old.' },
+  { es: 'abuela', en: 'grandmother', cefr: 'A1', domain: 'family', frequencyRank: 305, example: 'La abuela hace paella los domingos.', exampleEn: 'Grandma makes paella on Sundays.' },
+  { es: 'esposo', en: 'husband', cefr: 'A1', domain: 'family', frequencyRank: 350, example: 'Su esposo es médico.', exampleEn: 'Her husband is a doctor.' },
+  { es: 'esposa', en: 'wife', cefr: 'A1', domain: 'family', frequencyRank: 355, example: 'Mi esposa habla cuatro idiomas.', exampleEn: 'My wife speaks four languages.' },
+  { es: 'amigo', en: 'friend (m)', cefr: 'A1', domain: 'family', frequencyRank: 140, example: 'Es mi mejor amigo.', exampleEn: 'He\'s my best friend.' },
+  { es: 'amiga', en: 'friend (f)', cefr: 'A1', domain: 'family', frequencyRank: 145, example: 'Mi amiga vive en Madrid.', exampleEn: 'My friend lives in Madrid.' },
+
+  // ── FOOD & DRINK ────────────────────────────────────────────────────────
+  { es: 'agua', en: 'water', cefr: 'A1', domain: 'food', frequencyRank: 170, example: 'Quiero un vaso de agua.', exampleEn: 'I want a glass of water.' },
+  { es: 'pan', en: 'bread', cefr: 'A1', domain: 'food', frequencyRank: 380, example: 'Compro pan cada mañana.', exampleEn: 'I buy bread every morning.' },
+  { es: 'leche', en: 'milk', cefr: 'A1', domain: 'food', frequencyRank: 420, example: 'El niño bebe leche.', exampleEn: 'The child drinks milk.' },
+  { es: 'café', en: 'coffee', cefr: 'A1', domain: 'food', frequencyRank: 440, example: 'Tomo un café con leche.', exampleEn: 'I have a coffee with milk.' },
+  { es: 'vino', en: 'wine', cefr: 'A1', domain: 'food', frequencyRank: 500, example: 'Un vaso de vino tinto, por favor.', exampleEn: 'A glass of red wine, please.' },
+  { es: 'cerveza', en: 'beer', cefr: 'A1', domain: 'food', frequencyRank: 520, example: 'Dos cervezas, por favor.', exampleEn: 'Two beers, please.' },
+  { es: 'pollo', en: 'chicken', cefr: 'A1', domain: 'food', frequencyRank: 560, example: 'El pollo está muy rico.', exampleEn: 'The chicken is very tasty.' },
+  { es: 'arroz', en: 'rice', cefr: 'A1', domain: 'food', frequencyRank: 580, example: 'Como arroz todos los días.', exampleEn: 'I eat rice every day.' },
+  { es: 'manzana', en: 'apple', cefr: 'A1', domain: 'food', frequencyRank: 600, example: 'Una manzana al día.', exampleEn: 'An apple a day.' },
+  { es: 'queso', en: 'cheese', cefr: 'A1', domain: 'food', frequencyRank: 620, example: 'Me gusta el queso manchego.', exampleEn: 'I like manchego cheese.' },
+  { es: 'carne', en: 'meat', cefr: 'A1', domain: 'food', frequencyRank: 400, example: '¿Comes carne o eres vegetariano?', exampleEn: 'Do you eat meat or are you vegetarian?' },
+  { es: 'pescado', en: 'fish', cefr: 'A1', domain: 'food', frequencyRank: 550, example: 'El pescado es muy sano.', exampleEn: 'Fish is very healthy.' },
+  { es: 'verduras', en: 'vegetables', cefr: 'A1', domain: 'food', frequencyRank: 480, example: 'Como muchas verduras.', exampleEn: 'I eat lots of vegetables.' },
+  { es: 'fruta', en: 'fruit', cefr: 'A1', domain: 'food', frequencyRank: 490, example: 'La fruta es buena para la salud.', exampleEn: 'Fruit is good for health.' },
+  { es: 'ensalada', en: 'salad', cefr: 'A1', domain: 'food', frequencyRank: 640, example: 'Pide una ensalada mixta.', exampleEn: 'Order a mixed salad.' },
+  { es: 'sopa', en: 'soup', cefr: 'A1', domain: 'food', frequencyRank: 660, example: 'La sopa está caliente.', exampleEn: 'The soup is hot.' },
+  { es: 'huevo', en: 'egg', cefr: 'A1', domain: 'food', frequencyRank: 540, example: 'Me gustan los huevos fritos.', exampleEn: 'I like fried eggs.' },
+
+  // ── PLACES ──────────────────────────────────────────────────────────────
+  { es: 'casa', en: 'house / home', cefr: 'A1', domain: 'places', frequencyRank: 90, example: 'Estoy en casa.', exampleEn: 'I\'m at home.' },
+  { es: 'escuela', en: 'school', cefr: 'A1', domain: 'places', frequencyRank: 280, example: 'Los niños van a la escuela.', exampleEn: 'The children go to school.' },
+  { es: 'trabajo', en: 'work / job', cefr: 'A1', domain: 'places', frequencyRank: 95, example: 'Voy al trabajo en metro.', exampleEn: 'I go to work by metro.' },
+  { es: 'restaurante', en: 'restaurant', cefr: 'A1', domain: 'places', frequencyRank: 460, example: 'Cenamos en un restaurante italiano.', exampleEn: 'We dined at an Italian restaurant.' },
+  { es: 'tienda', en: 'shop / store', cefr: 'A1', domain: 'places', frequencyRank: 400, example: 'Hay una tienda cerca de aquí.', exampleEn: 'There\'s a shop near here.' },
+  { es: 'hospital', en: 'hospital', cefr: 'A1', domain: 'places', frequencyRank: 350, example: 'El médico trabaja en el hospital.', exampleEn: 'The doctor works at the hospital.' },
+  { es: 'aeropuerto', en: 'airport', cefr: 'A1', domain: 'places', frequencyRank: 480, example: 'El vuelo sale del aeropuerto.', exampleEn: 'The flight departs from the airport.' },
+  { es: 'ciudad', en: 'city', cefr: 'A1', domain: 'places', frequencyRank: 120, example: 'Madrid es una ciudad grande.', exampleEn: 'Madrid is a big city.' },
+  { es: 'calle', en: 'street', cefr: 'A1', domain: 'places', frequencyRank: 200, example: 'Vivo en esta calle.', exampleEn: 'I live on this street.' },
+  { es: 'banco', en: 'bank', cefr: 'A1', domain: 'places', frequencyRank: 310, example: 'Necesito ir al banco.', exampleEn: 'I need to go to the bank.' },
+  { es: 'supermercado', en: 'supermarket', cefr: 'A1', domain: 'places', frequencyRank: 420, example: 'Compro en el supermercado.', exampleEn: 'I shop at the supermarket.' },
+  { es: 'parque', en: 'park', cefr: 'A1', domain: 'places', frequencyRank: 430, example: 'Los niños juegan en el parque.', exampleEn: 'The children play in the park.' },
+  { es: 'playa', en: 'beach', cefr: 'A1', domain: 'places', frequencyRank: 440, example: 'Vamos a la playa en verano.', exampleEn: 'We go to the beach in summer.' },
+
+  // ── CORE VERBS (A1) ─────────────────────────────────────────────────────
+  { es: 'ser', en: 'to be (permanent)', cefr: 'A1', domain: 'verbs', frequencyRank: 2, example: 'Soy estudiante.', exampleEn: 'I am a student.' },
+  { es: 'estar', en: 'to be (temporary)', cefr: 'A1', domain: 'verbs', frequencyRank: 5, example: 'Estoy cansado.', exampleEn: 'I am tired.' },
+  { es: 'tener', en: 'to have', cefr: 'A1', domain: 'verbs', frequencyRank: 6, example: 'Tengo hambre.', exampleEn: 'I am hungry. (lit. I have hunger.)' },
+  { es: 'ir', en: 'to go', cefr: 'A1', domain: 'verbs', frequencyRank: 7, example: 'Voy al mercado.', exampleEn: 'I\'m going to the market.' },
+  { es: 'hacer', en: 'to do / to make', cefr: 'A1', domain: 'verbs', frequencyRank: 8, example: '¿Qué haces hoy?', exampleEn: 'What are you doing today?' },
+  { es: 'poder', en: 'to be able to / can', cefr: 'A1', domain: 'verbs', frequencyRank: 10, example: '¿Puedes ayudarme?', exampleEn: 'Can you help me?' },
+  { es: 'querer', en: 'to want / to love', cefr: 'A1', domain: 'verbs', frequencyRank: 12, example: 'Quiero aprender español.', exampleEn: 'I want to learn Spanish.' },
+  { es: 'hablar', en: 'to speak', cefr: 'A1', domain: 'verbs', frequencyRank: 30, example: 'Hablo un poco de español.', exampleEn: 'I speak a little Spanish.' },
+  { es: 'comer', en: 'to eat', cefr: 'A1', domain: 'verbs', frequencyRank: 45, example: 'Comemos a las dos.', exampleEn: 'We eat at two o\'clock.' },
+  { es: 'vivir', en: 'to live', cefr: 'A1', domain: 'verbs', frequencyRank: 50, example: 'Vivo en Madrid.', exampleEn: 'I live in Madrid.' },
+  { es: 'venir', en: 'to come', cefr: 'A1', domain: 'verbs', frequencyRank: 55, example: '¿Vienes a la fiesta?', exampleEn: 'Are you coming to the party?' },
+  { es: 'saber', en: 'to know (facts/skills)', cefr: 'A1', domain: 'verbs', frequencyRank: 15, example: '¿Sabes cocinar?', exampleEn: 'Do you know how to cook?' },
+  { es: 'llamarse', en: 'to be called', cefr: 'A1', domain: 'verbs', frequencyRank: 180, example: 'Me llamo Carlos.', exampleEn: 'My name is Carlos.' },
+  { es: 'trabajar', en: 'to work', cefr: 'A1', domain: 'verbs', frequencyRank: 60, example: 'Trabajo en una empresa.', exampleEn: 'I work at a company.' },
+  { es: 'estudiar', en: 'to study', cefr: 'A1', domain: 'verbs', frequencyRank: 65, example: 'Estudio español.', exampleEn: 'I study Spanish.' },
+  { es: 'beber', en: 'to drink', cefr: 'A1', domain: 'verbs', frequencyRank: 70, example: 'Bebe mucha agua.', exampleEn: 'She drinks a lot of water.' },
+  { es: 'comprar', en: 'to buy', cefr: 'A1', domain: 'verbs', frequencyRank: 75, example: 'Voy a comprar leche.', exampleEn: 'I\'m going to buy milk.' },
+  { es: 'dar', en: 'to give', cefr: 'A1', domain: 'verbs', frequencyRank: 18, example: 'Te doy mi número.', exampleEn: 'I\'ll give you my number.' },
+  { es: 'ver', en: 'to see / to watch', cefr: 'A1', domain: 'verbs', frequencyRank: 20, example: 'Vemos una película.', exampleEn: 'We\'re watching a movie.' },
+
+  // ── ADJECTIVES (A1) ─────────────────────────────────────────────────────
+  { es: 'grande', en: 'big / great', cefr: 'A1', domain: 'adjectives', frequencyRank: 50, example: 'Es una ciudad grande.', exampleEn: 'It\'s a big city.' },
+  { es: 'pequeño', en: 'small', cefr: 'A1', domain: 'adjectives', frequencyRank: 55, example: 'Vivo en un apartamento pequeño.', exampleEn: 'I live in a small apartment.' },
+  { es: 'bueno', en: 'good', cefr: 'A1', domain: 'adjectives', frequencyRank: 25, example: 'Es una buena idea.', exampleEn: 'It\'s a good idea.' },
+  { es: 'malo', en: 'bad', cefr: 'A1', domain: 'adjectives', frequencyRank: 60, example: 'Tengo un día malo.', exampleEn: 'I\'m having a bad day.' },
+  { es: 'nuevo', en: 'new', cefr: 'A1', domain: 'adjectives', frequencyRank: 35, example: 'Tengo un trabajo nuevo.', exampleEn: 'I have a new job.' },
+  { es: 'viejo', en: 'old', cefr: 'A1', domain: 'adjectives', frequencyRank: 65, example: 'Es un edificio muy viejo.', exampleEn: 'It\'s a very old building.' },
+  { es: 'bonito', en: 'pretty / nice', cefr: 'A1', domain: 'adjectives', frequencyRank: 180, example: '¡Qué bonito día!', exampleEn: 'What a nice day!' },
+  { es: 'fácil', en: 'easy', cefr: 'A1', domain: 'adjectives', frequencyRank: 200, example: 'El español no es fácil.', exampleEn: 'Spanish is not easy.' },
+  { es: 'difícil', en: 'difficult', cefr: 'A1', domain: 'adjectives', frequencyRank: 210, example: 'Este ejercicio es muy difícil.', exampleEn: 'This exercise is very difficult.' },
+  { es: 'cansado', en: 'tired', cefr: 'A1', domain: 'adjectives', frequencyRank: 400, example: 'Estoy muy cansado.', exampleEn: 'I\'m very tired.' },
+  { es: 'contento', en: 'happy / pleased', cefr: 'A1', domain: 'adjectives', frequencyRank: 350, example: 'Estoy muy contento.', exampleEn: 'I\'m very happy.' },
+  { es: 'tranquilo', en: 'calm / quiet', cefr: 'A1', domain: 'adjectives', frequencyRank: 320, example: 'Es una ciudad tranquila.', exampleEn: 'It\'s a quiet city.' },
+
+  // ── A2 WORDS ────────────────────────────────────────────────────────────
+  { es: 'aunque', en: 'although / even though', cefr: 'A2', domain: 'connectors', frequencyRank: 95, example: 'Aunque llueve, salgo.', exampleEn: 'Although it rains, I\'m going out.' },
+  { es: 'porque', en: 'because', cefr: 'A2', domain: 'connectors', frequencyRank: 75, example: 'No voy porque estoy enfermo.', exampleEn: 'I\'m not going because I\'m sick.' },
+  { es: 'también', en: 'also / too', cefr: 'A2', domain: 'connectors', frequencyRank: 85, example: 'Yo también quiero ir.', exampleEn: 'I also want to go.' },
+  { es: 'tampoco', en: 'neither / not either', cefr: 'A2', domain: 'connectors', frequencyRank: 220, example: '—No me gusta. —A mí tampoco.', exampleEn: 'I don\'t like it. — Me neither.' },
+  { es: 'todavía', en: 'still / yet', cefr: 'A2', domain: 'connectors', frequencyRank: 200, example: 'Todavía no he comido.', exampleEn: 'I haven\'t eaten yet.' },
+  { es: 'ya', en: 'already / now', cefr: 'A2', domain: 'connectors', frequencyRank: 25, example: 'Ya he terminado.', exampleEn: 'I\'ve already finished.' },
+  { es: 'bastante', en: 'quite / enough', cefr: 'A2', domain: 'adverbs', frequencyRank: 180, example: 'Es bastante difícil.', exampleEn: 'It\'s quite difficult.' },
+  { es: 'demasiado', en: 'too much / too many', cefr: 'A2', domain: 'adverbs', frequencyRank: 200, example: 'Comes demasiado rápido.', exampleEn: 'You eat too fast.' },
+  { es: 'un poco', en: 'a little', cefr: 'A2', domain: 'adverbs', frequencyRank: 110, example: 'Habla un poco de inglés.', exampleEn: 'She speaks a little English.' },
+  { es: 'quizás', en: 'maybe / perhaps', cefr: 'A2', domain: 'adverbs', frequencyRank: 250, example: 'Quizás llueva mañana.', exampleEn: 'Maybe it will rain tomorrow.' },
+  { es: 'sin embargo', en: 'however / nevertheless', cefr: 'A2', domain: 'connectors', frequencyRank: 105, example: 'Es caro; sin embargo, lo compro.', exampleEn: 'It\'s expensive; however, I\'m buying it.' },
+  { es: 'además', en: 'besides / furthermore', cefr: 'A2', domain: 'connectors', frequencyRank: 120, example: 'Habla inglés y, además, francés.', exampleEn: 'She speaks English and, besides, French.' },
+  { es: 'enfermo', en: 'sick / ill', cefr: 'A2', domain: 'adjectives', frequencyRank: 380, example: 'Está enfermo en cama.', exampleEn: 'He\'s sick in bed.' },
+  { es: 'libre', en: 'free / available', cefr: 'A2', domain: 'adjectives', frequencyRank: 200, example: '¿Estás libre esta tarde?', exampleEn: 'Are you free this afternoon?' },
+  { es: 'seguro', en: 'sure / safe', cefr: 'A2', domain: 'adjectives', frequencyRank: 170, example: '¿Estás seguro de eso?', exampleEn: 'Are you sure about that?' },
+  { es: 'llegar', en: 'to arrive', cefr: 'A2', domain: 'verbs', frequencyRank: 40, example: 'Llegamos a las tres.', exampleEn: 'We arrive at three.' },
+  { es: 'salir', en: 'to leave / go out', cefr: 'A2', domain: 'verbs', frequencyRank: 42, example: 'Salgo a las ocho.', exampleEn: 'I leave at eight.' },
+  { es: 'pagar', en: 'to pay', cefr: 'A2', domain: 'verbs', frequencyRank: 80, example: '¿Quién paga la cuenta?', exampleEn: 'Who pays the bill?' },
+  { es: 'necesitar', en: 'to need', cefr: 'A2', domain: 'verbs', frequencyRank: 85, example: 'Necesito tu ayuda.', exampleEn: 'I need your help.' },
+  { es: 'esperar', en: 'to wait / to hope', cefr: 'A2', domain: 'verbs', frequencyRank: 60, example: 'Espera un momento.', exampleEn: 'Wait a moment.' },
+  { es: 'pensar', en: 'to think', cefr: 'A2', domain: 'verbs', frequencyRank: 32, example: '¿Qué piensas de esto?', exampleEn: 'What do you think about this?' },
+  { es: 'creer', en: 'to believe / to think', cefr: 'A2', domain: 'verbs', frequencyRank: 28, example: 'Creo que sí.', exampleEn: 'I think so.' },
+  { es: 'encontrar', en: 'to find / to meet', cefr: 'A2', domain: 'verbs', frequencyRank: 38, example: 'No encuentro mis llaves.', exampleEn: 'I can\'t find my keys.' },
+  { es: 'entender', en: 'to understand', cefr: 'A2', domain: 'verbs', frequencyRank: 55, example: '¿Entiendes lo que digo?', exampleEn: 'Do you understand what I\'m saying?' },
+  { es: 'preguntar', en: 'to ask', cefr: 'A2', domain: 'verbs', frequencyRank: 65, example: 'Voy a preguntar al médico.', exampleEn: 'I\'m going to ask the doctor.' },
+  { es: 'ayudar', en: 'to help', cefr: 'A2', domain: 'verbs', frequencyRank: 70, example: '¿Me puedes ayudar?', exampleEn: 'Can you help me?' },
+  { es: 'olvidar', en: 'to forget', cefr: 'A2', domain: 'verbs', frequencyRank: 120, example: 'Olvidé el paraguas.', exampleEn: 'I forgot the umbrella.' },
+  { es: 'recordar', en: 'to remember', cefr: 'A2', domain: 'verbs', frequencyRank: 115, example: '¿Recuerdas mi nombre?', exampleEn: 'Do you remember my name?' },
+  { es: 'dinero', en: 'money', cefr: 'A2', domain: 'nouns', frequencyRank: 130, example: 'No tengo dinero.', exampleEn: 'I don\'t have money.' },
+  { es: 'tiempo', en: 'time / weather', cefr: 'A2', domain: 'nouns', frequencyRank: 20, example: '¿Qué tiempo hace?', exampleEn: 'What\'s the weather like?' },
+  { es: 'gente', en: 'people', cefr: 'A2', domain: 'nouns', frequencyRank: 75, example: 'Hay mucha gente aquí.', exampleEn: 'There are many people here.' },
+  { es: 'vida', en: 'life', cefr: 'A2', domain: 'nouns', frequencyRank: 22, example: 'La vida es bella.', exampleEn: 'Life is beautiful.' },
+  { es: 'vez', en: 'time (occasion)', cefr: 'A2', domain: 'nouns', frequencyRank: 18, example: 'Es la primera vez.', exampleEn: 'It\'s the first time.' },
+  { es: 'mundo', en: 'world', cefr: 'A2', domain: 'nouns', frequencyRank: 40, example: 'El mundo es pequeño.', exampleEn: 'It\'s a small world.' },
+  { es: 'problema', en: 'problem', cefr: 'A2', domain: 'nouns', frequencyRank: 55, example: '¿Cuál es el problema?', exampleEn: 'What\'s the problem?' },
+  { es: 'idea', en: 'idea', cefr: 'A2', domain: 'nouns', frequencyRank: 60, example: 'Es una buena idea.', exampleEn: 'It\'s a good idea.' },
+
+  // ── B1 WORDS ────────────────────────────────────────────────────────────
+  { es: 'a pesar de', en: 'in spite of / despite', cefr: 'B1', domain: 'connectors', frequencyRank: 180, example: 'Salió a pesar de la lluvia.', exampleEn: 'He went out despite the rain.' },
+  { es: 'de hecho', en: 'in fact / actually', cefr: 'B1', domain: 'connectors', frequencyRank: 160, example: 'De hecho, no estaba de acuerdo.', exampleEn: 'In fact, I didn\'t agree.' },
+  { es: 'en cambio', en: 'on the other hand', cefr: 'B1', domain: 'connectors', frequencyRank: 170, example: 'Él es serio; en cambio, ella es divertida.', exampleEn: 'He is serious; she, on the other hand, is fun.' },
+  { es: 'por lo tanto', en: 'therefore', cefr: 'B1', domain: 'connectors', frequencyRank: 190, example: 'Llueve; por lo tanto, me quedo en casa.', exampleEn: 'It\'s raining; therefore, I\'m staying home.' },
+  { es: 'sin embargo', en: 'however', cefr: 'B1', domain: 'connectors', frequencyRank: 105, example: 'Es difícil; sin embargo, posible.', exampleEn: 'It\'s difficult; however, possible.' },
+  { es: 'aunque', en: 'even though / although', cefr: 'B1', domain: 'connectors', frequencyRank: 95, example: 'Aunque no quiera, tiene que hacerlo.', exampleEn: 'Even though he doesn\'t want to, he has to do it.' },
+  { es: 'darse cuenta de', en: 'to realize', cefr: 'B1', domain: 'verbs', frequencyRank: 180, example: 'Me di cuenta de mi error.', exampleEn: 'I realized my mistake.' },
+  { es: 'tardar', en: 'to take time / to be late', cefr: 'B1', domain: 'verbs', frequencyRank: 200, example: '¿Cuánto tardas?', exampleEn: 'How long will you take?' },
+  { es: 'lograr', en: 'to achieve / to manage to', cefr: 'B1', domain: 'verbs', frequencyRank: 150, example: 'Logré terminar a tiempo.', exampleEn: 'I managed to finish on time.' },
+  { es: 'intentar', en: 'to try', cefr: 'B1', domain: 'verbs', frequencyRank: 130, example: 'Intenta no llegar tarde.', exampleEn: 'Try not to arrive late.' },
+  { es: 'conseguir', en: 'to get / to manage to', cefr: 'B1', domain: 'verbs', frequencyRank: 120, example: '¿Conseguiste las entradas?', exampleEn: 'Did you get the tickets?' },
+  { es: 'depender de', en: 'to depend on', cefr: 'B1', domain: 'verbs', frequencyRank: 210, example: 'Depende de ti.', exampleEn: 'It depends on you.' },
+  { es: 'tratar de', en: 'to try to', cefr: 'B1', domain: 'verbs', frequencyRank: 140, example: 'Trato de mejorar mi español.', exampleEn: 'I try to improve my Spanish.' },
+  { es: 'exigir', en: 'to demand / to require', cefr: 'B1', domain: 'verbs', frequencyRank: 250, example: 'El jefe exige puntualidad.', exampleEn: 'The boss demands punctuality.' },
+  { es: 'compartir', en: 'to share', cefr: 'B1', domain: 'verbs', frequencyRank: 220, example: 'Compartimos el piso.', exampleEn: 'We share the flat.' },
+  { es: 'desarrollar', en: 'to develop', cefr: 'B1', domain: 'verbs', frequencyRank: 100, example: 'Desarrollamos una aplicación nueva.', exampleEn: 'We\'re developing a new app.' },
+  { es: 'apoyar', en: 'to support', cefr: 'B1', domain: 'verbs', frequencyRank: 160, example: 'Mis padres me apoyan.', exampleEn: 'My parents support me.' },
+  { es: 'reconocer', en: 'to recognize / to acknowledge', cefr: 'B1', domain: 'verbs', frequencyRank: 140, example: 'Reconozco mi error.', exampleEn: 'I acknowledge my mistake.' },
+  { es: 'ambiente', en: 'atmosphere / environment', cefr: 'B1', domain: 'nouns', frequencyRank: 200, example: 'Hay muy buen ambiente.', exampleEn: 'There\'s a great atmosphere.' },
+  { es: 'nivel', en: 'level', cefr: 'B1', domain: 'nouns', frequencyRank: 130, example: 'Mi nivel de español mejora.', exampleEn: 'My Spanish level is improving.' },
+  { es: 'plazo', en: 'deadline / period', cefr: 'B1', domain: 'nouns', frequencyRank: 210, example: 'El plazo termina el viernes.', exampleEn: 'The deadline is on Friday.' },
+  { es: 'ventaja', en: 'advantage', cefr: 'B1', domain: 'nouns', frequencyRank: 220, example: 'Tiene muchas ventajas.', exampleEn: 'It has many advantages.' },
+  { es: 'desventaja', en: 'disadvantage', cefr: 'B1', domain: 'nouns', frequencyRank: 230, example: 'La principal desventaja es el coste.', exampleEn: 'The main disadvantage is the cost.' },
+  { es: 'conjunto', en: 'set / group / overall', cefr: 'B1', domain: 'nouns', frequencyRank: 130, example: 'En conjunto, salió bien.', exampleEn: 'Overall, it went well.' },
+];
+
+// Group by domain
+export function getByDomain(domain) {
+  return VOCABULARY.filter(v => v.domain === domain);
+}
+
+// Group by CEFR level
+export function getByCefr(level) {
+  return VOCABULARY.filter(v => v.cefr === level);
+}
+
+export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();
+export const CEFR_LEVELS = ['A1', 'A2', 'B1'];
+
+// Sorted by frequency (most common first)
+export const BY_FREQUENCY = [...VOCABULARY].sort((a, b) => a.frequencyRank - b.frequencyRank);

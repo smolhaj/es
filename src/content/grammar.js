@@ -524,6 +524,248 @@ export const GRAMMAR_CARDS = [
     ],
     related: ['present_subjunctive', 'question_words'],
   },
+
+  // ── B2 ─────────────────────────────────────────────────────────────────
+  {
+    id: 'present_perfect',
+    concept_id: 'present_perfect',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Present Perfect (he hablado)',
+    rule: 'Formed with haber (present) + past participle. In Spain, used for recent past or past connected to now. In Latin America, the preterite often replaces it.',
+    examples: [
+      { es: 'He comido ya.', en: 'I have already eaten. (Spain: recent past)' },
+      { es: '¿Has visto esta película?', en: 'Have you seen this film?' },
+      { es: 'Hemos vivido aquí cinco años.', en: 'We have lived here for five years.' },
+    ],
+    exceptions: [
+      'Past participles: -ar → -ado (hablado); -er/-ir → -ido (comido, vivido).',
+      'Irregular participles: hecho, dicho, visto, puesto, vuelto, roto, abierto, muerto, escrito, cubierto.',
+      'The participle NEVER changes for gender/number in compound tenses.',
+    ],
+    related: ['preterite_regular', 'pluperfect'],
+  },
+  {
+    id: 'pluperfect',
+    concept_id: 'pluperfect',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Pluperfect (había hablado)',
+    rule: 'Formed with haber (imperfect) + past participle. Expresses a past action that happened before another past action — the "past of the past".',
+    examples: [
+      { es: 'Cuando llegué, ya habían comido.', en: 'When I arrived, they had already eaten.' },
+      { es: 'No había visto esa película.', en: 'I hadn\'t seen that film.' },
+      { es: 'Ya había terminado cuando me llamó.', en: 'She had already finished when he called her.' },
+    ],
+    exceptions: [
+      'Haber imperfect: había, habías, había, habíamos, habíais, habían.',
+      'Same irregular participles as present perfect.',
+    ],
+    related: ['present_perfect', 'preterite_vs_imperfect'],
+  },
+  {
+    id: 'future_perfect',
+    concept_id: 'future_perfect',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Future Perfect (habrá hablado)',
+    rule: 'Formed with haber (future) + past participle. Describes an action that will be completed before a future point. Also expresses probability about the past.',
+    examples: [
+      { es: 'Para el lunes, habré terminado.', en: 'By Monday, I will have finished.' },
+      { es: '¿Habrá llegado ya?', en: 'Do you think he has arrived already? (probability)' },
+    ],
+    exceptions: [
+      'Haber future: habré, habrás, habrá, habremos, habréis, habrán.',
+    ],
+    related: ['future_simple', 'pluperfect'],
+  },
+  {
+    id: 'conditional_perfect',
+    concept_id: 'conditional_perfect',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Conditional Perfect (habría hablado)',
+    rule: 'Formed with haber (conditional) + past participle. Used in the result clause of hypothetical past situations (si + pluperfect subjunctive → conditional perfect). Also expresses probability in the past.',
+    examples: [
+      { es: 'Si hubiera sabido, lo habría dicho.', en: 'If I had known, I would have said it.' },
+      { es: 'Habría llegado antes.', en: 'I would have arrived earlier.' },
+      { es: '¿Qué habrías hecho tú?', en: 'What would you have done?' },
+    ],
+    exceptions: [
+      'Haber conditional: habría, habrías, habría, habríamos, habríais, habrían.',
+    ],
+    related: ['conditional', 'present_perfect', 'imperfect_subjunctive'],
+  },
+  {
+    id: 'passive_voice',
+    concept_id: 'passive_voice',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Passive Voice (ser + participle)',
+    rule: 'The passive voice is formed with ser + past participle. The participle agrees in gender and number with the subject. The agent (doer) is introduced by "por".',
+    examples: [
+      { es: 'El libro fue escrito por Cervantes.', en: 'The book was written by Cervantes.' },
+      { es: 'Las ventanas son lavadas cada semana.', en: 'The windows are washed every week.' },
+      { es: 'El contrato ha sido firmado.', en: 'The contract has been signed.' },
+    ],
+    exceptions: [
+      'The passive with ser is less common in Spanish than in English — use the active or passive-se instead.',
+      'Estar + participle describes a resulting state (not the action): La puerta está cerrada.',
+    ],
+    related: ['passive_se', 'present_perfect'],
+  },
+  {
+    id: 'passive_se',
+    concept_id: 'passive_se',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Passive Se and Impersonal Se',
+    rule: 'Se + 3rd person verb: if followed by singular noun → singular verb; plural noun → plural verb. When no noun follows, it is impersonal (like "one" or "you" in English).',
+    examples: [
+      { es: 'Se habla español aquí.', en: 'Spanish is spoken here. (passive se)' },
+      { es: 'Se venden pisos.', en: 'Flats for sale. / Flats are sold.' },
+      { es: 'Se dice que va a llover.', en: 'They say it\'s going to rain. (impersonal)' },
+      { es: 'Se come muy bien en esta ciudad.', en: 'One eats very well in this city.' },
+    ],
+    exceptions: [
+      'Passive se (with a noun) → verb agrees with the noun: Se vende piso / Se venden pisos.',
+      'Impersonal se (no noun) → always 3rd person singular.',
+    ],
+    related: ['passive_voice', 'reflexive_verbs'],
+  },
+  {
+    id: 'imperfect_subjunctive',
+    concept_id: 'imperfect_subjunctive',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Imperfect Subjunctive',
+    rule: 'Formed from the 3rd person plural preterite: drop -ron, add -ra endings (-ra, -ras, -ra, -ramos, -rais, -ran). Used in past and conditional contexts where the present subjunctive would be used in present contexts.',
+    examples: [
+      { es: 'Quería que vinieras.', en: 'I wanted you to come.' },
+      { es: 'Si tuviera dinero, viajaría.', en: 'If I had money, I would travel.' },
+      { es: 'Buscaban a alguien que hablara ruso.', en: 'They were looking for someone who spoke Russian.' },
+    ],
+    exceptions: [
+      'An alternative -se form exists (hablase, comiese) — used in writing and Spain.',
+      'Irregular preterites carry into imperfect subjunctive: tuviera (tener), fuera (ir/ser), dijera (decir), pudiera (poder).',
+      'nosotros form always has an accent: habláramos, tuviéramos.',
+    ],
+    related: ['conditional', 'present_subjunctive', 'si_clauses'],
+  },
+  {
+    id: 'si_clauses',
+    concept_id: 'si_clauses',
+    cefr: 'B2',
+    category: 'Syntax',
+    title: 'Si (if) Clauses — All Types',
+    rule: 'Type 1 (possible): si + present indicative → future/imperative. Type 2 (hypothetical present): si + imperfect subjunctive → conditional. Type 3 (hypothetical past): si + pluperfect subjunctive → conditional perfect.',
+    examples: [
+      { es: 'Si tienes hambre, come algo. (Type 1)', en: 'If you\'re hungry, eat something.' },
+      { es: 'Si tuviera tiempo, estudiaría más. (Type 2)', en: 'If I had time, I would study more.' },
+      { es: 'Si hubiera sabido, no habría venido. (Type 3)', en: 'If I had known, I wouldn\'t have come.' },
+    ],
+    exceptions: [
+      'NEVER use subjunctive directly after si in a real condition: *si tenga is wrong.',
+      'Mixed type (hypothetical past → present): Si hubiera estudiado, sabría la respuesta.',
+    ],
+    related: ['imperfect_subjunctive', 'conditional_perfect', 'conditional'],
+  },
+  {
+    id: 'subjunctive_adverbial',
+    concept_id: 'subjunctive_adverbial',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Subjunctive in Adverbial Clauses',
+    rule: 'Certain conjunctions always take the subjunctive (time clauses when referring to the future; purpose; condition). Others switch between indicative (fact) and subjunctive (hypothesis).',
+    examples: [
+      { es: 'Llámame cuando llegues. (future time)', en: 'Call me when you arrive.' },
+      { es: 'Habla despacio para que te entiendan.', en: 'Speak slowly so that they understand you.' },
+      { es: 'Te dejo el libro a menos que lo necesites.', en: 'I\'ll lend you the book unless you need it.' },
+      { es: 'Aunque esté cansado, iré. (hypothetical)', en: 'Even if I\'m tired, I\'ll go.' },
+    ],
+    exceptions: [
+      'Always subjunctive: para que, a menos que, con tal de que, sin que, antes de que, a fin de que.',
+      'Future time clauses: cuando, hasta que, en cuanto, después de que + subjunctive.',
+      'Aunque + indicative = "even though (it is true)"; aunque + subjunctive = "even if (it may be)".',
+    ],
+    related: ['present_subjunctive', 'imperfect_subjunctive'],
+  },
+  {
+    id: 'comparatives',
+    concept_id: 'comparatives',
+    cefr: 'B2',
+    category: 'Syntax',
+    title: 'Comparatives and Superlatives',
+    rule: 'Comparatives: más/menos + adjective + que (more/less than). Superlatives: el/la/los/las + más/menos + adjective. Irregular forms must be memorized.',
+    examples: [
+      { es: 'Es más alto que su hermano.', en: 'He\'s taller than his brother.' },
+      { es: 'Habla menos rápido que yo.', en: 'She speaks more slowly than I do.' },
+      { es: 'Es el más inteligente de la clase.', en: 'He\'s the most intelligent in the class.' },
+      { es: 'Cuanto más estudias, más aprendes.', en: 'The more you study, the more you learn.' },
+    ],
+    exceptions: [
+      'Irregular comparative/superlative: bueno→mejor, malo→peor, grande→mayor, pequeño→menor.',
+      'Tan…como = as…as: Es tan alto como tú.',
+      'Tanto/a/os/as…como = as much/many…as (with nouns): Tiene tantos amigos como yo.',
+    ],
+    related: ['adjective_agreement'],
+  },
+  {
+    id: 'ser_estar_participle',
+    concept_id: 'ser_estar_participle',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Ser vs. Estar with Past Participle',
+    rule: 'Ser + participle = passive action (something is being done or was done). Estar + participle = resulting state (describes the condition that exists after something happened).',
+    examples: [
+      { es: 'La puerta es cerrada por el portero a las diez.', en: 'The door is closed by the doorman at ten. (action)' },
+      { es: 'La puerta está cerrada.', en: 'The door is closed. (resulting state)' },
+      { es: 'El libro fue escrito en 1605.', en: 'The book was written in 1605. (completed action)' },
+      { es: 'El libro está escrito en español.', en: 'The book is written in Spanish. (state/description)' },
+    ],
+    exceptions: [
+      'The estar + participle construction is extremely common and useful for describing conditions.',
+    ],
+    related: ['passive_voice', 'ser_vs_estar'],
+  },
+  {
+    id: 'diminutives_augmentatives',
+    concept_id: 'diminutives_augmentatives',
+    cefr: 'B2',
+    category: 'Morphology',
+    title: 'Diminutives and Augmentatives',
+    rule: 'Spanish uses suffixes to add nuance of size, affection, or emphasis without needing extra words. Diminutives (-ito/-ita, -illo/-illa) = small/cute. Augmentatives (-ón/-ona, -azo/-aza) = big/intense.',
+    examples: [
+      { es: 'casa → casita (little house / cute house)', en: 'house → little house' },
+      { es: 'perro → perrito (little dog / puppy)', en: 'dog → puppy/little dog' },
+      { es: 'hombre → hombretón (big man)', en: 'man → big man' },
+      { es: 'golpe → golpazo (a big/intense hit)', en: 'hit → a huge hit' },
+    ],
+    exceptions: [
+      'Spelling changes before -ito: chico → chiquito, pez → pececito.',
+      '-illo can be neutral or slightly pejorative: problemilla (a small/minor problem).',
+      'Context matters — misuse can sound odd or over-affectionate.',
+    ],
+    related: ['adjective_agreement', 'noun_gender'],
+  },
+  {
+    id: 'relative_pronouns_advanced',
+    concept_id: 'relative_pronouns_advanced',
+    cefr: 'B2',
+    category: 'Syntax',
+    title: 'Cuyo and El cual — Advanced Relative Pronouns',
+    rule: 'Cuyo/a/os/as = whose (possession). El cual/la cual/los cuales/las cuales = which/who (formal, after prepositions, or to distinguish antecedents).',
+    examples: [
+      { es: 'El estudiante cuyo libro perdí.', en: 'The student whose book I lost.' },
+      { es: 'La empresa para la cual trabajo.', en: 'The company for which I work.' },
+      { es: 'La razón por la cual no vine.', en: 'The reason why (for which) I didn\'t come.' },
+    ],
+    exceptions: [
+      'Cuyo agrees with the thing possessed, not the owner: el hombre cuya hija (the man whose daughter).',
+      'El cual vs. que: use el cual after long prepositions (a causa de, en medio de, etc.) or to avoid ambiguity.',
+    ],
+    related: ['relative_clauses'],
+  },
 ];
 
 export function getCardById(id) {
@@ -539,4 +781,4 @@ export function getCardsByCefr(level) {
 }
 
 export const CATEGORIES = [...new Set(GRAMMAR_CARDS.map(c => c.category))].sort();
-export const CEFR_LEVELS = ['A1', 'A2', 'B1'];
+export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2'];

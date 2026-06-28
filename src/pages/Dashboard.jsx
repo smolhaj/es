@@ -159,8 +159,11 @@ export default function Dashboard() {
 
           {/* Reference links */}
           <section className={styles.refSection}>
-            <Link to="/grammar" className={styles.refLink}>Grammar reference →</Link>
+            <Link to="/grammar" className={styles.refLink}>Grammar →</Link>
+            <Link to="/vocab" className={styles.refLink}>Vocabulary →</Link>
+            <Link to="/idioms" className={styles.refLink}>Idioms →</Link>
             <Link to="/false-friends" className={styles.refLink}>False friends →</Link>
+            <Link to="/pronunciation" className={styles.refLink}>Pronunciation →</Link>
           </section>
         </div>
       </main>
