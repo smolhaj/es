@@ -25,6 +25,15 @@
   gap: var(--sp-1);
 }
 
+.backLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--sp-2);
+}
+.backLink:hover { color: var(--text); }
+
 .title {
   font-family: var(--font-serif);
   font-size: 2rem;

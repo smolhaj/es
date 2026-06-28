@@ -39,6 +39,13 @@ export async function onRequestPost({ request, env, data }) {
       : `I've completed ${sessionCount} session(s). Give me a personalized first exercise based on my profile.`;
   }
 
+  // Store briefing so subsequent turns can use it (Gemini has no cross-request memory)
+  if (briefing) {
+    await env.DB.prepare(
+      'UPDATE sessions SET briefing_text = ? WHERE id = ?'
+    ).bind(briefing, sessionId).run().catch(() => {});
+  }
+
   const { exercise, greeting } = await callGemini(env, userMessage, null, null, true, briefing);
 
   return Response.json({ sessionId, exercise, greeting });

@@ -128,6 +128,7 @@ export default function Concepts() {
       <main className={styles.main}>
         <div className={styles.inner}>
           <header className={styles.header}>
+            <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
             <h1 className={styles.title}>Concept mastery</h1>
             <p className={styles.sub}>
               {totalSeen} concepts encountered · {totalMastered} strong ({concepts.length} total)
