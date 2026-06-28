@@ -119,6 +119,7 @@ export async function onRequestPost({ request, env, data }) {
 
   // Capture writing samples for translation-to-spanish exercises
   if (exercise?.type === 'translation_to_spanish' && learnerAnswer?.trim().length > 3) {
+    const diffToCefr = { 1: 'A1', 2: 'B1', 3: 'B2' };
     await env.DB.prepare(`
       INSERT INTO writing_samples
         (id, user_id, session_id, created_at, prompt, content, word_count, estimated_cefr, professor_notes)
@@ -128,7 +129,7 @@ export async function onRequestPost({ request, env, data }) {
       exercise.prompt ?? null,
       learnerAnswer.trim(),
       learnerAnswer.trim().split(/\s+/).filter(Boolean).length,
-      exercise.difficulty ?? null,
+      diffToCefr[exercise.difficulty] ?? null,
       correct ? null : (feedback ?? null)
     ).run().catch(() => {});
   }

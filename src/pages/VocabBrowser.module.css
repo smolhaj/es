@@ -125,6 +125,26 @@
   font-size: 0.875rem;
 }
 
+.cardRight {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.seenDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.seenDotStrong {
+  background: var(--correct);
+  opacity: 1;
+}
+
 .cefr {
   font-size: 0.7rem;
   font-weight: 700;

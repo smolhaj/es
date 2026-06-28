@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
@@ -18,11 +18,19 @@ export default function VocabBrowser() {
   const [search, setSearch] = useState('');
   const [filterCefr, setFilterCefr] = useState('');
   const [filterDomain, setFilterDomain] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
   const [addWord, setAddWord] = useState('');
   const [addTranslation, setAddTranslation] = useState('');
   const [addStatus, setAddStatus] = useState('');
   const [addError, setAddError] = useState('');
   const [adding, setAdding] = useState(false);
+  const [wordStatus, setWordStatus] = useState({});
+
+  useEffect(() => {
+    api.vocabulary.status(token)
+      .then(d => setWordStatus(d.words ?? {}))
+      .catch(() => {});
+  }, [token]);
 
   async function handleAddWord(e) {
     e.preventDefault();
@@ -48,10 +56,17 @@ export default function VocabBrowser() {
     return VOCABULARY.filter(v => {
       if (filterCefr && v.cefr !== filterCefr) return false;
       if (filterDomain && v.domain !== filterDomain) return false;
+      if (filterStatus === 'seen' && !wordStatus[v.es]) return false;
+      if (filterStatus === 'unseen' && wordStatus[v.es]) return false;
       if (q && !v.es.toLowerCase().includes(q) && !v.en.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [search, filterCefr, filterDomain]);
+  }, [search, filterCefr, filterDomain, filterStatus, wordStatus]);
+
+  const seenCount = useMemo(
+    () => VOCABULARY.filter(v => wordStatus[v.es]).length,
+    [wordStatus]
+  );
 
   return (
     <div className={styles.page}>
@@ -62,7 +77,10 @@ export default function VocabBrowser() {
           <header className={styles.pageHeader}>
             <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
             <h1 className={styles.title}>Vocabulary</h1>
-            <p className={styles.subtitle}>{VOCABULARY.length} words · A1 through C1</p>
+            <p className={styles.subtitle}>
+              {VOCABULARY.length} words · A1 through C1
+              {seenCount > 0 && ` · ${seenCount} in your queue`}
+            </p>
           </header>
 
           {/* Add custom word */}
@@ -110,6 +128,20 @@ export default function VocabBrowser() {
               ))}
             </div>
             <div className={styles.filterRow}>
+              <button
+                className={`${styles.filterBtn} ${styles.filterSmall} ${filterStatus === 'seen' ? styles.filterActive : ''}`}
+                onClick={() => setFilterStatus(v => v === 'seen' ? '' : 'seen')}
+              >
+                In queue
+              </button>
+              <button
+                className={`${styles.filterBtn} ${styles.filterSmall} ${filterStatus === 'unseen' ? styles.filterActive : ''}`}
+                onClick={() => setFilterStatus(v => v === 'unseen' ? '' : 'unseen')}
+              >
+                Not in queue
+              </button>
+            </div>
+            <div className={styles.filterRow}>
               {DOMAINS.map(d => (
                 <button
                   key={d}
@@ -126,7 +158,7 @@ export default function VocabBrowser() {
 
           <div className={styles.grid}>
             {filtered.map((v, i) => (
-              <WordCard key={`${v.es}-${i}`} item={v} />
+              <WordCard key={`${v.es}-${i}`} item={v} status={wordStatus[v.es]} />
             ))}
           </div>
         </div>
@@ -135,7 +167,7 @@ export default function VocabBrowser() {
   );
 }
 
-function WordCard({ item }) {
+function WordCard({ item, status }) {
   const [open, setOpen] = useState(false);
   return (
     <div
@@ -148,9 +180,16 @@ function WordCard({ item }) {
       <div className={styles.cardMain}>
         <span className={styles.es}>{item.es}</span>
         <span className={styles.en}>{item.en}</span>
-        <span className={`${styles.cefr} ${styles['cefr' + item.cefr.replace('.', '')]}`}>
-          {item.cefr}
-        </span>
+        <div className={styles.cardRight}>
+          {status && (
+            <span className={`${styles.seenDot} ${status.reviewCount >= 3 ? styles.seenDotStrong : ''}`}
+              title={`${status.reviewCount} review${status.reviewCount !== 1 ? 's' : ''}`}
+            />
+          )}
+          <span className={`${styles.cefr} ${styles['cefr' + item.cefr.replace('.', '')]}`}>
+            {item.cefr}
+          </span>
+        </div>
       </div>
       {open && item.example && (
         <div className={styles.cardDetail} onClick={e => e.stopPropagation()}>

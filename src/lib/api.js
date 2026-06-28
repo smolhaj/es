@@ -74,6 +74,8 @@ export const api = {
   vocabulary: {
     due: (token) => req('/vocabulary/due', {}, token),
 
+    status: (token) => req('/vocabulary/status', {}, token),
+
     review: (token, wordId, grade) =>
       req('/vocabulary/review', {
         method: 'POST',
