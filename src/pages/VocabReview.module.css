@@ -127,6 +127,16 @@
   gap: var(--sp-4);
   font-size: 0.75rem;
   color: var(--text-placeholder);
+  align-items: center;
+}
+
+.fsrsDomain {
+  padding: 1px 6px;
+  border-radius: 99px;
+  background: var(--border);
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  text-transform: capitalize;
 }
 
 /* Grade buttons */

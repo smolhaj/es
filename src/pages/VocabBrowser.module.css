@@ -137,6 +137,8 @@
 .cefrA1 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
 .cefrA2 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
 .cefrB1 { background: rgba(200, 134, 10, 0.1); color: var(--accent-gold); }
+.cefrB2 { background: rgba(90, 130, 80, 0.12); color: #3d7a42; }
+.cefrC1 { background: rgba(80, 90, 160, 0.1); color: #4a56a6; }
 
 .cardDetail {
   padding: var(--sp-2) var(--sp-4) var(--sp-3);

@@ -13,7 +13,7 @@ const FEATURES = [
   },
   {
     label: 'A1 to C1',
-    body: 'A full curriculum built to CEFR standards — 33 tracked grammar concepts, 230+ vocabulary items, idioms, regional differences, verb conjugation tables.'
+    body: 'A full curriculum built to CEFR standards — 54 tracked grammar concepts, 230+ vocabulary items, idioms, regional differences, verb conjugation tables.'
   },
   {
     label: 'Spaced repetition',
@@ -37,7 +37,7 @@ export default function Landing() {
       <main>
         <section className={styles.hero}>
           <div className={styles.heroInner}>
-            <div className={styles.eyebrow}>Spanish · A1 → C2</div>
+            <div className={styles.eyebrow}>Spanish · A1 → C1</div>
             <h1 className={styles.headline}>
               Learn Spanish.<br />The right way.
             </h1>

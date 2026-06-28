@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
@@ -238,7 +238,14 @@ export default function Session() {
                             ? (CONCEPT_LABELS[e.concept_id] ?? e.concept_id)
                             : formatType(e.exercise_type)}
                         </span>
-                        <span className={styles.weakCount}>{e.count}×</span>
+                        <span className={styles.weakRight}>
+                          <span className={styles.weakCount}>{e.count}×</span>
+                          {e.concept_id && (
+                            <Link to={`/session?focus=${e.concept_id}`} className={styles.drillLink}>
+                              Drill →
+                            </Link>
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>

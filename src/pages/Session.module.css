@@ -208,11 +208,26 @@
   color: var(--text);
 }
 
+.weakRight {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
 .weakCount {
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--incorrect);
 }
+
+.drillLink {
+  font-size: 0.8125rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.drillLink:hover { text-decoration: underline; }
 
 .wordChips {
   display: flex;

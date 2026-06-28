@@ -203,8 +203,10 @@ export default function VocabReview() {
                   <p className={styles.translation}>{current.translation}</p>
 
                   <div className={styles.fsrsInfo}>
-                    <span>Stability: {(current.stability ?? 0).toFixed(1)}d</span>
-                    <span>Reviews: {current.review_count ?? 0}</span>
+                    <span>Review #{(current.review_count ?? 0) + 1}</span>
+                    {current.domain && current.domain !== 'custom' && (
+                      <span className={styles.fsrsDomain}>{current.domain}</span>
+                    )}
                   </div>
 
                   <div className={styles.grades}>

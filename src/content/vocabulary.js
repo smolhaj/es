@@ -240,6 +240,34 @@ export const VOCABULARY = [
   { es: 'angustia', en: 'anguish / anxiety / distress', cefr: 'B2', domain: 'nouns', frequencyRank: 300, example: 'Le invadió una profunda angustia.', exampleEn: 'A deep anguish came over him.' },
   { es: 'añoranza', en: 'longing / nostalgia', cefr: 'B2', domain: 'nouns', frequencyRank: 400, example: 'Siente añoranza de su tierra.', exampleEn: 'She feels nostalgia for her homeland.' },
   { es: 'euforia', en: 'euphoria / elation', cefr: 'B2', domain: 'nouns', frequencyRank: 350, example: 'El triunfo provocó una gran euforia.', exampleEn: 'The victory caused great elation.' },
+
+  // ── C1 ─────────────────────────────────────────────────────────────────
+  // Discourse connectors
+  { es: 'no obstante', en: 'nonetheless / however', cefr: 'C1', domain: 'connectors', frequencyRank: 280, example: 'No obstante, los datos muestran lo contrario.', exampleEn: 'Nonetheless, the data shows the opposite.' },
+  { es: 'por consiguiente', en: 'consequently / therefore', cefr: 'C1', domain: 'connectors', frequencyRank: 310, example: 'Por consiguiente, decidimos actuar.', exampleEn: 'Consequently, we decided to act.' },
+  { es: 'asimismo', en: 'likewise / also / moreover', cefr: 'C1', domain: 'connectors', frequencyRank: 260, example: 'Asimismo, cabe destacar su contribución.', exampleEn: "Likewise, his contribution deserves mention." },
+  { es: 'en definitiva', en: 'in short / ultimately', cefr: 'C1', domain: 'connectors', frequencyRank: 290, example: 'En definitiva, el proyecto fue un éxito.', exampleEn: 'In short, the project was a success.' },
+  { es: 'a raíz de', en: 'as a result of / following', cefr: 'C1', domain: 'connectors', frequencyRank: 320, example: 'A raíz de los cambios, surgieron nuevas oportunidades.', exampleEn: 'As a result of the changes, new opportunities arose.' },
+  // Abstract nouns
+  { es: 'arraigo', en: 'rootedness / deep-rooted attachment', cefr: 'C1', domain: 'nouns', frequencyRank: 420, example: 'Tiene un gran arraigo en su comunidad.', exampleEn: 'He has deep roots in his community.' },
+  { es: 'desenlace', en: 'outcome / denouement', cefr: 'C1', domain: 'nouns', frequencyRank: 390, example: 'El desenlace de la historia fue inesperado.', exampleEn: 'The outcome of the story was unexpected.' },
+  { es: 'conjetura', en: 'conjecture / assumption', cefr: 'C1', domain: 'nouns', frequencyRank: 430, example: 'No son más que conjeturas.', exampleEn: "They're nothing more than conjectures." },
+  { es: 'indicio', en: 'sign / clue / indication', cefr: 'C1', domain: 'nouns', frequencyRank: 360, example: 'No hay ningún indicio de problemas.', exampleEn: 'There is no indication of problems.' },
+  { es: 'pauta', en: 'guideline / pattern / standard', cefr: 'C1', domain: 'nouns', frequencyRank: 340, example: 'Establecieron nuevas pautas de conducta.', exampleEn: 'They established new behavioural guidelines.' },
+  { es: 'trayectoria', en: 'trajectory / career path', cefr: 'C1', domain: 'nouns', frequencyRank: 370, example: 'Tiene una brillante trayectoria profesional.', exampleEn: 'She has a brilliant professional career.' },
+  { es: 'sesgo', en: 'bias / slant', cefr: 'C1', domain: 'nouns', frequencyRank: 380, example: 'El estudio tiene un sesgo confirmatorio.', exampleEn: 'The study has a confirmation bias.' },
+  // Advanced verbs
+  { es: 'dilucidar', en: 'to elucidate / to clarify', cefr: 'C1', domain: 'verbs', frequencyRank: 480, example: 'Hay que dilucidar los hechos.', exampleEn: 'We need to clarify the facts.' },
+  { es: 'paliar', en: 'to alleviate / to mitigate', cefr: 'C1', domain: 'verbs', frequencyRank: 450, example: 'Las medidas paliaron el impacto económico.', exampleEn: 'The measures alleviated the economic impact.' },
+  { es: 'ceder', en: 'to yield / to give way / to hand over', cefr: 'C1', domain: 'verbs', frequencyRank: 200, example: 'No cedió ante la presión.', exampleEn: 'He did not yield to pressure.' },
+  { es: 'aludir', en: 'to allude / to refer to', cefr: 'C1', domain: 'verbs', frequencyRank: 410, example: 'Aludió al problema sin nombrarlo directamente.', exampleEn: 'She alluded to the problem without naming it directly.' },
+  { es: 'suscitar', en: 'to provoke / to give rise to', cefr: 'C1', domain: 'verbs', frequencyRank: 395, example: 'La propuesta suscitó un intenso debate.', exampleEn: 'The proposal gave rise to an intense debate.' },
+  { es: 'discernir', en: 'to discern / to distinguish', cefr: 'C1', domain: 'verbs', frequencyRank: 460, example: 'Es difícil discernir la verdad.', exampleEn: 'It is difficult to discern the truth.' },
+  // Adjectives / register
+  { es: 'fehaciente', en: 'conclusive / reliable / authentic', cefr: 'C1', domain: 'adjectives', frequencyRank: 500, example: 'Hay pruebas fehacientes de ello.', exampleEn: 'There is conclusive evidence of this.' },
+  { es: 'sucinto', en: 'succinct / concise', cefr: 'C1', domain: 'adjectives', frequencyRank: 470, example: 'Hizo una explicación sucinta del tema.', exampleEn: 'He gave a succinct explanation of the topic.' },
+  { es: 'concluyente', en: 'conclusive / decisive', cefr: 'C1', domain: 'adjectives', frequencyRank: 440, example: 'Los resultados son concluyentes.', exampleEn: 'The results are conclusive.' },
+  { es: 'subyacente', en: 'underlying', cefr: 'C1', domain: 'adjectives', frequencyRank: 415, example: 'El problema subyacente no se ha resuelto.', exampleEn: 'The underlying problem has not been solved.' },
 ];
 
 // Group by domain
@@ -253,7 +281,7 @@ export function getByCefr(level) {
 }
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();
-export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2'];
+export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
 
 // Sorted by frequency (most common first)
 export const BY_FREQUENCY = [...VOCABULARY].sort((a, b) => a.frequencyRank - b.frequencyRank);

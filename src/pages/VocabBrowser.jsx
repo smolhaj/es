@@ -62,7 +62,7 @@ export default function VocabBrowser() {
           <header className={styles.pageHeader}>
             <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
             <h1 className={styles.title}>Vocabulary</h1>
-            <p className={styles.subtitle}>{VOCABULARY.length} words · A1 through B2</p>
+            <p className={styles.subtitle}>{VOCABULARY.length} words · A1 through C1</p>
           </header>
 
           {/* Add custom word */}

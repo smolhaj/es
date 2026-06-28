@@ -5,6 +5,7 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import CefrBadge from '../components/CefrBadge.jsx';
 import styles from './Dashboard.module.css';
+import { VOCABULARY } from '../content/vocabulary.js';
 
 const CONCEPT_LABELS = {
   greeting_basics: 'Greetings', numbers_1_20: 'Numbers 1–20', subject_pronouns: 'Subject pronouns',
@@ -80,6 +81,7 @@ export default function Dashboard() {
   const dueForReview = profile?.vocabulary?.dueForReview ?? 0;
   const weakConcepts = profile?.weakConcepts ?? [];
   const streak = profile?.streak ?? 0;
+  const showSeedPrompt = !loading && !error && wordsSeen === 0 && totalSessions >= 1;
 
   return (
     <div className={styles.page}>
@@ -131,6 +133,18 @@ export default function Dashboard() {
 
           {loading && <p className={styles.loading}>Loading your profile…</p>}
           {error && <p className={styles.error}>{error}</p>}
+
+          {/* Vocab seed prompt (shown after first session if vocab not seeded) */}
+          {showSeedPrompt && (
+            <section className={styles.seedCard}>
+              <p className={styles.seedText}>
+                Add {VOCABULARY.length}+ vocabulary words to your spaced repetition queue and review them alongside your grammar sessions.
+              </p>
+              <Link to="/vocab-review" className={`btn btn-secondary ${styles.seedBtn}`}>
+                Set up vocabulary →
+              </Link>
+            </section>
+          )}
 
           {/* Weak concepts */}
           {weakConcepts.length > 0 && (

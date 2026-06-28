@@ -60,6 +60,32 @@
   color: var(--text-muted);
 }
 
+/* Vocabulary seed prompt */
+.seedCard {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  padding: var(--sp-5) var(--sp-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: var(--r-md);
+}
+
+.seedText {
+  flex: 1;
+  min-width: 200px;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.seedBtn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* Stats */
 .sectionTitle {
   font-family: var(--font-serif);
