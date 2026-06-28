@@ -2,7 +2,7 @@ export async function onRequestGet({ env, data }) {
   const userId = data.user.sub;
   const now = new Date().toISOString();
 
-  const [sessionsResult, vocabResult, skillsResult, recentResult, dueVocab, weakConcepts, streakDates] = await Promise.all([
+  const [sessionsResult, vocabResult, skillsResult, recentResult, dueVocab, weakConcepts, streakDates, cefrHistory] = await Promise.all([
     env.DB.prepare(
       'SELECT COUNT(*) as total, SUM(CASE WHEN ended_at IS NOT NULL THEN 1 ELSE 0 END) as completed, AVG(overall_accuracy) as avg_accuracy FROM sessions WHERE user_id = ?'
     ).bind(userId).first(),
@@ -31,6 +31,12 @@ export async function onRequestGet({ env, data }) {
       `SELECT DISTINCT date(started_at) as day FROM sessions
        WHERE user_id = ? AND ended_at IS NOT NULL
        ORDER BY day DESC LIMIT 60`
+    ).bind(userId).all(),
+
+    env.DB.prepare(
+      `SELECT skill, from_level, to_level, transitioned_at
+       FROM cefr_history WHERE user_id = ?
+       ORDER BY transitioned_at ASC`
     ).bind(userId).all(),
   ]);
 
@@ -63,6 +69,7 @@ export async function onRequestGet({ env, data }) {
     recentSessions: recentResult.results,
     weakConcepts: weakConcepts.results,
     streak,
+    cefrHistory: cefrHistory.results ?? [],
   });
 }
 

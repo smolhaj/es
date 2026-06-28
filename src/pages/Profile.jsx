@@ -17,6 +17,7 @@ const SUGGESTIONS = [
 export default function Profile() {
   const { token, user } = useAuth();
   const [context, setContext] = useState([]);
+  const [cefrHistory, setCefrHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
@@ -24,9 +25,13 @@ export default function Profile() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    api.learner.context(token)
-      .then(d => setContext(d.context ?? []))
-      .catch(err => setError(err.message))
+    Promise.all([
+      api.learner.context(token),
+      api.learner.profile(token),
+    ]).then(([ctx, prof]) => {
+      setContext(ctx.context ?? []);
+      setCefrHistory(prof.cefrHistory ?? []);
+    }).catch(err => setError(err.message))
       .finally(() => setLoading(false));
   }, [token]);
 
@@ -153,6 +158,29 @@ export default function Profile() {
               </div>
             )}
           </section>
+
+          {/* CEFR history */}
+          {cefrHistory.length > 0 && (
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>Level progression</h2>
+              <div className={styles.cefrTimeline}>
+                {cefrHistory.map((h, i) => (
+                  <div key={i} className={styles.cefrEvent}>
+                    <span className={styles.cefrArrow}>
+                      <span className={styles.cefrFrom}>{h.from_level}</span>
+                      {' → '}
+                      <span className={styles.cefrTo}>{h.to_level}</span>
+                    </span>
+                    <span className={styles.cefrDate}>
+                      {new Date(h.transitioned_at).toLocaleDateString('en-GB', {
+                        day: 'numeric', month: 'short', year: 'numeric'
+                      })}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* Account info */}
           <section className={styles.section}>
