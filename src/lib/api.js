@@ -82,5 +82,11 @@ export const api = {
 
     seed: (token) =>
       req('/vocabulary/seed', { method: 'POST' }, token),
+
+    add: (token, word, translation, domain = 'custom') =>
+      req('/vocabulary/add', {
+        method: 'POST',
+        body: JSON.stringify({ word, translation, domain }),
+      }, token),
   }
 };

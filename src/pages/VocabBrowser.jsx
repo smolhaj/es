@@ -1,5 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth.jsx';
+import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import { VOCABULARY, DOMAINS, CEFR_LEVELS } from '../content/vocabulary.js';
 import styles from './VocabBrowser.module.css';
@@ -12,9 +14,34 @@ const DOMAIN_LABELS = {
 };
 
 export default function VocabBrowser() {
+  const { token } = useAuth();
   const [search, setSearch] = useState('');
   const [filterCefr, setFilterCefr] = useState('');
   const [filterDomain, setFilterDomain] = useState('');
+  const [addWord, setAddWord] = useState('');
+  const [addTranslation, setAddTranslation] = useState('');
+  const [addStatus, setAddStatus] = useState('');
+  const [addError, setAddError] = useState('');
+  const [adding, setAdding] = useState(false);
+
+  async function handleAddWord(e) {
+    e.preventDefault();
+    if (!addWord.trim() || !addTranslation.trim()) return;
+    setAdding(true);
+    setAddStatus('');
+    setAddError('');
+    try {
+      await api.vocabulary.add(token, addWord.trim(), addTranslation.trim());
+      setAddStatus(`"${addWord.trim()}" added to your review queue.`);
+      setAddWord('');
+      setAddTranslation('');
+      setTimeout(() => setAddStatus(''), 3000);
+    } catch (err) {
+      setAddError(err.message === 'Word already exists' ? 'That word is already in your list.' : err.message);
+    } finally {
+      setAdding(false);
+    }
+  }
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -37,6 +64,31 @@ export default function VocabBrowser() {
             <h1 className={styles.title}>Vocabulary</h1>
             <p className={styles.subtitle}>{VOCABULARY.length} words · A1 through B1</p>
           </header>
+
+          {/* Add custom word */}
+          <form className={styles.addForm} onSubmit={handleAddWord}>
+            <input
+              className={styles.addInput}
+              placeholder="Spanish word (e.g. madrugada)"
+              value={addWord}
+              onChange={e => setAddWord(e.target.value)}
+            />
+            <input
+              className={styles.addInput}
+              placeholder="English meaning (e.g. early morning)"
+              value={addTranslation}
+              onChange={e => setAddTranslation(e.target.value)}
+            />
+            <button
+              type="submit"
+              className="btn btn-secondary"
+              disabled={adding || !addWord.trim() || !addTranslation.trim()}
+            >
+              {adding ? 'Adding…' : 'Add word'}
+            </button>
+            {addStatus && <span className={styles.addSuccess}>{addStatus}</span>}
+            {addError && <span className={styles.addError}>{addError}</span>}
+          </form>
 
           <div className={styles.filters}>
             <input

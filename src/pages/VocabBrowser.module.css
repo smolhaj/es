@@ -157,6 +157,43 @@
   margin: 0;
 }
 
+/* Add custom word form */
+.addForm {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  align-items: center;
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.addInput {
+  flex: 1;
+  min-width: 160px;
+  padding: var(--sp-2) var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+}
+.addInput:focus { border-color: var(--accent); }
+
+.addSuccess {
+  font-size: 0.8125rem;
+  color: var(--correct);
+  font-weight: 500;
+}
+
+.addError {
+  font-size: 0.8125rem;
+  color: var(--incorrect);
+}
+
 @media (max-width: 640px) {
   .main { padding: var(--sp-5); }
   .title { font-size: 1.75rem; }
