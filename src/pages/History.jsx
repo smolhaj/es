@@ -18,6 +18,16 @@ const CONCEPT_LABELS = {
   imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
   future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',
   imperative: 'Imperative', por_vs_para: 'Por vs. para', relative_clauses: 'Relative clauses',
+  present_perfect: 'Present perfect', pluperfect: 'Pluperfect', future_perfect: 'Future perfect',
+  conditional_perfect: 'Conditional perfect', passive_voice: 'Passive voice', passive_se: 'Passive se',
+  imperfect_subjunctive: 'Imperfect subjunctive', si_clauses: 'Si-clauses',
+  subjunctive_adverbial: 'Subjunctive (adverbial)', comparatives: 'Comparatives',
+  ser_estar_participle: 'Ser/estar + participio', diminutives_augmentatives: 'Diminutives',
+  relative_pronouns_advanced: 'Relative pronouns (adv.)',
+  subjunctive_noun_clauses: 'Subjunctive (noun clauses)', subjunctive_adjective_clauses: 'Subjunctive (adj. clauses)',
+  gerund_advanced: 'Gerund (advanced)', ser_passive: 'Ser passive', estilo_indirecto: 'Indirect speech',
+  nominalisation: 'Nominalisation', subjunctive_temporal: 'Subjunctive (temporal)',
+  cuantificadores: 'Quantifiers',
 };
 
 export default function History() {

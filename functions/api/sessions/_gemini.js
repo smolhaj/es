@@ -29,20 +29,28 @@ translation_to_spanish:
 translation_to_english:
 {"type":"translation_to_english","prompt":"¿Qué significa 'Me llamo Pablo'?","spanish":"Me llamo Pablo","answer":"My name is Pablo","word":"llamarse","concept_id":"reflexive_verbs","difficulty":2}
 
-concept_id must be one of: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_articles,
-indefinite_articles, ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words,
-hay, numbers_21_100, ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns,
-indirect_object_pronouns, demonstratives, possessives, preterite_regular, modal_verbs, time_expressions,
-preterite_irregular, imperfect, preterite_vs_imperfect, future_simple, conditional, present_subjunctive,
-imperative, por_vs_para, relative_clauses
+concept_id must be one of:
+A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_articles, indefinite_articles,
+    ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100
+A2: ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns, indirect_object_pronouns,
+    demonstratives, possessives, preterite_regular, modal_verbs, time_expressions
+B1: preterite_irregular, imperfect, preterite_vs_imperfect, future_simple, conditional, present_subjunctive,
+    imperative, por_vs_para, relative_clauses
+B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,
+    imperfect_subjunctive, si_clauses, subjunctive_adverbial, comparatives, ser_estar_participle,
+    diminutives_augmentatives, relative_pronouns_advanced
+C1: subjunctive_noun_clauses, subjunctive_adjective_clauses, gerund_advanced, ser_passive,
+    estilo_indirecto, nominalisation, subjunctive_temporal, cuantificadores
 
 difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced contrast)
 
 CONTENT SCOPE:
-Default to A1 material unless the professor briefing explicitly authorizes higher levels.
-A1: greetings, numbers, colors, family, food, ser/estar basics, present tense -ar/-er/-ir, noun gender, articles
+Default to A1 material unless the professor briefing explicitly shows higher CEFR level.
+A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/-ir, noun gender, articles
 A2: ser vs estar contrast, preterite, reflexives, gustar, object pronouns, demonstratives, possessives
-B1: only if the briefing shows the learner has mastered A2 concepts
+B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para
+B2: present perfect, pluperfect, passive constructions, imperfect subjunctive, si-clauses, comparatives, diminutives — only if CEFR level is B2+
+C1: advanced subjunctive, nominalisation, indirect speech, temporal clauses — only if CEFR level is C1
 
 FEEDBACK RULES:
 - Wrong: name the exact rule violated. One sentence on how to fix it.

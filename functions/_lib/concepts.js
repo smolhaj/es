@@ -172,6 +172,115 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['question_words', 'present_subjunctive'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+
+  // ── B2 ──────────────────────────────────────────────────────────────────
+  present_perfect: {
+    id: 'present_perfect', label: 'Present perfect (he/has/ha)', cefr: 'B2',
+    category: 'verb', prereqs: ['preterite_regular'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  pluperfect: {
+    id: 'pluperfect', label: 'Pluperfect (había + participio)', cefr: 'B2',
+    category: 'verb', prereqs: ['present_perfect', 'imperfect'],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
+  },
+  future_perfect: {
+    id: 'future_perfect', label: 'Future perfect (habrá + participio)', cefr: 'B2',
+    category: 'verb', prereqs: ['future_simple', 'present_perfect'],
+    explanationStyles: ['rule_first', 'example_first'],
+  },
+  conditional_perfect: {
+    id: 'conditional_perfect', label: 'Conditional perfect (habría + participio)', cefr: 'B2',
+    category: 'verb', prereqs: ['conditional', 'present_perfect'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  passive_voice: {
+    id: 'passive_voice', label: 'Passive voice (ser + participio)', cefr: 'B2',
+    category: 'verb', prereqs: ['ser_basics', 'preterite_regular'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  passive_se: {
+    id: 'passive_se', label: 'Passive se (se vende, se habla)', cefr: 'B2',
+    category: 'verb', prereqs: ['reflexive_verbs', 'passive_voice'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  imperfect_subjunctive: {
+    id: 'imperfect_subjunctive', label: 'Imperfect subjunctive (-ara/-iera)', cefr: 'B2',
+    category: 'verb', prereqs: ['present_subjunctive', 'imperfect'],
+    explanationStyles: ['table', 'rule_first', 'contrastive', 'example_first'],
+  },
+  si_clauses: {
+    id: 'si_clauses', label: 'Si-clauses (conditionals)', cefr: 'B2',
+    category: 'syntax', prereqs: ['conditional', 'imperfect_subjunctive'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first', 'story'],
+  },
+  subjunctive_adverbial: {
+    id: 'subjunctive_adverbial', label: 'Subjunctive in adverbial clauses', cefr: 'B2',
+    category: 'syntax', prereqs: ['present_subjunctive'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  comparatives: {
+    id: 'comparatives', label: 'Comparatives & superlatives', cefr: 'B2',
+    category: 'morphology', prereqs: ['adjective_agreement'],
+    explanationStyles: ['rule_first', 'table', 'example_first', 'contrastive'],
+  },
+  ser_estar_participle: {
+    id: 'ser_estar_participle', label: 'Ser/estar + participio contrast', cefr: 'B2',
+    category: 'verb', prereqs: ['ser_vs_estar', 'passive_voice'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
+  diminutives_augmentatives: {
+    id: 'diminutives_augmentatives', label: 'Diminutives & augmentatives', cefr: 'B2',
+    category: 'morphology', prereqs: ['noun_gender', 'adjective_agreement'],
+    explanationStyles: ['rule_first', 'pattern', 'example_first'],
+  },
+  relative_pronouns_advanced: {
+    id: 'relative_pronouns_advanced', label: 'Advanced relative pronouns (cuyo, el cual)', cefr: 'B2',
+    category: 'syntax', prereqs: ['relative_clauses'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+
+  // ── C1 ──────────────────────────────────────────────────────────────────
+  subjunctive_noun_clauses: {
+    id: 'subjunctive_noun_clauses', label: 'Subjunctive in noun clauses', cefr: 'C1',
+    category: 'syntax', prereqs: ['present_subjunctive', 'imperfect_subjunctive'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  subjunctive_adjective_clauses: {
+    id: 'subjunctive_adjective_clauses', label: 'Subjunctive in adjective clauses', cefr: 'C1',
+    category: 'syntax', prereqs: ['present_subjunctive', 'relative_clauses'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  gerund_advanced: {
+    id: 'gerund_advanced', label: 'Gerund (gerundio) — advanced uses', cefr: 'C1',
+    category: 'verb', prereqs: ['reflexive_verbs', 'present_subjunctive'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  ser_passive: {
+    id: 'ser_passive', label: 'Ser passive — stylistic variation', cefr: 'C1',
+    category: 'verb', prereqs: ['passive_voice', 'ser_estar_participle'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
+  estilo_indirecto: {
+    id: 'estilo_indirecto', label: 'Indirect speech (estilo indirecto)', cefr: 'C1',
+    category: 'syntax', prereqs: ['imperfect_subjunctive', 'conditional'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive', 'story'],
+  },
+  nominalisation: {
+    id: 'nominalisation', label: 'Nominalisation (el hecho de que…)', cefr: 'C1',
+    category: 'syntax', prereqs: ['subjunctive_noun_clauses'],
+    explanationStyles: ['rule_first', 'example_first'],
+  },
+  subjunctive_temporal: {
+    id: 'subjunctive_temporal', label: 'Subjunctive in temporal clauses', cefr: 'C1',
+    category: 'syntax', prereqs: ['present_subjunctive', 'subjunctive_adverbial'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  cuantificadores: {
+    id: 'cuantificadores', label: 'Quantifiers (bastante, demasiado, cada)', cefr: 'C1',
+    category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
+    explanationStyles: ['rule_first', 'example_first', 'table'],
+  },
 };
 
 export function getConceptById(id) {
