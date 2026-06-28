@@ -181,6 +181,16 @@ export default function Session() {
             <div className={styles.summary}>
               <h1 className={styles.summaryTitle}>Session complete.</h1>
 
+              {summary.cefrChanged && (
+                <div className={styles.levelUp}>
+                  <span className={styles.levelUpIcon}>↑</span>
+                  <span>
+                    You advanced from <strong>{summary.cefrChanged.from}</strong> to{' '}
+                    <strong>{summary.cefrChanged.to}</strong>
+                  </span>
+                </div>
+              )}
+
               <div className={styles.summaryStats}>
                 <div className={styles.summaryStat}>
                   <span className={styles.summaryValue}>

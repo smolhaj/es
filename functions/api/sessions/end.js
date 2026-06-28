@@ -113,5 +113,7 @@ export async function onRequestPost({ request, env, data }) {
     correctCount: session.correct_count,
     errors: errorsResult.results ?? [],
     wordsReviewed: wordsResult.results ?? [],
+    cefrLevel: newCefr,
+    cefrChanged: prevCefr !== newCefr ? { from: prevCefr, to: newCefr } : null,
   });
 }

@@ -9,6 +9,11 @@ export async function onRequestPost({ env, data }) {
     'INSERT INTO sessions (id, user_id, started_at) VALUES (?, ?, ?)'
   ).bind(sessionId, data.user.sub, now).run();
 
+  // Reset per-session error counter so the professor briefing reflects this session only
+  await env.DB.prepare(
+    'UPDATE concept_mastery SET session_error_count = 0 WHERE user_id = ?'
+  ).bind(data.user.sub).run().catch(() => {});
+
   const [sessionsResult, briefing] = await Promise.all([
     env.DB.prepare(
       'SELECT COUNT(*) as cnt FROM sessions WHERE user_id = ? AND ended_at IS NOT NULL'

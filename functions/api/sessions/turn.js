@@ -101,6 +101,7 @@ export async function onRequestPost({ request, env, data }) {
         await env.DB.prepare(`
           UPDATE concept_mastery SET
             mastery_score = ?, error_count = ?, session_error_count = ?,
+            sessions_seen = sessions_seen + 1,
             last_seen = ?, fossilization_flagged = ?
           WHERE user_id = ? AND concept_id = ?
         `).bind(newMastery, newErrorCount, newSessionErrors, now, fossilized, data.user.sub, exercise.concept_id).run();
