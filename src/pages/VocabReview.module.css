@@ -154,6 +154,21 @@
 .gradeBtn:hover:not(:disabled) { transform: translateY(-1px); }
 .gradeBtn:disabled { opacity: 0.5; cursor: not-allowed; }
 
+.gradeKey {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 1px;
+}
+
 .gradeLabel {
   font-size: 0.875rem;
   font-weight: 600;
