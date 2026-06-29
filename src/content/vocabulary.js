@@ -253,6 +253,36 @@ export const VOCABULARY = [
   { es: 'mundo', en: 'world', cefr: 'A2', domain: 'nouns', frequencyRank: 40, example: 'El mundo es pequeño.', exampleEn: 'It\'s a small world.' },
   { es: 'problema', en: 'problem', cefr: 'A2', domain: 'nouns', frequencyRank: 55, example: '¿Cuál es el problema?', exampleEn: 'What\'s the problem?' },
   { es: 'idea', en: 'idea', cefr: 'A2', domain: 'nouns', frequencyRank: 60, example: 'Es una buena idea.', exampleEn: 'It\'s a good idea.' },
+  // Home
+  { es: 'cocina', en: 'kitchen', cefr: 'A2', domain: 'nouns', frequencyRank: 140, example: 'Cocino en la cocina.', exampleEn: 'I cook in the kitchen.' },
+  { es: 'baño', en: 'bathroom', cefr: 'A2', domain: 'nouns', frequencyRank: 145, example: 'El baño está al fondo.', exampleEn: 'The bathroom is at the end.' },
+  { es: 'dormitorio', en: 'bedroom', cefr: 'A2', domain: 'nouns', frequencyRank: 150, example: 'Mi dormitorio es pequeño.', exampleEn: 'My bedroom is small.' },
+  { es: 'salón', en: 'living room', cefr: 'A2', domain: 'nouns', frequencyRank: 155, example: 'Vemos la tele en el salón.', exampleEn: 'We watch TV in the living room.' },
+  { es: 'comedor', en: 'dining room', cefr: 'A2', domain: 'nouns', frequencyRank: 160, example: 'Cenamos en el comedor.', exampleEn: 'We have dinner in the dining room.' },
+  // Transport
+  { es: 'metro', en: 'metro / subway', cefr: 'A2', domain: 'nouns', frequencyRank: 135, example: 'Tomo el metro al trabajo.', exampleEn: 'I take the metro to work.' },
+  { es: 'autobús', en: 'bus', cefr: 'A2', domain: 'nouns', frequencyRank: 125, example: 'El autobús llega tarde.', exampleEn: 'The bus is late.' },
+  { es: 'tren', en: 'train', cefr: 'A2', domain: 'nouns', frequencyRank: 130, example: 'Viajamos en tren.', exampleEn: 'We travel by train.' },
+  { es: 'taxi', en: 'taxi', cefr: 'A2', domain: 'nouns', frequencyRank: 138, example: 'Pedí un taxi.', exampleEn: 'I ordered a taxi.' },
+  { es: 'avión', en: 'plane', cefr: 'A2', domain: 'nouns', frequencyRank: 142, example: 'El avión sale a las diez.', exampleEn: 'The plane leaves at ten.' },
+  // Shopping
+  { es: 'precio', en: 'price', cefr: 'A2', domain: 'nouns', frequencyRank: 105, example: '¿Cuál es el precio?', exampleEn: 'What\'s the price?' },
+  { es: 'caro', en: 'expensive', cefr: 'A2', domain: 'adjectives', frequencyRank: 112, example: 'Este restaurante es muy caro.', exampleEn: 'This restaurant is very expensive.' },
+  { es: 'barato', en: 'cheap / inexpensive', cefr: 'A2', domain: 'adjectives', frequencyRank: 118, example: 'Es muy barato.', exampleEn: 'It\'s very cheap.' },
+  { es: 'supermercado', en: 'supermarket', cefr: 'A2', domain: 'nouns', frequencyRank: 148, example: 'Voy al supermercado.', exampleEn: 'I\'m going to the supermarket.' },
+  // Restaurant
+  { es: 'pedir', en: 'to order / to ask for', cefr: 'A2', domain: 'verbs', frequencyRank: 95, example: 'Voy a pedir la ensalada.', exampleEn: 'I\'m going to order the salad.' },
+  { es: 'la carta', en: 'the menu', cefr: 'A2', domain: 'nouns', frequencyRank: 165, example: '¿Me trae la carta, por favor?', exampleEn: 'Could you bring me the menu, please?' },
+  { es: 'la cuenta', en: 'the bill', cefr: 'A2', domain: 'nouns', frequencyRank: 170, example: 'La cuenta, por favor.', exampleEn: 'The bill, please.' },
+  // Emotions
+  { es: 'triste', en: 'sad', cefr: 'A2', domain: 'adjectives', frequencyRank: 108, example: 'Estoy triste hoy.', exampleEn: 'I\'m sad today.' },
+  { es: 'nervioso', en: 'nervous', cefr: 'A2', domain: 'adjectives', frequencyRank: 122, example: 'Estoy nervioso antes del examen.', exampleEn: 'I\'m nervous before the exam.' },
+  { es: 'aburrido', en: 'bored / boring', cefr: 'A2', domain: 'adjectives', frequencyRank: 128, example: 'La clase es muy aburrida.', exampleEn: 'The class is very boring.' },
+  { es: 'cansado', en: 'tired', cefr: 'A2', domain: 'adjectives', frequencyRank: 110, example: 'Estoy muy cansado.', exampleEn: 'I\'m very tired.' },
+  // Work
+  { es: 'oficina', en: 'office', cefr: 'A2', domain: 'nouns', frequencyRank: 133, example: 'Trabajo en una oficina.', exampleEn: 'I work in an office.' },
+  { es: 'jefe', en: 'boss / manager', cefr: 'A2', domain: 'nouns', frequencyRank: 136, example: 'Mi jefe es muy exigente.', exampleEn: 'My boss is very demanding.' },
+  { es: 'compañero', en: 'colleague / classmate', cefr: 'A2', domain: 'nouns', frequencyRank: 143, example: 'Mi compañero de trabajo es simpático.', exampleEn: 'My work colleague is friendly.' },
 
   // ── B1 WORDS ────────────────────────────────────────────────────────────
   { es: 'a pesar de', en: 'in spite of / despite', cefr: 'B1', domain: 'connectors', frequencyRank: 180, example: 'Salió a pesar de la lluvia.', exampleEn: 'He went out despite the rain.' },
@@ -430,6 +460,32 @@ export const VOCABULARY = [
   { es: 'actualmente', en: 'currently / nowadays / at present', cefr: 'B2', domain: 'adverbs', frequencyRank: 90, example: 'Actualmente vivo en Madrid.', exampleEn: 'I currently live in Madrid.' },
   { es: 'aproximadamente', en: 'approximately / about', cefr: 'B2', domain: 'adverbs', frequencyRank: 150, example: 'Tardará aproximadamente una hora.', exampleEn: 'It will take approximately one hour.' },
   { es: 'progresivamente', en: 'progressively / gradually', cefr: 'B2', domain: 'adverbs', frequencyRank: 280, example: 'El número de usuarios crece progresivamente.', exampleEn: 'The number of users grows progressively.' },
+  // Additional B2 nouns
+  { es: 'objetivo', en: 'objective / goal / aim', cefr: 'B2', domain: 'nouns', frequencyRank: 80, example: 'Nuestro principal objetivo es reducir costes.', exampleEn: 'Our main objective is to reduce costs.' },
+  { es: 'consecuencia', en: 'consequence / result', cefr: 'B2', domain: 'nouns', frequencyRank: 100, example: 'Hay que asumir las consecuencias.', exampleEn: 'You have to face the consequences.' },
+  { es: 'habilidad', en: 'skill / ability', cefr: 'B2', domain: 'nouns', frequencyRank: 155, example: 'Tiene una gran habilidad para los idiomas.', exampleEn: 'She has a great ability for languages.' },
+  { es: 'campaña', en: 'campaign', cefr: 'B2', domain: 'nouns', frequencyRank: 140, example: 'Lanzaron una campaña publicitaria.', exampleEn: 'They launched an advertising campaign.' },
+  { es: 'impuesto', en: 'tax', cefr: 'B2', domain: 'nouns', frequencyRank: 130, example: 'El gobierno subió los impuestos.', exampleEn: 'The government raised taxes.' },
+  { es: 'tendencia', en: 'trend / tendency', cefr: 'B2', domain: 'nouns', frequencyRank: 120, example: 'La tendencia es hacia el trabajo remoto.', exampleEn: 'The trend is towards remote work.' },
+  { es: 'recurso', en: 'resource / means', cefr: 'B2', domain: 'nouns', frequencyRank: 110, example: 'Hay que gestionar bien los recursos.', exampleEn: 'Resources must be managed well.' },
+  { es: 'compromiso', en: 'commitment / compromise', cefr: 'B2', domain: 'nouns', frequencyRank: 115, example: 'Tengo un compromiso esta tarde.', exampleEn: 'I have a commitment this afternoon.' },
+  { es: 'perspectiva', en: 'perspective / outlook', cefr: 'B2', domain: 'nouns', frequencyRank: 125, example: 'Hay que verlo desde otra perspectiva.', exampleEn: 'You have to look at it from another perspective.' },
+  { es: 'contribución', en: 'contribution', cefr: 'B2', domain: 'nouns', frequencyRank: 175, example: 'Hizo una gran contribución al proyecto.', exampleEn: 'She made a great contribution to the project.' },
+  { es: 'sector', en: 'sector / field / area', cefr: 'B2', domain: 'nouns', frequencyRank: 95, example: 'Trabaja en el sector privado.', exampleEn: 'He works in the private sector.' },
+  { es: 'conjunto', en: 'set / combination / ensemble', cefr: 'B2', domain: 'nouns', frequencyRank: 105, example: 'Un conjunto de factores influyó en la decisión.', exampleEn: 'A combination of factors influenced the decision.' },
+  { es: 'plazo', en: 'deadline / term / period', cefr: 'B2', domain: 'nouns', frequencyRank: 135, example: '¿Cuál es el plazo de entrega?', exampleEn: 'What is the delivery deadline?' },
+  // Additional B2 verbs
+  { es: 'evaluar', en: 'to evaluate / to assess', cefr: 'B2', domain: 'verbs', frequencyRank: 145, example: 'Hay que evaluar los resultados.', exampleEn: 'We need to evaluate the results.' },
+  { es: 'generar', en: 'to generate / to create / to produce', cefr: 'B2', domain: 'verbs', frequencyRank: 105, example: 'El proyecto generó muchos empleos.', exampleEn: 'The project generated many jobs.' },
+  { es: 'proporcionar', en: 'to provide / to supply / to give', cefr: 'B2', domain: 'verbs', frequencyRank: 130, example: 'El gobierno proporcionó ayuda a las familias.', exampleEn: 'The government provided help to families.' },
+  { es: 'planificar', en: 'to plan / to schedule', cefr: 'B2', domain: 'verbs', frequencyRank: 165, example: 'Hay que planificar bien el viaje.', exampleEn: 'You need to plan the trip carefully.' },
+  // Additional B2 adjectives
+  { es: 'amplio', en: 'wide / broad / ample', cefr: 'B2', domain: 'adjectives', frequencyRank: 90, example: 'Hay una amplia variedad de opciones.', exampleEn: 'There is a wide variety of options.' },
+  { es: 'concreto', en: 'concrete / specific', cefr: 'B2', domain: 'adjectives', frequencyRank: 100, example: 'Necesito ejemplos concretos.', exampleEn: 'I need specific examples.' },
+  { es: 'previo', en: 'prior / previous', cefr: 'B2', domain: 'adjectives', frequencyRank: 120, example: 'Se requiere experiencia previa.', exampleEn: 'Previous experience is required.' },
+  { es: 'actual', en: 'current / present (not "real"!)', cefr: 'B2', domain: 'adjectives', frequencyRank: 75, example: 'La situación actual es complicada.', exampleEn: 'The current situation is complicated.' },
+  { es: 'diverso', en: 'diverse / varied', cefr: 'B2', domain: 'adjectives', frequencyRank: 150, example: 'El grupo tiene orígenes muy diversos.', exampleEn: 'The group has very diverse backgrounds.' },
+  { es: 'creciente', en: 'growing / increasing', cefr: 'B2', domain: 'adjectives', frequencyRank: 160, example: 'Hay una creciente demanda de energías renovables.', exampleEn: 'There is a growing demand for renewable energy.' },
 
   // ── C1 ─────────────────────────────────────────────────────────────────
   // Discourse connectors
@@ -480,6 +536,30 @@ export const VOCABULARY = [
   { es: 'rotundo', en: 'resounding / emphatic / complete', cefr: 'C1', domain: 'adjectives', frequencyRank: 395, example: 'El equipo consiguió una victoria rotunda.', exampleEn: 'The team achieved a resounding victory.' },
   { es: 'esclarecedor', en: 'illuminating / revealing', cefr: 'C1', domain: 'adjectives', frequencyRank: 420, example: 'Fue una charla muy esclarecedora.', exampleEn: 'It was a very illuminating talk.' },
   { es: 'acérrimo', en: 'staunch / fierce / bitter (of opponents or defenders)', cefr: 'C1', domain: 'adjectives', frequencyRank: 460, example: 'Es un acérrimo defensor de los derechos humanos.', exampleEn: 'He is a staunch defender of human rights.' },
+  // More C1 abstract nouns
+  { es: 'paradigma', en: 'paradigm / model / framework', cefr: 'C1', domain: 'nouns', frequencyRank: 340, example: 'La IA representa un nuevo paradigma en la industria.', exampleEn: 'AI represents a new paradigm in the industry.' },
+  { es: 'prerrogativa', en: 'prerogative / privilege / right', cefr: 'C1', domain: 'nouns', frequencyRank: 430, example: 'Es prerrogativa del presidente tomarlo.', exampleEn: 'It is the president\'s prerogative to decide.' },
+  { es: 'heterogeneidad', en: 'heterogeneity / diversity / variety', cefr: 'C1', domain: 'nouns', frequencyRank: 450, example: 'La heterogeneidad del grupo enriquece el debate.', exampleEn: 'The diversity of the group enriches the debate.' },
+  { es: 'contingencia', en: 'contingency / eventuality', cefr: 'C1', domain: 'nouns', frequencyRank: 440, example: 'Hay que prever cualquier contingencia.', exampleEn: 'Any contingency must be anticipated.' },
+  { es: 'coyuntura', en: 'juncture / situation / conjuncture', cefr: 'C1', domain: 'nouns', frequencyRank: 410, example: 'La coyuntura económica es delicada.', exampleEn: 'The economic situation is delicate.' },
+  { es: 'repercusión', en: 'repercussion / impact / consequence', cefr: 'C1', domain: 'nouns', frequencyRank: 370, example: 'La decisión tuvo repercusiones inesperadas.', exampleEn: 'The decision had unexpected repercussions.' },
+  { es: 'estancamiento', en: 'stagnation / standstill', cefr: 'C1', domain: 'nouns', frequencyRank: 400, example: 'La economía sufre un estancamiento preocupante.', exampleEn: 'The economy is suffering a worrying stagnation.' },
+  // More C1 verbs
+  { es: 'cohesionar', en: 'to unite / to bind together / to create cohesion', cefr: 'C1', domain: 'verbs', frequencyRank: 450, example: 'El proyecto cohesionó al equipo.', exampleEn: 'The project united the team.' },
+  { es: 'transgredir', en: 'to transgress / to violate / to break (rules)', cefr: 'C1', domain: 'verbs', frequencyRank: 420, example: 'No se puede transgredir las normas.', exampleEn: 'You cannot break the rules.' },
+  { es: 'reformular', en: 'to reformulate / to rephrase', cefr: 'C1', domain: 'verbs', frequencyRank: 390, example: 'Tuvo que reformular su argumento.', exampleEn: 'She had to rephrase her argument.' },
+  { es: 'concatenar', en: 'to chain / to link / to concatenate', cefr: 'C1', domain: 'verbs', frequencyRank: 470, example: 'El texto concatena ideas de forma fluida.', exampleEn: 'The text links ideas in a fluid way.' },
+  { es: 'perpetuar', en: 'to perpetuate / to preserve / to sustain', cefr: 'C1', domain: 'verbs', frequencyRank: 360, example: 'El sistema perpetúa las desigualdades.', exampleEn: 'The system perpetuates inequalities.' },
+  // More C1 adjectives
+  { es: 'ambiguo', en: 'ambiguous / unclear', cefr: 'C1', domain: 'adjectives', frequencyRank: 300, example: 'La respuesta fue bastante ambigua.', exampleEn: 'The answer was quite ambiguous.' },
+  { es: 'inherente', en: 'inherent / intrinsic', cefr: 'C1', domain: 'adjectives', frequencyRank: 320, example: 'El riesgo es inherente a la actividad.', exampleEn: 'Risk is inherent in the activity.' },
+  { es: 'latente', en: 'latent / hidden / dormant', cefr: 'C1', domain: 'adjectives', frequencyRank: 350, example: 'Hay una tensión latente en el ambiente.', exampleEn: 'There is latent tension in the atmosphere.' },
+  { es: 'paradigmático', en: 'paradigmatic / exemplary / archetypal', cefr: 'C1', domain: 'adjectives', frequencyRank: 440, example: 'Es un caso paradigmático de fracaso empresarial.', exampleEn: 'It is a paradigmatic case of business failure.' },
+  { es: 'recurrente', en: 'recurring / recurrent', cefr: 'C1', domain: 'adjectives', frequencyRank: 330, example: 'Es un tema recurrente en su obra.', exampleEn: 'It is a recurring theme in his work.' },
+  // More C1 connectors / adverbial phrases
+  { es: 'no obstante lo cual', en: 'notwithstanding which / despite which', cefr: 'C1', domain: 'connectors', frequencyRank: 480, example: 'No hubo consenso; no obstante lo cual, se tomó una decisión.', exampleEn: 'There was no consensus; notwithstanding which, a decision was made.' },
+  { es: 'con todo', en: 'nonetheless / even so / all the same', cefr: 'C1', domain: 'connectors', frequencyRank: 350, example: 'Fue difícil; con todo, lo conseguimos.', exampleEn: 'It was difficult; even so, we managed it.' },
+  { es: 'a tenor de', en: 'in light of / in view of / given', cefr: 'C1', domain: 'connectors', frequencyRank: 400, example: 'A tenor de los resultados, hay que cambiar la estrategia.', exampleEn: 'In light of the results, the strategy must change.' },
 ];
 
 // Group by domain
