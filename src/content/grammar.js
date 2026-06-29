@@ -1,4 +1,4 @@
-// Grammar reference cards — A1 through B1
+// Grammar reference cards — A1 through C1
 // concept_id matches functions/_lib/concepts.js keys
 
 export const GRAMMAR_CARDS = [

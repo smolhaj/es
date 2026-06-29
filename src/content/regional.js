@@ -127,6 +127,63 @@ export const REGIONAL_SECTIONS = [
     ],
     tip: 'Vos imperatives: drop the -r and add a stress accent — habla→hablá, veni→vení, senti→sentite.',
   },
+  {
+    id: 'caribbean',
+    category: 'Pronunciation',
+    title: 'Caribbean Spanish — consonant weakening',
+    summary: 'Cuban, Dominican, and Puerto Rican Spanish weaken or drop final consonants. S before a consonant or at the end of a word is often aspirated to /h/ or dropped entirely.',
+    comparisons: [
+      { context: 'estos (these)',          spain: 'ES-tos',              latam: 'EH-toh (Caribbean: s→h or silent)' },
+      { context: 'más (more)',             spain: 'más',                 latam: 'máh / má (Caribbean)' },
+      { context: 'hablar (to speak)',      spain: 'ha-BLAR',             latam: 'ha-BLAH (Caribbean: final r weakens)' },
+      { context: 'verdad (truth)',         spain: 'ver-DAHD',            latam: 'ver-DÁ (Caribbean: final d drops)' },
+      { context: 'Puerto Rico (R)',        spain: 'strong trill /r/',    latam: 'Puerto Rico: /r/ often velar (like French r)' },
+    ],
+    tip: 'Caribbean speech is faster and more "musical" than Castilian. Learners often find Caribbean speakers hard to understand at first — exposure is the only fix.',
+  },
+  {
+    id: 'mexico_vocab',
+    category: 'Vocabulary',
+    title: 'Mexican Spanish — unique vocabulary',
+    summary: 'Mexico has a rich vocabulary influenced by Nahuatl (the Aztec language) and local slang. Many words are unknown outside Mexico.',
+    comparisons: [
+      { context: 'OK / sure',               spain: 'vale / de acuerdo',      latam: 'órale (MX — informal, also "hurry up!")' },
+      { context: 'Kid / child',             spain: 'niño/a, chaval',         latam: 'chamaco/a, escuincle (MX, informal)' },
+      { context: 'Annoying / pain',         spain: 'pesado/a, plomo',        latam: 'fregón (MX — also means "awesome" in positive context!)' },
+      { context: 'Avocado',                 spain: 'aguacate',               latam: 'aguacate (most) / palta (AR, CL, PE)' },
+      { context: 'Chilli / hot pepper',     spain: 'guindilla, chile',       latam: 'chile (MX), ají (South America)' },
+      { context: 'To eat / gobble up',      spain: 'comer',                  latam: 'jalar / jamar (MX slang for eating)' },
+      { context: 'Cool / great (slang)',    spain: 'guay / mola',            latam: 'padre / chido (MX), chévere (VE/CO), copado (AR)' },
+      { context: 'A bit / a little',        spain: 'un poco',                latam: 'tantito (MX diminutive — very soft/affectionate)' },
+    ],
+    tip: 'Many Mexican words come from Nahuatl: chocolate, tomate, aguacate, chile, cacahuate (peanut), copal, nopal. These words entered world languages via Mexico.',
+  },
+  {
+    id: 'diminutives_regional',
+    category: 'Grammar',
+    title: 'Diminutives — frequency by region',
+    summary: 'Spanish uses diminutive suffixes (-ito/a, -illo/a, -ico/a) to indicate small size, affection, or politeness. Their frequency and preferred form vary sharply by region.',
+    comparisons: [
+      { context: 'Little table',          spain: 'mesita / mesilla',       latam: 'mesita (most of LatAm)' },
+      { context: 'A moment (just a sec)', spain: 'un momentito',           latam: 'un momentico (CO/VE) · un momentito (everywhere)' },
+      { context: 'Right now (softer)',    spain: 'ahorita (rare)',          latam: 'ahorita (MX — common; means "very soon" to some, "right now" to others)' },
+      { context: 'Diminutive suffix',     spain: '-ito/a most common',     latam: '-ico/a (CO/VE/CR/CU); -ito/a elsewhere' },
+    ],
+    tip: '"Ahorita" in Mexico is famously ambiguous — it can mean right now, soon, or eventually. Context and tone determine which. If you need something immediately, say "ahora mismo."',
+  },
+  {
+    id: 'ser_estar_regional',
+    category: 'Grammar',
+    title: 'Ser/estar regional usage drift',
+    summary: 'While the core ser/estar distinction is stable, some regions use estar where Spain prefers ser, and vice versa.',
+    comparisons: [
+      { context: 'He is dead',            spain: 'Está muerto.',            latam: 'Está muerto. (same everywhere)' },
+      { context: 'It\'s delicious',       spain: 'Está bueno/rico.',        latam: 'Está buenísimo. (same; but MX may say "está muy rico")' },
+      { context: 'Where is the party?',   spain: 'La fiesta es en casa.',   latam: 'La fiesta es / está en casa. (both used in LatAm)' },
+      { context: 'He\'s nervous (trait)', spain: 'Él es nervioso.',         latam: 'Some speakers use "está nervioso" as a quasi-trait in informal speech' },
+    ],
+    tip: 'The fundamental PERMANENT (ser) vs TEMPORARY (estar) rule holds everywhere, but boundary cases vary. When in doubt, follow the traditional rule — you\'ll always be understood.',
+  },
 ];
 
 export const CATEGORIES = [...new Set(REGIONAL_SECTIONS.map(s => s.category))];

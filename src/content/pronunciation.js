@@ -172,6 +172,76 @@ export const PRONUNCIATION_RULES = [
       { word: 'un amigo', note: 'u-na-mí-go (vowels link)' },
     ],
   },
+  {
+    id: 'd_intervocalic',
+    category: 'Consonants',
+    title: 'D between vowels — softens to /ð/',
+    rule: 'D is pronounced as a hard /d/ (like English "dog") only at the beginning of a phrase or after n/l. In all other positions — especially between vowels — it softens to /ð/, like the "th" in "this".',
+    sounds: [
+      { letter: 'd (initial/after n,l)', ipa: '/d/', like: '"d" in "dog"', example: 'donde, cuando, el día' },
+      { letter: 'd (between vowels)', ipa: '/ð/', like: '"th" in "this"', example: 'nada, todo, ciudad, Madrid' },
+    ],
+    tips: [
+      '"nada" sounds like "NAH-tha" (soft d, not hard d).',
+      '"Madrid" — the final d is so soft it often disappears entirely in casual speech.',
+      'This is one of the most common features of native-sounding Spanish.',
+    ],
+    examples: [
+      { word: 'todo', note: 'TOH-tho (soft d between o and o)' },
+      { word: 'ciudad', note: 'syoo-DAHTH (final d barely voiced)' },
+      { word: 'el día', note: 'el-DÍ-a (hard d after l)' },
+    ],
+  },
+  {
+    id: 'unaspirated_stops',
+    category: 'Consonants',
+    title: 'P, T, K — no aspiration',
+    rule: 'In English, the stops P, T, K at the start of stressed syllables have a puff of air (aspiration): "pin", "tin", "kin". Spanish never aspirates these consonants — they are "clean" stops with no air burst.',
+    sounds: [
+      { letter: 'p', ipa: '/p/ (no aspiration)', like: '"p" in "spin" (not "pin")', example: 'padre, pero,apa' },
+      { letter: 't', ipa: '/t/ (no aspiration)', like: '"t" in "stop" (not "top")', example: 'también, tú, alto' },
+      { letter: 'k / c / qu', ipa: '/k/ (no aspiration)', like: '"k" in "ski" (not "key")', example: 'casa, querer, que' },
+    ],
+    tips: [
+      'Hold a piece of paper in front of your mouth. English "pin" makes it flutter; Spanish "pin" should not.',
+      'Spanish T is also dental (tongue touches upper teeth, not the ridge behind them like English T).',
+      'Getting this right makes your Spanish sound instantly more native.',
+    ],
+  },
+  {
+    id: 'silent_u',
+    category: 'Consonants',
+    title: 'Silent U in QU and GU',
+    rule: 'The letter U is silent in the combinations QUE, QUI, GUE, and GUI. It is only there to keep the hard /k/ or /g/ sound before E or I. The diaeresis (Ü) signals that the U is actually pronounced.',
+    sounds: [
+      { letter: 'que / qui', ipa: '/ke/ /ki/', like: 'hard k + vowel', example: 'querer, quiero, aquí, queso' },
+      { letter: 'gue / gui', ipa: '/ge/ /gi/', like: 'hard g + vowel', example: 'guerra, guitarra, llegué' },
+      { letter: 'güe / güi', ipa: '/gwe/ /gwi/', like: 'hard g + w + vowel', example: 'pingüino, vergüenza, agüero' },
+    ],
+    tips: [
+      '"querer" = ke-RER (the u is silent — just keeps the k sound).',
+      '"guitarra" = gi-TAH-ra (again, silent u).',
+      '"pingüino" = pin-GWEE-no — the diaeresis over ü means the u IS pronounced.',
+    ],
+  },
+  {
+    id: 'intonation',
+    category: 'Connected speech',
+    title: 'Intonation — questions and statements',
+    rule: 'Spanish uses inverted opening punctuation (¿ ¡) to signal questions and exclamations from the start. Intonation patterns differ from English: yes/no questions typically rise at the end; wh-questions (with question words) often fall.',
+    sounds: [],
+    tips: [
+      'Yes/no question: "¿Hablas español?" — voice rises at end.',
+      'Wh-question: "¿Dónde vives?" — voice falls at end (like a statement).',
+      'Unlike English, the word order rarely changes in questions — just the intonation does.',
+      'Exclamations: "¡Qué bonito!" — sharp rise then fall, more dramatic than English.',
+    ],
+    examples: [
+      { word: '¿Hablas inglés?', note: 'rises at the end (yes/no)' },
+      { word: '¿Dónde está?', note: 'falls at the end (wh-question)' },
+      { word: '¡Qué suerte!', note: 'sharp rise-fall (exclamation)' },
+    ],
+  },
 ];
 
 export const CATEGORIES = [...new Set(PRONUNCIATION_RULES.map(r => r.category))];

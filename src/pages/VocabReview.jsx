@@ -1,8 +1,10 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
+import CefrBadge from '../components/CefrBadge.jsx';
+import { VOCABULARY } from '../content/vocabulary.js';
 import styles from './VocabReview.module.css';
 
 const GRADE_LABELS = [
@@ -27,6 +29,11 @@ export default function VocabReview() {
 
   const [seeding, setSeeding] = useState(false);
   const [seedMsg, setSeedMsg] = useState('');
+
+  const vocabLookup = useMemo(
+    () => Object.fromEntries(VOCABULARY.map(v => [v.es, v])),
+    []
+  );
 
   useEffect(() => {
     api.vocabulary.due(token)
@@ -197,34 +204,45 @@ export default function VocabReview() {
                 >
                   Show translation
                 </button>
-              ) : (
-                <div className={styles.revealed}>
-                  <span className={styles.transLabel}>English</span>
-                  <p className={styles.translation}>{current.translation}</p>
+              ) : (() => {
+                const meta = vocabLookup[current.word];
+                return (
+                  <div className={styles.revealed}>
+                    <span className={styles.transLabel}>English</span>
+                    <p className={styles.translation}>{current.translation}</p>
 
-                  <div className={styles.fsrsInfo}>
-                    <span>Review #{(current.review_count ?? 0) + 1}</span>
-                    {current.domain && current.domain !== 'custom' && (
-                      <span className={styles.fsrsDomain}>{current.domain}</span>
+                    {meta?.example && (
+                      <div className={styles.example}>
+                        <p className={styles.exampleES}>{meta.example}</p>
+                        {meta.exampleEn && <p className={styles.exampleEN}>{meta.exampleEn}</p>}
+                      </div>
                     )}
-                  </div>
 
-                  <div className={styles.grades}>
-                    {GRADE_LABELS.map(({ grade, label, sub, className }) => (
-                      <button
-                        key={grade}
-                        className={`${styles.gradeBtn} ${styles[className]}`}
-                        onClick={() => handleGrade(grade)}
-                        disabled={grading}
-                      >
-                        <span className={styles.gradeKey}>{grade}</span>
-                        <span className={styles.gradeLabel}>{label}</span>
-                        <span className={styles.gradeSub}>{sub}</span>
-                      </button>
-                    ))}
+                    <div className={styles.fsrsInfo}>
+                      <span>Review #{(current.review_count ?? 0) + 1}</span>
+                      {meta?.cefr && <CefrBadge level={meta.cefr} />}
+                      {current.domain && current.domain !== 'custom' && (
+                        <span className={styles.fsrsDomain}>{current.domain}</span>
+                      )}
+                    </div>
+
+                    <div className={styles.grades}>
+                      {GRADE_LABELS.map(({ grade, label, sub, className }) => (
+                        <button
+                          key={grade}
+                          className={`${styles.gradeBtn} ${styles[className]}`}
+                          onClick={() => handleGrade(grade)}
+                          disabled={grading}
+                        >
+                          <span className={styles.gradeKey}>{grade}</span>
+                          <span className={styles.gradeLabel}>{label}</span>
+                          <span className={styles.gradeSub}>{sub}</span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                );
+              })()}
             </div>
           </div>
         </div>
