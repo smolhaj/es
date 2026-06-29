@@ -6,7 +6,7 @@ ALTER TABLE vocabulary_items ADD COLUMN difficulty REAL NOT NULL DEFAULT 5.0;
 ALTER TABLE vocabulary_items ADD COLUMN retrievability REAL NOT NULL DEFAULT 1.0;
 ALTER TABLE vocabulary_items ADD COLUMN due_at TEXT;
 ALTER TABLE vocabulary_items ADD COLUMN frequency_rank INTEGER;
-ALTER TABLE vocabulary_items ADD COLUMN domain TEXT NOT NULL DEFAULT 'general';
+-- Note: domain column already exists in schema.sql (base migration)
 
 -- Add concept linkage and timing to error_events
 ALTER TABLE error_events ADD COLUMN concept_id TEXT;

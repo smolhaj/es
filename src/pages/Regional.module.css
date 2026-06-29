@@ -1,0 +1,207 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+}
+
+.inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+}
+
+.backLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--sp-3);
+}
+.backLink:hover { color: var(--text); }
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin-top: var(--sp-2);
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.filterRow {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.filterBtn:hover { border-color: var(--accent); color: var(--accent); }
+.filterActive { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Card list */
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-8);
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.cardExpanded { border-color: var(--accent); }
+
+.cardHeader {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  cursor: pointer;
+  align-items: start;
+}
+.cardHeader:hover { background: var(--bg-alt); }
+
+.headerMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.chevron {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+  padding-top: 2px;
+}
+.chevronOpen { transform: rotate(180deg); }
+
+/* Card body */
+.cardBody {
+  border-top: 1px solid var(--border);
+  padding: var(--sp-4) var(--sp-5) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  cursor: default;
+}
+
+.summary {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* Comparison table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.tableHead th {
+  text-align: left;
+  padding: var(--sp-2) var(--sp-3);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.tableHead th:first-child {
+  width: 30%;
+  color: var(--text-muted);
+}
+
+.thSpain  { color: var(--accent) !important; }
+.thLatam  { color: var(--accent-gold) !important; }
+
+.tableRow td {
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.tableRow:last-child td { border-bottom: none; }
+
+.tdContext { color: var(--text-muted); font-size: 0.8125rem; }
+.tdSpain   { color: var(--text); font-weight: 500; }
+.tdLatam   { color: var(--text); font-weight: 500; }
+
+/* Tip */
+.tip {
+  font-size: 0.875rem;
+  color: var(--text);
+  line-height: 1.55;
+  padding: var(--sp-3) var(--sp-4);
+  border-left: 2px solid var(--accent);
+  background: var(--bg-alt);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+
+.tipLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: var(--sp-1);
+}
+
+@media (max-width: 640px) {
+  .main { padding: var(--sp-5); }
+  .title { font-size: 1.75rem; }
+  .table { font-size: 0.8125rem; }
+  .tableHead th:first-child { width: 25%; }
+}
+
+@media (max-width: 480px) {
+  .table, .tableHead, .tableRow, th, td { display: block; }
+  .tableHead { display: none; }
+  .tableRow td { border-bottom: none; padding: var(--sp-1) var(--sp-2); }
+  .tableRow { border-bottom: 1px solid var(--border); padding: var(--sp-2) 0; }
+  .tdContext { font-weight: 700; color: var(--text-muted); font-size: 0.75rem; }
+}

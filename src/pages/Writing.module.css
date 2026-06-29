@@ -1,0 +1,181 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+}
+
+.inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+}
+
+.backLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--sp-3);
+}
+.backLink:hover { color: var(--text); }
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin-top: var(--sp-2);
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.empty {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  padding: var(--sp-8) 0;
+}
+
+.sampleList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-8);
+}
+
+/* Sample card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.cardExpanded { border-color: var(--accent); }
+
+.cardHeader {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  cursor: pointer;
+}
+.cardHeader:hover { background: var(--bg-alt); }
+
+.prompt {
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-shrink: 0;
+}
+
+.date {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.words {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.cefrBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  background: rgba(196,81,26,0.1);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.chevron {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.chevronOpen { transform: rotate(180deg); }
+
+.cardBody {
+  border-top: 1px solid var(--border);
+  padding: var(--sp-5);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.bodyLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-2);
+}
+
+.promptFull {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--bg-alt);
+  border-radius: var(--r-sm);
+}
+
+.content {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.65;
+  font-family: var(--font-serif);
+}
+
+.notes {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  padding: var(--sp-3) var(--sp-4);
+  border-left: 2px solid var(--accent);
+  background: var(--bg-alt);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+}
+
+.notesLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: var(--sp-1);
+}
+
+@media (max-width: 640px) {
+  .main { padding: var(--sp-5); }
+  .title { font-size: 1.75rem; }
+  .cardHeader { grid-template-columns: 1fr auto; }
+  .meta { flex-direction: column; align-items: flex-end; gap: var(--sp-1); }
+}

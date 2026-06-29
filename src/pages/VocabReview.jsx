@@ -25,6 +25,9 @@ export default function VocabReview() {
   const [error, setError] = useState('');
   const [reviewed, setReviewed] = useState(0);
 
+  const [seeding, setSeeding] = useState(false);
+  const [seedMsg, setSeedMsg] = useState('');
+
   useEffect(() => {
     api.vocabulary.due(token)
       .then(data => {
@@ -34,6 +37,26 @@ export default function VocabReview() {
       .catch(err => setError(err.message))
       .finally(() => setLoading(false));
   }, [token]);
+
+  async function handleSeed() {
+    setSeeding(true);
+    try {
+      const result = await api.vocabulary.seed(token);
+      setSeedMsg(result.message ?? 'Done!');
+      if (result.seeded > 0) {
+        const data = await api.vocabulary.due(token);
+        const newItems = data.items ?? [];
+        if (newItems.length > 0) {
+          setItems(newItems);
+          setDone(false);
+        }
+      }
+    } catch (err) {
+      setSeedMsg(err.message);
+    } finally {
+      setSeeding(false);
+    }
+  }
 
   const current = items[idx] ?? null;
 
@@ -55,6 +78,26 @@ export default function VocabReview() {
       setGrading(false);
     }
   }, [current, grading, idx, items.length, token]);
+
+  // Keyboard shortcuts: Space/Enter reveal; 1-4 grade
+  useEffect(() => {
+    function onKey(e) {
+      if (e.target.tagName === 'BUTTON' && e.key !== ' ') return;
+      if ((e.key === ' ' || e.key === 'Enter') && !revealed && current && !grading) {
+        e.preventDefault();
+        setRevealed(true);
+      }
+      if (revealed && !grading && current) {
+        const map = { '1': 1, '2': 2, '3': 3, '4': 4 };
+        if (map[e.key] && !e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          handleGrade(map[e.key]);
+        }
+      }
+    }
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [revealed, current, grading, handleGrade]);
 
   if (loading) {
     return (
@@ -81,18 +124,34 @@ export default function VocabReview() {
   }
 
   if (done) {
+    const neverSeeded = reviewed === 0 && items.length === 0;
     return (
       <div className={styles.page}>
         <NavBar />
         <main className={styles.center}>
           <div className={styles.doneBox}>
-            <h1 className={styles.doneTitle}>All caught up.</h1>
+            <h1 className={styles.doneTitle}>
+              {neverSeeded ? 'No words queued yet.' : 'All caught up.'}
+            </h1>
             <p className={styles.doneSub}>
               {reviewed > 0
                 ? `You reviewed ${reviewed} word${reviewed !== 1 ? 's' : ''}.`
-                : 'No words are due for review right now.'}
+                : neverSeeded
+                  ? 'Import the full vocabulary list to start spaced repetition.'
+                  : 'No words are due for review right now.'}
             </p>
-            <button className="btn btn-primary" onClick={() => navigate('/dashboard')}>
+            {neverSeeded && (
+              <button
+                className="btn btn-primary"
+                onClick={handleSeed}
+                disabled={seeding}
+                style={{ marginBottom: 'var(--sp-3)' }}
+              >
+                {seeding ? 'Importing…' : 'Import vocabulary for my level →'}
+              </button>
+            )}
+            {seedMsg && <p className={styles.doneSub}>{seedMsg}</p>}
+            <button className="btn btn-secondary" onClick={() => navigate('/dashboard')}>
               Back to dashboard
             </button>
           </div>
@@ -144,8 +203,10 @@ export default function VocabReview() {
                   <p className={styles.translation}>{current.translation}</p>
 
                   <div className={styles.fsrsInfo}>
-                    <span>Stability: {(current.stability ?? 0).toFixed(1)}d</span>
-                    <span>Reviews: {current.review_count ?? 0}</span>
+                    <span>Review #{(current.review_count ?? 0) + 1}</span>
+                    {current.domain && current.domain !== 'custom' && (
+                      <span className={styles.fsrsDomain}>{current.domain}</span>
+                    )}
                   </div>
 
                   <div className={styles.grades}>
@@ -156,6 +217,7 @@ export default function VocabReview() {
                         onClick={() => handleGrade(grade)}
                         disabled={grading}
                       >
+                        <span className={styles.gradeKey}>{grade}</span>
                         <span className={styles.gradeLabel}>{label}</span>
                         <span className={styles.gradeSub}>{sub}</span>
                       </button>

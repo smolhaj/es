@@ -19,6 +19,16 @@ const CONCEPT_LABELS = {
   imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
   future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',
   imperative: 'Imperative', por_vs_para: 'Por vs. para', relative_clauses: 'Relative clauses',
+  present_perfect: 'Present perfect', pluperfect: 'Pluperfect', future_perfect: 'Future perfect',
+  conditional_perfect: 'Conditional perfect', passive_voice: 'Passive voice', passive_se: 'Passive se',
+  imperfect_subjunctive: 'Imperfect subjunctive', si_clauses: 'Si-clauses',
+  subjunctive_adverbial: 'Subjunctive (adverbial)', comparatives: 'Comparatives',
+  ser_estar_participle: 'Ser/estar + participio', diminutives_augmentatives: 'Diminutives',
+  relative_pronouns_advanced: 'Relative pronouns (adv.)',
+  subjunctive_noun_clauses: 'Subjunctive (noun clauses)', subjunctive_adjective_clauses: 'Subjunctive (adj. clauses)',
+  gerund_advanced: 'Gerund (advanced)', ser_passive: 'Ser passive', estilo_indirecto: 'Indirect speech',
+  nominalisation: 'Nominalisation', subjunctive_temporal: 'Subjunctive (temporal)',
+  cuantificadores: 'Quantifiers',
 };
 
 function StatCard({ label, value, sub }) {
@@ -41,8 +51,11 @@ function SessionRow({ session }) {
   return (
     <li className={styles.sessionRow}>
       <span className={styles.sessionDate}>{date}</span>
-      <span className={styles.sessionItems}>{session.items_reviewed} exercises</span>
+      <span className={styles.sessionItems}>{session.items_reviewed} ex.</span>
       <span className={styles.sessionAcc}>{accuracy}</span>
+      {session.durationMinutes != null && (
+        <span className={styles.sessionDuration}>{session.durationMinutes}m</span>
+      )}
     </li>
   );
 }
@@ -69,6 +82,10 @@ export default function Dashboard() {
   const wordsSeen = profile?.vocabulary?.seen ?? 0;
   const dueForReview = profile?.vocabulary?.dueForReview ?? 0;
   const weakConcepts = profile?.weakConcepts ?? [];
+  const streak = profile?.streak ?? 0;
+  // Show seed prompt when user has done sessions but hasn't imported the bulk vocab list.
+  // Session exercises auto-add words, so we use a low threshold (< 30) rather than === 0.
+  const showSeedPrompt = !loading && !error && totalSessions >= 2 && wordsSeen < 30;
 
   return (
     <div className={styles.page}>
@@ -112,6 +129,7 @@ export default function Dashboard() {
                 <StatCard label="Sessions" value={totalSessions} />
                 <StatCard label="Accuracy" value={accuracy} sub="all time" />
                 <StatCard label="Words seen" value={wordsSeen} sub={`${wordsMastered} mastered`} />
+                <StatCard label="Streak" value={streak} sub={streak === 1 ? 'day' : 'days'} />
                 <StatCard label="Level" value={cefr} sub="CEFR" />
               </div>
             </section>
@@ -119,6 +137,18 @@ export default function Dashboard() {
 
           {loading && <p className={styles.loading}>Loading your profile…</p>}
           {error && <p className={styles.error}>{error}</p>}
+
+          {/* Vocab seed prompt (shown after first session if vocab not seeded) */}
+          {showSeedPrompt && (
+            <section className={styles.seedCard}>
+              <p className={styles.seedText}>
+                Import vocabulary at your level into the spaced repetition queue. New words unlock as your grammar level advances.
+              </p>
+              <Link to="/vocab-review" className={`btn btn-secondary ${styles.seedBtn}`}>
+                Set up vocabulary →
+              </Link>
+            </section>
+          )}
 
           {/* Weak concepts */}
           {weakConcepts.length > 0 && (
@@ -131,8 +161,16 @@ export default function Dashboard() {
                       {CONCEPT_LABELS[c.concept_id] ?? c.concept_id}
                       {c.fossilization_flagged ? <span className={styles.fossilTag}>persistent</span> : null}
                     </span>
-                    <span className={styles.weakMastery}>
-                      {Math.round((c.mastery_score ?? 0) * 100)}%
+                    <span className={styles.weakRight}>
+                      <span className={styles.weakMastery}>
+                        {Math.round((c.mastery_score ?? 0) * 100)}%
+                      </span>
+                      <Link
+                        to={`/session?focus=${c.concept_id}`}
+                        className={styles.weakDrill}
+                      >
+                        Drill →
+                      </Link>
                     </span>
                   </li>
                 ))}
@@ -147,8 +185,9 @@ export default function Dashboard() {
               <ul className={styles.sessionList}>
                 <li className={styles.sessionHeader}>
                   <span>Date</span>
-                  <span>Exercises</span>
+                  <span>Ex.</span>
                   <span>Accuracy</span>
+                  <span>Time</span>
                 </li>
                 {profile.recentSessions.map(s => (
                   <SessionRow key={s.id} session={s} />
@@ -159,11 +198,17 @@ export default function Dashboard() {
 
           {/* Reference links */}
           <section className={styles.refSection}>
+            <Link to="/concepts" className={styles.refLink}>Concepts →</Link>
             <Link to="/grammar" className={styles.refLink}>Grammar →</Link>
+            <Link to="/verbs" className={styles.refLink}>Verbs →</Link>
             <Link to="/vocab" className={styles.refLink}>Vocabulary →</Link>
             <Link to="/idioms" className={styles.refLink}>Idioms →</Link>
             <Link to="/false-friends" className={styles.refLink}>False friends →</Link>
             <Link to="/pronunciation" className={styles.refLink}>Pronunciation →</Link>
+            <Link to="/regional" className={styles.refLink}>Regional →</Link>
+            <Link to="/writing" className={styles.refLink}>Writing →</Link>
+            <Link to="/history" className={styles.refLink}>History →</Link>
+            <Link to="/profile" className={styles.refLink}>Profile →</Link>
           </section>
         </div>
       </main>

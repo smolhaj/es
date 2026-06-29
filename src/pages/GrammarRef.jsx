@@ -7,6 +7,7 @@ import styles from './GrammarRef.module.css';
 function GrammarCard({ card, expanded, onToggle }) {
   return (
     <article
+      id={`card-${card.id}`}
       className={`${styles.card} ${expanded ? styles.cardExpanded : ''}`}
       onClick={onToggle}
     >
@@ -72,6 +73,15 @@ function GrammarCard({ card, expanded, onToggle }) {
               ))}
             </div>
           )}
+
+          <div className={styles.cardActions}>
+            <Link
+              to={`/session?focus=${card.id}`}
+              className={`btn btn-secondary ${styles.drillBtn}`}
+            >
+              Drill this concept →
+            </Link>
+          </div>
         </div>
       )}
     </article>
@@ -108,7 +118,7 @@ export default function GrammarRef() {
             <div>
               <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
               <h1 className={styles.title}>Grammar Reference</h1>
-              <p className={styles.subtitle}>{GRAMMAR_CARDS.length} cards · A1 through B1</p>
+              <p className={styles.subtitle}>{GRAMMAR_CARDS.length} cards · A1 through C1</p>
             </div>
           </header>
 

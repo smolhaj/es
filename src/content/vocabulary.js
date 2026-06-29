@@ -140,6 +140,83 @@ export const VOCABULARY = [
   { es: 'tranquilo', en: 'calm / quiet', cefr: 'A1', domain: 'adjectives', frequencyRank: 320, example: 'Es una ciudad tranquila.', exampleEn: 'It\'s a quiet city.' },
 
   // ── A2 WORDS ────────────────────────────────────────────────────────────
+
+  // Months
+  { es: 'enero', en: 'January', cefr: 'A2', domain: 'time', frequencyRank: 700, example: 'En enero hace mucho frío.', exampleEn: 'In January it is very cold.' },
+  { es: 'febrero', en: 'February', cefr: 'A2', domain: 'time', frequencyRank: 710, example: 'Mi cumpleaños es en febrero.', exampleEn: 'My birthday is in February.' },
+  { es: 'marzo', en: 'March', cefr: 'A2', domain: 'time', frequencyRank: 720, example: 'La primavera empieza en marzo.', exampleEn: 'Spring starts in March.' },
+  { es: 'abril', en: 'April', cefr: 'A2', domain: 'time', frequencyRank: 730, example: 'En abril, aguas mil.', exampleEn: 'April showers bring May flowers.' },
+  { es: 'mayo', en: 'May', cefr: 'A2', domain: 'time', frequencyRank: 740, example: 'Las flores brotan en mayo.', exampleEn: 'Flowers bloom in May.' },
+  { es: 'junio', en: 'June', cefr: 'A2', domain: 'time', frequencyRank: 750, example: 'Las vacaciones empiezan en junio.', exampleEn: 'The holidays start in June.' },
+  { es: 'julio', en: 'July', cefr: 'A2', domain: 'time', frequencyRank: 760, example: 'Julio es el mes más caluroso.', exampleEn: 'July is the hottest month.' },
+  { es: 'agosto', en: 'August', cefr: 'A2', domain: 'time', frequencyRank: 770, example: 'En agosto voy a la playa.', exampleEn: 'In August I go to the beach.' },
+  { es: 'septiembre', en: 'September', cefr: 'A2', domain: 'time', frequencyRank: 780, example: 'El colegio empieza en septiembre.', exampleEn: 'School starts in September.' },
+  { es: 'octubre', en: 'October', cefr: 'A2', domain: 'time', frequencyRank: 790, example: 'En octubre caen las hojas.', exampleEn: 'In October the leaves fall.' },
+  { es: 'noviembre', en: 'November', cefr: 'A2', domain: 'time', frequencyRank: 800, example: 'Noviembre es un mes gris.', exampleEn: 'November is a grey month.' },
+  { es: 'diciembre', en: 'December', cefr: 'A2', domain: 'time', frequencyRank: 810, example: 'La Navidad es en diciembre.', exampleEn: 'Christmas is in December.' },
+
+  // Seasons
+  { es: 'primavera', en: 'spring', cefr: 'A2', domain: 'time', frequencyRank: 820, example: 'Me encanta la primavera.', exampleEn: 'I love spring.' },
+  { es: 'verano', en: 'summer', cefr: 'A2', domain: 'time', frequencyRank: 825, example: 'En verano hace calor.', exampleEn: 'In summer it is hot.' },
+  { es: 'otoño', en: 'autumn / fall', cefr: 'A2', domain: 'time', frequencyRank: 830, example: 'En otoño las hojas cambian de color.', exampleEn: 'In autumn the leaves change colour.' },
+  { es: 'invierno', en: 'winter', cefr: 'A2', domain: 'time', frequencyRank: 835, example: 'El invierno es muy frío aquí.', exampleEn: 'Winter is very cold here.' },
+
+  // Weather
+  { es: 'lluvia', en: 'rain', cefr: 'A2', domain: 'weather', frequencyRank: 380, example: 'Hay mucha lluvia en noviembre.', exampleEn: 'There is a lot of rain in November.' },
+  { es: 'sol', en: 'sun / sunshine', cefr: 'A2', domain: 'weather', frequencyRank: 290, example: 'Hoy hay mucho sol.', exampleEn: 'Today there is a lot of sunshine.' },
+  { es: 'viento', en: 'wind', cefr: 'A2', domain: 'weather', frequencyRank: 400, example: 'Hace mucho viento hoy.', exampleEn: 'It is very windy today.' },
+  { es: 'calor', en: 'heat / warmth', cefr: 'A2', domain: 'weather', frequencyRank: 320, example: '¡Qué calor hace hoy!', exampleEn: 'It\'s so hot today!' },
+  { es: 'frío', en: 'cold', cefr: 'A2', domain: 'weather', frequencyRank: 330, example: 'Tengo mucho frío.', exampleEn: 'I\'m very cold.' },
+  { es: 'nieve', en: 'snow', cefr: 'A2', domain: 'weather', frequencyRank: 450, example: 'Hay nieve en las montañas.', exampleEn: 'There is snow on the mountains.' },
+  { es: 'nublado', en: 'cloudy', cefr: 'A2', domain: 'weather', frequencyRank: 480, example: 'Hoy está nublado.', exampleEn: 'Today it\'s cloudy.' },
+
+  // Body parts
+  { es: 'cabeza', en: 'head', cefr: 'A2', domain: 'body', frequencyRank: 140, example: 'Me duele la cabeza.', exampleEn: 'I have a headache.' },
+  { es: 'brazo', en: 'arm', cefr: 'A2', domain: 'body', frequencyRank: 230, example: 'Me rompí el brazo.', exampleEn: 'I broke my arm.' },
+  { es: 'mano', en: 'hand', cefr: 'A2', domain: 'body', frequencyRank: 110, example: 'Dame la mano.', exampleEn: 'Give me your hand.' },
+  { es: 'pierna', en: 'leg', cefr: 'A2', domain: 'body', frequencyRank: 260, example: 'Me duele la pierna.', exampleEn: 'My leg hurts.' },
+  { es: 'pie', en: 'foot', cefr: 'A2', domain: 'body', frequencyRank: 280, example: 'Me duele el pie derecho.', exampleEn: 'My right foot hurts.' },
+  { es: 'ojo', en: 'eye', cefr: 'A2', domain: 'body', frequencyRank: 160, example: 'Tiene los ojos azules.', exampleEn: 'She has blue eyes.' },
+  { es: 'oreja', en: 'ear', cefr: 'A2', domain: 'body', frequencyRank: 350, example: 'Me duele la oreja.', exampleEn: 'My ear hurts.' },
+  { es: 'boca', en: 'mouth', cefr: 'A2', domain: 'body', frequencyRank: 220, example: 'Cierra la boca mientras comes.', exampleEn: 'Close your mouth while eating.' },
+  { es: 'espalda', en: 'back', cefr: 'A2', domain: 'body', frequencyRank: 240, example: 'Me duele la espalda.', exampleEn: 'My back hurts.' },
+
+  // Key A2 verbs
+  { es: 'decir', en: 'to say / to tell', cefr: 'A2', domain: 'verbs', frequencyRank: 9, example: '¿Qué dice?', exampleEn: 'What is he saying?' },
+  { es: 'poner', en: 'to put / to place', cefr: 'A2', domain: 'verbs', frequencyRank: 16, example: 'Pon la mesa, por favor.', exampleEn: 'Set the table, please.' },
+  { es: 'conocer', en: 'to know (person/place)', cefr: 'A2', domain: 'verbs', frequencyRank: 22, example: '¿Conoces a María?', exampleEn: 'Do you know María?' },
+  { es: 'leer', en: 'to read', cefr: 'A2', domain: 'verbs', frequencyRank: 55, example: 'Leo un libro cada semana.', exampleEn: 'I read a book every week.' },
+  { es: 'escribir', en: 'to write', cefr: 'A2', domain: 'verbs', frequencyRank: 48, example: 'Escríbeme un correo.', exampleEn: 'Write me an email.' },
+  { es: 'dormir', en: 'to sleep', cefr: 'A2', domain: 'verbs', frequencyRank: 90, example: 'Duermo ocho horas.', exampleEn: 'I sleep eight hours.' },
+  { es: 'empezar', en: 'to start / to begin', cefr: 'A2', domain: 'verbs', frequencyRank: 35, example: 'La clase empieza a las nueve.', exampleEn: 'The class starts at nine.' },
+  { es: 'seguir', en: 'to continue / to follow', cefr: 'A2', domain: 'verbs', frequencyRank: 30, example: 'Sigue todo recto.', exampleEn: 'Keep going straight ahead.' },
+  { es: 'volver', en: 'to return / to come back', cefr: 'A2', domain: 'verbs', frequencyRank: 33, example: '¿A qué hora vuelves?', exampleEn: 'What time are you coming back?' },
+  { es: 'pasar', en: 'to pass / to happen / to spend (time)', cefr: 'A2', domain: 'verbs', frequencyRank: 24, example: '¿Qué pasa?', exampleEn: 'What\'s happening?' },
+  { es: 'quedar', en: 'to arrange to meet / to remain', cefr: 'A2', domain: 'verbs', frequencyRank: 26, example: '¿Quedamos a las seis?', exampleEn: 'Shall we meet at six?' },
+
+  // Key A2 adjectives
+  { es: 'diferente', en: 'different', cefr: 'A2', domain: 'adjectives', frequencyRank: 140, example: 'Son muy diferentes.', exampleEn: 'They are very different.' },
+  { es: 'importante', en: 'important', cefr: 'A2', domain: 'adjectives', frequencyRank: 60, example: 'Es muy importante estudiar.', exampleEn: 'It\'s very important to study.' },
+  { es: 'joven', en: 'young', cefr: 'A2', domain: 'adjectives', frequencyRank: 130, example: 'Es una chica joven.', exampleEn: 'She\'s a young girl.' },
+  { es: 'mayor', en: 'older / elderly / bigger', cefr: 'A2', domain: 'adjectives', frequencyRank: 80, example: 'Mi hermano es mayor que yo.', exampleEn: 'My brother is older than me.' },
+  { es: 'ocupado', en: 'busy', cefr: 'A2', domain: 'adjectives', frequencyRank: 300, example: 'Estoy muy ocupado esta semana.', exampleEn: 'I\'m very busy this week.' },
+  { es: 'simpático', en: 'nice / likeable', cefr: 'A2', domain: 'adjectives', frequencyRank: 350, example: 'El profesor es muy simpático.', exampleEn: 'The teacher is very nice.' },
+  { es: 'interesante', en: 'interesting', cefr: 'A2', domain: 'adjectives', frequencyRank: 150, example: 'Es un libro muy interesante.', exampleEn: 'It\'s a very interesting book.' },
+
+  // Travel / daily life nouns (A2)
+  { es: 'viaje', en: 'trip / journey', cefr: 'A2', domain: 'nouns', frequencyRank: 160, example: 'Hago un viaje a México.', exampleEn: 'I\'m taking a trip to Mexico.' },
+  { es: 'billete', en: 'ticket (Spain) / banknote', cefr: 'A2', domain: 'nouns', frequencyRank: 300, example: 'Compré el billete de tren.', exampleEn: 'I bought the train ticket.' },
+  { es: 'maleta', en: 'suitcase', cefr: 'A2', domain: 'nouns', frequencyRank: 400, example: 'Haz la maleta.', exampleEn: 'Pack your suitcase.' },
+  { es: 'habitación', en: 'room / bedroom', cefr: 'A2', domain: 'nouns', frequencyRank: 200, example: '¿Tiene una habitación libre?', exampleEn: 'Do you have a room available?' },
+  { es: 'dirección', en: 'address / direction', cefr: 'A2', domain: 'nouns', frequencyRank: 170, example: '¿Me das tu dirección?', exampleEn: 'Can you give me your address?' },
+  { es: 'semana', en: 'week', cefr: 'A2', domain: 'time', frequencyRank: 105, example: 'La próxima semana tengo examen.', exampleEn: 'Next week I have an exam.' },
+  { es: 'mes', en: 'month', cefr: 'A2', domain: 'time', frequencyRank: 88, example: 'Este mes tengo mucho trabajo.', exampleEn: 'This month I have a lot of work.' },
+  { es: 'año', en: 'year', cefr: 'A2', domain: 'time', frequencyRank: 30, example: 'El año pasado fui a España.', exampleEn: 'Last year I went to Spain.' },
+  { es: 'parte', en: 'part', cefr: 'A2', domain: 'nouns', frequencyRank: 32, example: 'Esta es la mejor parte.', exampleEn: 'This is the best part.' },
+  { es: 'cosa', en: 'thing', cefr: 'A2', domain: 'nouns', frequencyRank: 27, example: 'Tengo muchas cosas que hacer.', exampleEn: 'I have many things to do.' },
+  { es: 'lugar', en: 'place', cefr: 'A2', domain: 'nouns', frequencyRank: 55, example: 'Es un lugar muy bonito.', exampleEn: 'It\'s a very beautiful place.' },
+  { es: 'forma', en: 'way / form / shape', cefr: 'A2', domain: 'nouns', frequencyRank: 45, example: 'Hay muchas formas de aprender.', exampleEn: 'There are many ways to learn.' },
+
   { es: 'aunque', en: 'although / even though', cefr: 'A2', domain: 'connectors', frequencyRank: 95, example: 'Aunque llueve, salgo.', exampleEn: 'Although it rains, I\'m going out.' },
   { es: 'porque', en: 'because', cefr: 'A2', domain: 'connectors', frequencyRank: 75, example: 'No voy porque estoy enfermo.', exampleEn: 'I\'m not going because I\'m sick.' },
   { es: 'también', en: 'also / too', cefr: 'A2', domain: 'connectors', frequencyRank: 85, example: 'Yo también quiero ir.', exampleEn: 'I also want to go.' },
@@ -182,8 +259,6 @@ export const VOCABULARY = [
   { es: 'de hecho', en: 'in fact / actually', cefr: 'B1', domain: 'connectors', frequencyRank: 160, example: 'De hecho, no estaba de acuerdo.', exampleEn: 'In fact, I didn\'t agree.' },
   { es: 'en cambio', en: 'on the other hand', cefr: 'B1', domain: 'connectors', frequencyRank: 170, example: 'Él es serio; en cambio, ella es divertida.', exampleEn: 'He is serious; she, on the other hand, is fun.' },
   { es: 'por lo tanto', en: 'therefore', cefr: 'B1', domain: 'connectors', frequencyRank: 190, example: 'Llueve; por lo tanto, me quedo en casa.', exampleEn: 'It\'s raining; therefore, I\'m staying home.' },
-  { es: 'sin embargo', en: 'however', cefr: 'B1', domain: 'connectors', frequencyRank: 105, example: 'Es difícil; sin embargo, posible.', exampleEn: 'It\'s difficult; however, possible.' },
-  { es: 'aunque', en: 'even though / although', cefr: 'B1', domain: 'connectors', frequencyRank: 95, example: 'Aunque no quiera, tiene que hacerlo.', exampleEn: 'Even though he doesn\'t want to, he has to do it.' },
   { es: 'darse cuenta de', en: 'to realize', cefr: 'B1', domain: 'verbs', frequencyRank: 180, example: 'Me di cuenta de mi error.', exampleEn: 'I realized my mistake.' },
   { es: 'tardar', en: 'to take time / to be late', cefr: 'B1', domain: 'verbs', frequencyRank: 200, example: '¿Cuánto tardas?', exampleEn: 'How long will you take?' },
   { es: 'lograr', en: 'to achieve / to manage to', cefr: 'B1', domain: 'verbs', frequencyRank: 150, example: 'Logré terminar a tiempo.', exampleEn: 'I managed to finish on time.' },
@@ -202,6 +277,109 @@ export const VOCABULARY = [
   { es: 'ventaja', en: 'advantage', cefr: 'B1', domain: 'nouns', frequencyRank: 220, example: 'Tiene muchas ventajas.', exampleEn: 'It has many advantages.' },
   { es: 'desventaja', en: 'disadvantage', cefr: 'B1', domain: 'nouns', frequencyRank: 230, example: 'La principal desventaja es el coste.', exampleEn: 'The main disadvantage is the cost.' },
   { es: 'conjunto', en: 'set / group / overall', cefr: 'B1', domain: 'nouns', frequencyRank: 130, example: 'En conjunto, salió bien.', exampleEn: 'Overall, it went well.' },
+
+  // B1 — additional connectors
+  { es: 'así que', en: 'so / therefore', cefr: 'B1', domain: 'connectors', frequencyRank: 105, example: 'No hay autobús, así que iremos a pie.', exampleEn: 'There\'s no bus, so we\'ll walk.' },
+  { es: 'siempre que', en: 'whenever / as long as', cefr: 'B1', domain: 'connectors', frequencyRank: 195, example: 'Puedes venir siempre que quieras.', exampleEn: 'You can come whenever you want.' },
+  { es: 'a menos que', en: 'unless', cefr: 'B1', domain: 'connectors', frequencyRank: 210, example: 'Iré, a menos que llueva.', exampleEn: 'I\'ll go, unless it rains.' },
+  { es: 'dado que', en: 'given that / since', cefr: 'B1', domain: 'connectors', frequencyRank: 220, example: 'Dado que es tarde, me voy.', exampleEn: 'Given that it\'s late, I\'m leaving.' },
+  { es: 'es decir', en: 'that is / in other words', cefr: 'B1', domain: 'connectors', frequencyRank: 98, example: 'Viene mañana, es decir, el martes.', exampleEn: 'She\'s coming tomorrow, that is, on Tuesday.' },
+  { es: 'por otro lado', en: 'on the other hand', cefr: 'B1', domain: 'connectors', frequencyRank: 175, example: 'Por otro lado, tiene sus ventajas.', exampleEn: 'On the other hand, it has its advantages.' },
+
+  // B1 — verbs
+  { es: 'mejorar', en: 'to improve', cefr: 'B1', domain: 'verbs', frequencyRank: 125, example: 'Quiero mejorar mi pronunciación.', exampleEn: 'I want to improve my pronunciation.' },
+  { es: 'resolver', en: 'to solve / to resolve', cefr: 'B1', domain: 'verbs', frequencyRank: 145, example: 'Hay que resolver este problema.', exampleEn: 'We need to solve this problem.' },
+  { es: 'evitar', en: 'to avoid', cefr: 'B1', domain: 'verbs', frequencyRank: 135, example: 'Trata de evitar los errores comunes.', exampleEn: 'Try to avoid common mistakes.' },
+  { es: 'superar', en: 'to overcome / to exceed', cefr: 'B1', domain: 'verbs', frequencyRank: 155, example: 'Superó el examen con buena nota.', exampleEn: 'She passed the exam with a good grade.' },
+  { es: 'afectar', en: 'to affect', cefr: 'B1', domain: 'verbs', frequencyRank: 165, example: 'El estrés afecta la salud.', exampleEn: 'Stress affects your health.' },
+  { es: 'incluir', en: 'to include', cefr: 'B1', domain: 'verbs', frequencyRank: 115, example: 'El precio incluye el desayuno.', exampleEn: 'The price includes breakfast.' },
+  { es: 'demostrar', en: 'to show / to demonstrate', cefr: 'B1', domain: 'verbs', frequencyRank: 145, example: 'Demostró su talento en el escenario.', exampleEn: 'She showed her talent on stage.' },
+  { es: 'comunicarse', en: 'to communicate', cefr: 'B1', domain: 'verbs', frequencyRank: 195, example: 'Es importante comunicarse bien.', exampleEn: 'It\'s important to communicate well.' },
+  { es: 'influir', en: 'to influence', cefr: 'B1', domain: 'verbs', frequencyRank: 175, example: 'La familia influye mucho en nosotros.', exampleEn: 'Family influences us a lot.' },
+
+  // B1 — emotional / personal vocabulary
+  { es: 'miedo', en: 'fear', cefr: 'B1', domain: 'nouns', frequencyRank: 185, example: 'Tengo miedo a las alturas.', exampleEn: 'I\'m afraid of heights.' },
+  { es: 'alegría', en: 'joy / happiness', cefr: 'B1', domain: 'nouns', frequencyRank: 240, example: '¡Qué alegría verte!', exampleEn: 'How lovely to see you!' },
+  { es: 'tristeza', en: 'sadness', cefr: 'B1', domain: 'nouns', frequencyRank: 280, example: 'Sentí mucha tristeza.', exampleEn: 'I felt great sadness.' },
+  { es: 'esperanza', en: 'hope', cefr: 'B1', domain: 'nouns', frequencyRank: 200, example: 'No pierdas la esperanza.', exampleEn: 'Don\'t lose hope.' },
+  { es: 'orgullo', en: 'pride', cefr: 'B1', domain: 'nouns', frequencyRank: 260, example: 'Siento orgullo por su éxito.', exampleEn: 'I feel pride in her success.' },
+
+  // B1 — work & professional
+  { es: 'reunión', en: 'meeting', cefr: 'B1', domain: 'nouns', frequencyRank: 180, example: 'Tengo una reunión a las diez.', exampleEn: 'I have a meeting at ten.' },
+  { es: 'empresa', en: 'company / firm', cefr: 'B1', domain: 'nouns', frequencyRank: 110, example: 'Trabajo en una empresa internacional.', exampleEn: 'I work at an international company.' },
+  { es: 'sueldo', en: 'salary / wage', cefr: 'B1', domain: 'nouns', frequencyRank: 290, example: 'Negoció un sueldo más alto.', exampleEn: 'She negotiated a higher salary.' },
+  { es: 'contrato', en: 'contract', cefr: 'B1', domain: 'nouns', frequencyRank: 230, example: 'Firmó el contrato de trabajo.', exampleEn: 'He signed the work contract.' },
+
+  // B1 — abstract nouns (high frequency)
+  { es: 'esfuerzo', en: 'effort', cefr: 'B1', domain: 'nouns', frequencyRank: 195, example: 'Hay que hacer un esfuerzo.', exampleEn: 'You need to make an effort.' },
+  { es: 'resultado', en: 'result / outcome', cefr: 'B1', domain: 'nouns', frequencyRank: 125, example: 'Los resultados fueron buenos.', exampleEn: 'The results were good.' },
+  { es: 'proceso', en: 'process', cefr: 'B1', domain: 'nouns', frequencyRank: 118, example: 'El proceso lleva tiempo.', exampleEn: 'The process takes time.' },
+  { es: 'solución', en: 'solution', cefr: 'B1', domain: 'nouns', frequencyRank: 155, example: 'Hay que encontrar una solución.', exampleEn: 'We need to find a solution.' },
+  { es: 'opinión', en: 'opinion', cefr: 'B1', domain: 'nouns', frequencyRank: 170, example: 'En mi opinión, tienes razón.', exampleEn: 'In my opinion, you are right.' },
+  { es: 'experiencia', en: 'experience', cefr: 'B1', domain: 'nouns', frequencyRank: 140, example: 'Fue una experiencia increíble.', exampleEn: 'It was an incredible experience.' },
+
+  // ── B2 ──────────────────────────────────────────────────────────────────
+  // Connectors & discourse markers
+  { es: 'no obstante', en: 'nevertheless / however', cefr: 'B2', domain: 'connectors', frequencyRank: 280, example: 'No obstante, seguimos adelante.', exampleEn: 'Nevertheless, we pressed on.' },
+  { es: 'por consiguiente', en: 'consequently / therefore', cefr: 'B2', domain: 'connectors', frequencyRank: 300, example: 'Es tarde; por consiguiente, nos vamos.', exampleEn: "It's late; consequently, we're leaving." },
+  { es: 'a diferencia de', en: 'unlike / in contrast to', cefr: 'B2', domain: 'connectors', frequencyRank: 260, example: 'A diferencia de su hermano, estudia mucho.', exampleEn: 'Unlike his brother, he studies a lot.' },
+  { es: 'a lo largo de', en: 'throughout / along', cefr: 'B2', domain: 'connectors', frequencyRank: 220, example: 'A lo largo de su carrera ganó varios premios.', exampleEn: 'Throughout his career he won several prizes.' },
+  { es: 'en cuanto a', en: 'as for / regarding', cefr: 'B2', domain: 'connectors', frequencyRank: 250, example: 'En cuanto al precio, es razonable.', exampleEn: 'As for the price, it is reasonable.' },
+  // Verbs (formal/academic)
+  { es: 'destacar', en: 'to stand out / to emphasise', cefr: 'B2', domain: 'verbs', frequencyRank: 110, example: 'Quiero destacar la importancia de esto.', exampleEn: 'I want to emphasise the importance of this.' },
+  { es: 'plantear', en: 'to raise / to put forward', cefr: 'B2', domain: 'verbs', frequencyRank: 120, example: 'Planteó una pregunta interesante.', exampleEn: 'He raised an interesting question.' },
+  { es: 'suponer', en: 'to suppose / to entail', cefr: 'B2', domain: 'verbs', frequencyRank: 70, example: 'Eso supone un gran esfuerzo.', exampleEn: 'That entails a great effort.' },
+  { es: 'abordar', en: 'to tackle / to address', cefr: 'B2', domain: 'verbs', frequencyRank: 160, example: 'Hay que abordar el problema.', exampleEn: 'We need to tackle the problem.' },
+  { es: 'prevenir', en: 'to prevent / to warn', cefr: 'B2', domain: 'verbs', frequencyRank: 200, example: 'Más vale prevenir que curar.', exampleEn: 'Prevention is better than cure.' },
+  { es: 'cuestionar', en: 'to question / to challenge', cefr: 'B2', domain: 'verbs', frequencyRank: 220, example: 'Nadie cuestiona su autoridad.', exampleEn: "Nobody questions his authority." },
+  { es: 'surgir', en: 'to arise / to emerge', cefr: 'B2', domain: 'verbs', frequencyRank: 130, example: 'Surgieron varios problemas.', exampleEn: 'Several problems arose.' },
+  { es: 'carecer', en: 'to lack', cefr: 'B2', domain: 'verbs', frequencyRank: 190, example: 'El proyecto carece de financiación.', exampleEn: 'The project lacks funding.' },
+  // Nouns (abstract / academic)
+  { es: 'ámbito', en: 'sphere / field / scope', cefr: 'B2', domain: 'nouns', frequencyRank: 120, example: 'En el ámbito profesional es muy respetado.', exampleEn: 'In the professional field he is highly respected.' },
+  { es: 'matiz', en: 'nuance / shade', cefr: 'B2', domain: 'nouns', frequencyRank: 280, example: 'Hay que entender los matices del idioma.', exampleEn: 'You need to understand the nuances of the language.' },
+  { es: 'índole', en: 'nature / kind', cefr: 'B2', domain: 'nouns', frequencyRank: 290, example: 'Es un problema de índole económica.', exampleEn: 'It is an economic problem by nature.' },
+  { es: 'contraste', en: 'contrast', cefr: 'B2', domain: 'nouns', frequencyRank: 230, example: 'Hay un fuerte contraste entre los dos estilos.', exampleEn: 'There is a strong contrast between the two styles.' },
+  { es: 'inquietud', en: 'concern / unease / curiosity', cefr: 'B2', domain: 'nouns', frequencyRank: 310, example: 'Tengo inquietudes sobre el futuro.', exampleEn: 'I have concerns about the future.' },
+  { es: 'logro', en: 'achievement / accomplishment', cefr: 'B2', domain: 'nouns', frequencyRank: 200, example: 'Es su mayor logro profesional.', exampleEn: "It's their greatest professional achievement." },
+  { es: 'vínculo', en: 'link / bond / tie', cefr: 'B2', domain: 'nouns', frequencyRank: 210, example: 'Mantiene vínculos con su país de origen.', exampleEn: 'She keeps ties with her home country.' },
+  { es: 'entorno', en: 'environment / surroundings', cefr: 'B2', domain: 'nouns', frequencyRank: 140, example: 'Necesita un entorno tranquilo para trabajar.', exampleEn: 'He needs a calm environment to work.' },
+  { es: 'repercusión', en: 'impact / repercussion', cefr: 'B2', domain: 'nouns', frequencyRank: 260, example: 'La decisión tuvo grandes repercusiones.', exampleEn: 'The decision had major repercussions.' },
+  // Adjectives
+  { es: 'imprescindible', en: 'indispensable / essential', cefr: 'B2', domain: 'adjectives', frequencyRank: 220, example: 'El agua es imprescindible para la vida.', exampleEn: 'Water is essential for life.' },
+  { es: 'escaso', en: 'scarce / limited', cefr: 'B2', domain: 'adjectives', frequencyRank: 230, example: 'Los recursos son escasos.', exampleEn: 'Resources are scarce.' },
+  { es: 'vigente', en: 'current / in force / valid', cefr: 'B2', domain: 'adjectives', frequencyRank: 250, example: 'La ley vigente no lo permite.', exampleEn: 'The current law does not allow it.' },
+  { es: 'exhaustivo', en: 'thorough / exhaustive', cefr: 'B2', domain: 'adjectives', frequencyRank: 310, example: 'Hicieron un análisis exhaustivo.', exampleEn: 'They carried out a thorough analysis.' },
+  { es: 'eficaz', en: 'effective / efficient', cefr: 'B2', domain: 'adjectives', frequencyRank: 190, example: 'Es el método más eficaz.', exampleEn: 'It is the most effective method.' },
+  // Emotions
+  { es: 'angustia', en: 'anguish / anxiety / distress', cefr: 'B2', domain: 'nouns', frequencyRank: 300, example: 'Le invadió una profunda angustia.', exampleEn: 'A deep anguish came over him.' },
+  { es: 'añoranza', en: 'longing / nostalgia', cefr: 'B2', domain: 'nouns', frequencyRank: 400, example: 'Siente añoranza de su tierra.', exampleEn: 'She feels nostalgia for her homeland.' },
+  { es: 'euforia', en: 'euphoria / elation', cefr: 'B2', domain: 'nouns', frequencyRank: 350, example: 'El triunfo provocó una gran euforia.', exampleEn: 'The victory caused great elation.' },
+
+  // ── C1 ─────────────────────────────────────────────────────────────────
+  // Discourse connectors
+  { es: 'asimismo', en: 'likewise / also / moreover', cefr: 'C1', domain: 'connectors', frequencyRank: 260, example: 'Asimismo, cabe destacar su contribución.', exampleEn: "Likewise, his contribution deserves mention." },
+  { es: 'en definitiva', en: 'in short / ultimately', cefr: 'C1', domain: 'connectors', frequencyRank: 290, example: 'En definitiva, el proyecto fue un éxito.', exampleEn: 'In short, the project was a success.' },
+  { es: 'a raíz de', en: 'as a result of / following', cefr: 'C1', domain: 'connectors', frequencyRank: 320, example: 'A raíz de los cambios, surgieron nuevas oportunidades.', exampleEn: 'As a result of the changes, new opportunities arose.' },
+  // Abstract nouns
+  { es: 'arraigo', en: 'rootedness / deep-rooted attachment', cefr: 'C1', domain: 'nouns', frequencyRank: 420, example: 'Tiene un gran arraigo en su comunidad.', exampleEn: 'He has deep roots in his community.' },
+  { es: 'desenlace', en: 'outcome / denouement', cefr: 'C1', domain: 'nouns', frequencyRank: 390, example: 'El desenlace de la historia fue inesperado.', exampleEn: 'The outcome of the story was unexpected.' },
+  { es: 'conjetura', en: 'conjecture / assumption', cefr: 'C1', domain: 'nouns', frequencyRank: 430, example: 'No son más que conjeturas.', exampleEn: "They're nothing more than conjectures." },
+  { es: 'indicio', en: 'sign / clue / indication', cefr: 'C1', domain: 'nouns', frequencyRank: 360, example: 'No hay ningún indicio de problemas.', exampleEn: 'There is no indication of problems.' },
+  { es: 'pauta', en: 'guideline / pattern / standard', cefr: 'C1', domain: 'nouns', frequencyRank: 340, example: 'Establecieron nuevas pautas de conducta.', exampleEn: 'They established new behavioural guidelines.' },
+  { es: 'trayectoria', en: 'trajectory / career path', cefr: 'C1', domain: 'nouns', frequencyRank: 370, example: 'Tiene una brillante trayectoria profesional.', exampleEn: 'She has a brilliant professional career.' },
+  { es: 'sesgo', en: 'bias / slant', cefr: 'C1', domain: 'nouns', frequencyRank: 380, example: 'El estudio tiene un sesgo confirmatorio.', exampleEn: 'The study has a confirmation bias.' },
+  // Advanced verbs
+  { es: 'dilucidar', en: 'to elucidate / to clarify', cefr: 'C1', domain: 'verbs', frequencyRank: 480, example: 'Hay que dilucidar los hechos.', exampleEn: 'We need to clarify the facts.' },
+  { es: 'paliar', en: 'to alleviate / to mitigate', cefr: 'C1', domain: 'verbs', frequencyRank: 450, example: 'Las medidas paliaron el impacto económico.', exampleEn: 'The measures alleviated the economic impact.' },
+  { es: 'ceder', en: 'to yield / to give way / to hand over', cefr: 'C1', domain: 'verbs', frequencyRank: 200, example: 'No cedió ante la presión.', exampleEn: 'He did not yield to pressure.' },
+  { es: 'aludir', en: 'to allude / to refer to', cefr: 'C1', domain: 'verbs', frequencyRank: 410, example: 'Aludió al problema sin nombrarlo directamente.', exampleEn: 'She alluded to the problem without naming it directly.' },
+  { es: 'suscitar', en: 'to provoke / to give rise to', cefr: 'C1', domain: 'verbs', frequencyRank: 395, example: 'La propuesta suscitó un intenso debate.', exampleEn: 'The proposal gave rise to an intense debate.' },
+  { es: 'discernir', en: 'to discern / to distinguish', cefr: 'C1', domain: 'verbs', frequencyRank: 460, example: 'Es difícil discernir la verdad.', exampleEn: 'It is difficult to discern the truth.' },
+  // Adjectives / register
+  { es: 'fehaciente', en: 'conclusive / reliable / authentic', cefr: 'C1', domain: 'adjectives', frequencyRank: 500, example: 'Hay pruebas fehacientes de ello.', exampleEn: 'There is conclusive evidence of this.' },
+  { es: 'sucinto', en: 'succinct / concise', cefr: 'C1', domain: 'adjectives', frequencyRank: 470, example: 'Hizo una explicación sucinta del tema.', exampleEn: 'He gave a succinct explanation of the topic.' },
+  { es: 'concluyente', en: 'conclusive / decisive', cefr: 'C1', domain: 'adjectives', frequencyRank: 440, example: 'Los resultados son concluyentes.', exampleEn: 'The results are conclusive.' },
+  { es: 'subyacente', en: 'underlying', cefr: 'C1', domain: 'adjectives', frequencyRank: 415, example: 'El problema subyacente no se ha resuelto.', exampleEn: 'The underlying problem has not been solved.' },
 ];
 
 // Group by domain
@@ -215,7 +393,7 @@ export function getByCefr(level) {
 }
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();
-export const CEFR_LEVELS = ['A1', 'A2', 'B1'];
+export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
 
 // Sorted by frequency (most common first)
 export const BY_FREQUENCY = [...VOCABULARY].sort((a, b) => a.frequencyRank - b.frequencyRank);

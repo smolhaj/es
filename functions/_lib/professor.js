@@ -1,10 +1,10 @@
-import { CONCEPTS, getNextExplanationStyle } from './concepts.js';
+import { CONCEPTS, getNextExplanationStyle, getReadyConcepts } from './concepts.js';
 
 // Compile a structured professor briefing from DB state (~800-1200 tokens)
 export async function compileBriefing(db, userId) {
   const now = new Date().toISOString();
 
-  const [skills, topErrors, fossilized, dueVocab, lastSession, personalCtx] = await Promise.all([
+  const [skills, topErrors, fossilized, dueVocab, lastSession, personalCtx, allMastery] = await Promise.all([
     db.prepare('SELECT skill, cefr_level, accuracy, session_count FROM skill_profiles WHERE user_id = ?')
       .bind(userId).all(),
 
@@ -12,8 +12,8 @@ export async function compileBriefing(db, userId) {
       SELECT cm.concept_id, cm.mastery_score, cm.error_count, cm.session_error_count,
              cm.sessions_seen, cm.explanation_styles_tried, cm.fossilization_flagged
       FROM concept_mastery cm
-      WHERE cm.user_id = ?
-      ORDER BY cm.error_count DESC LIMIT 8
+      WHERE cm.user_id = ? AND cm.sessions_seen >= 1
+      ORDER BY cm.mastery_score ASC, cm.error_count DESC LIMIT 8
     `).bind(userId).all(),
 
     db.prepare(`
@@ -34,6 +34,9 @@ export async function compileBriefing(db, userId) {
 
     db.prepare('SELECT key, value FROM personal_context WHERE user_id = ? LIMIT 20')
       .bind(userId).all(),
+
+    db.prepare('SELECT concept_id, mastery_score FROM concept_mastery WHERE user_id = ?')
+      .bind(userId).all(),
   ]);
 
   const skillMap = {};
@@ -45,6 +48,17 @@ export async function compileBriefing(db, userId) {
     try { styles = JSON.parse(e.explanation_styles_tried); } catch {}
     masteryMap[e.concept_id] = { ...e, explanation_styles_tried: styles };
   }
+
+  // Full mastery map for prereq readiness check
+  const fullMasteryMap = {};
+  for (const row of allMastery.results ?? []) {
+    fullMasteryMap[row.concept_id] = { mastery_score: row.mastery_score };
+  }
+
+  // Concepts whose prereqs are met (≥60% mastery) but haven't been introduced yet
+  const readyIds = getReadyConcepts(fullMasteryMap, 0.6)
+    .filter(id => !fullMasteryMap[id])  // not seen yet
+    .slice(0, 5);
 
   const lines = ['=== PROFESSOR BRIEFING ==='];
 
@@ -75,6 +89,24 @@ export async function compileBriefing(db, userId) {
         `Try: ${nextStyle} explanation style.`
       );
     }
+  }
+
+  // Ready-to-introduce concepts
+  if (readyIds.length > 0) {
+    const labels = readyIds
+      .map(id => `${CONCEPTS[id]?.label ?? id} [${CONCEPTS[id]?.cefr ?? '?'}]`)
+      .join(', ');
+    lines.push(`READY TO INTRODUCE (prereqs met, not yet taught): ${labels}. Consider introducing one this session.`);
+  }
+
+  // Strong concepts (mastery ≥ 80%) — let the professor skip drilling these
+  const strongConcepts = Object.entries(fullMasteryMap)
+    .filter(([, v]) => (v.mastery_score ?? 0) >= 0.8)
+    .map(([id]) => CONCEPTS[id]?.label)
+    .filter(Boolean)
+    .slice(0, 10);
+  if (strongConcepts.length > 0) {
+    lines.push(`MASTERED (don't re-drill unless requested): ${strongConcepts.join(', ')}.`);
   }
 
   // Fossilization warnings

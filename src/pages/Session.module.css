@@ -51,6 +51,16 @@
   text-align: right;
 }
 
+/* Focus mode banner */
+.focusBanner {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: var(--sp-2) var(--sp-4);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--r-sm);
+}
+
 /* Greeting */
 .greeting {
   font-size: 0.9375rem;
@@ -142,6 +152,26 @@
   color: var(--text-muted);
 }
 
+/* Level-up banner */
+.levelUp {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  background: color-mix(in srgb, var(--correct) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--correct) 30%, transparent);
+  border-left: 3px solid var(--correct);
+  border-radius: var(--r-sm);
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+.levelUpIcon {
+  font-size: 1.25rem;
+  color: var(--correct);
+  flex-shrink: 0;
+}
+
 .weakSpots {
   display: flex;
   flex-direction: column;
@@ -178,10 +208,41 @@
   color: var(--text);
 }
 
+.weakRight {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
 .weakCount {
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--incorrect);
+}
+
+.drillLink {
+  font-size: 0.8125rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.drillLink:hover { text-decoration: underline; }
+
+.wordChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.wordChip {
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-size: 0.875rem;
+  color: var(--text);
+  font-weight: 500;
 }
 
 .summaryActions {

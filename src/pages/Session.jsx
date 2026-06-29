@@ -1,11 +1,36 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import styles from './Session.module.css';
+
+const CONCEPT_LABELS = {
+  greeting_basics: 'Greetings', numbers_1_20: 'Numbers 1–20', subject_pronouns: 'Subject pronouns',
+  noun_gender: 'Noun gender', definite_articles: 'Articles (el/la)', indefinite_articles: 'Articles (un/una)',
+  ser_basics: 'Ser', estar_basics: 'Estar', present_ar: 'Present -ar', present_er_ir: 'Present -er/-ir',
+  adjective_agreement: 'Adjective agreement', question_words: 'Question words', hay: 'Hay',
+  numbers_21_100: 'Numbers 21–100', ser_vs_estar: 'Ser vs. estar', reflexive_verbs: 'Reflexive verbs',
+  gustar_type: 'Gustar-type', direct_object_pronouns: 'Direct obj. pronouns',
+  indirect_object_pronouns: 'Indirect obj. pronouns', demonstratives: 'Demonstratives',
+  possessives: 'Possessives', preterite_regular: 'Preterite (regular)', modal_verbs: 'Modal verbs',
+  time_expressions: 'Time expressions', preterite_irregular: 'Preterite (irregular)',
+  imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
+  future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',
+  imperative: 'Imperative', por_vs_para: 'Por vs. para', relative_clauses: 'Relative clauses',
+  present_perfect: 'Present perfect', pluperfect: 'Pluperfect', future_perfect: 'Future perfect',
+  conditional_perfect: 'Conditional perfect', passive_voice: 'Passive voice', passive_se: 'Passive se',
+  imperfect_subjunctive: 'Imperfect subjunctive', si_clauses: 'Si-clauses',
+  subjunctive_adverbial: 'Subjunctive (adverbial)', comparatives: 'Comparatives',
+  ser_estar_participle: 'Ser/estar + participio', diminutives_augmentatives: 'Diminutives',
+  relative_pronouns_advanced: 'Relative pronouns (adv.)',
+  subjunctive_noun_clauses: 'Subjunctive (noun clauses)', subjunctive_adjective_clauses: 'Subjunctive (adj. clauses)',
+  gerund_advanced: 'Gerund (advanced)', ser_passive: 'Ser passive', estilo_indirecto: 'Indirect speech',
+  nominalisation: 'Nominalisation', subjunctive_temporal: 'Subjunctive (temporal)',
+  cuantificadores: 'Quantifiers',
+};
 
 const SESSION_LENGTH = 10;
 
@@ -14,6 +39,8 @@ const SESSION_LENGTH = 10;
 export default function Session() {
   const { token } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const focusConcept = searchParams.get('focus') ?? null;
 
   const [phase, setPhase] = useState('starting');
   const [sessionId, setSessionId] = useState(null);
@@ -27,7 +54,7 @@ export default function Session() {
 
   // Start session on mount
   useEffect(() => {
-    api.sessions.start(token)
+    api.sessions.start(token, focusConcept)
       .then(({ sessionId: sid, exercise: ex, greeting: gr }) => {
         setSessionId(sid);
         setExercise(ex);
@@ -89,7 +116,7 @@ export default function Session() {
   async function handleEndEarly() {
     if (!sessionId) { navigate('/dashboard'); return; }
     try {
-      await api.sessions.end(token, sessionId);
+      await api.sessions.end(token, sessionId, true);
     } catch {}
     navigate('/dashboard');
   }
@@ -118,8 +145,15 @@ export default function Session() {
             </div>
           )}
 
+          {/* Focus mode banner */}
+          {focusConcept && (phase === 'exercise' || phase === 'checking' || phase === 'feedback') && (
+            <p className={styles.focusBanner}>
+              Drilling: <strong>{CONCEPT_LABELS[focusConcept] ?? focusConcept}</strong>
+            </p>
+          )}
+
           {/* Greeting */}
-          {greeting && phase === 'exercise' && stats.count === 0 && (
+          {greeting && phase === 'exercise' && stats.count === 0 && !focusConcept && (
             <p className={styles.greeting}>{greeting}</p>
           )}
 
@@ -166,6 +200,16 @@ export default function Session() {
             <div className={styles.summary}>
               <h1 className={styles.summaryTitle}>Session complete.</h1>
 
+              {summary.cefrChanged && (
+                <div className={styles.levelUp}>
+                  <span className={styles.levelUpIcon}>↑</span>
+                  <span>
+                    You advanced from <strong>{summary.cefrChanged.from}</strong> to{' '}
+                    <strong>{summary.cefrChanged.to}</strong>
+                  </span>
+                </div>
+              )}
+
               <div className={styles.summaryStats}>
                 <div className={styles.summaryStat}>
                   <span className={styles.summaryValue}>
@@ -185,15 +229,39 @@ export default function Session() {
 
               {summary.errors?.length > 0 && (
                 <div className={styles.weakSpots}>
-                  <h2 className={styles.weakTitle}>Needs work</h2>
+                  <h2 className={styles.weakTitle}>Errors this session</h2>
                   <ul className={styles.weakList}>
-                    {summary.errors.map(e => (
-                      <li key={e.exercise_type} className={styles.weakItem}>
-                        <span className={styles.weakType}>{formatType(e.exercise_type)}</span>
-                        <span className={styles.weakCount}>{e.count} error{e.count !== 1 ? 's' : ''}</span>
+                    {summary.errors.map((e, i) => (
+                      <li key={i} className={styles.weakItem}>
+                        <span className={styles.weakType}>
+                          {e.concept_id
+                            ? (CONCEPT_LABELS[e.concept_id] ?? e.concept_id)
+                            : formatType(e.exercise_type)}
+                        </span>
+                        <span className={styles.weakRight}>
+                          <span className={styles.weakCount}>{e.count}×</span>
+                          {e.concept_id && (
+                            <Link to={`/session?focus=${e.concept_id}`} className={styles.drillLink}>
+                              Drill →
+                            </Link>
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>
+                </div>
+              )}
+
+              {summary.wordsReviewed?.length > 0 && (
+                <div className={styles.weakSpots}>
+                  <h2 className={styles.weakTitle}>Words practiced</h2>
+                  <div className={styles.wordChips}>
+                    {summary.wordsReviewed.map(w => (
+                      <span key={w.word} className={styles.wordChip} title={w.translation}>
+                        {w.word}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
 

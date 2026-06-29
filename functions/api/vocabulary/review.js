@@ -13,7 +13,7 @@ export async function onRequestPost({ request, env, data }) {
 
   const item = await env.DB.prepare(
     'SELECT id, stability, difficulty, retrievability, review_count, correct_count, last_reviewed_at FROM vocabulary_items WHERE id = ? AND user_id = ?'
-  ).bind(wordId, data.user.id).first();
+  ).bind(wordId, data.user.sub).first();
 
   if (!item) return Response.json({ error: 'Item not found' }, { status: 404 });
 
@@ -28,7 +28,7 @@ export async function onRequestPost({ request, env, data }) {
   `).bind(
     fsrs.stability, fsrs.difficulty, fsrs.retrievability, fsrs.due_at,
     fsrs.review_count, fsrs.correct_count, now,
-    wordId, data.user.id
+    wordId, data.user.sub
   ).run();
 
   return Response.json({

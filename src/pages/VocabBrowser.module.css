@@ -125,6 +125,26 @@
   font-size: 0.875rem;
 }
 
+.cardRight {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.seenDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.seenDotStrong {
+  background: var(--correct);
+  opacity: 1;
+}
+
 .cefr {
   font-size: 0.7rem;
   font-weight: 700;
@@ -137,6 +157,8 @@
 .cefrA1 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
 .cefrA2 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
 .cefrB1 { background: rgba(200, 134, 10, 0.1); color: var(--accent-gold); }
+.cefrB2 { background: rgba(90, 130, 80, 0.12); color: #3d7a42; }
+.cefrC1 { background: rgba(80, 90, 160, 0.1); color: #4a56a6; }
 
 .cardDetail {
   padding: var(--sp-2) var(--sp-4) var(--sp-3);
@@ -155,6 +177,43 @@
   font-size: 0.8125rem;
   color: var(--text-muted);
   margin: 0;
+}
+
+/* Add custom word form */
+.addForm {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  align-items: center;
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.addInput {
+  flex: 1;
+  min-width: 160px;
+  padding: var(--sp-2) var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+}
+.addInput:focus { border-color: var(--accent); }
+
+.addSuccess {
+  font-size: 0.8125rem;
+  color: var(--correct);
+  font-weight: 500;
+}
+
+.addError {
+  font-size: 0.8125rem;
+  color: var(--incorrect);
 }
 
 @media (max-width: 640px) {

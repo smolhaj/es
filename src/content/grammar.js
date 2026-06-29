@@ -204,6 +204,81 @@ export const GRAMMAR_CARDS = [
     related: ['ser_basics', 'present_ar'],
   },
 
+  {
+    id: 'greeting_basics',
+    concept_id: 'greeting_basics',
+    cefr: 'A1',
+    category: 'Vocabulary',
+    title: 'Greetings & Farewells',
+    rule: 'Spanish greetings change by time of day. Use hola at any time. Formal address switches tú → usted.',
+    examples: [
+      { es: 'Hola / Buenos días / Buenas tardes / Buenas noches', en: 'Hi / Good morning / Good afternoon / Good evening' },
+      { es: 'Adiós / Hasta luego / Hasta mañana', en: 'Goodbye / See you later / See you tomorrow' },
+      { es: '¿Cómo estás? (informal) / ¿Cómo está usted? (formal)', en: 'How are you?' },
+      { es: 'Mucho gusto / Encantado/a', en: 'Nice to meet you' },
+    ],
+    exceptions: [
+      'Buenas noches is used for both "good evening" (greeting) and "good night" (farewell).',
+      'Chao (from ciao) is widely used informally across Latin America.',
+    ],
+    related: ['subject_pronouns', 'question_words'],
+  },
+  {
+    id: 'numbers_1_20',
+    concept_id: 'numbers_1_20',
+    cefr: 'A1',
+    category: 'Vocabulary',
+    title: 'Numbers 1–20',
+    rule: '1–15 are unique words. 16–19 merge diez + siete/ocho/nueve into one word (dieciséis, diecisiete…). 20 = veinte.',
+    examples: [
+      { es: 'uno, dos, tres, cuatro, cinco', en: '1, 2, 3, 4, 5' },
+      { es: 'diez, once, doce, trece, catorce, quince', en: '10, 11, 12, 13, 14, 15' },
+      { es: 'dieciséis, diecisiete, dieciocho, diecinueve, veinte', en: '16, 17, 18, 19, 20' },
+    ],
+    exceptions: [
+      'Uno becomes un before a masculine noun: un libro, but una mesa.',
+      'Written as one word: dieciséis (not diez y seis), veintiuno (not veinte y uno).',
+    ],
+    related: ['numbers_21_100', 'noun_gender'],
+  },
+  {
+    id: 'numbers_21_100',
+    concept_id: 'numbers_21_100',
+    cefr: 'A1',
+    category: 'Vocabulary',
+    title: 'Numbers 21–100',
+    rule: '21–29 are one word with y (veintiuno, veintidós…). 30–99 use the pattern: tens + y + units (treinta y uno). 100 = cien.',
+    examples: [
+      { es: 'veintiuno, veintidós, treinta, treinta y uno', en: '21, 22, 30, 31' },
+      { es: 'cuarenta, cincuenta, sesenta, setenta, ochenta, noventa', en: '40, 50, 60, 70, 80, 90' },
+      { es: 'cien libros / ciento uno', en: '100 books / 101 (cien before a noun, ciento + more)' },
+    ],
+    exceptions: [
+      'Cien = exactly 100; ciento = 100+ (ciento dos = 102).',
+      'Veintiún, treinta y un before masculine nouns; veintiuna/treinta y una before feminine.',
+    ],
+    related: ['numbers_1_20', 'noun_gender'],
+  },
+  {
+    id: 'time_expressions',
+    concept_id: 'time_expressions',
+    cefr: 'A2',
+    category: 'Vocabulary',
+    title: 'Time Expressions',
+    rule: 'Use hace + time period to say "ago" or "for". Combine with preterite for completed actions, present for ongoing.',
+    examples: [
+      { es: 'ayer, hoy, mañana', en: 'yesterday, today, tomorrow' },
+      { es: 'Llegué hace dos horas. (preterite + ago)', en: 'I arrived two hours ago.' },
+      { es: 'Vivo aquí desde hace un año. (present + for)', en: 'I have lived here for a year.' },
+      { es: 'la semana pasada / el año próximo', en: 'last week / next year' },
+    ],
+    exceptions: [
+      'Hace + time + que + present = duration still ongoing: Hace dos años que estudio español.',
+      'Desde hace vs. hace: desde hace for ongoing (desde hace años), hace for completed (hace años llegué).',
+    ],
+    related: ['preterite_regular', 'present_ar'],
+  },
+
   // ── A2 ─────────────────────────────────────────────────────────────────
   {
     id: 'ser_vs_estar',
@@ -766,6 +841,164 @@ export const GRAMMAR_CARDS = [
     ],
     related: ['relative_clauses'],
   },
+
+  // ── C1 ─────────────────────────────────────────────────────────────────
+  {
+    id: 'subjunctive_noun_clauses',
+    concept_id: null,
+    cefr: 'C1',
+    category: 'Mood',
+    title: 'Subjunctive in noun clauses',
+    rule: 'Subjunctive is required after verbs of desire, emotion, doubt, denial, and impersonal expressions when there is a change of subject. No change of subject → infinitive.',
+    examples: [
+      { es: 'Quiero que tú vengas. (change of subject)', en: 'I want you to come.' },
+      { es: 'Quiero venir. (same subject)', en: 'I want to come.' },
+      { es: 'Es importante que estudies.', en: 'It\'s important that you study.' },
+      { es: 'Dudamos que sea verdad.', en: 'We doubt it\'s true.' },
+      { es: 'Me alegra que hayas llegado.', en: 'I\'m glad you\'ve arrived.' },
+    ],
+    exceptions: [
+      'Creer/pensar in affirmative uses indicative: Creo que es verdad. In negative/question: No creo que sea verdad.',
+      'Decir can take subjunctive (request) or indicative (information): Te digo que vengas (request) vs. Te digo que viene (informing).',
+    ],
+    related: ['present_subjunctive', 'imperfect_subjunctive'],
+  },
+  {
+    id: 'subjunctive_adjective_clauses',
+    concept_id: null,
+    cefr: 'C1',
+    category: 'Mood',
+    title: 'Subjunctive in adjective clauses',
+    rule: 'Use subjunctive when the antecedent is unknown, non-existent, or hypothetical. Use indicative when the antecedent is known and specific.',
+    examples: [
+      { es: 'Busco un piso que tenga terraza. (unknown)', en: 'I\'m looking for a flat that has a terrace.' },
+      { es: 'Busco el piso que tiene terraza. (specific)', en: 'I\'m looking for the flat that has a terrace.' },
+      { es: 'No hay nadie que sepa la respuesta.', en: 'There\'s no one who knows the answer.' },
+      { es: 'Necesito a alguien que hable chino.', en: 'I need someone who speaks Chinese.' },
+    ],
+    exceptions: [
+      'After superlatives, indicative is usually used: Es el mejor libro que he leído.',
+    ],
+    related: ['present_subjunctive', 'relative_clauses'],
+  },
+  {
+    id: 'gerund_advanced',
+    concept_id: null,
+    cefr: 'C1',
+    category: 'Verb Forms',
+    title: 'Gerund — advanced uses',
+    rule: 'The gerund (-ando/-iendo) expresses simultaneous or immediately preceding action. It can replace a relative clause or adverbial clause.',
+    examples: [
+      { es: 'Salió corriendo. (manner)', en: 'He left running / He ran out.' },
+      { es: 'Vi un hombre cruzando la calle. (simultaneous)', en: 'I saw a man crossing the street.' },
+      { es: 'Habiéndolo terminado, salió. (preceding)', en: 'Having finished it, she left.' },
+      { es: 'Llevamos tres años viviendo aquí.', en: 'We have been living here for three years.' },
+      { es: 'Siendo estudiante, no tenía dinero.', en: 'Being a student, I had no money.' },
+    ],
+    exceptions: [
+      'The gerund cannot modify a noun: *un chico cantando (wrong); use que + verb instead: un chico que canta.',
+      'Do not use the gerund after prepositions except en: En llegando a casa, llamó. (archaic but correct)',
+    ],
+    related: ['reflexive_verbs', 'present_ar'],
+  },
+  {
+    id: 'ser_passive',
+    concept_id: null,
+    cefr: 'C1',
+    category: 'Voice',
+    title: 'True passive with ser + participio',
+    rule: 'Spanish uses ser + past participle to form the passive voice. The agent (by whom) is introduced with por. The participle agrees with the subject.',
+    examples: [
+      { es: 'El informe fue redactado por la directora.', en: 'The report was written by the director.' },
+      { es: 'Los ladrones fueron detenidos por la policía.', en: 'The thieves were arrested by the police.' },
+      { es: 'La ley será aprobada mañana.', en: 'The law will be approved tomorrow.' },
+      { es: 'El puente ha sido construido en un año.', en: 'The bridge has been built in a year.' },
+    ],
+    exceptions: [
+      'The passive is less common in everyday speech — Spanish speakers often prefer the active voice or se-passive.',
+      'Estar + participio describes the resulting state: El informe está redactado (the report is [already] written).',
+    ],
+    related: ['ser_basics', 'estar_basics'],
+  },
+  {
+    id: 'estilo_indirecto',
+    concept_id: null,
+    cefr: 'C1',
+    category: 'Discourse',
+    title: 'Reported speech (estilo indirecto)',
+    rule: 'When reporting what someone said, verb tenses shift back: present→imperfect, preterite→pluperfect, future→conditional, imperative→imperfect subjunctive.',
+    examples: [
+      { es: '"Estoy cansado." → Dijo que estaba cansado.', en: '"I\'m tired." → He said he was tired.' },
+      { es: '"Vendré mañana." → Dijo que vendría al día siguiente.', en: '"I\'ll come tomorrow." → She said she would come the next day.' },
+      { es: '"¡Cierra la puerta!" → Le dijo que cerrara la puerta.', en: '"Close the door!" → He told him to close the door.' },
+      { es: '"He terminado." → Dijo que había terminado.', en: '"I\'ve finished." → She said she had finished.' },
+    ],
+    exceptions: [
+      'Time expressions shift: hoy→ese día, ayer→el día anterior, mañana→al día siguiente, aquí→allí.',
+      'If reporting immediately after (same day/context), tense shift is often optional.',
+    ],
+    related: ['preterite_irregular', 'imperfect'],
+  },
+  {
+    id: 'nominalisation',
+    concept_id: null,
+    cefr: 'C1',
+    category: 'Morphology',
+    title: 'Nominalisation — turning verbs and adjectives into nouns',
+    rule: 'Spanish forms nouns from verbs and adjectives using suffixes like -ción/-sión, -miento, -eza, -idad, -ura, -dad.',
+    examples: [
+      { es: 'crear → la creación', en: 'to create → creation' },
+      { es: 'conocer → el conocimiento', en: 'to know → knowledge' },
+      { es: 'bello → la belleza', en: 'beautiful → beauty' },
+      { es: 'posible → la posibilidad', en: 'possible → possibility' },
+      { es: 'el infinitivo como nombre: El comer sano es importante.', en: 'The infinitive as noun: Eating healthily is important.' },
+    ],
+    exceptions: [
+      'Many nouns don\'t follow predictable patterns: el ser (being), el poder (power), el deber (duty).',
+      '-ción → -tion (English) in many cases: información, comunicación, producción.',
+    ],
+    related: ['adjective_agreement'],
+  },
+  {
+    id: 'subjunctive_temporal',
+    concept_id: null,
+    cefr: 'C1',
+    category: 'Mood',
+    title: 'Subjunctive after time conjunctions (future)',
+    rule: 'When a time clause refers to a future or hypothetical event, use the subjunctive. When it refers to a habitual or past action, use the indicative.',
+    examples: [
+      { es: 'Cuando llegues, llámame. (future → subj)', en: 'When you arrive, call me.' },
+      { es: 'Cuando llegaba, siempre llamaba. (past habit → ind)', en: 'When he arrived, he always called.' },
+      { es: 'Hasta que termines, no salgas.', en: 'Until you finish, don\'t go out.' },
+      { es: 'En cuanto pueda, te escribo.', en: 'As soon as I can, I\'ll write to you.' },
+      { es: 'Después de que hayan comido, saldremos.', en: 'After they have eaten, we\'ll leave.' },
+    ],
+    exceptions: [
+      'Antes de que ALWAYS takes subjunctive (inherently future): Llámame antes de que salgas.',
+      'Time conjunctions: cuando, mientras, hasta que, en cuanto, tan pronto como, después de que.',
+    ],
+    related: ['present_subjunctive', 'imperfect_subjunctive'],
+  },
+  {
+    id: 'cuantificadores',
+    concept_id: null,
+    cefr: 'C1',
+    category: 'Morphology',
+    title: 'Quantifiers and intensifiers',
+    rule: 'Spanish has a rich system of quantifiers. Muy (very) modifies adjectives/adverbs; mucho (much/many/a lot) modifies nouns or verbs.',
+    examples: [
+      { es: 'Está muy cansado. (adj)', en: 'He is very tired.' },
+      { es: 'Trabaja mucho. (verb)', en: 'She works a lot.' },
+      { es: 'Hay muchísimo tráfico. (intensified)', en: 'There is so much traffic.' },
+      { es: 'Apenas hay nadie. (scarcely)', en: 'There is scarcely anyone.' },
+      { es: 'Cuanto más estudias, más aprendes.', en: 'The more you study, the more you learn.' },
+    ],
+    exceptions: [
+      'Muy cannot be used with mucho/poco/bastante/demasiado directly: *muy mucho (wrong), use muchísimo.',
+      'Nada can intensify negatives: No me gusta nada. = I don\'t like it at all.',
+    ],
+    related: ['adjective_agreement', 'hay'],
+  },
 ];
 
 export function getCardById(id) {
@@ -781,4 +1014,4 @@ export function getCardsByCefr(level) {
 }
 
 export const CATEGORIES = [...new Set(GRAMMAR_CARDS.map(c => c.category))].sort();
-export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2'];
+export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];

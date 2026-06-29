@@ -72,8 +72,8 @@
   max-width: var(--content-w);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-8);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-7);
 }
 
 .featureCard {
@@ -136,4 +136,8 @@
   .mascotWrap { order: -1; }
   .fox { width: 120px; height: 120px; }
   .featuresGrid { grid-template-columns: 1fr; gap: var(--sp-6); }
+}
+
+@media (max-width: 860px) and (min-width: 641px) {
+  .featuresGrid { grid-template-columns: repeat(2, 1fr); }
 }

@@ -60,6 +60,32 @@
   color: var(--text-muted);
 }
 
+/* Vocabulary seed prompt */
+.seedCard {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
+  padding: var(--sp-5) var(--sp-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: var(--r-md);
+}
+
+.seedText {
+  flex: 1;
+  min-width: 200px;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.seedBtn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 /* Stats */
 .sectionTitle {
   font-family: var(--font-serif);
@@ -71,7 +97,7 @@
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: var(--sp-4);
 }
 
@@ -115,7 +141,7 @@
 
 .sessionHeader {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 0.6fr 0.7fr 0.5fr;
   padding: var(--sp-3) var(--sp-5);
   background: var(--bg-alt);
   font-size: 0.75rem;
@@ -127,15 +153,16 @@
 
 .sessionRow {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 0.6fr 0.7fr 0.5fr;
   padding: var(--sp-4) var(--sp-5);
   font-size: 0.9rem;
   border-top: 1px solid var(--border);
   color: var(--text);
 }
 
-.sessionDate { color: var(--text-muted); }
-.sessionAcc  { font-weight: 500; }
+.sessionDate     { color: var(--text-muted); }
+.sessionAcc      { font-weight: 500; }
+.sessionDuration { color: var(--text-muted); font-size: 0.8125rem; }
 
 /* Weak concepts */
 .weakSection {}
@@ -176,10 +203,29 @@
   letter-spacing: 0.04em;
 }
 
+.weakRight {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
 .weakMastery {
   font-weight: 600;
   color: var(--text-muted);
   font-size: 0.875rem;
+}
+
+.weakDrill {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.weakItem:hover .weakDrill {
+  opacity: 1;
 }
 
 /* Reference links */
@@ -212,7 +258,7 @@
 /* Responsive */
 @media (max-width: 640px) {
   .main { padding: var(--sp-5); }
-  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .statsGrid { grid-template-columns: repeat(3, 1fr); }
   .startSection { flex-direction: column; align-items: flex-start; }
   .startBtn { width: 100%; }
   .header { flex-direction: column; }

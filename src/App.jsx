@@ -7,9 +7,15 @@ import Session from './pages/Session.jsx';
 import GrammarRef from './pages/GrammarRef.jsx';
 import VocabReview from './pages/VocabReview.jsx';
 import VocabBrowser from './pages/VocabBrowser.jsx';
+import VerbsRef from './pages/VerbsRef.jsx';
 import FalseFriends from './pages/FalseFriends.jsx';
 import Idioms from './pages/Idioms.jsx';
 import Pronunciation from './pages/Pronunciation.jsx';
+import Profile from './pages/Profile.jsx';
+import History from './pages/History.jsx';
+import Regional from './pages/Regional.jsx';
+import Writing from './pages/Writing.jsx';
+import Concepts from './pages/Concepts.jsx';
 
 function Protected({ children }) {
   const { isLoggedIn } = useAuth();
@@ -36,6 +42,12 @@ export default function App() {
         <Route path="/false-friends" element={<Protected><FalseFriends /></Protected>} />
         <Route path="/idioms" element={<Protected><Idioms /></Protected>} />
         <Route path="/pronunciation" element={<Protected><Pronunciation /></Protected>} />
+        <Route path="/verbs" element={<Protected><VerbsRef /></Protected>} />
+        <Route path="/profile" element={<Protected><Profile /></Protected>} />
+        <Route path="/history" element={<Protected><History /></Protected>} />
+        <Route path="/regional" element={<Protected><Regional /></Protected>} />
+        <Route path="/writing" element={<Protected><Writing /></Protected>} />
+        <Route path="/concepts" element={<Protected><Concepts /></Protected>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>
