@@ -281,6 +281,51 @@ export const GRAMMAR_CARDS = [
 
   // ── A2 ─────────────────────────────────────────────────────────────────
   {
+    id: 'irregular_present',
+    concept_id: 'irregular_present',
+    cefr: 'A2',
+    category: 'Verbs',
+    title: 'Irregular Present Tense',
+    rule: 'Many common verbs are irregular in the present tense. Some are fully irregular (ir, ser); others follow predictable patterns like yo-go (hacer → hago), stem-change (poder → puedo), or go+stem-change (tener → tengo, venir → vengo).',
+    examples: [
+      { es: 'ir: voy, vas, va, vamos, vais, van', en: 'to go' },
+      { es: 'tener: tengo, tienes, tiene, tenemos, tenéis, tienen', en: 'to have' },
+      { es: 'hacer: hago, haces, hace, hacemos, hacéis, hacen', en: 'to do/make' },
+      { es: 'poder: puedo, puedes, puede, podemos, podéis, pueden', en: 'to be able to' },
+      { es: 'venir: vengo, vienes, viene, venimos, venís, vienen', en: 'to come' },
+      { es: 'saber: sé, sabes, sabe, sabemos, sabéis, saben', en: 'to know (facts)' },
+    ],
+    exceptions: [
+      'Yo-go verbs: hacer→hago, poner→pongo, salir→salgo, traer→traigo, caer→caigo, valer→valgo.',
+      'Stem-changers: e→ie (querer→quiero, pensar→pienso), o→ue (poder→puedo, volver→vuelvo), e→i (pedir→pido, seguir→sigo).',
+      'Nosotros/vosotros usually keep the infinitive stem even in stem-changing verbs: poder→podemos (not *puedemos).',
+      'Saber (to know facts) vs. conocer (to know people/places): sé hablar español vs. conozco Madrid.',
+    ],
+    related: ['present_ar', 'present_er_ir', 'modal_verbs'],
+  },
+  {
+    id: 'negation',
+    concept_id: 'negation',
+    cefr: 'A2',
+    category: 'Syntax',
+    title: 'Negation & Negative Words',
+    rule: 'Basic negation: place no before the verb. Spanish allows — and often requires — double negatives: "No tengo nada" (I don\'t have anything). Negative words can also come before the verb without no.',
+    examples: [
+      { es: 'No hablo inglés.', en: 'I don\'t speak English.' },
+      { es: 'No tengo nada. / Nada tengo.', en: 'I don\'t have anything. / I have nothing.' },
+      { es: 'No viene nunca. / Nunca viene.', en: 'She never comes.' },
+      { es: 'No hay nadie aquí. / Nadie está aquí.', en: 'There\'s nobody here.' },
+      { es: 'No me gusta tampoco.', en: 'I don\'t like it either.' },
+    ],
+    exceptions: [
+      'Double negatives are grammatically required in Spanish: No sé nada (NOT No sé algo).',
+      'Negative words: nada (nothing), nadie (nobody), nunca/jamás (never), ninguno/a (none), tampoco (neither/not either), ni...ni (neither...nor).',
+      'Ninguno shortens to ningún before masculine singular nouns: Ningún problema.',
+      'Jamás is stronger/more literary than nunca; both work in double negatives: No lo haré jamás.',
+    ],
+    related: ['present_ar', 'present_er_ir', 'question_words'],
+  },
+  {
     id: 'present_progressive',
     concept_id: 'present_progressive',
     cefr: 'A2',

@@ -135,6 +135,16 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['estar_basics', 'present_ar', 'present_er_ir'],
     explanationStyles: ['rule_first', 'example_first', 'table'],
   },
+  irregular_present: {
+    id: 'irregular_present', label: 'Irregular present tense (ir, tener, venir…)', cefr: 'A2',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['table', 'pattern', 'example_first'],
+  },
+  negation: {
+    id: 'negation', label: 'Negation & negative words (nada, nadie, nunca)', cefr: 'A2',
+    category: 'syntax', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
   acabar_de: {
