@@ -54,7 +54,7 @@ export const VOCABULARY = [
   { es: 'amarillo', en: 'yellow', cefr: 'A1', domain: 'colors', frequencyRank: 860, example: 'El sol es amarillo.', exampleEn: 'The sun is yellow.' },
   { es: 'blanco', en: 'white', cefr: 'A1', domain: 'colors', frequencyRank: 750, example: 'La nieve es blanca.', exampleEn: 'The snow is white.' },
   { es: 'negro', en: 'black', cefr: 'A1', domain: 'colors', frequencyRank: 760, example: 'Llevo un vestido negro.', exampleEn: 'I\'m wearing a black dress.' },
-  { es: 'naranja', en: 'orange', cefr: 'A1', domain: 'colors', frequencyRank: 900, example: 'Le gusta el color naranja.', exampleEn: 'She likes the color orange.' },
+  { es: 'naranja', en: 'orange (colour & fruit)', cefr: 'A1', domain: 'colors', frequencyRank: 900, example: 'Le gusta el color naranja. / Bebo zumo de naranja.', exampleEn: 'She likes the colour orange. / I drink orange juice.' },
   { es: 'morado', en: 'purple', cefr: 'A1', domain: 'colors', frequencyRank: 920, example: 'Las flores son moradas.', exampleEn: 'The flowers are purple.' },
   { es: 'rosa', en: 'pink', cefr: 'A1', domain: 'colors', frequencyRank: 910, example: 'El flamenco es rosa.', exampleEn: 'The flamingo is pink.' },
   { es: 'gris', en: 'grey', cefr: 'A1', domain: 'colors', frequencyRank: 870, example: 'El cielo está gris hoy.', exampleEn: 'The sky is grey today.' },
@@ -102,7 +102,6 @@ export const VOCABULARY = [
   { es: 'sopa', en: 'soup', cefr: 'A1', domain: 'food', frequencyRank: 660, example: 'La sopa está caliente.', exampleEn: 'The soup is hot.' },
   { es: 'huevo', en: 'egg', cefr: 'A1', domain: 'food', frequencyRank: 540, example: 'Me gustan los huevos fritos.', exampleEn: 'I like fried eggs.' },
   // More A1 food
-  { es: 'naranja', en: 'orange (fruit)', cefr: 'A1', domain: 'food', frequencyRank: 680, example: 'Bebo zumo de naranja.', exampleEn: 'I drink orange juice.' },
   { es: 'plátano', en: 'banana', cefr: 'A1', domain: 'food', frequencyRank: 700, example: 'Como un plátano de postre.', exampleEn: 'I eat a banana for dessert.' },
   { es: 'tomate', en: 'tomato', cefr: 'A1', domain: 'food', frequencyRank: 720, example: 'La ensalada lleva tomate.', exampleEn: 'The salad has tomato.' },
   { es: 'patata', en: 'potato (Spain); papa (LatAm)', cefr: 'A1', domain: 'food', frequencyRank: 740, example: 'Me gustan las patatas fritas.', exampleEn: 'I like chips / french fries.' },
@@ -462,7 +461,6 @@ export const VOCABULARY = [
   { es: 'médico', en: 'doctor', cefr: 'B1', domain: 'body', frequencyRank: 85, example: 'Fui al médico esta mañana.', exampleEn: 'I went to the doctor this morning.' },
   // B1 travel vocabulary
   { es: 'vuelo', en: 'flight', cefr: 'B1', domain: 'places', frequencyRank: 215, example: 'El vuelo sale a las ocho.', exampleEn: 'The flight leaves at eight.' },
-  { es: 'maleta', en: 'suitcase', cefr: 'B1', domain: 'places', frequencyRank: 310, example: 'Hice la maleta la noche anterior.', exampleEn: 'I packed my suitcase the night before.' },
   { es: 'reservar', en: 'to reserve / to book', cefr: 'B1', domain: 'verbs', frequencyRank: 195, example: 'Reservé una habitación para dos noches.', exampleEn: 'I booked a room for two nights.' },
   { es: 'llegada', en: 'arrival', cefr: 'B1', domain: 'places', frequencyRank: 230, example: 'La llegada estaba prevista a las tres.', exampleEn: 'The arrival was scheduled for three.' },
   { es: 'salida', en: 'departure / exit', cefr: 'B1', domain: 'places', frequencyRank: 170, example: 'La salida es a las seis de la mañana.', exampleEn: 'The departure is at six in the morning.' },
@@ -475,6 +473,40 @@ export const VOCABULARY = [
   { es: 'decepción', en: 'disappointment', cefr: 'B1', domain: 'nouns', frequencyRank: 290, example: 'Fue una gran decepción para todos.', exampleEn: 'It was a great disappointment for everyone.' },
   { es: 'frustración', en: 'frustration', cefr: 'B1', domain: 'nouns', frequencyRank: 270, example: 'Sentí mucha frustración al no entenderlo.', exampleEn: 'I felt a lot of frustration at not understanding it.' },
   { es: 'confianza', en: 'confidence / trust', cefr: 'B1', domain: 'nouns', frequencyRank: 160, example: 'Hay que tener confianza en uno mismo.', exampleEn: 'You have to have confidence in yourself.' },
+  // B1 — sports & leisure
+  { es: 'deporte', en: 'sport', cefr: 'B1', domain: 'nouns', frequencyRank: 180, example: 'El deporte es bueno para la salud.', exampleEn: 'Sport is good for your health.' },
+  { es: 'fútbol', en: 'football / soccer', cefr: 'B1', domain: 'nouns', frequencyRank: 115, example: 'El fútbol es el deporte más popular aquí.', exampleEn: 'Football is the most popular sport here.' },
+  { es: 'partido', en: 'match / game', cefr: 'B1', domain: 'nouns', frequencyRank: 105, example: 'Vamos a ver el partido esta noche.', exampleEn: "We're going to watch the match tonight." },
+  { es: 'equipo', en: 'team / equipment', cefr: 'B1', domain: 'nouns', frequencyRank: 100, example: 'Mi equipo ganó el campeonato.', exampleEn: 'My team won the championship.' },
+  { es: 'ganar', en: 'to win / to earn', cefr: 'B1', domain: 'verbs', frequencyRank: 85, example: 'Ganaron el partido por tres a uno.', exampleEn: 'They won the match three to one.' },
+  { es: 'entrenar', en: 'to train / to practise', cefr: 'B1', domain: 'verbs', frequencyRank: 240, example: 'El equipo entrena todos los días.', exampleEn: 'The team trains every day.' },
+  { es: 'campeón', en: 'champion / winner', cefr: 'B1', domain: 'nouns', frequencyRank: 250, example: 'Es el campeón del mundo.', exampleEn: "He's the world champion." },
+  // B1 — technology & media
+  { es: 'internet', en: 'the internet', cefr: 'B1', domain: 'nouns', frequencyRank: 95, example: 'Busco la información en internet.', exampleEn: 'I search for information on the internet.' },
+  { es: 'pantalla', en: 'screen', cefr: 'B1', domain: 'nouns', frequencyRank: 190, example: 'La pantalla del móvil se rompió.', exampleEn: 'The phone screen broke.' },
+  { es: 'aplicación', en: 'app / application', cefr: 'B1', domain: 'nouns', frequencyRank: 170, example: 'Descargué una aplicación para aprender idiomas.', exampleEn: 'I downloaded an app to learn languages.' },
+  { es: 'red', en: 'network / (social) network / net', cefr: 'B1', domain: 'nouns', frequencyRank: 90, example: 'Tiene muchos seguidores en las redes sociales.', exampleEn: 'She has many followers on social networks.' },
+  { es: 'correo electrónico', en: 'email', cefr: 'B1', domain: 'nouns', frequencyRank: 220, example: 'Te mandé un correo electrónico ayer.', exampleEn: 'I sent you an email yesterday.' },
+  { es: 'fotografía', en: 'photograph / photography', cefr: 'B1', domain: 'nouns', frequencyRank: 210, example: 'Le encanta la fotografía.', exampleEn: 'She loves photography.' },
+  // B1 — nature & environment
+  { es: 'naturaleza', en: 'nature', cefr: 'B1', domain: 'nouns', frequencyRank: 170, example: 'La naturaleza aquí es espectacular.', exampleEn: 'The nature here is spectacular.' },
+  { es: 'bosque', en: 'forest / wood', cefr: 'B1', domain: 'places', frequencyRank: 220, example: 'Dimos un paseo por el bosque.', exampleEn: 'We went for a walk in the forest.' },
+  { es: 'río', en: 'river', cefr: 'B1', domain: 'places', frequencyRank: 145, example: 'El río Ebro pasa por Zaragoza.', exampleEn: 'The River Ebro passes through Zaragoza.' },
+  { es: 'océano', en: 'ocean', cefr: 'B1', domain: 'places', frequencyRank: 230, example: 'El Atlántico es un océano enorme.', exampleEn: 'The Atlantic is a huge ocean.' },
+  { es: 'montaña', en: 'mountain', cefr: 'B1', domain: 'places', frequencyRank: 195, example: 'Pasamos el fin de semana en la montaña.', exampleEn: 'We spent the weekend in the mountains.' },
+  { es: 'medio ambiente', en: 'environment / the environment', cefr: 'B1', domain: 'nouns', frequencyRank: 175, example: 'Hay que proteger el medio ambiente.', exampleEn: 'We must protect the environment.' },
+  // B1 — health
+  { es: 'enfermedad', en: 'illness / disease', cefr: 'B1', domain: 'body', frequencyRank: 160, example: 'Es una enfermedad muy común.', exampleEn: "It's a very common illness." },
+  { es: 'pastilla', en: 'pill / tablet', cefr: 'B1', domain: 'body', frequencyRank: 270, example: 'Toma una pastilla antes de dormir.', exampleEn: 'Take a pill before sleeping.' },
+  { es: 'herida', en: 'wound / injury / cut', cefr: 'B1', domain: 'body', frequencyRank: 260, example: 'La herida tardó en curar.', exampleEn: 'The wound took time to heal.' },
+  { es: 'consulta', en: "doctor's appointment / consultation", cefr: 'B1', domain: 'body', frequencyRank: 280, example: 'Tengo consulta con el médico mañana.', exampleEn: "I have a doctor's appointment tomorrow." },
+  // B1 — culture & entertainment
+  { es: 'película', en: 'film / movie', cefr: 'B1', domain: 'nouns', frequencyRank: 120, example: 'Vimos una película estupenda anoche.', exampleEn: 'We watched a great film last night.' },
+  { es: 'entrada', en: 'ticket (event) / entrance', cefr: 'B1', domain: 'nouns', frequencyRank: 140, example: 'Compré dos entradas para el concierto.', exampleEn: 'I bought two tickets for the concert.' },
+  { es: 'espectáculo', en: 'show / spectacle / performance', cefr: 'B1', domain: 'nouns', frequencyRank: 200, example: 'Fue un espectáculo impresionante.', exampleEn: 'It was an impressive show.' },
+  { es: 'receta', en: 'recipe / prescription', cefr: 'B1', domain: 'food', frequencyRank: 250, example: 'Sigo la receta de mi abuela.', exampleEn: "I follow my grandmother's recipe." },
+  { es: 'moda', en: 'fashion / trend', cefr: 'B1', domain: 'nouns', frequencyRank: 190, example: 'Le interesa mucho la moda.', exampleEn: "She's very interested in fashion." },
+  { es: 'personaje', en: 'character (in a story) / figure', cefr: 'B1', domain: 'nouns', frequencyRank: 155, example: 'Mi personaje favorito es el protagonista.', exampleEn: 'My favourite character is the protagonist.' },
 
   // ── B2 ──────────────────────────────────────────────────────────────────
   // Connectors & discourse markers
@@ -513,7 +545,6 @@ export const VOCABULARY = [
   { es: 'añoranza', en: 'longing / nostalgia', cefr: 'B2', domain: 'nouns', frequencyRank: 400, example: 'Siente añoranza de su tierra.', exampleEn: 'She feels nostalgia for her homeland.' },
   { es: 'euforia', en: 'euphoria / elation', cefr: 'B2', domain: 'nouns', frequencyRank: 350, example: 'El triunfo provocó una gran euforia.', exampleEn: 'The victory caused great elation.' },
   // Connectors (more)
-  { es: 'en cambio', en: 'on the other hand / instead', cefr: 'B2', domain: 'connectors', frequencyRank: 210, example: 'Él trabaja mucho; en cambio, ella descansa.', exampleEn: 'He works hard; she, on the other hand, rests.' },
   { es: 'con respecto a', en: 'with respect to / regarding', cefr: 'B2', domain: 'connectors', frequencyRank: 230, example: 'Con respecto a tu pregunta, no tengo respuesta.', exampleEn: 'Regarding your question, I have no answer.' },
   { es: 'pese a', en: 'despite / in spite of', cefr: 'B2', domain: 'connectors', frequencyRank: 240, example: 'Salió pese a la lluvia.', exampleEn: 'She went out despite the rain.' },
   { es: 'de manera que', en: 'so that / in such a way that', cefr: 'B2', domain: 'connectors', frequencyRank: 200, example: 'Habla de manera que todos le entiendan.', exampleEn: 'He speaks so that everyone understands him.' },
@@ -522,13 +553,11 @@ export const VOCABULARY = [
   { es: 'rechazar', en: 'to reject / to turn down', cefr: 'B2', domain: 'verbs', frequencyRank: 130, example: 'El comité rechazó la propuesta.', exampleEn: 'The committee rejected the proposal.' },
   { es: 'implicar', en: 'to imply / to involve', cefr: 'B2', domain: 'verbs', frequencyRank: 100, example: 'Ese cargo implica mucha responsabilidad.', exampleEn: 'That role involves a lot of responsibility.' },
   { es: 'establecer', en: 'to establish / to set up', cefr: 'B2', domain: 'verbs', frequencyRank: 80, example: 'El contrato establece las condiciones.', exampleEn: 'The contract establishes the terms.' },
-  { es: 'reconocer', en: 'to recognise / to acknowledge', cefr: 'B2', domain: 'verbs', frequencyRank: 90, example: 'Hay que reconocer sus méritos.', exampleEn: "We must acknowledge his merits." },
   { es: 'proponer', en: 'to propose / to suggest', cefr: 'B2', domain: 'verbs', frequencyRank: 110, example: 'Te propongo una solución diferente.', exampleEn: 'I propose a different solution to you.' },
   { es: 'garantizar', en: 'to guarantee / to ensure', cefr: 'B2', domain: 'verbs', frequencyRank: 140, example: 'No podemos garantizar el resultado.', exampleEn: 'We cannot guarantee the result.' },
   { es: 'fomentar', en: 'to promote / to foster / to encourage', cefr: 'B2', domain: 'verbs', frequencyRank: 160, example: 'El programa fomenta la lectura.', exampleEn: 'The programme fosters reading.' },
   { es: 'valorar', en: 'to value / to assess / to appreciate', cefr: 'B2', domain: 'verbs', frequencyRank: 150, example: 'Valoran mucho su trabajo en equipo.', exampleEn: 'They highly value his teamwork.' },
   { es: 'asumir', en: 'to assume / to take on / to accept', cefr: 'B2', domain: 'verbs', frequencyRank: 120, example: 'Asumió toda la responsabilidad.', exampleEn: 'She took on all the responsibility.' },
-  { es: 'exigir', en: 'to demand / to require', cefr: 'B2', domain: 'verbs', frequencyRank: 130, example: 'El trabajo exige mucha concentración.', exampleEn: 'The work demands great concentration.' },
   { es: 'conllevar', en: 'to entail / to involve / to carry with it', cefr: 'B2', domain: 'verbs', frequencyRank: 210, example: 'El puesto conlleva muchas responsabilidades.', exampleEn: 'The position entails many responsibilities.' },
   // Society & politics nouns
   { es: 'ciudadano', en: 'citizen', cefr: 'B2', domain: 'nouns', frequencyRank: 90, example: 'Los ciudadanos tienen derecho a votar.', exampleEn: 'Citizens have the right to vote.' },
@@ -564,8 +593,6 @@ export const VOCABULARY = [
   { es: 'perspectiva', en: 'perspective / outlook', cefr: 'B2', domain: 'nouns', frequencyRank: 125, example: 'Hay que verlo desde otra perspectiva.', exampleEn: 'You have to look at it from another perspective.' },
   { es: 'contribución', en: 'contribution', cefr: 'B2', domain: 'nouns', frequencyRank: 175, example: 'Hizo una gran contribución al proyecto.', exampleEn: 'She made a great contribution to the project.' },
   { es: 'sector', en: 'sector / field / area', cefr: 'B2', domain: 'nouns', frequencyRank: 95, example: 'Trabaja en el sector privado.', exampleEn: 'He works in the private sector.' },
-  { es: 'conjunto', en: 'set / combination / ensemble', cefr: 'B2', domain: 'nouns', frequencyRank: 105, example: 'Un conjunto de factores influyó en la decisión.', exampleEn: 'A combination of factors influenced the decision.' },
-  { es: 'plazo', en: 'deadline / term / period', cefr: 'B2', domain: 'nouns', frequencyRank: 135, example: '¿Cuál es el plazo de entrega?', exampleEn: 'What is the delivery deadline?' },
   // Additional B2 verbs
   { es: 'evaluar', en: 'to evaluate / to assess', cefr: 'B2', domain: 'verbs', frequencyRank: 145, example: 'Hay que evaluar los resultados.', exampleEn: 'We need to evaluate the results.' },
   { es: 'generar', en: 'to generate / to create / to produce', cefr: 'B2', domain: 'verbs', frequencyRank: 105, example: 'El proyecto generó muchos empleos.', exampleEn: 'The project generated many jobs.' },
@@ -630,11 +657,9 @@ export const VOCABULARY = [
   { es: 'acérrimo', en: 'staunch / fierce / bitter (of opponents or defenders)', cefr: 'C1', domain: 'adjectives', frequencyRank: 460, example: 'Es un acérrimo defensor de los derechos humanos.', exampleEn: 'He is a staunch defender of human rights.' },
   // More C1 abstract nouns
   { es: 'paradigma', en: 'paradigm / model / framework', cefr: 'C1', domain: 'nouns', frequencyRank: 340, example: 'La IA representa un nuevo paradigma en la industria.', exampleEn: 'AI represents a new paradigm in the industry.' },
-  { es: 'prerrogativa', en: 'prerogative / privilege / right', cefr: 'C1', domain: 'nouns', frequencyRank: 430, example: 'Es prerrogativa del presidente tomarlo.', exampleEn: 'It is the president\'s prerogative to decide.' },
   { es: 'heterogeneidad', en: 'heterogeneity / diversity / variety', cefr: 'C1', domain: 'nouns', frequencyRank: 450, example: 'La heterogeneidad del grupo enriquece el debate.', exampleEn: 'The diversity of the group enriches the debate.' },
   { es: 'contingencia', en: 'contingency / eventuality', cefr: 'C1', domain: 'nouns', frequencyRank: 440, example: 'Hay que prever cualquier contingencia.', exampleEn: 'Any contingency must be anticipated.' },
   { es: 'coyuntura', en: 'juncture / situation / conjuncture', cefr: 'C1', domain: 'nouns', frequencyRank: 410, example: 'La coyuntura económica es delicada.', exampleEn: 'The economic situation is delicate.' },
-  { es: 'repercusión', en: 'repercussion / impact / consequence', cefr: 'C1', domain: 'nouns', frequencyRank: 370, example: 'La decisión tuvo repercusiones inesperadas.', exampleEn: 'The decision had unexpected repercussions.' },
   { es: 'estancamiento', en: 'stagnation / standstill', cefr: 'C1', domain: 'nouns', frequencyRank: 400, example: 'La economía sufre un estancamiento preocupante.', exampleEn: 'The economy is suffering a worrying stagnation.' },
   // More C1 verbs
   { es: 'cohesionar', en: 'to unite / to bind together / to create cohesion', cefr: 'C1', domain: 'verbs', frequencyRank: 450, example: 'El proyecto cohesionó al equipo.', exampleEn: 'The project united the team.' },
