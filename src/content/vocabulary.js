@@ -184,6 +184,21 @@ export const VOCABULARY = [
   { es: 'cansado', en: 'tired', cefr: 'A1', domain: 'adjectives', frequencyRank: 400, example: 'Estoy muy cansado.', exampleEn: 'I\'m very tired.' },
   { es: 'contento', en: 'happy / pleased', cefr: 'A1', domain: 'adjectives', frequencyRank: 350, example: 'Estoy muy contento.', exampleEn: 'I\'m very happy.' },
   { es: 'tranquilo', en: 'calm / quiet', cefr: 'A1', domain: 'adjectives', frequencyRank: 320, example: 'Es una ciudad tranquila.', exampleEn: 'It\'s a quiet city.' },
+  { es: 'alto', en: 'tall / high', cefr: 'A1', domain: 'adjectives', frequencyRank: 85, example: 'Mi hermano es muy alto.', exampleEn: 'My brother is very tall.' },
+  { es: 'bajo', en: 'short / low', cefr: 'A1', domain: 'adjectives', frequencyRank: 87, example: 'La silla es demasiado baja.', exampleEn: 'The chair is too low.' },
+  { es: 'rico', en: 'rich / delicious', cefr: 'A1', domain: 'adjectives', frequencyRank: 90, example: '¡Qué rico está este plato!', exampleEn: 'This dish is delicious!' },
+  { es: 'pobre', en: 'poor', cefr: 'A1', domain: 'adjectives', frequencyRank: 92, example: '¡Pobrecito!', exampleEn: 'Poor thing!' },
+  { es: 'rápido', en: 'fast / quick', cefr: 'A1', domain: 'adjectives', frequencyRank: 94, example: 'El coche es muy rápido.', exampleEn: 'The car is very fast.' },
+  { es: 'lento', en: 'slow', cefr: 'A1', domain: 'adjectives', frequencyRank: 96, example: 'Ve más lento, por favor.', exampleEn: 'Go slower, please.' },
+  { es: 'caliente', en: 'hot (temperature)', cefr: 'A1', domain: 'adjectives', frequencyRank: 98, example: 'El café está caliente.', exampleEn: 'The coffee is hot.' },
+  { es: 'limpio', en: 'clean', cefr: 'A1', domain: 'adjectives', frequencyRank: 102, example: 'La habitación está limpia.', exampleEn: 'The room is clean.' },
+  { es: 'sucio', en: 'dirty', cefr: 'A1', domain: 'adjectives', frequencyRank: 104, example: 'Las manos están sucias.', exampleEn: 'The hands are dirty.' },
+  { es: 'feliz', en: 'happy', cefr: 'A1', domain: 'adjectives', frequencyRank: 106, example: 'Estoy muy feliz hoy.', exampleEn: 'I\'m very happy today.' },
+  { es: 'solo', en: 'alone / lonely', cefr: 'A1', domain: 'adjectives', frequencyRank: 108, example: 'Vivo solo.', exampleEn: 'I live alone.' },
+  { es: 'lleno', en: 'full', cefr: 'A2', domain: 'adjectives', frequencyRank: 112, example: 'El restaurante está lleno.', exampleEn: 'The restaurant is full.' },
+  { es: 'vacío', en: 'empty', cefr: 'A2', domain: 'adjectives', frequencyRank: 114, example: 'El vaso está vacío.', exampleEn: 'The glass is empty.' },
+  { es: 'mismo', en: 'same / itself', cefr: 'A2', domain: 'adjectives', frequencyRank: 28, example: 'Es el mismo libro.', exampleEn: 'It\'s the same book.' },
+  { es: 'propio', en: 'own (adj.)', cefr: 'A2', domain: 'adjectives', frequencyRank: 62, example: 'Tiene su propio negocio.', exampleEn: 'She has her own business.' },
 
   // ── A2 WORDS ────────────────────────────────────────────────────────────
 
@@ -337,7 +352,7 @@ export const VOCABULARY = [
   { es: 'triste', en: 'sad', cefr: 'A2', domain: 'adjectives', frequencyRank: 108, example: 'Estoy triste hoy.', exampleEn: 'I\'m sad today.' },
   { es: 'nervioso', en: 'nervous', cefr: 'A2', domain: 'adjectives', frequencyRank: 122, example: 'Estoy nervioso antes del examen.', exampleEn: 'I\'m nervous before the exam.' },
   { es: 'aburrido', en: 'bored / boring', cefr: 'A2', domain: 'adjectives', frequencyRank: 128, example: 'La clase es muy aburrida.', exampleEn: 'The class is very boring.' },
-  { es: 'cansado', en: 'tired', cefr: 'A2', domain: 'adjectives', frequencyRank: 110, example: 'Estoy muy cansado.', exampleEn: 'I\'m very tired.' },
+  { es: 'raro', en: 'strange / odd / rare', cefr: 'A2', domain: 'adjectives', frequencyRank: 110, example: 'Qué raro que no haya llamado.', exampleEn: 'How strange that he hasn\'t called.' },
   // Work
   { es: 'oficina', en: 'office', cefr: 'A2', domain: 'nouns', frequencyRank: 133, example: 'Trabajo en una oficina.', exampleEn: 'I work in an office.' },
   { es: 'jefe', en: 'boss / manager', cefr: 'A2', domain: 'nouns', frequencyRank: 136, example: 'Mi jefe es muy exigente.', exampleEn: 'My boss is very demanding.' },
