@@ -155,6 +155,11 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['irregular_present', 'prepositions_basic'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  adverbs_formation: {
+    id: 'adverbs_formation', label: 'Adverbs formation (-mente)', cefr: 'A2',
+    category: 'morphology', prereqs: ['adjective_agreement'],
+    explanationStyles: ['rule_first', 'pattern', 'example_first'],
+  },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
   acabar_de: {

@@ -326,6 +326,28 @@ export const GRAMMAR_CARDS = [
     related: ['present_ar', 'present_er_ir', 'question_words'],
   },
   {
+    id: 'adverbs_formation',
+    concept_id: 'adverbs_formation',
+    cefr: 'A2',
+    category: 'Morphology',
+    title: 'Adverbs — Formation with -mente',
+    rule: 'Add -mente to the feminine singular form of an adjective to make an adverb of manner. If the adjective has a written accent, it keeps it.',
+    examples: [
+      { es: 'rápido → rápida → rápidamente', en: 'quick → quickly' },
+      { es: 'fácil → fácil → fácilmente (no gender change for -il)', en: 'easy → easily' },
+      { es: 'tranquilo → tranquila → tranquilamente', en: 'calm → calmly' },
+      { es: 'claro → claramente, lento → lentamente', en: 'clearly, slowly' },
+      { es: 'Habla rápidamente pero claramente.', en: 'She speaks quickly but clearly.' },
+    ],
+    exceptions: [
+      'When two -mente adverbs appear together, only the second keeps -mente: clara y concisamente (not claramente y concisamente).',
+      'Adjectives that are the same in masc. and fem. just add -mente: feliz → felizmente, fácil → fácilmente, útil → útilmente.',
+      'Some common adverbs are not derived from adjectives: bien (well), mal (badly), así (thus), ya (already), aún/todavía (still), también (also), tampoco (neither).',
+      'Accentuation is preserved: rápido retains its accent: rápidamente, not rapidamente.',
+    ],
+    related: ['adjective_agreement', 'comparatives'],
+  },
+  {
     id: 'near_future',
     concept_id: 'near_future',
     cefr: 'A2',

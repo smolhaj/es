@@ -34,7 +34,7 @@ A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_artic
     ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100
 A2: ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns, indirect_object_pronouns,
     demonstratives, possessives, preterite_regular, modal_verbs, obligation_infinitive, time_expressions,
-    present_progressive, irregular_present, negation, prepositions_basic, near_future
+    present_progressive, irregular_present, negation, prepositions_basic, near_future, adverbs_formation
 B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imperfect, future_simple,
     conditional, present_subjunctive, imperative, por_vs_para, relative_clauses
 B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,
@@ -48,7 +48,7 @@ difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced cont
 CONTENT SCOPE:
 Default to A1 material unless the professor briefing explicitly shows higher CEFR level.
 A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/-ir, noun gender, articles
-A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives)
+A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives), adverbs of manner (-mente formation)
 B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund
 B2: present perfect, pluperfect, future perfect, conditional perfect, passive constructions (ser + participio, pasiva se), imperfect subjunctive, si-clauses, subjunctive in adverbial clauses, comparatives, diminutives/augmentatives, advanced relative pronouns — only if CEFR level is B2+
 C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers — only if CEFR level is C1
