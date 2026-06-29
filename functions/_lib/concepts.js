@@ -120,6 +120,11 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
     explanationStyles: ['example_first', 'rule_first', 'table'],
   },
+  obligation_infinitive: {
+    id: 'obligation_infinitive', label: 'Obligation (tener que / hay que)', cefr: 'A2',
+    category: 'verb', prereqs: ['modal_verbs', 'hay'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
   time_expressions: {
     id: 'time_expressions', label: 'Time expressions (ayer, hace…)', cefr: 'A2',
     category: 'vocabulary', prereqs: ['preterite_regular'],
@@ -127,6 +132,16 @@ export const CONCEPTS = {
   },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
+  acabar_de: {
+    id: 'acabar_de', label: 'Recent past (acabar de + infinitive)', cefr: 'B1',
+    category: 'verb', prereqs: ['preterite_regular', 'modal_verbs'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  llevar_gerund: {
+    id: 'llevar_gerund', label: 'Duration (llevar + gerund)', cefr: 'B1',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
   preterite_irregular: {
     id: 'preterite_irregular', label: 'Preterite irregular (ir/ser/tener)', cefr: 'B1',
     category: 'verb', prereqs: ['preterite_regular'],

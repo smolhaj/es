@@ -33,9 +33,9 @@ concept_id must be one of:
 A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_articles, indefinite_articles,
     ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100
 A2: ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns, indirect_object_pronouns,
-    demonstratives, possessives, preterite_regular, modal_verbs, time_expressions
-B1: preterite_irregular, imperfect, preterite_vs_imperfect, future_simple, conditional, present_subjunctive,
-    imperative, por_vs_para, relative_clauses
+    demonstratives, possessives, preterite_regular, modal_verbs, obligation_infinitive, time_expressions
+B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imperfect, future_simple,
+    conditional, present_subjunctive, imperative, por_vs_para, relative_clauses
 B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,
     imperfect_subjunctive, si_clauses, subjunctive_adverbial, comparatives, ser_estar_participle,
     diminutives_augmentatives, relative_pronouns_advanced
