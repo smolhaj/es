@@ -80,6 +80,7 @@ SESSION OPENER (first_turn=true only):
 One short line referencing learner context (session count, weak spots), then blank line, then CORRECT: true.`;
 
 export const FALLBACK_EXERCISES = [
+  // A1
   { type: 'multiple_choice', prompt: 'What does "hola" mean?', word: 'hola', english: 'hello', answer: 'hello', options: ['goodbye', 'hello', 'please', 'thank you'], concept_id: 'greeting_basics', difficulty: 1 },
   { type: 'fill_blank', prompt: 'Complete: Yo ___ español. (hablar)', word: 'hablar', english: 'to speak', answer: 'hablo', concept_id: 'present_ar', difficulty: 2 },
   { type: 'translation_to_english', prompt: '¿Qué significa "gracias"?', word: 'gracias', english: 'thank you', answer: 'thank you', concept_id: 'greeting_basics', difficulty: 1 },
@@ -90,6 +91,18 @@ export const FALLBACK_EXERCISES = [
   { type: 'translation_to_english', prompt: '¿Qué significa "hasta luego"?', word: 'hasta luego', english: 'see you later', answer: 'see you later', concept_id: 'greeting_basics', difficulty: 1 },
   { type: 'multiple_choice', prompt: 'What does "comer" mean?', word: 'comer', english: 'to eat', answer: 'to eat', options: ['to drink', 'to eat', 'to sleep', 'to run'], concept_id: 'present_er_ir', difficulty: 1 },
   { type: 'fill_blank', prompt: 'Complete: ¿Cómo ___ tú? (llamarse)', word: 'llamarse', english: 'to be called', answer: 'te llamas', concept_id: 'reflexive_verbs', difficulty: 2 },
+  // A2
+  { type: 'fill_blank', prompt: 'Complete: Ella ___ en Madrid desde hace dos años. (vivir)', word: 'vivir', english: 'to live', answer: 'vive', concept_id: 'present_er_ir', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'Which is correct for "I went to the cinema"?', word: 'ir', english: 'to go', answer: 'Fui al cine.', options: ['Iba al cine.', 'Fui al cine.', 'Voy al cine.', 'Iré al cine.'], concept_id: 'preterite_regular', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete: ¿A ___ te gusta más, el café o el té? (cuál)', word: 'gustar', english: 'to like', answer: 'cuál', concept_id: 'gustar_type', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I am going to travel to Spain.'", english: 'I am going to travel to Spain.', answer: 'Voy a viajar a España.', word: 'viajar', concept_id: 'near_future', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'How do you say "I was studying" (ongoing past) in Spanish?', word: 'estudiar', english: 'to study', answer: 'Estaba estudiando.', options: ['Estudié.', 'Estaba estudiando.', 'Estudiaré.', 'He estudiado.'], concept_id: 'present_progressive', difficulty: 2 },
+  // B1
+  { type: 'fill_blank', prompt: 'Complete: Si tuviera más tiempo, ___ más. (estudiar, conditional)', word: 'estudiar', english: 'to study', answer: 'estudiaría', concept_id: 'conditional', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I have just arrived.'", english: 'I have just arrived.', answer: 'Acabo de llegar.', word: 'llegar', concept_id: 'acabar_de', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'Which sentence uses "por" correctly?', word: 'por', english: 'for/by/through', answer: 'Gracias por tu ayuda.', options: ['Lo hago para divertirme.', 'Gracias por tu ayuda.', 'Estudio para aprender.', 'Salgo para Madrid mañana.'], concept_id: 'por_vs_para', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: Quiero que ___ la verdad. (decir, present subjunctive, tú)', word: 'decir', english: 'to say', answer: 'digas', concept_id: 'present_subjunctive', difficulty: 3 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Lleva tres horas estudiando"?', word: 'llevar', english: 'to have been doing for', answer: 'She has been studying for three hours.', concept_id: 'llevar_gerund', difficulty: 2 },
 ];
 
 function fallback() {
