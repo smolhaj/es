@@ -159,6 +159,17 @@ export const VOCABULARY = [
   { es: 'comprar', en: 'to buy', cefr: 'A1', domain: 'verbs', frequencyRank: 75, example: 'Voy a comprar leche.', exampleEn: 'I\'m going to buy milk.' },
   { es: 'dar', en: 'to give', cefr: 'A1', domain: 'verbs', frequencyRank: 18, example: 'Te doy mi número.', exampleEn: 'I\'ll give you my number.' },
   { es: 'ver', en: 'to see / to watch', cefr: 'A1', domain: 'verbs', frequencyRank: 20, example: 'Vemos una película.', exampleEn: 'We\'re watching a movie.' },
+  { es: 'escuchar', en: 'to listen', cefr: 'A1', domain: 'verbs', frequencyRank: 80, example: 'Escucha la música.', exampleEn: 'Listen to the music.' },
+  { es: 'mirar', en: 'to look (at) / to watch', cefr: 'A1', domain: 'verbs', frequencyRank: 82, example: '¡Mira! Un gato en el árbol.', exampleEn: 'Look! A cat in the tree.' },
+  { es: 'aprender', en: 'to learn', cefr: 'A1', domain: 'verbs', frequencyRank: 85, example: 'Quiero aprender a cocinar.', exampleEn: 'I want to learn to cook.' },
+  { es: 'cocinar', en: 'to cook', cefr: 'A1', domain: 'verbs', frequencyRank: 88, example: 'Me encanta cocinar.', exampleEn: 'I love to cook.' },
+  { es: 'llevar', en: 'to carry / to take / to wear', cefr: 'A1', domain: 'verbs', frequencyRank: 22, example: 'Llevo el abrigo al trabajo.', exampleEn: 'I\'m taking the coat to work.' },
+  { es: 'traer', en: 'to bring', cefr: 'A1', domain: 'verbs', frequencyRank: 92, example: 'Trae una botella de vino.', exampleEn: 'Bring a bottle of wine.' },
+  { es: 'abrir', en: 'to open', cefr: 'A1', domain: 'verbs', frequencyRank: 95, example: 'Abre la ventana, por favor.', exampleEn: 'Open the window, please.' },
+  { es: 'cerrar', en: 'to close / to shut', cefr: 'A2', domain: 'verbs', frequencyRank: 98, example: 'Cierra la puerta.', exampleEn: 'Close the door.' },
+  { es: 'caminar', en: 'to walk', cefr: 'A1', domain: 'verbs', frequencyRank: 100, example: 'Camino al trabajo.', exampleEn: 'I walk to work.' },
+  { es: 'correr', en: 'to run', cefr: 'A1', domain: 'verbs', frequencyRank: 102, example: 'Corre todos los días.', exampleEn: 'She runs every day.' },
+  { es: 'vender', en: 'to sell', cefr: 'A2', domain: 'verbs', frequencyRank: 104, example: 'Vendo mi coche.', exampleEn: 'I\'m selling my car.' },
 
   // ── ADJECTIVES (A1) ─────────────────────────────────────────────────────
   { es: 'grande', en: 'big / great', cefr: 'A1', domain: 'adjectives', frequencyRank: 50, example: 'Es una ciudad grande.', exampleEn: 'It\'s a big city.' },
