@@ -88,6 +88,18 @@ export const VOCABULARY = [
   { es: 'ensalada', en: 'salad', cefr: 'A1', domain: 'food', frequencyRank: 640, example: 'Pide una ensalada mixta.', exampleEn: 'Order a mixed salad.' },
   { es: 'sopa', en: 'soup', cefr: 'A1', domain: 'food', frequencyRank: 660, example: 'La sopa está caliente.', exampleEn: 'The soup is hot.' },
   { es: 'huevo', en: 'egg', cefr: 'A1', domain: 'food', frequencyRank: 540, example: 'Me gustan los huevos fritos.', exampleEn: 'I like fried eggs.' },
+  // More A1 food
+  { es: 'naranja', en: 'orange (fruit)', cefr: 'A1', domain: 'food', frequencyRank: 680, example: 'Bebo zumo de naranja.', exampleEn: 'I drink orange juice.' },
+  { es: 'plátano', en: 'banana', cefr: 'A1', domain: 'food', frequencyRank: 700, example: 'Como un plátano de postre.', exampleEn: 'I eat a banana for dessert.' },
+  { es: 'tomate', en: 'tomato', cefr: 'A1', domain: 'food', frequencyRank: 720, example: 'La ensalada lleva tomate.', exampleEn: 'The salad has tomato.' },
+  { es: 'patata', en: 'potato (Spain); papa (LatAm)', cefr: 'A1', domain: 'food', frequencyRank: 740, example: 'Me gustan las patatas fritas.', exampleEn: 'I like chips / french fries.' },
+  { es: 'jamón', en: 'ham', cefr: 'A1', domain: 'food', frequencyRank: 760, example: 'Un bocadillo de jamón, por favor.', exampleEn: 'A ham sandwich, please.' },
+  { es: 'aceite', en: 'oil (esp. olive oil)', cefr: 'A2', domain: 'food', frequencyRank: 780, example: 'Cocino con aceite de oliva.', exampleEn: 'I cook with olive oil.' },
+  { es: 'azúcar', en: 'sugar', cefr: 'A2', domain: 'food', frequencyRank: 800, example: '¿Quieres azúcar en el café?', exampleEn: 'Do you want sugar in your coffee?' },
+  { es: 'sal', en: 'salt', cefr: 'A2', domain: 'food', frequencyRank: 820, example: 'Ponle sal a la sopa.', exampleEn: 'Add salt to the soup.' },
+  { es: 'desayuno', en: 'breakfast', cefr: 'A1', domain: 'food', frequencyRank: 840, example: '¿Qué desayunas normalmente?', exampleEn: 'What do you usually have for breakfast?' },
+  { es: 'almuerzo', en: 'lunch', cefr: 'A1', domain: 'food', frequencyRank: 860, example: 'Comemos el almuerzo a las dos.', exampleEn: 'We have lunch at two.' },
+  { es: 'cena', en: 'dinner / supper', cefr: 'A1', domain: 'food', frequencyRank: 880, example: 'La cena está lista.', exampleEn: 'Dinner is ready.' },
 
   // ── PLACES ──────────────────────────────────────────────────────────────
   { es: 'casa', en: 'house / home', cefr: 'A1', domain: 'places', frequencyRank: 90, example: 'Estoy en casa.', exampleEn: 'I\'m at home.' },
@@ -103,6 +115,16 @@ export const VOCABULARY = [
   { es: 'supermercado', en: 'supermarket', cefr: 'A1', domain: 'places', frequencyRank: 420, example: 'Compro en el supermercado.', exampleEn: 'I shop at the supermarket.' },
   { es: 'parque', en: 'park', cefr: 'A1', domain: 'places', frequencyRank: 430, example: 'Los niños juegan en el parque.', exampleEn: 'The children play in the park.' },
   { es: 'playa', en: 'beach', cefr: 'A1', domain: 'places', frequencyRank: 440, example: 'Vamos a la playa en verano.', exampleEn: 'We go to the beach in summer.' },
+  // More places
+  { es: 'biblioteca', en: 'library', cefr: 'A1', domain: 'places', frequencyRank: 450, example: 'Voy a la biblioteca a estudiar.', exampleEn: 'I go to the library to study.' },
+  { es: 'farmacia', en: 'pharmacy / chemist', cefr: 'A1', domain: 'places', frequencyRank: 460, example: 'Necesito ir a la farmacia.', exampleEn: 'I need to go to the pharmacy.' },
+  { es: 'mercado', en: 'market', cefr: 'A1', domain: 'places', frequencyRank: 470, example: 'Compramos verduras en el mercado.', exampleEn: 'We buy vegetables at the market.' },
+  { es: 'iglesia', en: 'church', cefr: 'A1', domain: 'places', frequencyRank: 480, example: 'La iglesia está en el centro.', exampleEn: 'The church is in the centre.' },
+  { es: 'museo', en: 'museum', cefr: 'A1', domain: 'places', frequencyRank: 490, example: 'El museo abre a las diez.', exampleEn: 'The museum opens at ten.' },
+  { es: 'estación', en: 'station (train/metro)', cefr: 'A1', domain: 'places', frequencyRank: 500, example: 'Nos vemos en la estación.', exampleEn: 'We\'ll meet at the station.' },
+  { es: 'hotel', en: 'hotel', cefr: 'A1', domain: 'places', frequencyRank: 510, example: 'El hotel tiene piscina.', exampleEn: 'The hotel has a pool.' },
+  { es: 'cine', en: 'cinema / movie theater', cefr: 'A1', domain: 'places', frequencyRank: 520, example: '¿Vamos al cine esta tarde?', exampleEn: 'Shall we go to the cinema this afternoon?' },
+  { es: 'campo', en: 'countryside / field', cefr: 'A2', domain: 'places', frequencyRank: 530, example: 'Me gusta pasar el fin de semana en el campo.', exampleEn: 'I like spending the weekend in the countryside.' },
 
   // ── CORE VERBS (A1) ─────────────────────────────────────────────────────
   { es: 'ser', en: 'to be (permanent)', cefr: 'A1', domain: 'verbs', frequencyRank: 2, example: 'Soy estudiante.', exampleEn: 'I am a student.' },
@@ -269,7 +291,7 @@ export const VOCABULARY = [
   { es: 'precio', en: 'price', cefr: 'A2', domain: 'nouns', frequencyRank: 105, example: '¿Cuál es el precio?', exampleEn: 'What\'s the price?' },
   { es: 'caro', en: 'expensive', cefr: 'A2', domain: 'adjectives', frequencyRank: 112, example: 'Este restaurante es muy caro.', exampleEn: 'This restaurant is very expensive.' },
   { es: 'barato', en: 'cheap / inexpensive', cefr: 'A2', domain: 'adjectives', frequencyRank: 118, example: 'Es muy barato.', exampleEn: 'It\'s very cheap.' },
-  { es: 'supermercado', en: 'supermarket', cefr: 'A2', domain: 'nouns', frequencyRank: 148, example: 'Voy al supermercado.', exampleEn: 'I\'m going to the supermarket.' },
+  { es: 'piso', en: 'flat / apartment (Spain)', cefr: 'A2', domain: 'places', frequencyRank: 148, example: 'Vivo en un piso en el centro.', exampleEn: 'I live in a flat in the city centre.' },
   // Restaurant
   { es: 'pedir', en: 'to order / to ask for', cefr: 'A2', domain: 'verbs', frequencyRank: 95, example: 'Voy a pedir la ensalada.', exampleEn: 'I\'m going to order the salad.' },
   { es: 'la carta', en: 'the menu', cefr: 'A2', domain: 'nouns', frequencyRank: 165, example: '¿Me trae la carta, por favor?', exampleEn: 'Could you bring me the menu, please?' },
