@@ -145,6 +145,11 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['present_ar', 'present_er_ir'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
+  prepositions_basic: {
+    id: 'prepositions_basic', label: 'Basic prepositions (a, de, en, con, sin…)', cefr: 'A2',
+    category: 'syntax', prereqs: ['definite_articles', 'present_ar'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
   acabar_de: {
