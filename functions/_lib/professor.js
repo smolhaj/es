@@ -22,9 +22,11 @@ export async function compileBriefing(db, userId) {
     `).bind(userId).all(),
 
     db.prepare(`
-      SELECT COUNT(*) as due_count FROM vocabulary_items
+      SELECT word, translation, review_count, correct_count
+      FROM vocabulary_items
       WHERE user_id = ? AND due_at IS NOT NULL AND due_at <= ?
-    `).bind(userId, now).first(),
+      ORDER BY due_at ASC LIMIT 12
+    `).bind(userId, now).all(),
 
     db.prepare(`
       SELECT frustration_score, fatigue_signal, items_reviewed, correct_count, overall_accuracy
@@ -69,9 +71,15 @@ export async function compileBriefing(db, userId) {
   lines.push(`SKILLS: ${skillStr || 'No data yet — treat as fresh A1 learner.'}`);
 
   // FSRS vocab due
-  const dueCount = dueVocab?.due_count ?? 0;
-  if (dueCount > 0) {
-    lines.push(`VOCAB DUE: ${dueCount} item(s) scheduled for SRS review today.`);
+  const dueWords = dueVocab?.results ?? [];
+  if (dueWords.length > 0) {
+    const wordList = dueWords
+      .map(w => {
+        const acc = w.review_count > 0 ? Math.round((w.correct_count / w.review_count) * 100) : null;
+        return acc !== null ? `${w.word} (${w.translation}, ${acc}% acc)` : `${w.word} (${w.translation})`;
+      })
+      .join('; ');
+    lines.push(`VOCAB DUE FOR SRS REVIEW (${dueWords.length}): ${wordList}. Quiz these words this session.`);
   }
 
   // Top error concepts

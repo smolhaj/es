@@ -32,7 +32,8 @@ export async function onRequestPost({ request, env, data }) {
   const sessionCount = sessionsResult?.cnt ?? 0;
   let userMessage;
   if (focusConcept) {
-    userMessage = `Focus this entire session on drilling the concept: "${focusConcept}". ` +
+    const conceptLabel = CONCEPTS[focusConcept]?.label ?? focusConcept;
+    userMessage = `Focus this entire session on drilling the concept: "${conceptLabel}" (concept_id: ${focusConcept}). ` +
       `Use varied exercise types (multiple_choice, fill_blank, translation) all targeting that concept. ` +
       (sessionCount === 0 ? 'Start with an easy exercise.' : `I've done ${sessionCount} session(s) overall.`);
   } else {

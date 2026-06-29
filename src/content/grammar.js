@@ -845,7 +845,7 @@ export const GRAMMAR_CARDS = [
   // ── C1 ─────────────────────────────────────────────────────────────────
   {
     id: 'subjunctive_noun_clauses',
-    concept_id: null,
+    concept_id: 'subjunctive_noun_clauses',
     cefr: 'C1',
     category: 'Mood',
     title: 'Subjunctive in noun clauses',
@@ -865,7 +865,7 @@ export const GRAMMAR_CARDS = [
   },
   {
     id: 'subjunctive_adjective_clauses',
-    concept_id: null,
+    concept_id: 'subjunctive_adjective_clauses',
     cefr: 'C1',
     category: 'Mood',
     title: 'Subjunctive in adjective clauses',
@@ -883,7 +883,7 @@ export const GRAMMAR_CARDS = [
   },
   {
     id: 'gerund_advanced',
-    concept_id: null,
+    concept_id: 'gerund_advanced',
     cefr: 'C1',
     category: 'Verb Forms',
     title: 'Gerund — advanced uses',
@@ -903,7 +903,7 @@ export const GRAMMAR_CARDS = [
   },
   {
     id: 'ser_passive',
-    concept_id: null,
+    concept_id: 'ser_passive',
     cefr: 'C1',
     category: 'Voice',
     title: 'True passive with ser + participio',
@@ -922,7 +922,7 @@ export const GRAMMAR_CARDS = [
   },
   {
     id: 'estilo_indirecto',
-    concept_id: null,
+    concept_id: 'estilo_indirecto',
     cefr: 'C1',
     category: 'Discourse',
     title: 'Reported speech (estilo indirecto)',
@@ -941,7 +941,7 @@ export const GRAMMAR_CARDS = [
   },
   {
     id: 'nominalisation',
-    concept_id: null,
+    concept_id: 'nominalisation',
     cefr: 'C1',
     category: 'Morphology',
     title: 'Nominalisation — turning verbs and adjectives into nouns',
@@ -961,7 +961,7 @@ export const GRAMMAR_CARDS = [
   },
   {
     id: 'subjunctive_temporal',
-    concept_id: null,
+    concept_id: 'subjunctive_temporal',
     cefr: 'C1',
     category: 'Mood',
     title: 'Subjunctive after time conjunctions (future)',
@@ -981,7 +981,7 @@ export const GRAMMAR_CARDS = [
   },
   {
     id: 'cuantificadores',
-    concept_id: null,
+    concept_id: 'cuantificadores',
     cefr: 'C1',
     category: 'Morphology',
     title: 'Quantifiers and intensifiers',

@@ -354,6 +354,46 @@ export const VOCABULARY = [
   { es: 'angustia', en: 'anguish / anxiety / distress', cefr: 'B2', domain: 'nouns', frequencyRank: 300, example: 'Le invadió una profunda angustia.', exampleEn: 'A deep anguish came over him.' },
   { es: 'añoranza', en: 'longing / nostalgia', cefr: 'B2', domain: 'nouns', frequencyRank: 400, example: 'Siente añoranza de su tierra.', exampleEn: 'She feels nostalgia for her homeland.' },
   { es: 'euforia', en: 'euphoria / elation', cefr: 'B2', domain: 'nouns', frequencyRank: 350, example: 'El triunfo provocó una gran euforia.', exampleEn: 'The victory caused great elation.' },
+  // Connectors (more)
+  { es: 'en cambio', en: 'on the other hand / instead', cefr: 'B2', domain: 'connectors', frequencyRank: 210, example: 'Él trabaja mucho; en cambio, ella descansa.', exampleEn: 'He works hard; she, on the other hand, rests.' },
+  { es: 'con respecto a', en: 'with respect to / regarding', cefr: 'B2', domain: 'connectors', frequencyRank: 230, example: 'Con respecto a tu pregunta, no tengo respuesta.', exampleEn: 'Regarding your question, I have no answer.' },
+  { es: 'pese a', en: 'despite / in spite of', cefr: 'B2', domain: 'connectors', frequencyRank: 240, example: 'Salió pese a la lluvia.', exampleEn: 'She went out despite the rain.' },
+  { es: 'de manera que', en: 'so that / in such a way that', cefr: 'B2', domain: 'connectors', frequencyRank: 200, example: 'Habla de manera que todos le entiendan.', exampleEn: 'He speaks so that everyone understands him.' },
+  // Verbs (formal / B2)
+  { es: 'alcanzar', en: 'to reach / to achieve', cefr: 'B2', domain: 'verbs', frequencyRank: 60, example: 'Alcanzaron un acuerdo histórico.', exampleEn: 'They reached a historic agreement.' },
+  { es: 'rechazar', en: 'to reject / to turn down', cefr: 'B2', domain: 'verbs', frequencyRank: 130, example: 'El comité rechazó la propuesta.', exampleEn: 'The committee rejected the proposal.' },
+  { es: 'implicar', en: 'to imply / to involve', cefr: 'B2', domain: 'verbs', frequencyRank: 100, example: 'Ese cargo implica mucha responsabilidad.', exampleEn: 'That role involves a lot of responsibility.' },
+  { es: 'establecer', en: 'to establish / to set up', cefr: 'B2', domain: 'verbs', frequencyRank: 80, example: 'El contrato establece las condiciones.', exampleEn: 'The contract establishes the terms.' },
+  { es: 'reconocer', en: 'to recognise / to acknowledge', cefr: 'B2', domain: 'verbs', frequencyRank: 90, example: 'Hay que reconocer sus méritos.', exampleEn: "We must acknowledge his merits." },
+  { es: 'proponer', en: 'to propose / to suggest', cefr: 'B2', domain: 'verbs', frequencyRank: 110, example: 'Te propongo una solución diferente.', exampleEn: 'I propose a different solution to you.' },
+  { es: 'garantizar', en: 'to guarantee / to ensure', cefr: 'B2', domain: 'verbs', frequencyRank: 140, example: 'No podemos garantizar el resultado.', exampleEn: 'We cannot guarantee the result.' },
+  { es: 'fomentar', en: 'to promote / to foster / to encourage', cefr: 'B2', domain: 'verbs', frequencyRank: 160, example: 'El programa fomenta la lectura.', exampleEn: 'The programme fosters reading.' },
+  { es: 'valorar', en: 'to value / to assess / to appreciate', cefr: 'B2', domain: 'verbs', frequencyRank: 150, example: 'Valoran mucho su trabajo en equipo.', exampleEn: 'They highly value his teamwork.' },
+  { es: 'asumir', en: 'to assume / to take on / to accept', cefr: 'B2', domain: 'verbs', frequencyRank: 120, example: 'Asumió toda la responsabilidad.', exampleEn: 'She took on all the responsibility.' },
+  { es: 'exigir', en: 'to demand / to require', cefr: 'B2', domain: 'verbs', frequencyRank: 130, example: 'El trabajo exige mucha concentración.', exampleEn: 'The work demands great concentration.' },
+  { es: 'conllevar', en: 'to entail / to involve / to carry with it', cefr: 'B2', domain: 'verbs', frequencyRank: 210, example: 'El puesto conlleva muchas responsabilidades.', exampleEn: 'The position entails many responsibilities.' },
+  // Society & politics nouns
+  { es: 'ciudadano', en: 'citizen', cefr: 'B2', domain: 'nouns', frequencyRank: 90, example: 'Los ciudadanos tienen derecho a votar.', exampleEn: 'Citizens have the right to vote.' },
+  { es: 'desafío', en: 'challenge', cefr: 'B2', domain: 'nouns', frequencyRank: 150, example: 'El cambio climático es un gran desafío.', exampleEn: 'Climate change is a great challenge.' },
+  { es: 'medida', en: 'measure / step (government/policy)', cefr: 'B2', domain: 'nouns', frequencyRank: 80, example: 'El gobierno tomó medidas urgentes.', exampleEn: 'The government took urgent measures.' },
+  { es: 'debate', en: 'debate / discussion', cefr: 'B2', domain: 'nouns', frequencyRank: 130, example: 'El debate sobre la educación continúa.', exampleEn: 'The debate about education continues.' },
+  { es: 'propuesta', en: 'proposal / suggestion', cefr: 'B2', domain: 'nouns', frequencyRank: 110, example: 'Presentaron una propuesta innovadora.', exampleEn: 'They presented an innovative proposal.' },
+  { es: 'inversión', en: 'investment', cefr: 'B2', domain: 'nouns', frequencyRank: 120, example: 'La inversión en educación es fundamental.', exampleEn: 'Investment in education is fundamental.' },
+  // Environment nouns
+  { es: 'medioambiente', en: 'natural environment', cefr: 'B2', domain: 'nouns', frequencyRank: 170, example: 'Debemos proteger el medioambiente.', exampleEn: 'We must protect the natural environment.' },
+  { es: 'contaminación', en: 'pollution / contamination', cefr: 'B2', domain: 'nouns', frequencyRank: 180, example: 'La contaminación del aire es un problema grave.', exampleEn: 'Air pollution is a serious problem.' },
+  { es: 'sequía', en: 'drought', cefr: 'B2', domain: 'nouns', frequencyRank: 300, example: 'La sequía afectó a toda la región.', exampleEn: 'The drought affected the entire region.' },
+  // Adjectives (B2)
+  { es: 'sostenible', en: 'sustainable', cefr: 'B2', domain: 'adjectives', frequencyRank: 180, example: 'Necesitamos un modelo económico sostenible.', exampleEn: 'We need a sustainable economic model.' },
+  { es: 'innovador', en: 'innovative / ground-breaking', cefr: 'B2', domain: 'adjectives', frequencyRank: 190, example: 'Es un enfoque muy innovador.', exampleEn: 'It is a very innovative approach.' },
+  { es: 'influyente', en: 'influential', cefr: 'B2', domain: 'adjectives', frequencyRank: 260, example: 'Es uno de los escritores más influyentes.', exampleEn: 'He is one of the most influential writers.' },
+  { es: 'relevante', en: 'relevant / significant', cefr: 'B2', domain: 'adjectives', frequencyRank: 200, example: 'Es un dato muy relevante.', exampleEn: 'It is a very relevant piece of information.' },
+  { es: 'polémico', en: 'controversial', cefr: 'B2', domain: 'adjectives', frequencyRank: 270, example: 'La decisión fue muy polémica.', exampleEn: 'The decision was very controversial.' },
+  { es: 'favorable', en: 'favourable / positive', cefr: 'B2', domain: 'adjectives', frequencyRank: 210, example: 'Las condiciones son favorables para invertir.', exampleEn: 'Conditions are favourable for investing.' },
+  // Adverbs
+  { es: 'actualmente', en: 'currently / nowadays / at present', cefr: 'B2', domain: 'adverbs', frequencyRank: 90, example: 'Actualmente vivo en Madrid.', exampleEn: 'I currently live in Madrid.' },
+  { es: 'aproximadamente', en: 'approximately / about', cefr: 'B2', domain: 'adverbs', frequencyRank: 150, example: 'Tardará aproximadamente una hora.', exampleEn: 'It will take approximately one hour.' },
+  { es: 'progresivamente', en: 'progressively / gradually', cefr: 'B2', domain: 'adverbs', frequencyRank: 280, example: 'El número de usuarios crece progresivamente.', exampleEn: 'The number of users grows progressively.' },
 
   // ── C1 ─────────────────────────────────────────────────────────────────
   // Discourse connectors
@@ -380,6 +420,30 @@ export const VOCABULARY = [
   { es: 'sucinto', en: 'succinct / concise', cefr: 'C1', domain: 'adjectives', frequencyRank: 470, example: 'Hizo una explicación sucinta del tema.', exampleEn: 'He gave a succinct explanation of the topic.' },
   { es: 'concluyente', en: 'conclusive / decisive', cefr: 'C1', domain: 'adjectives', frequencyRank: 440, example: 'Los resultados son concluyentes.', exampleEn: 'The results are conclusive.' },
   { es: 'subyacente', en: 'underlying', cefr: 'C1', domain: 'adjectives', frequencyRank: 415, example: 'El problema subyacente no se ha resuelto.', exampleEn: 'The underlying problem has not been solved.' },
+  // More connectors (C1)
+  { es: 'cabe destacar', en: 'it is worth noting / it should be highlighted', cefr: 'C1', domain: 'connectors', frequencyRank: 310, example: 'Cabe destacar que los resultados superaron las expectativas.', exampleEn: 'It is worth noting that the results exceeded expectations.' },
+  { es: 'en aras de', en: 'for the sake of / in the interest of', cefr: 'C1', domain: 'connectors', frequencyRank: 350, example: 'Lo hicieron en aras de la paz.', exampleEn: 'They did it for the sake of peace.' },
+  { es: 'con miras a', en: 'with a view to / with the aim of', cefr: 'C1', domain: 'connectors', frequencyRank: 360, example: 'Se reunieron con miras a firmar un acuerdo.', exampleEn: 'They met with a view to signing an agreement.' },
+  // More abstract nouns (C1)
+  { es: 'prerrogativa', en: 'prerogative / privilege', cefr: 'C1', domain: 'nouns', frequencyRank: 430, example: 'Es prerrogativa exclusiva del presidente.', exampleEn: "It is the president's exclusive prerogative." },
+  { es: 'ambigüedad', en: 'ambiguity', cefr: 'C1', domain: 'nouns', frequencyRank: 400, example: 'La ambigüedad del texto genera confusión.', exampleEn: 'The ambiguity of the text generates confusion.' },
+  { es: 'idiosincrasia', en: 'idiosyncrasy / characteristic nature', cefr: 'C1', domain: 'nouns', frequencyRank: 460, example: 'Hay que respetar la idiosincrasia de cada cultura.', exampleEn: "We must respect each culture's characteristic nature." },
+  { es: 'alcance', en: 'scope / reach / implication', cefr: 'C1', domain: 'nouns', frequencyRank: 130, example: 'Todavía no conocemos el alcance del problema.', exampleEn: 'We do not yet know the full scope of the problem.' },
+  { es: 'bagaje', en: 'body of knowledge / background / baggage', cefr: 'C1', domain: 'nouns', frequencyRank: 420, example: 'Tiene un amplio bagaje cultural.', exampleEn: 'She has a wide cultural background.' },
+  { es: 'resquicio', en: 'loophole / chink / glimmer', cefr: 'C1', domain: 'nouns', frequencyRank: 480, example: 'Encontraron un resquicio legal para evitarlo.', exampleEn: 'They found a legal loophole to avoid it.' },
+  { es: 'escisión', en: 'split / schism / division', cefr: 'C1', domain: 'nouns', frequencyRank: 450, example: 'La escisión del partido sorprendió a todos.', exampleEn: 'The party split surprised everyone.' },
+  { es: 'quebranto', en: 'setback / loss / grief', cefr: 'C1', domain: 'nouns', frequencyRank: 470, example: 'Fue un gran quebranto para la familia.', exampleEn: 'It was a great setback for the family.' },
+  // More verbs (C1)
+  { es: 'articular', en: 'to articulate / to structure / to organise', cefr: 'C1', domain: 'verbs', frequencyRank: 180, example: 'Articuló sus argumentos con claridad.', exampleEn: 'She articulated her arguments clearly.' },
+  { es: 'condicionar', en: 'to condition / to shape / to determine', cefr: 'C1', domain: 'verbs', frequencyRank: 200, example: 'El entorno condiciona el comportamiento.', exampleEn: 'The environment shapes behaviour.' },
+  { es: 'esclarecer', en: 'to clarify / to shed light on', cefr: 'C1', domain: 'verbs', frequencyRank: 270, example: 'La investigación esclarecerá los hechos.', exampleEn: 'The investigation will shed light on the facts.' },
+  { es: 'vulnerar', en: 'to violate / to harm / to infringe', cefr: 'C1', domain: 'verbs', frequencyRank: 290, example: 'Esta ley vulnera los derechos fundamentales.', exampleEn: 'This law infringes on fundamental rights.' },
+  { es: 'desvelar', en: 'to reveal / to uncover / to unveil', cefr: 'C1', domain: 'verbs', frequencyRank: 310, example: 'El periodista desveló los detalles del escándalo.', exampleEn: 'The journalist uncovered the details of the scandal.' },
+  // More adjectives (C1)
+  { es: 'categórico', en: 'categorical / unequivocal', cefr: 'C1', domain: 'adjectives', frequencyRank: 380, example: 'Fue un rechazo categórico.', exampleEn: 'It was a categorical refusal.' },
+  { es: 'rotundo', en: 'resounding / emphatic / complete', cefr: 'C1', domain: 'adjectives', frequencyRank: 395, example: 'El equipo consiguió una victoria rotunda.', exampleEn: 'The team achieved a resounding victory.' },
+  { es: 'esclarecedor', en: 'illuminating / revealing', cefr: 'C1', domain: 'adjectives', frequencyRank: 420, example: 'Fue una charla muy esclarecedora.', exampleEn: 'It was a very illuminating talk.' },
+  { es: 'acérrimo', en: 'staunch / fierce / bitter (of opponents or defenders)', cefr: 'C1', domain: 'adjectives', frequencyRank: 460, example: 'Es un acérrimo defensor de los derechos humanos.', exampleEn: 'He is a staunch defender of human rights.' },
 ];
 
 // Group by domain
