@@ -326,6 +326,28 @@ export const GRAMMAR_CARDS = [
     related: ['present_ar', 'present_er_ir', 'question_words'],
   },
   {
+    id: 'near_future',
+    concept_id: 'near_future',
+    cefr: 'A2',
+    category: 'Verbs',
+    title: 'Near Future — ir a + Infinitive',
+    rule: 'To talk about an intended or imminent future action, use: ir (conjugated in present) + a + infinitive. This is far more common in spoken Spanish than the simple future tense.',
+    examples: [
+      { es: 'Voy a comer ahora. (ir→voy)', en: 'I\'m going to eat now.' },
+      { es: 'Vas a estudiar esta tarde.', en: 'You\'re going to study this afternoon.' },
+      { es: '¿Qué van a hacer el fin de semana?', en: 'What are they going to do this weekend?' },
+      { es: 'Va a llover — mira esas nubes.', en: 'It\'s going to rain — look at those clouds.' },
+      { es: 'Vamos a ver qué pasa.', en: 'We\'ll see what happens. (lit. we\'re going to see)' },
+    ],
+    exceptions: [
+      'The reflexive pronoun attaches to the infinitive or goes before ir: Me voy a duchar / Voy a ducharme.',
+      'Contrast: near future (ir a + inf) = concrete plan/intention; simple future tense (-ré) = prediction or formal statement.',
+      'Vamos a + infinitive can also be a suggestion: Vamos a comer juntos = Let\'s eat together.',
+      'In very informal speech the a can be dropped: Voy a hacer → voy hacer (non-standard, heard in some regions).',
+    ],
+    related: ['irregular_present', 'future_simple', 'prepositions_basic'],
+  },
+  {
     id: 'prepositions_basic',
     concept_id: 'prepositions_basic',
     cefr: 'A2',

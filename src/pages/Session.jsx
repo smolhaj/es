@@ -18,7 +18,7 @@ const CONCEPT_LABELS = {
   possessives: 'Possessives', preterite_regular: 'Preterite (regular)', modal_verbs: 'Modal verbs',
   obligation_infinitive: 'Obligation (tener que)',
   time_expressions: 'Time expressions', present_progressive: 'Present progressive',
-  irregular_present: 'Irregular present', negation: 'Negation', prepositions_basic: 'Basic prepositions',
+  irregular_present: 'Irregular present', negation: 'Negation', prepositions_basic: 'Basic prepositions', near_future: 'Near future (ir a)',
   acabar_de: 'Recent past (acabar de)',
   llevar_gerund: 'Duration (llevar + gerund)', preterite_irregular: 'Preterite (irregular)',
   imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',

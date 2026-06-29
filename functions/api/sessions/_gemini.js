@@ -34,7 +34,7 @@ A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_artic
     ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100
 A2: ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns, indirect_object_pronouns,
     demonstratives, possessives, preterite_regular, modal_verbs, obligation_infinitive, time_expressions,
-    present_progressive, irregular_present, negation, prepositions_basic
+    present_progressive, irregular_present, negation, prepositions_basic, near_future
 B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imperfect, future_simple,
     conditional, present_subjunctive, imperative, por_vs_para, relative_clauses
 B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,

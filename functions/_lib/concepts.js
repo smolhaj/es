@@ -150,6 +150,11 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['definite_articles', 'present_ar'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  near_future: {
+    id: 'near_future', label: 'Near future (ir a + infinitive)', cefr: 'A2',
+    category: 'verb', prereqs: ['irregular_present', 'prepositions_basic'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
   acabar_de: {
