@@ -25,7 +25,7 @@ const FEATURES = [
   },
   {
     label: 'Built-in references',
-    body: 'Grammar rules, verb conjugations, 72 idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.'
+    body: 'Grammar rules, verb conjugations, 84 idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.'
   }
 ];
 

@@ -48,10 +48,10 @@ difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced cont
 CONTENT SCOPE:
 Default to A1 material unless the professor briefing explicitly shows higher CEFR level.
 A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/-ir, noun gender, articles
-A2: ser vs estar contrast, preterite, reflexives, gustar, object pronouns, demonstratives, possessives
-B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para
-B2: present perfect, pluperfect, passive constructions, imperfect subjunctive, si-clauses, comparatives, diminutives — only if CEFR level is B2+
-C1: advanced subjunctive, nominalisation, indirect speech, temporal clauses — only if CEFR level is C1
+A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives)
+B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund
+B2: present perfect, pluperfect, future perfect, conditional perfect, passive constructions (ser + participio, pasiva se), imperfect subjunctive, si-clauses, subjunctive in adverbial clauses, comparatives, diminutives/augmentatives, advanced relative pronouns — only if CEFR level is B2+
+C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers — only if CEFR level is C1
 
 FEEDBACK RULES:
 - Wrong: name the exact rule violated. One sentence on how to fix it.
