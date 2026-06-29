@@ -605,6 +605,34 @@ export const VOCABULARY = [
   { es: 'actual', en: 'current / present (not "real"!)', cefr: 'B2', domain: 'adjectives', frequencyRank: 75, example: 'La situación actual es complicada.', exampleEn: 'The current situation is complicated.' },
   { es: 'diverso', en: 'diverse / varied', cefr: 'B2', domain: 'adjectives', frequencyRank: 150, example: 'El grupo tiene orígenes muy diversos.', exampleEn: 'The group has very diverse backgrounds.' },
   { es: 'creciente', en: 'growing / increasing', cefr: 'B2', domain: 'adjectives', frequencyRank: 160, example: 'Hay una creciente demanda de energías renovables.', exampleEn: 'There is a growing demand for renewable energy.' },
+  // More B2 connectors
+  { es: 'mientras que', en: 'whereas / while (contrast)', cefr: 'B2', domain: 'connectors', frequencyRank: 180, example: 'Él trabaja mientras que ella estudia.', exampleEn: 'He works whereas she studies.' },
+  { es: 'a su vez', en: 'in turn / at the same time', cefr: 'B2', domain: 'connectors', frequencyRank: 190, example: 'Esto, a su vez, generó nuevos problemas.', exampleEn: 'This, in turn, generated new problems.' },
+  { es: 'en la medida en que', en: 'to the extent that / insofar as', cefr: 'B2', domain: 'connectors', frequencyRank: 240, example: 'Ayudaré en la medida en que pueda.', exampleEn: 'I will help to the extent that I can.' },
+  // More B2 verbs
+  { es: 'consolidar', en: 'to consolidate / to strengthen', cefr: 'B2', domain: 'verbs', frequencyRank: 175, example: 'La empresa consolida su posición en el mercado.', exampleEn: 'The company consolidates its market position.' },
+  { es: 'negociar', en: 'to negotiate', cefr: 'B2', domain: 'verbs', frequencyRank: 160, example: 'Las partes se reunieron para negociar un acuerdo.', exampleEn: 'The parties met to negotiate an agreement.' },
+  { es: 'reducir', en: 'to reduce / to cut / to lower', cefr: 'B2', domain: 'verbs', frequencyRank: 90, example: 'Hay que reducir el gasto público.', exampleEn: 'Public spending must be reduced.' },
+  { es: 'ampliar', en: 'to expand / to extend / to broaden', cefr: 'B2', domain: 'verbs', frequencyRank: 155, example: 'Decidieron ampliar el plazo de entrega.', exampleEn: 'They decided to extend the deadline.' },
+  { es: 'financiar', en: 'to finance / to fund', cefr: 'B2', domain: 'verbs', frequencyRank: 170, example: 'El Estado financiará el proyecto.', exampleEn: 'The State will finance the project.' },
+  { es: 'prever', en: 'to foresee / to anticipate / to plan for', cefr: 'B2', domain: 'verbs', frequencyRank: 140, example: 'No podíamos prever este problema.', exampleEn: 'We could not foresee this problem.' },
+  { es: 'respaldar', en: 'to support / to back / to endorse', cefr: 'B2', domain: 'verbs', frequencyRank: 200, example: 'El partido respaldó la iniciativa.', exampleEn: 'The party backed the initiative.' },
+  // More B2 nouns
+  { es: 'herramienta', en: 'tool / instrument', cefr: 'B2', domain: 'nouns', frequencyRank: 135, example: 'La tecnología es una herramienta muy útil.', exampleEn: 'Technology is a very useful tool.' },
+  { es: 'empleo', en: 'employment / job', cefr: 'B2', domain: 'nouns', frequencyRank: 85, example: 'El desempleo es uno de los grandes problemas.', exampleEn: 'Unemployment is one of the big problems.' },
+  { es: 'reforma', en: 'reform / renovation', cefr: 'B2', domain: 'nouns', frequencyRank: 110, example: 'El gobierno planea una reforma educativa.', exampleEn: 'The government plans an educational reform.' },
+  { es: 'informe', en: 'report / paper', cefr: 'B2', domain: 'nouns', frequencyRank: 100, example: 'El informe señala varios fallos.', exampleEn: 'The report points out several failures.' },
+  { es: 'criterio', en: 'criterion / standard / judgement', cefr: 'B2', domain: 'nouns', frequencyRank: 140, example: 'El criterio de selección es la experiencia.', exampleEn: 'The selection criterion is experience.' },
+  { es: 'amenaza', en: 'threat / menace', cefr: 'B2', domain: 'nouns', frequencyRank: 160, example: 'El terrorismo es una amenaza global.', exampleEn: 'Terrorism is a global threat.' },
+  { es: 'brecha', en: 'gap / divide / breach', cefr: 'B2', domain: 'nouns', frequencyRank: 220, example: 'La brecha digital afecta a los mayores.', exampleEn: 'The digital divide affects older people.' },
+  { es: 'globalización', en: 'globalisation', cefr: 'B2', domain: 'nouns', frequencyRank: 190, example: 'La globalización tiene ventajas e inconvenientes.', exampleEn: 'Globalisation has advantages and disadvantages.' },
+  { es: 'déficit', en: 'deficit / shortfall', cefr: 'B2', domain: 'nouns', frequencyRank: 170, example: 'El país tiene un déficit presupuestario enorme.', exampleEn: 'The country has a huge budget deficit.' },
+  // More B2 adjectives
+  { es: 'significativo', en: 'significant / meaningful', cefr: 'B2', domain: 'adjectives', frequencyRank: 140, example: 'Hubo una mejora significativa en los resultados.', exampleEn: 'There was a significant improvement in results.' },
+  { es: 'eficiente', en: 'efficient', cefr: 'B2', domain: 'adjectives', frequencyRank: 200, example: 'El nuevo sistema es más eficiente.', exampleEn: 'The new system is more efficient.' },
+  { es: 'complejo', en: 'complex / complicated', cefr: 'B2', domain: 'adjectives', frequencyRank: 110, example: 'Es una situación muy compleja.', exampleEn: 'It is a very complex situation.' },
+  { es: 'riguroso', en: 'rigorous / thorough / strict', cefr: 'B2', domain: 'adjectives', frequencyRank: 240, example: 'El análisis fue muy riguroso.', exampleEn: 'The analysis was very rigorous.' },
+  { es: 'excepcional', en: 'exceptional / outstanding', cefr: 'B2', domain: 'adjectives', frequencyRank: 220, example: 'Tiene un talento excepcional.', exampleEn: 'She has exceptional talent.' },
 
   // ── C1 ─────────────────────────────────────────────────────────────────
   // Discourse connectors
@@ -677,6 +705,29 @@ export const VOCABULARY = [
   { es: 'no obstante lo cual', en: 'notwithstanding which / despite which', cefr: 'C1', domain: 'connectors', frequencyRank: 480, example: 'No hubo consenso; no obstante lo cual, se tomó una decisión.', exampleEn: 'There was no consensus; notwithstanding which, a decision was made.' },
   { es: 'con todo', en: 'nonetheless / even so / all the same', cefr: 'C1', domain: 'connectors', frequencyRank: 350, example: 'Fue difícil; con todo, lo conseguimos.', exampleEn: 'It was difficult; even so, we managed it.' },
   { es: 'a tenor de', en: 'in light of / in view of / given', cefr: 'C1', domain: 'connectors', frequencyRank: 400, example: 'A tenor de los resultados, hay que cambiar la estrategia.', exampleEn: 'In light of the results, the strategy must change.' },
+  // More C1 connectors
+  { es: 'máxime', en: 'especially / above all / particularly when', cefr: 'C1', domain: 'connectors', frequencyRank: 420, example: 'Es peligroso, máxime cuando hay niños.', exampleEn: 'It is dangerous, especially when there are children.' },
+  // More C1 verbs
+  { es: 'acometer', en: 'to undertake / to tackle / to embark on', cefr: 'C1', domain: 'verbs', frequencyRank: 300, example: 'Acometieron la reforma con decisión.', exampleEn: 'They tackled the reform decisively.' },
+  { es: 'menoscabar', en: 'to undermine / to diminish / to impair', cefr: 'C1', domain: 'verbs', frequencyRank: 380, example: 'Esto no debe menoscabar la confianza pública.', exampleEn: 'This must not undermine public trust.' },
+  { es: 'dirimir', en: 'to settle / to resolve (a dispute)', cefr: 'C1', domain: 'verbs', frequencyRank: 400, example: 'El árbitro dirimirá la controversia.', exampleEn: 'The arbitrator will settle the dispute.' },
+  { es: 'ponderar', en: 'to weigh up / to consider carefully / to praise', cefr: 'C1', domain: 'verbs', frequencyRank: 350, example: 'Hay que ponderar los pros y contras.', exampleEn: 'You have to weigh up the pros and cons.' },
+  { es: 'salvaguardar', en: 'to safeguard / to protect', cefr: 'C1', domain: 'verbs', frequencyRank: 380, example: 'El tratado salvaguarda los derechos de las minorías.', exampleEn: 'The treaty safeguards minority rights.' },
+  { es: 'vislumbrar', en: 'to glimpse / to make out / to foresee', cefr: 'C1', domain: 'verbs', frequencyRank: 400, example: 'Por fin se vislumbra una solución.', exampleEn: 'A solution can finally be glimpsed.' },
+  { es: 'propugnar', en: 'to advocate / to champion / to argue for', cefr: 'C1', domain: 'verbs', frequencyRank: 420, example: 'Propugnan una reforma profunda del sistema.', exampleEn: 'They advocate a thorough reform of the system.' },
+  // More C1 nouns
+  { es: 'contrapartida', en: 'quid pro quo / trade-off / counterpart', cefr: 'C1', domain: 'nouns', frequencyRank: 410, example: 'A cambio de ayuda, pidieron una contrapartida.', exampleEn: 'In exchange for help, they asked for a quid pro quo.' },
+  { es: 'disyuntiva', en: 'dilemma / choice between two options', cefr: 'C1', domain: 'nouns', frequencyRank: 440, example: 'Nos encontramos ante una dura disyuntiva.', exampleEn: 'We face a tough dilemma.' },
+  { es: 'salvedad', en: 'exception / proviso / caveat', cefr: 'C1', domain: 'nouns', frequencyRank: 430, example: 'Con la salvedad de que lleguen a tiempo.', exampleEn: 'With the proviso that they arrive on time.' },
+  { es: 'cometido', en: 'task / duty / mission / role', cefr: 'C1', domain: 'nouns', frequencyRank: 380, example: 'Su cometido es supervisar el presupuesto.', exampleEn: 'His task is to supervise the budget.' },
+  { es: 'arbitrariedad', en: 'arbitrariness / arbitrary action', cefr: 'C1', domain: 'nouns', frequencyRank: 420, example: 'La ley protege contra la arbitrariedad del poder.', exampleEn: 'The law protects against the arbitrariness of power.' },
+  { es: 'incidencia', en: 'impact / incidence / occurrence', cefr: 'C1', domain: 'nouns', frequencyRank: 350, example: 'La incidencia del desempleo ha aumentado.', exampleEn: 'The incidence of unemployment has increased.' },
+  // More C1 adjectives
+  { es: 'nimio', en: 'trivial / trifling / insignificant', cefr: 'C1', domain: 'adjectives', frequencyRank: 460, example: 'No te preocupes por asuntos tan nimios.', exampleEn: "Don't worry about such trivial matters." },
+  { es: 'elocuente', en: 'eloquent / telling / expressive', cefr: 'C1', domain: 'adjectives', frequencyRank: 400, example: 'Sus palabras fueron muy elocuentes.', exampleEn: 'Her words were very eloquent.' },
+  { es: 'vehemente', en: 'vehement / passionate / fervent', cefr: 'C1', domain: 'adjectives', frequencyRank: 390, example: 'Era una defensora vehemente de sus ideas.', exampleEn: 'She was a vehement defender of her ideas.' },
+  { es: 'atinado', en: 'apt / judicious / spot-on', cefr: 'C1', domain: 'adjectives', frequencyRank: 440, example: 'Hizo un comentario muy atinado.', exampleEn: 'He made a very apt comment.' },
+  { es: 'prescindible', en: 'dispensable / unnecessary / superfluous', cefr: 'C1', domain: 'adjectives', frequencyRank: 460, example: 'Esta sección del informe es totalmente prescindible.', exampleEn: 'This section of the report is completely superfluous.' },
 ];
 
 // Group by domain
