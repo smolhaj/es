@@ -281,6 +281,27 @@ export const GRAMMAR_CARDS = [
 
   // ── A2 ─────────────────────────────────────────────────────────────────
   {
+    id: 'present_progressive',
+    concept_id: 'present_progressive',
+    cefr: 'A2',
+    category: 'Verbs',
+    title: 'Present Progressive (estar + gerund)',
+    rule: 'To describe an action in progress right now, use estar (conjugated) + the gerund (-ando/-iendo). The gerund is invariable — it never agrees in gender or number.',
+    examples: [
+      { es: 'Estoy comiendo. (comer → comiendo)', en: 'I am eating.' },
+      { es: 'Ella está hablando por teléfono.', en: 'She is talking on the phone.' },
+      { es: 'Estamos estudiando español.', en: 'We are studying Spanish.' },
+      { es: '¿Qué estás haciendo? (hacer → haciendo)', en: 'What are you doing?' },
+    ],
+    exceptions: [
+      'Stem-changing -ir verbs change in the gerund: dormir → durmiendo, pedir → pidiendo, decir → diciendo.',
+      'Verbs ending in a vowel + -er/-ir use -yendo: leer → leyendo, oír → oyendo, construir → construyendo.',
+      'Reflexive pronouns go before estar or attach to the gerund: Me estoy duchando / Estoy duchándome.',
+      'Spanish rarely uses progressive for habitual actions or scheduled future (unlike English). Use simple present for "I usually eat at 2" (Como a las dos).',
+    ],
+    related: ['estar_basics', 'reflexive_verbs', 'llevar_gerund'],
+  },
+  {
     id: 'ser_vs_estar',
     concept_id: 'ser_vs_estar',
     cefr: 'A2',

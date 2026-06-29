@@ -17,7 +17,7 @@ const CONCEPT_LABELS = {
   indirect_object_pronouns: 'Indirect obj. pronouns', demonstratives: 'Demonstratives',
   possessives: 'Possessives', preterite_regular: 'Preterite (regular)', modal_verbs: 'Modal verbs',
   obligation_infinitive: 'Obligation (tener que)',
-  time_expressions: 'Time expressions', acabar_de: 'Recent past (acabar de)',
+  time_expressions: 'Time expressions', present_progressive: 'Present progressive', acabar_de: 'Recent past (acabar de)',
   llevar_gerund: 'Duration (llevar + gerund)', preterite_irregular: 'Preterite (irregular)',
   imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
   future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',

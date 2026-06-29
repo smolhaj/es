@@ -130,6 +130,11 @@ export const CONCEPTS = {
     category: 'vocabulary', prereqs: ['preterite_regular'],
     explanationStyles: ['example_first', 'rule_first'],
   },
+  present_progressive: {
+    id: 'present_progressive', label: 'Present progressive (estar + gerund)', cefr: 'A2',
+    category: 'verb', prereqs: ['estar_basics', 'present_ar', 'present_er_ir'],
+    explanationStyles: ['rule_first', 'example_first', 'table'],
+  },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
   acabar_de: {
