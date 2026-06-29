@@ -64,6 +64,12 @@ export async function compileBriefing(db, userId) {
 
   const lines = ['=== PROFESSOR BRIEFING ==='];
 
+  // Derive overall CEFR level (minimum across skills)
+  const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  const cefrIndices = Object.values(skillMap).map(s => CEFR_ORDER.indexOf(s.cefr_level)).filter(i => i >= 0);
+  const overallCefr = cefrIndices.length > 0 ? CEFR_ORDER[Math.min(...cefrIndices)] : 'A1';
+  lines.push(`LEARNER CEFR LEVEL: ${overallCefr}`);
+
   // Skill levels
   const skillStr = Object.entries(skillMap)
     .map(([k, v]) => `${k}: ${v.cefr_level} (acc ${Math.round((v.accuracy ?? 0) * 100)}%, ${v.session_count} sessions)`)

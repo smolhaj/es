@@ -7,7 +7,6 @@ import styles from './GrammarRef.module.css';
 function GrammarCard({ card, expanded, onToggle }) {
   return (
     <article
-      id={`card-${card.id}`}
       className={`${styles.card} ${expanded ? styles.cardExpanded : ''}`}
       onClick={onToggle}
     >

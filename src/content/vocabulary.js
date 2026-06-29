@@ -317,6 +317,42 @@ export const VOCABULARY = [
   { es: 'solución', en: 'solution', cefr: 'B1', domain: 'nouns', frequencyRank: 155, example: 'Hay que encontrar una solución.', exampleEn: 'We need to find a solution.' },
   { es: 'opinión', en: 'opinion', cefr: 'B1', domain: 'nouns', frequencyRank: 170, example: 'En mi opinión, tienes razón.', exampleEn: 'In my opinion, you are right.' },
   { es: 'experiencia', en: 'experience', cefr: 'B1', domain: 'nouns', frequencyRank: 140, example: 'Fue una experiencia increíble.', exampleEn: 'It was an incredible experience.' },
+  // B1 adjectives
+  { es: 'capaz', en: 'capable / able', cefr: 'B1', domain: 'adjectives', frequencyRank: 155, example: 'Es capaz de resolver cualquier problema.', exampleEn: 'She is capable of solving any problem.' },
+  { es: 'dispuesto', en: 'willing / ready', cefr: 'B1', domain: 'adjectives', frequencyRank: 210, example: 'Estoy dispuesto a ayudar.', exampleEn: 'I am willing to help.' },
+  { es: 'necesario', en: 'necessary', cefr: 'B1', domain: 'adjectives', frequencyRank: 120, example: 'No es necesario venir en persona.', exampleEn: 'It is not necessary to come in person.' },
+  { es: 'posible', en: 'possible', cefr: 'B1', domain: 'adjectives', frequencyRank: 80, example: 'Es posible que lleguen tarde.', exampleEn: 'It is possible that they will arrive late.' },
+  { es: 'adecuado', en: 'appropriate / adequate', cefr: 'B1', domain: 'adjectives', frequencyRank: 195, example: 'La respuesta no fue adecuada.', exampleEn: 'The answer was not appropriate.' },
+  { es: 'agotado', en: 'exhausted / sold out', cefr: 'B1', domain: 'adjectives', frequencyRank: 270, example: 'Llegó a casa completamente agotado.', exampleEn: 'He arrived home completely exhausted.' },
+  { es: 'emocionado', en: 'excited / moved', cefr: 'B1', domain: 'adjectives', frequencyRank: 285, example: 'Estoy muy emocionado por el viaje.', exampleEn: 'I am very excited about the trip.' },
+  { es: 'preocupado', en: 'worried / concerned', cefr: 'B1', domain: 'adjectives', frequencyRank: 190, example: 'Está preocupado por su salud.', exampleEn: 'He is worried about his health.' },
+  // B1 verbs (change of state, emotions)
+  { es: 'preocuparse', en: 'to worry / to be concerned', cefr: 'B1', domain: 'verbs', frequencyRank: 145, example: 'No te preocupes, todo irá bien.', exampleEn: "Don't worry, everything will be fine." },
+  { es: 'ponerse', en: 'to become (emotion) / to put on', cefr: 'B1', domain: 'verbs', frequencyRank: 65, example: 'Se puso nervioso antes del examen.', exampleEn: 'He got nervous before the exam.' },
+  { es: 'volverse', en: 'to become (change over time)', cefr: 'B1', domain: 'verbs', frequencyRank: 90, example: 'Se volvió muy tímido de adulto.', exampleEn: 'He became very shy as an adult.' },
+  { es: 'quedarse', en: 'to stay / to remain / to become', cefr: 'B1', domain: 'verbs', frequencyRank: 55, example: 'Se quedó sin palabras.', exampleEn: 'She was left speechless.' },
+  { es: 'atreverse', en: 'to dare', cefr: 'B1', domain: 'verbs', frequencyRank: 250, example: 'No me atrevo a decírselo.', exampleEn: "I don't dare to tell him." },
+  { es: 'echar de menos', en: 'to miss (someone/something)', cefr: 'B1', domain: 'verbs', frequencyRank: 300, example: 'Echo de menos a mi familia.', exampleEn: 'I miss my family.' },
+  // B1 health vocabulary
+  { es: 'enfermarse', en: 'to get sick / to fall ill', cefr: 'B1', domain: 'body', frequencyRank: 290, example: 'Se enfermó después de la lluvia.', exampleEn: 'He got sick after the rain.' },
+  { es: 'síntoma', en: 'symptom', cefr: 'B1', domain: 'body', frequencyRank: 280, example: 'Los síntomas desaparecieron.', exampleEn: 'The symptoms disappeared.' },
+  { es: 'medicamento', en: 'medicine / medication', cefr: 'B1', domain: 'body', frequencyRank: 220, example: 'Toma el medicamento dos veces al día.', exampleEn: 'Take the medication twice a day.' },
+  { es: 'médico', en: 'doctor', cefr: 'B1', domain: 'body', frequencyRank: 85, example: 'Fui al médico esta mañana.', exampleEn: 'I went to the doctor this morning.' },
+  // B1 travel vocabulary
+  { es: 'vuelo', en: 'flight', cefr: 'B1', domain: 'places', frequencyRank: 215, example: 'El vuelo sale a las ocho.', exampleEn: 'The flight leaves at eight.' },
+  { es: 'maleta', en: 'suitcase', cefr: 'B1', domain: 'places', frequencyRank: 310, example: 'Hice la maleta la noche anterior.', exampleEn: 'I packed my suitcase the night before.' },
+  { es: 'reservar', en: 'to reserve / to book', cefr: 'B1', domain: 'verbs', frequencyRank: 195, example: 'Reservé una habitación para dos noches.', exampleEn: 'I booked a room for two nights.' },
+  { es: 'llegada', en: 'arrival', cefr: 'B1', domain: 'places', frequencyRank: 230, example: 'La llegada estaba prevista a las tres.', exampleEn: 'The arrival was scheduled for three.' },
+  { es: 'salida', en: 'departure / exit', cefr: 'B1', domain: 'places', frequencyRank: 170, example: 'La salida es a las seis de la mañana.', exampleEn: 'The departure is at six in the morning.' },
+  // B1 education vocabulary
+  { es: 'asignatura', en: 'subject (school)', cefr: 'B1', domain: 'nouns', frequencyRank: 320, example: 'Mi asignatura favorita es la historia.', exampleEn: 'My favourite subject is history.' },
+  { es: 'aprobar', en: 'to pass (an exam)', cefr: 'B1', domain: 'verbs', frequencyRank: 260, example: 'Aprobé el examen de conducir.', exampleEn: 'I passed my driving test.' },
+  { es: 'suspender', en: 'to fail (an exam / Spain)', cefr: 'B1', domain: 'verbs', frequencyRank: 310, example: 'Suspendió las matemáticas.', exampleEn: 'She failed maths.' },
+  { es: 'nota', en: 'grade / mark / note', cefr: 'B1', domain: 'nouns', frequencyRank: 130, example: 'Sacó buenas notas este trimestre.', exampleEn: 'She got good grades this term.' },
+  // B1 emotions / feelings
+  { es: 'decepción', en: 'disappointment', cefr: 'B1', domain: 'nouns', frequencyRank: 290, example: 'Fue una gran decepción para todos.', exampleEn: 'It was a great disappointment for everyone.' },
+  { es: 'frustración', en: 'frustration', cefr: 'B1', domain: 'nouns', frequencyRank: 270, example: 'Sentí mucha frustración al no entenderlo.', exampleEn: 'I felt a lot of frustration at not understanding it.' },
+  { es: 'confianza', en: 'confidence / trust', cefr: 'B1', domain: 'nouns', frequencyRank: 160, example: 'Hay que tener confianza en uno mismo.', exampleEn: 'You have to have confidence in yourself.' },
 
   // ── B2 ──────────────────────────────────────────────────────────────────
   // Connectors & discourse markers
