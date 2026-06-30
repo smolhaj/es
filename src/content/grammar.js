@@ -620,6 +620,7 @@ export const GRAMMAR_CARDS = [
       { es: 'ir/ser: fui, fuiste, fue, fuimos, fuisteis, fueron', en: 'went / was (same forms)' },
       { es: 'tener: tuve, tuviste, tuvo, tuvimos, tuvisteis, tuvieron', en: 'had' },
       { es: 'hacer: hice, hiciste, hizo, hicimos, hicisteis, hicieron', en: 'did / made' },
+      { es: '—¿Qué dijiste? —Dije que vine en tren.', en: 'What did you say? — I said I came by train. (decir: dij-, venir: vin-)' },
     ],
     exceptions: [
       'Other common irregulars: estar (estuv-), poder (pud-), poner (pus-), venir (vin-), querer (quis-), saber (sup-).',
@@ -638,6 +639,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Cuando era niño, vivía en el campo.', en: 'When I was a child, I lived in the countryside. (habitual/state)' },
       { es: 'Todos los veranos íbamos a la playa.', en: 'Every summer we went to the beach. (repeated)' },
       { es: 'Eran las diez y llovía.', en: 'It was ten o\'clock and it was raining. (background)' },
+      { es: 'Sabía que tenías razón, pero no quería admitirlo.', en: 'I knew you were right, but I didn\'t want to admit it. (mental state)' },
     ],
     exceptions: [
       'Only 3 irregular imperfects exist: ser (era/eras/era/éramos/erais/eran), ir (iba/ibas/iba/íbamos/ibais/iban), ver (veía/veías…). All other verbs are regular.',
@@ -716,6 +718,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Mañana hablaré con el jefe.', en: 'Tomorrow I will speak with the boss.' },
       { es: '¿Vendrás a la fiesta?', en: 'Will you come to the party?' },
       { es: 'Habrá mucha gente.', en: 'There will be a lot of people.' },
+      { es: '—¿Dónde estará Ana? —Estará en el trabajo.', en: 'Where can Ana be? — She must be at work. (probability / educated guess about present)' },
     ],
     exceptions: [
       'Irregular stems: tener→tendr-, poder→podr-, hacer→har-, saber→sabr-, haber→habr-, decir→dir-, venir→vendr-.',
@@ -734,6 +737,7 @@ export const GRAMMAR_CARDS = [
       { es: '¿Podrías ayudarme? (polite)', en: 'Could you help me?' },
       { es: 'Si tuviera dinero, viajaría por el mundo.', en: 'If I had money, I would travel the world.' },
       { es: 'Dijo que vendría.', en: 'He said he would come. (reported speech)' },
+      { es: 'No sé qué hora era. Serían las tres de la madrugada.', en: 'I don\'t know what time it was. It must have been around three in the morning. (past probability)' },
     ],
     exceptions: [
       'Irregular stems (same as future): tendr- (tener), podr- (poder), har- (hacer), sabr- (saber), habr- (haber), dir- (decir), vendr- (venir), saldr- (salir), pondr- (poner), querr- (querer).',
@@ -753,6 +757,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Quiero que vengas.', en: 'I want you to come.' },
       { es: 'Es importante que estudies.', en: 'It\'s important that you study.' },
       { es: 'Dudo que sea verdad.', en: 'I doubt it\'s true.' },
+      { es: 'Me alegra que estés aquí.', en: 'I\'m glad you\'re here. (emotion trigger: alegrarse de que)' },
     ],
     exceptions: [
       'Common triggers (WEIRDO): Wishes, Emotion, Impersonal expressions, Recommendations, Doubt/Denial, Ojalá.',
@@ -771,6 +776,7 @@ export const GRAMMAR_CARDS = [
       { es: '¡Habla más despacio!', en: 'Speak more slowly! (tú, affirmative)' },
       { es: '¡No hables tan rápido!', en: 'Don\'t speak so fast! (tú, negative)' },
       { es: 'Siéntese, por favor.', en: 'Please sit down. (usted)' },
+      { es: '¡Vamos a la playa! / ¡Vámonos!', en: 'Let\'s go to the beach! (nosotros command — the reflexive drops -s before nos)' },
     ],
     exceptions: [
       'Irregular tú imperatives: di, haz, ve, pon, sal, sé, ten, ven.',
@@ -809,6 +815,7 @@ export const GRAMMAR_CARDS = [
       { es: 'El libro que leí es bueno.', en: 'The book that I read is good.' },
       { es: 'La chica con quien hablo es mi amiga.', en: 'The girl with whom I speak is my friend.' },
       { es: 'La ciudad donde nací es pequeña.', en: 'The city where I was born is small.' },
+      { es: 'Los que estudian mucho suelen tener éxito.', en: 'Those who study a lot tend to succeed. (los que = "those who")' },
     ],
     exceptions: [
       'After prepositions, use el que/la que/los que/las que for things, or quien(es) for people: la mesa sobre la que escribo.',
@@ -912,6 +919,7 @@ export const GRAMMAR_CARDS = [
       { es: 'He comido ya.', en: 'I have already eaten. (Spain: recent past)' },
       { es: '¿Has visto esta película?', en: 'Have you seen this film?' },
       { es: 'Hemos vivido aquí cinco años.', en: 'We have lived here for five years.' },
+      { es: 'Esta mañana me he levantado tarde. (Spain)', en: 'This morning I got up late. (Spain uses present perfect for same-day events; LatAm would use preterite: me levanté)' },
     ],
     exceptions: [
       'Past participles: -ar → -ado (hablado); -er/-ir → -ido (comido, vivido).',
@@ -931,6 +939,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Cuando llegué, ya habían comido.', en: 'When I arrived, they had already eaten.' },
       { es: 'No había visto esa película.', en: 'I hadn\'t seen that film.' },
       { es: 'Ya había terminado cuando me llamó.', en: 'She had already finished when he called her.' },
+      { es: 'Me dijo que ya había hablado con el director.', en: 'He told me he had already spoken to the director. (pluperfect in indirect speech)' },
     ],
     exceptions: [
       'Haber imperfect: había, habías, había, habíamos, habíais, habían.',
@@ -989,6 +998,7 @@ export const GRAMMAR_CARDS = [
       { es: 'El libro fue escrito por Cervantes.', en: 'The book was written by Cervantes.' },
       { es: 'Las ventanas son lavadas cada semana.', en: 'The windows are washed every week.' },
       { es: 'El contrato ha sido firmado.', en: 'The contract has been signed.' },
+      { es: 'Los heridos fueron trasladados al hospital.', en: 'The injured were taken to hospital. (passive without explicit agent)' },
     ],
     exceptions: [
       'The passive with ser is less common in Spanish than in English — use the active or passive-se instead.',
@@ -1026,6 +1036,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Quería que vinieras.', en: 'I wanted you to come.' },
       { es: 'Si tuviera dinero, viajaría.', en: 'If I had money, I would travel.' },
       { es: 'Buscaban a alguien que hablara ruso.', en: 'They were looking for someone who spoke Russian.' },
+      { es: 'Habla como si lo supiera todo.', en: 'He talks as if he knew everything. (como si + imperfect subjunctive — always)' },
     ],
     exceptions: [
       'An alternative -se form exists (hablase, comiese) — used in writing and Spain.',
@@ -1045,6 +1056,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Si tienes hambre, come algo. (Type 1)', en: 'If you\'re hungry, eat something.' },
       { es: 'Si tuviera tiempo, estudiaría más. (Type 2)', en: 'If I had time, I would study more.' },
       { es: 'Si hubiera sabido, no habría venido. (Type 3)', en: 'If I had known, I wouldn\'t have come.' },
+      { es: 'Si hubieras estudiado más, ahora hablarías español.', en: 'If you had studied more, you would speak Spanish now. (mixed: Type 3 condition → Type 2 result — past counterfact leads to present consequence)' },
     ],
     exceptions: [
       'NEVER use subjunctive directly after si in a real condition: *si tenga is wrong.',
@@ -1144,6 +1156,7 @@ export const GRAMMAR_CARDS = [
       { es: 'El estudiante cuyo libro perdí.', en: 'The student whose book I lost.' },
       { es: 'La empresa para la cual trabajo.', en: 'The company for which I work.' },
       { es: 'La razón por la cual no vine.', en: 'The reason why (for which) I didn\'t come.' },
+      { es: 'No llegó a tiempo, lo cual me sorprendió.', en: 'She didn\'t arrive on time, which surprised me. (lo cual refers to the entire preceding clause, not a single noun)' },
     ],
     exceptions: [
       'Cuyo agrees with the thing possessed, not the owner: el hombre cuya hija (the man whose daughter).',
