@@ -323,6 +323,7 @@ function formatType(type) {
     case 'fill_blank':             return 'Fill in the blank';
     case 'translation_to_spanish': return 'Translation (→ ES)';
     case 'translation_to_english': return 'Translation (→ EN)';
+    case 'error_correction':       return 'Error correction';
     default: return type;
   }
 }
