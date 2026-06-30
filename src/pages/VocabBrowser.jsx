@@ -10,7 +10,10 @@ const DOMAIN_LABELS = {
   greetings: 'Greetings', numbers: 'Numbers', time: 'Time', colors: 'Colors',
   family: 'Family', food: 'Food', places: 'Places', verbs: 'Verbs',
   adjectives: 'Adjectives', connectors: 'Connectors', adverbs: 'Adverbs',
-  nouns: 'Nouns', body: 'Body', weather: 'Weather',
+  nouns: 'Nouns', body: 'Body', weather: 'Weather', professions: 'Professions',
+  emotions: 'Emotions', clothes: 'Clothes', house: 'House & Home', health: 'Health',
+  travel: 'Travel', technology: 'Technology',
+  education: 'Education', nature: 'Nature',
 };
 
 export default function VocabBrowser() {
@@ -83,7 +86,7 @@ export default function VocabBrowser() {
             <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
             <h1 className={styles.title}>Vocabulary</h1>
             <p className={styles.subtitle}>
-              {VOCABULARY.length} words · A1 through C1
+              {VOCABULARY.length} words across {DOMAINS.length} domains · A1 through C1
               {seenCount > 0 && ` · ${seenCount} in your queue`}
             </p>
           </header>
