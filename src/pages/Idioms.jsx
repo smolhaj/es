@@ -4,6 +4,12 @@ import NavBar from '../components/NavBar.jsx';
 import { IDIOMS, CATEGORIES } from '../content/idioms.js';
 import styles from './Idioms.module.css';
 
+const categoryCounts = IDIOMS.reduce((acc, i) => {
+  acc[i.category] = (acc[i.category] || 0) + 1;
+  return acc;
+}, {});
+const MAIN_CATEGORIES = CATEGORIES.filter(c => categoryCounts[c] >= 3);
+
 const REGISTER_COLORS = {
   colloquial: 'regColloquial',
   informal: 'regInformal',
@@ -97,9 +103,9 @@ export default function Idioms() {
                 </button>
               ))}
             </div>
-            {CATEGORIES.length > 0 && (
+            {MAIN_CATEGORIES.length > 0 && (
               <div className={styles.filterRow}>
-                {CATEGORIES.map(c => (
+                {MAIN_CATEGORIES.map(c => (
                   <button
                     key={c}
                     className={`${styles.filterBtn} ${styles.filterSmall} ${filterCat === c ? styles.filterActive : ''}`}
