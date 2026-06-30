@@ -103,6 +103,17 @@ export const FALLBACK_EXERCISES = [
   { type: 'multiple_choice', prompt: 'Which sentence uses "por" correctly?', word: 'por', english: 'for/by/through', answer: 'Gracias por tu ayuda.', options: ['Lo hago para divertirme.', 'Gracias por tu ayuda.', 'Estudio para aprender.', 'Salgo para Madrid mañana.'], concept_id: 'por_vs_para', difficulty: 3 },
   { type: 'fill_blank', prompt: 'Complete: Quiero que ___ la verdad. (decir, present subjunctive, tú)', word: 'decir', english: 'to say', answer: 'digas', concept_id: 'present_subjunctive', difficulty: 3 },
   { type: 'translation_to_english', prompt: '¿Qué significa "Lleva tres horas estudiando"?', word: 'llevar', english: 'to have been doing for', answer: 'She has been studying for three hours.', concept_id: 'llevar_gerund', difficulty: 2 },
+  // A2 — adverbs_formation
+  { type: 'fill_blank', prompt: 'Complete: Habla muy ___. (rápido → adverb)', word: 'rápidamente', english: 'quickly', answer: 'rápidamente', concept_id: 'adverbs_formation', difficulty: 2 },
+  // B2
+  { type: 'fill_blank', prompt: 'Complete: ___ tres países este año. (I have visited — haber + visitar)', word: 'haber', english: 'to have (auxiliary)', answer: 'He visitado', concept_id: 'present_perfect', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'If I had more money, I would travel more.'", english: 'If I had more money, I would travel more.', answer: 'Si tuviera más dinero, viajaría más.', word: 'tener', concept_id: 'si_clauses', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: Quería que él ___ más despacio. (hablar, imperfect subjunctive)', word: 'hablar', english: 'to speak', answer: 'hablara', concept_id: 'imperfect_subjunctive', difficulty: 3 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "El informe fue redactado por el director"?', word: 'ser', english: 'to be', answer: 'The report was drafted by the director.', concept_id: 'passive_voice', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which sentence is a correct B2 comparison?', word: 'más', english: 'more', answer: 'Habla español mejor que yo.', options: ['Habla español más bien que yo.', 'Habla español mejor que yo.', 'Habla español más bueno que yo.', 'Habla español tan bien como yo no.'], concept_id: 'comparatives', difficulty: 2 },
+  // C1
+  { type: 'translation_to_spanish', prompt: "Translate: 'I doubt that he has told the truth.'", english: 'I doubt that he has told the truth.', answer: 'Dudo que haya dicho la verdad.', word: 'dudar', concept_id: 'subjunctive_noun_clauses', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: Me dijo que ___ al día siguiente. (volver, indirect speech, él)', word: 'volver', english: 'to return', answer: 'volvería', concept_id: 'estilo_indirecto', difficulty: 3 },
 ];
 
 function fallback() {
