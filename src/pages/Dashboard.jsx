@@ -15,7 +15,11 @@ const CONCEPT_LABELS = {
   gustar_type: 'Gustar-type', direct_object_pronouns: 'Direct obj. pronouns',
   indirect_object_pronouns: 'Indirect obj. pronouns', demonstratives: 'Demonstratives',
   possessives: 'Possessives', preterite_regular: 'Preterite (regular)', modal_verbs: 'Modal verbs',
-  time_expressions: 'Time expressions', preterite_irregular: 'Preterite (irregular)',
+  obligation_infinitive: 'Obligation (tener que)',
+  time_expressions: 'Time expressions', present_progressive: 'Present progressive',
+  irregular_present: 'Irregular present', negation: 'Negation', prepositions_basic: 'Basic prepositions', near_future: 'Near future (ir a)', adverbs_formation: 'Adverbs (-mente)',
+  acabar_de: 'Recent past (acabar de)',
+  llevar_gerund: 'Duration (llevar + gerund)', preterite_irregular: 'Preterite (irregular)',
   imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
   future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',
   imperative: 'Imperative', por_vs_para: 'Por vs. para', relative_clauses: 'Relative clauses',
@@ -29,6 +33,8 @@ const CONCEPT_LABELS = {
   gerund_advanced: 'Gerund (advanced)', ser_passive: 'Ser passive', estilo_indirecto: 'Indirect speech',
   nominalisation: 'Nominalisation', subjunctive_temporal: 'Subjunctive (temporal)',
   cuantificadores: 'Quantifiers',
+  futuro_probabilidad: 'Future probability', condicional_probabilidad: 'Conditional inference',
+  perifraseis_avanzadas: 'Advanced periphrases',
 };
 
 function StatCard({ label, value, sub }) {

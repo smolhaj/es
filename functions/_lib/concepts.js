@@ -120,13 +120,58 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
     explanationStyles: ['example_first', 'rule_first', 'table'],
   },
+  obligation_infinitive: {
+    id: 'obligation_infinitive', label: 'Obligation (tener que / hay que)', cefr: 'A2',
+    category: 'verb', prereqs: ['modal_verbs', 'hay'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
   time_expressions: {
     id: 'time_expressions', label: 'Time expressions (ayer, hace…)', cefr: 'A2',
     category: 'vocabulary', prereqs: ['preterite_regular'],
     explanationStyles: ['example_first', 'rule_first'],
   },
+  present_progressive: {
+    id: 'present_progressive', label: 'Present progressive (estar + gerund)', cefr: 'A2',
+    category: 'verb', prereqs: ['estar_basics', 'present_ar', 'present_er_ir'],
+    explanationStyles: ['rule_first', 'example_first', 'table'],
+  },
+  irregular_present: {
+    id: 'irregular_present', label: 'Irregular present tense (ir, tener, venir…)', cefr: 'A2',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['table', 'pattern', 'example_first'],
+  },
+  negation: {
+    id: 'negation', label: 'Negation & negative words (nada, nadie, nunca)', cefr: 'A2',
+    category: 'syntax', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  prepositions_basic: {
+    id: 'prepositions_basic', label: 'Basic prepositions (a, de, en, con, sin…)', cefr: 'A2',
+    category: 'syntax', prereqs: ['definite_articles', 'present_ar'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  near_future: {
+    id: 'near_future', label: 'Near future (ir a + infinitive)', cefr: 'A2',
+    category: 'verb', prereqs: ['irregular_present', 'prepositions_basic'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  adverbs_formation: {
+    id: 'adverbs_formation', label: 'Adverbs formation (-mente)', cefr: 'A2',
+    category: 'morphology', prereqs: ['adjective_agreement'],
+    explanationStyles: ['rule_first', 'pattern', 'example_first'],
+  },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
+  acabar_de: {
+    id: 'acabar_de', label: 'Recent past (acabar de + infinitive)', cefr: 'B1',
+    category: 'verb', prereqs: ['preterite_regular', 'modal_verbs'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  llevar_gerund: {
+    id: 'llevar_gerund', label: 'Duration (llevar + gerund)', cefr: 'B1',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
   preterite_irregular: {
     id: 'preterite_irregular', label: 'Preterite irregular (ir/ser/tener)', cefr: 'B1',
     category: 'verb', prereqs: ['preterite_regular'],
@@ -280,6 +325,21 @@ export const CONCEPTS = {
     id: 'cuantificadores', label: 'Quantifiers (bastante, demasiado, cada)', cefr: 'C1',
     category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
     explanationStyles: ['rule_first', 'example_first', 'table'],
+  },
+  futuro_probabilidad: {
+    id: 'futuro_probabilidad', label: 'Future for probability (Serán las diez)', cefr: 'C1',
+    category: 'verb', prereqs: ['future_simple', 'conditional'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  condicional_probabilidad: {
+    id: 'condicional_probabilidad', label: 'Conditional for past inference (Tendría 30 años)', cefr: 'C1',
+    category: 'verb', prereqs: ['conditional', 'futuro_probabilidad'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  perifraseis_avanzadas: {
+    id: 'perifraseis_avanzadas', label: 'Advanced verb periphrases (soler, ponerse a…)', cefr: 'C1',
+    category: 'verb', prereqs: ['acabar_de', 'llevar_gerund', 'present_subjunctive'],
+    explanationStyles: ['rule_first', 'table', 'example_first'],
   },
 };
 

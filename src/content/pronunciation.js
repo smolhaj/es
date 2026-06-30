@@ -172,6 +172,138 @@ export const PRONUNCIATION_RULES = [
       { word: 'un amigo', note: 'u-na-mí-go (vowels link)' },
     ],
   },
+  {
+    id: 'd_intervocalic',
+    category: 'Consonants',
+    title: 'D between vowels — softens to /ð/',
+    rule: 'D is pronounced as a hard /d/ (like English "dog") only at the beginning of a phrase or after n/l. In all other positions — especially between vowels — it softens to /ð/, like the "th" in "this".',
+    sounds: [
+      { letter: 'd (initial/after n,l)', ipa: '/d/', like: '"d" in "dog"', example: 'donde, cuando, el día' },
+      { letter: 'd (between vowels)', ipa: '/ð/', like: '"th" in "this"', example: 'nada, todo, ciudad, Madrid' },
+    ],
+    tips: [
+      '"nada" sounds like "NAH-tha" (soft d, not hard d).',
+      '"Madrid" — the final d is so soft it often disappears entirely in casual speech.',
+      'This is one of the most common features of native-sounding Spanish.',
+    ],
+    examples: [
+      { word: 'todo', note: 'TOH-tho (soft d between o and o)' },
+      { word: 'ciudad', note: 'syoo-DAHTH (final d barely voiced)' },
+      { word: 'el día', note: 'el-DÍ-a (hard d after l)' },
+    ],
+  },
+  {
+    id: 'unaspirated_stops',
+    category: 'Consonants',
+    title: 'P, T, K — no aspiration',
+    rule: 'In English, the stops P, T, K at the start of stressed syllables have a puff of air (aspiration): "pin", "tin", "kin". Spanish never aspirates these consonants — they are "clean" stops with no air burst.',
+    sounds: [
+      { letter: 'p', ipa: '/p/ (no aspiration)', like: '"p" in "spin" (not "pin")', example: 'padre, pero,apa' },
+      { letter: 't', ipa: '/t/ (no aspiration)', like: '"t" in "stop" (not "top")', example: 'también, tú, alto' },
+      { letter: 'k / c / qu', ipa: '/k/ (no aspiration)', like: '"k" in "ski" (not "key")', example: 'casa, querer, que' },
+    ],
+    tips: [
+      'Hold a piece of paper in front of your mouth. English "pin" makes it flutter; Spanish "pin" should not.',
+      'Spanish T is also dental (tongue touches upper teeth, not the ridge behind them like English T).',
+      'Getting this right makes your Spanish sound instantly more native.',
+    ],
+  },
+  {
+    id: 'silent_u',
+    category: 'Consonants',
+    title: 'Silent U in QU and GU',
+    rule: 'The letter U is silent in the combinations QUE, QUI, GUE, and GUI. It is only there to keep the hard /k/ or /g/ sound before E or I. The diaeresis (Ü) signals that the U is actually pronounced.',
+    sounds: [
+      { letter: 'que / qui', ipa: '/ke/ /ki/', like: 'hard k + vowel', example: 'querer, quiero, aquí, queso' },
+      { letter: 'gue / gui', ipa: '/ge/ /gi/', like: 'hard g + vowel', example: 'guerra, guitarra, llegué' },
+      { letter: 'güe / güi', ipa: '/gwe/ /gwi/', like: 'hard g + w + vowel', example: 'pingüino, vergüenza, agüero' },
+    ],
+    tips: [
+      '"querer" = ke-RER (the u is silent — just keeps the k sound).',
+      '"guitarra" = gi-TAH-ra (again, silent u).',
+      '"pingüino" = pin-GWEE-no — the diaeresis over ü means the u IS pronounced.',
+    ],
+  },
+  {
+    id: 'x_sounds',
+    category: 'Consonants',
+    title: 'X — three different sounds',
+    rule: 'The letter X has three pronunciations in Spanish depending on origin and position: /ks/ in most words (like English "x"), /x/ (guttural h) in words of Nahuatl/indigenous origin (especially Mexico), and /s/ in words beginning with ex- before a consonant in casual speech.',
+    sounds: [
+      { letter: 'x (mid-word)', ipa: '/ks/', like: '"x" in "taxi"', example: 'taxi, éxito, exacto, examen' },
+      { letter: 'x (Nahuatl words)', ipa: '/x/', like: 'guttural "h" (j-sound)', example: 'México, Oaxaca, Xochimilco' },
+      { letter: 'x (ex+consonant, casual)', ipa: '/s/', like: '"s"', example: 'explicar → [esplicar], extraño → [estraño]' },
+    ],
+    tips: [
+      'México is spelled with X but pronounced "Méjico" (the X = /x/ like the J in jamón).',
+      'Oaxaca = "wa-HA-ka" — the X is the guttural /x/ sound, not /ks/.',
+      'In formal speech: éxito = "EK-si-to". Casual: "E-si-to" (the /ks/ cluster simplifies).',
+      'All other Spanish x words: pronounce as /ks/ — taxi, flexible, sexto.',
+    ],
+    examples: [
+      { word: 'éxito', note: 'EK-si-to — success (formal) or E-si-to (casual)' },
+      { word: 'México', note: 'MÉ-hi-co — x = /x/ (same as j)' },
+      { word: 'Oaxaca', note: 'wa-HA-ca — x = /x/ again' },
+    ],
+  },
+  {
+    id: 's_aspiration',
+    category: 'Connected speech',
+    title: 'S aspiration — casual and regional speech',
+    rule: 'In many Spanish dialects (Andalucía, Canary Islands, all of Latin America, Caribbean especially), an S before a consonant or at the end of a word is weakened to /h/ (aspiration) or dropped entirely. This is not a mistake — it is standard in those dialects.',
+    sounds: [
+      { letter: 's (before consonant)', ipa: '/h/ or Ø', like: '"h" or silent', example: 'estos → "ehtoh", las manos → "lah manoh"' },
+      { letter: 's (final, formal)', ipa: '/s/', like: '"s"', example: 'hablas, tienes (Spain)' },
+    ],
+    tips: [
+      'In Caribbean Spanish (Cuba, Puerto Rico, Dominican Rep.): "¿cómo estás?" sounds like "¿cómo ehtáh?".',
+      'In Argentina: S stays but is often softer — less extreme aspiration than Caribbean.',
+      'Learner tip: If you can\'t parse a fast Caribbean speaker, the missing S\'s are the main culprit. Listen for the pattern.',
+      'Producing aspiration is optional for learners, but recognising it is essential for real-world listening.',
+    ],
+    examples: [
+      { word: 'los niños', note: 'formal: los-NIÑOS | casual/Caribbean: loh-NIÑO' },
+      { word: 'ustedes', note: 'formal: us-TEH-des | casual: uhtéhe' },
+      { word: 'más tarde', note: 'formal: más-TAR-de | aspirated: máh-TAR-e' },
+    ],
+  },
+  {
+    id: 'triphthongs',
+    category: 'Vowels',
+    title: 'Triphthongs — three vowels in one syllable',
+    rule: 'A triphthong occurs when a weak vowel (i/u) + strong vowel (a/e/o) + weak vowel (i/u) appear together with no accent break. All three form a single syllable. They are rare but appear in verb forms like the vosotros subjunctive.',
+    sounds: [],
+    tips: [
+      'Pattern: weak + strong + weak, all in one syllable. e.g. i-a-i, u-a-i, u-e-i',
+      'Common triphthongs: -iáis, -uéis, -iais (vosotros subjunctive endings).',
+      '"Limpiáis" (lim-PIÁIS, 2 syllables, not 3) — the ia+i is a triphthong.',
+      '"Continuéis" (con-ti-NUÉIS, 3 syllables) — uéi is the triphthong.',
+      'An accent mark on the strong vowel (á, é, ó) confirms these belong to the same syllable group.',
+    ],
+    examples: [
+      { word: 'lim-PIÁIS', note: '2 syllables — iái is a triphthong (vosotros pres. subj.)' },
+      { word: 'con-ti-NUÉIS', note: '3 syllables — uéi is a triphthong' },
+      { word: 'cam-BIÁIS', note: '2 syllables — iái triphthong' },
+    ],
+  },
+  {
+    id: 'intonation',
+    category: 'Connected speech',
+    title: 'Intonation — questions and statements',
+    rule: 'Spanish uses inverted opening punctuation (¿ ¡) to signal questions and exclamations from the start. Intonation patterns differ from English: yes/no questions typically rise at the end; wh-questions (with question words) often fall.',
+    sounds: [],
+    tips: [
+      'Yes/no question: "¿Hablas español?" — voice rises at end.',
+      'Wh-question: "¿Dónde vives?" — voice falls at end (like a statement).',
+      'Unlike English, the word order rarely changes in questions — just the intonation does.',
+      'Exclamations: "¡Qué bonito!" — sharp rise then fall, more dramatic than English.',
+    ],
+    examples: [
+      { word: '¿Hablas inglés?', note: 'rises at the end (yes/no)' },
+      { word: '¿Dónde está?', note: 'falls at the end (wh-question)' },
+      { word: '¡Qué suerte!', note: 'sharp rise-fall (exclamation)' },
+    ],
+  },
 ];
 
 export const CATEGORIES = [...new Set(PRONUNCIATION_RULES.map(r => r.category))];
