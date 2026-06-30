@@ -479,6 +479,28 @@ export const VOCABULARY = [
   { es: 'jefe', en: 'boss / manager', cefr: 'A2', domain: 'nouns', frequencyRank: 136, example: 'Mi jefe es muy exigente.', exampleEn: 'My boss is very demanding.' },
   { es: 'compañero', en: 'colleague / classmate', cefr: 'A2', domain: 'nouns', frequencyRank: 143, example: 'Mi compañero de trabajo es simpático.', exampleEn: 'My work colleague is friendly.' },
 
+  // Professions
+  { es: 'médico', en: 'doctor', cefr: 'A1', domain: 'professions', frequencyRank: 85, example: 'Mi madre es médica.', exampleEn: 'My mother is a doctor.' },
+  { es: 'enfermero', en: 'nurse', cefr: 'A1', domain: 'professions', frequencyRank: 200, example: 'El enfermero me tomó la tensión.', exampleEn: 'The nurse took my blood pressure.' },
+  { es: 'profesor', en: 'teacher', cefr: 'A1', domain: 'professions', frequencyRank: 100, example: 'Mi profesor de español es muy bueno.', exampleEn: 'My Spanish teacher is very good.' },
+  { es: 'policía', en: 'police officer', cefr: 'A1', domain: 'professions', frequencyRank: 120, example: 'El policía nos ayudó.', exampleEn: 'The police officer helped us.' },
+  { es: 'bombero', en: 'firefighter', cefr: 'A1', domain: 'professions', frequencyRank: 280, example: 'Los bomberos llegaron rápidamente.', exampleEn: 'The firefighters arrived quickly.' },
+  { es: 'estudiante', en: 'student', cefr: 'A1', domain: 'professions', frequencyRank: 70, example: 'Soy estudiante de lenguas.', exampleEn: 'I am a languages student.' },
+  { es: 'abogado', en: 'lawyer', cefr: 'A2', domain: 'professions', frequencyRank: 150, example: 'Necesito hablar con un abogado.', exampleEn: 'I need to speak with a lawyer.' },
+  { es: 'ingeniero', en: 'engineer', cefr: 'A2', domain: 'professions', frequencyRank: 160, example: 'Es ingeniero de software.', exampleEn: 'He is a software engineer.' },
+  { es: 'cocinero', en: 'cook / chef', cefr: 'A2', domain: 'professions', frequencyRank: 230, example: 'Trabaja como cocinero en un restaurante.', exampleEn: 'She works as a cook in a restaurant.' },
+  { es: 'mecánico', en: 'mechanic', cefr: 'A2', domain: 'professions', frequencyRank: 250, example: 'El mecánico reparó el coche.', exampleEn: 'The mechanic repaired the car.' },
+  { es: 'vendedor', en: 'sales assistant / salesperson', cefr: 'A2', domain: 'professions', frequencyRank: 190, example: 'El vendedor me explicó el producto.', exampleEn: 'The salesperson explained the product to me.' },
+  { es: 'actor', en: 'actor', cefr: 'A2', domain: 'professions', frequencyRank: 175, example: 'Es un actor muy conocido.', exampleEn: 'He is a very well-known actor.' },
+  { es: 'cantante', en: 'singer', cefr: 'A2', domain: 'professions', frequencyRank: 210, example: 'Su cantante favorita es española.', exampleEn: 'Her favourite singer is Spanish.' },
+  { es: 'músico', en: 'musician', cefr: 'A2', domain: 'professions', frequencyRank: 220, example: 'Toca en una banda como músico.', exampleEn: 'He plays in a band as a musician.' },
+  { es: 'periodista', en: 'journalist', cefr: 'B1', domain: 'professions', frequencyRank: 180, example: 'La periodista entrevistó al ministro.', exampleEn: 'The journalist interviewed the minister.' },
+  { es: 'arquitecto', en: 'architect', cefr: 'B1', domain: 'professions', frequencyRank: 200, example: 'El arquitecto diseñó el edificio.', exampleEn: 'The architect designed the building.' },
+  { es: 'psicólogo', en: 'psychologist', cefr: 'B1', domain: 'professions', frequencyRank: 210, example: 'Visita a un psicólogo una vez a la semana.', exampleEn: 'She visits a psychologist once a week.' },
+  { es: 'diseñador', en: 'designer', cefr: 'B1', domain: 'professions', frequencyRank: 230, example: 'Es diseñadora gráfica.', exampleEn: 'She is a graphic designer.' },
+  { es: 'programador', en: 'programmer / software developer', cefr: 'B1', domain: 'professions', frequencyRank: 240, example: 'Trabaja como programador en una startup.', exampleEn: 'He works as a programmer at a startup.' },
+  { es: 'científico', en: 'scientist', cefr: 'B1', domain: 'professions', frequencyRank: 170, example: 'Los científicos estudian el cambio climático.', exampleEn: 'Scientists study climate change.' },
+
   // ── B1 WORDS ────────────────────────────────────────────────────────────
   { es: 'a pesar de', en: 'in spite of / despite', cefr: 'B1', domain: 'connectors', frequencyRank: 180, example: 'Salió a pesar de la lluvia.', exampleEn: 'He went out despite the rain.' },
   { es: 'de hecho', en: 'in fact / actually', cefr: 'B1', domain: 'connectors', frequencyRank: 160, example: 'De hecho, no estaba de acuerdo.', exampleEn: 'In fact, I didn\'t agree.' },
