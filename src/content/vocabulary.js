@@ -25,6 +25,11 @@ export const VOCABULARY = [
   { es: 'con permiso', en: 'excuse me (to pass)', cefr: 'A2', domain: 'greetings', frequencyRank: 560, example: 'Con permiso — necesito pasar.', exampleEn: 'Excuse me — I need to get past.' },
   { es: '¡buen provecho!', en: 'enjoy your meal! / bon appétit!', cefr: 'A2', domain: 'greetings', frequencyRank: 570, example: '—¡Buen provecho! —Gracias, igualmente.', exampleEn: 'Enjoy your meal! — Thank you, you too.' },
   { es: '¡buena suerte!', en: 'good luck!', cefr: 'A2', domain: 'greetings', frequencyRank: 580, example: '¡Buena suerte en el examen!', exampleEn: 'Good luck in the exam!' },
+  // B2 — greetings & social expressions
+  { es: 'enhorabuena', en: 'congratulations (formal)', cefr: 'B2', domain: 'greetings', frequencyRank: 590, example: 'Enhorabuena por tu ascenso.', exampleEn: 'Congratulations on your promotion.' },
+  { es: 'condolencias', en: 'condolences', cefr: 'B2', domain: 'greetings', frequencyRank: 600, example: 'Te doy mis más sinceras condolencias.', exampleEn: 'I offer you my sincere condolences.' },
+  { es: 'bienvenida', en: 'welcome (noun) / reception', cefr: 'B2', domain: 'greetings', frequencyRank: 610, example: 'Le dieron una gran bienvenida al equipo.', exampleEn: 'They gave the team a great welcome.' },
+  { es: 'despedida', en: 'farewell / goodbye (noun)', cefr: 'B2', domain: 'greetings', frequencyRank: 620, example: 'La fiesta de despedida fue emotiva.', exampleEn: 'The farewell party was emotional.' },
 
   // ── NUMBERS ──────────────────────────────────────────────────────────────
   { es: 'uno', en: 'one', cefr: 'A1', domain: 'numbers', frequencyRank: 30, example: 'Tengo un hermano.', exampleEn: 'I have one brother.' },
@@ -54,6 +59,12 @@ export const VOCABULARY = [
   { es: 'quinto', en: 'fifth', cefr: 'A2', domain: 'numbers', frequencyRank: 80, example: 'Quedó quinto en la competición.', exampleEn: 'He finished fifth in the competition.' },
   { es: 'décimo', en: 'tenth', cefr: 'B1', domain: 'numbers', frequencyRank: 200, example: 'Vivo en el décimo piso.', exampleEn: 'I live on the tenth floor.' },
   { es: 'un millón', en: 'a million', cefr: 'B1', domain: 'numbers', frequencyRank: 250, example: 'Ganó un millón de euros en la lotería.', exampleEn: 'He won a million euros in the lottery.' },
+  // B2 — numbers & quantities
+  { es: 'porcentaje', en: 'percentage', cefr: 'B2', domain: 'numbers', frequencyRank: 260, example: 'El porcentaje de paro ha bajado un dos por ciento.', exampleEn: 'The unemployment rate has dropped by two per cent.' },
+  { es: 'promedio', en: 'average / mean', cefr: 'B2', domain: 'numbers', frequencyRank: 270, example: 'El promedio de temperatura en agosto es de treinta grados.', exampleEn: 'The average temperature in August is thirty degrees.' },
+  { es: 'cifra', en: 'figure / digit / number', cefr: 'B2', domain: 'numbers', frequencyRank: 280, example: 'Las cifras de ventas superaron las previsiones.', exampleEn: 'The sales figures exceeded expectations.' },
+  { es: 'fracción', en: 'fraction', cefr: 'B2', domain: 'numbers', frequencyRank: 290, example: 'Un cuarto es una fracción de un entero.', exampleEn: 'A quarter is a fraction of a whole.' },
+  { es: 'múltiplo', en: 'multiple', cefr: 'B2', domain: 'numbers', frequencyRank: 300, example: 'Doce es un múltiplo de tres.', exampleEn: 'Twelve is a multiple of three.' },
 
   // ── DAYS & TIME ──────────────────────────────────────────────────────────
   { es: 'lunes', en: 'Monday', cefr: 'A1', domain: 'time', frequencyRank: 600, example: 'El lunes tengo clase.', exampleEn: 'On Monday I have class.' },
@@ -131,6 +142,12 @@ export const VOCABULARY = [
   { es: 'gemelo', en: 'twin', cefr: 'B1', domain: 'family', frequencyRank: 440, example: 'Tiene un hermano gemelo.', exampleEn: 'He has a twin brother.' },
   { es: 'padrastro', en: 'stepfather', cefr: 'B1', domain: 'family', frequencyRank: 450, example: 'Mi padrastro me trata como a un hijo.', exampleEn: 'My stepfather treats me like a son.' },
   { es: 'madrastra', en: 'stepmother', cefr: 'B1', domain: 'family', frequencyRank: 452, example: 'Su madrastra es muy comprensiva.', exampleEn: 'His stepmother is very understanding.' },
+  // B2 — family & relationships
+  { es: 'cónyuge', en: 'spouse / partner (legal)', cefr: 'B2', domain: 'family', frequencyRank: 460, example: 'El seguro cubre también al cónyuge.', exampleEn: 'The insurance also covers the spouse.' },
+  { es: 'cuñado', en: 'brother-in-law', cefr: 'B2', domain: 'family', frequencyRank: 470, example: 'Mi cuñado trabaja en la misma empresa que mi hermana.', exampleEn: 'My brother-in-law works at the same company as my sister.' },
+  { es: 'cuñada', en: 'sister-in-law', cefr: 'B2', domain: 'family', frequencyRank: 472, example: 'Mi cuñada y yo nos llevamos muy bien.', exampleEn: 'My sister-in-law and I get on very well.' },
+  { es: 'heredero', en: 'heir / inheritor', cefr: 'B2', domain: 'family', frequencyRank: 480, example: 'El heredero recibió toda la fortuna familiar.', exampleEn: 'The heir received the entire family fortune.' },
+  { es: 'convivencia', en: 'living together / coexistence', cefr: 'B2', domain: 'family', frequencyRank: 490, example: 'La convivencia en pareja requiere respeto mutuo.', exampleEn: 'Living together as a couple requires mutual respect.' },
 
   // ── FOOD & DRINK ────────────────────────────────────────────────────────
   { es: 'agua', en: 'water', cefr: 'A1', domain: 'food', frequencyRank: 170, example: 'Quiero un vaso de agua.', exampleEn: 'I want a glass of water.' },
@@ -656,12 +673,23 @@ export const VOCABULARY = [
   { es: 'comisaría', en: 'police station', cefr: 'B1', domain: 'places', frequencyRank: 420, example: 'Denunció el robo en la comisaría.', exampleEn: 'She reported the theft at the police station.' },
   { es: 'ayuntamiento', en: 'town hall / city hall', cefr: 'B1', domain: 'places', frequencyRank: 300, example: 'Las oficinas del ayuntamiento abren a las nueve.', exampleEn: 'The town hall offices open at nine.' },
   { es: 'desierto', en: 'desert', cefr: 'B1', domain: 'places', frequencyRank: 280, example: 'El Sahara es el mayor desierto del mundo.', exampleEn: 'The Sahara is the world\'s largest desert.' },
+  // B2 — places & urban geography
+  { es: 'municipio', en: 'municipality / local council area', cefr: 'B2', domain: 'places', frequencyRank: 290, example: 'El municipio tiene veinte mil habitantes.', exampleEn: 'The municipality has twenty thousand inhabitants.' },
+  { es: 'vecindario', en: 'neighbourhood / local area', cefr: 'B2', domain: 'places', frequencyRank: 295, example: 'Es un vecindario tranquilo y seguro.', exampleEn: 'It is a quiet and safe neighbourhood.' },
+  { es: 'metrópoli', en: 'metropolis / major city', cefr: 'B2', domain: 'places', frequencyRank: 305, example: 'Madrid es una metrópoli de cuatro millones de habitantes.', exampleEn: 'Madrid is a metropolis of four million inhabitants.' },
+  { es: 'periferia', en: 'outskirts / periphery', cefr: 'B2', domain: 'places', frequencyRank: 315, example: 'Vive en la periferia de la ciudad.', exampleEn: 'She lives on the outskirts of the city.' },
   { es: 'medio ambiente', en: 'environment / the environment', cefr: 'B1', domain: 'nouns', frequencyRank: 175, example: 'Hay que proteger el medio ambiente.', exampleEn: 'We must protect the environment.' },
   // B1 — health
   { es: 'enfermedad', en: 'illness / disease', cefr: 'B1', domain: 'body', frequencyRank: 160, example: 'Es una enfermedad muy común.', exampleEn: "It's a very common illness." },
   { es: 'pastilla', en: 'pill / tablet', cefr: 'B1', domain: 'body', frequencyRank: 270, example: 'Toma una pastilla antes de dormir.', exampleEn: 'Take a pill before sleeping.' },
   { es: 'herida', en: 'wound / injury / cut', cefr: 'B1', domain: 'body', frequencyRank: 260, example: 'La herida tardó en curar.', exampleEn: 'The wound took time to heal.' },
   { es: 'consulta', en: "doctor's appointment / consultation", cefr: 'B1', domain: 'body', frequencyRank: 280, example: 'Tengo consulta con el médico mañana.', exampleEn: "I have a doctor's appointment tomorrow." },
+  // B2 — body & anatomy
+  { es: 'cicatriz', en: 'scar', cefr: 'B2', domain: 'body', frequencyRank: 290, example: 'Le quedó una cicatriz de la operación.', exampleEn: 'She was left with a scar from the operation.' },
+  { es: 'arteria', en: 'artery', cefr: 'B2', domain: 'body', frequencyRank: 295, example: 'El colesterol obstruye las arterias.', exampleEn: 'Cholesterol blocks the arteries.' },
+  { es: 'vena', en: 'vein', cefr: 'B2', domain: 'body', frequencyRank: 300, example: 'Le sacaron sangre de una vena del brazo.', exampleEn: 'They took blood from a vein in his arm.' },
+  { es: 'ligamento', en: 'ligament', cefr: 'B2', domain: 'body', frequencyRank: 510, example: 'Se rompió el ligamento cruzado jugando al fútbol.', exampleEn: 'He tore his cruciate ligament playing football.' },
+  { es: 'médico de cabecera', en: 'GP / family doctor', cefr: 'B2', domain: 'body', frequencyRank: 320, example: 'Pide cita con tu médico de cabecera.', exampleEn: 'Make an appointment with your GP.' },
   // B1 — culture & entertainment
   { es: 'película', en: 'film / movie', cefr: 'B1', domain: 'nouns', frequencyRank: 120, example: 'Vimos una película estupenda anoche.', exampleEn: 'We watched a great film last night.' },
   { es: 'entrada', en: 'ticket (event) / entrance', cefr: 'B1', domain: 'nouns', frequencyRank: 140, example: 'Compré dos entradas para el concierto.', exampleEn: 'I bought two tickets for the concert.' },
@@ -953,6 +981,12 @@ export const VOCABULARY = [
   { es: 'cinturón', en: 'belt', cefr: 'A2', domain: 'clothes', frequencyRank: 620, example: 'Necesito un cinturón para estos pantalones.', exampleEn: 'I need a belt for these trousers.' },
   { es: 'bolso', en: 'handbag / bag', cefr: 'A2', domain: 'clothes', frequencyRank: 630, example: 'Dejé las llaves dentro del bolso.', exampleEn: 'I left my keys inside the bag.' },
   { es: 'talla', en: 'size (clothing)', cefr: 'A2', domain: 'clothes', frequencyRank: 640, example: '¿Qué talla usas?', exampleEn: 'What size do you wear?' },
+  // B2 — clothing & fashion
+  { es: 'tejido', en: 'fabric / textile', cefr: 'B2', domain: 'clothes', frequencyRank: 650, example: 'Este tejido es demasiado delicado para lavar en la lavadora.', exampleEn: 'This fabric is too delicate to wash in the machine.' },
+  { es: 'prenda', en: 'garment / item of clothing', cefr: 'B2', domain: 'clothes', frequencyRank: 660, example: 'Cada prenda lleva una etiqueta con instrucciones de lavado.', exampleEn: 'Each garment has a label with washing instructions.' },
+  { es: 'estampado', en: 'pattern / print (on fabric)', cefr: 'B2', domain: 'clothes', frequencyRank: 670, example: 'Me gustan las camisas de estampado floral.', exampleEn: 'I like shirts with a floral print.' },
+  { es: 'chaleco', en: 'waistcoat / vest', cefr: 'B2', domain: 'clothes', frequencyRank: 680, example: 'Llevaba un chaleco sobre la camisa blanca.', exampleEn: 'He was wearing a waistcoat over his white shirt.' },
+  { es: 'sastre', en: 'tailor', cefr: 'B2', domain: 'clothes', frequencyRank: 690, example: 'El sastre le tomó medidas para el traje.', exampleEn: 'The tailor took his measurements for the suit.' },
 
   // ── HOUSE & HOME ─────────────────────────────────────────────────────────
   { es: 'casa', en: 'house / home', cefr: 'A1', domain: 'house', frequencyRank: 50, example: 'Vivo en una casa pequeña.', exampleEn: 'I live in a small house.' },
@@ -975,6 +1009,12 @@ export const VOCABULARY = [
   { es: 'balcón', en: 'balcony', cefr: 'A2', domain: 'house', frequencyRank: 330, example: 'Desayunamos en el balcón.', exampleEn: 'We had breakfast on the balcony.' },
   { es: 'techo', en: 'ceiling / roof', cefr: 'A2', domain: 'house', frequencyRank: 340, example: 'Hay una gotera en el techo.', exampleEn: 'There is a leak in the roof.' },
   { es: 'suelo', en: 'floor / ground', cefr: 'A2', domain: 'house', frequencyRank: 350, example: 'El suelo está recién fregado.', exampleEn: 'The floor has just been mopped.' },
+  // B2 — housing & property
+  { es: 'hipoteca', en: 'mortgage', cefr: 'B2', domain: 'house', frequencyRank: 360, example: 'Pedimos una hipoteca al banco para comprar el piso.', exampleEn: 'We applied for a mortgage from the bank to buy the flat.' },
+  { es: 'inquilino', en: 'tenant / lodger', cefr: 'B2', domain: 'house', frequencyRank: 370, example: 'El inquilino paga el alquiler el primero de cada mes.', exampleEn: 'The tenant pays the rent on the first of each month.' },
+  { es: 'propietario', en: 'owner / landlord', cefr: 'B2', domain: 'house', frequencyRank: 380, example: 'El propietario se negó a hacer las reparaciones.', exampleEn: 'The landlord refused to carry out the repairs.' },
+  { es: 'comunidad de vecinos', en: 'residents\' association / building management', cefr: 'B2', domain: 'house', frequencyRank: 390, example: 'La comunidad de vecinos va a pintar el portal este verano.', exampleEn: 'The residents\' association is going to paint the entrance hall this summer.' },
+  { es: 'obra', en: 'building work / construction', cefr: 'B2', domain: 'house', frequencyRank: 395, example: 'Hay obras en el edificio de al lado y hay mucho ruido.', exampleEn: 'There are building works next door and it is very noisy.' },
 
   // ── HEALTH & BODY CARE ───────────────────────────────────────────────────
   { es: 'salud', en: 'health', cefr: 'A1', domain: 'health', frequencyRank: 200, example: 'La salud es lo más importante.', exampleEn: 'Health is the most important thing.' },

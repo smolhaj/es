@@ -93,7 +93,7 @@ export default function Idioms() {
               onChange={e => setSearch(e.target.value)}
             />
             <div className={styles.filterRow}>
-              {['colloquial', 'informal', 'neutral'].map(r => (
+              {['colloquial', 'informal', 'neutral', 'formal'].map(r => (
                 <button
                   key={r}
                   className={`${styles.filterBtn} ${filterReg === r ? styles.filterActive : ''}`}
