@@ -225,6 +225,68 @@ export const PRONUNCIATION_RULES = [
     ],
   },
   {
+    id: 'x_sounds',
+    category: 'Consonants',
+    title: 'X — three different sounds',
+    rule: 'The letter X has three pronunciations in Spanish depending on origin and position: /ks/ in most words (like English "x"), /x/ (guttural h) in words of Nahuatl/indigenous origin (especially Mexico), and /s/ in words beginning with ex- before a consonant in casual speech.',
+    sounds: [
+      { letter: 'x (mid-word)', ipa: '/ks/', like: '"x" in "taxi"', example: 'taxi, éxito, exacto, examen' },
+      { letter: 'x (Nahuatl words)', ipa: '/x/', like: 'guttural "h" (j-sound)', example: 'México, Oaxaca, Xochimilco' },
+      { letter: 'x (ex+consonant, casual)', ipa: '/s/', like: '"s"', example: 'explicar → [esplicar], extraño → [estraño]' },
+    ],
+    tips: [
+      'México is spelled with X but pronounced "Méjico" (the X = /x/ like the J in jamón).',
+      'Oaxaca = "wa-HA-ka" — the X is the guttural /x/ sound, not /ks/.',
+      'In formal speech: éxito = "EK-si-to". Casual: "E-si-to" (the /ks/ cluster simplifies).',
+      'All other Spanish x words: pronounce as /ks/ — taxi, flexible, sexto.',
+    ],
+    examples: [
+      { word: 'éxito', note: 'EK-si-to — success (formal) or E-si-to (casual)' },
+      { word: 'México', note: 'MÉ-hi-co — x = /x/ (same as j)' },
+      { word: 'Oaxaca', note: 'wa-HA-ca — x = /x/ again' },
+    ],
+  },
+  {
+    id: 's_aspiration',
+    category: 'Connected speech',
+    title: 'S aspiration — casual and regional speech',
+    rule: 'In many Spanish dialects (Andalucía, Canary Islands, all of Latin America, Caribbean especially), an S before a consonant or at the end of a word is weakened to /h/ (aspiration) or dropped entirely. This is not a mistake — it is standard in those dialects.',
+    sounds: [
+      { letter: 's (before consonant)', ipa: '/h/ or Ø', like: '"h" or silent', example: 'estos → "ehtoh", las manos → "lah manoh"' },
+      { letter: 's (final, formal)', ipa: '/s/', like: '"s"', example: 'hablas, tienes (Spain)' },
+    ],
+    tips: [
+      'In Caribbean Spanish (Cuba, Puerto Rico, Dominican Rep.): "¿cómo estás?" sounds like "¿cómo ehtáh?".',
+      'In Argentina: S stays but is often softer — less extreme aspiration than Caribbean.',
+      'Learner tip: If you can\'t parse a fast Caribbean speaker, the missing S\'s are the main culprit. Listen for the pattern.',
+      'Producing aspiration is optional for learners, but recognising it is essential for real-world listening.',
+    ],
+    examples: [
+      { word: 'los niños', note: 'formal: los-NIÑOS | casual/Caribbean: loh-NIÑO' },
+      { word: 'ustedes', note: 'formal: us-TEH-des | casual: uhtéhe' },
+      { word: 'más tarde', note: 'formal: más-TAR-de | aspirated: máh-TAR-e' },
+    ],
+  },
+  {
+    id: 'triphthongs',
+    category: 'Vowels',
+    title: 'Triphthongs — three vowels in one syllable',
+    rule: 'A triphthong occurs when a weak vowel (i/u) + strong vowel (a/e/o) + weak vowel (i/u) appear together with no accent break. All three form a single syllable. They are rare but appear in verb forms like the vosotros subjunctive.',
+    sounds: [],
+    tips: [
+      'Pattern: weak + strong + weak, all in one syllable. e.g. i-a-i, u-a-i, u-e-i',
+      'Common triphthongs: -iáis, -uéis, -iais (vosotros subjunctive endings).',
+      '"Limpiáis" (lim-PIÁIS, 2 syllables, not 3) — the ia+i is a triphthong.',
+      '"Continuéis" (con-ti-NUÉIS, 3 syllables) — uéi is the triphthong.',
+      'An accent mark on the strong vowel (á, é, ó) confirms these belong to the same syllable group.',
+    ],
+    examples: [
+      { word: 'lim-PIÁIS', note: '2 syllables — iái is a triphthong (vosotros pres. subj.)' },
+      { word: 'con-ti-NUÉIS', note: '3 syllables — uéi is a triphthong' },
+      { word: 'cam-BIÁIS', note: '2 syllables — iái triphthong' },
+    ],
+  },
+  {
     id: 'intonation',
     category: 'Connected speech',
     title: 'Intonation — questions and statements',
