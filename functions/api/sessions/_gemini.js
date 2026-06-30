@@ -135,6 +135,126 @@ export const FALLBACK_EXERCISES = [
   { type: 'multiple_choice', prompt: '¿Qué significa "Ella es muy aburrida"?', word: 'aburrido', english: 'boring / bored', answer: 'She is very boring.', options: ['She is very bored.', 'She is very boring.', 'She is very tired.', 'She is very dull but only sometimes.'], concept_id: 'adjectives_ser_estar', difficulty: 2 },
   { type: 'translation_to_spanish', prompt: "Translate: 'I am not ready yet.' (use estar listo)", english: 'I am not ready yet.', answer: 'Todavía no estoy listo.', word: 'listo', concept_id: 'adjectives_ser_estar', difficulty: 2 },
   { type: 'error_correction', prompt: 'Choose the right verb: "Está/Es malo — he is a bad person."', word: 'ser malo vs estar malo', english: 'ser malo = bad person; estar malo = sick', answer: 'Es malo.', concept_id: 'adjectives_ser_estar', difficulty: 3 },
+  // A1 — numbers_1_20
+  { type: 'translation_to_spanish', prompt: "Translate the number: 'fifteen'", english: 'fifteen', answer: 'quince', word: 'quince', concept_id: 'numbers_1_20', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'Which is the correct spelling of 12?', word: 'doce', english: 'twelve', answer: 'doce', options: ['dose', 'doce', 'doze', 'dóce'], concept_id: 'numbers_1_20', difficulty: 1 },
+  // A1 — subject_pronouns
+  { type: 'multiple_choice', prompt: 'Which subject pronoun means "they" (mixed group)?', word: 'ellos', english: 'they', answer: 'ellos', options: ['ellas', 'ellos', 'vosotros', 'ustedes'], concept_id: 'subject_pronouns', difficulty: 1 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'We (female group) are from Spain.'", english: 'We (female group) are from Spain.', answer: 'Nosotras somos de España.', word: 'nosotras', concept_id: 'subject_pronouns', difficulty: 1 },
+  // A1 — definite_articles
+  { type: 'fill_blank', prompt: 'Add the correct definite article: "___ mesa" (the table)', word: 'la', english: 'the (feminine)', answer: 'La', concept_id: 'definite_articles', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'Which is correct? "___ libros están aquí."', word: 'los', english: 'the (masc. plural)', answer: 'Los libros están aquí.', options: ['El libros están aquí.', 'Los libros están aquí.', 'Las libros están aquí.', 'La libros están aquí.'], concept_id: 'definite_articles', difficulty: 1 },
+  // A1 — indefinite_articles
+  { type: 'fill_blank', prompt: 'Complete: "Tengo ___ gato." (I have a cat)', word: 'un', english: 'a (masculine)', answer: 'un', concept_id: 'indefinite_articles', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'Which is correct? "She has a sister."', word: 'una', english: 'a (feminine)', answer: 'Tiene una hermana.', options: ['Tiene un hermana.', 'Tiene una hermana.', 'Tiene unos hermana.', 'Tiene unas hermana.'], concept_id: 'indefinite_articles', difficulty: 1 },
+  // A1 — estar_basics
+  { type: 'fill_blank', prompt: 'Complete: "¿Dónde ___ el baño?" (Where is the bathroom?)', word: 'estar', english: 'to be (location)', answer: 'está', concept_id: 'estar_basics', difficulty: 1 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I am tired.'", english: 'I am tired.', answer: 'Estoy cansado.', word: 'estar', concept_id: 'estar_basics', difficulty: 1 },
+  // A1 — adjective_agreement
+  { type: 'fill_blank', prompt: 'Complete: "Las casas son muy ___." (grande → agree with plural feminine)', word: 'grandes', english: 'big (plural)', answer: 'grandes', concept_id: 'adjective_agreement', difficulty: 1 },
+  { type: 'error_correction', prompt: 'Correct: "Tengo una bolsa rojo."', word: 'rojo → roja', english: 'red (feminine)', answer: 'Tengo una bolsa roja.', concept_id: 'adjective_agreement', difficulty: 1 },
+  // A1 — question_words
+  { type: 'translation_to_spanish', prompt: "Translate: 'Where are you from?'", english: 'Where are you from?', answer: '¿De dónde eres?', word: 'dónde', concept_id: 'question_words', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'Which question word asks for a reason?', word: 'por qué', english: 'why', answer: '¿Por qué?', options: ['¿Cuándo?', '¿Cómo?', '¿Por qué?', '¿Quién?'], concept_id: 'question_words', difficulty: 1 },
+  // A1 — hay
+  { type: 'fill_blank', prompt: 'Complete: "___ un supermercado cerca de aquí." (There is…)', word: 'hay', english: 'there is/are', answer: 'Hay', concept_id: 'hay', difficulty: 1 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'Are there any seats available?'", english: 'Are there any seats available?', answer: '¿Hay asientos disponibles?', word: 'hay', concept_id: 'hay', difficulty: 1 },
+  // A1/A2 — numbers_21_100
+  { type: 'translation_to_spanish', prompt: "Translate the number: 'forty-five'", english: 'forty-five', answer: 'cuarenta y cinco', word: 'cuarenta y cinco', concept_id: 'numbers_21_100', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'How do you say 72?', word: 'setenta y dos', english: 'seventy-two', answer: 'setenta y dos', options: ['setenta dos', 'siete y dos', 'setenta y dos', 'setentados'], concept_id: 'numbers_21_100', difficulty: 1 },
+  // A2 — ser_vs_estar
+  { type: 'multiple_choice', prompt: 'Which is correct? "The café is on the corner."', word: 'estar (location)', english: 'to be (location)', answer: 'El café está en la esquina.', options: ['El café es en la esquina.', 'El café está en la esquina.', 'El café tiene en la esquina.', 'El café está a la esquina.'], concept_id: 'ser_vs_estar', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct if wrong: "La conferencia es en el hotel Ritz."', word: 'ser vs estar for events', english: 'Events use ser for location in Spanish', answer: 'La conferencia es en el hotel Ritz. (correct — events use ser)', concept_id: 'ser_vs_estar', difficulty: 2 },
+  // A2 — direct_object_pronouns
+  { type: 'fill_blank', prompt: 'Replace the object: "Veo a María todos los días." → "___ veo todos los días."', word: 'la', english: 'her (direct object)', answer: 'La', concept_id: 'direct_object_pronouns', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct: "Lo como la manzana."', word: 'Lo → La', english: 'la manzana is feminine', answer: 'La como.', concept_id: 'direct_object_pronouns', difficulty: 2 },
+  // A2 — indirect_object_pronouns
+  { type: 'fill_blank', prompt: 'Complete: "Siempre ___ doy propina al camarero." (to him)', word: 'le', english: 'to him/her (indirect)', answer: 'le', concept_id: 'indirect_object_pronouns', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I am going to send them an email.'", english: 'I am going to send them an email.', answer: 'Les voy a enviar un correo.', word: 'les', concept_id: 'indirect_object_pronouns', difficulty: 2 },
+  // A2 — demonstratives
+  { type: 'fill_blank', prompt: 'Complete: "___ coches de allá son muy caros." (those over there, masc. pl.)', word: 'aquellos', english: 'those (far away, masc. pl.)', answer: 'Aquellos', concept_id: 'demonstratives', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'Which demonstrative refers to something near the listener?', word: 'ese/esa', english: 'that (near listener)', answer: 'ese/esa', options: ['este/esta', 'ese/esa', 'aquel/aquella', 'cualquier'], concept_id: 'demonstratives', difficulty: 2 },
+  // A2 — possessives
+  { type: 'fill_blank', prompt: 'Complete: "¿Es ___ libro?" (Is it your book? — tú, informal)', word: 'tu', english: 'your (informal)', answer: 'tu', concept_id: 'possessives', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'Which stressed possessive means "of theirs"?', word: 'suyo/a', english: 'theirs', answer: 'suyo/a', options: ['tuyo/a', 'mío/a', 'nuestro/a', 'suyo/a'], concept_id: 'possessives', difficulty: 2 },
+  // A2 — modal_verbs
+  { type: 'translation_to_spanish', prompt: "Translate: 'I can help you.'", english: 'I can help you.', answer: 'Puedo ayudarte.', word: 'poder', concept_id: 'modal_verbs', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'Which expresses ability to do something?', word: 'poder', english: 'can/to be able to', answer: 'Sé nadar.', options: ['Quiero nadar.', 'Sé nadar.', 'Tengo que nadar.', 'Debo nadar.'], concept_id: 'modal_verbs', difficulty: 2 },
+  // A2 — obligation_infinitive
+  { type: 'fill_blank', prompt: 'Complete: "___ que estudiar más." (You have to study more — tú)', word: 'tienes', english: 'tener que + infinitive', answer: 'Tienes', concept_id: 'obligation_infinitive', difficulty: 1 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'We have to leave now.'", english: 'We have to leave now.', answer: 'Tenemos que salir ahora.', word: 'tener que', concept_id: 'obligation_infinitive', difficulty: 1 },
+  // A2 — time_expressions
+  { type: 'translation_to_spanish', prompt: "Translate: 'I went to the cinema last week.'", english: 'I went to the cinema last week.', answer: 'Fui al cine la semana pasada.', word: 'la semana pasada', concept_id: 'time_expressions', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'Which means "the day before yesterday"?', word: 'anteayer', english: 'the day before yesterday', answer: 'anteayer', options: ['ayer', 'anteayer', 'antes de ayer tarde', 'antes de hoy'], concept_id: 'time_expressions', difficulty: 2 },
+  // A2 — irregular_present
+  { type: 'fill_blank', prompt: 'Complete: "¿A qué hora ___ (volver, ella) a casa normalmente?"', word: 'volver', english: 'to return (o→ue)', answer: 'vuelve', concept_id: 'irregular_present', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct: "Yo sabo la respuesta."', word: 'sabo → sé', english: 'saber is irregular: yo sé', answer: 'Yo sé la respuesta.', concept_id: 'irregular_present', difficulty: 2 },
+  // A2 — negation
+  { type: 'fill_blank', prompt: 'Complete: "No quiero ___ café." (not… any / none)', word: 'ningún', english: 'no/none (before masc. noun)', answer: 'ningún', concept_id: 'negation', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I have never been to Peru.'", english: 'I have never been to Peru.', answer: 'Nunca he estado en Perú.', word: 'nunca', concept_id: 'negation', difficulty: 2 },
+  // A2 — prepositions_basic
+  { type: 'multiple_choice', prompt: 'Which preposition means "in front of"?', word: 'delante de', english: 'in front of', answer: 'delante de', options: ['detrás de', 'encima de', 'delante de', 'dentro de'], concept_id: 'prepositions_basic', difficulty: 1 },
+  { type: 'fill_blank', prompt: 'Complete: "La reunión es ___ las tres." (at — time)', word: 'a', english: 'at (time)', answer: 'a', concept_id: 'prepositions_basic', difficulty: 1 },
+  // B1 — preterite_irregular
+  { type: 'fill_blank', prompt: 'Complete: "El año pasado ___ (ir, yo) a México."', word: 'ir', english: 'to go (irregular preterite)', answer: 'fui', concept_id: 'preterite_irregular', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'What is the preterite yo form of "tener"?', word: 'tener', english: 'to have', answer: 'tuve', options: ['tení', 'tuví', 'tuve', 'tenué'], concept_id: 'preterite_irregular', difficulty: 2 },
+  // B1 — imperfect
+  { type: 'fill_blank', prompt: 'Complete: "Cuando era niño, ___ (jugar, yo) en el parque todos los días."', word: 'jugar', english: 'to play', answer: 'jugaba', concept_id: 'imperfect', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'She used to live in Barcelona.'", english: 'She used to live in Barcelona.', answer: 'Vivía en Barcelona.', word: 'vivir', concept_id: 'imperfect', difficulty: 2 },
+  // B1 — preterite_vs_imperfect
+  { type: 'multiple_choice', prompt: 'Which is correct? "While I was reading, the phone rang."', word: 'leía / sonó', english: 'imperfect (ongoing) + preterite (event)', answer: 'Mientras leía, sonó el teléfono.', options: ['Mientras leí, sonó el teléfono.', 'Mientras leía, sonó el teléfono.', 'Mientras leía, sonaba el teléfono.', 'Mientras leí, sonaba el teléfono.'], concept_id: 'preterite_vs_imperfect', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct if wrong: "De repente, llovía mucho."', word: 'llovía → llovió', english: 'sudden events use preterite', answer: 'De repente, llovió mucho.', concept_id: 'preterite_vs_imperfect', difficulty: 2 },
+  // B1 — future_simple
+  { type: 'fill_blank', prompt: 'Complete: "Mañana ___ (llamar, yo) a mis padres."', word: 'llamar', english: 'to call', answer: 'llamaré', concept_id: 'future_simple', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'They will arrive on Friday.'", english: 'They will arrive on Friday.', answer: 'Llegarán el viernes.', word: 'llegar', concept_id: 'future_simple', difficulty: 2 },
+  // B1 — imperative
+  { type: 'fill_blank', prompt: 'Complete (affirmative tú imperative): "___ (comer) más despacio."', word: 'comer', english: 'to eat', answer: 'Come', concept_id: 'imperative', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct (negative tú imperative): "No come eso."', word: 'come → comas', english: 'negative imperative uses subjunctive', answer: 'No comas eso.', concept_id: 'imperative', difficulty: 2 },
+  // B1 — relative_clauses
+  { type: 'fill_blank', prompt: 'Complete: "La película ___ vi anoche fue increíble." (that/which)', word: 'que', english: 'that/which (relative)', answer: 'que', concept_id: 'relative_clauses', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'The woman who called you is my mother.'", english: 'The woman who called you is my mother.', answer: 'La mujer que te llamó es mi madre.', word: 'que', concept_id: 'relative_clauses', difficulty: 2 },
+  // B2 — pluperfect
+  { type: 'fill_blank', prompt: 'Complete: "Cuando llegué, ella ya se ___." (ir, pluperfect)', word: 'ir', english: 'to go', answer: 'había ido', concept_id: 'pluperfect', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I had never eaten sushi before that day.'", english: 'I had never eaten sushi before that day.', answer: 'Nunca había comido sushi antes de ese día.', word: 'haber', concept_id: 'pluperfect', difficulty: 3 },
+  // B2 — future_perfect
+  { type: 'fill_blank', prompt: 'Complete: "Para el lunes, ___ (terminar, nosotros) el proyecto." (future perfect)', word: 'terminar', english: 'to finish', answer: 'habremos terminado', concept_id: 'future_perfect', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'By next year, she will have finished her degree.'", english: 'By next year, she will have finished her degree.', answer: 'Para el año que viene, habrá terminado su carrera.', word: 'haber', concept_id: 'future_perfect', difficulty: 3 },
+  // B2 — conditional_perfect
+  { type: 'fill_blank', prompt: 'Complete: "Si hubiera sabido, ___ (venir, yo) antes." (conditional perfect)', word: 'venir', english: 'to come', answer: 'habría venido', concept_id: 'conditional_perfect', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'He would have called you.'", english: 'He would have called you.', answer: 'Te habría llamado.', word: 'llamar', concept_id: 'conditional_perfect', difficulty: 3 },
+  // B2 — passive_se
+  { type: 'fill_blank', prompt: 'Complete: "___ hablan tres idiomas en esta región." (passive se)', word: 'se', english: 'passive se', answer: 'Se', concept_id: 'passive_se', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct: "Se construyeron el puente en 1990."', word: 'construyeron → construyó', english: 'passive se agrees with the subject (el puente = singular)', answer: 'Se construyó el puente en 1990.', concept_id: 'passive_se', difficulty: 3 },
+  // B2 — subjunctive_adverbial
+  { type: 'fill_blank', prompt: 'Complete: "Te llamo cuando ___ (llegar, yo) al aeropuerto." (future event)', word: 'llegar', english: 'to arrive', answer: 'llegue', concept_id: 'subjunctive_adverbial', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which conjunction always triggers subjunctive?', word: 'para que', english: 'so that', answer: 'para que', options: ['cuando', 'aunque', 'para que', 'porque'], concept_id: 'subjunctive_adverbial', difficulty: 3 },
+  // B2 — ser_estar_participle
+  { type: 'multiple_choice', prompt: '"La ventana está rota" vs "La ventana fue rota por el niño" — what is the difference?', word: 'estar vs ser + participle', english: 'estar = resulting state; ser = passive action', answer: 'Estar describes the resulting state; ser describes the action.', options: ['They mean the same thing.', 'Estar is more formal.', 'Estar describes the resulting state; ser describes the action.', 'Ser is used for adjectives only.'], concept_id: 'ser_estar_participle', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: "El documento ___ firmado por el director ayer." (was signed — action)', word: 'ser', english: 'to be (passive action)', answer: 'fue', concept_id: 'ser_estar_participle', difficulty: 3 },
+  // B2 — diminutives_augmentatives
+  { type: 'fill_blank', prompt: 'Form the diminutive of "perro" (little dog): "___"', word: '-ito/-ita', english: 'diminutive suffix', answer: 'perrito', concept_id: 'diminutives_augmentatives', difficulty: 2 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Ese hombre es un grandote"?', word: 'grandote', english: 'augmentative of grande', answer: 'That man is a huge/big fellow.', concept_id: 'diminutives_augmentatives', difficulty: 2 },
+  // B2 — relative_pronouns_advanced
+  { type: 'fill_blank', prompt: 'Complete: "El libro, ___ autor ganó el Nobel, es fascinante." (whose)', word: 'cuyo', english: 'whose (relative)', answer: 'cuyo', concept_id: 'relative_pronouns_advanced', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which relative pronoun is used after a preposition (formal)?', word: 'el cual / la cual', english: 'which/who (formal, after preposition)', answer: 'el cual / la cual', options: ['que', 'lo que', 'el cual / la cual', 'donde'], concept_id: 'relative_pronouns_advanced', difficulty: 3 },
+  // C1 — subjunctive_adjective_clauses
+  { type: 'fill_blank', prompt: 'Complete: "Busco un piso que ___ (tener) terraza." (hypothetical/non-specific)', word: 'tener', english: 'to have', answer: 'tenga', concept_id: 'subjunctive_adjective_clauses', difficulty: 3 },
+  { type: 'error_correction', prompt: 'Correct if wrong: "Conozco a alguien que habla chino." (a specific known person)', word: 'subjunctive not needed — specific referent', english: 'known/specific antecedent → indicative', answer: 'Conozco a alguien que habla chino. (correct — specific referent uses indicative)', concept_id: 'subjunctive_adjective_clauses', difficulty: 3 },
+  // C1 — gerund_advanced
+  { type: 'translation_to_spanish', prompt: "Translate: 'Seeing you every day makes me happy.' (use gerund as subject)", english: 'Seeing you every day makes me happy.', answer: 'Verte todos los días me alegra.', word: 'ver', concept_id: 'gerund_advanced', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which use of gerund is INCORRECT in Spanish?', word: 'gerund as adjective', english: 'gerund cannot modify a noun in Spanish', answer: '"Una caja conteniendo libros" (incorrect — use que contiene)', options: ['"Salió corriendo" (he left running)', '"Está lloviendo" (it is raining)', '"Una caja conteniendo libros" (incorrect — use que contiene)', '"Llegó cantando" (she arrived singing)'], concept_id: 'gerund_advanced', difficulty: 3 },
+  // C1 — ser_passive
+  { type: 'translation_to_spanish', prompt: "Translate: 'The law was approved by parliament.'", english: 'The law was approved by parliament.', answer: 'La ley fue aprobada por el parlamento.', word: 'ser', concept_id: 'ser_passive', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: "Los premios ___ entregados esta noche." (will be awarded — ser + participio)', word: 'ser', english: 'to be (passive)', answer: 'serán', concept_id: 'ser_passive', difficulty: 3 },
+  // C1 — nominalisation
+  { type: 'translation_to_english', prompt: '¿Qué significa "el llegar tarde" en "El llegar tarde es una falta de respeto"?', word: 'el + infinitivo', english: 'nominalised infinitive (arriving late)', answer: 'Arriving late is a sign of disrespect.', concept_id: 'nominalisation', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: "___ importante es la honestidad." (The important thing is…)', word: 'lo + adjective', english: 'lo + adjective = nominalised concept', answer: 'Lo', concept_id: 'nominalisation', difficulty: 3 },
+  // C1 — subjunctive_temporal
+  { type: 'fill_blank', prompt: 'Complete: "Avísame cuando ___ (terminar, tú) el informe." (future action)', word: 'terminar', english: 'to finish', answer: 'termines', concept_id: 'subjunctive_temporal', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which sentence correctly uses subjunctive after a temporal conjunction?', word: 'cuando + subjunctive (future)', english: 'temporal conjunction + future action → subjunctive', answer: 'Te llamo en cuanto llegue.', options: ['Te llamo en cuanto llegué.', 'Te llamo en cuanto llegaré.', 'Te llamo en cuanto llegue.', 'Te llamo en cuanto llego mañana.'], concept_id: 'subjunctive_temporal', difficulty: 3 },
+  // C1 — cuantificadores
+  { type: 'fill_blank', prompt: 'Complete: "___ de los estudiantes aprobaron." (The majority)', word: 'la mayoría', english: 'the majority', answer: 'La mayoría', concept_id: 'cuantificadores', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which quantifier expresses a small amount (uncountable)?', word: 'poco', english: 'little (uncountable)', answer: 'poco dinero', options: ['pocos dineros', 'poco dinero', 'algunos dinero', 'un poco dineros'], concept_id: 'cuantificadores', difficulty: 2 },
 ];
 
 function fallback() {
