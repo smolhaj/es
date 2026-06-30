@@ -641,6 +641,46 @@ export const FALSE_FRIENDS = [
     example: 'Alquilamos un local en el centro. — We rented premises in the city centre.',
     dangerLevel: 'low',
   },
+  {
+    spanish: 'excitado',
+    looksLike: 'excited (enthusiastic / eager)',
+    actualMeaning: 'sexually aroused',
+    correctUsage: 'To say excited (happy/enthusiastic), use emocionado/a or entusiasmado/a. Never use excitado to mean "I\'m excited about the trip!"',
+    example: 'Estoy muy emocionado por el viaje. — I\'m very excited about the trip.',
+    dangerLevel: 'high',
+  },
+  {
+    spanish: 'educado',
+    looksLike: 'educated (academic qualifications)',
+    actualMeaning: 'polite / well-mannered',
+    correctUsage: 'To say someone is educated (has studied), use culto, formado, or con estudios. Educado refers to manners, not qualifications.',
+    example: 'Es una persona muy educada. — She is a very polite person.',
+    dangerLevel: 'high',
+  },
+  {
+    spanish: 'afición',
+    looksLike: 'affection (love / warmth)',
+    actualMeaning: 'hobby / passion / enthusiasm; (also) the fans of a sports team',
+    correctUsage: 'To say affection, use cariño or afecto. Afición means what you love to do, or the fans in a stadium.',
+    example: 'Su afición es la fotografía. — Her hobby / passion is photography.',
+    dangerLevel: 'medium',
+  },
+  {
+    spanish: 'contestar',
+    looksLike: 'to contest (argue against / dispute)',
+    actualMeaning: 'to answer / to reply',
+    correctUsage: 'To say contest in the sense of dispute, use disputar, impugnar, or cuestionar. Contestar simply means to answer (the phone, a question, a message).',
+    example: 'No me contestó al teléfono. — She didn\'t answer the phone.',
+    dangerLevel: 'medium',
+  },
+  {
+    spanish: 'atender',
+    looksLike: 'to attend (to go to / to be present at)',
+    actualMeaning: 'to attend to / to serve / to help (customers or patients)',
+    correctUsage: 'To say attend in the sense of going to an event or class, use asistir a. Atender means to see to someone: a customer, a patient, a request.',
+    example: 'La enfermera atendió al paciente. — The nurse attended to the patient.',
+    dangerLevel: 'medium',
+  },
 ];
 
 export function getByDangerLevel(level) {
