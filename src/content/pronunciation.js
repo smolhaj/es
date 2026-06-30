@@ -304,6 +304,53 @@ export const PRONUNCIATION_RULES = [
       { word: '¡Qué suerte!', note: 'sharp rise-fall (exclamation)' },
     ],
   },
+  {
+    id: 'word_stress_types',
+    category: 'Stress',
+    title: 'Word types by stress — agudas, llanas, esdrújulas',
+    rule: 'Spanish grammarians classify every word by where the stress falls. Agudas (stress on last syllable) need a written accent if they end in vowel, N, or S. Llanas (second-to-last) need an accent if they do NOT end in vowel, N, or S. Esdrújulas (third-to-last) ALWAYS get a written accent.',
+    sounds: [],
+    tips: [
+      'AGUDA (last syllable stressed): café, canción, además — need accent if ending vowel/n/s.',
+      'LLANA (second-to-last stressed): casa, libro, examen — need accent if NOT ending vowel/n/s.',
+      'ESDRÚJULA (third-to-last stressed): música, teléfono, rápido — always written accent.',
+      'SOBRESDRÚJULA (further back): dígamelo, compréndenos — always written accent.',
+      'Most Spanish words are llanas — this is why you only see accents on a minority of words.',
+    ],
+    examples: [
+      { word: 'ha-BLAR (aguda)', note: 'ends in R (consonant, not n/s) → no accent' },
+      { word: 'ha-BLÁIS (aguda)', note: 'ends in S → accent needed: habláis ✓' },
+      { word: 'CAN-ción (aguda)', note: 'ends in N → accent needed: canción ✓' },
+      { word: 'CA-sa (llana)', note: 'ends in vowel → no accent needed ✓' },
+      { word: 'LÁ-piz (llana)', note: 'ends in Z (consonant, not n/s) → accent needed: lápiz ✓' },
+      { word: 'MÚ-si-ca (esdrújula)', note: 'always needs accent: música ✓' },
+    ],
+  },
+  {
+    id: 'accent_disambiguation',
+    category: 'Stress',
+    title: 'Diacritical accents — words that change meaning',
+    rule: 'Some Spanish word pairs are spelled identically but have different meanings. A written accent distinguishes them. This is not about stress — both words often sound the same — it is purely visual disambiguation in writing.',
+    sounds: [],
+    tips: [
+      'el (the, article) vs. él (he, pronoun)',
+      'tu (your, possessive) vs. tú (you, subject pronoun)',
+      'mi (my, possessive) vs. mí (me, after preposition)',
+      'se (reflexive/impersonal) vs. sé (I know / be! imperative)',
+      'si (if, conditional) vs. sí (yes / oneself)',
+      'de (of/from, preposition) vs. dé (give!, subjunctive)',
+      'te (you, object) vs. té (tea)',
+      'mas (but, literary) vs. más (more)',
+      'aun (even, even though) vs. aún (still, yet)',
+    ],
+    examples: [
+      { word: 'el / él', note: '"el libro" (the book) vs. "él lee" (he reads)' },
+      { word: 'tu / tú', note: '"tu libro" (your book) vs. "tú lees" (you read)' },
+      { word: 'si / sí', note: '"si quieres" (if you want) vs. "¡Sí!" (yes!)' },
+      { word: 'mi / mí', note: '"mi libro" (my book) vs. "para mí" (for me)' },
+      { word: 'se / sé', note: '"se va" (she leaves) vs. "sé la verdad" (I know the truth)' },
+    ],
+  },
 ];
 
 export const CATEGORIES = [...new Set(PRONUNCIATION_RULES.map(r => r.category))];
