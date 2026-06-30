@@ -10,7 +10,8 @@ const DOMAIN_LABELS = {
   greetings: 'Greetings', numbers: 'Numbers', time: 'Time', colors: 'Colors',
   family: 'Family', food: 'Food', places: 'Places', verbs: 'Verbs',
   adjectives: 'Adjectives', connectors: 'Connectors', adverbs: 'Adverbs',
-  nouns: 'Nouns', body: 'Body', weather: 'Weather',
+  nouns: 'Nouns', body: 'Body', weather: 'Weather', professions: 'Professions',
+  emotions: 'Emotions', clothes: 'Clothes', house: 'House & Home', health: 'Health',
 };
 
 export default function VocabBrowser() {
