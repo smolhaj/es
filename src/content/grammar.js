@@ -34,6 +34,7 @@ export const GRAMMAR_CARDS = [
       { es: 'el chico / los chicos', en: 'the boy / the boys' },
       { es: 'la chica / las chicas', en: 'the girl / the girls' },
       { es: 'el agua (f)', en: 'the water — feminine noun uses el before stressed a-' },
+      { es: 'El señor García / la doctora Ruiz', en: 'Mr García / Dr Ruiz — titles before names use the definite article when talking about someone (not when addressing them directly).' },
     ],
     exceptions: [
       'Feminine nouns starting with stressed a- or ha- use el in singular: el agua, el hacha.',
@@ -72,6 +73,7 @@ export const GRAMMAR_CARDS = [
       { es: 'yo, tú, él/ella/usted', en: 'I, you (informal), he/she/you (formal)' },
       { es: 'nosotros/as, vosotros/as, ellos/ellas/ustedes', en: 'we, you all (Spain), they/you all' },
       { es: 'Hablo español. (no yo needed)', en: 'I speak Spanish.' },
+      { es: 'Usted trabaja mucho, ¿verdad?', en: 'You work hard, don\'t you? — usted (Ud.) is formal singular "you" and takes él/ella verb forms. Ustedes replaces vosotros in Latin America.' },
     ],
     exceptions: [
       'Usted (Ud.) is formal "you" — uses él/ella verb forms.',
@@ -109,6 +111,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Estoy cansado.', en: 'I am tired. (temporary state)' },
       { es: 'El banco está en la calle Mayor.', en: 'The bank is on Main Street. (location)' },
       { es: 'Estamos comiendo.', en: 'We are eating. (progressive)' },
+      { es: 'Estoy muy contento. / ¡Estás guapísima hoy!', en: 'I\'m very happy. / You look gorgeous today! (estar for emotional states and how someone looks/appears at a moment)' },
     ],
     exceptions: [
       'Conjugation: estoy, estás, está, estamos, estáis, están',
@@ -127,6 +130,7 @@ export const GRAMMAR_CARDS = [
       { es: 'hablar → hablo, hablas, habla, hablamos, habláis, hablan', en: 'to speak → I speak, you speak…' },
       { es: 'Trabajo todos los días.', en: 'I work every day.' },
       { es: '¿Estudias español?', en: 'Do you study Spanish?' },
+      { es: '¿Cantáis en el coro? — Sí, cantamos los domingos.', en: 'Do you all sing in the choir? — Yes, we sing on Sundays. (vosotros -áis vs. nosotros -amos)' },
     ],
     exceptions: [
       'Many -ar verbs have stem changes: e→ie (pensar→pienso), o→ue (contar→cuento). These changes happen in all forms except nosotros/vosotros.',
@@ -146,6 +150,7 @@ export const GRAMMAR_CARDS = [
       { es: 'comer → como, comes, come, comemos, coméis, comen', en: 'to eat' },
       { es: 'vivir → vivo, vives, vive, vivimos, vivís, viven', en: 'to live' },
       { es: 'Vivo en Madrid y como tapas.', en: 'I live in Madrid and eat tapas.' },
+      { es: 'Ella escribe muchos correos electrónicos.', en: 'She writes a lot of emails. (escribir, -ir: escribe — ella form)' },
     ],
     exceptions: [
       'Irregular yo forms: hago (hacer), pongo (poner), traigo (traer), salgo (salir), conozco (conocer).',
@@ -164,6 +169,7 @@ export const GRAMMAR_CARDS = [
       { es: 'un libro rojo / una casa roja', en: 'a red book / a red house' },
       { es: 'los chicos altos / las chicas altas', en: 'the tall boys / the tall girls' },
       { es: 'un estudiante inteligente (no gender change)', en: 'an intelligent student — -e endings don\'t change for gender' },
+      { es: 'un chico español / una chica española', en: 'a Spanish boy / a Spanish girl — nationality adjectives ending in -o agree like regular adjectives.' },
     ],
     exceptions: [
       'Adjectives ending in -e or consonant (except nationalities) don\'t change for gender: fácil, grande.',
@@ -182,6 +188,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Hay un banco cerca.', en: 'There is a bank nearby.' },
       { es: 'Hay tres estudiantes.', en: 'There are three students.' },
       { es: '¿Hay leche? — No, no hay.', en: 'Is there milk? — No, there isn\'t.' },
+      { es: 'Hay un banco en esa calle — *El banco está en esa calle.*', en: 'There is a bank on that street (indefinite) vs. The bank is on that street (specific, known). Use hay for new/indefinite; estar for a specific location.' },
     ],
     exceptions: [
       'Never "hay el/la" — don\'t use definite articles with hay.',
@@ -240,6 +247,7 @@ export const GRAMMAR_CARDS = [
       { es: 'uno, dos, tres, cuatro, cinco', en: '1, 2, 3, 4, 5' },
       { es: 'diez, once, doce, trece, catorce, quince', en: '10, 11, 12, 13, 14, 15' },
       { es: 'dieciséis, diecisiete, dieciocho, diecinueve, veinte', en: '16, 17, 18, 19, 20' },
+      { es: 'un libro (masc.) / una hora (fem.)', en: 'Uno shortens to un before masculine nouns and stays una before feminine nouns. The standalone counting form is uno.' },
     ],
     exceptions: [
       'Uno becomes un before a masculine noun: un libro, but una mesa.',
@@ -258,6 +266,7 @@ export const GRAMMAR_CARDS = [
       { es: 'veintiuno, veintidós, treinta, treinta y uno', en: '21, 22, 30, 31' },
       { es: 'cuarenta, cincuenta, sesenta, setenta, ochenta, noventa', en: '40, 50, 60, 70, 80, 90' },
       { es: 'cien libros / ciento uno', en: '100 books / 101 (cien before a noun, ciento + more)' },
+      { es: 'Tengo treinta y dos años. ¿Y tú?', en: 'I am thirty-two. And you? (everyday use: tens + y + units, always two words for 30+)' },
     ],
     exceptions: [
       'Cien = exactly 100; ciento = 100+ (ciento dos = 102).',
@@ -430,6 +439,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Él es aburrido. / Él está aburrido.', en: 'He is boring (personality). / He is bored (right now).' },
       { es: 'La sopa es buena. / La sopa está buena.', en: 'Soup is good (in general). / The soup is good (today, to my taste).' },
       { es: 'Soy listo. / Estoy listo.', en: 'I am clever. / I am ready.' },
+      { es: '¿Estás casado? — Sí, soy casado. (both possible)', en: 'Are you married? — Yes, I\'m married. Civil/marital status accepts both verbs; estar emphasises the current state, ser the identity.' },
     ],
     exceptions: [
       'Location: always usar estar, except events → ser (La reunión es en Madrid).',
@@ -448,6 +458,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Me llamo Ana.', en: 'My name is Ana. (I call myself Ana.)' },
       { es: 'Me levanto a las siete.', en: 'I get up at seven.' },
       { es: 'Se ducha cada mañana.', en: 'She showers every morning.' },
+      { es: 'Nos queremos mucho. / Se pelearon y se reconciliaron.', en: 'We love each other a lot. / They argued and made up. (reciprocal reflexive — action between two or more people)' },
     ],
     exceptions: [
       'Some verbs change meaning when reflexive: ir (to go) vs. irse (to leave/go away); dormir (to sleep) vs. dormirse (to fall asleep).',
@@ -466,6 +477,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Veo la película → La veo.', en: 'I watch the movie → I watch it.' },
       { es: '¿Tienes el libro? — Sí, lo tengo.', en: 'Do you have the book? — Yes, I have it.' },
       { es: 'Te quiero.', en: 'I love you.' },
+      { es: 'Las verduras no las como, pero las frutas sí las como.', en: 'I don\'t eat vegetables, but I do eat fruit. (fronted object + pronoun for contrast — a hallmark of Spanish)' },
     ],
     exceptions: [
       'In Spain, le/les are also used for masculine human direct objects (leísmo).',
@@ -504,6 +516,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Me gusta el café.', en: 'I like coffee. (Coffee pleases me.)' },
       { es: 'Me gustan las películas.', en: 'I like movies.' },
       { es: 'A ella le encanta bailar.', en: 'She loves to dance.' },
+      { es: 'Me duele la cabeza. / ¿Te molesta el ruido?', en: 'My head hurts. / Does the noise bother you? (doler/molestar work exactly like gustar — the thing causing the sensation is the subject)' },
     ],
     exceptions: [
       'Similar verbs: encantar (love), molestar (bother), interesar (interest), doler (hurt), faltar (lack).',
@@ -562,6 +575,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Hablé con ella ayer.', en: 'I spoke with her yesterday.' },
       { es: 'Comiste demasiado.', en: 'You ate too much.' },
       { es: 'Vivieron en París.', en: 'They lived in Paris.' },
+      { es: '¿A qué hora llegaste anoche? — Llegué a las dos de la madrugada.', en: 'What time did you get home last night? — I got in at two in the morning. (preterite for a specific completed action with a time anchor)' },
     ],
     exceptions: [
       '-ar/-er verbs with stem changes do NOT change in preterite (only -ir do: e→i, o→u in él/ellos).',
@@ -580,6 +594,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Puedo hablar español.', en: 'I can speak Spanish.' },
       { es: 'Quiero aprender más.', en: 'I want to learn more.' },
       { es: 'Debes estudiar más.', en: 'You should/must study more.' },
+      { es: '¿Sabes conducir? — Sí, pero no puedo conducir hoy (coche averiado).', en: 'Do you know how to drive? — Yes, but I can\'t drive today (broken car). Saber = skill; poder = circumstantial ability.' },
     ],
     exceptions: [
       'Poder vs. saber: poder = physical/circumstantial ability; saber = knowledge/skill.',
