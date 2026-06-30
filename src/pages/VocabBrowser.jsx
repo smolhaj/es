@@ -13,6 +13,7 @@ const DOMAIN_LABELS = {
   nouns: 'Nouns', body: 'Body', weather: 'Weather', professions: 'Professions',
   emotions: 'Emotions', clothes: 'Clothes', house: 'House & Home', health: 'Health',
   travel: 'Travel', technology: 'Technology',
+  education: 'Education', nature: 'Nature',
 };
 
 export default function VocabBrowser() {
