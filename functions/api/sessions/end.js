@@ -24,6 +24,8 @@ const CONCEPT_LABELS = {
   subjunctive_adjective_clauses: 'Subjunctive (adj. clauses)', gerund_advanced: 'Gerund (advanced)',
   ser_passive: 'Ser passive', estilo_indirecto: 'Indirect speech', nominalisation: 'Nominalisation',
   subjunctive_temporal: 'Subjunctive (temporal)', cuantificadores: 'Quantifiers',
+  futuro_probabilidad: 'Future probability', condicional_probabilidad: 'Conditional inference',
+  perifraseis_avanzadas: 'Advanced periphrases',
 };
 
 function buildSessionNotes({ itemsReviewed, accuracy, abandoned, errors, cefrChanged }) {

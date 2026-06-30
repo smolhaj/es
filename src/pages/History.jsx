@@ -32,6 +32,8 @@ const CONCEPT_LABELS = {
   gerund_advanced: 'Gerund (advanced)', ser_passive: 'Ser passive', estilo_indirecto: 'Indirect speech',
   nominalisation: 'Nominalisation', subjunctive_temporal: 'Subjunctive (temporal)',
   cuantificadores: 'Quantifiers',
+  futuro_probabilidad: 'Future probability', condicional_probabilidad: 'Conditional inference',
+  perifraseis_avanzadas: 'Advanced periphrases',
 };
 
 export default function History() {

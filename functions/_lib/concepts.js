@@ -326,6 +326,21 @@ export const CONCEPTS = {
     category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
     explanationStyles: ['rule_first', 'example_first', 'table'],
   },
+  futuro_probabilidad: {
+    id: 'futuro_probabilidad', label: 'Future for probability (Serán las diez)', cefr: 'C1',
+    category: 'verb', prereqs: ['future_simple', 'conditional'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  condicional_probabilidad: {
+    id: 'condicional_probabilidad', label: 'Conditional for past inference (Tendría 30 años)', cefr: 'C1',
+    category: 'verb', prereqs: ['conditional', 'futuro_probabilidad'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  perifraseis_avanzadas: {
+    id: 'perifraseis_avanzadas', label: 'Advanced verb periphrases (soler, ponerse a…)', cefr: 'C1',
+    category: 'verb', prereqs: ['acabar_de', 'llevar_gerund', 'present_subjunctive'],
+    explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
 };
 
 export function getConceptById(id) {

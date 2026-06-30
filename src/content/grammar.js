@@ -1191,6 +1191,66 @@ export const GRAMMAR_CARDS = [
     ],
     related: ['adjective_agreement', 'hay'],
   },
+  {
+    id: 'futuro_probabilidad',
+    concept_id: 'futuro_probabilidad',
+    cefr: 'C1',
+    category: 'Verbs',
+    title: 'Future tense — probability and inference',
+    rule: 'The simple future is used to express probability, inference, or supposition about the present. It replaces expressions like "debe de ser" or "probablemente es" in natural speech.',
+    examples: [
+      { es: 'Serán las diez. (inference)', en: 'It must be around ten o\'clock.' },
+      { es: 'Tendrá hambre — lleva horas sin comer.', en: 'She must be hungry — she hasn\'t eaten in hours.' },
+      { es: '¿Dónde estará Pedro? No lo veo.', en: 'Where can Pedro be? I don\'t see him.' },
+      { es: 'Costará unos cien euros.', en: 'It\'s probably about a hundred euros.' },
+      { es: '¿Quién llamará a estas horas?', en: 'Who can be calling at this hour?' },
+    ],
+    exceptions: [
+      'This usage requires context that makes speculation clear. Without context, "serán las diez" could be read as a future statement.',
+      'The same pattern applies to the conditional for past probability: "Serían las diez cuando llegó." (It must have been ten when he arrived.)',
+    ],
+    related: ['future_simple', 'condicional_probabilidad'],
+  },
+  {
+    id: 'condicional_probabilidad',
+    concept_id: 'condicional_probabilidad',
+    cefr: 'C1',
+    category: 'Verbs',
+    title: 'Conditional — past inference and probability',
+    rule: 'The conditional tense is used to express probability or inference about the past, just as the future is used for the present. It suggests "must have been" or "was probably."',
+    examples: [
+      { es: 'Tendría unos cuarenta años cuando lo conocí.', en: 'He must have been about forty when I met him.' },
+      { es: 'Serían las tres de la madrugada.', en: 'It must have been three in the morning.' },
+      { es: 'Estaría cansada — llegó muy tarde la noche anterior.', en: 'She must have been tired — she arrived very late the night before.' },
+      { es: '¿Quién llamaría a esa hora?', en: 'Who could have been calling at that hour?' },
+      { es: 'Costaría bastante dinero entonces.', en: 'It must have cost quite a bit of money back then.' },
+    ],
+    exceptions: [
+      'Do not confuse with the conditional perfect (habría + participio), which expresses hypothetical past results: Habría llegado antes si hubiera salido temprano.',
+      'The probability conditional is less common in writing than in speech — journalists prefer "probablemente era" or "debía de ser."',
+    ],
+    related: ['conditional', 'futuro_probabilidad', 'conditional_perfect'],
+  },
+  {
+    id: 'perifraseis_avanzadas',
+    concept_id: 'perifraseis_avanzadas',
+    cefr: 'C1',
+    category: 'Verbs',
+    title: 'Advanced verb periphrases',
+    rule: 'Verb periphrases combine an auxiliary verb with an infinitive or gerund to express nuanced aspect, mode, or phase of action. C1-level periphrases express habituality, sudden onset, resumption, and cessation.',
+    examples: [
+      { es: 'Suele llegar tarde los lunes. (soler + inf — habitual)', en: 'He usually arrives late on Mondays.' },
+      { es: 'Se puso a llorar de repente. (ponerse a + inf — sudden start)', en: 'She suddenly burst into tears.' },
+      { es: 'Volvió a llamar al día siguiente. (volver a + inf — repeat)', en: 'He called again the next day.' },
+      { es: 'Dejó de fumar hace un año. (dejar de + inf — cessation)', en: 'She stopped smoking a year ago.' },
+      { es: 'Lleva tres días sin comer. (llevar sin + inf — duration of non-action)', en: 'He hasn\'t eaten for three days.' },
+    ],
+    exceptions: [
+      'Soler only exists in present and imperfect: suele / solía. There is no preterite or future form.',
+      'Ponerse a implies an unexpected or sudden start, whereas empezar a is neutral: Empezó a llover (it started raining, neutral) vs. Se puso a llover (it suddenly started pouring).',
+    ],
+    related: ['acabar_de', 'llevar_gerund', 'present_subjunctive'],
+  },
 ];
 
 export function getCardById(id) {
