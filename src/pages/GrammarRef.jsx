@@ -4,6 +4,8 @@ import NavBar from '../components/NavBar.jsx';
 import { GRAMMAR_CARDS, CATEGORIES, CEFR_LEVELS } from '../content/grammar.js';
 import styles from './GrammarRef.module.css';
 
+const CARD_TITLES = Object.fromEntries(GRAMMAR_CARDS.map(c => [c.id, c.title]));
+
 function GrammarCard({ card, expanded, onToggle }) {
   return (
     <article
@@ -65,7 +67,7 @@ function GrammarCard({ card, expanded, onToggle }) {
                       el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }}
                   >
-                    {r.replace(/_/g, ' ')}
+                    {CARD_TITLES[r] ?? r.replace(/_/g, ' ')}
                   </button>
                   {i < card.related.length - 1 && ', '}
                 </span>
