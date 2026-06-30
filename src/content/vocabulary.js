@@ -1,4 +1,4 @@
-// Thematic vocabulary lists A1–B1
+// Thematic vocabulary lists A1–B2
 // Each entry: { es, en, cefr, domain, example, exampleEn, frequencyRank }
 // frequencyRank: approximate rank in Spanish corpus (lower = more common)
 

@@ -11,7 +11,7 @@ export const CONCEPTS = {
   numbers_1_20: {
     id: 'numbers_1_20', label: 'Numbers 1–20', cefr: 'A1',
     category: 'vocabulary', prereqs: [],
-    explanationStyles: ['example_first', 'rule_first'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
   },
   subject_pronouns: {
     id: 'subject_pronouns', label: 'Subject pronouns', cefr: 'A1',
@@ -31,7 +31,7 @@ export const CONCEPTS = {
   indefinite_articles: {
     id: 'indefinite_articles', label: 'Indefinite articles (un/una)', cefr: 'A1',
     category: 'morphology', prereqs: ['noun_gender'],
-    explanationStyles: ['rule_first', 'example_first'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   ser_basics: {
     id: 'ser_basics', label: 'Ser (identity, origin, profession)', cefr: 'A1',
@@ -61,7 +61,7 @@ export const CONCEPTS = {
   question_words: {
     id: 'question_words', label: 'Question words (qué, cómo, dónde…)', cefr: 'A1',
     category: 'syntax', prereqs: ['ser_basics'],
-    explanationStyles: ['example_first', 'rule_first'],
+    explanationStyles: ['example_first', 'rule_first', 'table'],
   },
   hay: {
     id: 'hay', label: 'Hay (there is/are)', cefr: 'A1',
@@ -71,7 +71,7 @@ export const CONCEPTS = {
   numbers_21_100: {
     id: 'numbers_21_100', label: 'Numbers 21–100', cefr: 'A1',
     category: 'vocabulary', prereqs: ['numbers_1_20'],
-    explanationStyles: ['pattern', 'example_first'],
+    explanationStyles: ['pattern', 'example_first', 'story'],
   },
 
   // ── A2 ──────────────────────────────────────────────────────────────────
@@ -128,7 +128,7 @@ export const CONCEPTS = {
   time_expressions: {
     id: 'time_expressions', label: 'Time expressions (ayer, hace…)', cefr: 'A2',
     category: 'vocabulary', prereqs: ['preterite_regular'],
-    explanationStyles: ['example_first', 'rule_first'],
+    explanationStyles: ['example_first', 'rule_first', 'contrastive'],
   },
   present_progressive: {
     id: 'present_progressive', label: 'Present progressive (estar + gerund)', cefr: 'A2',
@@ -252,7 +252,7 @@ export const CONCEPTS = {
   future_perfect: {
     id: 'future_perfect', label: 'Future perfect (habrá + participio)', cefr: 'B2',
     category: 'verb', prereqs: ['future_simple', 'present_perfect'],
-    explanationStyles: ['rule_first', 'example_first'],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
   },
   conditional_perfect: {
     id: 'conditional_perfect', label: 'Conditional perfect (habría + participio)', cefr: 'B2',
@@ -339,7 +339,7 @@ export const CONCEPTS = {
   nominalisation: {
     id: 'nominalisation', label: 'Nominalisation (el hecho de que…)', cefr: 'C1',
     category: 'syntax', prereqs: ['subjunctive_noun_clauses'],
-    explanationStyles: ['rule_first', 'example_first'],
+    explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },
   subjunctive_temporal: {
     id: 'subjunctive_temporal', label: 'Subjunctive in temporal clauses', cefr: 'C1',
