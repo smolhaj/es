@@ -471,7 +471,7 @@ export const GRAMMAR_CARDS = [
       'In Spain, le/les are also used for masculine human direct objects (leísmo).',
       'With infinitives, attach or place before the conjugated verb: Lo quiero ver / Quiero verlo.',
     ],
-    related: ['indirect_object_pronouns'],
+    related: ['indirect_object_pronouns', 'object_pronoun_order'],
   },
   {
     id: 'indirect_object_pronouns',
@@ -509,7 +509,7 @@ export const GRAMMAR_CARDS = [
       'Similar verbs: encantar (love), molestar (bother), interesar (interest), doler (hurt), faltar (lack).',
       'A + pronoun emphasizes or clarifies: A mí me gusta, pero a ti no.',
     ],
-    related: ['indirect_object_pronouns'],
+    related: ['indirect_object_pronouns', 'ser_vs_estar'],
   },
   {
     id: 'demonstratives',
@@ -529,7 +529,7 @@ export const GRAMMAR_CARDS = [
       'In modern Spanish, ese and aquel are often used interchangeably for distance — the three-way distinction is more formal.',
       'Demonstratives can act as pronouns (replacing the noun): Prefiero éste. The written accent on pronouns is no longer required by the RAE, but still used for clarity.',
     ],
-    related: ['adjective_agreement'],
+    related: ['adjective_agreement', 'definite_articles'],
   },
   {
     id: 'possessives',
@@ -549,7 +549,7 @@ export const GRAMMAR_CARDS = [
       'Mi, tu, su never add a gender ending (*mia, *mio, *sua). Only nuestro/vuestro have four forms.',
       'Long forms (mío/tuyo/suyo) agree in both gender AND number: el libro mío, la casa mía, los amigos míos.',
     ],
-    related: ['adjective_agreement'],
+    related: ['adjective_agreement', 'demonstratives'],
   },
   {
     id: 'preterite_regular',
@@ -796,7 +796,7 @@ export const GRAMMAR_CARDS = [
       'Para expresses opinion/perspective: Para mí, es difícil. (In my opinion, it\'s hard.)',
       'Por expresses "on behalf of / in place of": Lo hago por ti. (I do it for your sake.) Trabajé por ella cuando estuvo enferma. (I worked in her place.)',
     ],
-    related: ['preterite_regular'],
+    related: ['preterite_regular', 'prepositions_basic'],
   },
   {
     id: 'relative_clauses',
@@ -1090,7 +1090,7 @@ export const GRAMMAR_CARDS = [
       'Tan…como = as…as: Es tan alto como tú.',
       'Tanto/a/os/as…como = as much/many…as (with nouns): Tiene tantos amigos como yo.',
     ],
-    related: ['adjective_agreement'],
+    related: ['adjective_agreement', 'ser_vs_estar'],
   },
   {
     id: 'ser_estar_participle',
@@ -1149,7 +1149,7 @@ export const GRAMMAR_CARDS = [
       'Cuyo agrees with the thing possessed, not the owner: el hombre cuya hija (the man whose daughter).',
       'El cual vs. que: use el cual after long prepositions (a causa de, en medio de, etc.) or to avoid ambiguity.',
     ],
-    related: ['relative_clauses'],
+    related: ['relative_clauses', 'subjunctive_adjective_clauses'],
   },
   {
     id: 'adjectives_ser_estar',
@@ -1292,7 +1292,7 @@ export const GRAMMAR_CARDS = [
       'Many nouns don\'t follow predictable patterns: el ser (being), el poder (power), el deber (duty).',
       '-ción → -tion (English) in many cases: información, comunicación, producción.',
     ],
-    related: ['adjective_agreement'],
+    related: ['adjective_agreement', 'subjunctive_noun_clauses'],
   },
   {
     id: 'subjunctive_temporal',
