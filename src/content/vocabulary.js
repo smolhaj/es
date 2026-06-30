@@ -89,6 +89,15 @@ export const VOCABULARY = [
   { es: 'beige', en: 'beige', cefr: 'A2', domain: 'colors', frequencyRank: 970, example: 'Las paredes son de color beige.', exampleEn: 'The walls are beige.' },
   { es: 'turquesa', en: 'turquoise', cefr: 'A2', domain: 'colors', frequencyRank: 980, example: 'El mar Caribe es turquesa.', exampleEn: 'The Caribbean sea is turquoise.' },
   { es: 'granate', en: 'dark red / maroon / burgundy', cefr: 'B1', domain: 'colors', frequencyRank: 990, example: 'Lleva un abrigo granate.', exampleEn: 'She is wearing a dark red coat.' },
+  { es: 'azul marino', en: 'navy blue', cefr: 'B1', domain: 'colors', frequencyRank: 995, example: 'El uniforme es azul marino.', exampleEn: 'The uniform is navy blue.' },
+  { es: 'verde oliva', en: 'olive green', cefr: 'B1', domain: 'colors', frequencyRank: 997, example: 'Lleva una chaqueta verde oliva.', exampleEn: 'He is wearing an olive green jacket.' },
+  { es: 'crema', en: 'cream (colour)', cefr: 'B1', domain: 'colors', frequencyRank: 998, example: 'Las paredes son de un blanco crema.', exampleEn: 'The walls are a cream white.' },
+  { es: 'coral', en: 'coral (colour)', cefr: 'B1', domain: 'colors', frequencyRank: 1001, example: 'Se pintó las uñas de color coral.', exampleEn: 'She painted her nails coral.' },
+  { es: 'lavanda', en: 'lavender (colour)', cefr: 'B2', domain: 'colors', frequencyRank: 1005, example: 'La habitación está pintada de lavanda.', exampleEn: 'The room is painted lavender.' },
+  { es: 'añil', en: 'indigo', cefr: 'B2', domain: 'colors', frequencyRank: 1010, example: 'El añil es el sexto color del arcoíris.', exampleEn: 'Indigo is the sixth colour of the rainbow.' },
+  { es: 'escarlata', en: 'scarlet', cefr: 'B2', domain: 'colors', frequencyRank: 1015, example: 'Lleva un vestido escarlata al acto.', exampleEn: 'She wears a scarlet dress to the event.' },
+  { es: 'ocre', en: 'ochre', cefr: 'B2', domain: 'colors', frequencyRank: 1020, example: 'Los muros de la ciudad son de un tono ocre.', exampleEn: 'The city walls are an ochre tone.' },
+  { es: 'carmesí', en: 'crimson', cefr: 'B2', domain: 'colors', frequencyRank: 1025, example: 'El cielo se tiñó de carmesí al atardecer.', exampleEn: 'The sky turned crimson at sunset.' },
 
   // ── FAMILY ──────────────────────────────────────────────────────────────
   { es: 'madre', en: 'mother', cefr: 'A1', domain: 'family', frequencyRank: 180, example: 'Mi madre cocina muy bien.', exampleEn: 'My mother cooks very well.' },
@@ -166,6 +175,10 @@ export const VOCABULARY = [
   { es: 'tarta', en: 'cake / tart', cefr: 'A2', domain: 'food', frequencyRank: 1010, example: 'Compramos una tarta de cumpleaños.', exampleEn: 'We bought a birthday cake.' },
   { es: 'bocadillo', en: 'sandwich (baguette-style)', cefr: 'A2', domain: 'food', frequencyRank: 1020, example: 'Me puse un bocadillo de jamón.', exampleEn: 'I made myself a ham sandwich.' },
   { es: 'refresco', en: 'soft drink / fizzy drink', cefr: 'A2', domain: 'food', frequencyRank: 1030, example: '¿Quieres un refresco o agua?', exampleEn: 'Do you want a soft drink or water?' },
+  { es: 'mariscos', en: 'seafood / shellfish', cefr: 'B2', domain: 'food', frequencyRank: 1040, example: 'La paella de mariscos es el plato estrella del restaurante.', exampleEn: 'The seafood paella is the restaurant\'s star dish.' },
+  { es: 'guarnición', en: 'side dish / garnish', cefr: 'B2', domain: 'food', frequencyRank: 1050, example: '¿Qué guarnición prefieres, patatas o ensalada?', exampleEn: 'Which side dish do you prefer, potatoes or salad?' },
+  { es: 'degustación', en: 'tasting / food tasting', cefr: 'B2', domain: 'food', frequencyRank: 1055, example: 'Hicimos una degustación de vinos de la región.', exampleEn: 'We did a wine tasting of wines from the region.' },
+  { es: 'temporada', en: 'season (of produce / sport / TV)', cefr: 'B2', domain: 'food', frequencyRank: 1060, example: 'Las fresas están buenísimas ahora que es temporada.', exampleEn: 'The strawberries are delicious now that they are in season.' },
 
   // ── PLACES ──────────────────────────────────────────────────────────────
   { es: 'casa', en: 'house / home', cefr: 'A1', domain: 'places', frequencyRank: 90, example: 'Estoy en casa.', exampleEn: 'I\'m at home.' },
@@ -510,6 +523,10 @@ export const VOCABULARY = [
   { es: 'diseñador', en: 'designer', cefr: 'B1', domain: 'professions', frequencyRank: 230, example: 'Es diseñadora gráfica.', exampleEn: 'She is a graphic designer.' },
   { es: 'programador', en: 'programmer / software developer', cefr: 'B1', domain: 'professions', frequencyRank: 240, example: 'Trabaja como programador en una startup.', exampleEn: 'He works as a programmer at a startup.' },
   { es: 'científico', en: 'scientist', cefr: 'B1', domain: 'professions', frequencyRank: 170, example: 'Los científicos estudian el cambio climático.', exampleEn: 'Scientists study climate change.' },
+  { es: 'contable', en: 'accountant (Spain)', cefr: 'B2', domain: 'professions', frequencyRank: 260, example: 'El contable revisa las cuentas de la empresa.', exampleEn: 'The accountant reviews the company accounts.' },
+  { es: 'farmacéutico', en: 'pharmacist', cefr: 'B2', domain: 'professions', frequencyRank: 270, example: 'El farmacéutico me recomendó un antigripal.', exampleEn: 'The pharmacist recommended a flu remedy.' },
+  { es: 'intérprete', en: 'interpreter', cefr: 'B2', domain: 'professions', frequencyRank: 280, example: 'Trabaja como intérprete simultáneo en la ONU.', exampleEn: 'She works as a simultaneous interpreter at the UN.' },
+  { es: 'fisioterapeuta', en: 'physiotherapist', cefr: 'B2', domain: 'professions', frequencyRank: 290, example: 'El fisioterapeuta me dio ejercicios para la espalda.', exampleEn: 'The physiotherapist gave me exercises for my back.' },
 
   // ── B1 WORDS ────────────────────────────────────────────────────────────
   { es: 'a pesar de', en: 'in spite of / despite', cefr: 'B1', domain: 'connectors', frequencyRank: 180, example: 'Salió a pesar de la lluvia.', exampleEn: 'He went out despite the rain.' },
@@ -980,6 +997,11 @@ export const VOCABULARY = [
   { es: 'embarazada', en: 'pregnant', cefr: 'B1', domain: 'health', frequencyRank: 550, example: 'Está embarazada de tres meses.', exampleEn: 'She is three months pregnant.' },
   { es: 'sangre', en: 'blood', cefr: 'B1', domain: 'health', frequencyRank: 300, example: 'Donó sangre en la Cruz Roja.', exampleEn: 'He donated blood at the Red Cross.' },
   { es: 'medicamento', en: 'medication / medicine', cefr: 'A2', domain: 'health', frequencyRank: 450, example: 'Tome el medicamento cada ocho horas.', exampleEn: 'Take the medication every eight hours.' },
+  { es: 'deshidratación', en: 'dehydration', cefr: 'B2', domain: 'health', frequencyRank: 560, example: 'Bebe agua suficiente para evitar la deshidratación.', exampleEn: 'Drink enough water to avoid dehydration.' },
+  { es: 'infección', en: 'infection', cefr: 'B2', domain: 'health', frequencyRank: 570, example: 'El médico le diagnosticó una infección bacteriana.', exampleEn: 'The doctor diagnosed a bacterial infection.' },
+  { es: 'efecto secundario', en: 'side effect', cefr: 'B2', domain: 'health', frequencyRank: 580, example: 'Lea el prospecto para conocer los efectos secundarios.', exampleEn: 'Read the leaflet to find out about the side effects.' },
+  { es: 'cirugía', en: 'surgery', cefr: 'B2', domain: 'health', frequencyRank: 590, example: 'La cirugía de cadera dura unas dos horas.', exampleEn: 'Hip surgery takes about two hours.' },
+  { es: 'tensión arterial', en: 'blood pressure', cefr: 'B2', domain: 'health', frequencyRank: 600, example: 'Tiene la tensión arterial alta y toma medicación.', exampleEn: 'She has high blood pressure and takes medication.' },
 
   // ── TRAVEL ───────────────────────────────────────────────────────────────
   { es: 'aeropuerto', en: 'airport', cefr: 'A1', domain: 'travel', frequencyRank: 180, example: 'El aeropuerto está a 30 kilómetros de la ciudad.', exampleEn: 'The airport is 30 kilometres from the city.' },
@@ -1002,6 +1024,11 @@ export const VOCABULARY = [
   { es: 'alojamiento', en: 'accommodation', cefr: 'A2', domain: 'travel', frequencyRank: 480, example: 'El alojamiento incluye desayuno.', exampleEn: 'The accommodation includes breakfast.' },
   { es: 'excursión', en: 'excursion / day trip', cefr: 'A2', domain: 'travel', frequencyRank: 490, example: 'Hicimos una excursión a la sierra.', exampleEn: 'We went on a day trip to the mountains.' },
   { es: 'retraso', en: 'delay', cefr: 'A2', domain: 'travel', frequencyRank: 510, example: 'El tren lleva una hora de retraso.', exampleEn: 'The train is one hour delayed.' },
+  { es: 'escala', en: 'stopover / layover', cefr: 'B2', domain: 'travel', frequencyRank: 520, example: 'El vuelo tiene una escala de dos horas en Madrid.', exampleEn: 'The flight has a two-hour stopover in Madrid.' },
+  { es: 'itinerario', en: 'itinerary', cefr: 'B2', domain: 'travel', frequencyRank: 530, example: 'Nos enviaron el itinerario completo del viaje.', exampleEn: 'They sent us the complete itinerary for the trip.' },
+  { es: 'tarjeta de embarque', en: 'boarding pass', cefr: 'B2', domain: 'travel', frequencyRank: 540, example: 'Descarga la tarjeta de embarque antes de ir al aeropuerto.', exampleEn: 'Download your boarding pass before going to the airport.' },
+  { es: 'visado', en: 'visa', cefr: 'B2', domain: 'travel', frequencyRank: 550, example: 'Necesitas visado para entrar en ese país.', exampleEn: 'You need a visa to enter that country.' },
+  { es: 'seguro de viaje', en: 'travel insurance', cefr: 'B2', domain: 'travel', frequencyRank: 560, example: 'Contrata un seguro de viaje por si acaso.', exampleEn: 'Take out travel insurance just in case.' },
 
   // ── TECHNOLOGY ───────────────────────────────────────────────────────────
   { es: 'móvil', en: 'mobile phone / cell phone', cefr: 'A2', domain: 'technology', frequencyRank: 200, example: 'Se me ha olvidado el móvil en casa.', exampleEn: 'I have left my mobile phone at home.' },
@@ -1046,6 +1073,10 @@ export const VOCABULARY = [
   { es: 'recreo', en: 'break time / playtime', cefr: 'A2', domain: 'education', frequencyRank: 540, example: 'Los niños juegan en el recreo.', exampleEn: 'The children play at break time.' },
   { es: 'asignatura', en: 'school subject', cefr: 'A2', domain: 'education', frequencyRank: 470, example: '¿Cuál es tu asignatura favorita?', exampleEn: 'What is your favourite school subject?' },
   { es: 'tutoría', en: 'tutorial / tutor session', cefr: 'B1', domain: 'education', frequencyRank: 560, example: 'Tengo una tutoría con el profesor los jueves.', exampleEn: 'I have a tutorial with the tutor on Thursdays.' },
+  { es: 'doctorado', en: 'doctorate / PhD', cefr: 'B2', domain: 'education', frequencyRank: 570, example: 'Lleva tres años haciendo el doctorado en lingüística.', exampleEn: 'She has been doing her PhD in linguistics for three years.' },
+  { es: 'calificación', en: 'grade / mark', cefr: 'B2', domain: 'education', frequencyRank: 580, example: 'Las calificaciones finales se publican en junio.', exampleEn: 'The final grades are published in June.' },
+  { es: 'licenciatura', en: 'bachelor\'s degree (pre-Bologna Spain)', cefr: 'B2', domain: 'education', frequencyRank: 590, example: 'Tiene una licenciatura en Filología Hispánica.', exampleEn: 'She has a degree in Hispanic Studies.' },
+  { es: 'expediente académico', en: 'academic transcript / record', cefr: 'B2', domain: 'education', frequencyRank: 600, example: 'Solicita el expediente académico en secretaría.', exampleEn: 'Request your academic transcript from the registrar\'s office.' },
 
   // ── NATURE ───────────────────────────────────────────────────────────────
   { es: 'mar', en: 'sea', cefr: 'A1', domain: 'nature', frequencyRank: 120, example: 'El mar Mediterráneo es muy cálido en verano.', exampleEn: 'The Mediterranean Sea is very warm in summer.' },
@@ -1068,6 +1099,10 @@ export const VOCABULARY = [
   { es: 'cascada', en: 'waterfall', cefr: 'B1', domain: 'nature', frequencyRank: 500, example: 'La cascada cae desde una altura de cien metros.', exampleEn: 'The waterfall falls from a height of one hundred metres.' },
   { es: 'ballena', en: 'whale', cefr: 'B1', domain: 'nature', frequencyRank: 480, example: 'Vimos una ballena azul en la costa.', exampleEn: 'We saw a blue whale off the coast.' },
   { es: 'amanecer', en: 'dawn / sunrise', cefr: 'B1', domain: 'nature', frequencyRank: 460, example: 'El amanecer en la montaña es espectacular.', exampleEn: 'The sunrise in the mountains is spectacular.' },
+  { es: 'ecosistema', en: 'ecosystem', cefr: 'B2', domain: 'nature', frequencyRank: 510, example: 'El ecosistema del arrecife de coral está amenazado.', exampleEn: 'The coral reef ecosystem is under threat.' },
+  { es: 'biodiversidad', en: 'biodiversity', cefr: 'B2', domain: 'nature', frequencyRank: 530, example: 'La Amazonia alberga una biodiversidad enorme.', exampleEn: 'The Amazon is home to enormous biodiversity.' },
+  { es: 'glaciar', en: 'glacier', cefr: 'B2', domain: 'nature', frequencyRank: 540, example: 'Los glaciares se están derritiendo a causa del calentamiento global.', exampleEn: 'Glaciers are melting because of global warming.' },
+  { es: 'cima', en: 'summit / peak / top', cefr: 'B2', domain: 'nature', frequencyRank: 520, example: 'Tardaron ocho horas en llegar a la cima.', exampleEn: 'It took them eight hours to reach the summit.' },
 ];
 
 // Group by domain
