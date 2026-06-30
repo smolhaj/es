@@ -41,7 +41,8 @@ B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_vo
     imperfect_subjunctive, si_clauses, subjunctive_adverbial, comparatives, ser_estar_participle,
     diminutives_augmentatives, relative_pronouns_advanced
 C1: subjunctive_noun_clauses, subjunctive_adjective_clauses, gerund_advanced, ser_passive,
-    estilo_indirecto, nominalisation, subjunctive_temporal, cuantificadores
+    estilo_indirecto, nominalisation, subjunctive_temporal, cuantificadores,
+    futuro_probabilidad, condicional_probabilidad, perifraseis_avanzadas
 
 difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced contrast)
 
@@ -51,7 +52,7 @@ A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/
 A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives), adverbs of manner (-mente formation)
 B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund
 B2: present perfect, pluperfect, future perfect, conditional perfect, passive constructions (ser + participio, pasiva se), imperfect subjunctive, si-clauses, subjunctive in adverbial clauses, comparatives, diminutives/augmentatives, advanced relative pronouns — only if CEFR level is B2+
-C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers — only if CEFR level is C1
+C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers, future/conditional for probability inference, advanced verb periphrases (soler, ponerse a, volver a, dejar de, llevar sin) — only if CEFR level is C1
 
 FEEDBACK RULES:
 - Wrong: name the exact rule violated. One sentence on how to fix it.
@@ -114,6 +115,11 @@ export const FALLBACK_EXERCISES = [
   // C1
   { type: 'translation_to_spanish', prompt: "Translate: 'I doubt that he has told the truth.'", english: 'I doubt that he has told the truth.', answer: 'Dudo que haya dicho la verdad.', word: 'dudar', concept_id: 'subjunctive_noun_clauses', difficulty: 3 },
   { type: 'fill_blank', prompt: 'Complete: Me dijo que ___ al día siguiente. (volver, indirect speech, él)', word: 'volver', english: 'to return', answer: 'volvería', concept_id: 'estilo_indirecto', difficulty: 3 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Serán las tres de la tarde"? (uso del futuro de probabilidad)', word: 'ser', english: 'to be', answer: 'It must be about three in the afternoon.', concept_id: 'futuro_probabilidad', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: No sé cuántos años tiene, pero ___ unos cuarenta. (tener, condicional de probabilidad)', word: 'tener', english: 'to have', answer: 'tendrá', concept_id: 'futuro_probabilidad', difficulty: 3 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Tendría unos treinta años cuando lo conocí"? (condicional de probabilidad)', word: 'tener', english: 'to have', answer: 'He must have been about thirty when I met him.', concept_id: 'condicional_probabilidad', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: ___ llegar tarde los viernes. (soler, ella, perifrase habitual)', word: 'soler', english: 'to usually do', answer: 'Suele', concept_id: 'perifraseis_avanzadas', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'She suddenly burst into tears.' (use ponerse a)", english: 'She suddenly burst into tears.', answer: 'Se puso a llorar de repente.', word: 'ponerse a', concept_id: 'perifraseis_avanzadas', difficulty: 3 },
 ];
 
 function fallback() {
