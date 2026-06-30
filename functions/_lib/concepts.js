@@ -224,7 +224,7 @@ export const CONCEPTS = {
   },
   se_impersonal: {
     id: 'se_impersonal', label: 'Impersonal se (Se habla, Se vive)', cefr: 'B1',
-    category: 'pronouns', prereqs: ['reflexive_verbs', 'passive_se'],
+    category: 'pronouns', prereqs: ['reflexive_verbs', 'obligation_infinitive'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   infinitive_vs_subjunctive: {
