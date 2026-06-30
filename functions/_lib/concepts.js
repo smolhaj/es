@@ -304,6 +304,11 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['relative_clauses'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  adjectives_ser_estar: {
+    id: 'adjectives_ser_estar', label: 'Adjectives with different ser/estar meanings', cefr: 'B2',
+    category: 'verb', prereqs: ['ser_vs_estar', 'adjective_agreement'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first', 'table'],
+  },
 
   // ── C1 ──────────────────────────────────────────────────────────────────
   subjunctive_noun_clauses: {

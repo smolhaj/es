@@ -1115,6 +1115,28 @@ export const GRAMMAR_CARDS = [
     ],
     related: ['relative_clauses'],
   },
+  {
+    id: 'adjectives_ser_estar',
+    concept_id: 'adjectives_ser_estar',
+    cefr: 'B2',
+    category: 'Verbs',
+    title: 'Adjectives that change meaning with ser/estar',
+    rule: 'Some adjectives have different meanings depending on whether they are used with ser (permanent/inherent trait) or estar (temporary state or subjective condition). Both are grammatically correct — the choice changes the meaning.',
+    examples: [
+      { es: 'ser listo = to be clever; estar listo = to be ready', en: 'Él es muy listo. / ¿Estás listo?' },
+      { es: 'ser malo = to be bad/evil; estar malo = to be sick/ill', en: 'Es malo con los animales. / Estoy malo desde ayer.' },
+      { es: 'ser bueno = to be kind/good; estar bueno = to be tasty/attractive', en: 'Es muy buena persona. / Esta paella está muy buena.' },
+      { es: 'ser aburrido = to be boring; estar aburrido = to be bored', en: 'La película es aburrida. / Estoy aburrido.' },
+      { es: 'ser orgulloso = to be arrogant (by nature); estar orgulloso = to feel proud', en: 'Es muy orgulloso. / Estoy orgulloso de ti.' },
+    ],
+    exceptions: [
+      'Ser seguro = (of a place) safe/secure. Estar seguro = to feel sure/certain.',
+      'Ser interesado = to be self-interested/greedy. Estar interesado = to be interested (in something).',
+      'Ser vivo = to be clever/sharp. Estar vivo = to be alive.',
+      'Ser muerto does not exist — only estar muerto (to be dead, a state).',
+    ],
+    related: ['ser_vs_estar', 'ser_estar_participle', 'adjective_agreement'],
+  },
 
   // ── C1 ─────────────────────────────────────────────────────────────────
   {

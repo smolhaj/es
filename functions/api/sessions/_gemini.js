@@ -43,7 +43,7 @@ B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imper
     object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, exclamativas
 B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,
     imperfect_subjunctive, si_clauses, subjunctive_adverbial, comparatives, ser_estar_participle,
-    diminutives_augmentatives, relative_pronouns_advanced
+    diminutives_augmentatives, relative_pronouns_advanced, adjectives_ser_estar
 C1: subjunctive_noun_clauses, subjunctive_adjective_clauses, gerund_advanced, ser_passive,
     estilo_indirecto, nominalisation, subjunctive_temporal, cuantificadores,
     futuro_probabilidad, condicional_probabilidad, perifraseis_avanzadas
@@ -132,6 +132,9 @@ export const FALLBACK_EXERCISES = [
   { type: 'error_correction', prompt: 'Correct if wrong: "Espero que venir mañana." (subject: he)', word: 'venir → venga', english: 'to come (subjunctive)', answer: 'Espero que venga mañana.', concept_id: 'infinitive_vs_subjunctive', difficulty: 2 },
   { type: 'translation_to_spanish', prompt: "Translate: 'What a beautiful city!'", english: 'What a beautiful city!', answer: '¡Qué ciudad tan bonita!', word: '¡qué!', concept_id: 'exclamativas', difficulty: 1 },
   { type: 'fill_blank', prompt: 'Complete the exclamation: "___ gente hay aquí!" (¡Cuánto/a/os/as!)', word: 'cuánto', english: 'how much/many', answer: '¡Cuánta', concept_id: 'exclamativas', difficulty: 2 },
+  { type: 'multiple_choice', prompt: '¿Qué significa "Ella es muy aburrida"?', word: 'aburrido', english: 'boring / bored', answer: 'She is very boring.', options: ['She is very bored.', 'She is very boring.', 'She is very tired.', 'She is very dull but only sometimes.'], concept_id: 'adjectives_ser_estar', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I am not ready yet.' (use estar listo)", english: 'I am not ready yet.', answer: 'Todavía no estoy listo.', word: 'listo', concept_id: 'adjectives_ser_estar', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Choose the right verb: "Está/Es malo — he is a bad person."', word: 'ser malo vs estar malo', english: 'ser malo = bad person; estar malo = sick', answer: 'Es malo.', concept_id: 'adjectives_ser_estar', difficulty: 3 },
 ];
 
 function fallback() {
