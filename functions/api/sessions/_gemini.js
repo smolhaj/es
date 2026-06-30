@@ -29,6 +29,9 @@ translation_to_spanish:
 translation_to_english:
 {"type":"translation_to_english","prompt":"¿Qué significa 'Me llamo Pablo'?","spanish":"Me llamo Pablo","answer":"My name is Pablo","word":"llamarse","concept_id":"reflexive_verbs","difficulty":2}
 
+error_correction — prompt shows a sentence with an error, learner must correct it:
+{"type":"error_correction","prompt":"Find and correct the error: \"Le lo dije ayer.\"","word":"le → se","english":"le becomes se before lo","answer":"Se lo dije ayer.","concept_id":"object_pronoun_order","difficulty":2}
+
 concept_id must be one of:
 A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_articles, indefinite_articles,
     ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100
@@ -51,7 +54,7 @@ CONTENT SCOPE:
 Default to A1 material unless the professor briefing explicitly shows higher CEFR level.
 A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/-ir, noun gender, articles
 A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives), adverbs of manner (-mente formation)
-B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund
+B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund, double object pronouns (me lo/se lo), impersonal se, infinitive vs subjunctive (same/different subject), exclamatory sentences (¡Qué!, ¡Cuánto!)
 B2: present perfect, pluperfect, future perfect, conditional perfect, passive constructions (ser + participio, pasiva se), imperfect subjunctive, si-clauses, subjunctive in adverbial clauses, comparatives, diminutives/augmentatives, advanced relative pronouns — only if CEFR level is B2+
 C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers, future/conditional for probability inference, advanced verb periphrases (soler, ponerse a, volver a, dejar de, llevar sin) — only if CEFR level is C1
 
