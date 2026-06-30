@@ -36,7 +36,8 @@ A2: ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns, indirect
     demonstratives, possessives, preterite_regular, modal_verbs, obligation_infinitive, time_expressions,
     present_progressive, irregular_present, negation, prepositions_basic, near_future, adverbs_formation
 B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imperfect, future_simple,
-    conditional, present_subjunctive, imperative, por_vs_para, relative_clauses
+    conditional, present_subjunctive, imperative, por_vs_para, relative_clauses,
+    object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, exclamativas
 B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,
     imperfect_subjunctive, si_clauses, subjunctive_adverbial, comparatives, ser_estar_participle,
     diminutives_augmentatives, relative_pronouns_advanced
@@ -120,6 +121,14 @@ export const FALLBACK_EXERCISES = [
   { type: 'translation_to_english', prompt: '¿Qué significa "Tendría unos treinta años cuando lo conocí"? (condicional de probabilidad)', word: 'tener', english: 'to have', answer: 'He must have been about thirty when I met him.', concept_id: 'condicional_probabilidad', difficulty: 3 },
   { type: 'fill_blank', prompt: 'Complete: ___ llegar tarde los viernes. (soler, ella, perifrase habitual)', word: 'soler', english: 'to usually do', answer: 'Suele', concept_id: 'perifraseis_avanzadas', difficulty: 3 },
   { type: 'translation_to_spanish', prompt: "Translate: 'She suddenly burst into tears.' (use ponerse a)", english: 'She suddenly burst into tears.', answer: 'Se puso a llorar de repente.', word: 'ponerse a', concept_id: 'perifraseis_avanzadas', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Rewrite using double object pronouns: "Le di el dinero a ella." → ___ ___', word: 'le/lo', english: 'to her / it', answer: 'Se lo di.', concept_id: 'object_pronoun_order', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Find and correct the error: "Le lo expliqué ayer."', word: 'le → se', english: 'le becomes se before lo', answer: 'Se lo expliqué ayer.', concept_id: 'object_pronoun_order', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete with impersonal se: "___ come bien en este restaurante." (comer)', word: 'comer', english: 'to eat', answer: 'Se come', concept_id: 'se_impersonal', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate using impersonal se: 'Apartments for sale here.'", english: 'Apartments for sale here.', answer: 'Se venden pisos aquí.', word: 'vender', concept_id: 'se_impersonal', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I want you to study more.' (use que + subjunctive)", english: 'I want you to study more.', answer: 'Quiero que estudies más.', word: 'querer que', concept_id: 'infinitive_vs_subjunctive', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct if wrong: "Espero que venir mañana." (subject: he)', word: 'venir → venga', english: 'to come (subjunctive)', answer: 'Espero que venga mañana.', concept_id: 'infinitive_vs_subjunctive', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'What a beautiful city!'", english: 'What a beautiful city!', answer: '¡Qué ciudad tan bonita!', word: '¡qué!', concept_id: 'exclamativas', difficulty: 1 },
+  { type: 'fill_blank', prompt: 'Complete the exclamation: "___ gente hay aquí!" (¡Cuánto/a/os/as!)', word: 'cuánto', english: 'how much/many', answer: '¡Cuánta', concept_id: 'exclamativas', difficulty: 2 },
 ];
 
 function fallback() {

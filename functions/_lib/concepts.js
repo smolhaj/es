@@ -217,6 +217,26 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['question_words', 'present_subjunctive'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  object_pronoun_order: {
+    id: 'object_pronoun_order', label: 'Double object pronouns (me lo, se lo)', cefr: 'B1',
+    category: 'pronouns', prereqs: ['direct_object_pronouns', 'indirect_object_pronouns'],
+    explanationStyles: ['rule_first', 'table', 'contrastive'],
+  },
+  se_impersonal: {
+    id: 'se_impersonal', label: 'Impersonal se (Se habla, Se vive)', cefr: 'B1',
+    category: 'pronouns', prereqs: ['reflexive_verbs', 'passive_se'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  infinitive_vs_subjunctive: {
+    id: 'infinitive_vs_subjunctive', label: 'Infinitive vs. subjunctive (same/different subject)', cefr: 'B1',
+    category: 'verb', prereqs: ['present_subjunctive', 'modal_verbs'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  exclamativas: {
+    id: 'exclamativas', label: 'Exclamatory sentences (¡Qué!, ¡Cuánto!)', cefr: 'B1',
+    category: 'syntax', prereqs: ['adjective_agreement', 'question_words'],
+    explanationStyles: ['example_first', 'rule_first', 'pattern'],
+  },
 
   // ── B2 ──────────────────────────────────────────────────────────────────
   present_perfect: {
