@@ -268,6 +268,49 @@ export const FALLBACK_EXERCISES = [
   // C1 — cuantificadores
   { type: 'fill_blank', prompt: 'Complete: "___ de los estudiantes aprobaron." (The majority)', word: 'la mayoría', english: 'the majority', answer: 'La mayoría', concept_id: 'cuantificadores', difficulty: 3 },
   { type: 'multiple_choice', prompt: 'Which quantifier expresses a small amount (uncountable)?', word: 'poco', english: 'little (uncountable)', answer: 'poco dinero', options: ['pocos dineros', 'poco dinero', 'algunos dinero', 'un poco dineros'], concept_id: 'cuantificadores', difficulty: 2 },
+  // Extra fallbacks for thin concepts (second exercise for each)
+  // A1 — ser_basics
+  { type: 'translation_to_spanish', prompt: "Translate: 'He is a doctor.'", english: 'He is a doctor.', answer: 'Es médico.', word: 'ser', concept_id: 'ser_basics', difficulty: 1 },
+  // A1 — present_ar
+  { type: 'translation_to_spanish', prompt: "Translate: 'They work here every day.'", english: 'They work here every day.', answer: 'Trabajan aquí todos los días.', word: 'trabajar', concept_id: 'present_ar', difficulty: 2 },
+  // A2 — reflexive_verbs
+  { type: 'translation_to_spanish', prompt: "Translate: 'She gets up at seven every morning.'", english: 'She gets up at seven every morning.', answer: 'Se levanta a las siete todas las mañanas.', word: 'levantarse', concept_id: 'reflexive_verbs', difficulty: 2 },
+  // A2 — gustar_type
+  { type: 'translation_to_spanish', prompt: "Translate: 'Do you like this song?'", english: 'Do you like this song?', answer: '¿Te gusta esta canción?', word: 'gustar', concept_id: 'gustar_type', difficulty: 1 },
+  // A2 — preterite_regular
+  { type: 'fill_blank', prompt: 'Complete: "Ayer ellos ___ mucho en la reunión." (hablar)', word: 'hablar', english: 'to talk', answer: 'hablaron', concept_id: 'preterite_regular', difficulty: 2 },
+  // A2 — present_progressive
+  { type: 'fill_blank', prompt: 'Complete: "¿Qué ___ (hacer, tú) en este momento?"', word: 'hacer', english: 'to do', answer: 'estás haciendo', concept_id: 'present_progressive', difficulty: 2 },
+  // A2 — near_future
+  { type: 'multiple_choice', prompt: 'Which sentence expresses a near future plan?', word: 'ir a + infinitivo', english: 'going to (near future)', answer: 'Voy a llamar a mi madre.', options: ['Llamo a mi madre.', 'Voy a llamar a mi madre.', 'Llamaré a mi madre mañana.', 'Llamé a mi madre.'], concept_id: 'near_future', difficulty: 1 },
+  // A2 — adverbs_formation
+  { type: 'translation_to_spanish', prompt: "Translate: 'She sings beautifully.'", english: 'She sings beautifully.', answer: 'Canta bellamente.', word: 'bellamente', concept_id: 'adverbs_formation', difficulty: 2 },
+  // B1 — acabar_de
+  { type: 'fill_blank', prompt: 'Complete: "Ellos ___ cenar. No tienen hambre." (acabar de)', word: 'acabar de', english: 'to have just', answer: 'acaban de', concept_id: 'acabar_de', difficulty: 2 },
+  // B1 — llevar_gerund
+  { type: 'fill_blank', prompt: 'Complete: "¿Cuánto tiempo ___ (llevar, tú) esperando?"', word: 'llevar', english: 'to have been (duration)', answer: 'llevas', concept_id: 'llevar_gerund', difficulty: 2 },
+  // B1 — conditional
+  { type: 'translation_to_spanish', prompt: "Translate: 'I would buy the house if I could.'", english: 'I would buy the house if I could.', answer: 'Compraría la casa si pudiera.', word: 'comprar', concept_id: 'conditional', difficulty: 3 },
+  // B1 — present_subjunctive
+  { type: 'translation_to_spanish', prompt: "Translate: 'I hope you feel better soon.'", english: 'I hope you feel better soon.', answer: 'Espero que te mejores pronto.', word: 'mejorar', concept_id: 'present_subjunctive', difficulty: 3 },
+  // B1 — por_vs_para
+  { type: 'fill_blank', prompt: 'Complete: "Este regalo es ___ ti." (for you — recipient)', word: 'para', english: 'for (recipient)', answer: 'para', concept_id: 'por_vs_para', difficulty: 2 },
+  // B2 — present_perfect
+  { type: 'translation_to_spanish', prompt: "Translate: 'Have you ever been to Mexico?'", english: 'Have you ever been to Mexico?', answer: '¿Has estado alguna vez en México?', word: 'estar', concept_id: 'present_perfect', difficulty: 2 },
+  // B2 — passive_voice
+  { type: 'fill_blank', prompt: 'Complete: "Los libros ___ enviados ayer." (were sent — ser + participio)', word: 'ser', english: 'to be (passive)', answer: 'fueron', concept_id: 'passive_voice', difficulty: 3 },
+  // B2 — imperfect_subjunctive
+  { type: 'translation_to_spanish', prompt: "Translate: 'I wanted you to come with us.'", english: 'I wanted you to come with us.', answer: 'Quería que vinieras con nosotros.', word: 'venir', concept_id: 'imperfect_subjunctive', difficulty: 3 },
+  // B2 — si_clauses (type 1 — open condition)
+  { type: 'fill_blank', prompt: 'Complete: "Si ___ (tener, tú) tiempo mañana, llámame." (open condition — present)', word: 'tener', english: 'to have', answer: 'tienes', concept_id: 'si_clauses', difficulty: 2 },
+  // B2 — comparatives
+  { type: 'fill_blank', prompt: 'Complete: "Este libro es ___ largo que el otro." (longer)', word: 'más', english: 'more (comparative)', answer: 'más', concept_id: 'comparatives', difficulty: 1 },
+  // C1 — subjunctive_noun_clauses
+  { type: 'fill_blank', prompt: 'Complete: "Es importante que ___ (estudiar, tú) cada día."', word: 'estudiar', english: 'to study', answer: 'estudies', concept_id: 'subjunctive_noun_clauses', difficulty: 3 },
+  // C1 — estilo_indirecto
+  { type: 'translation_to_spanish', prompt: "Translate: 'She told me she was tired.'", english: 'She told me she was tired.', answer: 'Me dijo que estaba cansada.', word: 'decir', concept_id: 'estilo_indirecto', difficulty: 3 },
+  // C1 — condicional_probabilidad
+  { type: 'fill_blank', prompt: 'Complete: "No sé dónde está — ___ (estar) en el trabajo." (probability guess)', word: 'estar', english: 'to be', answer: 'estará', concept_id: 'condicional_probabilidad', difficulty: 3 },
 ];
 
 function fallback() {
