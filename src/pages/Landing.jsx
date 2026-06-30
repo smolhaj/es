@@ -13,7 +13,7 @@ const FEATURES = [
   },
   {
     label: 'A1 to C1',
-    body: 'A full curriculum built to CEFR standards — 71 tracked grammar concepts, 862 vocabulary items, 96 conjugated verbs, idioms, regional differences.'
+    body: 'A full curriculum built to CEFR standards — 71 tracked grammar concepts, 902 vocabulary items across 20 domains, 96 conjugated verbs, idioms, regional differences.'
   },
   {
     label: 'Spaced repetition',
