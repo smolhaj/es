@@ -245,6 +245,48 @@ export const REGIONAL_SECTIONS = [
     ],
     tip: 'Argentine Spanish sounds "Italian" to other Spanish speakers — and that\'s not accidental. Buenos Aires received massive Italian immigration. An estimated 60% of Argentines have Italian ancestry. The intonation, some vocabulary, and even gestures reflect this heritage.',
   },
+  {
+    id: 'ahorita',
+    category: 'Vocabulary',
+    title: '"Ahorita" — a word with three different meanings',
+    summary: '"Ahorita" is technically a diminutive of "ahora" (now), but its actual meaning depends completely on the country. Getting this wrong creates real confusion.',
+    comparisons: [
+      { context: 'Spain',          spain: 'Ahora mismo / enseguida (not "ahorita")',  latam: 'ahorita is not commonly used' },
+      { context: 'Mexico (strict)', spain: 'N/A',                                     latam: '"ahorita" = right now, this instant — more urgent than "ahora"' },
+      { context: 'Mexico (loose)',  spain: 'N/A',                                     latam: '"ahorita" = in a moment, sometime soon (ambiguous)' },
+      { context: 'Caribbean',       spain: 'N/A',                                     latam: '"ahorita" = eventually / sometime today (not urgent at all)' },
+      { context: 'Confusion case',  spain: '—',                                       latam: '"te llamo ahorita" in Mexico = I\'ll call you right now. In Venezuela = I\'ll call you at some point.' },
+    ],
+    tip: '"Ahorita" is the most regionally ambiguous word in Spanish. In Mexico it can mean urgently right now OR sometime soon — context (and tone) tells you which. In Caribbean varieties it drifts to mean "later today" or even "whenever." If you need clarity, use "ahora mismo" (right now) or "en un momento" (in a moment).',
+  },
+  {
+    id: 'transport_regional',
+    category: 'Vocabulary',
+    title: 'Transport — the bus has many names',
+    summary: 'The word for "bus" is one of the most varied in Spanish. Using the wrong word in a new country might cause puzzled looks.',
+    comparisons: [
+      { context: 'Standard / Spain',       spain: 'el autobús / el bus',              latam: 'el autobús (formal, written)' },
+      { context: 'Mexico',                 spain: '—',                                latam: 'el camión (intercity bus), la micro (city bus), el pesero / combi (minibus)' },
+      { context: 'Argentina / Uruguay',    spain: '—',                                latam: 'el colectivo (bus), el bondi (Buenos Aires slang), el micro (long-distance)' },
+      { context: 'Chile',                  spain: '—',                                latam: 'la micro (city bus), el bus / el pullman (intercity)' },
+      { context: 'Spain (regional)',        spain: 'el autobús, el autocar (intercity), la guagua (Canary Islands)', latam: 'la guagua (Cuba, Puerto Rico, Dominican Rep.)' },
+      { context: 'Colombia',               spain: '—',                                latam: 'el bus, el buseta (minibus), el transmilenio (BRT, Bogotá)' },
+    ],
+    tip: '"Guagua" means bus in Cuba, Puerto Rico, and the Canary Islands — but in Chile and Argentina it means baby (young child). Context saves you. If in doubt, "autobús" is understood everywhere even if it sounds formal.',
+  },
+  {
+    id: 'mande_pardon',
+    category: 'Vocabulary',
+    title: 'Mexico — "Mande" as "Pardon?"',
+    summary: 'In Mexico, "mande" (literally the imperative of "mandar" = to order/command) is the standard polite way to say "pardon?" or "what did you say?". This usage does not exist in Spain or most other Latin American countries.',
+    comparisons: [
+      { context: 'Asking someone to repeat',  spain: '¿Cómo? / ¿Perdón? / ¿Qué?',    latam: '¿Mande? (MX — polite) / ¿Qué? (informal everywhere)' },
+      { context: 'Responding to being called', spain: '¿Sí? / ¿Qué?',                latam: '¡Mande! (MX — "Yes, what do you need?")' },
+      { context: 'Register',                  spain: '¿Cómo dices? (formal)',          latam: '¿Mande usted? (MX — very polite)' },
+      { context: 'Children to adults',        spain: '¿Qué? / ¿Sí?',                 latam: '¿Mande? (MX — taught to children as the polite form)' },
+    ],
+    tip: '"¿Mande?" is deeply embedded in Mexican politeness culture — children are taught to say it instead of "¿Qué?" when an adult calls them. In Spain, "mande" sounds like a jarring command ("you command me"). Don\'t use it outside of Mexico. Everywhere else: use "¿Cómo?" or "¿Perdón?" for "pardon?".',
+  },
 ];
 
 export const CATEGORIES = [...new Set(REGIONAL_SECTIONS.map(s => s.category))];
