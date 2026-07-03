@@ -528,7 +528,7 @@ export const VERBS = [
     note: 'Dual stem change: e→ie in present (except nosotros/vosotros); e→i in preterite 3rd person and throughout the subjunctive. Pattern shared by sentir, divertirse, mentir.',
     present:     { yo:'prefiero',   tu:'prefieres',   el:'prefiere',   nosotros:'preferimos',    vosotros:'preferís',     ellos:'prefieren'   },
     preterite:   { yo:'preferí',    tu:'preferiste',  el:'prefirió',   nosotros:'preferimos',    vosotros:'preferisteis', ellos:'prefirieron' },
-    imperfect:   { yo:'prefería',   tu:'preferías',   el:'prefería',   nosotros:'preferiamos',   vosotros:'preferíais',   ellos:'preferían'   },
+    imperfect:   { yo:'prefería',   tu:'preferías',   el:'prefería',   nosotros:'preferíamos',   vosotros:'preferíais',   ellos:'preferían'   },
     future:      { yo:'preferiré',  tu:'preferirás',  el:'preferirá',  nosotros:'preferiremos',  vosotros:'preferiréis',  ellos:'preferirán'  },
     conditional: { yo:'preferiría', tu:'preferirías', el:'preferiría', nosotros:'preferiríamos', vosotros:'preferiríais', ellos:'preferirían' },
     subjunctive: { yo:'prefiera',   tu:'prefieras',   el:'prefiera',   nosotros:'prefiramos',    vosotros:'prefiráis',    ellos:'prefieran'   },
