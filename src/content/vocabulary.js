@@ -1143,6 +1143,73 @@ export const VOCABULARY = [
   { es: 'biodiversidad', en: 'biodiversity', cefr: 'B2', domain: 'nature', frequencyRank: 530, example: 'La Amazonia alberga una biodiversidad enorme.', exampleEn: 'The Amazon is home to enormous biodiversity.' },
   { es: 'glaciar', en: 'glacier', cefr: 'B2', domain: 'nature', frequencyRank: 540, example: 'Los glaciares se están derritiendo a causa del calentamiento global.', exampleEn: 'Glaciers are melting because of global warming.' },
   { es: 'cima', en: 'summit / peak / top', cefr: 'B2', domain: 'nature', frequencyRank: 520, example: 'Tardaron ocho horas en llegar a la cima.', exampleEn: 'It took them eight hours to reach the summit.' },
+
+  // ── CONTENT EXPANSION — topping up thinner domains ─────────────────────
+  // greetings
+  { es: 'felicidades', en: 'congratulations / happy birthday', cefr: 'A1', domain: 'greetings', frequencyRank: 260, example: '¡Felicidades por tu cumpleaños!', exampleEn: 'Congratulations on your birthday!' },
+  { es: 'saludo', en: 'greeting', cefr: 'A2', domain: 'greetings', frequencyRank: 630, example: 'Le mandó un saludo cariñoso a su abuela.', exampleEn: 'She sent her grandmother a warm greeting.' },
+  { es: 'un abrazo', en: 'a hug (warm sign-off)', cefr: 'B1', domain: 'greetings', frequencyRank: 640, example: 'Termina la carta con un abrazo.', exampleEn: 'She ends the letter with a hug (a warm sign-off).' },
+
+  // professions
+  { es: 'veterinario', en: 'vet / veterinarian', cefr: 'A2', domain: 'professions', frequencyRank: 300, example: 'Llevó al perro al veterinario porque estaba enfermo.', exampleEn: 'She took the dog to the vet because it was ill.' },
+  { es: 'electricista', en: 'electrician', cefr: 'A2', domain: 'professions', frequencyRank: 310, example: 'El electricista arregló la instalación en dos horas.', exampleEn: 'The electrician fixed the wiring in two hours.' },
+  { es: 'peluquero', en: 'hairdresser', cefr: 'A2', domain: 'professions', frequencyRank: 320, example: 'Voy al peluquero cada mes para cortarme el pelo.', exampleEn: 'I go to the hairdresser every month to get my hair cut.' },
+  { es: 'traductor', en: 'translator', cefr: 'B1', domain: 'professions', frequencyRank: 330, example: 'Trabaja como traductor de inglés a español.', exampleEn: 'He works as an English-to-Spanish translator.' },
+  { es: 'empresario', en: 'businessman / entrepreneur', cefr: 'B2', domain: 'professions', frequencyRank: 340, example: 'El empresario invirtió en una nueva fábrica.', exampleEn: 'The businessman invested in a new factory.' },
+
+  // clothes
+  { es: 'pijama', en: 'pyjamas', cefr: 'A1', domain: 'clothes', frequencyRank: 700, example: 'Por la noche me pongo el pijama.', exampleEn: 'At night I put on my pyjamas.' },
+  { es: 'traje de baño', en: 'swimsuit', cefr: 'A2', domain: 'clothes', frequencyRank: 710, example: 'Metió el traje de baño en la maleta.', exampleEn: 'She put the swimsuit in the suitcase.' },
+  { es: 'sandalias', en: 'sandals', cefr: 'A2', domain: 'clothes', frequencyRank: 720, example: 'En verano llevo sandalias todos los días.', exampleEn: 'In summer I wear sandals every day.' },
+  { es: 'bata', en: 'robe / dressing gown', cefr: 'B1', domain: 'clothes', frequencyRank: 730, example: 'Se puso la bata antes de ducharse.', exampleEn: 'She put on her robe before showering.' },
+
+  // health
+  { es: 'mareo', en: 'dizziness / dizzy spell', cefr: 'A2', domain: 'health', frequencyRank: 610, example: 'Tuvo un mareo y se sentó un momento.', exampleEn: 'He felt dizzy and sat down for a moment.' },
+  { es: 'vendaje', en: 'bandage', cefr: 'B1', domain: 'health', frequencyRank: 620, example: 'La enfermera le puso un vendaje en el brazo.', exampleEn: 'The nurse put a bandage on his arm.' },
+  { es: 'diagnóstico', en: 'diagnosis', cefr: 'B2', domain: 'health', frequencyRank: 630, example: 'El médico dio su diagnóstico después de las pruebas.', exampleEn: 'The doctor gave his diagnosis after the tests.' },
+  { es: 'terapia', en: 'therapy', cefr: 'B2', domain: 'health', frequencyRank: 640, example: 'Empezó terapia para superar la ansiedad.', exampleEn: 'She started therapy to overcome her anxiety.' },
+
+  // house
+  { es: 'persiana', en: 'blind / shutter', cefr: 'A2', domain: 'house', frequencyRank: 400, example: 'Baja la persiana para que no entre tanto sol.', exampleEn: 'Lower the blind so that not so much sun comes in.' },
+  { es: 'grifo', en: 'tap / faucet', cefr: 'A2', domain: 'house', frequencyRank: 405, example: 'El grifo de la cocina gotea.', exampleEn: 'The kitchen tap is dripping.' },
+  { es: 'enchufe', en: 'electrical socket / plug', cefr: 'A2', domain: 'house', frequencyRank: 410, example: 'No hay ningún enchufe libre en esta habitación.', exampleEn: 'There is no free socket in this room.' },
+  { es: 'desván', en: 'attic / loft', cefr: 'B1', domain: 'house', frequencyRank: 415, example: 'Guardamos las maletas viejas en el desván.', exampleEn: 'We keep the old suitcases in the attic.' },
+
+  // travel
+  { es: 'albergue', en: 'hostel', cefr: 'A2', domain: 'travel', frequencyRank: 575, example: 'Nos alojamos en un albergue barato cerca de la playa.', exampleEn: 'We stayed in a cheap hostel near the beach.' },
+  { es: 'crucero', en: 'cruise', cefr: 'B1', domain: 'travel', frequencyRank: 570, example: 'Hicimos un crucero por el Mediterráneo.', exampleEn: 'We went on a cruise around the Mediterranean.' },
+  { es: 'mochilero', en: 'backpacker', cefr: 'B2', domain: 'travel', frequencyRank: 580, example: 'Viajó por Sudamérica como mochilero durante un año.', exampleEn: 'He travelled around South America as a backpacker for a year.' },
+  { es: 'escapada', en: 'getaway / short trip', cefr: 'B2', domain: 'travel', frequencyRank: 585, example: 'Nos fuimos de escapada el fin de semana.', exampleEn: 'We went on a getaway for the weekend.' },
+
+  // education
+  { es: 'horario', en: 'timetable / schedule', cefr: 'A2', domain: 'education', frequencyRank: 490, example: 'El horario de clases cambia cada semestre.', exampleEn: 'The class timetable changes every semester.' },
+  { es: 'carrera', en: 'degree course / university studies', cefr: 'B1', domain: 'education', frequencyRank: 610, example: 'Estudia la carrera de derecho en Madrid.', exampleEn: 'She is studying a law degree in Madrid.' },
+  { es: 'aprendizaje', en: 'learning', cefr: 'B1', domain: 'education', frequencyRank: 615, example: 'El aprendizaje de un idioma requiere mucha práctica.', exampleEn: 'Learning a language requires a lot of practice.' },
+  { es: 'investigación', en: 'research', cefr: 'B2', domain: 'education', frequencyRank: 620, example: 'Su investigación se centra en el cambio climático.', exampleEn: 'Her research focuses on climate change.' },
+  { es: 'tesis', en: 'thesis', cefr: 'C1', domain: 'education', frequencyRank: 630, example: 'Defendió su tesis doctoral ante un tribunal.', exampleEn: 'He defended his doctoral thesis before a panel.' },
+
+  // technology
+  { es: 'auriculares', en: 'headphones', cefr: 'A2', domain: 'technology', frequencyRank: 360, example: 'Uso los auriculares para escuchar música en el metro.', exampleEn: 'I use headphones to listen to music on the underground.' },
+  { es: 'altavoz', en: 'speaker', cefr: 'A2', domain: 'technology', frequencyRank: 410, example: 'El altavoz del teléfono no suena muy bien.', exampleEn: 'The phone speaker does not sound very good.' },
+  { es: 'impresora', en: 'printer', cefr: 'A2', domain: 'technology', frequencyRank: 430, example: 'La impresora se ha quedado sin tinta.', exampleEn: 'The printer has run out of ink.' },
+  { es: 'cargador', en: 'charger', cefr: 'A2', domain: 'technology', frequencyRank: 440, example: '¿Me prestas tu cargador? El mío no funciona.', exampleEn: 'Can you lend me your charger? Mine does not work.' },
+  { es: 'navegador', en: 'web browser', cefr: 'B1', domain: 'technology', frequencyRank: 530, example: 'Cierra el navegador y vuelve a abrirlo.', exampleEn: 'Close the browser and open it again.' },
+  { es: 'virus informático', en: 'computer virus', cefr: 'B2', domain: 'technology', frequencyRank: 610, example: 'Un virus informático infectó todos los ordenadores de la oficina.', exampleEn: 'A computer virus infected all the computers in the office.' },
+
+  // emotions
+  { es: 'confundido', en: 'confused', cefr: 'A2', domain: 'emotions', frequencyRank: 545, example: 'Estoy confundido, no entiendo la explicación.', exampleEn: 'I am confused, I do not understand the explanation.' },
+  { es: 'harto', en: 'fed up', cefr: 'B1', domain: 'emotions', frequencyRank: 615, example: 'Estoy harto de este ruido.', exampleEn: 'I am fed up with this noise.' },
+  { es: 'agobiado', en: 'overwhelmed / stressed', cefr: 'B1', domain: 'emotions', frequencyRank: 625, example: 'Se siente agobiada con tanto trabajo.', exampleEn: 'She feels overwhelmed with so much work.' },
+  { es: 'ilusionado', en: 'excited / hopeful', cefr: 'B1', domain: 'emotions', frequencyRank: 635, example: 'Está muy ilusionado con el nuevo proyecto.', exampleEn: 'He is very excited about the new project.' },
+  { es: 'desanimado', en: 'discouraged', cefr: 'B2', domain: 'emotions', frequencyRank: 705, example: 'Se quedó desanimado después de perder el partido.', exampleEn: 'He became discouraged after losing the match.' },
+  { es: 'indiferente', en: 'indifferent', cefr: 'B2', domain: 'emotions', frequencyRank: 715, example: 'Le resulta indiferente la opinión de los demás.', exampleEn: 'Other people\'s opinions do not matter to him.' },
+
+  // nature
+  { es: 'volcán', en: 'volcano', cefr: 'B1', domain: 'nature', frequencyRank: 470, example: 'El volcán entró en erupción la semana pasada.', exampleEn: 'The volcano erupted last week.' },
+  { es: 'cueva', en: 'cave', cefr: 'A2', domain: 'nature', frequencyRank: 370, example: 'Los niños exploraron una cueva oscura.', exampleEn: 'The children explored a dark cave.' },
+  { es: 'acantilado', en: 'cliff', cefr: 'B2', domain: 'nature', frequencyRank: 545, example: 'Las vistas desde el acantilado son impresionantes.', exampleEn: 'The views from the cliff are impressive.' },
+  { es: 'arrecife', en: 'reef', cefr: 'B2', domain: 'nature', frequencyRank: 550, example: 'Bucearon cerca del arrecife de coral.', exampleEn: 'They went diving near the coral reef.' },
+  { es: 'cordillera', en: 'mountain range', cefr: 'C1', domain: 'nature', frequencyRank: 560, example: 'La cordillera de los Andes atraviesa varios países.', exampleEn: 'The Andes mountain range crosses several countries.' },
 ];
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();
