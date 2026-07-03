@@ -1,4 +1,10 @@
 const ALG = { name: 'HMAC', hash: 'SHA-256' };
+// Cloudflare Workers Free plan caps CPU time at ~10ms per request. PBKDF2 at
+// 100k iterations measured ~57ms locally — reliably exceeds that budget and
+// causes the platform to kill the request (returning its own HTML error page
+// instead of our JSON). 10k iterations measures ~5ms, leaving headroom for
+// the rest of the request (D1 query, JSON parsing, JWT signing).
+const PBKDF2_ITERATIONS = 10_000;
 
 function b64url(bytes) {
   return btoa(String.fromCharCode(...bytes))
@@ -63,7 +69,7 @@ export async function hashPassword(password) {
     'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']
   );
   const bits = await crypto.subtle.deriveBits(
-    { name: 'PBKDF2', hash: 'SHA-256', salt, iterations: 100_000 }, key, 256
+    { name: 'PBKDF2', hash: 'SHA-256', salt, iterations: PBKDF2_ITERATIONS }, key, 256
   );
   return `${b64url(salt)}.${b64url(new Uint8Array(bits))}`;
 }
@@ -75,7 +81,7 @@ export async function verifyPassword(password, stored) {
     'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']
   );
   const bits = await crypto.subtle.deriveBits(
-    { name: 'PBKDF2', hash: 'SHA-256', salt, iterations: 100_000 }, key, 256
+    { name: 'PBKDF2', hash: 'SHA-256', salt, iterations: PBKDF2_ITERATIONS }, key, 256
   );
   return b64url(new Uint8Array(bits)) === hashB64;
 }
