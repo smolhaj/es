@@ -320,6 +320,31 @@ systematic externally-verified audit was run batch-by-batch:
 - **`console.error` inside a caught Gemini failure is not optional** — a bare
   `catch {}` with no logging means a misconfigured API key degrades silently
   forever with zero way to diagnose it from Cloudflare's logs.
+- **PBKDF2 with 100k iterations exceeds Cloudflare Workers Free's ~10ms
+  CPU-time-per-request budget** (measured ~57ms locally) — the platform
+  kills the request and serves its own HTML error page instead of letting
+  the Worker respond with JSON, which surfaces to the frontend as
+  `Unexpected token '<'`, not as a recognizable auth error. 10k iterations
+  (~5ms) fits comfortably. Any CPU-bound crypto/hashing work on Workers
+  needs to be checked against this budget, not just against security
+  best-practice iteration counts.
+- **A caught error swallowed silently is worse than no try/catch at all,
+  twice over**: the fallback path in `_gemini.js` hardcoded `correct: false`
+  on any Gemini failure instead of actually grading the learner's answer —
+  every exercise answered while on the fallback path was marked wrong
+  regardless of what was submitted, for however long the fallback was
+  silently active. A caught failure path needs to preserve correct behavior
+  for the parts of the request it *can* still handle locally, not just
+  avoid crashing.
+- **Spanish/English homographs break naive dictionary word-matching in
+  mixed-language prose** — words like `red` (Spanish "network") and `pan`
+  ("bread") are also ordinary English words, so a lesson's English
+  explanatory text can't safely auto-link single Spanish words without
+  checking for this. Multi-word phrases (`buenos días`) are safe since
+  cross-language collisions there are effectively nonexistent. Any future
+  text-annotation feature over mixed-language content should check its
+  term list against common English words before enabling single-word
+  matching in prose.
 
 ## Branding
 
