@@ -1,4 +1,6 @@
--- Phase 3 migration — additive only, safe to run on existing Phase 2 DB
-
--- session_count was used in end.js but not added to schema until now
-ALTER TABLE skill_profiles ADD COLUMN session_count INTEGER NOT NULL DEFAULT 0;
+-- Phase 3 migration — historically added session_count to skill_profiles,
+-- but that column was already present in the original schema.sql. This file
+-- is now a no-op, kept only so the schema-v2 -> v3 -> v4 -> v5 file sequence
+-- stays intact for anyone who already ran it. Do not add the column here —
+-- doing so throws "duplicate column name: session_count" against any
+-- database that started from the current schema.sql.

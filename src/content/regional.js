@@ -105,7 +105,7 @@ export const REGIONAL_SECTIONS = [
     title: 'Spanish slang (Spain)',
     summary: 'Common colloquial expressions from Spain that may not be understood in Latin America.',
     comparisons: [
-      { context: 'Cool / great',    spain: 'mola / guay / chachi',  latam: 'chévere (VE/CO) / bacán (AR) / padre (MX)' },
+      { context: 'Cool / great',    spain: 'mola / guay / chachi',  latam: 'chévere (VE/CO) / copado (AR) / padre (MX)' },
       { context: 'Kid',             spain: 'chaval/a',              latam: 'chico/a / pibe (AR) / chamaco (MX)' },
       { context: 'Drunk',           spain: 'borracho / pedo',       latam: 'borracho / cuete (MX)' },
       { context: 'Money',           spain: 'pasta / guita',         latam: 'plata / lana (MX)' },

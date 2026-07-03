@@ -1,6 +1,10 @@
 import { verifyPassword, signJWT } from '../../_lib/jwt.js';
 
 export async function onRequestPost({ request, env }) {
+  if (!env.JWT_SECRET) {
+    return Response.json({ error: 'Server misconfigured: JWT_SECRET secret is not set in Cloudflare' }, { status: 500 });
+  }
+
   let body;
   try {
     body = await request.json();
