@@ -457,6 +457,35 @@ of every Spanish claim).
   in the error is Cloudflare's own support-ticket format. Don't chase this
   as a code issue unless it's frequent/persistent, in which case check
   https://www.cloudflarestatus.com/ or investigate actual load patterns.
+- **`wrangler pages dev --d1 DB --local` and `wrangler d1 execute DB
+  --local` can silently point at two different local SQLite files** if the
+  `pages dev` invocation passes a bare `--d1 DB` flag instead of `--d1
+  DB=<database_id>` matching the `database_id` in `wrangler.toml`. Each
+  local D1 "database" is persisted as
+  `.wrangler/state/v3/d1/miniflare-D1DatabaseObject/<hash>.sqlite`, and the
+  hash is derived from the database identity Wrangler thinks it's binding
+  to — a bare `--d1 DB` gets a different (empty, unmigrated) hash than the
+  one `d1 execute --file=schema.sql` populated, producing a very confusing
+  `D1_ERROR: no such table: users` even though migrations were definitely
+  run. Always pass the full `--d1 DB=<database_id>` (copy the id from
+  `wrangler.toml`'s `[[d1_databases]]` block) when starting `pages dev`
+  locally, or just check `ls .wrangler/state/v3/d1/miniflare-D1DatabaseObject/`
+  for multiple `.sqlite` files if a fresh-looking DB error shows up on a
+  local server that was supposedly already migrated.
+- **Playwright's `waitUntil: 'networkidle'` is unreliable in this sandbox
+  specifically because of the outbound proxy's handling of
+  `fonts.googleapis.com`** — `index.html` loads Google Fonts via a
+  render-blocking-looking `<link rel="stylesheet">` (mitigated by
+  `display=swap`, so real users never actually block on it), but in this
+  sandboxed environment that particular external request sometimes hangs
+  instead of failing fast, so `networkidle` times out on an otherwise
+  perfectly fine page. Confirmed by loading the same route with
+  `request`/`requestfinished`/`requestfailed` listeners and seeing the
+  Google Fonts request as the only one still outstanding at timeout. Don't
+  read a `networkidle` timeout in local QA scripts as an app bug without
+  checking what's still in flight first — prefer `waitUntil: 'load'` or a
+  specific-element wait over `networkidle` for pages that pull external
+  resources.
 
 ## Branding
 
@@ -547,12 +576,21 @@ elsewhere in the codebase; follow the referenced pattern.
    sections.** Flagged by an audit agent as covering overlapping ground
    (not a factual error, just redundant structure). Worth consolidating
    into one section next time that file is touched, but not urgent.
-7. **Not yet started this session: the full "brand-new-user" QA pass.**
-   The user asked for a systematic walkthrough of the entire live app
-   (registration → Get Started redirect → a full lesson → Dashboard →
-   adaptive Session → every reference page) to catch real bugs, the way the
-   JWT/grading bugs earlier in this session were caught. If you're resuming
-   this project and that hasn't happened yet, do it next — see "Testing/
-   verification approach used" above for the local dev setup
-   (`wrangler pages dev dist --port 8788 --local` + locally-migrated D1 +
-   Playwright with localStorage token injection to skip manual login).
+7. **Done: full "brand-new-user" QA pass (this session).** Registered a
+   fresh account, followed the redirect to Get Started, read and fully
+   completed Unit 1 (including clicking a `ClickableSpanish` popover),
+   confirmed the completion checkmark persisted back on Get Started,
+   checked the Dashboard (greeting, stats, FSRS word count, nav links),
+   opened Adaptive Session, and loaded all 12 reference pages
+   (Grammar/Verbs/VocabBrowser/VocabReview/Idioms/FalseFriends/
+   Pronunciation/Regional/Writing/Concepts/History/Profile), then logged
+   out and back in. Everything passed — 23/24 automated steps green, and
+   the one flaky step (`/grammar` timing out on Playwright's
+   `networkidle`) was root-caused to the sandbox's network proxy being
+   unreliable toward the external `fonts.googleapis.com` call, not an app
+   bug (confirmed by testing `/grammar` in isolation and by checking that
+   `index.html` already loads the Google Fonts stylesheet with
+   `display=swap`, so real users never get blocked on it — see the
+   gotcha below). No functional bugs found this pass. Screenshots taken
+   at each step confirmed correct visual rendering, not just "didn't
+   crash."
