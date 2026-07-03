@@ -1424,17 +1424,5 @@ export const GRAMMAR_CARDS = [
   },
 ];
 
-export function getCardById(id) {
-  return GRAMMAR_CARDS.find(c => c.id === id) ?? null;
-}
-
-export function getCardsByCategory(category) {
-  return GRAMMAR_CARDS.filter(c => c.category === category);
-}
-
-export function getCardsByCefr(level) {
-  return GRAMMAR_CARDS.filter(c => c.cefr === level);
-}
-
 export const CATEGORIES = [...new Set(GRAMMAR_CARDS.map(c => c.category))].sort();
 export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];

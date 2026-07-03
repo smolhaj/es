@@ -1,6 +1,5 @@
 // Spanish verb conjugation tables — 96 key verbs (regular, stem-changing, irregular), A1–C1
 
-export const VERB_TYPES = ['irregular', 'stem-changing', 'reflexive', 'regular'];
 export const TENSES = ['present', 'preterite', 'imperfect', 'future', 'conditional', 'subjunctive'];
 export const TENSE_LABELS = {
   present: 'Present', preterite: 'Preterite', imperfect: 'Imperfect',

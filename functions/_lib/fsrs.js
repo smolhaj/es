@@ -76,9 +76,3 @@ export function scheduleReview(item, grade) {
     correct_count: correctCount,
   };
 }
-
-export function computeRetrievability(item) {
-  if (!item.last_reviewed_at || !item.stability) return 0;
-  const elapsedDays = (Date.now() - new Date(item.last_reviewed_at).getTime()) / 86400000;
-  return retrievability(elapsedDays, item.stability);
-}

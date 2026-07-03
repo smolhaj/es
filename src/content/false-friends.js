@@ -882,12 +882,3 @@ export const FALSE_FRIENDS = [
     dangerLevel: 'medium',
   },
 ];
-
-export function getByDangerLevel(level) {
-  return FALSE_FRIENDS.filter(f => f.dangerLevel === level);
-}
-
-export function getRandom(n = 5) {
-  const shuffled = [...FALSE_FRIENDS].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, n);
-}
