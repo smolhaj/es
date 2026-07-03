@@ -137,20 +137,36 @@ added specifically so a fresh coding session wouldn't either freeze on a
 
 ## Current implementation status vs. spec (gap analysis)
 
-**Built** (goes beyond Phase 1 already — mastery tracking and FSRS shipped
-early):
+**Built** (goes well beyond Phase 1 — mastery tracking, FSRS, a structured
+curriculum, and audio all shipped):
 - Auth (JWT, D1-backed `users` table)
 - Gemini-driven session loop with graceful fallback to a large static
-  exercise bank (`functions/api/sessions/_gemini.js`)
+  exercise bank (`functions/api/sessions/_gemini.js`), fallback path grades
+  answers locally rather than always marking them wrong
 - FSRS-4.5 vocabulary spaced repetition (`functions/_lib/fsrs.js`)
 - Concept mastery tracking with fossilization detection (3+ session errors)
   and explanation-style rotation
 - Reference pages: grammar, verbs (conjugation tables), vocabulary browser,
   idioms, false friends, pronunciation guide, regional differences
 - Dashboard, session history, profile
+- **Structured "Get Started" curriculum** — thematic units with reading,
+  vocab, and embedded practice, separate from the adaptive session. See
+  "Structured curriculum: architecture and status" below.
+- **Audio/TTS** — via the Web Speech API (`src/hooks/useSpeech.jsx`,
+  `SpeakButton`), not Google Cloud TTS as the original spec proposed — same
+  outcome (pronunciation playback), simpler and genuinely free at any scale
+  since there's no per-character billing.
+- **Clickable Spanish words** — click any word/phrase in a lesson for a
+  popover with translation, CEFR level, example, and pronunciation. See
+  `src/lib/dictionary.js` / `ClickableSpanish.jsx`, and the homograph-safety
+  gotcha below before extending this elsewhere.
+- **Multi-source cross-referencing for accuracy** — fully operationalized,
+  not just planned. See "Content accuracy audits" below for the process and
+  real results (verbs 125/125 verified, grammar 79/79 verified, false
+  friends/pronunciation/regional all verified — see "What still needs to be
+  built" for what's left).
 
-**Not yet built** (real gaps against the original spec — worth prioritizing
-if picking this back up):
+**Not yet built** (real gaps against the original spec):
 - **Conversation role-play scenarios** — no exercise `type` for open-ended
   dialogue exists (current types: `multiple_choice`, `fill_blank`,
   `translation_to_spanish`, `translation_to_english`, `error_correction`).
@@ -162,17 +178,10 @@ if picking this back up):
   *any* failure (including rate limits) and falls straight to static
   fallback; there's no retry-with-backoff before giving up.
 
-**Now underway** (as of the structured-curriculum effort):
-- **Audio/TTS** — being built via the Web Speech API (browser-native, $0,
-  no external API dependency) rather than Google Cloud TTS from the original
-  spec — same end result (pronunciation playback), simpler and free at any
-  scale since there's no per-character billing to worry about.
-- **Multi-source cross-referencing for accuracy** — now operationalized:
-  content-writing agents are required to WebSearch-verify claims against
-  multiple authoritative sources (RAE, SpanishDict, WordReference, established
-  grammar references) rather than writing from training knowledge alone. See
-  "Content accuracy audits" below for the process this turned into in
-  practice.
+See "What still needs to be built" near the end of this file for the full,
+current, prioritized punch list — the two sections above describe the
+original spec's gaps specifically; the punch list covers everything
+outstanding, spec or not.
 
 ---
 
@@ -246,19 +255,93 @@ systematic externally-verified audit was run batch-by-batch:
   SpanishDict for verbs, studyspanish.com/spanishdict.com/guide/RAE for
   grammar rules, RAE/dialectology sources for regional claims) before fixing
   anything — never edits based on the agent's own assumption of what's wrong.
-- **Real errors found this way** (as a sense of the actual error rate):
-  missing accent in `preferir`'s imperfect nosotros form, an unsupported/
-  fabricated claim about dropping "a" in "ir a + infinitive," a mislabeled
-  false-friend entry (preservar vs. preservativo — the trap word was wrong),
-  a syllabification rule error in pronunciation.js, and a regional slang
-  attribution error (bacán mislabeled as Argentine when it's more Peru/
-  Chile/Cuba). All fixed and verified against sources before committing.
+- **Real errors found this way** (as a sense of the actual error rate — low,
+  but nonzero, which is exactly why the audit was worth doing): missing
+  accent in `preferir`'s imperfect nosotros form, an unsupported/fabricated
+  claim about dropping "a" in "ir a + infinitive," a mislabeled false-friend
+  entry (preservar vs. preservativo — the trap word was wrong), a
+  syllabification rule error in pronunciation.js, a backwards rule in
+  `subjunctive_adjective_clauses` (claimed indicative is typical after
+  superlatives like "el mejor libro que…" — actually subjunctive is typical
+  there), and in `regional.js`: a mislabeled slang term (bacán tagged
+  Argentine, actually more Peru/Chile/Cuba — "copado" is the real Argentine
+  term), a wrong jalar/jamar regional attribution, a vos-imperative typo, an
+  imprecise guagua/"baby" regional range, an overstated present-perfect-vs-
+  preterite Spain/Latin-America binary (RAE: this verb form shows the
+  *greatest* regional variation in Spanish, not a clean two-way split), a
+  gender-agreement error on "pochoclo" (popcorn, Argentina), and two
+  overstated "Latin America never uses leísmo" claims (highland Ecuadorian
+  Spanish has its own well-documented generalized leísmo).
+- **Audit status as of this writing**: verbs 125/125 done, grammar concepts
+  79/79 done, false friends/pronunciation/regional all done. **Not yet
+  audited**: `vocabulary.js` (~1056 items), `idioms.js` (167 items),
+  `FALLBACK_EXERCISES` in `_gemini.js` (475 items) — these are next per the
+  batching rule above (each is one file, so each needs its own sequential
+  chain of batches; the three files can run in parallel with each other).
 - **Background-agent session limits**: long batches can hit account-level API
   session limits and terminate mid-edit. Always check `git diff` on the
   target file after an agent completes/fails before trusting its self-report
   — a failed agent may have partially edited a file before being cut off.
   Commit verified-good partial work rather than discarding it; leave a
-  follow-up task for what's still incomplete.
+  follow-up task for what's still incomplete. **A session-limit interruption
+  can also land mid-write with a corrupted-but-plausible-looking file** — two
+  curriculum unit files were cut off right after the write with small
+  string-escaping bugs (a stray extra backslash, an unescaped apostrophe
+  inside a single-quoted string) that made them look complete but fail
+  `node --check`. Always run `node --check` on a freshly-written file before
+  trusting it, not just before committing — the file can *look* finished
+  (proper closing braces, trailing comment block) while still being broken
+  Just past that point.
+
+## Structured curriculum: architecture and status
+
+The "Get Started" guided path lives alongside the existing adaptive Gemini
+session and reference pages — it doesn't replace either.
+
+**Architecture**:
+- `src/content/curriculum/index.js` — `UNIT_METADATA` is the full 24-unit
+  outline (id, order, level, title, concepts, summary) for every planned
+  unit, written or not. `CONTENT` maps unit id → the imported content module
+  for units that have been written. `getUnit(id)` merges the two;
+  `UNITS` (metadata + `comingSoon` flag) drives the Get Started page's
+  "coming soon" cards for unwritten units.
+- `src/content/curriculum/unitNN-slug.js` — one file per written unit,
+  matching the existing per-domain content file pattern (`verbs.js`,
+  `idioms.js`, etc.). This means future units can be written by parallel
+  agents with zero file-conflict risk — each is a standalone file only
+  registered in `index.js` afterward (by a human/orchestrating session, not
+  the writing agent itself, to avoid two agents racing on `index.js`).
+- Content shape (see any `unitNN-*.js` file for a live example):
+  `{ sections: [{ heading, paragraphs, examples, commonMistakes }], vocab: [{
+  es, en, example, exampleEn }], practice: [...exercise objects, same shape
+  as FALLBACK_EXERCISES] }`.
+- `schema-v6.sql` / `functions/api/curriculum/progress.js` — `module_progress`
+  table (`user_id`, `module_id`, `completed_at`), tracks per-unit completion.
+  Fully open, no gating — matches the landing page's "no streaks, no points"
+  positioning.
+- Lesson vocab is seeded into the *existing* FSRS-scheduled `vocabulary_items`
+  queue via `api.vocabulary.add` (best-effort, ignores 409 "already exists"),
+  not a separate silo — so spaced-repetition benefits apply automatically.
+- Practice exercises inside a lesson are graded **locally in the browser**
+  (`src/pages/Lesson.jsx`, same normalize-and-compare logic as the Gemini
+  fallback path), not via a backend round-trip — instant feedback, no
+  dependency on Gemini/D1 being reachable for the practice loop itself (only
+  the final mark-complete call hits the API, and that's best-effort/non-
+  blocking).
+- New registrations land on `/get-started` instead of `/dashboard`
+  (`Auth.jsx`); existing logins go to `/dashboard` as before.
+
+**Status — 7 of 24 outlined units written** (all of A1, the full beginner
+tier): Unit 1 Saying Hello, Unit 2 Numbers & Time, Unit 3 People & Things,
+Unit 4 Who You Are, Unit 5 Where You Are, Unit 6 Everyday Actions, Unit 7
+Asking Questions. **Units 8-24 (A2 through B2) are outlined in
+`UNIT_METADATA` but not written** — see "What still needs to be built" for
+the full remaining list and the exact process to follow (mirrors how 2-7
+were built: one dedicated content-writing agent per unit, each reading
+`unit01-saying-hello.js` as the quality/shape reference, `ES.md`'s
+Pedagogical Principles section, and the relevant `concepts.js` +
+`grammar.js` entries before writing, with mandatory WebSearch verification
+of every Spanish claim).
 
 ---
 
@@ -345,6 +428,35 @@ systematic externally-verified audit was run batch-by-batch:
   text-annotation feature over mixed-language content should check its
   term list against common English words before enabling single-word
   matching in prose.
+- **A missing `JWT_SECRET` doesn't fail loudly** — `signJWT(payload,
+  undefined)` makes WebCrypto try to import a zero-length HMAC key, which
+  throws `DataError: Zero-length key is not supported`. Unhandled, that's
+  the same "Cloudflare serves its own HTML error page" failure mode as the
+  PBKDF2 CPU-budget issue above, surfacing to the frontend as the same
+  unhelpful `Unexpected token '<'`. `register.js`/`login.js` now check
+  `env.JWT_SECRET` up front and return a named JSON error; `_middleware.js`
+  now wraps the whole request in try/catch so *any* future unhandled
+  exception returns JSON instead of HTML. If you add a new endpoint that
+  reads a secret from `env`, don't assume it's set — Cloudflare secrets are
+  configured per-environment in the dashboard and it's easy to add code that
+  depends on one without actually setting it there.
+- **A schema migration can silently break its own sequence** —
+  `schema-v3.sql` tried to `ALTER TABLE ADD COLUMN session_count`, a column
+  `schema.sql` already defined. SQLite's `ALTER TABLE ADD COLUMN` isn't
+  idempotent (no `IF NOT EXISTS` support), so running the migration chain in
+  order always threw `duplicate column name` at v3 — which means anyone who
+  stopped after hitting that error (reasonable instinct) never got v4/v5
+  applied either, silently missing columns those add. `schema-v3.sql` is now
+  a documented no-op. **Lesson**: when writing a new incremental
+  `schema-vN.sql`, always check the column doesn't already exist somewhere
+  earlier in the chain — there's no automatic idempotency to lean on here.
+- **A D1 error mentioning "storage caused object to be reset" or similar
+  internal-sounding language is a Cloudflare platform hiccup, not an app
+  bug** — D1 runs on Durable Objects, which occasionally cold-start/reset.
+  These are transient and typically clear on retry; the `reference = ...` ID
+  in the error is Cloudflare's own support-ticket format. Don't chase this
+  as a code issue unless it's frequent/persistent, in which case check
+  https://www.cloudflarestatus.com/ or investigate actual load patterns.
 
 ## Branding
 
@@ -366,3 +478,81 @@ scripted cross-file consistency checks (grep-based) whenever a change spans
 multiple files that must agree (e.g. every grammar concept_id existing in
 `concepts.js`, the AI prompt's concept list, `FALLBACK_EXERCISES`, and
 `GRAMMAR_CARDS` simultaneously).
+
+## What still needs to be built
+
+Prioritized punch list as of this writing. If you're picking this project up
+in a new session, this is the place to start. Nothing below is blocked on a
+design decision — each item's approach is already established by precedent
+elsewhere in the codebase; follow the referenced pattern.
+
+1. **Curriculum units 8–24 (18 of 24 units still unwritten).** Units 1–7
+   (all of A1) are done and live at `src/content/curriculum/unit0N-slug.js`.
+   Units 8–24 (A2/B1/B2) are fully outlined in `UNIT_METADATA` in
+   `src/content/curriculum/index.js` (id, level, title, concepts, summary
+   already decided — do not re-litigate the outline) but have no content
+   file yet, so `GetStarted.jsx` renders them as "Coming soon." To write
+   one: create `src/content/curriculum/unitNN-slug.js` matching the shape
+   used by `unit01-saying-hello.js` (`{ sections: [{ heading, paragraphs,
+   examples?, commonMistakes? }], vocab: [{ es, en, example?, exampleEn? }],
+   practice: [...] }`), WebSearch-verify grammar claims against authoritative
+   sources the way units 1–7 were (don't just generate plausible-sounding
+   content), run `node --check` on the file immediately after writing (session
+   rate-limit interruptions have corrupted files mid-write before — see
+   "Background-agent session limits" below), then wire it into `index.js`
+   (add the import and the `CONTENT` map entry — the metadata entry already
+   exists). Batch by CEFR level (finish all of A2 = units 8–15 before moving
+   to B1) using one agent per unit, run in parallel since each unit is a
+   distinct file. Update this list as units land.
+2. **Content accuracy audits — 3 of 6 content files still unaudited (tasks
+   #10–12).** `vocabulary.js` (~1056 items), `idioms.js` (167 items), and
+   `FALLBACK_EXERCISES` in `functions/api/sessions/_gemini.js` (475 items)
+   have never been cross-referenced against authoritative sources, unlike
+   `verbs.js` (125/125 audited), `grammar.js` (79/79 audited), and
+   `false-friends.js`/`pronunciation.js`/`regional.js` (all audited, 7 real
+   errors found and fixed in `regional.js` alone — see "Content accuracy
+   audits" above for the full list). These three are independent files, so
+   they can be audited in parallel by three separate agents. Follow the same
+   method used for verbs/grammar/regional: WebSearch each claim against a
+   real source (RAE, SpanishDict, a grammar reference), fix in place, and
+   report a tally of confirmed-correct vs. fixed items — don't just eyeball it.
+3. **Extend `ClickableSpanish` beyond `Lesson.jsx`.** Currently only lesson
+   pages have clickable Spanish words with the translation popover. The
+   other reference pages that display Spanish text — `Grammar.jsx`,
+   `Verbs.jsx`, `Idioms.jsx`, `FalseFriends.jsx`, `Pronunciation.jsx`,
+   `Regional.jsx`, `VocabBrowser.jsx` — do not use it yet. Wrapping their
+   Spanish text runs in `<ClickableSpanish text={...} minWords={N} />` is
+   the whole job; use `minWords={2}` for mixed English/Spanish prose (to
+   avoid the homograph false-positive problem — see the "Homograph
+   collision risk" gotcha below) and the default `minWords={1}` for
+   pure-Spanish text (example sentences, isolated words/phrases).
+4. **Confirm GitHub branch protection is actually enabled.** The user was
+   shown how to turn this on via the GitHub UI earlier in this project but
+   it was never confirmed as done. Worth a quick check on
+   `smolhaj/es` settings before this becomes a real gap (currently anyone
+   with push access, including agent sessions, can push straight to `main`).
+5. **Remaining gaps against the original learner-facing spec** (see
+   "Original learner-facing spec" above for the full spec this was scoped
+   against): conversation/role-play exercise type (currently only
+   translation/fill-blank/multiple-choice exist), real media integration
+   (authentic news clips/songs/TV snippets — deliberately deferred as a
+   licensing/hosting cost risk, revisit only if a $0 source is found),
+   Cloudflare R2 (bound in `wrangler.toml` but unused — no feature currently
+   needs object storage), a secondary/fallback LLM provider (e.g. Groq) for
+   when Gemini is unavailable or rate-limited, and explicit exponential
+   backoff/retry handling around the Gemini call in `_gemini.js` (today a
+   failure just falls through to `gradeLocally()` and `FALLBACK_EXERCISES`,
+   which is graceful but doesn't retry the actual LLM call first).
+6. **Minor: `regional.js` has near-duplicate `le_lo` and `leismo`
+   sections.** Flagged by an audit agent as covering overlapping ground
+   (not a factual error, just redundant structure). Worth consolidating
+   into one section next time that file is touched, but not urgent.
+7. **Not yet started this session: the full "brand-new-user" QA pass.**
+   The user asked for a systematic walkthrough of the entire live app
+   (registration → Get Started redirect → a full lesson → Dashboard →
+   adaptive Session → every reference page) to catch real bugs, the way the
+   JWT/grading bugs earlier in this session were caught. If you're resuming
+   this project and that hasn't happened yet, do it next — see "Testing/
+   verification approach used" above for the local dev setup
+   (`wrangler pages dev dist --port 8788 --local` + locally-migrated D1 +
+   Playwright with localStorage token injection to skip manual login).
