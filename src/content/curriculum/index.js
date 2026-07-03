@@ -6,9 +6,13 @@
 // principles" section for the rules unit content must follow.
 
 import sayingHello from './unit01-saying-hello.js';
+import numbersTime from './unit02-numbers-time.js';
+import whereYouAre from './unit05-where-you-are.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
+  'numbers-time': numbersTime,
+  'where-you-are': whereYouAre,
 };
 
 export const UNIT_METADATA = [
