@@ -1,4 +1,4 @@
-import { scheduleReview } from '../../../_lib/fsrs.js';
+import { scheduleReview } from '../../_lib/fsrs.js';
 
 export async function onRequestPost({ request, env, data }) {
   let body;
