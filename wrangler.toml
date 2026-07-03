@@ -4,9 +4,9 @@ pages_build_output_dir = "dist"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "es_db"
-database_id = "placeholder-replace-after-wrangler-d1-create"
+database_name = "es"
+database_id = "a6b128d4-5bb1-4b1a-944a-eb82fdf940f0"
 
 [[kv_namespaces]]
 binding = "KV"
-id = "placeholder-replace-after-wrangler-kv-create"
+id = "7c655092954044469ccfc878560a9bd6"
