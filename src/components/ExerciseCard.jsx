@@ -111,19 +111,21 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
 
 function typeLabel(type) {
   switch (type) {
-    case 'multiple_choice':      return 'Multiple choice';
-    case 'fill_blank':           return 'Fill in the blank';
+    case 'multiple_choice':        return 'Multiple choice';
+    case 'fill_blank':             return 'Fill in the blank';
     case 'translation_to_spanish': return 'Translate to Spanish';
     case 'translation_to_english': return 'Translate to English';
+    case 'error_correction':       return 'Error correction';
     default: return 'Exercise';
   }
 }
 
 function inputPlaceholder(type) {
   switch (type) {
-    case 'fill_blank':           return 'Type the missing word…';
+    case 'fill_blank':             return 'Type the missing word…';
     case 'translation_to_spanish': return 'Type in Spanish…';
     case 'translation_to_english': return 'Type in English…';
+    case 'error_correction':       return 'Type the corrected sentence…';
     default: return 'Your answer…';
   }
 }

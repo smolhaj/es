@@ -27,7 +27,7 @@ export default function VerbsRef() {
           <header>
             <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
             <h1 className={styles.title}>Verb conjugations</h1>
-            <p className={styles.subtitle}>{VERBS.length} key verbs (regular, stem-changing, irregular) · A1 through B2</p>
+            <p className={styles.subtitle}>{VERBS.length} key verbs (regular, stem-changing, irregular) · A1 through C1</p>
           </header>
 
           <div className={styles.filters}>

@@ -11,7 +11,7 @@ export const CONCEPTS = {
   numbers_1_20: {
     id: 'numbers_1_20', label: 'Numbers 1–20', cefr: 'A1',
     category: 'vocabulary', prereqs: [],
-    explanationStyles: ['example_first', 'rule_first'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
   },
   subject_pronouns: {
     id: 'subject_pronouns', label: 'Subject pronouns', cefr: 'A1',
@@ -31,7 +31,7 @@ export const CONCEPTS = {
   indefinite_articles: {
     id: 'indefinite_articles', label: 'Indefinite articles (un/una)', cefr: 'A1',
     category: 'morphology', prereqs: ['noun_gender'],
-    explanationStyles: ['rule_first', 'example_first'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   ser_basics: {
     id: 'ser_basics', label: 'Ser (identity, origin, profession)', cefr: 'A1',
@@ -61,7 +61,7 @@ export const CONCEPTS = {
   question_words: {
     id: 'question_words', label: 'Question words (qué, cómo, dónde…)', cefr: 'A1',
     category: 'syntax', prereqs: ['ser_basics'],
-    explanationStyles: ['example_first', 'rule_first'],
+    explanationStyles: ['example_first', 'rule_first', 'table'],
   },
   hay: {
     id: 'hay', label: 'Hay (there is/are)', cefr: 'A1',
@@ -71,7 +71,7 @@ export const CONCEPTS = {
   numbers_21_100: {
     id: 'numbers_21_100', label: 'Numbers 21–100', cefr: 'A1',
     category: 'vocabulary', prereqs: ['numbers_1_20'],
-    explanationStyles: ['pattern', 'example_first'],
+    explanationStyles: ['pattern', 'example_first', 'story'],
   },
 
   // ── A2 ──────────────────────────────────────────────────────────────────
@@ -128,7 +128,7 @@ export const CONCEPTS = {
   time_expressions: {
     id: 'time_expressions', label: 'Time expressions (ayer, hace…)', cefr: 'A2',
     category: 'vocabulary', prereqs: ['preterite_regular'],
-    explanationStyles: ['example_first', 'rule_first'],
+    explanationStyles: ['example_first', 'rule_first', 'contrastive'],
   },
   present_progressive: {
     id: 'present_progressive', label: 'Present progressive (estar + gerund)', cefr: 'A2',
@@ -217,6 +217,26 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['question_words', 'present_subjunctive'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  object_pronoun_order: {
+    id: 'object_pronoun_order', label: 'Double object pronouns (me lo, se lo)', cefr: 'B1',
+    category: 'pronouns', prereqs: ['direct_object_pronouns', 'indirect_object_pronouns'],
+    explanationStyles: ['rule_first', 'table', 'contrastive'],
+  },
+  se_impersonal: {
+    id: 'se_impersonal', label: 'Impersonal se (Se habla, Se vive)', cefr: 'B1',
+    category: 'pronouns', prereqs: ['reflexive_verbs', 'obligation_infinitive'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  infinitive_vs_subjunctive: {
+    id: 'infinitive_vs_subjunctive', label: 'Infinitive vs. subjunctive (same/different subject)', cefr: 'B1',
+    category: 'verb', prereqs: ['present_subjunctive', 'modal_verbs'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  exclamativas: {
+    id: 'exclamativas', label: 'Exclamatory sentences (¡Qué!, ¡Cuánto!)', cefr: 'B1',
+    category: 'syntax', prereqs: ['adjective_agreement', 'question_words'],
+    explanationStyles: ['example_first', 'rule_first', 'pattern'],
+  },
 
   // ── B2 ──────────────────────────────────────────────────────────────────
   present_perfect: {
@@ -232,7 +252,7 @@ export const CONCEPTS = {
   future_perfect: {
     id: 'future_perfect', label: 'Future perfect (habrá + participio)', cefr: 'B2',
     category: 'verb', prereqs: ['future_simple', 'present_perfect'],
-    explanationStyles: ['rule_first', 'example_first'],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
   },
   conditional_perfect: {
     id: 'conditional_perfect', label: 'Conditional perfect (habría + participio)', cefr: 'B2',
@@ -284,6 +304,11 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['relative_clauses'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  adjectives_ser_estar: {
+    id: 'adjectives_ser_estar', label: 'Adjectives with different ser/estar meanings', cefr: 'B2',
+    category: 'verb', prereqs: ['ser_vs_estar', 'adjective_agreement'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first', 'table'],
+  },
 
   // ── C1 ──────────────────────────────────────────────────────────────────
   subjunctive_noun_clauses: {
@@ -314,7 +339,7 @@ export const CONCEPTS = {
   nominalisation: {
     id: 'nominalisation', label: 'Nominalisation (el hecho de que…)', cefr: 'C1',
     category: 'syntax', prereqs: ['subjunctive_noun_clauses'],
-    explanationStyles: ['rule_first', 'example_first'],
+    explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },
   subjunctive_temporal: {
     id: 'subjunctive_temporal', label: 'Subjunctive in temporal clauses', cefr: 'C1',
