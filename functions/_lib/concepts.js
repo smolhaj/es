@@ -237,6 +237,16 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['adjective_agreement', 'question_words'],
     explanationStyles: ['example_first', 'rule_first', 'pattern'],
   },
+  saber_vs_conocer: {
+    id: 'saber_vs_conocer', label: 'Saber vs. conocer', cefr: 'B1',
+    category: 'verb', prereqs: ['irregular_present'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
+  lo_neutro: {
+    id: 'lo_neutro', label: 'Neuter lo (lo + adjective, lo que)', cefr: 'B1',
+    category: 'syntax', prereqs: ['adjective_agreement', 'relative_clauses'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
 
   // ── B2 ──────────────────────────────────────────────────────────────────
   present_perfect: {
@@ -309,6 +319,21 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['ser_vs_estar', 'adjective_agreement'],
     explanationStyles: ['contrastive', 'rule_first', 'example_first', 'table'],
   },
+  perfect_subjunctive: {
+    id: 'perfect_subjunctive', label: 'Present perfect subjunctive (haya + participio)', cefr: 'B2',
+    category: 'verb', prereqs: ['present_subjunctive', 'present_perfect'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  verbos_cambio: {
+    id: 'verbos_cambio', label: 'Verbs of change (ponerse, volverse, hacerse, llegar a ser)', cefr: 'B2',
+    category: 'verb', prereqs: ['ser_vs_estar', 'reflexive_verbs'],
+    explanationStyles: ['contrastive', 'example_first', 'rule_first'],
+  },
+  adjective_position: {
+    id: 'adjective_position', label: 'Adjective position (before/after the noun)', cefr: 'B2',
+    category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
 
   // ── C1 ──────────────────────────────────────────────────────────────────
   subjunctive_noun_clauses: {
@@ -365,6 +390,21 @@ export const CONCEPTS = {
     id: 'perifraseis_avanzadas', label: 'Advanced verb periphrases (soler, ponerse a…)', cefr: 'C1',
     category: 'verb', prereqs: ['acabar_de', 'llevar_gerund', 'present_subjunctive'],
     explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
+  pluperfect_subjunctive: {
+    id: 'pluperfect_subjunctive', label: 'Pluperfect subjunctive (hubiera/hubiese + participio)', cefr: 'C1',
+    category: 'verb', prereqs: ['imperfect_subjunctive', 'pluperfect'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first', 'story'],
+  },
+  aunque_concessive: {
+    id: 'aunque_concessive', label: 'Concessive clauses with aunque (indicative vs. subjunctive)', cefr: 'C1',
+    category: 'syntax', prereqs: ['present_subjunctive', 'subjunctive_adverbial'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
+  verbos_preposicionales: {
+    id: 'verbos_preposicionales', label: 'Verbs with fixed prepositions (pensar en, soñar con…)', cefr: 'C1',
+    category: 'prepositions', prereqs: ['prepositions_basic', 'por_vs_para'],
+    explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },
 };
 
