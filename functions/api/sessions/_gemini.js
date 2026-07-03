@@ -805,6 +805,18 @@ function fallback() {
   return FALLBACK_EXERCISES[Math.floor(Math.random() * FALLBACK_EXERCISES.length)];
 }
 
+function normalizeAnswer(s) {
+  return String(s).trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.!?¡¿]+$/g, '');
+}
+
+// When Gemini is unavailable we can't have it grade the previous answer, but
+// we still know the correct answer for the exercise the learner just
+// submitted — grade it locally instead of unconditionally marking it wrong.
+function gradeLocally(exercise, learnerAnswer) {
+  if (!exercise || learnerAnswer == null) return false;
+  return normalizeAnswer(learnerAnswer) === normalizeAnswer(exercise.answer);
+}
+
 export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false, briefing = null) {
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
 
@@ -846,7 +858,7 @@ Evaluate and give the next exercise.`;
     return parseGeminiResponse(raw, isFirstTurn);
   } catch (err) {
     console.error('Gemini call failed, using fallback exercise:', err);
-    return { correct: false, feedback: '', exercise: fallback(), greeting: null, conceptNote: null };
+    return { correct: gradeLocally(exercise, learnerAnswer), feedback: '', exercise: fallback(), greeting: null, conceptNote: null };
   }
 }
 
