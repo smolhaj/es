@@ -124,6 +124,9 @@
 .mobileLinkBtn:hover { color: var(--incorrect); }
 
 @media (max-width: 600px) {
-  .navLink { display: none; }
+  /* `.right .navLink` (not just `.navLink`) to out-specificity the global
+     `.btn { display: inline-flex }` rule, which otherwise wins on source
+     order since NavBar.module.css bundles before index.css. */
+  .right .navLink { display: none; }
   .hamburger { display: flex; }
 }
