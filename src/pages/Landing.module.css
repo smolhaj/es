@@ -54,7 +54,7 @@
   flex-shrink: 0;
 }
 
-.fox {
+.capybara {
   width: 200px;
   height: 200px;
   filter: drop-shadow(0 8px 24px color-mix(in srgb, var(--accent) 20%, transparent));
@@ -134,7 +134,7 @@
     padding: var(--sp-10) var(--sp-5) var(--sp-8);
   }
   .mascotWrap { order: -1; }
-  .fox { width: 120px; height: 120px; }
+  .capybara { width: 120px; height: 120px; }
   .featuresGrid { grid-template-columns: 1fr; gap: var(--sp-6); }
 }
 

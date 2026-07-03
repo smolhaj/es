@@ -33,8 +33,8 @@ export default function NavBar({ cefrLevel }) {
     <header className={styles.header}>
       <nav className={styles.nav} aria-label="Main navigation" ref={menuRef}>
         <Link to={isLoggedIn ? '/dashboard' : '/'} className={styles.logo}>
-          <span className={styles.logoMark}>P</span>
-          <span className={styles.logoText}>Pablo</span>
+          <span className={styles.logoMark}>C</span>
+          <span className={styles.logoText}>Capi</span>
         </Link>
 
         {/* Desktop nav */}
