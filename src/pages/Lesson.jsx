@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import SpeakButton from '../components/SpeakButton.jsx';
+import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import { getUnit } from '../content/curriculum/index.js';
@@ -116,7 +117,7 @@ export default function Lesson() {
                 <section key={i} className={styles.section}>
                   <h2 className={styles.sectionHeading}>{section.heading}</h2>
                   {section.paragraphs.map((p, j) => (
-                    <p key={j} className={styles.paragraph}>{p}</p>
+                    <p key={j} className={styles.paragraph}><ClickableSpanish text={p} minWords={2} /></p>
                   ))}
                   {section.examples?.length > 0 && (
                     <ul className={styles.examples}>
@@ -124,7 +125,7 @@ export default function Lesson() {
                         <li key={k} className={styles.example}>
                           <SpeakButton text={ex.es} />
                           <div>
-                            <span className={styles.exampleEs}>{ex.es}</span>
+                            <span className={styles.exampleEs}><ClickableSpanish text={ex.es} /></span>
                             <span className={styles.exampleEn}>{ex.en}</span>
                           </div>
                         </li>
@@ -152,7 +153,7 @@ export default function Lesson() {
                           <span className={styles.vocabEn}>{v.en}</span>
                         </div>
                         {v.example && (
-                          <p className={styles.vocabExample}>{v.example} <em>— {v.exampleEn}</em></p>
+                          <p className={styles.vocabExample}><ClickableSpanish text={v.example} /> <em>— {v.exampleEn}</em></p>
                         )}
                       </li>
                     ))}
