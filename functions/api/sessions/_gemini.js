@@ -40,13 +40,15 @@ A2: ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns, indirect
     present_progressive, irregular_present, negation, prepositions_basic, near_future, adverbs_formation
 B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imperfect, future_simple,
     conditional, present_subjunctive, imperative, por_vs_para, relative_clauses,
-    object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, exclamativas
+    object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, exclamativas, saber_vs_conocer, lo_neutro
 B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,
     imperfect_subjunctive, si_clauses, subjunctive_adverbial, comparatives, ser_estar_participle,
-    diminutives_augmentatives, relative_pronouns_advanced, adjectives_ser_estar
+    diminutives_augmentatives, relative_pronouns_advanced, adjectives_ser_estar, perfect_subjunctive,
+    verbos_cambio, adjective_position
 C1: subjunctive_noun_clauses, subjunctive_adjective_clauses, gerund_advanced, ser_passive,
     estilo_indirecto, nominalisation, subjunctive_temporal, cuantificadores,
-    futuro_probabilidad, condicional_probabilidad, perifraseis_avanzadas
+    futuro_probabilidad, condicional_probabilidad, perifraseis_avanzadas, pluperfect_subjunctive,
+    aunque_concessive, verbos_preposicionales
 
 difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced contrast)
 
@@ -54,9 +56,9 @@ CONTENT SCOPE:
 Default to A1 material unless the professor briefing explicitly shows higher CEFR level.
 A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/-ir, noun gender, articles
 A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives), adverbs of manner (-mente formation)
-B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund, double object pronouns (me lo/se lo), impersonal se, infinitive vs subjunctive (same/different subject), exclamatory sentences (¡Qué!, ¡Cuánto!)
-B2: present perfect, pluperfect, future perfect, conditional perfect, passive constructions (ser + participio, pasiva se), imperfect subjunctive, si-clauses, subjunctive in adverbial clauses, comparatives, diminutives/augmentatives, advanced relative pronouns — only if CEFR level is B2+
-C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers, future/conditional for probability inference, advanced verb periphrases (soler, ponerse a, volver a, dejar de, llevar sin) — only if CEFR level is C1
+B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund, double object pronouns (me lo/se lo), impersonal se, infinitive vs subjunctive (same/different subject), exclamatory sentences (¡Qué!, ¡Cuánto!), saber vs. conocer, neuter lo (lo + adjective, lo que)
+B2: present perfect, pluperfect, future perfect, conditional perfect, passive constructions (ser + participio, pasiva se), imperfect subjunctive, si-clauses, subjunctive in adverbial clauses, comparatives, diminutives/augmentatives, advanced relative pronouns, present perfect subjunctive (haya + participio), verbs of change (ponerse/volverse/hacerse/llegar a ser), adjective position (before/after noun) — only if CEFR level is B2+
+C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers, future/conditional for probability inference, advanced verb periphrases (soler, ponerse a, volver a, dejar de, llevar sin), pluperfect subjunctive (hubiera/hubiese + participio), concessive aunque (indicative vs. subjunctive), verbs with fixed prepositions (pensar en, soñar con, consistir en) — only if CEFR level is C1
 
 FEEDBACK RULES:
 - Wrong: name the exact rule violated. One sentence on how to fix it.
@@ -741,6 +743,62 @@ export const FALLBACK_EXERCISES = [
   { type: 'fill_blank', prompt: 'Complete: "___ (volver a) intentarlo después de fallar." (tried again)', word: 'volver a', english: 'to do again', answer: 'Volvió a', concept_id: 'perifraseis_avanzadas', difficulty: 3 },
   { type: 'translation_to_spanish', prompt: "Translate: 'I haven't seen him in three years.' (use llevar sin)", english: "I haven't seen him in three years.", answer: 'Llevo tres años sin verlo.', word: 'llevar sin', concept_id: 'perifraseis_avanzadas', difficulty: 3 },
   { type: 'multiple_choice', prompt: 'Which periphrasis expresses a habitual action in the past?', word: 'soler', english: 'used to (habitual)', answer: 'Solía correr por las mañanas.', options: ['Solía correr por las mañanas.', 'Se puso a correr por las mañanas.', 'Dejó de correr por las mañanas.', 'Volvió a correr por las mañanas.'], concept_id: 'perifraseis_avanzadas', difficulty: 3 },
+  // B1 — saber_vs_conocer
+  { type: 'fill_blank', prompt: 'Complete: "¿___ (tú) tocar el piano?" (skill)', word: 'saber', english: 'to know how to', answer: 'Sabes', concept_id: 'saber_vs_conocer', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete: "No ___ a tu primo todavía." (haven\'t met him)', word: 'conocer', english: 'to know/be acquainted with', answer: 'conozco', concept_id: 'saber_vs_conocer', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'Which verb completes: "___ dónde está la estación."', word: 'saber', english: 'to know (a fact)', answer: 'Sé', options: ['Sé', 'Conozco', 'Sepo', 'Conoce'], concept_id: 'saber_vs_conocer', difficulty: 1 },
+  { type: 'error_correction', prompt: 'Correct: "Yo conozco que la reunión es a las tres."', word: 'conozco → sé', english: 'facts use saber, not conocer', answer: 'Yo sé que la reunión es a las tres.', concept_id: 'saber_vs_conocer', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I met her at a party last year.'", english: 'I met her at a party last year.', answer: 'La conocí en una fiesta el año pasado.', word: 'conocer', concept_id: 'saber_vs_conocer', difficulty: 3 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Supe la verdad ayer"?', word: 'saber (preterite)', english: 'found out', answer: 'I found out the truth yesterday.', concept_id: 'saber_vs_conocer', difficulty: 2 },
+  // B1 — lo_neutro
+  { type: 'fill_blank', prompt: 'Complete: "___ importante es llegar a tiempo." (The important thing)', word: 'lo', english: 'the ... thing (neuter)', answer: 'Lo', concept_id: 'lo_neutro', difficulty: 1 },
+  { type: 'fill_blank', prompt: 'Complete: "No entiendo ___ quieres decir." (what)', word: 'lo que', english: 'what/that which', answer: 'lo que', concept_id: 'lo_neutro', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'Which completes: "Eso es exactamente ___ necesito."', word: 'lo que', english: 'what', answer: 'lo que', options: ['que', 'lo que', 'el que', 'cual'], concept_id: 'lo_neutro', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'The worst part was the traffic.'", english: 'The worst part was the traffic.', answer: 'Lo peor fue el tráfico.', word: 'lo + adjetivo', concept_id: 'lo_neutro', difficulty: 2 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "No sabes lo cansado que estoy"?', word: 'lo + adjetivo + que', english: 'intensifier', answer: 'You have no idea how tired I am.', concept_id: 'lo_neutro', difficulty: 3 },
+  { type: 'error_correction', prompt: 'Correct: "El que dijo me sorprendió." (refers to an idea, not a specific noun)', word: 'El que → Lo que', english: 'ideas need the neuter lo que', answer: 'Lo que dijo me sorprendió.', concept_id: 'lo_neutro', difficulty: 3 },
+  // B2 — perfect_subjunctive
+  { type: 'fill_blank', prompt: 'Complete: "Espero que ___ (dormir, tú) bien." (perfect subjunctive)', word: 'dormir', english: 'to sleep', answer: 'hayas dormido', concept_id: 'perfect_subjunctive', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: "No creo que ___ (llegar, él) todavía."', word: 'llegar', english: 'to arrive', answer: 'haya llegado', concept_id: 'perfect_subjunctive', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I'm glad you have finished the project.'", english: "I'm glad you have finished the project.", answer: 'Me alegro de que hayas terminado el proyecto.', word: 'terminar', concept_id: 'perfect_subjunctive', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which is correct for "It\'s a shame you couldn\'t come" (already happened)?', word: 'haber + participio', english: 'perfect subjunctive', answer: 'Es una pena que no hayas podido venir.', options: ['Es una pena que no puedas venir.', 'Es una pena que no hayas podido venir.', 'Es una pena que no podías venir.', 'Es una pena que no pudiste venir.'], concept_id: 'perfect_subjunctive', difficulty: 3 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Cuando hayas terminado, avísame"?', word: 'haber + participio', english: 'perfect subjunctive', answer: 'When you have finished, let me know.', concept_id: 'perfect_subjunctive', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct: "Ojalá que ella haiga visto la película." (nonstandard form)', word: 'haiga → haya', english: 'haiga is not standard Spanish', answer: 'Ojalá que ella haya visto la película.', concept_id: 'perfect_subjunctive', difficulty: 2 },
+  // B2 — verbos_cambio
+  { type: 'fill_blank', prompt: 'Complete: "Cuando oyó la noticia, ___ (ponerse) pálida." (sudden change)', word: 'ponerse', english: 'to become/turn (temporary)', answer: 'se puso', concept_id: 'verbos_cambio', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete: "Después de tantos golpes, ___ (volverse) desconfiado." (radical change)', word: 'volverse', english: 'to become (radical, involuntary)', answer: 'se volvió', concept_id: 'verbos_cambio', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which verb of "becoming" fits: "___ abogado tras seis años de carrera." (through effort)', word: 'hacerse', english: 'to become (through effort)', answer: 'Se hizo', options: ['Se puso', 'Se hizo', 'Se volvió', 'Fue'], concept_id: 'verbos_cambio', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'She became the manager after years of hard work.' (gradual process)", english: 'She became the manager after years of hard work.', answer: 'Llegó a ser la gerente después de años de trabajo duro.', word: 'llegar a ser', concept_id: 'verbos_cambio', difficulty: 3 },
+  { type: 'error_correction', prompt: 'Correct: "Se puso profesor el año pasado." (ponerse cannot take a noun)', word: 'Se puso → Se hizo', english: 'ponerse only takes adjectives, not nouns', answer: 'Se hizo profesor el año pasado.', concept_id: 'verbos_cambio', difficulty: 3 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "El agua se convirtió en hielo"?', word: 'convertirse en', english: 'to turn into/become', answer: 'The water turned into ice.', concept_id: 'verbos_cambio', difficulty: 2 },
+  // B2 — adjective_position
+  { type: 'fill_blank', prompt: 'Complete: "Es un ___ hombre." (great — apocopated form before the noun)', word: 'gran', english: 'great (before noun)', answer: 'gran', concept_id: 'adjective_position', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'Which means "a longtime friend" (known a long time, not necessarily elderly)?', word: 'viejo amigo', english: 'longtime friend', answer: 'un viejo amigo', options: ['un amigo viejo', 'un viejo amigo', 'un amigo de viejo', 'un viejo de amigo'], concept_id: 'adjective_position', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'He is a poor man.' (no money)", english: 'He is a poor man.', answer: 'Es un hombre pobre.', word: 'pobre', concept_id: 'adjective_position', difficulty: 2 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "¡Pobre hombre!"?', word: 'pobre (before noun)', english: 'pitiable', answer: 'Poor guy! / What a pity!', concept_id: 'adjective_position', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete: "Vivo en una casa muy ___." (big — objective size, after the noun)', word: 'grande', english: 'big', answer: 'grande', concept_id: 'adjective_position', difficulty: 1 },
+  { type: 'error_correction', prompt: 'Correct if the intended meaning is "a different idea," not "a brand-new one": "Tengo una idea nueva."', word: 'idea nueva → nueva idea', english: 'adjective before the noun = another/different', answer: 'Tengo una nueva idea.', concept_id: 'adjective_position', difficulty: 3 },
+  // C1 — pluperfect_subjunctive
+  { type: 'fill_blank', prompt: 'Complete: "Si ___ (estudiar, yo) más, habría aprobado." (pluperfect subjunctive)', word: 'estudiar', english: 'to study', answer: 'hubiera estudiado', concept_id: 'pluperfect_subjunctive', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'I wish you had come to the party.'", english: 'I wish you had come to the party.', answer: 'Ojalá hubieras venido a la fiesta.', word: 'venir', concept_id: 'pluperfect_subjunctive', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: "No creía que él ___ (terminar) tan rápido."', word: 'terminar', english: 'to finish', answer: 'hubiera terminado', concept_id: 'pluperfect_subjunctive', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which correctly completes an unreal past condition: "Si lo ___ sabido, no lo habría hecho."', word: 'haber', english: 'to have (auxiliary)', answer: 'hubiera', options: ['habría', 'hubiera', 'haya', 'había'], concept_id: 'pluperfect_subjunctive', difficulty: 3 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Me habría gustado que me lo hubieras dicho antes"?', word: 'pluperfect subjunctive', english: 'past unreal wish', answer: 'I would have liked you to have told me sooner.', concept_id: 'pluperfect_subjunctive', difficulty: 3 },
+  { type: 'error_correction', prompt: 'Correct: "Si hubiera sabido, no lo habia hecho." (wrong verb form in the result clause)', word: 'habia hecho → habría hecho', english: 'the result clause needs the conditional perfect', answer: 'Si hubiera sabido, no lo habría hecho.', concept_id: 'pluperfect_subjunctive', difficulty: 3 },
+  // C1 — aunque_concessive
+  { type: 'fill_blank', prompt: 'Complete: "Aunque ___ (llover), vamos a salir." (it is actually raining — known fact)', word: 'llover', english: 'to rain', answer: 'llueve', concept_id: 'aunque_concessive', difficulty: 3 },
+  { type: 'fill_blank', prompt: 'Complete: "Aunque ___ (llover) mañana, iremos de excursión." (uncertain, hypothetical)', word: 'llover', english: 'to rain (subjunctive)', answer: 'llueva', concept_id: 'aunque_concessive', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which sentence expresses "even if he were rich" as a contrary-to-fact hypothetical?', word: 'aunque + imperfect subjunctive', english: 'contrary-to-fact concession', answer: 'Aunque fuera rico, no se lo compraría.', options: ['Aunque es rico, no se lo compra.', 'Aunque fuera rico, no se lo compraría.', 'Aunque será rico, no se lo comprará.', 'Aunque sea rico, no se lo compra.'], concept_id: 'aunque_concessive', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'Although it is expensive, I'm going to buy it.' (known fact)", english: "Although it is expensive, I'm going to buy it.", answer: 'Aunque es caro, lo voy a comprar.', word: 'aunque', concept_id: 'aunque_concessive', difficulty: 2 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Aunque no lo creas, es verdad"?', word: 'aunque + subjunctive', english: "even if you don't believe it", answer: "Even if you don't believe it, it's true.", concept_id: 'aunque_concessive', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct: "Aunque llueva ahora mismo, como puedes ver." (a visible fact needs indicative)', word: 'llueva → llueve', english: 'a visible/known fact requires indicative', answer: 'Aunque llueve ahora mismo, como puedes ver.', concept_id: 'aunque_concessive', difficulty: 3 },
+  // C1 — verbos_preposicionales
+  { type: 'fill_blank', prompt: 'Complete: "Pienso ___ ti todos los días." (about)', word: 'en', english: 'in/about (pensar en)', answer: 'en', concept_id: 'verbos_preposicionales', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete: "Sueño ___ viajar por el mundo." (of/about)', word: 'con', english: 'with (soñar con)', answer: 'con', concept_id: 'verbos_preposicionales', difficulty: 2 },
+  { type: 'multiple_choice', prompt: 'Which preposition completes "El éxito consiste ___ la constancia"?', word: 'consistir en', english: 'to consist of', answer: 'en', options: ['de', 'en', 'con', 'por'], concept_id: 'verbos_preposicionales', difficulty: 2 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'It depends on the situation.'", english: 'It depends on the situation.', answer: 'Depende de la situación.', word: 'depender de', concept_id: 'verbos_preposicionales', difficulty: 2 },
+  { type: 'translation_to_english', prompt: '¿Qué significa "Me alegro de verte"?', word: 'alegrarse de', english: 'to be glad about', answer: "I'm glad to see you.", concept_id: 'verbos_preposicionales', difficulty: 1 },
+  { type: 'error_correction', prompt: 'Correct: "¿Qué piensas en esta idea?" (asking for an opinion)', word: 'piensas en → piensas de', english: 'pensar de = to have an opinion of', answer: '¿Qué piensas de esta idea?', concept_id: 'verbos_preposicionales', difficulty: 3 },
 ];
 
 function fallback() {
