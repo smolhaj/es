@@ -1,0 +1,236 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+}
+
+.inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.backLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.backLink:hover { color: var(--text); }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.levelTag {
+  align-self: flex-start;
+  display: inline-flex;
+  padding: 2px 10px;
+  border-radius: var(--r-lg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+.summary {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.comingSoonText {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+/* Reading sections */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+
+.sectionHeading {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  color: var(--text);
+}
+
+.paragraph {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.examples {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.example {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--bg-alt);
+  border-radius: var(--r-sm);
+}
+
+.exampleEs {
+  display: block;
+  font-size: 0.9375rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.exampleEn {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.mistake {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--sp-3) var(--sp-4);
+  background: color-mix(in srgb, var(--accent-gold) 10%, transparent);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: var(--r-sm);
+}
+
+.mistakeLabel {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--accent-gold);
+}
+
+.mistakeText {
+  font-size: 0.875rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+/* Vocab */
+.vocabList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--sp-3);
+}
+
+.vocabItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+}
+
+.vocabWords {
+  display: flex;
+  flex-direction: column;
+}
+
+.vocabEs {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.vocabEn {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.vocabExample {
+  grid-column: 1 / -1;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: var(--sp-1);
+}
+
+.startBtn {
+  align-self: flex-start;
+  margin-top: var(--sp-2);
+}
+
+/* Practice area (mirrors Session.module.css) */
+.practiceArea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.progressWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.progressBar {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.progressText {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Complete state */
+.complete {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-8) 0;
+}
+
+.completeActions {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .main { padding: var(--sp-5); }
+  .vocabList { grid-template-columns: 1fr; }
+}

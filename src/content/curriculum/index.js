@@ -1,0 +1,103 @@
+// Structured "Get Started" curriculum — thematic units mapped onto the 79
+// tracked grammar concepts (see functions/_lib/concepts.js), CEFR-ordered.
+// Each unit with written content lives in its own file (unitNN-slug.js) and
+// is registered in CONTENT below; units without a file yet render as
+// "coming soon" using only their metadata. See ES.md's "Pedagogical
+// principles" section for the rules unit content must follow.
+
+import sayingHello from './unit01-saying-hello.js';
+
+const CONTENT = {
+  'saying-hello': sayingHello,
+};
+
+export const UNIT_METADATA = [
+  // A1 — Absolute Basics
+  { id: 'saying-hello', order: 1, level: 'A1', title: 'Saying Hello',
+    concepts: ['greeting_basics', 'subject_pronouns'],
+    summary: 'Greet people, say goodbye, and use the right word for "you" and "I".' },
+  { id: 'numbers-time', order: 2, level: 'A1', title: 'Numbers & Time',
+    concepts: ['numbers_1_20', 'numbers_21_100'],
+    summary: 'Count, tell time, and exchange phone numbers or prices.' },
+  { id: 'people-things', order: 3, level: 'A1', title: 'People & Things',
+    concepts: ['noun_gender', 'definite_articles', 'indefinite_articles'],
+    summary: 'Every Spanish noun has a gender — learn to spot it and use the right article.' },
+  { id: 'who-you-are', order: 4, level: 'A1', title: 'Who You Are',
+    concepts: ['ser_basics', 'adjective_agreement'],
+    summary: 'Describe yourself and others with ser, and make adjectives agree.' },
+  { id: 'where-you-are', order: 5, level: 'A1', title: 'Where You Are',
+    concepts: ['estar_basics', 'hay'],
+    summary: 'Talk about location with estar, and say what there is with hay.' },
+  { id: 'everyday-actions', order: 6, level: 'A1', title: 'Everyday Actions',
+    concepts: ['present_ar', 'present_er_ir'],
+    summary: 'Conjugate regular -ar, -er, and -ir verbs in the present tense.' },
+  { id: 'asking-questions', order: 7, level: 'A1', title: 'Asking Questions',
+    concepts: ['question_words'],
+    summary: 'Qué, quién, cómo, dónde, cuándo, por qué — ask about anything.' },
+
+  // A2 — Building Fluency
+  { id: 'daily-routine', order: 8, level: 'A2', title: 'Your Daily Routine',
+    concepts: ['reflexive_verbs', 'possessives'],
+    summary: 'Describe your routine with reflexive verbs and say what belongs to whom.' },
+  { id: 'likes-dislikes', order: 9, level: 'A2', title: 'Likes & Dislikes',
+    concepts: ['gustar_type', 'demonstratives'],
+    summary: 'Gustar works backwards from English — learn to say what you like.' },
+  { id: 'people-around-you', order: 10, level: 'A2', title: 'People & Things Around You',
+    concepts: ['direct_object_pronouns', 'indirect_object_pronouns'],
+    summary: 'Replace nouns with pronouns so you stop repeating yourself.' },
+  { id: 'what-happened', order: 11, level: 'A2', title: 'What Happened',
+    concepts: ['preterite_regular', 'negation'],
+    summary: 'Talk about completed past events and say what did NOT happen.' },
+  { id: 'obligations-requests', order: 12, level: 'A2', title: 'Obligations & Requests',
+    concepts: ['modal_verbs', 'obligation_infinitive'],
+    summary: 'Say what you can, want, or have to do.' },
+  { id: 'right-now-soon', order: 13, level: 'A2', title: 'Right Now & Soon',
+    concepts: ['present_progressive', 'near_future', 'time_expressions'],
+    summary: 'What\'s happening right now, what\'s about to happen, and since when.' },
+  { id: 'comparing-describing', order: 14, level: 'A2', title: 'Comparing & Describing',
+    concepts: ['ser_vs_estar', 'adverbs_formation', 'prepositions_basic'],
+    summary: 'The famous ser-vs-estar contrast, plus adverbs and basic prepositions.' },
+  { id: 'irregular-present', order: 15, level: 'A2', title: 'Irregular Verbs in the Present',
+    concepts: ['irregular_present'],
+    summary: 'The high-frequency irregular verbs every conversation needs.' },
+
+  // B1 — Expressing Yourself
+  { id: 'recent-ongoing', order: 16, level: 'B1', title: 'Recent & Ongoing Actions',
+    concepts: ['acabar_de', 'llevar_gerund'],
+    summary: 'Say what you just did, and how long you\'ve been doing something.' },
+  { id: 'past-in-detail', order: 17, level: 'B1', title: 'The Past in Detail',
+    concepts: ['preterite_irregular', 'imperfect', 'preterite_vs_imperfect'],
+    summary: 'Two past tenses, one clear rule for choosing between them.' },
+  { id: 'future-hypotheticals', order: 18, level: 'B1', title: 'Future & Hypotheticals',
+    concepts: ['future_simple', 'conditional'],
+    summary: 'What will happen, and what would happen.' },
+  { id: 'opinions-commands', order: 19, level: 'B1', title: 'Opinions & Commands',
+    concepts: ['present_subjunctive', 'imperative'],
+    summary: 'The subjunctive mood and giving direct commands.' },
+  { id: 'nuance-connection', order: 20, level: 'B1', title: 'Nuance & Connection',
+    concepts: ['por_vs_para', 'relative_clauses', 'saber_vs_conocer', 'lo_neutro'],
+    summary: 'The trickiest small words in Spanish, finally explained clearly.' },
+
+  // B2 — Advanced Structures
+  { id: 'perfect-tenses', order: 21, level: 'B2', title: 'Perfect Tenses',
+    concepts: ['present_perfect', 'pluperfect', 'future_perfect', 'conditional_perfect'],
+    summary: 'Have done, had done, will have done, would have done.' },
+  { id: 'passive-impersonal', order: 22, level: 'B2', title: 'Passive & Impersonal',
+    concepts: ['passive_voice', 'passive_se', 'ser_estar_participle'],
+    summary: 'How Spanish avoids naming who did something.' },
+  { id: 'subjunctive-deep-dive', order: 23, level: 'B2', title: 'Subjunctive Deep Dive',
+    concepts: ['imperfect_subjunctive', 'si_clauses', 'subjunctive_adverbial', 'perfect_subjunctive'],
+    summary: 'Hypotheticals, wishes, and if-clauses in the past.' },
+  { id: 'fine-details', order: 24, level: 'B2', title: 'Fine Details',
+    concepts: ['comparatives', 'diminutives_augmentatives', 'relative_pronouns_advanced', 'adjectives_ser_estar', 'adjective_position', 'verbos_cambio'],
+    summary: 'The polish that separates advanced learners from natives.' },
+];
+
+export function getUnit(id) {
+  const meta = UNIT_METADATA.find(u => u.id === id);
+  if (!meta) return null;
+  const content = CONTENT[id];
+  return content ? { ...meta, ...content, comingSoon: false } : { ...meta, comingSoon: true };
+}
+
+export const UNITS = UNIT_METADATA.map(m => ({ ...m, comingSoon: !CONTENT[m.id] }));

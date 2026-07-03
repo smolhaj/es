@@ -3,6 +3,8 @@ import { AuthProvider, useAuth } from './hooks/useAuth.jsx';
 import Landing from './pages/Landing.jsx';
 import Auth from './pages/Auth.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import GetStarted from './pages/GetStarted.jsx';
+import Lesson from './pages/Lesson.jsx';
 import Session from './pages/Session.jsx';
 import GrammarRef from './pages/GrammarRef.jsx';
 import VocabReview from './pages/VocabReview.jsx';
@@ -35,6 +37,8 @@ export default function App() {
         <Route path="/login" element={<Guest><Auth mode="login" /></Guest>} />
         <Route path="/register" element={<Guest><Auth mode="register" /></Guest>} />
         <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
+        <Route path="/get-started" element={<Protected><GetStarted /></Protected>} />
+        <Route path="/lessons/:unitId" element={<Protected><Lesson /></Protected>} />
         <Route path="/session" element={<Protected><Session /></Protected>} />
         <Route path="/vocab-review" element={<Protected><VocabReview /></Protected>} />
         <Route path="/vocab" element={<Protected><VocabBrowser /></Protected>} />

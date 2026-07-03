@@ -151,23 +151,114 @@ early):
 
 **Not yet built** (real gaps against the original spec — worth prioritizing
 if picking this back up):
-- **Audio/TTS** — no Google Cloud TTS or Web Speech API integration exists
-  anywhere in the codebase yet. Pronunciation guide is currently text-only.
 - **Conversation role-play scenarios** — no exercise `type` for open-ended
   dialogue exists (current types: `multiple_choice`, `fill_blank`,
   `translation_to_spanish`, `translation_to_english`, `error_correction`).
 - **Real media integration** (news/songs/TV clips) — not present.
-- **Cloudflare R2** — not bound in `wrangler.toml`, not used. Would be needed
-  if audio or media features land.
-- **Multi-source cross-referencing for accuracy** — content is currently
-  authored directly (by Claude sessions) rather than verified against
-  multiple external references. This is a standing directive that hasn't
-  been operationalized into an actual process yet.
+- **Cloudflare R2** — not bound in `wrangler.toml`, not used.
 - **Groq secondary LLM fallback** — current fallback on Gemini failure is
-  straight to the static exercise bank, not a secondary LLM call.
+  local-graded static exercises, not a secondary LLM call.
 - **Explicit backoff/rate-limit handling** — current `_gemini.js` catches
   *any* failure (including rate limits) and falls straight to static
   fallback; there's no retry-with-backoff before giving up.
+
+**Now underway** (as of the structured-curriculum effort):
+- **Audio/TTS** — being built via the Web Speech API (browser-native, $0,
+  no external API dependency) rather than Google Cloud TTS from the original
+  spec — same end result (pronunciation playback), simpler and free at any
+  scale since there's no per-character billing to worry about.
+- **Multi-source cross-referencing for accuracy** — now operationalized:
+  content-writing agents are required to WebSearch-verify claims against
+  multiple authoritative sources (RAE, SpanishDict, WordReference, established
+  grammar references) rather than writing from training knowledge alone. See
+  "Content accuracy audits" below for the process this turned into in
+  practice.
+
+---
+
+## Pedagogical principles (research-grounded, established for the structured curriculum)
+
+The original spec called for explicit grammar instruction blended with
+comprehensible-input/immersion techniques and multiple learning strategies.
+Before building the structured "Get Started" curriculum, this was grounded in
+actual second-language-acquisition research rather than intuition. These
+principles are binding for all curriculum content, not just Unit 1:
+
+- **Comprehensible input (~90-98%)**: each lesson introduces one main new
+  grammar point at a time. Examples and practice reuse vocabulary/structures
+  already taught rather than piling on multiple unfamiliar things at once.
+- **Explicit instruction over pure immersion**: research consistently favors
+  explicit rule statements for adult learners over discovery-only approaches
+  — this validates the original spec's "teach rules explicitly, up front"
+  directive rather than walking it back toward pure comprehensible-input
+  dogma.
+- **Retrieval practice over re-reading**: lesson practice must require
+  *producing* an answer (recall), not just re-reading or recognizing —
+  retrieval practice measurably beats passive review for retention.
+- **Spaced repetition, not a separate silo**: any new vocabulary a lesson
+  introduces should feed into the existing FSRS-scheduled `vocabulary_items`
+  queue, not live in a parallel system — so spacing benefits apply
+  automatically instead of the lesson content being "seen once and forgotten."
+- **Blocked practice before interleaving, especially for beginners**: within
+  a single new lesson, practice should drill the new concept in relative
+  isolation first. Mixed/interleaved review across many concepts is what the
+  existing adaptive Gemini session is for — don't duplicate that inside a
+  lesson meant to introduce one new thing.
+- **Multiple modalities**: the same structure/vocabulary should appear across
+  reading, listening (audio), and production (typed/selected answers) within
+  a lesson — not just one format.
+- **Immediate, explanatory corrective feedback**: matches the original spec
+  directive already; research on feedback timing is mixed but supports
+  feedback functioning as scaffolding, which immediate + explained feedback
+  does well for accuracy-focused practice.
+- **L1 (English) scaffolding is appropriate in lesson prose, not sessions**:
+  the original spec's "minimize English" directive applies to *live tutoring
+  dialogue* (the Gemini session), where the learner already has some base to
+  work with. It does not apply to lesson *reading content* for an absolute
+  beginner — explaining Spanish grammar in Spanish to someone with zero
+  vocabulary is not comprehensible input, it's just incomprehensible. Lesson
+  prose is written primarily in English with embedded Spanish examples.
+
+Sources consulted (WebSearch, current at time of writing): comprehensible
+input thresholds and spaced/contextual repetition research (The Language Gym,
+Frontiers in Education 2025 spaced-retrieval study), retrieval practice and
+spacing research synthesis (TESL-EJ deliberate practice framework,
+ResearchGate repetition/retrieval/spaced-practice review), explicit-vs-
+implicit grammar instruction and blocked-vs-interleaved practice for
+lower-achieving/beginner learners (Language Learning journal, 2025), and
+corrective feedback timing/scaffolding research (systematic review, PMC).
+
+## Content accuracy audits (established this session)
+
+Given the volume of existing content (79 grammar concepts, 125 verb
+conjugation tables, 1000+ vocabulary items, 167 idioms, 475 fallback
+exercises) was originally authored without external verification, a
+systematic externally-verified audit was run batch-by-batch:
+
+- **Batching rule**: batches touching the *same file* must run sequentially,
+  never in parallel — concurrent agents editing one file race and corrupt
+  each other's changes. Batches touching *different* files can run in
+  parallel. (Verbs and grammar concepts got their own parallel tracks since
+  they're separate files; vocabulary/idioms/exercises should follow the same
+  pattern when their turn comes.)
+- **Verification method**: each batch agent reads its assigned slice, then
+  WebSearches an authoritative source per item (WordReference conjugator/
+  SpanishDict for verbs, studyspanish.com/spanishdict.com/guide/RAE for
+  grammar rules, RAE/dialectology sources for regional claims) before fixing
+  anything — never edits based on the agent's own assumption of what's wrong.
+- **Real errors found this way** (as a sense of the actual error rate):
+  missing accent in `preferir`'s imperfect nosotros form, an unsupported/
+  fabricated claim about dropping "a" in "ir a + infinitive," a mislabeled
+  false-friend entry (preservar vs. preservativo — the trap word was wrong),
+  a syllabification rule error in pronunciation.js, and a regional slang
+  attribution error (bacán mislabeled as Argentine when it's more Peru/
+  Chile/Cuba). All fixed and verified against sources before committing.
+- **Background-agent session limits**: long batches can hit account-level API
+  session limits and terminate mid-edit. Always check `git diff` on the
+  target file after an agent completes/fails before trusting its self-report
+  — a failed agent may have partially edited a file before being cut off.
+  Commit verified-good partial work rather than discarding it; leave a
+  follow-up task for what's still incomplete.
 
 ---
 

@@ -71,6 +71,16 @@ export const api = {
       }, token),
   },
 
+  curriculum: {
+    progress: (token) => req('/curriculum/progress', {}, token),
+
+    markComplete: (token, moduleId) =>
+      req('/curriculum/progress', {
+        method: 'POST',
+        body: JSON.stringify({ moduleId })
+      }, token),
+  },
+
   vocabulary: {
     due: (token) => req('/vocabulary/due', {}, token),
 

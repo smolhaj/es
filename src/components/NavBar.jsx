@@ -43,6 +43,7 @@ export default function NavBar({ cefrLevel }) {
 
           {isLoggedIn ? (
             <>
+              <Link to="/get-started" className={`btn btn-ghost ${styles.navLink}`}>Get started</Link>
               <Link to="/session" className={`btn btn-ghost ${styles.navLink}`}>Practice</Link>
               <Link to="/dashboard" className={`btn btn-ghost ${styles.navLink}`}>Dashboard</Link>
               <Link to="/profile" className={`btn btn-ghost ${styles.navLink}`}>Profile</Link>
@@ -73,6 +74,7 @@ export default function NavBar({ cefrLevel }) {
           <div className={styles.mobileMenu} role="menu">
             {isLoggedIn ? (
               <>
+                <Link to="/get-started" className={styles.mobileLink} role="menuitem">Get started</Link>
                 <Link to="/session"   className={styles.mobileLink} role="menuitem">Practice</Link>
                 <Link to="/dashboard" className={styles.mobileLink} role="menuitem">Dashboard</Link>
                 <Link to="/concepts"  className={styles.mobileLink} role="menuitem">Concepts</Link>
