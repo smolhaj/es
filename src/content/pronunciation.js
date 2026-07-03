@@ -198,7 +198,7 @@ export const PRONUNCIATION_RULES = [
     title: 'P, T, K — no aspiration',
     rule: 'In English, the stops P, T, K at the start of stressed syllables have a puff of air (aspiration): "pin", "tin", "kin". Spanish never aspirates these consonants — they are "clean" stops with no air burst.',
     sounds: [
-      { letter: 'p', ipa: '/p/ (no aspiration)', like: '"p" in "spin" (not "pin")', example: 'padre, pero,apa' },
+      { letter: 'p', ipa: '/p/ (no aspiration)', like: '"p" in "spin" (not "pin")', example: 'padre, pero, papa' },
       { letter: 't', ipa: '/t/ (no aspiration)', like: '"t" in "stop" (not "top")', example: 'también, tú, alto' },
       { letter: 'k / c / qu', ipa: '/k/ (no aspiration)', like: '"k" in "ski" (not "key")', example: 'casa, querer, que' },
     ],
@@ -336,7 +336,7 @@ export const PRONUNCIATION_RULES = [
       'A single consonant between vowels goes with the next syllable: ca-sa, ha-blar, te-lé-fo-no.',
       'Two consonants between vowels: usually split in the middle — ac-tor, can-tar, par-que.',
       'But bl, br, cl, cr, dr, fl, fr, gl, gr, pl, pr, tr are inseparable clusters — stay together: ha-blar, li-bro, pa-dre.',
-      'Three consonants: usually second+third go with the next syllable — ins-tan-te, trans-por-te.',
+      'Three consonants: usually the first two stay with the previous syllable and only the third moves to the next syllable — ins-tan-te, trans-por-te. (If the last two form an inseparable blend like pl/tr, they move together instead: cons-truir.)',
       'Prefixes often stay intact despite the above rules: sub-ra-yar, des-ha-cer, pre-sen-tar.',
       'Two strong vowels (a, e, o) side by side form separate syllables: pa-ís, po-e-ma, le-er.',
       'Diphthongs (strong + weak, or weak + strong) stay in one syllable: bue-no, ciu-dad, fui.',
