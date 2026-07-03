@@ -24,7 +24,7 @@ export default function Auth({ mode }) {
         ? await api.auth.login(email, password)
         : await api.auth.register(email, password);
       login(data.token, data.user);
-      navigate('/dashboard');
+      navigate(isLogin ? '/dashboard' : '/get-started');
     } catch (err) {
       setError(err.message);
     } finally {
