@@ -496,7 +496,8 @@ Evaluate and give the next exercise.`;
     const raw = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
 
     return parseGeminiResponse(raw, isFirstTurn);
-  } catch {
+  } catch (err) {
+    console.error('Gemini call failed, using fallback exercise:', err);
     return { correct: false, feedback: '', exercise: fallback(), greeting: null, conceptNote: null };
   }
 }
