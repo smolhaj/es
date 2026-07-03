@@ -1290,16 +1290,3 @@ export const IDIOMS = [
 ];
 
 export const CATEGORIES = [...new Set(IDIOMS.map(i => i.category))].sort();
-export const REGISTERS = ['colloquial', 'informal', 'neutral', 'formal'];
-
-export function getByCategory(category) {
-  return IDIOMS.filter(i => i.category === category);
-}
-
-export function getByRegister(register) {
-  return IDIOMS.filter(i => i.register === register);
-}
-
-export function getRandom(n = 5) {
-  return [...IDIOMS].sort(() => Math.random() - 0.5).slice(0, n);
-}

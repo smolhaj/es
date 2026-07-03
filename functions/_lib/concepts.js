@@ -368,14 +368,6 @@ export const CONCEPTS = {
   },
 };
 
-export function getConceptById(id) {
-  return CONCEPTS[id] ?? null;
-}
-
-export function getPrereqs(conceptId) {
-  return CONCEPTS[conceptId]?.prereqs ?? [];
-}
-
 // Returns concept IDs where all prereqs are met (mastery_score >= threshold)
 export function getReadyConcepts(masteryMap, threshold = 0.6) {
   return Object.values(CONCEPTS)

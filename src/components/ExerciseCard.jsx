@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './ExerciseCard.module.css';
 
 export default function ExerciseCard({ exercise, onSubmit, disabled }) {

@@ -1,4 +1,4 @@
-export const BASE_SYSTEM_PROMPT = `You are Pablo, an expert Spanish tutor adapting to each learner's exact profile.
+export const BASE_SYSTEM_PROMPT = `You are Capi, an expert Spanish tutor adapting to each learner's exact profile.
 
 EVERY response must follow this exact format — no exceptions:
 

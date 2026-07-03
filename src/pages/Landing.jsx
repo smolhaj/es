@@ -56,7 +56,7 @@ export default function Landing() {
           </div>
 
           <div className={styles.mascotWrap} aria-hidden="true">
-            <Fox />
+            <Capybara />
           </div>
         </section>
 
@@ -83,41 +83,39 @@ export default function Landing() {
       </main>
 
       <footer className={styles.footer}>
-        <span>Pablo — A Spanish learning tool</span>
+        <span>Capi — A Spanish learning tool</span>
       </footer>
     </div>
   );
 }
 
-function Fox() {
+function Capybara() {
   return (
-    <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.fox}>
+    <svg viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.capybara}>
       {/* Body */}
-      <ellipse cx="80" cy="105" rx="40" ry="35" fill="#c4511a" />
+      <ellipse cx="80" cy="114" rx="48" ry="30" fill="#8b5e3c" />
       {/* Head */}
-      <ellipse cx="80" cy="72" rx="30" ry="26" fill="#c4511a" />
+      <ellipse cx="80" cy="70" rx="36" ry="26" fill="#8b5e3c" />
       {/* Ears */}
-      <polygon points="58,52 50,28 70,48" fill="#c4511a" />
-      <polygon points="102,52 110,28 90,48" fill="#c4511a" />
-      <polygon points="59,50 53,33 68,47" fill="#f8d0b0" />
-      <polygon points="101,50 107,33 92,47" fill="#f8d0b0" />
-      {/* Face white */}
-      <ellipse cx="80" cy="78" rx="18" ry="14" fill="#f8d0b0" />
+      <circle cx="50" cy="48" r="8" fill="#8b5e3c" />
+      <circle cx="110" cy="48" r="8" fill="#8b5e3c" />
+      <circle cx="50" cy="48" r="4" fill="#6b4527" />
+      <circle cx="110" cy="48" r="4" fill="#6b4527" />
+      {/* Muzzle */}
+      <ellipse cx="80" cy="86" rx="23" ry="14" fill="#d9b98a" />
       {/* Eyes */}
-      <circle cx="72" cy="70" r="4" fill="#1c1409" />
-      <circle cx="88" cy="70" r="4" fill="#1c1409" />
-      <circle cx="73.5" cy="68.5" r="1.5" fill="white" />
-      <circle cx="89.5" cy="68.5" r="1.5" fill="white" />
-      {/* Nose */}
-      <ellipse cx="80" cy="79" rx="3" ry="2" fill="#1c1409" />
+      <circle cx="65" cy="62" r="3.5" fill="#2a1c10" />
+      <circle cx="95" cy="62" r="3.5" fill="#2a1c10" />
+      <circle cx="66.5" cy="60.5" r="1.2" fill="white" />
+      <circle cx="96.5" cy="60.5" r="1.2" fill="white" />
+      {/* Nostrils */}
+      <ellipse cx="71" cy="86" rx="2.2" ry="1.6" fill="#2a1c10" />
+      <ellipse cx="89" cy="86" rx="2.2" ry="1.6" fill="#2a1c10" />
       {/* Mouth */}
-      <path d="M76 82 Q80 86 84 82" stroke="#1c1409" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-      {/* Tail */}
-      <path d="M118 112 Q148 100 145 130 Q130 145 110 130" fill="#c4511a" />
-      <path d="M134 136 Q145 140 145 130" fill="#f8d0b0" />
-      {/* Paws */}
-      <ellipse cx="62" cy="136" rx="12" ry="7" fill="#c4511a" />
-      <ellipse cx="98" cy="136" rx="12" ry="7" fill="#c4511a" />
+      <path d="M73 94 Q80 98 87 94" stroke="#2a1c10" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      {/* Legs */}
+      <ellipse cx="46" cy="138" rx="12" ry="8" fill="#8b5e3c" />
+      <ellipse cx="114" cy="138" rx="12" ry="8" fill="#8b5e3c" />
     </svg>
   );
 }

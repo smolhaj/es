@@ -1145,18 +1145,5 @@ export const VOCABULARY = [
   { es: 'cima', en: 'summit / peak / top', cefr: 'B2', domain: 'nature', frequencyRank: 520, example: 'Tardaron ocho horas en llegar a la cima.', exampleEn: 'It took them eight hours to reach the summit.' },
 ];
 
-// Group by domain
-export function getByDomain(domain) {
-  return VOCABULARY.filter(v => v.domain === domain);
-}
-
-// Group by CEFR level
-export function getByCefr(level) {
-  return VOCABULARY.filter(v => v.cefr === level);
-}
-
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();
 export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
-
-// Sorted by frequency (most common first)
-export const BY_FREQUENCY = [...VOCABULARY].sort((a, b) => a.frequencyRank - b.frequencyRank);
