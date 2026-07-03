@@ -2,31 +2,37 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import styles from './Landing.module.css';
 
-const FEATURES = [
-  {
-    label: 'Real grammar',
-    body: 'Rules explained explicitly, drilled in context, tracked across sessions. Not "just pick it up."'
-  },
-  {
-    label: 'Adapts to you',
-    body: 'A built-in professor reads your error history, weak concepts, and personal context before every session. Each exercise is chosen specifically for where you are.'
-  },
-  {
-    label: 'A1 to C1',
-    body: 'A full curriculum built to CEFR standards — 71 tracked grammar concepts, 1010 vocabulary items across 23 domains, 110 conjugated verbs, idioms, regional differences.'
-  },
-  {
-    label: 'Spaced repetition',
-    body: 'Vocabulary is scheduled with FSRS-4.5, the most accurate open spaced-repetition algorithm. Words appear right when you\'re about to forget them.'
-  },
-  {
-    label: 'It remembers',
-    body: 'Every mistake is tracked. Concepts with persistent errors get flagged as fossilised and drilled harder. You can\'t hide from your weak spots.'
-  },
-  {
-    label: 'Built-in references',
-    body: 'Grammar rules, verb conjugations, 140 idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.'
-  }
+const FEATURE_COLUMNS = [
+  [
+    {
+      label: 'Real grammar',
+      body: 'Rules explained explicitly, drilled in context, tracked across sessions. Not "just pick it up."'
+    },
+    {
+      label: 'Spaced repetition',
+      body: 'Vocabulary is scheduled with FSRS-4.5, the most accurate open spaced-repetition algorithm. Words appear right when you\'re about to forget them.'
+    }
+  ],
+  [
+    {
+      label: 'Adapts to you',
+      body: 'A built-in professor reads your error history, weak concepts, and personal context before every session. Each exercise is chosen specifically for where you are.'
+    },
+    {
+      label: 'It remembers',
+      body: 'Every mistake is tracked. Concepts with persistent errors get flagged as fossilised and drilled harder. You can\'t hide from your weak spots.'
+    }
+  ],
+  [
+    {
+      label: 'A1 to C1',
+      body: 'A full curriculum built to CEFR standards — 71 tracked grammar concepts, 1010 vocabulary items across 23 domains, 110 conjugated verbs, idioms, regional differences.'
+    },
+    {
+      label: 'Built-in references',
+      body: 'Grammar rules, verb conjugations, 140 idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.'
+    }
+  ]
 ];
 
 export default function Landing() {
@@ -62,10 +68,14 @@ export default function Landing() {
 
         <section className={styles.features}>
           <div className={styles.featuresGrid}>
-            {FEATURES.map(f => (
-              <div key={f.label} className={styles.featureCard}>
-                <h3 className={styles.featureLabel}>{f.label}</h3>
-                <p className={styles.featureBody}>{f.body}</p>
+            {FEATURE_COLUMNS.map((column, i) => (
+              <div key={i} className={styles.featureColumn}>
+                {column.map(f => (
+                  <div key={f.label} className={styles.featureCard}>
+                    <h3 className={styles.featureLabel}>{f.label}</h3>
+                    <p className={styles.featureBody}>{f.body}</p>
+                  </div>
+                ))}
               </div>
             ))}
           </div>

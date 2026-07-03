@@ -71,9 +71,17 @@
 .featuresGrid {
   max-width: var(--content-w);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  align-items: flex-start;
   gap: var(--sp-7);
+}
+
+.featureColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-7);
+  min-width: 0;
 }
 
 .featureCard {
@@ -135,9 +143,11 @@
   }
   .mascotWrap { order: -1; }
   .capybara { width: 120px; height: 120px; }
-  .featuresGrid { grid-template-columns: 1fr; gap: var(--sp-6); }
+  .featuresGrid { flex-direction: column; gap: var(--sp-6); }
+  .featureColumn { gap: var(--sp-6); }
 }
 
 @media (max-width: 860px) and (min-width: 641px) {
-  .featuresGrid { grid-template-columns: repeat(2, 1fr); }
+  .featuresGrid { flex-wrap: wrap; }
+  .featureColumn { flex-basis: calc(50% - var(--sp-7) / 2); }
 }

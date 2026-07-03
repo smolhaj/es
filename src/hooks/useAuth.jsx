@@ -3,21 +3,21 @@ import { createContext, useContext, useState, useCallback } from 'react';
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(() => localStorage.getItem('pablo_token'));
+  const [token, setToken] = useState(() => localStorage.getItem('capi_token'));
   const [user, setUser] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('pablo_user')); } catch { return null; }
+    try { return JSON.parse(localStorage.getItem('capi_user')); } catch { return null; }
   });
 
   const login = useCallback((newToken, newUser) => {
-    localStorage.setItem('pablo_token', newToken);
-    localStorage.setItem('pablo_user', JSON.stringify(newUser));
+    localStorage.setItem('capi_token', newToken);
+    localStorage.setItem('capi_user', JSON.stringify(newUser));
     setToken(newToken);
     setUser(newUser);
   }, []);
 
   const logout = useCallback(() => {
-    localStorage.removeItem('pablo_token');
-    localStorage.removeItem('pablo_user');
+    localStorage.removeItem('capi_token');
+    localStorage.removeItem('capi_user');
     setToken(null);
     setUser(null);
   }, []);
