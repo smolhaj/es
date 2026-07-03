@@ -1336,7 +1336,7 @@ export const GRAMMAR_CARDS = [
       { es: 'Necesito a alguien que hable chino. (imaginary candidate)', en: 'I need someone who speaks Chinese [whoever that may be].' },
     ],
     exceptions: [
-      'After superlatives, indicative is usually used because the referent is specific: Es el mejor libro que he leído.',
+      'After superlatives (el mejor, el único, el primero...), the subjunctive is typically used because the claim is inherently subjective/unverifiable — the speaker cannot be certain nothing better exists: Es el mejor libro que haya leído. The indicative (que he leído) is also possible and treats the claim as a plain fact.',
       'Negative antecedents always trigger subjunctive: No conozco a nadie que sepa esto.',
       'The article signals the choice: un/una + adjective clause → subjunctive (unknown); el/la/los/las + adjective clause → indicative (known).',
       'In speech, learners often default to indicative everywhere. Using subjunctive here is a C1 marker that distinguishes fluent from intermediate speakers.',

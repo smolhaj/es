@@ -7,12 +7,20 @@
 
 import sayingHello from './unit01-saying-hello.js';
 import numbersTime from './unit02-numbers-time.js';
+import peopleThings from './unit03-people-things.js';
+import whoYouAre from './unit04-who-you-are.js';
 import whereYouAre from './unit05-where-you-are.js';
+import everydayActions from './unit06-everyday-actions.js';
+import askingQuestions from './unit07-asking-questions.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
   'numbers-time': numbersTime,
+  'people-things': peopleThings,
+  'who-you-are': whoYouAre,
   'where-you-are': whereYouAre,
+  'everyday-actions': everydayActions,
+  'asking-questions': askingQuestions,
 };
 
 export const UNIT_METADATA = [
