@@ -14,29 +14,36 @@ export async function onRequest({ request, env, next, data }) {
     return new Response(null, { status: 204, headers: CORS });
   }
 
-  const url = new URL(request.url);
+  try {
+    const url = new URL(request.url);
 
-  if (PUBLIC_PATHS.includes(url.pathname)) {
+    if (PUBLIC_PATHS.includes(url.pathname)) {
+      const res = await next();
+      const newRes = new Response(res.body, res);
+      Object.entries(CORS).forEach(([k, v]) => newRes.headers.set(k, v));
+      return newRes;
+    }
+
+    const auth = request.headers.get('Authorization') ?? '';
+    if (!auth.startsWith('Bearer ')) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401, headers: CORS });
+    }
+
+    const payload = await verifyJWT(auth.slice(7), env.JWT_SECRET);
+    if (!payload) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401, headers: CORS });
+    }
+
+    data.user = payload;
+
     const res = await next();
     const newRes = new Response(res.body, res);
     Object.entries(CORS).forEach(([k, v]) => newRes.headers.set(k, v));
     return newRes;
+  } catch (err) {
+    // Without this, an unhandled exception makes Cloudflare serve its HTML
+    // error page, which the frontend can't parse ("Unexpected token '<'").
+    console.error('Unhandled error in', request.method, new URL(request.url).pathname, '-', err);
+    return Response.json({ error: `Server error: ${err.message ?? 'unknown'}` }, { status: 500, headers: CORS });
   }
-
-  const auth = request.headers.get('Authorization') ?? '';
-  if (!auth.startsWith('Bearer ')) {
-    return Response.json({ error: 'Unauthorized' }, { status: 401, headers: CORS });
-  }
-
-  const payload = await verifyJWT(auth.slice(7), env.JWT_SECRET);
-  if (!payload) {
-    return Response.json({ error: 'Unauthorized' }, { status: 401, headers: CORS });
-  }
-
-  data.user = payload;
-
-  const res = await next();
-  const newRes = new Response(res.body, res);
-  Object.entries(CORS).forEach(([k, v]) => newRes.headers.set(k, v));
-  return newRes;
 }
