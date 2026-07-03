@@ -380,7 +380,6 @@ export const GRAMMAR_CARDS = [
       'The reflexive pronoun attaches to the infinitive or goes before ir: Me voy a duchar / Voy a ducharme.',
       'Contrast: near future (ir a + inf) = concrete plan/intention; simple future tense (-ré) = prediction or formal statement.',
       'Vamos a + infinitive can also be a suggestion: Vamos a comer juntos = Let\'s eat together.',
-      'In very informal speech the a can be dropped: Voy a hacer → voy hacer (non-standard, heard in some regions).',
     ],
     related: ['irregular_present', 'future_simple', 'prepositions_basic'],
   },
