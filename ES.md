@@ -714,6 +714,48 @@ endpoints — every exercise across the full session stayed on
 `greeting_basics`, where before the fix a random sample of 30
 exhausted-retry fallbacks landed on concepts across all CEFR levels.
 
+**Second, more severe bug found during re-QA of the fix above: the
+"Drill →" link — the actual production entry point to focus mode — did
+nothing.** After shipping the backend fix, a deeper re-test was run
+specifically because the *previous* QA pass had never opened focus mode
+at all (see "why the bug wasn't caught" below) — this time the test
+drove the real user journey: complete a session with wrong answers, land
+on the summary, click "Drill →" for one of the listed weak concepts. The
+click updated the URL to `/session?focus=<concept>` but the page kept
+showing the *old* "Session complete." summary — no new session started,
+no "Drilling:" banner, nothing. Root cause: `Session.jsx`'s session-start
+`useEffect` depended only on `[token]`. `/session` and `/session?focus=X`
+are the same React Router route, so a client-side `<Link>` navigation
+between them (exactly what "Drill →" does) only changes the query string
+— it does not unmount/remount the component — so the effect never re-ran
+and `focusConcept` was silently ignored. Focus mode only ever worked via
+a full page load (typing the URL, hard refresh), which is not how any
+real user reaches it from the product's own UI. Fixed by adding
+`focusConcept` to the effect's dependency array and resetting all session
+state (`phase`, `sessionId`, `exercise`, `stats`, `summary`, etc.) at the
+top of the effect, so every focus change — including in-app navigation —
+cleanly restarts the session. Verified end-to-end via Playwright driving
+the actual click (not a direct URL load): register → complete a 10-item
+session with wrong answers → click "Drill →" on the summary → confirm
+the "Drilling: X" banner appears immediately and stays on that same
+concept for all 10 turns of the new session.
+
+**Why the previous QA pass (the one right before this one) didn't catch
+either bug, and what changed:** its adaptive-session test opened
+`/session` with no `?focus=` param and only asserted "did an exercise
+render" and "did I manage to answer N of them" — it never exercised focus
+mode at all, and never asserted on exercise *content* (concept_id)
+against what was requested, only on structural rendering. A test can
+click through every exercise in a session and pass while every single
+one is off-topic, because nothing checked which concept came back. The
+remedy applied here: any test of a "targeted" feature must (1) actually
+invoke it through its real UI entry point, not just the underlying route
+with a hand-typed query param, and (2) assert on the semantic content of
+what came back (concept_id, not just "an exercise exists"). Both gaps are
+now closed in this feature's test coverage — multi-concept, multi-turn,
+concept-adherence assertions plus a full click-driven journey from
+summary → drill link → locked session.
+
 ---
 
 ## Deployment & ops conventions (established this session)
