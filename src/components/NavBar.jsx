@@ -45,6 +45,7 @@ export default function NavBar({ cefrLevel }) {
             <>
               <Link to="/get-started" className={`btn btn-ghost ${styles.navLink}`}>Get started</Link>
               <Link to="/session" className={`btn btn-ghost ${styles.navLink}`}>Practice</Link>
+              <Link to="/flashcards" className={`btn btn-ghost ${styles.navLink}`}>Flashcards</Link>
               <Link to="/dashboard" className={`btn btn-ghost ${styles.navLink}`}>Dashboard</Link>
               <Link to="/profile" className={`btn btn-ghost ${styles.navLink}`}>Profile</Link>
               <button onClick={handleLogout} className={`btn btn-ghost ${styles.navLink}`}>Sign out</button>
@@ -76,6 +77,7 @@ export default function NavBar({ cefrLevel }) {
               <>
                 <Link to="/get-started" className={styles.mobileLink} role="menuitem">Get started</Link>
                 <Link to="/session"   className={styles.mobileLink} role="menuitem">Practice</Link>
+                <Link to="/flashcards" className={styles.mobileLink} role="menuitem">Flashcards</Link>
                 <Link to="/dashboard" className={styles.mobileLink} role="menuitem">Dashboard</Link>
                 <Link to="/concepts"  className={styles.mobileLink} role="menuitem">Concepts</Link>
                 <Link to="/grammar"   className={styles.mobileLink} role="menuitem">Grammar</Link>

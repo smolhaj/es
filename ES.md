@@ -345,6 +345,97 @@ of every Spanish claim).
 
 ---
 
+## Flashcards: architecture and status
+
+A separate Anki-style flashcard deck (top 5,000 Spanish words by frequency),
+distinct from the curriculum's lesson vocabulary and the adaptive session's
+`vocabulary_items` FSRS queue. Built in response to an explicit request for
+"Anki style flashcards... top 5000 or so Spanish words," scoped via
+AskUserQuestion into 4 decisions: **separate deck** (not merged into
+`vocabulary_items`), **true flip-card self-rating UI** (not typed/graded
+exercises), **word + translation + example sentence** per card, **all 5000
+at once** (not a smaller MVP first).
+
+**Licensing research (done before building anything)**: the well-known
+"Spanish 5000 words" Anki decks on AnkiWeb are built from *A Frequency
+Dictionary of Spanish* (Davies & Davies, Routledge) — a paid book — and the
+decks themselves carry no clear reuse license, several bundling Azure TTS
+audio with its own terms. Redistributing someone else's exact deck content
+would be a real copyright risk. Instead, the deck is generated from openly-
+licensed data other legitimate deck-builders derive from:
+[hermitdave/FrequencyWords](https://github.com/hermitdave/FrequencyWords)
+(OpenSubtitles-derived word counts, CC BY-SA 3.0) via
+[doozan/spanish_data](https://github.com/doozan/spanish_data), which
+packages that same frequency data already lemmatized (grouping inflected
+forms like soy/eres/es/somos under "ser") with part-of-speech tags
+(`frequency.csv`), a Spanish→English dictionary derived from Wiktionary
+(`es-en.data`, CC BY-SA), and example sentences from Tatoeba.org
+(`sentences.tsv`, CC BY 2.0 France). Attribution for all three is shown in
+the Flashcards page footer, as CC BY-SA/CC BY require.
+
+**Architecture**:
+- `scripts/build-flashcards.mjs` — one-time/rerunnable Node pipeline. Run
+  with `node scripts/build-flashcards.mjs`; it downloads the 3 source files
+  into `.cache/flashcard-data/` (gitignored, ~60MB, only fetched once) and
+  writes `src/content/flashcards/frequency-5000.js`. Not part of the app's
+  runtime — purely a build-time data generation step, so the 5000-card
+  lookup involved zero LLM API calls (keeps to the $0 cost architecture).
+- Card selection logic (all in the pipeline script, worth knowing if
+  regenerating): sorts `frequency.csv` by count descending, dedupes by
+  spelling; for each candidate, looks up `es-en.data` and **picks the
+  dictionary sense whose part-of-speech matches `frequency.csv`'s reported
+  pos** — this was a real bug caught during review: naively taking the
+  first dictionary entry gave "de" → "letter: d" and "y" → "letter: ye,
+  i griega" instead of the actual preposition/conjunction, because
+  Wiktionary often lists a minor "letter name" sense before the dominant
+  grammatical one for short function words. Filters out `letter`/`suffix`/
+  `prefix` pos categories and `surname`/`given name`/`abbreviation of`-style
+  glosses (not useful vocabulary). Combines up to 2 gloss lines per word,
+  flattening and deduping at the sub-sense level first (individual gloss
+  lines can themselves be "; "-joined lists of near-synonyms, e.g. "que"'s
+  gloss is literally "who; that" — naively joining 2 such lines produces
+  visibly repeated senses). Looks up the shortest matching example sentence
+  per lemma from `sentences.tsv`'s lemma-tagged column (~95% of the final
+  5000 cards have one; the rest get `example: null` and the UI just omits
+  that part of the card).
+- `src/content/flashcards/frequency-5000.js` — the generated static content
+  (`{ id, es, pos, en, example, exampleEn, rank }[]`, 5000 entries, ~800KB).
+  Loaded via a **dynamic `import()`** in `Flashcards.jsx`, not a static
+  import — Vite code-splits it into its own chunk so visiting any other
+  page never downloads it (verified: builds as a separate
+  `frequency-5000-*.js` chunk, ~257KB gzipped, versus the ~272KB gzipped
+  main bundle).
+- `schema-v7.sql` / `functions/api/flashcards/{progress,review}.js` — a new
+  `flashcard_progress` table (`user_id`, `card_id`, FSRS columns, same
+  shape as `vocabulary_items`'s FSRS columns) storing only per-user
+  scheduling state — the card *content* stays static/global in the
+  frontend bundle, never duplicated server-side. Reuses the exact same
+  `functions/_lib/fsrs.js` `scheduleReview()` used by the vocabulary
+  review loop (grade scale 1-4 = Again/Hard/Good/Easy, identical to
+  Anki's own convention — no new SRS math needed).
+- `Flashcards.jsx` builds each session's queue client-side: due cards
+  (already reviewed, `dueAt <= now`, sorted soonest-first) plus new cards
+  (never reviewed, in frequency-rank order) fill up to `SESSION_SIZE = 20`,
+  with new cards additionally capped at `NEW_PER_SESSION = 10` even if
+  there are no due reviews yet — this mirrors Anki's own new-card-intro
+  cap. **Known simplification vs. real Anki**: the cap is per page-load,
+  not a true calendar-day quota — reloading the page after finishing a
+  session's new cards will introduce another 10 immediately rather than
+  waiting until tomorrow, since there's no "new cards introduced today"
+  counter. Verified this is what actually happens (graded 10 cards "Good"
+  in a test session, all scheduled ~3 days out per FSRS, reload
+  immediately offered 10 *more* new cards rather than an empty state) —
+  acceptable for a $0 solo-use MVP, but a real per-day counter would be a
+  natural follow-up if this becomes a problem in practice.
+
+**Status**: shipped and verified end-to-end locally (registration → first
+flashcard session → flip → grade all 4 ways → session-complete screen →
+reload correctly pulls the next batch → confirmed FSRS state persisted
+correctly in D1). Linked from NavBar (desktop + mobile), Dashboard's
+reference-link row, at route `/flashcards`.
+
+---
+
 ## Deployment & ops conventions (established this session)
 
 - **Cloudflare Pages is Git-integrated via the dashboard**, not CLI-deployed.
@@ -515,9 +606,37 @@ in a new session, this is the place to start. Nothing below is blocked on a
 design decision — each item's approach is already established by precedent
 elsewhere in the codebase; follow the referenced pattern.
 
-1. **Curriculum units 8–24 (18 of 24 units still unwritten).** Units 1–7
-   (all of A1) are done and live at `src/content/curriculum/unit0N-slug.js`.
-   Units 8–24 (A2/B1/B2) are fully outlined in `UNIT_METADATA` in
+0. **Flashcards daily new-card cap is per page-load, not per calendar
+   day.** See the "Flashcards: architecture and status" section above —
+   `NEW_PER_SESSION = 10` in `Flashcards.jsx` caps new cards per session
+   visit, but nothing stops a user from reloading the page immediately and
+   getting 10 more. A real fix needs a small "new cards introduced today"
+   counter (e.g. a `new_cards_today`/`day` pair in a settings-ish row, or
+   derive it from counting `flashcard_progress` rows whose
+   `last_reviewed_at` falls on today's date and `review_count = 1`).
+   Low priority — acceptable for solo/small-group $0 use — but worth fixing
+   if this becomes a real multi-user product.
+1. **Curriculum units 9–15 (rest of A2) still unwritten — units 8 done,
+   9-15 were interrupted by a shared account session-limit mid-batch.**
+   Unit 8 (Your Daily Routine) is done and live. Units 9-15 were being
+   written by 7 parallel agents when all 7 hit "You've hit your session
+   limit" simultaneously, still in the research/WebSearch phase (none of
+   them reached the file-write step) — check `git status` for any of
+   `unit09` through `unit15` before re-launching to avoid redoing
+   completed work. Re-launch with the same one-agent-per-unit approach;
+   the original briefs (concepts, sequencing notes about the gustar/
+   near-future prerequisite-ordering quirk — see below) aren't preserved
+   automatically, so re-derive them from `UNIT_METADATA` in
+   `src/content/curriculum/index.js` and this note: Unit 9 (likes-dislikes)
+   should teach gustar's pronouns (me/te/le/nos/os/les) as a fixed
+   memorizable set without presupposing Unit 10's formal indirect-object-
+   pronoun theory; Unit 13 (right-now-soon) should teach "ir a +
+   infinitive" using only ir's own present-tense forms inline, without
+   presupposing Unit 14's prepositions unit or Unit 15's irregular-present
+   unit — both are intentional, standard-textbook sequencing choices, not
+   bugs to fix by reordering `UNIT_METADATA`.
+2. **Curriculum units 16–24 (B1/B2, not yet started).** Fully outlined in
+   `UNIT_METADATA` in
    `src/content/curriculum/index.js` (id, level, title, concepts, summary
    already decided — do not re-litigate the outline) but have no content
    file yet, so `GetStarted.jsx` renders them as "Coming soon." To write
@@ -530,10 +649,10 @@ elsewhere in the codebase; follow the referenced pattern.
    rate-limit interruptions have corrupted files mid-write before — see
    "Background-agent session limits" below), then wire it into `index.js`
    (add the import and the `CONTENT` map entry — the metadata entry already
-   exists). Batch by CEFR level (finish all of A2 = units 8–15 before moving
-   to B1) using one agent per unit, run in parallel since each unit is a
+   exists). Batch by CEFR level (finish B1 = units 16–20 before moving
+   to B2) using one agent per unit, run in parallel since each unit is a
    distinct file. Update this list as units land.
-2. **Content accuracy audits — 3 of 6 content files still unaudited (tasks
+3. **Content accuracy audits — 3 of 6 content files still unaudited (tasks
    #10–12).** `vocabulary.js` (~1056 items), `idioms.js` (167 items), and
    `FALLBACK_EXERCISES` in `functions/api/sessions/_gemini.js` (475 items)
    have never been cross-referenced against authoritative sources, unlike
@@ -545,7 +664,7 @@ elsewhere in the codebase; follow the referenced pattern.
    method used for verbs/grammar/regional: WebSearch each claim against a
    real source (RAE, SpanishDict, a grammar reference), fix in place, and
    report a tally of confirmed-correct vs. fixed items — don't just eyeball it.
-3. **Extend `ClickableSpanish` beyond `Lesson.jsx`.** Currently only lesson
+4. **Extend `ClickableSpanish` beyond `Lesson.jsx`.** Currently only lesson
    pages have clickable Spanish words with the translation popover. The
    other reference pages that display Spanish text — `Grammar.jsx`,
    `Verbs.jsx`, `Idioms.jsx`, `FalseFriends.jsx`, `Pronunciation.jsx`,
@@ -555,12 +674,12 @@ elsewhere in the codebase; follow the referenced pattern.
    avoid the homograph false-positive problem — see the "Homograph
    collision risk" gotcha below) and the default `minWords={1}` for
    pure-Spanish text (example sentences, isolated words/phrases).
-4. **Confirm GitHub branch protection is actually enabled.** The user was
+5. **Confirm GitHub branch protection is actually enabled.** The user was
    shown how to turn this on via the GitHub UI earlier in this project but
    it was never confirmed as done. Worth a quick check on
    `smolhaj/es` settings before this becomes a real gap (currently anyone
    with push access, including agent sessions, can push straight to `main`).
-5. **Remaining gaps against the original learner-facing spec** (see
+6. **Remaining gaps against the original learner-facing spec** (see
    "Original learner-facing spec" above for the full spec this was scoped
    against): conversation/role-play exercise type (currently only
    translation/fill-blank/multiple-choice exist), real media integration
@@ -572,11 +691,11 @@ elsewhere in the codebase; follow the referenced pattern.
    backoff/retry handling around the Gemini call in `_gemini.js` (today a
    failure just falls through to `gradeLocally()` and `FALLBACK_EXERCISES`,
    which is graceful but doesn't retry the actual LLM call first).
-6. **Minor: `regional.js` has near-duplicate `le_lo` and `leismo`
+7. **Minor: `regional.js` has near-duplicate `le_lo` and `leismo`
    sections.** Flagged by an audit agent as covering overlapping ground
    (not a factual error, just redundant structure). Worth consolidating
    into one section next time that file is touched, but not urgent.
-7. **Done: full "brand-new-user" QA pass (this session).** Registered a
+8. **Done: full "brand-new-user" QA pass (this session).** Registered a
    fresh account, followed the redirect to Get Started, read and fully
    completed Unit 1 (including clicking a `ClickableSpanish` popover),
    confirmed the completion checkmark persisted back on Get Started,
@@ -594,3 +713,8 @@ elsewhere in the codebase; follow the referenced pattern.
    gotcha below). No functional bugs found this pass. Screenshots taken
    at each step confirmed correct visual rendering, not just "didn't
    crash."
+9. **Done: Anki-style Flashcards feature (this session).** Separate
+   5,000-word frequency deck, true flip-card self-rating UI, reusing the
+   existing FSRS algorithm. See "Flashcards: architecture and status"
+   above for the full writeup, and item 0 above for the one known
+   follow-up (per-day new-card cap).
