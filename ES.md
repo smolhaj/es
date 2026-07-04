@@ -533,6 +533,46 @@ viewport-only screenshot, which shows the panel correctly covering the
 full viewport with no bleed-through, exactly as a real user would see
 it).
 
+## Production outage: schema-v8.sql applied locally but never to prod D1
+
+**Real incident, caught by the user in production, not by any QA pass
+run this session.** After `schema-v8.sql` (adds `sessions.focus_concept`)
+was merged along with the code that reads/writes that column
+(`start.js`/`turn.js`), every `/api/sessions/start` call in production
+started failing with `D1_ERROR: table sessions has no column named
+focus_concept` — a full outage of the adaptive session / Practice
+feature for every user, not just focus-mode drills, since `start.js`
+unconditionally inserts that column on every session.
+
+**Root cause**: this session's agent applied `schema-v8.sql` to the
+*local* dev D1 database only (`wrangler d1 execute DB --local --file=...`,
+used to test the focus-concept fix), and verified everything end-to-end
+against that local database. Nobody — agent or user — ran the equivalent
+`--remote` migration against the actual production D1 database before
+the code shipped. The agent session has no Cloudflare account
+credentials (`wrangler whoami` → not authenticated) and cannot run
+`--remote` migrations itself; this step has always required the human
+operator, same as every `schema-v2.sql` through `schema-v7.sql`
+migration before it — but this is the first time a session shipped code
+that hard-depended on a new column without that step being confirmed
+done first.
+
+**Fix**: run the migration against the remote database — either
+`ALTER TABLE sessions ADD COLUMN focus_concept TEXT;` via the Cloudflare
+dashboard's D1 Console tab, or `npx wrangler d1 execute DB --remote
+--file=schema-v8.sql` from a machine with `wrangler` authenticated to the
+account. Purely additive, safe to run any time, no redeploy needed
+afterward.
+
+**Process lesson for future migrations**: "tested locally" is not
+sufficient signoff for a schema-adding PR — local `wrangler dev --d1
+DB --local` and production D1 are two entirely separate SQLite
+databases, and nothing about the local test would ever reveal that the
+remote one is out of sync. Before merging any PR that adds a migration
+file, explicitly confirm with the user that they've run it against
+`--remote` (or ask them to), rather than treating a clean local
+end-to-end test as proof the feature works in production.
+
 ## Free Resources page (this session)
 
 `/resources` (`src/pages/Resources.jsx`, `src/content/resources.js`) — a
