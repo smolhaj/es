@@ -228,27 +228,6 @@
   opacity: 1;
 }
 
-/* Reference links */
-.refSection {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: var(--sp-6);
-  row-gap: var(--sp-3);
-  padding-top: var(--sp-4);
-  border-top: 1px solid var(--border);
-  padding-bottom: var(--sp-4);
-}
-
-.refLink {
-  font-size: 0.9rem;
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.refLink:hover { text-decoration: underline; }
-
 /* States */
 .loading {
   color: var(--text-muted);

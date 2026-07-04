@@ -482,6 +482,57 @@ same shared file).
   logic that costs nothing to leave in place. If streaks are ever
   reintroduced to the UI, reconcile the copy first.
 
+## Navigation reorganization (this session)
+
+**Problem found while scoping "better UI/organization" QOL work:** the
+desktop nav (`NavBar.jsx`) only showed 5 links (Learn, Practice,
+Flashcards, Dashboard, Profile), while the mobile hamburger menu had 13 —
+the two were hand-maintained separately and had drifted apart. Worse,
+4 real pages had **no nav entry on either breakpoint**: `/vocab-review`,
+`/false-friends`, `/pronunciation`, `/writing` — reachable only via
+buttons buried in `Dashboard.jsx`. A desktop user had no way to discover
+the reference pages at all short of going through Dashboard first.
+
+Fixed by unifying desktop and mobile into one shared link list
+(`REFERENCE_LINKS`, `ACCOUNT_LINKS` arrays at the top of `NavBar.jsx`),
+rendered as:
+- Desktop: flat primary links (Learn, Practice, Flashcards, Dashboard)
+  plus two click-toggle dropdowns, **Reference** (Concepts, Grammar,
+  Verbs, Vocabulary, Vocab review, Idioms, False friends, Pronunciation,
+  Regional, Free resources) and **Account** (Profile, History, Writing,
+  Sign out). Dropdowns are `position: absolute` against a `position:
+  relative` `.dropdown` wrapper — deliberately not `fixed`, so the
+  existing `backdrop-filter`-on-`<header>` containing-block gotcha
+  (documented in "Code/design gotchas" below) doesn't apply to them.
+- Mobile: the same two link arrays rendered into the existing full-panel
+  menu, under non-interactic `REFERENCE`/`ACCOUNT` section-label
+  headings instead of one long undifferentiated list.
+- A single `openMenu` state (`null | 'reference' | 'account'`) keeps at
+  most one dropdown open at a time; outside-click and route-change both
+  close everything, extending the pattern the mobile hamburger already
+  used.
+
+`Dashboard.jsx`'s own "Reference links" section (a 14-link row at the
+bottom of the page, `.refSection`/`.refLink` in `Dashboard.module.css`)
+was then removed entirely, along with its now-dead CSS — it was fully
+redundant with the new nav dropdowns and existed in the first place
+because the nav didn't surface these pages.
+
+Verified via Playwright against a real local `wrangler pages dev` + D1
+server at both a desktop (1280px) and mobile (390px) viewport: all 10
+Reference items and 3 Account items + Sign out render and are clickable
+in the desktop dropdowns; the dropdown closes on an actual outside click
+(not a click inside the nav's own `menuRef` wrapper, which doesn't count
+as "outside" — this tripped up the first version of the test itself, not
+the app); all 18 items are present in the mobile panel; clicking a link
+actually navigates. One test-only gotcha worth remembering: a Playwright
+`fullPage: true` screenshot of the mobile menu showed the Dashboard page
+bleeding through underneath it — this is a known `position: fixed` +
+full-page-screenshot artifact, not a real bug (confirmed via a normal
+viewport-only screenshot, which shows the panel correctly covering the
+full viewport with no bleed-through, exactly as a real user would see
+it).
+
 ## Free Resources page (this session)
 
 `/resources` (`src/pages/Resources.jsx`, `src/content/resources.js`) — a
@@ -755,6 +806,28 @@ what came back (concept_id, not just "an exercise exists"). Both gaps are
 now closed in this feature's test coverage — multi-concept, multi-turn,
 concept-adherence assertions plus a full click-driven journey from
 summary → drill link → locked session.
+
+**How to tell whether Gemini is actually being called in production, vs.
+silently running on the static fallback bank the whole time:** there was
+no way to distinguish these from the outside — a real Gemini call and a
+fallback exercise both render as a normal exercise, and previous QA
+passes (this session's and prior ones) exclusively exercised the
+fallback path, since `.dev.vars`' `GEMINI_API_KEY` is a placeholder
+locally. If the production secret were ever missing, expired, wrong, or
+pointed at a since-deprecated model id, the app would keep working
+perfectly from a user's perspective (full 79-concept fallback coverage)
+while silently never calling Gemini at all — nobody would necessarily
+notice. `/api/sessions/start` and `/api/sessions/turn` now both return a
+`source` field (`'gemini'` or `'fallback'`) plus a `fallbackReason`
+string when `source: 'fallback'` (e.g. `"Gemini 400"` for an auth/bad-key
+error, `"Gemini 429"` for rate-limiting, or `"unparseable exercise JSON
+in Gemini response"` if Gemini replied but didn't follow the expected
+format). Check it via browser DevTools → Network tab on either endpoint,
+or `curl`. Locally this always reads `fallback` / `"Gemini 400"` because
+of the placeholder key — that 400 is itself informative: it confirms the
+retry logic correctly treats it as non-retryable (fails fast to fallback
+rather than burning 3 attempts) exactly as the retry-backoff logic
+intends for auth errors vs. transient 429/5xx.
 
 ---
 
