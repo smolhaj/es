@@ -19,7 +19,7 @@ export async function onRequestPost({ request, env, data }) {
 
   if (!session) return Response.json({ error: 'Session not found' }, { status: 404 });
 
-  const { correct, feedback, exercise: nextExercise, conceptNote } = await callGemini(
+  const { correct, feedback, exercise: nextExercise, conceptNote, source, fallbackReason } = await callGemini(
     env, '', exercise, learnerAnswer ?? '', false, session.briefing_text ?? null, session.focus_concept ?? null
   );
 
@@ -148,5 +148,5 @@ export async function onRequestPost({ request, env, data }) {
     ).run().catch(() => {});
   }
 
-  return Response.json({ correct, feedback, exercise: nextExercise, conceptNote });
+  return Response.json({ correct, feedback, exercise: nextExercise, conceptNote, source, fallbackReason });
 }

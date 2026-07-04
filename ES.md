@@ -756,6 +756,28 @@ now closed in this feature's test coverage — multi-concept, multi-turn,
 concept-adherence assertions plus a full click-driven journey from
 summary → drill link → locked session.
 
+**How to tell whether Gemini is actually being called in production, vs.
+silently running on the static fallback bank the whole time:** there was
+no way to distinguish these from the outside — a real Gemini call and a
+fallback exercise both render as a normal exercise, and previous QA
+passes (this session's and prior ones) exclusively exercised the
+fallback path, since `.dev.vars`' `GEMINI_API_KEY` is a placeholder
+locally. If the production secret were ever missing, expired, wrong, or
+pointed at a since-deprecated model id, the app would keep working
+perfectly from a user's perspective (full 79-concept fallback coverage)
+while silently never calling Gemini at all — nobody would necessarily
+notice. `/api/sessions/start` and `/api/sessions/turn` now both return a
+`source` field (`'gemini'` or `'fallback'`) plus a `fallbackReason`
+string when `source: 'fallback'` (e.g. `"Gemini 400"` for an auth/bad-key
+error, `"Gemini 429"` for rate-limiting, or `"unparseable exercise JSON
+in Gemini response"` if Gemini replied but didn't follow the expected
+format). Check it via browser DevTools → Network tab on either endpoint,
+or `curl`. Locally this always reads `fallback` / `"Gemini 400"` because
+of the placeholder key — that 400 is itself informative: it confirms the
+retry logic correctly treats it as non-retryable (fails fast to fallback
+rather than burning 3 attempts) exactly as the retry-backoff logic
+intends for auth errors vs. transient 429/5xx.
+
 ---
 
 ## Deployment & ops conventions (established this session)

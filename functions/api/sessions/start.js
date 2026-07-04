@@ -49,7 +49,7 @@ export async function onRequestPost({ request, env, data }) {
     ).bind(briefing, sessionId).run().catch(() => {});
   }
 
-  const { exercise, greeting } = await callGemini(env, userMessage, null, null, true, briefing, focusConcept);
+  const { exercise, greeting, source, fallbackReason } = await callGemini(env, userMessage, null, null, true, briefing, focusConcept);
 
-  return Response.json({ sessionId, exercise, greeting });
+  return Response.json({ sessionId, exercise, greeting, source, fallbackReason });
 }

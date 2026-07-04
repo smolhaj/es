@@ -906,7 +906,10 @@ Evaluate and give the next exercise.`;
   }
 
   console.error('Gemini call failed after retries, using fallback exercise:', lastErr);
-  return { correct: gradeLocally(exercise, learnerAnswer), feedback: '', exercise: fallback(focusConcept), greeting: null, conceptNote: null };
+  return {
+    correct: gradeLocally(exercise, learnerAnswer), feedback: '', exercise: fallback(focusConcept),
+    greeting: null, conceptNote: null, source: 'fallback', fallbackReason: lastErr?.message ?? 'unknown',
+  };
 }
 
 function parseGeminiResponse(raw, isFirstTurn, focusConcept = null) {
@@ -935,10 +938,16 @@ function parseGeminiResponse(raw, isFirstTurn, focusConcept = null) {
   if (exerciseMatch) {
     try { exercise = JSON.parse(exerciseMatch[1]); } catch {}
   }
+  // Tags whether this exercise actually came from Gemini's response or had to
+  // fall back — the only way to tell "Gemini is working" from "the fallback
+  // bank is covering for a dead/misconfigured API key" without guessing from
+  // exercise phrasing.
+  const source = exercise ? 'gemini' : 'fallback';
+  const fallbackReason = exercise ? undefined : 'unparseable exercise JSON in Gemini response';
   if (!exercise) exercise = fallback(focusConcept);
 
   const conceptNoteMatch = body.match(/\[CONCEPT_NOTE\]([\s\S]*?)\[\/CONCEPT_NOTE\]/i);
   const conceptNote = conceptNoteMatch?.[1]?.trim() ?? null;
 
-  return { correct, feedback, exercise, greeting, conceptNote };
+  return { correct, feedback, exercise, greeting, conceptNote, source, fallbackReason };
 }
