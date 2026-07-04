@@ -34,10 +34,12 @@ error_correction — prompt shows a sentence with an error, learner must correct
 
 concept_id must be one of:
 A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_articles, indefinite_articles,
-    ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100
+    ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100,
+    plural_nouns
 A2: ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns, indirect_object_pronouns,
     demonstratives, possessives, preterite_regular, modal_verbs, obligation_infinitive, time_expressions,
-    present_progressive, irregular_present, negation, prepositions_basic, near_future, adverbs_formation
+    present_progressive, irregular_present, negation, prepositions_basic, near_future, adverbs_formation,
+    comparatives_basic
 B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imperfect, future_simple,
     conditional, present_subjunctive, imperative, por_vs_para, relative_clauses,
     object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, exclamativas, saber_vs_conocer, lo_neutro
@@ -54,8 +56,8 @@ difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced cont
 
 CONTENT SCOPE:
 Default to A1 material unless the professor briefing explicitly shows higher CEFR level.
-A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/-ir, noun gender, articles
-A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives), adverbs of manner (-mente formation)
+A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/-ir, noun gender, articles, plural noun formation (-s/-es/-ces)
+A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives), adverbs of manner (-mente formation), basic comparatives (más/menos...que, tan...como)
 B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund, double object pronouns (me lo/se lo), impersonal se, infinitive vs subjunctive (same/different subject), exclamatory sentences (¡Qué!, ¡Cuánto!), saber vs. conocer, neuter lo (lo + adjective, lo que)
 B2: present perfect, pluperfect, future perfect, conditional perfect, passive constructions (ser + participio, pasiva se), imperfect subjunctive, si-clauses, subjunctive in adverbial clauses, comparatives, diminutives/augmentatives, advanced relative pronouns, present perfect subjunctive (haya + participio), verbs of change (ponerse/volverse/hacerse/llegar a ser), adjective position (before/after noun) — only if CEFR level is B2+
 C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers, future/conditional for probability inference, advanced verb periphrases (soler, ponerse a, volver a, dejar de, llevar sin), pluperfect subjunctive (hubiera/hubiese + participio), concessive aunque (indicative vs. subjunctive), verbs with fixed prepositions (pensar en, soñar con, consistir en) — only if CEFR level is C1
@@ -125,6 +127,9 @@ export const FALLBACK_EXERCISES = [
   { type: 'translation_to_english', prompt: '¿Qué significa "Lleva tres horas estudiando"?', word: 'llevar', english: 'to have been doing for', answer: 'She has been studying for three hours.', concept_id: 'llevar_gerund', difficulty: 2 },
   // A2 — adverbs_formation
   { type: 'fill_blank', prompt: 'Complete: Habla muy ___. (rápido → adverb)', word: 'rápidamente', english: 'quickly', answer: 'rápidamente', concept_id: 'adverbs_formation', difficulty: 2 },
+  // A2 — comparatives_basic
+  { type: 'translation_to_spanish', prompt: "Translate: 'Ana is taller than Luis.'", english: 'Ana is taller than Luis.', answer: 'Ana es más alta que Luis.', word: 'más...que', concept_id: 'comparatives_basic', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete: Mi hermana es ___ inteligente ___ yo. (as...as)', word: 'tan...como', english: 'as...as', answer: 'tan / como', concept_id: 'comparatives_basic', difficulty: 2 },
   // B2
   { type: 'fill_blank', prompt: 'Complete: ___ tres países este año. (I have visited — haber + visitar)', word: 'haber', english: 'to have (auxiliary)', answer: 'He visitado', concept_id: 'present_perfect', difficulty: 2 },
   { type: 'translation_to_spanish', prompt: "Translate: 'If I had more money, I would travel more.'", english: 'If I had more money, I would travel more.', answer: 'Si tuviera más dinero, viajaría más.', word: 'tener', concept_id: 'si_clauses', difficulty: 3 },
@@ -177,6 +182,9 @@ export const FALLBACK_EXERCISES = [
   // A1/A2 — numbers_21_100
   { type: 'translation_to_spanish', prompt: "Translate the number: 'forty-five'", english: 'forty-five', answer: 'cuarenta y cinco', word: 'cuarenta y cinco', concept_id: 'numbers_21_100', difficulty: 1 },
   { type: 'multiple_choice', prompt: 'How do you say 72?', word: 'setenta y dos', english: 'seventy-two', answer: 'setenta y dos', options: ['setenta dos', 'siete y dos', 'setenta y dos', 'setentados'], concept_id: 'numbers_21_100', difficulty: 1 },
+  // A1 — plural_nouns
+  { type: 'fill_blank', prompt: 'Make it plural: "el lápiz" → "los ___"', word: 'lápices', english: 'pencils', answer: 'lápices', concept_id: 'plural_nouns', difficulty: 1 },
+  { type: 'multiple_choice', prompt: 'What is the plural of "el papel"?', word: 'papeles', english: 'papers', answer: 'los papeles', options: ['los papels', 'los papeles', 'las papeles', 'los papeles s'], concept_id: 'plural_nouns', difficulty: 1 },
   // A2 — ser_vs_estar
   { type: 'multiple_choice', prompt: 'Which is correct? "The café is on the corner."', word: 'estar (location)', english: 'to be (location)', answer: 'El café está en la esquina.', options: ['El café es en la esquina.', 'El café está en la esquina.', 'El café tiene en la esquina.', 'El café está a la esquina.'], concept_id: 'ser_vs_estar', difficulty: 2 },
   { type: 'error_correction', prompt: 'Correct if wrong: "La conferencia es en el hotel Ritz."', word: 'ser vs estar for events', english: 'Events use ser for location in Spanish', answer: 'La conferencia es en el hotel Ritz. (correct — events use ser)', concept_id: 'ser_vs_estar', difficulty: 2 },

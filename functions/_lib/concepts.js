@@ -73,6 +73,11 @@ export const CONCEPTS = {
     category: 'vocabulary', prereqs: ['numbers_1_20'],
     explanationStyles: ['pattern', 'example_first', 'story'],
   },
+  plural_nouns: {
+    id: 'plural_nouns', label: 'Forming plural nouns (-s/-es/-ces)', cefr: 'A1',
+    category: 'morphology', prereqs: ['noun_gender'],
+    explanationStyles: ['rule_first', 'pattern', 'example_first'],
+  },
 
   // ── A2 ──────────────────────────────────────────────────────────────────
   ser_vs_estar: {
@@ -159,6 +164,11 @@ export const CONCEPTS = {
     id: 'adverbs_formation', label: 'Adverbs formation (-mente)', cefr: 'A2',
     category: 'morphology', prereqs: ['adjective_agreement'],
     explanationStyles: ['rule_first', 'pattern', 'example_first'],
+  },
+  comparatives_basic: {
+    id: 'comparatives_basic', label: 'Basic comparatives (más/menos…que, tan…como)', cefr: 'A2',
+    category: 'morphology', prereqs: ['adjective_agreement'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
@@ -296,7 +306,7 @@ export const CONCEPTS = {
   },
   comparatives: {
     id: 'comparatives', label: 'Comparatives & superlatives', cefr: 'B2',
-    category: 'morphology', prereqs: ['adjective_agreement'],
+    category: 'morphology', prereqs: ['adjective_agreement', 'comparatives_basic'],
     explanationStyles: ['rule_first', 'table', 'example_first', 'contrastive'],
   },
   ser_estar_participle: {

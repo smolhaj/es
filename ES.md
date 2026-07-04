@@ -641,6 +641,66 @@ elsewhere in this session's QA scripts. Once fixed, passages render
 exactly as designed (verified visually via screenshot: audio button,
 Spanish text, English translation, then a passage-referencing question).
 
+## A1/A2 content gaps: plural nouns and basic comparatives (this session)
+
+A follow-up to a broader "are any concepts missing in A/B levels?"
+WebSearch-grounded audit against Instituto Cervantes' Plan Curricular. Of
+several candidate gaps considered, only two survived a check against the
+actual codebase content (a third, al/del contractions, was found already
+taught in Unit 14's `prepositions_basic` section at A2 — correction noted
+and dropped before implementing anything):
+
+- **Plural noun formation** — never explicitly taught anywhere, despite
+  plural forms (`los libros`, `las chicas`) being used constantly from
+  Unit 3 onward. Added as a new concept `plural_nouns` (A1,
+  `prereqs: ['noun_gender']`) and a new section in `unit03-people-things.js`
+  ("One Becomes Many: Forming Plural Nouns"), inserted between the
+  gender-exceptions section and the definite-articles section (definite
+  articles need los/las, which need plural nouns first). Covers: vowel-
+  ending nouns add -s, consonant-ending nouns add -es, -z nouns swap
+  z→c before -es (lápiz→lápices), and nouns already ending in unstressed
+  -s stay unchanged (el lunes→los lunes).
+- **Basic comparatives** — Unit 14 is titled "Comparing & Describing" but,
+  despite the name, never actually covered comparatives (only
+  ser_vs_estar, adverbs, and prepositions). Added `comparatives_basic`
+  (A2, `prereqs: ['adjective_agreement']`) and a new section ("Comparing
+  Two Things: más/menos…que and tan…como"), inserted between the adverbs
+  section and the prepositions section. Covers inequality (más/menos +
+  adjective + que) and equality (tan + adjective + como), adjective
+  agreement with the noun described (not the comparison target), and the
+  que→de switch directly before a plain number (más de treinta años). The
+  existing B2 `comparatives` concept's `prereqs` now includes
+  `comparatives_basic`, since it's the natural prerequisite for
+  superlatives and irregular forms (mejor/peor/mayor/menor).
+
+Both concepts were wired through every place a concept_id needs to exist
+consistently: `concepts.js` (mastery tracking/prereq graph), matching
+`GRAMMAR_CARDS` entries in `grammar.js`, `FALLBACK_EXERCISES` entries and
+the Gemini system prompt's `concept_id` whitelist + CONTENT SCOPE
+description in `_gemini.js` (so both the static fallback bank and the
+live Gemini-adaptive session can test them), and `UNIT_METADATA` in
+`curriculum/index.js`. Verified with `node --check` on every touched
+file, a programmatic structure check per curriculum unit (section/vocab/
+practice counts, concept_id coverage), and a live Playwright pass
+creating a real user and stepping through both lessons end-to-end,
+confirming the new sections render and the new practice exercises
+advance without repeats alongside the pre-existing ones.
+
+**Local dev environment gotcha hit during QA, worth remembering**: a
+freshly-spun-up container's local D1 state was empty (`no such table:
+users`), and `wrangler d1 execute DB --local` and `wrangler pages dev
+--d1 DB --kv KV` turned out to bind to *two different* local SQLite
+files — passing just `--d1 DB` to `pages dev` (no explicit database ID)
+creates its own default local D1 identity, separate from the one
+`wrangler.toml`'s `database_id` resolves to for `d1 execute --local`.
+Applying `schema.sql` through `schema-v8.sql` only fixed the file the
+`d1 execute` command was using; registration kept failing until
+`pages dev` was relaunched with the ID pinned explicitly:
+`--d1 DB=<database_id from wrangler.toml>`. This is purely a local-dev
+quirk (production's binding is unambiguous); the fix is to always pass
+the explicit database ID to `pages dev` when local D1 state has just
+been (re)initialized in a fresh environment.
+
 ## Content cleanup: vocabulary.js cross-batch duplicates (this session)
 
 Part 2 of the QOL pass (#4). ES.md had previously flagged exactly one
