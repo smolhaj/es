@@ -28,6 +28,7 @@ import nuanceConnection from './unit20-nuance-connection.js';
 import perfectTenses from './unit21-perfect-tenses.js';
 import passiveImpersonal from './unit22-passive-impersonal.js';
 import subjunctiveDeepDive from './unit23-subjunctive-deep-dive.js';
+import fineDetails from './unit24-fine-details.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
@@ -53,6 +54,7 @@ const CONTENT = {
   'perfect-tenses': perfectTenses,
   'passive-impersonal': passiveImpersonal,
   'subjunctive-deep-dive': subjunctiveDeepDive,
+  'fine-details': fineDetails,
 };
 
 export const UNIT_METADATA = [
