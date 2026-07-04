@@ -701,6 +701,28 @@ quirk (production's binding is unambiguous); the fix is to always pass
 the explicit database ID to `pages dev` when local D1 state has just
 been (re)initialized in a fresh environment.
 
+## Bug fix: lessons loading mid-scroll instead of at the top (this session)
+
+User report: navigating into a lesson (e.g. from `/learn` after scrolling
+down to find a unit card, or between lessons) would load the new page
+already scrolled partway down, not at the top. Root cause: the app is a
+client-side-routed SPA (`react-router-dom`'s `BrowserRouter`) and nothing
+anywhere reset `window.scrollY` on navigation — a full page load always
+starts at the top, but a client-side route change just swaps the
+rendered component in place, so the browser leaves the scroll position
+exactly where it was on the previous page. This affected every route,
+not just lessons; lessons were simply the most noticeable case since
+`/learn` is often scrolled before clicking into a card.
+
+Fixed with the standard React Router pattern: a `ScrollToTop`
+(`src/components/ScrollToTop.jsx`) component that calls
+`window.scrollTo(0, 0)` in a `useEffect` keyed on `useLocation().pathname`,
+mounted once at the top of `App.jsx` (renders nothing, always active
+regardless of which route is showing). Verified via a live Playwright
+pass: scrolled the `/learn` page down, clicked into a lesson via its
+`<Link>`, confirmed `scrollY === 0` on load; repeated for a second lesson
+navigated to directly from `/learn` again, same result.
+
 ## Content cleanup: vocabulary.js cross-batch duplicates (this session)
 
 Part 2 of the QOL pass (#4). ES.md had previously flagged exactly one
