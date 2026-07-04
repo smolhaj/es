@@ -144,8 +144,6 @@ export const VOCABULARY = [
   { es: 'madrastra', en: 'stepmother', cefr: 'B1', domain: 'family', frequencyRank: 452, example: 'Su madrastra es muy comprensiva.', exampleEn: 'His stepmother is very understanding.' },
   // B2 — family & relationships
   { es: 'cónyuge', en: 'spouse / partner (legal)', cefr: 'B2', domain: 'family', frequencyRank: 460, example: 'El seguro cubre también al cónyuge.', exampleEn: 'The insurance also covers the spouse.' },
-  { es: 'cuñado', en: 'brother-in-law', cefr: 'B2', domain: 'family', frequencyRank: 470, example: 'Mi cuñado trabaja en la misma empresa que mi hermana.', exampleEn: 'My brother-in-law works at the same company as my sister.' },
-  { es: 'cuñada', en: 'sister-in-law', cefr: 'B2', domain: 'family', frequencyRank: 472, example: 'Mi cuñada y yo nos llevamos muy bien.', exampleEn: 'My sister-in-law and I get on very well.' },
   { es: 'heredero', en: 'heir / inheritor', cefr: 'B2', domain: 'family', frequencyRank: 480, example: 'El heredero recibió toda la fortuna familiar.', exampleEn: 'The heir received the entire family fortune.' },
   { es: 'convivencia', en: 'living together / coexistence', cefr: 'B2', domain: 'family', frequencyRank: 490, example: 'La convivencia en pareja requiere respeto mutuo.', exampleEn: 'Living together as a couple requires mutual respect.' },
 
