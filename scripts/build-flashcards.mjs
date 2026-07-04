@@ -181,6 +181,28 @@ function escapeRegExp(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// True if `word` literally appears in `sentence` (any case), as a whole
+// token. Spanish grammatical paradigms mean the *absence* of a headword's
+// exact spelling is often fine on its own — verbs are shown conjugated
+// (tener -> "tengo"), and articles/determiners/pronouns/quantifiers have
+// legitimate gender/number/apocope variants (uno -> "un", nosotros ->
+// "nosotras", alguno -> "algún"). But this corpus's tagger also lemma-
+// groups genuinely distinct closed-class words together (e.g. the neuter
+// pronoun "lo" and the direct-object pronoun "lo" both lemmatize to the
+// masculine article "el", even though neither spells "el"), and separately
+// a homograph can collide across parts of speech (bajo the preposition
+// "under" vs. baja the adjective "short" both surface-lemmatize to "bajo").
+// For the small set of POS categories below, Spanish has no legitimate
+// inflection at all, so requiring the literal word's presence is safe and
+// catches exactly these lemma-grouping/homograph mistakes without
+// false-flagging normal conjugation or gender/number agreement elsewhere.
+function containsLiteralWord(sentence, word) {
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRegExp(word)}(?![\\p{L}\\p{N}])`, 'iu');
+  return re.test(sentence);
+}
+
+const STRICT_LITERAL_POS = new Set(['article', 'preposition', 'adverb', 'conjunction', 'interjection']);
+
 // True if every verbatim occurrence of `word` in `sentence` is capitalized
 // AND not at the start of the sentence — the signature of a mistagged
 // proper noun riding along on a common word's spelling (e.g. the corpus's
@@ -296,16 +318,23 @@ async function main() {
     if (!best) continue;
     const translation = buildTranslation(entries, best.pos);
     if (!translation) continue;
+    const posLabel = POS_LABEL[best.pos] ?? best.pos ?? '';
     // If every candidate sentence for this word is "risky" (its spelling
     // only ever shows up capitalized as a likely proper noun — see
     // isRiskyMatch), showing no example beats showing a misleading one.
+    // For non-inflecting POS categories, also require the word's exact
+    // spelling to literally appear — see containsLiteralWord's comment for
+    // why (lemma-grouping and homograph mistakes in the source corpus).
     const rawSent = sentIndex.get(row.spanish);
-    const sent = rawSent && !rawSent.risky ? rawSent : null;
+    let sent = rawSent && !rawSent.risky ? rawSent : null;
+    if (sent && STRICT_LITERAL_POS.has(posLabel) && !containsLiteralWord(sent.es, row.spanish)) {
+      sent = null;
+    }
     if (sent) sentenceHits++;
     results.push({
       id: 'fc' + (results.length + 1),
       es: row.spanish,
-      pos: POS_LABEL[best.pos] ?? best.pos ?? '',
+      pos: posLabel,
       en: translation,
       example: sent ? sent.es : null,
       exampleEn: sent ? sent.en : null,

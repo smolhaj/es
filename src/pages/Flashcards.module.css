@@ -46,6 +46,15 @@
   font-size: 0.9375rem;
 }
 
+.saveWarning {
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--incorrect-bg);
+  border: 1px solid var(--incorrect-border);
+  border-radius: var(--r-sm);
+  color: var(--incorrect);
+  font-size: 0.875rem;
+}
+
 /* Progress */
 .progressWrap {
   display: flex;
