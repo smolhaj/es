@@ -87,18 +87,23 @@
 .barOpen2 { opacity: 0; }
 .barOpen3 { transform: translateY(-7px) rotate(-45deg); }
 
-/* Mobile dropdown */
+/* Mobile menu — a full-height panel (not a short dropdown) so it fully
+   covers the page underneath instead of leaving content visible (and
+   potentially still tappable) below it; NavBar.jsx locks body scroll
+   while this is open so the page behind can't scroll along with it. */
 .mobileMenu {
-  position: absolute;
+  position: fixed;
   top: var(--nav-h);
   left: 0;
   right: 0;
+  bottom: 0;
   background: var(--bg);
-  border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   padding: var(--sp-2) 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   z-index: 200;
 }
 
