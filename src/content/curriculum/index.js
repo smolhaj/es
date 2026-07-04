@@ -5,6 +5,7 @@
 // "coming soon" using only their metadata. See ES.md's "Pedagogical
 // principles" section for the rules unit content must follow.
 
+import whySpanish from './unit00-why-spanish.js';
 import sayingHello from './unit01-saying-hello.js';
 import numbersTime from './unit02-numbers-time.js';
 import peopleThings from './unit03-people-things.js';
@@ -25,8 +26,13 @@ import pastInDetail from './unit17-past-in-detail.js';
 import futureHypotheticals from './unit18-future-hypotheticals.js';
 import opinionsCommands from './unit19-opinions-commands.js';
 import nuanceConnection from './unit20-nuance-connection.js';
+import perfectTenses from './unit21-perfect-tenses.js';
+import passiveImpersonal from './unit22-passive-impersonal.js';
+import subjunctiveDeepDive from './unit23-subjunctive-deep-dive.js';
+import fineDetails from './unit24-fine-details.js';
 
 const CONTENT = {
+  'why-spanish': whySpanish,
   'saying-hello': sayingHello,
   'numbers-time': numbersTime,
   'people-things': peopleThings,
@@ -47,9 +53,17 @@ const CONTENT = {
   'future-hypotheticals': futureHypotheticals,
   'opinions-commands': opinionsCommands,
   'nuance-connection': nuanceConnection,
+  'perfect-tenses': perfectTenses,
+  'passive-impersonal': passiveImpersonal,
+  'subjunctive-deep-dive': subjunctiveDeepDive,
+  'fine-details': fineDetails,
 };
 
 export const UNIT_METADATA = [
+  // Orientation — no grammar, just context
+  { id: 'why-spanish', order: 0, level: 'A1', title: 'Why Spanish?',
+    concepts: [],
+    summary: '520 million voices, 20+ countries, one language — why it\'s worth learning in 2026.' },
   // A1 — Absolute Basics
   { id: 'saying-hello', order: 1, level: 'A1', title: 'Saying Hello',
     concepts: ['greeting_basics', 'subject_pronouns'],
