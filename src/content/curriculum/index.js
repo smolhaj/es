@@ -16,7 +16,9 @@ import dailyRoutine from './unit08-daily-routine.js';
 import likesDislikes from './unit09-likes-dislikes.js';
 import peopleAroundYou from './unit10-people-around-you.js';
 import whatHappened from './unit11-what-happened.js';
+import obligationsRequests from './unit12-obligations-requests.js';
 import rightNowSoon from './unit13-right-now-soon.js';
+import comparingDescribing from './unit14-comparing-describing.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
@@ -30,7 +32,9 @@ const CONTENT = {
   'likes-dislikes': likesDislikes,
   'people-around-you': peopleAroundYou,
   'what-happened': whatHappened,
+  'obligations-requests': obligationsRequests,
   'right-now-soon': rightNowSoon,
+  'comparing-describing': comparingDescribing,
 };
 
 export const UNIT_METADATA = [
