@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
+import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { GRAMMAR_CARDS, CATEGORIES, CEFR_LEVELS } from '../content/grammar.js';
 import styles from './GrammarRef.module.css';
 
@@ -30,14 +31,14 @@ function GrammarCard({ card, expanded, onToggle }) {
 
       {expanded && (
         <div className={styles.cardBody} onClick={e => e.stopPropagation()}>
-          <p className={styles.rule}>{card.rule}</p>
+          <p className={styles.rule}><ClickableSpanish text={card.rule} minWords={2} /></p>
 
           <div className={styles.examples}>
             <h4 className={styles.subhead}>Examples</h4>
             <ul className={styles.exampleList}>
               {card.examples.map((ex, i) => (
                 <li key={i} className={styles.exampleItem}>
-                  <span className={styles.exES}>{ex.es}</span>
+                  <span className={styles.exES}><ClickableSpanish text={ex.es} /></span>
                   <span className={styles.exEN}>{ex.en}</span>
                 </li>
               ))}
@@ -49,7 +50,7 @@ function GrammarCard({ card, expanded, onToggle }) {
               <h4 className={styles.subhead}>Watch out</h4>
               <ul className={styles.exceptionList}>
                 {card.exceptions.map((ex, i) => (
-                  <li key={i} className={styles.exceptionItem}>{ex}</li>
+                  <li key={i} className={styles.exceptionItem}><ClickableSpanish text={ex} minWords={2} /></li>
                 ))}
               </ul>
             </div>

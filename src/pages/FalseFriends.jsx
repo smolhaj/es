@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
+import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { FALSE_FRIENDS } from '../content/false-friends.js';
 import styles from './FalseFriends.module.css';
 
@@ -39,11 +40,11 @@ function FriendCard({ item }) {
           </div>
           <div className={styles.row}>
             <span className={styles.rowLabel}>Example</span>
-            <span className={`${styles.rowValue} ${styles.italic}`}>{item.example}</span>
+            <span className={`${styles.rowValue} ${styles.italic}`}><ClickableSpanish text={item.example} minWords={2} /></span>
           </div>
           <div className={styles.row}>
             <span className={styles.rowLabel}>How to say it</span>
-            <span className={styles.rowValue}>{item.correctUsage}</span>
+            <span className={styles.rowValue}><ClickableSpanish text={item.correctUsage} minWords={2} /></span>
           </div>
         </div>
       )}

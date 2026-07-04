@@ -32,7 +32,7 @@ export default function GetStarted() {
       <main className={styles.main}>
         <div className={styles.inner}>
           <header className={styles.header}>
-            <h1 className={styles.title}>Get started.</h1>
+            <h1 className={styles.title}>Learn.</h1>
             <p className={styles.subtitle}>
               A guided path from your first word to real fluency. Work through units in
               any order, at any pace — no streaks, no locks.

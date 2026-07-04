@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
+import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { VOCABULARY, DOMAINS, CEFR_LEVELS } from '../content/vocabulary.js';
 import styles from './VocabBrowser.module.css';
 
@@ -201,7 +202,7 @@ function WordCard({ item, status }) {
       </div>
       {open && item.example && (
         <div className={styles.cardDetail} onClick={e => e.stopPropagation()}>
-          <p className={styles.exampleES}>{item.example}</p>
+          <p className={styles.exampleES}><ClickableSpanish text={item.example} /></p>
           <p className={styles.exampleEN}>{item.exampleEn}</p>
         </div>
       )}

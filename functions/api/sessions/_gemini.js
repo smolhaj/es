@@ -114,7 +114,7 @@ export const FALLBACK_EXERCISES = [
   // A2
   { type: 'fill_blank', prompt: 'Complete: Ella ___ en Madrid desde hace dos años. (vivir)', word: 'vivir', english: 'to live', answer: 'vive', concept_id: 'present_er_ir', difficulty: 2 },
   { type: 'multiple_choice', prompt: 'Which is correct for "I went to the cinema"?', word: 'ir', english: 'to go', answer: 'Fui al cine.', options: ['Iba al cine.', 'Fui al cine.', 'Voy al cine.', 'Iré al cine.'], concept_id: 'preterite_regular', difficulty: 2 },
-  { type: 'fill_blank', prompt: 'Complete: ¿A ___ te gusta más, el café o el té? (cuál)', word: 'gustar', english: 'to like', answer: 'cuál', concept_id: 'gustar_type', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete: ¿___ te gusta más, el café o el té? (cuál)', word: 'gustar', english: 'to like', answer: 'cuál', concept_id: 'gustar_type', difficulty: 2 },
   { type: 'translation_to_spanish', prompt: "Translate: 'I am going to travel to Spain.'", english: 'I am going to travel to Spain.', answer: 'Voy a viajar a España.', word: 'viajar', concept_id: 'near_future', difficulty: 2 },
   { type: 'multiple_choice', prompt: 'How do you say "I was studying" (ongoing past) in Spanish?', word: 'estudiar', english: 'to study', answer: 'Estaba estudiando.', options: ['Estudié.', 'Estaba estudiando.', 'Estudiaré.', 'He estudiado.'], concept_id: 'present_progressive', difficulty: 2 },
   // B1
@@ -256,7 +256,7 @@ export const FALLBACK_EXERCISES = [
   { type: 'fill_blank', prompt: 'Complete: "Busco un piso que ___ (tener) terraza." (hypothetical/non-specific)', word: 'tener', english: 'to have', answer: 'tenga', concept_id: 'subjunctive_adjective_clauses', difficulty: 3 },
   { type: 'error_correction', prompt: 'Correct if wrong: "Conozco a alguien que habla chino." (a specific known person)', word: 'subjunctive not needed — specific referent', english: 'known/specific antecedent → indicative', answer: 'Conozco a alguien que habla chino. (correct — specific referent uses indicative)', concept_id: 'subjunctive_adjective_clauses', difficulty: 3 },
   // C1 — gerund_advanced
-  { type: 'translation_to_spanish', prompt: "Translate: 'Seeing you every day makes me happy.' (use gerund as subject)", english: 'Seeing you every day makes me happy.', answer: 'Verte todos los días me alegra.', word: 'ver', concept_id: 'gerund_advanced', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'Seeing you every day makes me happy.' (Spanish uses the infinitive, not a gerund, as the subject)", english: 'Seeing you every day makes me happy.', answer: 'Verte todos los días me alegra.', word: 'ver', concept_id: 'gerund_advanced', difficulty: 3 },
   { type: 'multiple_choice', prompt: 'Which use of gerund is INCORRECT in Spanish?', word: 'gerund as adjective', english: 'gerund cannot modify a noun in Spanish', answer: '"Una caja conteniendo libros" (incorrect — use que contiene)', options: ['"Salió corriendo" (he left running)', '"Está lloviendo" (it is raining)', '"Una caja conteniendo libros" (incorrect — use que contiene)', '"Llegó cantando" (she arrived singing)'], concept_id: 'gerund_advanced', difficulty: 3 },
   // C1 — ser_passive
   { type: 'translation_to_spanish', prompt: "Translate: 'The law was approved by parliament.'", english: 'The law was approved by parliament.', answer: 'La ley fue aprobada por el parlamento.', word: 'ser', concept_id: 'ser_passive', difficulty: 3 },
@@ -311,8 +311,8 @@ export const FALLBACK_EXERCISES = [
   { type: 'fill_blank', prompt: 'Complete: "Es importante que ___ (estudiar, tú) cada día."', word: 'estudiar', english: 'to study', answer: 'estudies', concept_id: 'subjunctive_noun_clauses', difficulty: 3 },
   // C1 — estilo_indirecto
   { type: 'translation_to_spanish', prompt: "Translate: 'She told me she was tired.'", english: 'She told me she was tired.', answer: 'Me dijo que estaba cansada.', word: 'decir', concept_id: 'estilo_indirecto', difficulty: 3 },
-  // C1 — condicional_probabilidad
-  { type: 'fill_blank', prompt: 'Complete: "No sé dónde está — ___ (estar) en el trabajo." (probability guess)', word: 'estar', english: 'to be', answer: 'estará', concept_id: 'condicional_probabilidad', difficulty: 3 },
+  // C1 — futuro_probabilidad
+  { type: 'fill_blank', prompt: 'Complete: "No sé dónde está — ___ (estar) en el trabajo." (probability guess)', word: 'estar', english: 'to be', answer: 'estará', concept_id: 'futuro_probabilidad', difficulty: 3 },
 
   // ── 3rd fallbacks for all concepts that had exactly 2 ──────────────────
   // A1 — noun_gender
@@ -348,7 +348,7 @@ export const FALLBACK_EXERCISES = [
   // A2 — direct_object_pronouns
   { type: 'translation_to_spanish', prompt: "Translate: 'He reads it every morning.' (lo = el periódico)", english: 'He reads it every morning.', answer: 'Lo lee todas las mañanas.', word: 'lo', concept_id: 'direct_object_pronouns', difficulty: 2 },
   // A2 — indirect_object_pronouns
-  { type: 'error_correction', prompt: 'Correct: "¿Me puedes prestar a mí el libro?"', word: 'drop "a mí" — le/me already covers it', english: 'indirect object pronoun replaces the phrase', answer: '¿Me puedes prestar el libro? (redundant "a mí" is optional emphasis, not required)', concept_id: 'indirect_object_pronouns', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Make more concise (remove the redundant emphasis): "¿Me puedes prestar a mí el libro?"', word: 'drop "a mí" — le/me already covers it', english: 'indirect object pronoun replaces the phrase; "a mí" is optional emphasis, not required', answer: '¿Me puedes prestar el libro?', concept_id: 'indirect_object_pronouns', difficulty: 2 },
   // A2 — demonstratives
   { type: 'translation_to_spanish', prompt: "Translate: 'I prefer those shoes (close to listener).'", english: 'I prefer those shoes (close to listener).', answer: 'Prefiero esos zapatos.', word: 'esos', concept_id: 'demonstratives', difficulty: 2 },
   // A2 — possessives
@@ -360,7 +360,7 @@ export const FALLBACK_EXERCISES = [
   // A2 — obligation_infinitive
   { type: 'fill_blank', prompt: 'Complete: "___ que reservar mesa — el restaurante está lleno." (one must)', word: 'hay', english: 'hay que = one must (impersonal)', answer: 'Hay', concept_id: 'obligation_infinitive', difficulty: 1 },
   // A2 — time_expressions
-  { type: 'fill_blank', prompt: 'Complete: "Vivo aquí ___ tres años." (for three years — present state)', word: 'hace', english: 'hace + time + que (how long)', answer: 'hace', concept_id: 'time_expressions', difficulty: 2 },
+  { type: 'fill_blank', prompt: 'Complete: "Vivo aquí ___ tres años." (for three years — present state)', word: 'desde hace', english: 'desde hace + time (how long)', answer: 'desde hace', concept_id: 'time_expressions', difficulty: 2 },
   // A2 — present_progressive
   { type: 'translation_to_spanish', prompt: "Translate: 'They are watching a film right now.'", english: 'They are watching a film right now.', answer: 'Están viendo una película ahora mismo.', word: 'ver', concept_id: 'present_progressive', difficulty: 2 },
   // A2 — irregular_present
@@ -374,7 +374,7 @@ export const FALLBACK_EXERCISES = [
   // A2 — gustar_type
   { type: 'fill_blank', prompt: 'Complete: "A mis padres les ___ el fútbol." (encantar)', word: 'encantar', english: 'to love (gustar-type)', answer: 'encanta', concept_id: 'gustar_type', difficulty: 2 },
   // A2 — adverbs_formation
-  { type: 'error_correction', prompt: 'Correct the adverb: "Habla muy *rápido de manera normal."', word: 'rápido → rápidamente', english: 'manner adverbs from adjectives add -mente', answer: 'Habla muy rápidamente.', concept_id: 'adverbs_formation', difficulty: 2 },
+  { type: 'error_correction', prompt: 'Correct the adverb (formal register): "Habla muy rápido."', word: 'rápido → rápidamente', english: 'manner adverbs from adjectives add -mente', answer: 'Habla muy rápidamente.', concept_id: 'adverbs_formation', difficulty: 2 },
   // B1 — acabar_de
   { type: 'translation_to_english', prompt: '¿Qué significa "Acabo de ver una película estupenda"?', word: 'acabar de', english: 'to have just', answer: 'I have just seen a great film.', concept_id: 'acabar_de', difficulty: 2 },
   // B1 — llevar_gerund
@@ -442,7 +442,7 @@ export const FALLBACK_EXERCISES = [
   // C1 — estilo_indirecto
   { type: 'fill_blank', prompt: 'Complete (indirect speech): "Dijo que ___ (estar, él) cansado." (backshift: estaba)', word: 'estar', english: 'to be (backshifted: estaba)', answer: 'estaba', concept_id: 'estilo_indirecto', difficulty: 3 },
   // C1 — nominalisation
-  { type: 'translation_to_spanish', prompt: "Translate: 'The difficulty lies in finding the right words.' (use el + infinitive)", english: 'The difficulty lies in finding the right words.', answer: 'La dificultad radica en encontrar las palabras adecuadas.', word: 'el + infinitivo', concept_id: 'nominalisation', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'The difficulty lies in finding the right words.'", english: 'The difficulty lies in finding the right words.', answer: 'La dificultad radica en encontrar las palabras adecuadas.', word: 'infinitivo nominal', concept_id: 'nominalisation', difficulty: 3 },
   // C1 — subjunctive_temporal
   { type: 'error_correction', prompt: 'Correct: "Te llamo cuando llegaré." (future time clause)', word: 'llegaré → llegue', english: 'future time clauses use subjunctive in Spanish', answer: 'Te llamo cuando llegue.', concept_id: 'subjunctive_temporal', difficulty: 3 },
   // C1 — cuantificadores

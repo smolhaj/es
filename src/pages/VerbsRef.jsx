@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
+import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { VERBS, CEFR_LEVELS, TYPES, TENSES, TENSE_LABELS, FORMS, FORM_KEYS } from '../content/verbs.js';
 import styles from './VerbsRef.module.css';
 
@@ -103,7 +104,7 @@ function VerbCard({ verb }) {
 
       {open && (
         <div className={styles.cardBody} onClick={e => e.stopPropagation()}>
-          {verb.note && <p className={styles.note}>{verb.note}</p>}
+          {verb.note && <p className={styles.note}><ClickableSpanish text={verb.note} minWords={2} /></p>}
 
           <div className={styles.tenseTabs}>
             <button
@@ -132,7 +133,7 @@ function VerbCard({ verb }) {
                     {FORM_KEYS.map((k, i) => (
                       <div key={k} className={styles.miniRow}>
                         <span className={styles.miniPronoun}>{FORMS[i]}</span>
-                        <span className={styles.miniForm}>{verb[t][k]}</span>
+                        <span className={styles.miniForm}><ClickableSpanish text={verb[t][k]} /></span>
                       </div>
                     ))}
                   </div>
@@ -144,7 +145,7 @@ function VerbCard({ verb }) {
               {FORM_KEYS.map((k, i) => (
                 <div key={k} className={styles.conjRow}>
                   <span className={styles.pronoun}>{FORMS[i]}</span>
-                  <span className={styles.form}>{verb[activeTense][k]}</span>
+                  <span className={styles.form}><ClickableSpanish text={verb[activeTense][k]} /></span>
                 </div>
               ))}
             </div>

@@ -511,7 +511,7 @@ export const IDIOMS = [
     meaning: 'strictly / to the letter / without exception',
     example: 'Cumplió las normas a rajatabla.',
     exampleEn: 'She followed the rules to the letter.',
-    register: 'informal',
+    register: 'neutral',
     category: 'precision',
   },
   {
@@ -544,9 +544,9 @@ export const IDIOMS = [
   {
     idiom: 'no hay dos sin tres',
     literal: 'there\'s no two without three',
-    meaning: 'bad things (or events) come in threes',
+    meaning: 'these things come in threes (used for both good and bad repeated events)',
     example: 'Van dos retrasos esta semana — no hay dos sin tres.',
-    exampleEn: 'That\'s two delays this week — things come in threes.',
+    exampleEn: 'That\'s two delays this week — these things come in threes.',
     register: 'informal',
     category: 'patterns',
   },
@@ -724,9 +724,9 @@ export const IDIOMS = [
   {
     idiom: 'a buenas horas mangas verdes',
     literal: 'at a good hour, green sleeves',
-    meaning: 'better late than never (ironic) / too little too late',
+    meaning: 'too little, too late (said sarcastically when help or a solution arrives after it\'s no longer needed)',
     example: '¡A buenas horas mangas verdes! Ya hemos terminado sin ti.',
-    exampleEn: 'Better late than never! We already finished without you.',
+    exampleEn: 'Oh, NOW you show up! We already finished without you.',
     register: 'colloquial',
     category: 'timing',
   },
@@ -1280,7 +1280,7 @@ export const IDIOMS = [
   },
   {
     idiom: 'hacer hincapié en',
-    literal: 'to make emphasis in',
+    literal: 'to plant one\'s foot firmly in',
     meaning: 'to emphasise / to stress / to highlight',
     example: 'El director hizo hincapié en la importancia del trabajo en equipo.',
     exampleEn: 'The director stressed the importance of teamwork.',
@@ -1335,7 +1335,7 @@ export const IDIOMS = [
   },
   {
     idiom: 'luchar a brazo partido',
-    literal: 'to fight with a broken arm',
+    literal: 'to fight arm to arm, unarmed',
     meaning: 'to fight tooth and nail / to struggle with all one\'s might',
     example: 'Los dos equipos lucharon a brazo partido por el título.',
     exampleEn: 'Both teams fought tooth and nail for the title.',
