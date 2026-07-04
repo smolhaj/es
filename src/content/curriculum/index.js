@@ -13,6 +13,10 @@ import whereYouAre from './unit05-where-you-are.js';
 import everydayActions from './unit06-everyday-actions.js';
 import askingQuestions from './unit07-asking-questions.js';
 import dailyRoutine from './unit08-daily-routine.js';
+import likesDislikes from './unit09-likes-dislikes.js';
+import peopleAroundYou from './unit10-people-around-you.js';
+import whatHappened from './unit11-what-happened.js';
+import rightNowSoon from './unit13-right-now-soon.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
@@ -23,6 +27,10 @@ const CONTENT = {
   'everyday-actions': everydayActions,
   'asking-questions': askingQuestions,
   'daily-routine': dailyRoutine,
+  'likes-dislikes': likesDislikes,
+  'people-around-you': peopleAroundYou,
+  'what-happened': whatHappened,
+  'right-now-soon': rightNowSoon,
 };
 
 export const UNIT_METADATA = [
