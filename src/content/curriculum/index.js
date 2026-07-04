@@ -26,10 +26,11 @@ import pastInDetail from './unit17-past-in-detail.js';
 import futureHypotheticals from './unit18-future-hypotheticals.js';
 import opinionsCommands from './unit19-opinions-commands.js';
 import nuanceConnection from './unit20-nuance-connection.js';
-import perfectTenses from './unit21-perfect-tenses.js';
-import passiveImpersonal from './unit22-passive-impersonal.js';
-import subjunctiveDeepDive from './unit23-subjunctive-deep-dive.js';
-import fineDetails from './unit24-fine-details.js';
+import efficiencyEmphasis from './unit21-efficiency-emphasis.js';
+import perfectTenses from './unit22-perfect-tenses.js';
+import passiveImpersonal from './unit23-passive-impersonal.js';
+import subjunctiveDeepDive from './unit24-subjunctive-deep-dive.js';
+import fineDetails from './unit25-fine-details.js';
 
 const CONTENT = {
   'why-spanish': whySpanish,
@@ -53,6 +54,7 @@ const CONTENT = {
   'future-hypotheticals': futureHypotheticals,
   'opinions-commands': opinionsCommands,
   'nuance-connection': nuanceConnection,
+  'efficiency-emphasis': efficiencyEmphasis,
   'perfect-tenses': perfectTenses,
   'passive-impersonal': passiveImpersonal,
   'subjunctive-deep-dive': subjunctiveDeepDive,
@@ -129,18 +131,21 @@ export const UNIT_METADATA = [
   { id: 'nuance-connection', order: 20, level: 'B1', title: 'Nuance & Connection',
     concepts: ['por_vs_para', 'relative_clauses', 'saber_vs_conocer', 'lo_neutro'],
     summary: 'The trickiest small words in Spanish, finally explained clearly.' },
+  { id: 'efficiency-emphasis', order: 21, level: 'B1', title: 'Efficiency & Emphasis',
+    concepts: ['object_pronoun_order', 'se_impersonal', 'infinitive_vs_subjunctive', 'exclamativas'],
+    summary: 'Stack your pronouns, drop the subject Spanish already knows, and say things with real feeling.' },
 
   // B2 — Advanced Structures
-  { id: 'perfect-tenses', order: 21, level: 'B2', title: 'Perfect Tenses',
+  { id: 'perfect-tenses', order: 22, level: 'B2', title: 'Perfect Tenses',
     concepts: ['present_perfect', 'pluperfect', 'future_perfect', 'conditional_perfect'],
     summary: 'Have done, had done, will have done, would have done.' },
-  { id: 'passive-impersonal', order: 22, level: 'B2', title: 'Passive & Impersonal',
+  { id: 'passive-impersonal', order: 23, level: 'B2', title: 'Passive & Impersonal',
     concepts: ['passive_voice', 'passive_se', 'ser_estar_participle'],
     summary: 'How Spanish avoids naming who did something.' },
-  { id: 'subjunctive-deep-dive', order: 23, level: 'B2', title: 'Subjunctive Deep Dive',
+  { id: 'subjunctive-deep-dive', order: 24, level: 'B2', title: 'Subjunctive Deep Dive',
     concepts: ['imperfect_subjunctive', 'si_clauses', 'subjunctive_adverbial', 'perfect_subjunctive'],
     summary: 'Hypotheticals, wishes, and if-clauses in the past.' },
-  { id: 'fine-details', order: 24, level: 'B2', title: 'Fine Details',
+  { id: 'fine-details', order: 25, level: 'B2', title: 'Fine Details',
     concepts: ['comparatives', 'diminutives_augmentatives', 'relative_pronouns_advanced', 'adjectives_ser_estar', 'adjective_position', 'verbos_cambio'],
     summary: 'The polish that separates advanced learners from natives.' },
 ];
