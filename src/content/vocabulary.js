@@ -69,7 +69,7 @@ export const VOCABULARY = [
   // ── DAYS & TIME ──────────────────────────────────────────────────────────
   { es: 'lunes', en: 'Monday', cefr: 'A1', domain: 'time', frequencyRank: 600, example: 'El lunes tengo clase.', exampleEn: 'On Monday I have class.' },
   { es: 'martes', en: 'Tuesday', cefr: 'A1', domain: 'time', frequencyRank: 620, example: 'El martes hay reunión.', exampleEn: 'On Tuesday there\'s a meeting.' },
-  { es: 'miércoles', en: 'Wednesday', cefr: 'A1', domain: 'time', frequencyRank: 640, example: 'Miércoles es el día de la semana.', exampleEn: 'Wednesday is the middle of the week.' },
+  { es: 'miércoles', en: 'Wednesday', cefr: 'A1', domain: 'time', frequencyRank: 640, example: 'Miércoles es la mitad de la semana.', exampleEn: 'Wednesday is the middle of the week.' },
   { es: 'jueves', en: 'Thursday', cefr: 'A1', domain: 'time', frequencyRank: 660, example: 'El jueves comemos juntos.', exampleEn: 'On Thursday we eat together.' },
   { es: 'viernes', en: 'Friday', cefr: 'A1', domain: 'time', frequencyRank: 680, example: 'El viernes salimos de fiesta.', exampleEn: 'On Friday we go out.' },
   { es: 'sábado', en: 'Saturday', cefr: 'A1', domain: 'time', frequencyRank: 700, example: 'El sábado descanso.', exampleEn: 'On Saturday I rest.' },
@@ -270,7 +270,7 @@ export const VOCABULARY = [
   { es: 'alto', en: 'tall / high', cefr: 'A1', domain: 'adjectives', frequencyRank: 85, example: 'Mi hermano es muy alto.', exampleEn: 'My brother is very tall.' },
   { es: 'bajo', en: 'short / low', cefr: 'A1', domain: 'adjectives', frequencyRank: 87, example: 'La silla es demasiado baja.', exampleEn: 'The chair is too low.' },
   { es: 'rico', en: 'rich / delicious', cefr: 'A1', domain: 'adjectives', frequencyRank: 90, example: '¡Qué rico está este plato!', exampleEn: 'This dish is delicious!' },
-  { es: 'pobre', en: 'poor', cefr: 'A1', domain: 'adjectives', frequencyRank: 92, example: '¡Pobrecito!', exampleEn: 'Poor thing!' },
+  { es: 'pobre', en: 'poor', cefr: 'A1', domain: 'adjectives', frequencyRank: 92, example: '¡Pobre hombre!', exampleEn: 'Poor man!' },
   { es: 'rápido', en: 'fast / quick', cefr: 'A1', domain: 'adjectives', frequencyRank: 94, example: 'El coche es muy rápido.', exampleEn: 'The car is very fast.' },
   { es: 'lento', en: 'slow', cefr: 'A1', domain: 'adjectives', frequencyRank: 96, example: 'Ve más lento, por favor.', exampleEn: 'Go slower, please.' },
   { es: 'caliente', en: 'hot (temperature)', cefr: 'A1', domain: 'adjectives', frequencyRank: 98, example: 'El café está caliente.', exampleEn: 'The coffee is hot.' },
@@ -528,7 +528,7 @@ export const VOCABULARY = [
   { es: 'estudiante', en: 'student', cefr: 'A1', domain: 'professions', frequencyRank: 70, example: 'Soy estudiante de lenguas.', exampleEn: 'I am a languages student.' },
   { es: 'abogado', en: 'lawyer', cefr: 'A2', domain: 'professions', frequencyRank: 150, example: 'Necesito hablar con un abogado.', exampleEn: 'I need to speak with a lawyer.' },
   { es: 'ingeniero', en: 'engineer', cefr: 'A2', domain: 'professions', frequencyRank: 160, example: 'Es ingeniero de software.', exampleEn: 'He is a software engineer.' },
-  { es: 'cocinero', en: 'cook / chef', cefr: 'A2', domain: 'professions', frequencyRank: 230, example: 'Trabaja como cocinero en un restaurante.', exampleEn: 'She works as a cook in a restaurant.' },
+  { es: 'cocinero', en: 'cook / chef', cefr: 'A2', domain: 'professions', frequencyRank: 230, example: 'Trabaja como cocinera en un restaurante.', exampleEn: 'She works as a cook in a restaurant.' },
   { es: 'mecánico', en: 'mechanic', cefr: 'A2', domain: 'professions', frequencyRank: 250, example: 'El mecánico reparó el coche.', exampleEn: 'The mechanic repaired the car.' },
   { es: 'vendedor', en: 'sales assistant / salesperson', cefr: 'A2', domain: 'professions', frequencyRank: 190, example: 'El vendedor me explicó el producto.', exampleEn: 'The salesperson explained the product to me.' },
   { es: 'actor', en: 'actor', cefr: 'A2', domain: 'professions', frequencyRank: 175, example: 'Es un actor muy conocido.', exampleEn: 'He is a very well-known actor.' },
@@ -542,7 +542,7 @@ export const VOCABULARY = [
   { es: 'científico', en: 'scientist', cefr: 'B1', domain: 'professions', frequencyRank: 170, example: 'Los científicos estudian el cambio climático.', exampleEn: 'Scientists study climate change.' },
   { es: 'contable', en: 'accountant (Spain)', cefr: 'B2', domain: 'professions', frequencyRank: 260, example: 'El contable revisa las cuentas de la empresa.', exampleEn: 'The accountant reviews the company accounts.' },
   { es: 'farmacéutico', en: 'pharmacist', cefr: 'B2', domain: 'professions', frequencyRank: 270, example: 'El farmacéutico me recomendó un antigripal.', exampleEn: 'The pharmacist recommended a flu remedy.' },
-  { es: 'intérprete', en: 'interpreter', cefr: 'B2', domain: 'professions', frequencyRank: 280, example: 'Trabaja como intérprete simultáneo en la ONU.', exampleEn: 'She works as a simultaneous interpreter at the UN.' },
+  { es: 'intérprete', en: 'interpreter', cefr: 'B2', domain: 'professions', frequencyRank: 280, example: 'Trabaja como intérprete simultánea en la ONU.', exampleEn: 'She works as a simultaneous interpreter at the UN.' },
   { es: 'fisioterapeuta', en: 'physiotherapist', cefr: 'B2', domain: 'professions', frequencyRank: 290, example: 'El fisioterapeuta me dio ejercicios para la espalda.', exampleEn: 'The physiotherapist gave me exercises for my back.' },
 
   // ── B1 WORDS ────────────────────────────────────────────────────────────
@@ -828,7 +828,7 @@ export const VOCABULARY = [
   { es: 'respaldar', en: 'to support / to back / to endorse', cefr: 'B2', domain: 'verbs', frequencyRank: 200, example: 'El partido respaldó la iniciativa.', exampleEn: 'The party backed the initiative.' },
   // More B2 nouns
   { es: 'herramienta', en: 'tool / instrument', cefr: 'B2', domain: 'nouns', frequencyRank: 135, example: 'La tecnología es una herramienta muy útil.', exampleEn: 'Technology is a very useful tool.' },
-  { es: 'empleo', en: 'employment / job', cefr: 'B2', domain: 'nouns', frequencyRank: 85, example: 'El desempleo es uno de los grandes problemas.', exampleEn: 'Unemployment is one of the big problems.' },
+  { es: 'empleo', en: 'employment / job', cefr: 'B2', domain: 'nouns', frequencyRank: 85, example: 'Consiguió un empleo en una empresa multinacional.', exampleEn: 'He got a job at a multinational company.' },
   { es: 'reforma', en: 'reform / renovation', cefr: 'B2', domain: 'nouns', frequencyRank: 110, example: 'El gobierno planea una reforma educativa.', exampleEn: 'The government plans an educational reform.' },
   { es: 'informe', en: 'report / paper', cefr: 'B2', domain: 'nouns', frequencyRank: 100, example: 'El informe señala varios fallos.', exampleEn: 'The report points out several failures.' },
   { es: 'criterio', en: 'criterion / standard / judgement', cefr: 'B2', domain: 'nouns', frequencyRank: 140, example: 'El criterio de selección es la experiencia.', exampleEn: 'The selection criterion is experience.' },
@@ -970,14 +970,14 @@ export const VOCABULARY = [
   { es: 'calcetines', en: 'socks', cefr: 'A1', domain: 'clothes', frequencyRank: 500, example: 'Llevo calcetines blancos.', exampleEn: 'I am wearing white socks.' },
   { es: 'abrigo', en: 'coat / overcoat', cefr: 'A1', domain: 'clothes', frequencyRank: 510, example: 'Ponte el abrigo — hace frío.', exampleEn: 'Put on your coat — it is cold.' },
   { es: 'chaqueta', en: 'jacket', cefr: 'A1', domain: 'clothes', frequencyRank: 520, example: 'Olvidé la chaqueta en el restaurante.', exampleEn: 'I left my jacket at the restaurant.' },
-  { es: 'jersey', en: 'jumper / sweater', cefr: 'A1', domain: 'clothes', frequencyRank: 530, example: 'Este jersey de lana pica.', exampleEn: 'This wool jumper is itchy.' },
+  { es: 'jersey', en: 'jumper / sweater (Spain) / suéter (LatAm)', cefr: 'A1', domain: 'clothes', frequencyRank: 530, example: 'Este jersey de lana pica.', exampleEn: 'This wool jumper is itchy.' },
   { es: 'camisa', en: 'shirt', cefr: 'A2', domain: 'clothes', frequencyRank: 540, example: 'Lleva una camisa blanca y corbata.', exampleEn: 'He is wearing a white shirt and tie.' },
   { es: 'corbata', en: 'tie', cefr: 'A2', domain: 'clothes', frequencyRank: 560, example: 'Tienes que ponerte corbata en la entrevista.', exampleEn: 'You have to wear a tie to the interview.' },
   { es: 'bufanda', en: 'scarf', cefr: 'A2', domain: 'clothes', frequencyRank: 570, example: 'Lleva bufanda cuando hace viento.', exampleEn: 'Wear a scarf when it is windy.' },
   { es: 'guantes', en: 'gloves', cefr: 'A2', domain: 'clothes', frequencyRank: 580, example: 'Perdí un guante en el metro.', exampleEn: 'I lost a glove on the underground.' },
   { es: 'sombrero', en: 'hat (brimmed)', cefr: 'A2', domain: 'clothes', frequencyRank: 590, example: 'Lleva sombrero para protegerse del sol.', exampleEn: 'She wears a hat to protect herself from the sun.' },
   { es: 'vaqueros', en: 'jeans', cefr: 'A2', domain: 'clothes', frequencyRank: 600, example: 'Prefiero los vaqueros a los pantalones de vestir.', exampleEn: 'I prefer jeans to dress trousers.' },
-  { es: 'zapatillas', en: 'trainers / sneakers', cefr: 'A2', domain: 'clothes', frequencyRank: 610, example: 'Uso zapatillas para ir al gimnasio.', exampleEn: 'I wear trainers to go to the gym.' },
+  { es: 'zapatillas', en: 'trainers / sneakers (Spain) — in Mexico "zapatillas" usually means heels or slippers; "tenis" is used for sneakers there', cefr: 'A2', domain: 'clothes', frequencyRank: 610, example: 'Uso zapatillas para ir al gimnasio.', exampleEn: 'I wear trainers to go to the gym.' },
   { es: 'cinturón', en: 'belt', cefr: 'A2', domain: 'clothes', frequencyRank: 620, example: 'Necesito un cinturón para estos pantalones.', exampleEn: 'I need a belt for these trousers.' },
   { es: 'bolso', en: 'handbag / bag', cefr: 'A2', domain: 'clothes', frequencyRank: 630, example: 'Dejé las llaves dentro del bolso.', exampleEn: 'I left my keys inside the bag.' },
   { es: 'talla', en: 'size (clothing)', cefr: 'A2', domain: 'clothes', frequencyRank: 640, example: '¿Qué talla usas?', exampleEn: 'What size do you wear?' },
@@ -990,7 +990,7 @@ export const VOCABULARY = [
 
   // ── HOUSE & HOME ─────────────────────────────────────────────────────────
   { es: 'casa', en: 'house / home', cefr: 'A1', domain: 'house', frequencyRank: 50, example: 'Vivo en una casa pequeña.', exampleEn: 'I live in a small house.' },
-  { es: 'piso', en: 'flat / apartment / floor', cefr: 'A1', domain: 'house', frequencyRank: 150, example: 'Alquilo un piso en el centro.', exampleEn: 'I rent a flat in the city centre.' },
+  { es: 'piso', en: 'flat / apartment (Spain; departamento in LatAm) / floor (of a building)', cefr: 'A1', domain: 'house', frequencyRank: 150, example: 'Alquilo un piso en el centro.', exampleEn: 'I rent a flat in the city centre.' },
   { es: 'habitación', en: 'room / bedroom', cefr: 'A1', domain: 'house', frequencyRank: 200, example: 'Mi habitación da a la calle.', exampleEn: 'My bedroom faces the street.' },
   { es: 'cocina', en: 'kitchen', cefr: 'A1', domain: 'house', frequencyRank: 220, example: 'Cocino en la cocina todos los días.', exampleEn: 'I cook in the kitchen every day.' },
   { es: 'baño', en: 'bathroom', cefr: 'A1', domain: 'house', frequencyRank: 230, example: '¿Dónde está el baño, por favor?', exampleEn: 'Where is the bathroom, please?' },
@@ -1071,7 +1071,7 @@ export const VOCABULARY = [
   { es: 'seguro de viaje', en: 'travel insurance', cefr: 'B2', domain: 'travel', frequencyRank: 560, example: 'Contrata un seguro de viaje por si acaso.', exampleEn: 'Take out travel insurance just in case.' },
 
   // ── TECHNOLOGY ───────────────────────────────────────────────────────────
-  { es: 'móvil', en: 'mobile phone / cell phone', cefr: 'A2', domain: 'technology', frequencyRank: 200, example: 'Se me ha olvidado el móvil en casa.', exampleEn: 'I have left my mobile phone at home.' },
+  { es: 'móvil', en: 'mobile phone (Spain) / celular (LatAm)', cefr: 'A2', domain: 'technology', frequencyRank: 200, example: 'Se me ha olvidado el móvil en casa.', exampleEn: 'I have left my mobile phone at home.' },
   { es: 'ordenador', en: 'computer (Spain) / computadora (LatAm)', cefr: 'A2', domain: 'technology', frequencyRank: 210, example: 'Trabajo delante del ordenador todo el día.', exampleEn: 'I work in front of the computer all day.' },
   { es: 'internet', en: 'internet', cefr: 'A2', domain: 'technology', frequencyRank: 180, example: '¿Tienes wifi? Necesito conectarme a internet.', exampleEn: 'Do you have wifi? I need to connect to the internet.' },
   { es: 'contraseña', en: 'password', cefr: 'A2', domain: 'technology', frequencyRank: 400, example: 'He olvidado mi contraseña otra vez.', exampleEn: 'I have forgotten my password again.' },
