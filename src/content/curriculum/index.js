@@ -12,6 +12,7 @@ import whoYouAre from './unit04-who-you-are.js';
 import whereYouAre from './unit05-where-you-are.js';
 import everydayActions from './unit06-everyday-actions.js';
 import askingQuestions from './unit07-asking-questions.js';
+import dailyRoutine from './unit08-daily-routine.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
@@ -21,6 +22,7 @@ const CONTENT = {
   'where-you-are': whereYouAre,
   'everyday-actions': everydayActions,
   'asking-questions': askingQuestions,
+  'daily-routine': dailyRoutine,
 };
 
 export const UNIT_METADATA = [
