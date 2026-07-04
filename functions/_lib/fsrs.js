@@ -64,8 +64,19 @@ export function scheduleReview(item, grade) {
     stability = Math.max(0.01, stability);
   }
 
-  // Schedule for 90% retention: due in `stability` days
-  const dueAt = new Date(Date.now() + Math.round(stability) * 86400000).toISOString();
+  // Schedule for 90% retention: due in `stability` days. Deliberately NOT
+  // rounded to a whole day — a struggling/new card's stability is routinely
+  // well under 1 day (e.g. 0.02-0.4 days after repeated "Again" grades),
+  // and Math.round() used to truncate all of that down to 0, scheduling
+  // the card due at essentially the same instant it was just reviewed. That
+  // card then never actually got spaced further out: every subsequent
+  // review recomputed another sub-day stability, rounded to 0 again, so it
+  // stayed permanently "due" and kept winning the soonest-due sort in every
+  // future session — the exact "I keep getting the same words" bug. Real
+  // SRS systems (Anki's learning steps, etc.) genuinely do re-show a failed
+  // card within minutes to hours, not after a full day; using the raw
+  // fractional stability here matches that and lets it actually recover.
+  const dueAt = new Date(Date.now() + stability * 86400000).toISOString();
 
   return {
     stability,
