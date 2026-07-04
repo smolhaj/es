@@ -100,5 +100,15 @@ export const api = {
         method: 'POST',
         body: JSON.stringify({ word, translation, domain }),
       }, token),
+  },
+
+  flashcards: {
+    progress: (token) => req('/flashcards/progress', {}, token),
+
+    review: (token, cardId, grade) =>
+      req('/flashcards/review', {
+        method: 'POST',
+        body: JSON.stringify({ cardId, grade })
+      }, token),
   }
 };
