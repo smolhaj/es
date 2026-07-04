@@ -4,25 +4,50 @@ import { useAuth } from '../hooks/useAuth.jsx';
 import CefrBadge from './CefrBadge.jsx';
 import styles from './NavBar.module.css';
 
+const REFERENCE_LINKS = [
+  { to: '/concepts', label: 'Concepts' },
+  { to: '/grammar', label: 'Grammar' },
+  { to: '/verbs', label: 'Verbs' },
+  { to: '/vocab', label: 'Vocabulary' },
+  { to: '/vocab-review', label: 'Vocab review' },
+  { to: '/idioms', label: 'Idioms' },
+  { to: '/false-friends', label: 'False friends' },
+  { to: '/pronunciation', label: 'Pronunciation' },
+  { to: '/regional', label: 'Regional' },
+  { to: '/resources', label: 'Free resources' },
+];
+
+const ACCOUNT_LINKS = [
+  { to: '/profile', label: 'Profile' },
+  { to: '/history', label: 'History' },
+  { to: '/writing', label: 'Writing' },
+];
+
 export default function NavBar({ cefrLevel }) {
   const { isLoggedIn, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  // Which desktop dropdown is open, if any: null | 'reference' | 'account'.
+  // A single slot (rather than two booleans) keeps at most one open at once.
+  const [openMenu, setOpenMenu] = useState(null);
   const menuRef = useRef(null);
 
-  // Close menu on route change
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  // Close everything on route change
+  useEffect(() => { setOpen(false); setOpenMenu(null); }, [location.pathname]);
 
-  // Close menu when clicking outside
+  // Close menu/dropdowns when clicking outside
   useEffect(() => {
-    if (!open) return;
+    if (!open && !openMenu) return;
     function handleClick(e) {
-      if (menuRef.current && !menuRef.current.contains(e.target)) setOpen(false);
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpen(false);
+        setOpenMenu(null);
+      }
     }
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
-  }, [open]);
+  }, [open, openMenu]);
 
   // The mobile menu is a full-height panel over the page, so lock body
   // scroll while it's open — otherwise the page underneath scrolls along
@@ -64,9 +89,47 @@ export default function NavBar({ cefrLevel }) {
               <Link to="/learn" className={`btn btn-ghost ${styles.navLink}`}>Learn</Link>
               <Link to="/session" className={`btn btn-ghost ${styles.navLink}`}>Practice</Link>
               <Link to="/flashcards" className={`btn btn-ghost ${styles.navLink}`}>Flashcards</Link>
+
+              <div className={styles.dropdown}>
+                <button
+                  className={`btn btn-ghost ${styles.navLink}`}
+                  aria-expanded={openMenu === 'reference'}
+                  aria-haspopup="true"
+                  onClick={() => setOpenMenu(m => m === 'reference' ? null : 'reference')}
+                >
+                  Reference ▾
+                </button>
+                {openMenu === 'reference' && (
+                  <div className={styles.dropdownMenu} role="menu">
+                    {REFERENCE_LINKS.map(l => (
+                      <Link key={l.to} to={l.to} className={styles.dropdownLink} role="menuitem">{l.label}</Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <Link to="/dashboard" className={`btn btn-ghost ${styles.navLink}`}>Dashboard</Link>
-              <Link to="/profile" className={`btn btn-ghost ${styles.navLink}`}>Profile</Link>
-              <button onClick={handleLogout} className={`btn btn-ghost ${styles.navLink}`}>Sign out</button>
+
+              <div className={styles.dropdown}>
+                <button
+                  className={`btn btn-ghost ${styles.navLink}`}
+                  aria-expanded={openMenu === 'account'}
+                  aria-haspopup="true"
+                  onClick={() => setOpenMenu(m => m === 'account' ? null : 'account')}
+                >
+                  Account ▾
+                </button>
+                {openMenu === 'account' && (
+                  <div className={styles.dropdownMenu} role="menu">
+                    {ACCOUNT_LINKS.map(l => (
+                      <Link key={l.to} to={l.to} className={styles.dropdownLink} role="menuitem">{l.label}</Link>
+                    ))}
+                    <button onClick={handleLogout} className={`${styles.dropdownLink} ${styles.dropdownLinkBtn}`} role="menuitem">
+                      Sign out
+                    </button>
+                  </div>
+                )}
+              </div>
             </>
           ) : (
             <>
@@ -95,19 +158,20 @@ export default function NavBar({ cefrLevel }) {
         <div className={styles.mobileMenu} role="menu">
           {isLoggedIn ? (
             <>
-              <Link to="/learn"     className={styles.mobileLink} role="menuitem">Learn</Link>
-              <Link to="/session"   className={styles.mobileLink} role="menuitem">Practice</Link>
+              <Link to="/learn"      className={styles.mobileLink} role="menuitem">Learn</Link>
+              <Link to="/session"    className={styles.mobileLink} role="menuitem">Practice</Link>
               <Link to="/flashcards" className={styles.mobileLink} role="menuitem">Flashcards</Link>
-              <Link to="/dashboard" className={styles.mobileLink} role="menuitem">Dashboard</Link>
-              <Link to="/concepts"  className={styles.mobileLink} role="menuitem">Concepts</Link>
-              <Link to="/grammar"   className={styles.mobileLink} role="menuitem">Grammar</Link>
-              <Link to="/verbs"     className={styles.mobileLink} role="menuitem">Verbs</Link>
-              <Link to="/vocab"     className={styles.mobileLink} role="menuitem">Vocabulary</Link>
-              <Link to="/idioms"    className={styles.mobileLink} role="menuitem">Idioms</Link>
-              <Link to="/regional"  className={styles.mobileLink} role="menuitem">Regional</Link>
-              <Link to="/resources" className={styles.mobileLink} role="menuitem">Free resources</Link>
-              <Link to="/history"   className={styles.mobileLink} role="menuitem">History</Link>
-              <Link to="/profile"   className={styles.mobileLink} role="menuitem">Profile</Link>
+              <Link to="/dashboard"  className={styles.mobileLink} role="menuitem">Dashboard</Link>
+
+              <div className={styles.mobileSectionLabel}>Reference</div>
+              {REFERENCE_LINKS.map(l => (
+                <Link key={l.to} to={l.to} className={styles.mobileLink} role="menuitem">{l.label}</Link>
+              ))}
+
+              <div className={styles.mobileSectionLabel}>Account</div>
+              {ACCOUNT_LINKS.map(l => (
+                <Link key={l.to} to={l.to} className={styles.mobileLink} role="menuitem">{l.label}</Link>
+              ))}
               <button onClick={handleLogout} className={`${styles.mobileLink} ${styles.mobileLinkBtn}`} role="menuitem">
                 Sign out
               </button>

@@ -482,6 +482,57 @@ same shared file).
   logic that costs nothing to leave in place. If streaks are ever
   reintroduced to the UI, reconcile the copy first.
 
+## Navigation reorganization (this session)
+
+**Problem found while scoping "better UI/organization" QOL work:** the
+desktop nav (`NavBar.jsx`) only showed 5 links (Learn, Practice,
+Flashcards, Dashboard, Profile), while the mobile hamburger menu had 13 —
+the two were hand-maintained separately and had drifted apart. Worse,
+4 real pages had **no nav entry on either breakpoint**: `/vocab-review`,
+`/false-friends`, `/pronunciation`, `/writing` — reachable only via
+buttons buried in `Dashboard.jsx`. A desktop user had no way to discover
+the reference pages at all short of going through Dashboard first.
+
+Fixed by unifying desktop and mobile into one shared link list
+(`REFERENCE_LINKS`, `ACCOUNT_LINKS` arrays at the top of `NavBar.jsx`),
+rendered as:
+- Desktop: flat primary links (Learn, Practice, Flashcards, Dashboard)
+  plus two click-toggle dropdowns, **Reference** (Concepts, Grammar,
+  Verbs, Vocabulary, Vocab review, Idioms, False friends, Pronunciation,
+  Regional, Free resources) and **Account** (Profile, History, Writing,
+  Sign out). Dropdowns are `position: absolute` against a `position:
+  relative` `.dropdown` wrapper — deliberately not `fixed`, so the
+  existing `backdrop-filter`-on-`<header>` containing-block gotcha
+  (documented in "Code/design gotchas" below) doesn't apply to them.
+- Mobile: the same two link arrays rendered into the existing full-panel
+  menu, under non-interactic `REFERENCE`/`ACCOUNT` section-label
+  headings instead of one long undifferentiated list.
+- A single `openMenu` state (`null | 'reference' | 'account'`) keeps at
+  most one dropdown open at a time; outside-click and route-change both
+  close everything, extending the pattern the mobile hamburger already
+  used.
+
+`Dashboard.jsx`'s own "Reference links" section (a 14-link row at the
+bottom of the page, `.refSection`/`.refLink` in `Dashboard.module.css`)
+was then removed entirely, along with its now-dead CSS — it was fully
+redundant with the new nav dropdowns and existed in the first place
+because the nav didn't surface these pages.
+
+Verified via Playwright against a real local `wrangler pages dev` + D1
+server at both a desktop (1280px) and mobile (390px) viewport: all 10
+Reference items and 3 Account items + Sign out render and are clickable
+in the desktop dropdowns; the dropdown closes on an actual outside click
+(not a click inside the nav's own `menuRef` wrapper, which doesn't count
+as "outside" — this tripped up the first version of the test itself, not
+the app); all 18 items are present in the mobile panel; clicking a link
+actually navigates. One test-only gotcha worth remembering: a Playwright
+`fullPage: true` screenshot of the mobile menu showed the Dashboard page
+bleeding through underneath it — this is a known `position: fixed` +
+full-page-screenshot artifact, not a real bug (confirmed via a normal
+viewport-only screenshot, which shows the panel correctly covering the
+full viewport with no bleed-through, exactly as a real user would see
+it).
+
 ## Free Resources page (this session)
 
 `/resources` (`src/pages/Resources.jsx`, `src/content/resources.js`) — a
