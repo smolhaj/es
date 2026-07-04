@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
+import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { PRONUNCIATION_RULES, CATEGORIES } from '../content/pronunciation.js';
 import styles from './Pronunciation.module.css';
 
@@ -25,7 +26,7 @@ function RuleCard({ rule, expanded, onToggle }) {
 
       {expanded && (
         <div className={styles.cardBody} onClick={e => e.stopPropagation()}>
-          {rule.rule && <p className={styles.ruleText}>{rule.rule}</p>}
+          {rule.rule && <p className={styles.ruleText}><ClickableSpanish text={rule.rule} minWords={2} /></p>}
 
           {rule.sounds?.length > 0 && (
             <div className={styles.sounds}>
@@ -36,7 +37,7 @@ function RuleCard({ rule, expanded, onToggle }) {
                     <span className={styles.soundLetter}>{s.letter}</span>
                     <span className={styles.soundIpa}>{s.ipa}</span>
                     <span className={styles.soundLike}>{s.like}</span>
-                    <span className={styles.soundExample}>{s.example}</span>
+                    <span className={styles.soundExample}><ClickableSpanish text={s.example} /></span>
                   </div>
                 ))}
               </div>
@@ -48,7 +49,7 @@ function RuleCard({ rule, expanded, onToggle }) {
               <h4 className={styles.subhead}>Tips</h4>
               <ul className={styles.tipList}>
                 {rule.tips.map((t, i) => (
-                  <li key={i} className={styles.tipItem}>{t}</li>
+                  <li key={i} className={styles.tipItem}><ClickableSpanish text={t} minWords={2} /></li>
                 ))}
               </ul>
             </div>

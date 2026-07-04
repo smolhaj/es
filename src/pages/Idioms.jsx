@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
+import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { IDIOMS, CATEGORIES } from '../content/idioms.js';
 import styles from './Idioms.module.css';
 
@@ -48,7 +49,7 @@ function IdiomCard({ item }) {
             <span className={styles.literalText}>"{item.literal}"</span>
           </div>
           <div className={styles.example}>
-            <p className={styles.exES}>{item.example}</p>
+            <p className={styles.exES}><ClickableSpanish text={item.example} /></p>
             <p className={styles.exEN}>{item.exampleEn}</p>
           </div>
         </div>

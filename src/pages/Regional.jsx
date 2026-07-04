@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
+import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { REGIONAL_SECTIONS, CATEGORIES } from '../content/regional.js';
 import styles from './Regional.module.css';
 
@@ -68,7 +69,7 @@ function RegionalCard({ section }) {
 
       {open && (
         <div className={styles.cardBody} onClick={e => e.stopPropagation()}>
-          <p className={styles.summary}>{section.summary}</p>
+          <p className={styles.summary}><ClickableSpanish text={section.summary} minWords={2} /></p>
 
           <table className={styles.table}>
             <thead className={styles.tableHead}>
@@ -82,8 +83,8 @@ function RegionalCard({ section }) {
               {section.comparisons.map((c, i) => (
                 <tr key={i} className={styles.tableRow}>
                   <td className={styles.tdContext}>{c.context}</td>
-                  <td className={styles.tdSpain}>{c.spain}</td>
-                  <td className={styles.tdLatam}>{c.latam}</td>
+                  <td className={styles.tdSpain}><ClickableSpanish text={c.spain} minWords={2} /></td>
+                  <td className={styles.tdLatam}><ClickableSpanish text={c.latam} minWords={2} /></td>
                 </tr>
               ))}
             </tbody>
@@ -92,7 +93,7 @@ function RegionalCard({ section }) {
           {section.tip && (
             <div className={styles.tip}>
               <span className={styles.tipLabel}>Tip</span>
-              {section.tip}
+              <ClickableSpanish text={section.tip} minWords={2} />
             </div>
           )}
         </div>
