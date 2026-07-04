@@ -331,13 +331,17 @@ session and reference pages — it doesn't replace either.
 - New registrations land on `/get-started` instead of `/dashboard`
   (`Auth.jsx`); existing logins go to `/dashboard` as before.
 
-**Status — 7 of 24 outlined units written** (all of A1, the full beginner
-tier): Unit 1 Saying Hello, Unit 2 Numbers & Time, Unit 3 People & Things,
-Unit 4 Who You Are, Unit 5 Where You Are, Unit 6 Everyday Actions, Unit 7
-Asking Questions. **Units 8-24 (A2 through B2) are outlined in
-`UNIT_METADATA` but not written** — see "What still needs to be built" for
-the full remaining list and the exact process to follow (mirrors how 2-7
-were built: one dedicated content-writing agent per unit, each reading
+**Status — 15 of 24 outlined units written (all of A1 + A2, the full
+beginner-through-elementary tier)**: Unit 1 Saying Hello, Unit 2 Numbers &
+Time, Unit 3 People & Things, Unit 4 Who You Are, Unit 5 Where You Are,
+Unit 6 Everyday Actions, Unit 7 Asking Questions, Unit 8 Your Daily
+Routine, Unit 9 Likes & Dislikes, Unit 10 People & Things Around You, Unit
+11 What Happened, Unit 12 Obligations & Requests, Unit 13 Right Now &
+Soon, Unit 14 Comparing & Describing, Unit 15 Irregular Verbs in the
+Present. **Units 16-24 (B1/B2) are outlined in `UNIT_METADATA` but not
+written** — see "What still needs to be built" for the full remaining list
+and the exact process to follow (mirrors how 2-15 were built: one
+dedicated content-writing agent per unit, each reading
 `unit01-saying-hello.js` as the quality/shape reference, `ES.md`'s
 Pedagogical Principles section, and the relevant `concepts.js` +
 `grammar.js` entries before writing, with mandatory WebSearch verification
@@ -616,26 +620,11 @@ elsewhere in the codebase; follow the referenced pattern.
    `last_reviewed_at` falls on today's date and `review_count = 1`).
    Low priority — acceptable for solo/small-group $0 use — but worth fixing
    if this becomes a real multi-user product.
-1. **Curriculum units 9–15 (rest of A2) still unwritten — units 8 done,
-   9-15 were interrupted by a shared account session-limit mid-batch.**
-   Unit 8 (Your Daily Routine) is done and live. Units 9-15 were being
-   written by 7 parallel agents when all 7 hit "You've hit your session
-   limit" simultaneously, still in the research/WebSearch phase (none of
-   them reached the file-write step) — check `git status` for any of
-   `unit09` through `unit15` before re-launching to avoid redoing
-   completed work. Re-launch with the same one-agent-per-unit approach;
-   the original briefs (concepts, sequencing notes about the gustar/
-   near-future prerequisite-ordering quirk — see below) aren't preserved
-   automatically, so re-derive them from `UNIT_METADATA` in
-   `src/content/curriculum/index.js` and this note: Unit 9 (likes-dislikes)
-   should teach gustar's pronouns (me/te/le/nos/os/les) as a fixed
-   memorizable set without presupposing Unit 10's formal indirect-object-
-   pronoun theory; Unit 13 (right-now-soon) should teach "ir a +
-   infinitive" using only ir's own present-tense forms inline, without
-   presupposing Unit 14's prepositions unit or Unit 15's irregular-present
-   unit — both are intentional, standard-textbook sequencing choices, not
-   bugs to fix by reordering `UNIT_METADATA`.
-2. **Curriculum units 16–24 (B1/B2, not yet started).** Fully outlined in
+1. **Curriculum units 16–24 (B1/B2, not yet started).** Units 1-15 (all
+   of A1+A2) are done and live — units 9-15 needed a second attempt after
+   the first parallel batch hit a shared account session-limit mid-batch
+   (all 7 agents died in the research phase before writing anything; the
+   retry succeeded cleanly). Units 16-24 are fully outlined in
    `UNIT_METADATA` in
    `src/content/curriculum/index.js` (id, level, title, concepts, summary
    already decided — do not re-litigate the outline) but have no content
