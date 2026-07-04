@@ -30,6 +30,35 @@
   border-radius: var(--r-lg);
 }
 
+/* Reading passage (C1 units) — an optional short text shown before the
+   prompt, for exercises where the question is about a passage/dialogue
+   rather than a single sentence. */
+.passage {
+  background: var(--bg-alt);
+  border-radius: var(--r-sm);
+  padding: var(--sp-5);
+  margin-bottom: var(--sp-6);
+}
+
+.passageRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+
+.passageEs {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+  white-space: pre-line;
+}
+
+.passageEn {
+  margin-top: var(--sp-2);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
 .prompt {
   font-family: var(--font-serif);
   font-size: 1.5rem;

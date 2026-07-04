@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import SpeakButton from './SpeakButton.jsx';
 import styles from './ExerciseCard.module.css';
 
 export default function ExerciseCard({ exercise, onSubmit, disabled }) {
@@ -53,6 +54,16 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
         <span className={styles.typeLabel}>{typeLabel(exercise.type)}</span>
         {exercise.word && <span className={styles.word}>{exercise.word}</span>}
       </div>
+
+      {exercise.passage && (
+        <div className={styles.passage}>
+          <div className={styles.passageRow}>
+            <SpeakButton text={exercise.passage} />
+            <p className={styles.passageEs}>{exercise.passage}</p>
+          </div>
+          {exercise.passageEn && <p className={styles.passageEn}>{exercise.passageEn}</p>}
+        </div>
+      )}
 
       <p className={styles.prompt}>{exercise.prompt}</p>
 
