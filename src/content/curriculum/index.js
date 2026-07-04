@@ -20,6 +20,10 @@ import obligationsRequests from './unit12-obligations-requests.js';
 import rightNowSoon from './unit13-right-now-soon.js';
 import comparingDescribing from './unit14-comparing-describing.js';
 import irregularPresent from './unit15-irregular-present.js';
+import recentOngoing from './unit16-recent-ongoing.js';
+import pastInDetail from './unit17-past-in-detail.js';
+import futureHypotheticals from './unit18-future-hypotheticals.js';
+import opinionsCommands from './unit19-opinions-commands.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
@@ -37,6 +41,10 @@ const CONTENT = {
   'right-now-soon': rightNowSoon,
   'comparing-describing': comparingDescribing,
   'irregular-present': irregularPresent,
+  'recent-ongoing': recentOngoing,
+  'past-in-detail': pastInDetail,
+  'future-hypotheticals': futureHypotheticals,
+  'opinions-commands': opinionsCommands,
 };
 
 export const UNIT_METADATA = [
