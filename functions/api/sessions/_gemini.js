@@ -801,7 +801,11 @@ export const FALLBACK_EXERCISES = [
   { type: 'error_correction', prompt: 'Correct: "¿Qué piensas en esta idea?" (asking for an opinion)', word: 'piensas en → piensas de', english: 'pensar de = to have an opinion of', answer: '¿Qué piensas de esta idea?', concept_id: 'verbos_preposicionales', difficulty: 3 },
 ];
 
-function fallback() {
+function fallback(focusConcept = null) {
+  if (focusConcept) {
+    const matches = FALLBACK_EXERCISES.filter(e => e.concept_id === focusConcept);
+    if (matches.length) return matches[Math.floor(Math.random() * matches.length)];
+  }
   return FALLBACK_EXERCISES[Math.floor(Math.random() * FALLBACK_EXERCISES.length)];
 }
 
@@ -817,7 +821,7 @@ function gradeLocally(exercise, learnerAnswer) {
   return normalizeAnswer(learnerAnswer) === normalizeAnswer(exercise.answer);
 }
 
-export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false, briefing = null) {
+export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false, briefing = null, focusConcept = null) {
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
 
   let systemPrompt = BASE_SYSTEM_PROMPT;
@@ -833,6 +837,14 @@ Correct answer: "${exercise.answer}"
 Learner answered: "${learnerAnswer}"
 
 Evaluate and give the next exercise.`;
+  }
+
+  // Gemini has no cross-request memory, so without this reminder the focus
+  // instruction given at session start (see start.js) only ever reaches the
+  // model once — every subsequent turn drifted to whatever concept Gemini
+  // felt like next, defeating "Drill this concept" mode after exercise 1.
+  if (focusConcept && !isFirstTurn) {
+    prompt += `\n\nReminder: this whole session is focused on drilling the concept "${focusConcept}". The next exercise must also target concept_id "${focusConcept}".`;
   }
 
   if (isFirstTurn) {
@@ -877,7 +889,7 @@ Evaluate and give the next exercise.`;
       const data = await res.json();
       const raw = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
 
-      return parseGeminiResponse(raw, isFirstTurn);
+      return parseGeminiResponse(raw, isFirstTurn, focusConcept);
     } catch (err) {
       lastErr = err;
       // A thrown non-ok-status Error (from just above) already had its
@@ -894,10 +906,10 @@ Evaluate and give the next exercise.`;
   }
 
   console.error('Gemini call failed after retries, using fallback exercise:', lastErr);
-  return { correct: gradeLocally(exercise, learnerAnswer), feedback: '', exercise: fallback(), greeting: null, conceptNote: null };
+  return { correct: gradeLocally(exercise, learnerAnswer), feedback: '', exercise: fallback(focusConcept), greeting: null, conceptNote: null };
 }
 
-function parseGeminiResponse(raw, isFirstTurn) {
+function parseGeminiResponse(raw, isFirstTurn, focusConcept = null) {
   let greeting = null;
   let body = raw;
 
@@ -923,7 +935,7 @@ function parseGeminiResponse(raw, isFirstTurn) {
   if (exerciseMatch) {
     try { exercise = JSON.parse(exerciseMatch[1]); } catch {}
   }
-  if (!exercise) exercise = fallback();
+  if (!exercise) exercise = fallback(focusConcept);
 
   const conceptNoteMatch = body.match(/\[CONCEPT_NOTE\]([\s\S]*?)\[\/CONCEPT_NOTE\]/i);
   const conceptNote = conceptNoteMatch?.[1]?.trim() ?? null;
