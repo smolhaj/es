@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 import Landing from './pages/Landing.jsx';
 import Auth from './pages/Auth.jsx';
 import Dashboard from './pages/Dashboard.jsx';
@@ -34,6 +35,7 @@ function Guest({ children }) {
 export default function App() {
   return (
     <AuthProvider>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Guest><Landing /></Guest>} />
         <Route path="/login" element={<Guest><Auth mode="login" /></Guest>} />
