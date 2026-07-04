@@ -6,9 +6,10 @@ import NavBar from '../components/NavBar.jsx';
 import { UNITS } from '../content/curriculum/index.js';
 import styles from './GetStarted.module.css';
 
-const LEVELS = ['A1', 'A2', 'B1', 'B2'];
+const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
 const LEVEL_LABEL = {
   A1: 'Absolute Basics', A2: 'Building Fluency', B1: 'Expressing Yourself', B2: 'Advanced Structures',
+  C1: 'Near-Native Precision',
 };
 
 export default function GetStarted() {

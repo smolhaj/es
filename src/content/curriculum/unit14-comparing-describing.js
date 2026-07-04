@@ -1,5 +1,5 @@
 // Unit 14 — Comparing & Describing (A2)
-// Covers: ser_vs_estar, adverbs_formation, prepositions_basic
+// Covers: ser_vs_estar, adverbs_formation, comparatives_basic, prepositions_basic
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -77,6 +77,26 @@ export default {
       ],
     },
     {
+      heading: 'Comparing Two Things: más/menos…que and tan…como',
+      paragraphs: [
+        "Everything in this unit so far has been about describing one thing precisely — this section adds the other half of what \"comparing\" means: setting two things side by side. Spanish has one clear pattern for inequality (more/less than) and one for equality (as…as), and both are far more mechanical than the ser-vs-estar contrast you just learned.",
+        'For inequality, the pattern is más ("more") or menos ("less") + adjective + que ("than"): Ana es más alta que Luis ("Ana is taller than Luis"), Este libro es menos interesante que ese ("This book is less interesting than that one"). The adjective always agrees in gender and number with the noun it describes — not with whatever it\'s being compared to — so a woman compared to a man still gets the feminine form: Ana es más alta que Luis, never "más alto."',
+        'For equality, use tan ("as") + adjective + como ("as"): Mi hermana es tan inteligente como yo ("My sister is as intelligent as I am"). The same agreement rule applies — the adjective matches the noun being described, not the person or thing on the other side of como. One small trap worth flagging now, even though the fuller rule waits for a later lesson on comparatives and superlatives: que means "than" before a noun or adjective, but it switches to de right before a plain number — Tiene más de treinta años ("She\'s over thirty"), never "más que treinta años."',
+      ],
+      examples: [
+        { es: 'Ana es más alta que Luis.', en: 'Ana is taller than Luis.' },
+        { es: 'Este libro es menos interesante que ese.', en: 'This book is less interesting than that one.' },
+        { es: 'Mi hermana es tan inteligente como yo.', en: 'My sister is as intelligent as I am.' },
+        { es: 'La casa es tan grande como el jardín.', en: 'The house is as big as the garden.' },
+        { es: 'Tiene más de treinta años.', en: 'She is over thirty. (más de before a number, not más que)' },
+      ],
+      commonMistakes: [
+        'Forgetting that the adjective agrees with the noun being described, not the comparison target — "Ana es más alto que Luis" is wrong; it must be más alta, matching Ana.',
+        'Using que instead of de right before a number — "más que treinta" is wrong; before a plain number it\'s always más de treinta.',
+        'Dropping como in an equality comparison — "tan alto Luis" is incomplete; it must be tan alto como Luis.',
+      ],
+    },
+    {
       heading: 'The Small Words That Do a Lot of Work: Basic Prepositions',
       paragraphs: [
         "Prepositions are short, unglamorous words, but they connect almost every sentence you'll ever say, so it's worth being deliberate about the core set: a, de, en, con, sin, para, and por. Each one has a home base meaning, plus a few extensions worth knowing at this stage.",
@@ -109,6 +129,9 @@ export default {
     { es: 'vivo', en: 'sharp, street-smart (ser) / alive (estar)', example: 'Mi abuelo todavía está vivo.', exampleEn: 'My grandfather is still alive.' },
     { es: 'rápidamente', en: 'quickly', example: 'Terminó el examen rápidamente.', exampleEn: 'She finished the exam quickly.' },
     { es: 'lentamente', en: 'slowly', example: 'El tren avanza lentamente.', exampleEn: 'The train is moving slowly.' },
+    { es: 'más...que', en: 'more...than', example: 'Ella es más alta que yo.', exampleEn: 'She is taller than me.' },
+    { es: 'menos...que', en: 'less...than', example: 'Es menos caro que el otro.', exampleEn: 'It is less expensive than the other one.' },
+    { es: 'tan...como', en: 'as...as', example: 'Es tan inteligente como su hermana.', exampleEn: 'He is as intelligent as his sister.' },
     { es: 'a', en: 'to / at', example: 'Llego a las nueve.', exampleEn: "I'm arriving at nine." },
     { es: 'de', en: 'of / from', example: 'Somos de Chile.', exampleEn: "We're from Chile." },
     { es: 'en', en: 'in / on / at', example: 'Vivo en un apartamento pequeño.', exampleEn: 'I live in a small apartment.' },
@@ -133,6 +156,12 @@ export default {
     { type: 'multiple_choice', prompt: 'What is the correct adverb form of "claro" (clear)?', word: 'claro', english: 'clearly', answer: 'claramente', options: ['clarimente', 'claromente', 'claramente', 'clarmente'], concept_id: 'adverbs_formation', difficulty: 1 },
     { type: 'error_correction', prompt: 'Fix the mistake: "Habla rápidamente y clara."', word: 'clara y rápidamente', english: 'quickly and clearly', answer: 'Habla clara y rápidamente.', concept_id: 'adverbs_formation', difficulty: 3 },
     { type: 'translation_to_spanish', prompt: "Translate: 'The train moves slowly.'", english: 'The train moves slowly.', answer: 'El tren se mueve lentamente.', word: 'lentamente', concept_id: 'adverbs_formation', difficulty: 2 },
+
+    // ── comparatives_basic block (kept separate before mixing with other concepts) ──
+    { type: 'translation_to_spanish', prompt: "Translate: 'Ana is taller than Luis.'", english: 'Ana is taller than Luis.', answer: 'Ana es más alta que Luis.', word: 'más...que', concept_id: 'comparatives_basic', difficulty: 2 },
+    { type: 'fill_blank', prompt: 'Complete: "Mi hermana es tan inteligente ___ yo." (as...as)', word: 'como', english: 'as', answer: 'como', concept_id: 'comparatives_basic', difficulty: 1 },
+    { type: 'multiple_choice', prompt: 'Which is correct for "She is over thirty years old"?', word: 'más de', english: 'more than (before a number)', answer: 'Tiene más de treinta años.', options: ['Tiene más que treinta años.', 'Tiene más de treinta años.', 'Tiene tan treinta años.', 'Tiene menos que treinta años.'], concept_id: 'comparatives_basic', difficulty: 3 },
+    { type: 'error_correction', prompt: 'Fix the mistake: "Ana es más alto que Luis."', word: 'alto → alta', english: 'taller (feminine agreement)', answer: 'Ana es más alta que Luis.', concept_id: 'comparatives_basic', difficulty: 2 },
 
     // ── prepositions_basic block ──
     { type: 'fill_blank', prompt: 'Complete: "Voy ___ Madrid mañana." (to)', word: 'a', english: 'to', answer: 'a', concept_id: 'prepositions_basic', difficulty: 1 },
@@ -168,8 +197,16 @@ export default {
 //   entry in src/content/grammar.js, which explicitly defers the full
 //   por-vs-para contrast to the dedicated B1 por_vs_para concept, matching
 //   this unit's approach of only covering basic/common usage of por/para
+// - basic comparatives: más/menos + adjective + que for inequality, tan +
+//   adjective + como for equality, adjective agreement with the noun
+//   described (not the comparison target), and que → de directly before a
+//   plain number (más de treinta años) — matches the existing
+//   comparatives_basic entry in src/content/grammar.js, which explicitly
+//   defers superlatives and irregular comparative forms (mejor/peor/mayor/
+//   menor) to the fuller B2 comparatives entry
 // This content is complementary to and consistent with the existing
-// GRAMMAR_CARDS entries for ser_vs_estar, adverbs_formation, and
-// prepositions_basic in src/content/grammar.js, and does not duplicate the
-// ser_basics/estar_basics conjugation content already taught in Units 4-5,
-// nor the fuller B2 adjectives_ser_estar treatment reserved for later.
+// GRAMMAR_CARDS entries for ser_vs_estar, adverbs_formation,
+// comparatives_basic, and prepositions_basic in src/content/grammar.js, and
+// does not duplicate the ser_basics/estar_basics conjugation content
+// already taught in Units 4-5, nor the fuller B2 adjectives_ser_estar/
+// comparatives treatments reserved for later.

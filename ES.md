@@ -566,6 +566,141 @@ server at 1280px, 600px, and 390px: CEFR text now appears exactly twice
 errors, and all three viewport tiers render the stats grid without dead
 space or orphaned cards.
 
+## C1 curriculum: units 26-29, the first tier past B2 (this session)
+
+Part 3 of the QOL pass (#3). Extended the structured "Learn" path past B2
+for the first time, covering all 14 C1 concepts that existed in
+`concepts.js`/`grammar.js` with zero curriculum units built around them.
+Scoped via 24 direction-setting questions beforehand (grouping, format,
+gating, sourcing, review process — all "keep it consistent with the
+existing 25 units" answers except one real scope addition, below).
+
+**New units, grouped by grammatical function** (mirroring how B2 split
+into 4 thematic units):
+- `subjunctive-limits` (26) — subjunctive_noun_clauses, subjunctive_adjective_clauses, subjunctive_temporal, pluperfect_subjunctive
+- `reported-speech` (27) — estilo_indirecto, nominalisation, gerund_advanced
+- `probability-aspect` (28) — futuro_probabilidad, condicional_probabilidad, perifraseis_avanzadas
+- `fixed-expressions` (29) — ser_passive, aunque_concessive, verbos_preposicionales, cuantificadores
+
+**New schema capability — reading passages.** C1 grammar (reported
+speech, subjunctive contrasts, register-driven passive voice) is often
+best demonstrated with a short dialogue or narrative rather than a
+single sentence, which the existing exercise format couldn't show. Added
+an optional `passage`/`passageEn` field to the shared exercise-object
+shape; `ExerciseCard.jsx` (shared by `Lesson.jsx` and the adaptive
+`Session.jsx`) renders it above the prompt with audio via the existing
+`SpeakButton` pattern, only when present — purely additive, zero effect
+on any of the other ~2000 existing exercises across the app. Across the
+4 new units, roughly half of the 86 total practice exercises use a
+passage (15/24, 11/18, 9/18, 2/26 respectively — weighted toward the
+concepts where discourse-level context matters most, e.g. nearly all of
+`estilo_indirecto`'s items use a dialogue, since reported speech is
+fundamentally about relaying what was said in a prior exchange).
+
+**Process**: one dedicated content-writing agent per unit (matching the
+established pattern from units 1-25), each independently reading
+`unit01-saying-hello.js` as the shape/rigor reference, this file's
+Pedagogical Principles section, and the relevant `concepts.js`/
+`grammar.js` entries, with mandatory WebSearch verification of every
+grammar claim before writing (full source lists are in each file's own
+accuracy-audit comment block) and a `node --check` pass before
+finishing. All 4 ran in parallel in the background; each was
+independently re-verified afterward (`node --check` + a programmatic
+structure check: section/vocab/practice counts, concept coverage,
+multiple_choice option counts) before wiring into `index.js` myself, per
+the same division of labor as every previous batch of units.
+
+**Real bug found and fixed during QA, unrelated to the new content
+itself: `GetStarted.jsx` silently dropped an entire CEFR tier.** The
+"Learn" page groups units by level via a hardcoded `const LEVELS = ['A1',
+'A2', 'B1', 'B2']` array — adding the 4 C1 units to `UNITS`/`index.js`
+made them fully real, non-`comingSoon` data (confirmed via a direct
+`getUnit()` check), but the page's render loop only ever iterates the
+levels in that array, so all 4 C1 units were completely invisible on
+`/learn` — no section header, no cards, nothing — while the page's own
+"0 of 30 available units complete" counter correctly showed 30, proving
+the data layer knew about them and only the display loop didn't. Fixed
+by adding `'C1'` to `LEVELS` and a `C1: 'Near-Native Precision'` label.
+Caught by an actual Playwright pass against the live page, not by
+reasoning about the code — the kind of gap between "the array has 30
+entries" and "the page renders 30 entries" that's easy to miss without
+looking at the real rendered output.
+
+**Test-script false-positive worth remembering for future QA scripts**:
+an early pass reported "never saw a passage-based exercise" across
+several steps through Unit 26, which looked like a real rendering bug at
+first. Root cause was the *test's* selector, `[class*="option"]`,
+matching both `.option` (the individual multiple-choice button) and
+`.options` (the parent `<ul>` wrapper) — since `"options"` contains
+`"option"` as a substring — and `.first()` in document order picked the
+non-interactive `<ul>` ahead of the actual buttons inside it. Clicking a
+`<ul>` does nothing, so the exercise silently never advanced and every
+subsequent check ran against the same first exercise. Fixed by scoping
+to `button[class*="option"]`, the pattern already used correctly
+elsewhere in this session's QA scripts. Once fixed, passages render
+exactly as designed (verified visually via screenshot: audio button,
+Spanish text, English translation, then a passage-referencing question).
+
+## A1/A2 content gaps: plural nouns and basic comparatives (this session)
+
+A follow-up to a broader "are any concepts missing in A/B levels?"
+WebSearch-grounded audit against Instituto Cervantes' Plan Curricular. Of
+several candidate gaps considered, only two survived a check against the
+actual codebase content (a third, al/del contractions, was found already
+taught in Unit 14's `prepositions_basic` section at A2 — correction noted
+and dropped before implementing anything):
+
+- **Plural noun formation** — never explicitly taught anywhere, despite
+  plural forms (`los libros`, `las chicas`) being used constantly from
+  Unit 3 onward. Added as a new concept `plural_nouns` (A1,
+  `prereqs: ['noun_gender']`) and a new section in `unit03-people-things.js`
+  ("One Becomes Many: Forming Plural Nouns"), inserted between the
+  gender-exceptions section and the definite-articles section (definite
+  articles need los/las, which need plural nouns first). Covers: vowel-
+  ending nouns add -s, consonant-ending nouns add -es, -z nouns swap
+  z→c before -es (lápiz→lápices), and nouns already ending in unstressed
+  -s stay unchanged (el lunes→los lunes).
+- **Basic comparatives** — Unit 14 is titled "Comparing & Describing" but,
+  despite the name, never actually covered comparatives (only
+  ser_vs_estar, adverbs, and prepositions). Added `comparatives_basic`
+  (A2, `prereqs: ['adjective_agreement']`) and a new section ("Comparing
+  Two Things: más/menos…que and tan…como"), inserted between the adverbs
+  section and the prepositions section. Covers inequality (más/menos +
+  adjective + que) and equality (tan + adjective + como), adjective
+  agreement with the noun described (not the comparison target), and the
+  que→de switch directly before a plain number (más de treinta años). The
+  existing B2 `comparatives` concept's `prereqs` now includes
+  `comparatives_basic`, since it's the natural prerequisite for
+  superlatives and irregular forms (mejor/peor/mayor/menor).
+
+Both concepts were wired through every place a concept_id needs to exist
+consistently: `concepts.js` (mastery tracking/prereq graph), matching
+`GRAMMAR_CARDS` entries in `grammar.js`, `FALLBACK_EXERCISES` entries and
+the Gemini system prompt's `concept_id` whitelist + CONTENT SCOPE
+description in `_gemini.js` (so both the static fallback bank and the
+live Gemini-adaptive session can test them), and `UNIT_METADATA` in
+`curriculum/index.js`. Verified with `node --check` on every touched
+file, a programmatic structure check per curriculum unit (section/vocab/
+practice counts, concept_id coverage), and a live Playwright pass
+creating a real user and stepping through both lessons end-to-end,
+confirming the new sections render and the new practice exercises
+advance without repeats alongside the pre-existing ones.
+
+**Local dev environment gotcha hit during QA, worth remembering**: a
+freshly-spun-up container's local D1 state was empty (`no such table:
+users`), and `wrangler d1 execute DB --local` and `wrangler pages dev
+--d1 DB --kv KV` turned out to bind to *two different* local SQLite
+files — passing just `--d1 DB` to `pages dev` (no explicit database ID)
+creates its own default local D1 identity, separate from the one
+`wrangler.toml`'s `database_id` resolves to for `d1 execute --local`.
+Applying `schema.sql` through `schema-v8.sql` only fixed the file the
+`d1 execute` command was using; registration kept failing until
+`pages dev` was relaunched with the ID pinned explicitly:
+`--d1 DB=<database_id from wrangler.toml>`. This is purely a local-dev
+quirk (production's binding is unambiguous); the fix is to always pass
+the explicit database ID to `pages dev` when local D1 state has just
+been (re)initialized in a fresh environment.
+
 ## Content cleanup: vocabulary.js cross-batch duplicates (this session)
 
 Part 2 of the QOL pass (#4). ES.md had previously flagged exactly one

@@ -1,5 +1,5 @@
 // Unit 03 — People and Things (A1)
-// Covers: noun_gender, definite_articles, indefinite_articles
+// Covers: noun_gender, plural_nouns, definite_articles, indefinite_articles
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -51,6 +51,27 @@ export default {
         "Saying \"la problema\" or \"la programa\" is a very natural mistake for a beginner — but words of Greek origin ending in -ma (problema, programa, sistema, tema, clima, idioma) are masculine as a group, so it's worth memorizing the pattern itself, not just individual words.",
         "Saying \"el mano\" instead of la mano is the reverse mistake — mano is feminine straight from Latin, and the -o ending doesn't override that.",
         "Treating la foto and la radio as brand-new feminine -o words to memorize individually — it's easier to remember that they're shortened forms of already-feminine words (fotografía, radiodifusión) that simply kept their gender.",
+      ],
+    },
+    {
+      heading: 'One Becomes Many: Forming Plural Nouns',
+      paragraphs: [
+        'Before moving on to "the" and "a," there\'s one more piece to lock in, because you\'ll need it the moment you talk about more than one person or thing: Spanish nouns change their ending to show plural, and the article in front of them has to change too. Two rules cover almost everything you\'ll meet as a beginner.',
+        'Nouns ending in a vowel just add -s: la casa becomes las casas, el libro becomes los libros, el coche becomes los coches. Nouns ending in a consonant add a whole extra syllable, -es, instead: el papel becomes los papeles, la ciudad becomes las ciudades, la mujer becomes las mujeres. This isn\'t arbitrary — Spanish words almost never end in most consonant clusters, so -es gives the plural a shape that\'s actually pronounceable.',
+        'One spelling twist is worth locking in now, because it\'s extremely common: nouns ending in -z swap that z for c before adding -es. El lápiz ("the pencil") becomes los lápices, never "los lápizes" — Spanish spelling simply doesn\'t allow z directly before e or i, so c steps in to keep the same sound. And a small set of nouns that already end in an unstressed -s don\'t change at all in the plural — el lunes ("Monday") stays el lunes/los lunes, la crisis stays la crisis/las crisis — so the article alone tells you whether it\'s one or many.',
+      ],
+      examples: [
+        { es: 'la casa → las casas', en: 'the house → the houses' },
+        { es: 'el papel → los papeles', en: 'the paper → the papers' },
+        { es: 'la mujer → las mujeres', en: 'the woman → the women' },
+        { es: 'el lápiz → los lápices', en: 'the pencil → the pencils (z → c before -es)' },
+        { es: 'el lunes → los lunes', en: 'Monday → Mondays (unstressed -s: no change)' },
+        { es: 'el problema → los problemas', en: 'the problem → the problems (masculine exception noun, regular plural)' },
+      ],
+      commonMistakes: [
+        'Adding just -s to a consonant-ending noun — el papel is not "los papels"; consonant endings need the full -es.',
+        "Forgetting to change the article along with the noun — los/las must match the plural noun; \"el papeles\" or \"la papeles\" are both wrong.",
+        'Keeping the z in a -z noun\'s plural — "lápizes" is not correct Spanish spelling; the z becomes c before -es, giving lápices.',
       ],
     },
     {
@@ -128,6 +149,12 @@ export default {
     { type: 'translation_to_english', prompt: '¿Qué significa "la mano"?', word: 'mano', english: 'the hand', answer: 'the hand', concept_id: 'noun_gender', difficulty: 1 },
     { type: 'multiple_choice', prompt: 'Which of these nouns is masculine, even though it ends in -a?', word: 'problema', english: 'problem', answer: 'problema', options: ['casa', 'mesa', 'problema', 'chica'], concept_id: 'noun_gender', difficulty: 2 },
 
+    // ── plural_nouns block (blocked practice, before mixing with articles) ──
+    { type: 'fill_blank', prompt: 'Make it plural: "el papel" → "los ___"', word: 'papeles', english: 'papers', answer: 'papeles', concept_id: 'plural_nouns', difficulty: 1 },
+    { type: 'multiple_choice', prompt: 'What is the plural of "el lápiz"?', word: 'lápices', english: 'pencils', answer: 'los lápices', options: ['los lápizes', 'los lápices', 'las lápices', 'los lápiz'], concept_id: 'plural_nouns', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'the women' (plural)", english: 'the women', answer: 'las mujeres', word: 'mujeres', concept_id: 'plural_nouns', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Fix the mistake: "los ciudads son grandes."', word: 'ciudades', english: 'cities', answer: 'Las ciudades son grandes.', concept_id: 'plural_nouns', difficulty: 3 },
+
     // ── definite_articles block (kept separate from noun_gender; blocked before mixed review) ──
     { type: 'fill_blank', prompt: 'Complete: "___ chicos son de España." (the boys, plural masculine)', word: 'chicos', english: 'the boys', answer: 'Los', concept_id: 'definite_articles', difficulty: 1 },
     { type: 'multiple_choice', prompt: 'Which sentence correctly says "The water is cold"?', word: 'agua', english: 'water', answer: 'El agua está fría.', options: ['La agua está fría.', 'El agua está fría.', 'El agua está frío.', 'Las agua está fría.'], concept_id: 'definite_articles', difficulty: 3 },
@@ -158,6 +185,11 @@ export default {
 // - feminine nouns ending in -o: la mano (from Latin manus, already
 //   feminine), la foto/la radio (shortened forms of la fotografía/la
 //   radiodifusión that retained the original word's gender)
+// - plural formation: vowel-ending nouns add -s (casa → casas), consonant-
+//   ending nouns add -es (papel → papeles, ciudad → ciudades), -z nouns
+//   swap z → c before -es (lápiz → lápices, per Spanish orthography rules
+//   against z before e/i), and nouns already ending in unstressed -s stay
+//   unchanged (el lunes → los lunes, la crisis → las crisis)
 // - definite articles el/la/los/las agreeing in gender and number
 // - the "el agua" rule specifically double-checked against the trap noted
 //   in the brief: el/un before the noun is a pronunciation-driven swap for
@@ -173,6 +205,6 @@ export default {
 //   unos/unas meaning both "some" and, directly before a number,
 //   "approximately" (unos veinte minutos)
 // This content is complementary to the existing GRAMMAR_CARDS entries for
-// noun_gender, definite_articles, and indefinite_articles in
+// noun_gender, plural_nouns, definite_articles, and indefinite_articles in
 // src/content/grammar.js (same facts, fuller beginner-paced walkthrough)
 // and does not contradict them.
