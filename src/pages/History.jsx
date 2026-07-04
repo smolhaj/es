@@ -36,6 +36,11 @@ const CONCEPT_LABELS = {
   cuantificadores: 'Quantifiers',
   futuro_probabilidad: 'Future probability', condicional_probabilidad: 'Conditional inference',
   perifraseis_avanzadas: 'Advanced periphrases',
+  plural_nouns: 'Plural nouns', comparatives_basic: 'Basic comparatives',
+  saber_vs_conocer: 'Saber vs. conocer', lo_neutro: 'Neuter lo',
+  perfect_subjunctive: 'Present perfect subjunctive', verbos_cambio: 'Verbs of change',
+  adjective_position: 'Adjective position', pluperfect_subjunctive: 'Pluperfect subjunctive',
+  aunque_concessive: 'Concessive aunque', verbos_preposicionales: 'Verbs with fixed prepositions',
 };
 
 export default function History() {

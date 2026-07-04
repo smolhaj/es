@@ -723,6 +723,47 @@ pass: scrolled the `/learn` page down, clicked into a lesson via its
 `<Link>`, confirmed `scrollY === 0` on load; repeated for a second lesson
 navigated to directly from `/learn` again, same result.
 
+## Final pre-break site scan (this session)
+
+User asked for a full readiness/gap/bug pass before a week-long break.
+Ran a live Playwright pass across every route (registration, dashboard,
+`/learn`, a curriculum lesson's full practice loop, the adaptive
+`/session`, Flashcards, all 13 reference/account pages, plus a mobile
+375px-viewport pass) with a fresh test account, watching for console
+errors, failed HTTP requests, and content-length sanity checks. 21/23
+automated checks passed cleanly; the 2 "failures" were the test's own
+overly strict thresholds tripping on legitimate first-run empty states
+(`/vocab-review`'s "No words queued yet" and the adaptive session's
+compact single-exercise view) — confirmed by screenshot, not real bugs.
+No console errors, no failed requests, no horizontal overflow on mobile.
+
+**Found and fixed: `History.jsx`'s `CONCEPT_LABELS` map was missing 10 of
+81 concept IDs** — `plural_nouns`, `comparatives_basic` (added this
+session), `pluperfect_subjunctive`, `aunque_concessive`,
+`verbos_preposicionales` (added with the C1 units), and 5 pre-existing
+B1/B2 ones (`saber_vs_conocer`, `lo_neutro`, `perfect_subjunctive`,
+`verbos_cambio`, `adjective_position`) that had apparently never been
+added. Not a crash — the error-breakdown row already had a
+`CONCEPT_LABELS[id] ?? id` fallback — but it meant the Session History
+page's error list would show a raw snake_case id instead of a readable
+label for any session touching those 10 concepts. Added all 10; a
+script comparing `concepts.js`'s full id list against the map confirms
+zero gaps remain.
+
+**Confirmed working correctly (not a bug)**: every Gemini call in this
+sandboxed local-dev environment fails with HTTP 400 (no valid
+`GEMINI_API_KEY` configured here) and falls through to
+`FALLBACK_EXERCISES` exactly as designed — confirmed directly via the
+`source`/`fallbackReason` diagnostic fields added earlier this session
+(`source: 'fallback'`, `fallbackReason: 'Gemini 400'`). Zero visible
+degradation to the exercise UI. This only proves the fallback path is
+robust; it does not confirm live Gemini calls succeed in production,
+since this sandbox has no real API key to test that with.
+
+See the Flashcards section immediately above/below for the one real bug
+this pass turned up (via a live user report received mid-scan): the
+`schema-v7.sql` / production D1 gap.
+
 ## Content cleanup: vocabulary.js cross-batch duplicates (this session)
 
 Part 2 of the QOL pass (#4). ES.md had previously flagged exactly one
@@ -815,6 +856,68 @@ separately confirming it does *not* appear on a normal successful run.
 This doesn't explain what the user saw, but closes the exact blind spot
 that would make a real production issue impossible to diagnose or even
 notice next time.
+
+## Flashcards Bug 2, root cause found: `schema-v7.sql` likely never applied to prod D1 (this session)
+
+The banner added above did its job: the user hit "Progress is not
+saving at all" again, this time with the exact warning message on
+screen ("Some reviews didn't save — check your connection..."), which
+gave something concrete to investigate instead of a silent failure.
+
+**Reproduced exactly.** Every code path (`review.js`'s upsert,
+`progress.js`'s select, `fsrs.js`'s `scheduleReview()`, `Flashcards.jsx`'s
+queue-building) checked out correct against a normal local D1. But
+intentionally dropping the local `flashcard_progress` table and re-running
+the identical flow reproduced the *exact* screenshot: same word (`ella`),
+same "PRONOUN" tag, same "2/10" position, same warning banner — both
+`/api/flashcards/progress` and `/api/flashcards/review` return
+`D1_ERROR: no such table: flashcard_progress: SQLITE_ERROR` (as an HTTP
+500, caught and surfaced by the client) when the table doesn't exist.
+
+**This is the same class of incident as the `schema-v8.sql` outage
+documented below** — `schema-v7.sql` (which creates `flashcard_progress`)
+was written and tested against local D1 when Flashcards was built, but
+there's no record in this project's history of the user confirming they
+ran it against the *production* D1 database, the same gap that caused
+the sessions/`focus_concept` outage. This session has no Cloudflare
+credentials and cannot run `--remote` migrations itself, so this
+diagnosis could not be confirmed against the actual production database
+directly — but the local repro matches the reported symptom exactly,
+and it is the only failure mode found that does.
+
+**This also retroactively explains the original "same 10 cards" report**
+from earlier in this session, which couldn't be reproduced at the time:
+if `/api/flashcards/progress` always 500s in production,
+`Flashcards.jsx`'s old code silently caught that (`.catch(() => ({
+progress: {} }))`) and treated every card as "never reviewed" — so
+`buildQueue()` would serve the same first 10 words in frequency order,
+every single session, forever. Exactly the reported symptom, and it
+explains why my end-to-end repro against local D1 (where the table
+exists) couldn't find anything wrong: the bug only manifests when the
+table is missing, which is true of production but not of local dev.
+
+**Fix needed (requires the user or someone with an authenticated
+`wrangler` to run it against production — this session cannot do this
+part):**
+```
+npx wrangler d1 execute DB --remote --file=schema-v7.sql
+```
+or paste `schema-v7.sql`'s `CREATE TABLE`/`CREATE INDEX` statements into
+the Cloudflare dashboard's D1 Console for the `es` database. Purely
+additive and safe to run at any time (`CREATE TABLE IF NOT EXISTS`), no
+redeploy needed afterward.
+
+**Code fix shipped regardless of the above**: the progress-read path
+had the same silent-failure blind spot as the review-write path already
+fixed once (`.catch(() => ({ progress: {} }))` swallowed everything with
+zero signal). Now surfaces a second, distinct warning ("Couldn't load
+your saved progress — this session may show cards you've already
+learned.") whenever the progress fetch fails, verified via the same
+missing-table repro, and verified separately to *not* appear on a normal
+successful run. Between this and the existing save-failure banner, any
+future recurrence of this exact class of bug — on either the read or
+write side, for any reason — will be visible on-screen immediately
+instead of silently degrading the whole feature.
 
 ## Production outage: schema-v8.sql applied locally but never to prod D1
 
