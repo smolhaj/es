@@ -60,8 +60,22 @@ export default function Session() {
   const [summary, setSummary] = useState(null);
   const [error, setError] = useState('');
 
-  // Start session on mount
+  // Start session on mount, and restart whenever focusConcept changes.
+  // /session and /session?focus=X are the same route, so React Router does
+  // not remount this component when a "Drill ->" link only changes the
+  // query string — without focusConcept in the dependency array, clicking
+  // that link left the previous session's summary on screen forever.
   useEffect(() => {
+    setPhase('starting');
+    setSessionId(null);
+    setGreeting(null);
+    setExercise(null);
+    setNextExercise(null);
+    setFeedback(null);
+    setStats({ count: 0, correct: 0 });
+    setSummary(null);
+    setError('');
+
     api.sessions.start(token, focusConcept)
       .then(({ sessionId: sid, exercise: ex, greeting: gr }) => {
         setSessionId(sid);
@@ -73,7 +87,7 @@ export default function Session() {
         setError(err.message);
         setPhase('error');
       });
-  }, [token]);
+  }, [token, focusConcept]);
 
   const handleAnswer = useCallback(async (learnerAnswer) => {
     setPhase('checking');
