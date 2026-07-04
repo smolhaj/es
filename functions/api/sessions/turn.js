@@ -14,13 +14,13 @@ export async function onRequestPost({ request, env, data }) {
   if (!sessionId) return Response.json({ error: 'sessionId required' }, { status: 400 });
 
   const session = await env.DB.prepare(
-    'SELECT id, briefing_text FROM sessions WHERE id = ? AND user_id = ? AND ended_at IS NULL'
+    'SELECT id, briefing_text, focus_concept FROM sessions WHERE id = ? AND user_id = ? AND ended_at IS NULL'
   ).bind(sessionId, data.user.sub).first();
 
   if (!session) return Response.json({ error: 'Session not found' }, { status: 404 });
 
   const { correct, feedback, exercise: nextExercise, conceptNote } = await callGemini(
-    env, '', exercise, learnerAnswer ?? '', false, session.briefing_text ?? null
+    env, '', exercise, learnerAnswer ?? '', false, session.briefing_text ?? null, session.focus_concept ?? null
   );
 
   const now = new Date().toISOString();

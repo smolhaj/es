@@ -656,6 +656,66 @@ change to `scheduleReview()` affects both systems at once.
 
 ---
 
+## Adaptive session: "Drill this concept" focus mode bug (this session)
+
+The session summary's weak-spots list links `Drill →` for a specific
+concept, which opens `/session?focus=<concept_id>` — meant to lock the
+*entire* 10-exercise session onto that one concept (`Session.jsx` even
+shows a persistent "Drilling: X" banner). A user reported the opposite:
+mid-"Drilling: Greetings" session, exercise 2 was `Translate: 'She used to
+live in Barcelona.'` — a B1 imperfect-tense sentence with zero connection
+to greetings.
+
+Root cause was two compounding gaps, both in the Gemini-backed session
+loop (`functions/api/sessions/{start,turn}.js`, `_gemini.js`):
+
+1. **`focusConcept` was never persisted.** `start.js` only ever told
+   Gemini to focus on the concept in the userMessage for the *first*
+   exercise. It was never written to the `sessions` row. Gemini has no
+   cross-request memory — each `turn.js` call is a fresh API request with
+   only the current exercise + answer + the session's professor briefing
+   (which reflects overall learner profile, not this session's focus). So
+   from exercise 2 onward, nothing told Gemini to stay on-topic; it was
+   free to drift to whatever concept it felt like.
+2. **The static fallback bank (`FALLBACK_EXERCISES`, 475 items spanning
+   A1→C1) was selected with zero concept filtering.** `fallback()` did
+   `FALLBACK_EXERCISES[Math.floor(Math.random() * FALLBACK_EXERCISES.length)]`
+   — fully random across every CEFR level and concept. This path fires
+   whenever the Gemini call fails outright (network error, exhausted
+   retries) *or* Gemini's response exercise JSON fails to parse — on
+   **any** turn, including turn 1. The reported "vivir" exercise is
+   `_gemini.js`'s literal fallback-bank entry tagged `concept_id:
+   'imperfect'` — direct proof the random fallback fired mid-focus-session.
+
+Fixed with three changes:
+- `schema-v8.sql` adds `sessions.focus_concept TEXT`; `start.js` now
+  persists it on session creation.
+- `turn.js` now selects `focus_concept` alongside `briefing_text` and
+  passes it into every `callGemini()` call. `callGemini()` appends an
+  explicit reminder to the prompt on every non-first turn when a focus
+  concept is set ("this whole session is focused on drilling the concept
+  X — the next exercise must also target concept_id X"), so the
+  instruction survives Gemini's lack of cross-request memory instead of
+  being given once and forgotten.
+- `fallback()` now takes an optional `focusConcept` argument and filters
+  `FALLBACK_EXERCISES` to that concept first, only falling back to fully
+  random selection if no matching exercise exists for that concept (all
+  79 tracked concepts have at least one, so in practice this never
+  degrades to random during a focus session). Both call sites (exhausted
+  Gemini retries, and unparseable Gemini exercise JSON) now pass the
+  focus concept through.
+
+Verified against the real local D1 DB with `wrangler pages dev` (no
+Gemini key configured locally, so every call already exercises the
+fallback path — the exact failure mode from the bug report): started a
+`focusConcept: 'greeting_basics'` session and stepped through all 10
+turns via the real `/api/sessions/start` and `/api/sessions/turn`
+endpoints — every exercise across the full session stayed on
+`greeting_basics`, where before the fix a random sample of 30
+exhausted-retry fallbacks landed on concepts across all CEFR levels.
+
+---
+
 ## Deployment & ops conventions (established this session)
 
 - **Cloudflare Pages is Git-integrated via the dashboard**, not CLI-deployed.

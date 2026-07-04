@@ -13,8 +13,8 @@ export async function onRequestPost({ request, env, data }) {
   const now = new Date().toISOString();
 
   await env.DB.prepare(
-    'INSERT INTO sessions (id, user_id, started_at) VALUES (?, ?, ?)'
-  ).bind(sessionId, data.user.sub, now).run();
+    'INSERT INTO sessions (id, user_id, started_at, focus_concept) VALUES (?, ?, ?, ?)'
+  ).bind(sessionId, data.user.sub, now, focusConcept).run();
 
   // Reset per-session error counter so the professor briefing reflects this session only
   await env.DB.prepare(
@@ -49,7 +49,7 @@ export async function onRequestPost({ request, env, data }) {
     ).bind(briefing, sessionId).run().catch(() => {});
   }
 
-  const { exercise, greeting } = await callGemini(env, userMessage, null, null, true, briefing);
+  const { exercise, greeting } = await callGemini(env, userMessage, null, null, true, briefing, focusConcept);
 
   return Response.json({ sessionId, exercise, greeting });
 }
