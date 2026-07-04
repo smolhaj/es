@@ -425,15 +425,6 @@ export const IDIOMS = [
     category: 'problems',
   },
   {
-    idiom: 'a buenas horas, mangas verdes',
-    literal: 'at fine hours, green sleeves',
-    meaning: 'too little, too late',
-    example: 'A buenas horas, mangas verdes — ya terminamos sin ti.',
-    exampleEn: 'Too little, too late — we already finished without you.',
-    register: 'colloquial',
-    category: 'time',
-  },
-  {
     idiom: 'dormir a pierna suelta',
     literal: 'to sleep with a loose leg',
     meaning: 'to sleep like a log / to sleep soundly',

@@ -69,18 +69,6 @@ export const REGIONAL_SECTIONS = [
     tip: 'This is one of the biggest grammar differences, but it\'s often overstated as a clean Spain-vs-Latin-America split. The RAE notes this verb form shows the greatest regional variation in Spanish: the preterite dominates in Mexico, Central America, Chile, and most of Argentina, while Peru, Bolivia, Colombia, and the Caribbean use the present perfect much like Spain does.',
   },
   {
-    id: 'le_lo',
-    category: 'Grammar',
-    title: 'Leísmo (Spain)',
-    summary: 'In Spain, le is often used instead of lo as a direct object pronoun when the referent is a male person. Most of Latin America follows the standard lo rule, though highland Ecuadorian Spanish (Quito) is a well-documented exception with its own generalized leísmo.',
-    comparisons: [
-      { context: 'I saw him (a man)',  spain: 'Le vi. (leísmo, accepted)', latam: 'Lo vi.' },
-      { context: 'I called him',      spain: 'Le llamé.',                  latam: 'Lo llamé.' },
-      { context: 'I met him',         spain: 'Le conocí.',                 latam: 'Lo conocí.' },
-    ],
-    tip: 'RAE officially accepts personal leísmo in Spain. Most of Latin America keeps le strictly for indirect objects — the main exception is highland Ecuador (Quito), where leísmo is common and even extends to feminine and inanimate referents.',
-  },
-  {
     id: 'vocab_common',
     category: 'Vocabulary',
     title: 'Common vocabulary differences',
