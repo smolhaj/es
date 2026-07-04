@@ -41,6 +41,7 @@ export default function Flashcards() {
   const [grading, setGrading] = useState(false);
   const [reviewedCount, setReviewedCount] = useState(0);
   const [deckSize, setDeckSize] = useState(0);
+  const [saveFailed, setSaveFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -67,7 +68,14 @@ export default function Flashcards() {
     setGrading(true);
     try {
       await api.flashcards.review(token, current.id, grade);
-    } catch { /* review scheduling is best-effort; don't block the session on a network blip */ }
+    } catch {
+      // Scheduling is best-effort so a network blip doesn't block the
+      // session -- but silently swallowing every failure meant a run of
+      // failed saves looked identical to a successful session (queue still
+      // advances locally), so the *next* session would serve the exact same
+      // cards again with zero signal anything was wrong. Surface it instead.
+      setSaveFailed(true);
+    }
     setGrading(false);
     setReviewedCount(c => c + 1);
     const next = index + 1;
@@ -110,6 +118,12 @@ export default function Flashcards() {
                 <h1 className={styles.title}>Flashcards</h1>
                 <span className={styles.deckNote}>{deckSize.toLocaleString()}-word deck</span>
               </header>
+
+              {saveFailed && (
+                <p className={styles.saveWarning}>
+                  Some reviews didn't save — check your connection. Progress for those cards may not be recorded.
+                </p>
+              )}
 
               <div className={styles.progressWrap}>
                 <div className={styles.progressBar}>
@@ -168,6 +182,11 @@ export default function Flashcards() {
             <div className={styles.complete}>
               <h1 className={styles.title}>Session complete.</h1>
               <p className={styles.summary}>{reviewedCount} cards reviewed.</p>
+              {saveFailed && (
+                <p className={styles.saveWarning}>
+                  Some reviews didn't save — those cards may show up again next session.
+                </p>
+              )}
               <div className={styles.completeActions}>
                 <Link to="/dashboard" className="btn btn-primary">← Dashboard</Link>
                 <button className="btn btn-secondary" onClick={() => window.location.reload()}>

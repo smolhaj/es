@@ -566,6 +566,99 @@ server at 1280px, 600px, and 390px: CEFR text now appears exactly twice
 errors, and all three viewport tiers render the stats grid without dead
 space or orphaned cards.
 
+## Content cleanup: vocabulary.js cross-batch duplicates (this session)
+
+Part 2 of the QOL pass (#4). ES.md had previously flagged exactly one
+duplicate pair (`cuñado`/`cuñada` — already resolved). A fresh automated
+scan run this session, before touching anything, found the real scope
+was much larger: **49 duplicate word entries** in `vocabulary.js`, each
+the same Spanish word listed twice with a different `domain` tag (e.g.
+`casa` under both `places` and `house`, `feliz` under both `adjectives`
+and `emotions`). Root cause: the file was built in two passes — an
+early general CEFR-ordered pass using generic catch-all domains
+(`places`, `nouns`, `adjectives`), and a later "thematic domains" pass
+(see `ES.md`'s audit-task list: "batch 4, C1 + thematic domains") that
+re-added many of the same common words under specific domains
+(`travel`, `health`, `house`, `emotions`, `technology`, etc.) without
+checking for existing entries first.
+
+Deduped mechanically (script in scratchpad, not committed — one-time
+cleanup, not a reusable tool): for each duplicate pair, kept the entry
+with the more specific (non-generic) domain, and set its `cefr` to
+whichever of the two entries had the lower value if they disagreed (6 of
+49 pairs needed this — e.g. `hospital` was `places/A1` and `health/A2`;
+kept the `health` domain but downgraded to `A1` so the word isn't
+gatekept behind a higher level than necessary). Result: 1054 → 1005
+entries, zero duplicate groups remaining, verified via `node --check`
+and a full re-scan.
+
+Also re-scanned `grammar.js` (79 cards), `verbs.js` (125 verbs), and
+`FALLBACK_EXERCISES` (475 items) for the same cross-batch pattern per
+the user's direction — all three were already clean (zero duplicates by
+their respective id fields; `FALLBACK_EXERCISES`'s 26 "same word+concept+
+type" groups are intentional variety — multiple distinct exercises per
+concept, not accidental repeats, as already documented in this file's
+"Content accuracy audits" section).
+
+## Flashcards bugs found and fixed from a user report (this session)
+
+Two issues reported together from the same screenshot: the "el" card
+showed an example sentence with no "el" in it, and flashcards kept
+serving the same 10 cards repeatedly.
+
+**Bug 1 — example sentence didn't contain the headword.** `el`'s example
+was "No sé lo que es." — literally absent the word "el". Root cause is
+in `scripts/build-flashcards.mjs`'s sentence-indexing: candidate
+sentences are indexed by the *lemma* the source corpus (Tatoeba, via
+doozan/spanish_data) tags a token with, not by verifying the headword's
+own spelling actually appears. That corpus lemma-groups the neuter
+pronoun "lo" under the masculine article "el" (a legitimate-looking but
+overly broad grouping), so a sentence containing only "lo" got filed
+under lemma "el". The existing `isRiskyMatch()` proper-noun heuristic
+didn't catch this because it only flags *capitalized* false matches —
+it never checks for the word being *absent* entirely.
+
+A full-deck scan found 1391/5000 cards where the example doesn't
+literally contain the headword — but the overwhelming majority (828
+verbs, 320 nouns, 231 adjectives) are *correct*: Spanish conjugation and
+gender/number agreement mean a verb or noun's flashcard legitimately
+shows an inflected form (`tener` → "Ya me **tengo** que ir."), not the
+bare dictionary form. Only the closed-class grammatical categories with
+no real inflection paradigm — article, preposition, adverb, conjunction,
+interjection — are safe to require an exact literal match for. Fixed by
+adding a `containsLiteralWord()` check in `build-flashcards.mjs`, applied
+only to that `STRICT_LITERAL_POS` set; regenerating found and nulled out
+exactly 3 true bugs across the whole deck (`el`, `mucho` — whose example
+used "poco," an unrelated/opposite word, and `bajo` the preposition —
+whose example used "baja" the adjective, a same-spelling homograph
+collision), while correctly leaving alone legitimate variants elsewhere
+in the deck like `uno`→"un" (apocope) and `nosotros`→"nosotras" (gender).
+Deck regenerated from the already-cached source files (no network
+needed): 5000 → same 5000 cards, 4718 (94%) with an example, down
+slightly from before as the 3 misleading ones now correctly show none.
+
+**Bug 2 — investigated, root cause not reproduced, but a real blind spot
+fixed anyway.** A live end-to-end repro (register → review a full batch
+of 10 real cards via the actual `/api/flashcards/review` and
+`/api/flashcards/progress` endpoints → rebuild the queue) showed
+*correct* behavior: zero overlap between session 1's and session 2's
+cards. `buildQueue()`, the review endpoint's upsert, and the progress
+endpoint's read all look and behave correctly. However, `Flashcards.jsx`'s
+`handleGrade` swallowed every review-save failure completely silently
+(`catch { /* best-effort */ }`) — the UI still advances to the next card
+and shows "Session complete" normally even if the save call fails, so a
+run of failed saves in production (network blip, transient error) would
+be indistinguishable from a successful session until the *next* visit
+serves the same cards again, with zero signal anything went wrong. Fixed
+by surfacing a visible warning banner ("Some reviews didn't save — check
+your connection...") when any review call fails, shown both mid-session
+and on the completion screen — verified via Playwright by forcing the
+review endpoint to fail and confirming the banner appears, and
+separately confirming it does *not* appear on a normal successful run.
+This doesn't explain what the user saw, but closes the exact blind spot
+that would make a real production issue impossible to diagnose or even
+notice next time.
+
 ## Production outage: schema-v8.sql applied locally but never to prod D1
 
 **Real incident, caught by the user in production, not by any QA pass
