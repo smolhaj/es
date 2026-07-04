@@ -177,11 +177,47 @@ function buildTranslation(entries, pos) {
   return combined;
 }
 
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// True if every verbatim occurrence of `word` in `sentence` is capitalized
+// AND not at the start of the sentence — the signature of a mistagged
+// proper noun riding along on a common word's spelling (e.g. the corpus's
+// own tagger mislabels "Cesar" in "O el Cesar o nada" — a set phrase about
+// Julius Caesar — as the verb lemma "cesar", with no :prop marker at all,
+// so the :prop/:split filtering above can't catch it). A lowercase match
+// anywhere, or a capitalized match only because it opens the sentence, is
+// treated as safe ordinary usage. \p{L} (Unicode letter) is used instead of
+// \w/\b so accented characters (á, é, í, ó, ú, ñ, ü) count as word
+// characters at the match boundaries.
+function isRiskyMatch(sentence, word) {
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])(${escapeRegExp(word)})(?![\\p{L}\\p{N}])`, 'giu');
+  let m;
+  let sawAny = false;
+  while ((m = re.exec(sentence))) {
+    sawAny = true;
+    const matched = m[1];
+    const isCapitalized = /^[A-ZÁÉÍÓÚÑÜ]/.test(matched);
+    // "Sentence start" means only opening punctuation/quotes/whitespace
+    // precede the match — not strict index 0 — since Spanish routinely
+    // opens with ¡/¿, and a multi-sentence example ("Sí. No. Quizá.") can
+    // have the target word start a later clause after ". "/"! "/"? ".
+    const before = sentence.slice(0, m.index);
+    const isSentenceStart = /(^|[.!?]\s*)[¡¿"'“”«»\s]*$/.test(before);
+    if (!isCapitalized || isSentenceStart) return false;
+  }
+  return sawAny;
+}
+
 // --- sentences.tsv: find a short example sentence for a given lemma ---
 function loadSentenceIndex() {
-  // Build a lemma -> [{en, es, len}] index, but only keep the sentence with
-  // the smallest Spanish-side length per lemma to bias toward simple
-  // beginner-friendly examples. Streams the 42MB file line-by-line.
+  // Build a lemma -> [{en, es, len}] index. Sentences where the lemma's own
+  // spelling only ever shows up as a likely-mistagged proper noun (see
+  // isRiskyMatch above) are ranked below every "safe" sentence, regardless
+  // of length; within the same safety tier, the shortest Spanish-side
+  // sentence wins, to bias toward simple beginner-friendly examples.
+  // Streams the 42MB file line-by-line.
   return new Promise((resolve, reject) => {
     const index = new Map();
     const rl = readline.createInterface({ input: fs.createReadStream(`${DIR}/sentences.tsv`) });
@@ -194,8 +230,21 @@ function loadSentenceIndex() {
       // tags look like ":v,tengas|tener :art,una|uno ..." — space-separated
       // groups, each "surfaceForm|lemma" or just "surfaceForm" when the
       // surface form equals the lemma.
+      //
+      // Two tag kinds must be skipped entirely, or proper nouns leak into
+      // common-word example sentences (e.g. "ella" the pronoun picking a
+      // sentence about the singer Ella Fitzgerald):
+      //   :prop  — the token IS a proper noun in this sentence (a name like
+      //            "Rosa" or "Cruz" that happens to share spelling with a
+      //            common word doesn't demonstrate that word's usage).
+      //   :split — multi-word proper nouns are additionally broken into
+      //            parts for search indexing, e.g. "Ella Fitzgerald" also
+      //            emits ":split,Ella,Fitzgerald" — these parts have no
+      //            lemma of their own and must not be indexed as if they
+      //            were ordinary word occurrences.
       const groups = tags.split(' ');
       for (const g of groups) {
+        if (g.startsWith(':prop,') || g.startsWith(':split,')) continue;
         const commaIdx = g.indexOf(',');
         if (commaIdx === -1) continue;
         const rest = g.slice(commaIdx + 1);
@@ -203,9 +252,16 @@ function loadSentenceIndex() {
           const [surface, lemma] = form.split('|');
           const key = (lemma || surface || '').toLowerCase();
           if (!key) continue;
+          const risky = isRiskyMatch(es, key);
           const existing = index.get(key);
-          if (!existing || es.length < existing.es.length) {
-            index.set(key, { en, es });
+          if (!existing) {
+            index.set(key, { en, es, risky });
+            continue;
+          }
+          if (existing.risky && !risky) {
+            index.set(key, { en, es, risky });
+          } else if (existing.risky === risky && es.length < existing.es.length) {
+            index.set(key, { en, es, risky });
           }
         }
       }
@@ -240,7 +296,11 @@ async function main() {
     if (!best) continue;
     const translation = buildTranslation(entries, best.pos);
     if (!translation) continue;
-    const sent = sentIndex.get(row.spanish);
+    // If every candidate sentence for this word is "risky" (its spelling
+    // only ever shows up capitalized as a likely proper noun — see
+    // isRiskyMatch), showing no example beats showing a misleading one.
+    const rawSent = sentIndex.get(row.spanish);
+    const sent = rawSent && !rawSent.risky ? rawSent : null;
     if (sent) sentenceHits++;
     results.push({
       id: 'fc' + (results.length + 1),
