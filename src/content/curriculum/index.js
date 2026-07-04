@@ -25,6 +25,9 @@ import pastInDetail from './unit17-past-in-detail.js';
 import futureHypotheticals from './unit18-future-hypotheticals.js';
 import opinionsCommands from './unit19-opinions-commands.js';
 import nuanceConnection from './unit20-nuance-connection.js';
+import perfectTenses from './unit21-perfect-tenses.js';
+import passiveImpersonal from './unit22-passive-impersonal.js';
+import subjunctiveDeepDive from './unit23-subjunctive-deep-dive.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
@@ -47,6 +50,9 @@ const CONTENT = {
   'future-hypotheticals': futureHypotheticals,
   'opinions-commands': opinionsCommands,
   'nuance-connection': nuanceConnection,
+  'perfect-tenses': perfectTenses,
+  'passive-impersonal': passiveImpersonal,
+  'subjunctive-deep-dive': subjunctiveDeepDive,
 };
 
 export const UNIT_METADATA = [
