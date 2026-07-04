@@ -166,11 +166,49 @@ curriculum, and audio all shipped):
   friends/pronunciation/regional all verified — see "What still needs to be
   built" for what's left).
 
-**Not yet built** (real gaps against the original spec):
-- **Conversation role-play scenarios** — no exercise `type` for open-ended
-  dialogue exists (current types: `multiple_choice`, `fill_blank`,
-  `translation_to_spanish`, `translation_to_english`, `error_correction`).
-- **Real media integration** (news/songs/TV clips) — not present.
+**Also built since the gap analysis above was first written**:
+- **Full structured curriculum, all 25 units (0-24), A1 through B2** —
+  Unit 0 is a short non-grammar orientation unit ("Why Spanish?"); Units
+  1-24 cover the complete CEFR path. See "Structured curriculum:
+  architecture and status" below.
+- **A brutally-honest product audit** was run against this spec and
+  against real Spanish-pedagogy expectations (delivered as a standalone
+  report, not committed to the repo) — see "Product audit findings"
+  below for what it concluded and which findings are already resolved.
+- **Free Resources page** (`/resources`) — a curated list of external,
+  verified-free comprehensible-input resources (YouTube channels,
+  podcasts, graded readers, news, music, legal free TV/film streaming),
+  addressing the spec's "real media integration" gap via *linking out*
+  to existing free content rather than hosting/licensing media directly
+  (a deliberate, much cheaper alternative — see that section below).
+- **`ClickableSpanish` extended everywhere** — previously lesson-only,
+  now wired into all 7 static reference pages too.
+- Three real, user-reported/found bugs fixed this round: a proper-noun
+  contamination bug in the Flashcards example-sentence generator, a
+  mobile nav menu that didn't cover the screen, and a "no streaks"
+  marketing claim that was contradicted by an actual streak stat on the
+  dashboard (stat removed). See "Code/design gotchas" and the relevant
+  sections below for each.
+
+**Still not built** (real gaps against the original spec):
+- **Speaking** — no feature at all (no mic input, no pronunciation
+  scoring). Explicitly deprioritized/backburnered by the user for now;
+  see "What still needs to be built" for the scoping notes if picked
+  back up later.
+- **Dedicated listening-comprehension exercises** — audio-first
+  exercises where sound is the *only* information given (as opposed to
+  the existing `SpeakButton`, which just replays text already visible
+  on screen). Also explicitly backburnered by the user.
+- **Open-ended writing prompts** — no exercise type exists for free
+  response; every type has one matchable correct string.
+- **Conversation role-play scenarios** — no exercise `type` for
+  open-ended dialogue exists (current types: `multiple_choice`,
+  `fill_blank`, `translation_to_spanish`, `translation_to_english`,
+  `error_correction`).
+- **Real media integration** *hosted directly in the app* (as opposed
+  to the Free Resources page's link-out approach above) — still not
+  present; likely stays that way given the licensing/hosting cost this
+  spec itself flagged as a risk.
 - **Cloudflare R2** — not bound in `wrangler.toml`, not used.
 - **Groq secondary LLM fallback** — current fallback on Gemini failure is
   local-graded static exercises, not a secondary LLM call.
@@ -182,6 +220,42 @@ See "What still needs to be built" near the end of this file for the full,
 current, prioritized punch list — the two sections above describe the
 original spec's gaps specifically; the punch list covers everything
 outstanding, spec or not.
+
+## Product audit findings (this session)
+
+A full, deliberately unsparing audit was run against this file's spec and
+against real second-language-pedagogy expectations — delivered to the user
+as a standalone report (not committed here), summarized for continuity:
+
+- **Overall verdict**: strong on grammar sequencing and content rigor,
+  weak on skill-coverage breadth. The contrastive grammar teaching (ser/
+  estar, por/para, preterite/imperfect, two full subjunctive units) was
+  judged genuinely better than most paid competitors at exactly the
+  concepts English speakers struggle with most.
+- **The one structural finding that matters most**: of the spec's four
+  "equally covered" skills (speaking, listening, reading, writing), only
+  reading and closed-response writing are really built. Speaking doesn't
+  exist; listening is a replay button, not an assessed exercise; writing
+  has no open-ended prompt type. See "Still not built" above — this is
+  the single biggest gap between the spec's ambition and what's shipped.
+- **Content-rigor inconsistency, now resolved**: at audit time,
+  `vocabulary.js`/`idioms.js`/`FALLBACK_EXERCISES` were the last
+  unverified content, in contrast to the fully-audited `verbs.js`/
+  `grammar.js`/curriculum. All three have since been audited this same
+  session — see "Content accuracy audits" below, now current.
+- **A messaging contradiction, now resolved**: the homepage/Learn-page
+  copy led with "no streaks," while the dashboard had a literal streak
+  counter. The stat has been removed (the copy was kept, since it's the
+  intended positioning) — see "Structured curriculum" and Dashboard
+  notes below.
+- **A process observation**: both real bugs found this session (the
+  flashcard proper-noun contamination, the mobile nav menu) were caught
+  by direct product use, not by the "brand-new-user QA pass" already
+  logged below — that pass never ran at a mobile viewport width and
+  wasn't set up to catch a corpus-mining artifact. Worth remembering for
+  future QA passes: check mobile viewports explicitly, and treat any
+  auto-generated/corpus-derived content as needing its own adversarial
+  spot-check pass, not just a "did it render" check.
 
 ---
 
@@ -272,12 +346,39 @@ systematic externally-verified audit was run batch-by-batch:
   gender-agreement error on "pochoclo" (popcorn, Argentina), and two
   overstated "Latin America never uses leísmo" claims (highland Ecuadorian
   Spanish has its own well-documented generalized leísmo).
-- **Audit status as of this writing**: verbs 125/125 done, grammar concepts
-  79/79 done, false friends/pronunciation/regional all done. **Not yet
-  audited**: `vocabulary.js` (~1056 items), `idioms.js` (167 items),
-  `FALLBACK_EXERCISES` in `_gemini.js` (475 items) — these are next per the
-  batching rule above (each is one file, so each needs its own sequential
-  chain of batches; the three files can run in parallel with each other).
+- **Audit status: all six content files fully audited.** verbs 125/125,
+  grammar concepts 79/79, false friends/pronunciation/regional all done
+  (see above), and — completed this session — `vocabulary.js` (1056/1056,
+  4 parallel batches), `idioms.js` (167/167, 2 parallel batches), and
+  `FALLBACK_EXERCISES` in `_gemini.js` (475/475, 3 parallel batches).
+  Real errors found and fixed in this last round: in `vocabulary.js`, an
+  example sentence that didn't match its own translation, an example
+  that didn't contain its own headword, two masculine/feminine agreement
+  mismatches against "she" in translated examples, one example using the
+  antonym of its headword, and four missing Spain/Latin-America regional
+  notes (including a genuine cross-dialect trap — "zapatillas" means
+  sneakers in Spain but heels/slippers in Mexico); in `idioms.js`, two
+  inaccurate literal translations, a register mislabel, an overly narrow
+  definition, and one idiom whose translated tone was inverted (framed
+  as sincere "better late than never" when the actual usage is sarcastic
+  — "oh NOW you show up"); in `FALLBACK_EXERCISES`, an ungrammatical "a
+  cuál" in a gustar-construction exercise, a "hace" that should have been
+  "desde hace," an `answer` field with parenthetical commentary baked
+  into it (would never match a learner's correct verbatim answer), a
+  gerund-vs-infinitive hint that told learners to do the opposite of the
+  correct answer, a mismatched future/conditional-probability
+  `concept_id`, and a corrupted/garbled prompt string.
+- **Flagged but deliberately not fixed** (structural/duplication issues an
+  audit agent noticed outside the strict "is this claim accurate" mandate
+  — worth a cleanup pass, not urgent): `vocabulary.js` has `cuñado`/
+  `cuñada` as two separate entries at different CEFR levels (A2 and B2)
+  with different examples — looks like an unintentional duplicate, not
+  deliberate design; `idioms.js` has "a buenas horas(,) mangas verdes"
+  duplicated (comma vs. no-comma variants, both fixed independently by
+  different concurrent audit batches since removing one mid-audit risked
+  shifting line numbers the other batch was relying on); `regional.js`'s
+  near-duplicate `le_lo`/`leismo` sections (flagged in an earlier audit
+  round, still unconsolidated).
 - **Background-agent session limits**: long batches can hit account-level API
   session limits and terminate mid-edit. Always check `git diff` on the
   target file after an agent completes/fails before trusting its self-report
@@ -328,24 +429,79 @@ session and reference pages — it doesn't replace either.
   dependency on Gemini/D1 being reachable for the practice loop itself (only
   the final mark-complete call hits the API, and that's best-effort/non-
   blocking).
-- New registrations land on `/get-started` instead of `/dashboard`
-  (`Auth.jsx`); existing logins go to `/dashboard` as before.
+- New registrations land on `/learn` instead of `/dashboard` (`Auth.jsx`);
+  existing logins go to `/dashboard` as before. (Route renamed from
+  `/get-started` to `/learn` this session — see "Naming/positioning
+  changes" below. `/get-started` still redirects to `/learn`.)
 
-**Status — 15 of 24 outlined units written (all of A1 + A2, the full
-beginner-through-elementary tier)**: Unit 1 Saying Hello, Unit 2 Numbers &
-Time, Unit 3 People & Things, Unit 4 Who You Are, Unit 5 Where You Are,
-Unit 6 Everyday Actions, Unit 7 Asking Questions, Unit 8 Your Daily
-Routine, Unit 9 Likes & Dislikes, Unit 10 People & Things Around You, Unit
-11 What Happened, Unit 12 Obligations & Requests, Unit 13 Right Now &
-Soon, Unit 14 Comparing & Describing, Unit 15 Irregular Verbs in the
-Present. **Units 16-24 (B1/B2) are outlined in `UNIT_METADATA` but not
-written** — see "What still needs to be built" for the full remaining list
-and the exact process to follow (mirrors how 2-15 were built: one
-dedicated content-writing agent per unit, each reading
-`unit01-saying-hello.js` as the quality/shape reference, `ES.md`'s
-Pedagogical Principles section, and the relevant `concepts.js` +
-`grammar.js` entries before writing, with mandatory WebSearch verification
-of every Spanish claim).
+**Status — all 25 outlined units written and live, A1 through B2,
+complete.** Unit 0 "Why Spanish?" is a short non-grammar orientation unit
+(speaker counts, official-language status, career/internet relevance,
+cultural presence as of 2026 — WebSearch-verified the same way grammar
+claims are, just for demographic/economic facts instead) that runs before
+Unit 1; it has no vocab list and its "practice" is light reading-
+comprehension recall rather than a grammar drill, since there's no new
+grammar to drill. Units 1-24 cover the full CEFR path: A1 (1-7), A2
+(8-15), B1 (16-20), B2 (21-24) — Unit 24 "Fine Details" is the closing
+unit. Every unit was WebSearch-verified per the process below; two
+génuine mid-write corruption bugs were caught this way (see "Background-
+agent session limits" above) and one nearly-shipped unescaped-quote
+syntax bug was caught by a stop-and-check `node --check` pass rather than
+trusting an agent's own self-report.
+
+There is no more "coming soon" state anywhere in `UNIT_METADATA` —
+`GetStarted.jsx` (the page component; the route/nav label is now "Learn")
+renders every unit as a real, completed lesson. If you're extending this
+further (a C1 tier, additional units within an existing level, etc.), the
+process that built 1-24 is the one to repeat: one dedicated content-
+writing agent per unit, each reading `unit01-saying-hello.js` as the
+quality/shape reference, this file's Pedagogical Principles section, and
+the relevant `concepts.js` + `grammar.js` entries before writing, with
+mandatory WebSearch verification of every Spanish claim, followed
+immediately by `node --check` before trusting the file, then wiring the
+import + `CONTENT` map entry into `index.js` yourself (never let a
+content-writing agent touch `index.js`, to avoid two agents racing on the
+same shared file).
+
+## Naming/positioning changes (this session)
+
+- **"Get started" → "Learn"** throughout the nav, dashboard, and lesson
+  back-links. The route moved from `/get-started` to `/learn`; the old
+  path 307-redirects (`<Navigate>`) to the new one in `App.jsx` so
+  nothing that already linked to `/get-started` breaks. `GetStarted.jsx`
+  is still the component's filename — only the route and user-facing
+  label changed, not the file/component name.
+- **The dashboard's Streak stat card was removed.** The homepage and
+  Learn-page copy both lead with "no streaks" as a differentiator; a
+  literal streak counter one click away on the dashboard directly
+  contradicted that (see "Product audit findings" above). The backend
+  (`functions/api/learner/profile.js`'s `computeStreak()`) still computes
+  and returns a `streak` value — only the frontend display was removed,
+  since the original learner-facing spec explicitly asked for light
+  streak gamification and there's no reason to rip out working backend
+  logic that costs nothing to leave in place. If streaks are ever
+  reintroduced to the UI, reconcile the copy first.
+
+## Free Resources page (this session)
+
+`/resources` (`src/pages/Resources.jsx`, `src/content/resources.js`) — a
+curated list of 21 external, genuinely free comprehensible-input
+resources across five categories (Video, Podcasts, Reading, Music, TV &
+Film), addressing the original spec's "real media integration" request
+via linking *out* to existing free content rather than hosting/licensing
+media directly (see the spec gaps above — direct hosting was deliberately
+deferred as a licensing/cost risk; this is the cheaper alternative that
+still serves the same "expose the learner to real media" goal). Every URL
+was pulled directly from a live WebSearch result rather than generated
+from memory, and every entry was checked to confirm it's actually free
+(no paywall/trial gate) before being added — see the file header comment
+for the verification note. Linked from the Dashboard's reference-link row
+and the mobile nav menu. Follows the same filterable-card-list pattern as
+`Idioms.jsx` (search box + category filter chips + expandable cards).
+
+This list will go stale over time (channels rebrand, podcasts go on
+hiatus, free tiers change) — worth a periodic re-verification pass, not a
+one-time build-and-forget.
 
 ---
 
@@ -437,6 +593,39 @@ flashcard session → flip → grade all 4 ways → session-complete screen →
 reload correctly pulls the next batch → confirmed FSRS state persisted
 correctly in D1). Linked from NavBar (desktop + mobile), Dashboard's
 reference-link row, at route `/flashcards`.
+
+**Bug found and fixed this session: proper nouns were contaminating
+example sentences.** A user spotted the "ella" (she/her) card using an
+example sentence about the singer Ella Fitzgerald instead of demonstrating
+the pronoun. Root cause: `sentences.tsv`'s tagging format marks proper
+nouns with a `:prop` tag and additionally splits multi-word names into
+parts for search indexing (e.g. "Ella Fitzgerald" also emits
+`:split,Ella,Fitzgerald`) — the original pipeline's tag parser treated
+both as ordinary lemma occurrences, so *any* common word that happens to
+share spelling with a Spanish name (Rosa, Paz, Sol, Cruz, Blanco, Rey,
+Cesar...) was at risk of having its example sentence hijacked. Fixed in
+`scripts/build-flashcards.mjs`:
+- `:prop` and `:split` tag groups are now skipped entirely when indexing
+  candidate sentences.
+- A second, independent check (`isRiskyMatch()`) catches proper nouns the
+  *corpus itself* mistagged with no `:prop` marker at all — e.g. "Cesar"
+  in the set phrase "O el Cesar o nada" (a Cesare Borgia reference) was
+  tagged directly as the verb lemma `cesar` ("to cease"), no proper-noun
+  marker whatsoever. The check: if a lemma's spelling only ever appears
+  capitalized and not at a sentence boundary in a candidate sentence,
+  treat it as a likely mistagged proper noun. Safe sentences always beat
+  risky ones regardless of length; if only risky candidates exist for a
+  word, the card now gets no example rather than a misleading one
+  (better than showing something wrong).
+- Regenerating the full 5000-word deck with this fix changed 50 of 5000
+  examples (14 now correctly show no example, 36 swapped to a better
+  sentence); a full programmatic scan confirmed zero remaining instances
+  of the bug pattern across the deck.
+- **Lesson for any future corpus-mining pipeline**: an auto-generated
+  deck needs its own adversarial spot-check pass (search for the bug
+  pattern programmatically, not just "does it render") — this shipped,
+  passed initial QA, and sat in production before a user caught the
+  specific instance that exposed the systemic issue.
 
 ---
 
@@ -567,6 +756,24 @@ reference-link row, at route `/flashcards`.
   locally, or just check `ls .wrangler/state/v3/d1/miniflare-D1DatabaseObject/`
   for multiple `.sqlite` files if a fresh-looking DB error shows up on a
   local server that was supposedly already migrated.
+- **An ancestor with `backdrop-filter` (or `filter`/`transform`/
+  `perspective`/`will-change`) silently changes what `position: fixed`
+  means for its descendants.** `NavBar`'s `<header>` uses `backdrop-
+  filter: blur(12px)` for its frosted-glass effect. The mobile hamburger
+  menu was originally a short `position: absolute` dropdown that left
+  page content visible (and clickable) underneath it — the fix was to
+  make it a full-height `position: fixed` panel with a body-scroll lock.
+  That alone didn't work: nested inside `<header>`, the "fixed" panel
+  resolved its `top`/`bottom` against the ~60px header box instead of
+  the viewport (because `backdrop-filter` establishes a new containing
+  block for fixed descendants per spec) and rendered at ~0 height,
+  invisible. The fix was moving the menu panel to be a *sibling* of
+  `<header>` rather than a child, with a single wrapping ref around both
+  for the existing outside-click-to-close handler. **Any time a
+  `position: fixed` element nested under a blurred/filtered/transformed
+  ancestor isn't behaving like it's positioned against the viewport,
+  suspect the ancestor's `backdrop-filter`/`filter`/`transform` before
+  suspecting the fixed element's own CSS.**
 - **Playwright's `waitUntil: 'networkidle'` is unreliable in this sandbox
   specifically because of the outbound proxy's handling of
   `fonts.googleapis.com`** — `index.html` loads Google Fonts via a
@@ -610,8 +817,76 @@ in a new session, this is the place to start. Nothing below is blocked on a
 design decision — each item's approach is already established by precedent
 elsewhere in the codebase; follow the referenced pattern.
 
-0. **Flashcards daily new-card cap is per page-load, not per calendar
-   day.** See the "Flashcards: architecture and status" section above —
+**Everything from previous punch lists is done**: all 25 curriculum units
+(0-24, A1 through B2), all 6 content files audited (verbs, grammar,
+false friends, pronunciation, regional, and — completed this session —
+vocabulary, idioms, fallback exercises), `ClickableSpanish` extended to
+every reference page, the Anki-style Flashcards feature, the "brand-new-
+user" QA pass, the Free Resources page, the Get-started→Learn rename, and
+the dashboard streak-stat removal. See the relevant sections above for
+each. What's left:
+
+1. **Speaking — no feature exists at all** (backburnered by the user this
+   session; not currently being worked, but scoped here for whenever it's
+   picked back up). No mic input, no pronunciation scoring, no exercise
+   type that asks the learner to produce spoken Spanish. The cheapest
+   real starting point: the Web Speech API (already powering
+   `useSpeech.jsx`/`SpeakButton` for text-to-speech) has a
+   `SpeechRecognition` counterpart in the same browser API family — a
+   minimal version doesn't need a new backend, just a new exercise type
+   plus a client-side recording/recognition flow. A quality bar/scoring
+   rubric would need actual design thought (recognition confidence isn't
+   the same thing as pronunciation quality), which is likely why this
+   hasn't been started yet rather than a technical blocker.
+2. **Dedicated listening-comprehension exercises — also backburnered.**
+   The existing `SpeakButton` only replays text already visible on
+   screen — it's a convenience feature, not an assessed listening skill.
+   A real version needs a new exercise type where audio is the *only*
+   information given up front (e.g. "listen and choose what you heard,"
+   "listen and transcribe") — no new infrastructure needed beyond what
+   TTS already provides, just new exercise-type handling in
+   `ExerciseCard.jsx`/`Lesson.jsx`/`Session.jsx` and new content.
+3. **An open-ended writing-prompt exercise type.** Every current exercise
+   type (`multiple_choice`, `fill_blank`, `translation_to_spanish`,
+   `translation_to_english`, `error_correction`) has exactly one matchable
+   correct string. A genuinely free-response prompt ("write two sentences
+   about your day") can't be auto-graded without an LLM call — the
+   cheapest version that stays inside the $0 architecture is closer to
+   the Flashcards pattern: show a model answer after the learner writes
+   their own, let them self-assess, don't try to have Gemini grade free
+   text on every submission.
+4. **Confirm GitHub branch protection is actually enabled.** Still
+   unconfirmed as of this writing — the user was shown how to turn this
+   on via the GitHub UI earlier in this project but it's never been
+   verified as done, and there's no API this session had access to for
+   checking it directly. A five-minute manual check in `smolhaj/es`
+   repo settings, not a coding task. Currently anyone with push access,
+   including agent sessions, can push straight to `main`.
+5. **Minor content cleanup, flagged but not fixed during the vocabulary/
+   idioms audits** (none are factual errors, just duplication — see
+   "Content accuracy audits" above for the full detail on each):
+   `vocabulary.js`'s `cuñado`/`cuñada` duplicate entries (A2 and B2, with
+   different examples — looks unintentional); `idioms.js`'s "a buenas
+   horas(,) mangas verdes" comma/no-comma duplicate; `regional.js`'s
+   near-duplicate `le_lo`/`leismo` sections (flagged in an even earlier
+   audit round, still unconsolidated).
+6. **Remaining gaps against the original learner-facing spec** (see
+   "Original learner-facing spec" above): conversation/role-play exercise
+   type (no open-ended dialogue type exists — related to but distinct
+   from the speaking/listening gaps above, since role-play could
+   plausibly stay text-based), real media integration *hosted directly in
+   the app* (the Free Resources page addresses this via linking out
+   instead — see that section above; direct hosting stays deferred as a
+   licensing/cost risk), Cloudflare R2 (bound in `wrangler.toml` but
+   unused — no feature currently needs object storage), a secondary/
+   fallback LLM provider (e.g. Groq) for when Gemini is unavailable or
+   rate-limited, and explicit exponential backoff/retry handling around
+   the Gemini call in `_gemini.js` (today a failure just falls through to
+   `gradeLocally()` and `FALLBACK_EXERCISES`, which is graceful but
+   doesn't retry the actual LLM call first — this one is a contained,
+   well-scoped, low-risk change if picked up).
+7. **Flashcards daily new-card cap is per page-load, not per calendar
+   day.** See "Flashcards: architecture and status" above —
    `NEW_PER_SESSION = 10` in `Flashcards.jsx` caps new cards per session
    visit, but nothing stops a user from reloading the page immediately and
    getting 10 more. A real fix needs a small "new cards introduced today"
@@ -620,90 +895,3 @@ elsewhere in the codebase; follow the referenced pattern.
    `last_reviewed_at` falls on today's date and `review_count = 1`).
    Low priority — acceptable for solo/small-group $0 use — but worth fixing
    if this becomes a real multi-user product.
-1. **Curriculum units 16–24 (B1/B2, not yet started).** Units 1-15 (all
-   of A1+A2) are done and live — units 9-15 needed a second attempt after
-   the first parallel batch hit a shared account session-limit mid-batch
-   (all 7 agents died in the research phase before writing anything; the
-   retry succeeded cleanly). Units 16-24 are fully outlined in
-   `UNIT_METADATA` in
-   `src/content/curriculum/index.js` (id, level, title, concepts, summary
-   already decided — do not re-litigate the outline) but have no content
-   file yet, so `GetStarted.jsx` renders them as "Coming soon." To write
-   one: create `src/content/curriculum/unitNN-slug.js` matching the shape
-   used by `unit01-saying-hello.js` (`{ sections: [{ heading, paragraphs,
-   examples?, commonMistakes? }], vocab: [{ es, en, example?, exampleEn? }],
-   practice: [...] }`), WebSearch-verify grammar claims against authoritative
-   sources the way units 1–7 were (don't just generate plausible-sounding
-   content), run `node --check` on the file immediately after writing (session
-   rate-limit interruptions have corrupted files mid-write before — see
-   "Background-agent session limits" below), then wire it into `index.js`
-   (add the import and the `CONTENT` map entry — the metadata entry already
-   exists). Batch by CEFR level (finish B1 = units 16–20 before moving
-   to B2) using one agent per unit, run in parallel since each unit is a
-   distinct file. Update this list as units land.
-3. **Content accuracy audits — 3 of 6 content files still unaudited (tasks
-   #10–12).** `vocabulary.js` (~1056 items), `idioms.js` (167 items), and
-   `FALLBACK_EXERCISES` in `functions/api/sessions/_gemini.js` (475 items)
-   have never been cross-referenced against authoritative sources, unlike
-   `verbs.js` (125/125 audited), `grammar.js` (79/79 audited), and
-   `false-friends.js`/`pronunciation.js`/`regional.js` (all audited, 7 real
-   errors found and fixed in `regional.js` alone — see "Content accuracy
-   audits" above for the full list). These three are independent files, so
-   they can be audited in parallel by three separate agents. Follow the same
-   method used for verbs/grammar/regional: WebSearch each claim against a
-   real source (RAE, SpanishDict, a grammar reference), fix in place, and
-   report a tally of confirmed-correct vs. fixed items — don't just eyeball it.
-4. **Extend `ClickableSpanish` beyond `Lesson.jsx`.** Currently only lesson
-   pages have clickable Spanish words with the translation popover. The
-   other reference pages that display Spanish text — `Grammar.jsx`,
-   `Verbs.jsx`, `Idioms.jsx`, `FalseFriends.jsx`, `Pronunciation.jsx`,
-   `Regional.jsx`, `VocabBrowser.jsx` — do not use it yet. Wrapping their
-   Spanish text runs in `<ClickableSpanish text={...} minWords={N} />` is
-   the whole job; use `minWords={2}` for mixed English/Spanish prose (to
-   avoid the homograph false-positive problem — see the "Homograph
-   collision risk" gotcha below) and the default `minWords={1}` for
-   pure-Spanish text (example sentences, isolated words/phrases).
-5. **Confirm GitHub branch protection is actually enabled.** The user was
-   shown how to turn this on via the GitHub UI earlier in this project but
-   it was never confirmed as done. Worth a quick check on
-   `smolhaj/es` settings before this becomes a real gap (currently anyone
-   with push access, including agent sessions, can push straight to `main`).
-6. **Remaining gaps against the original learner-facing spec** (see
-   "Original learner-facing spec" above for the full spec this was scoped
-   against): conversation/role-play exercise type (currently only
-   translation/fill-blank/multiple-choice exist), real media integration
-   (authentic news clips/songs/TV snippets — deliberately deferred as a
-   licensing/hosting cost risk, revisit only if a $0 source is found),
-   Cloudflare R2 (bound in `wrangler.toml` but unused — no feature currently
-   needs object storage), a secondary/fallback LLM provider (e.g. Groq) for
-   when Gemini is unavailable or rate-limited, and explicit exponential
-   backoff/retry handling around the Gemini call in `_gemini.js` (today a
-   failure just falls through to `gradeLocally()` and `FALLBACK_EXERCISES`,
-   which is graceful but doesn't retry the actual LLM call first).
-7. **Minor: `regional.js` has near-duplicate `le_lo` and `leismo`
-   sections.** Flagged by an audit agent as covering overlapping ground
-   (not a factual error, just redundant structure). Worth consolidating
-   into one section next time that file is touched, but not urgent.
-8. **Done: full "brand-new-user" QA pass (this session).** Registered a
-   fresh account, followed the redirect to Get Started, read and fully
-   completed Unit 1 (including clicking a `ClickableSpanish` popover),
-   confirmed the completion checkmark persisted back on Get Started,
-   checked the Dashboard (greeting, stats, FSRS word count, nav links),
-   opened Adaptive Session, and loaded all 12 reference pages
-   (Grammar/Verbs/VocabBrowser/VocabReview/Idioms/FalseFriends/
-   Pronunciation/Regional/Writing/Concepts/History/Profile), then logged
-   out and back in. Everything passed — 23/24 automated steps green, and
-   the one flaky step (`/grammar` timing out on Playwright's
-   `networkidle`) was root-caused to the sandbox's network proxy being
-   unreliable toward the external `fonts.googleapis.com` call, not an app
-   bug (confirmed by testing `/grammar` in isolation and by checking that
-   `index.html` already loads the Google Fonts stylesheet with
-   `display=swap`, so real users never get blocked on it — see the
-   gotcha below). No functional bugs found this pass. Screenshots taken
-   at each step confirmed correct visual rendering, not just "didn't
-   crash."
-9. **Done: Anki-style Flashcards feature (this session).** Separate
-   5,000-word frequency deck, true flip-card self-rating UI, reusing the
-   existing FSRS algorithm. See "Flashcards: architecture and status"
-   above for the full writeup, and item 0 above for the one known
-   follow-up (per-day new-card cap).
