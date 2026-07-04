@@ -839,27 +839,62 @@ Evaluate and give the next exercise.`;
     prompt += '\n\n(first_turn=true)';
   }
 
-  try {
-    const res = await fetch(GEMINI_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        systemInstruction: { parts: [{ text: systemPrompt }] },
-        generationConfig: { temperature: 0.85, maxOutputTokens: 700 }
-      })
-    });
+  const body = JSON.stringify({
+    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    systemInstruction: { parts: [{ text: systemPrompt }] },
+    generationConfig: { temperature: 0.85, maxOutputTokens: 700 }
+  });
 
-    if (!res.ok) throw new Error(`Gemini ${res.status}`);
+  // Retry transient failures (network errors, 429 rate-limit, 5xx) before
+  // giving up — a single rate-limit blip used to fall straight to the
+  // static fallback bank even though the very next attempt would likely
+  // succeed. Non-transient failures (4xx other than 429) are not retried,
+  // since retrying an auth/bad-request error just wastes the backoff delay
+  // on something that will never succeed. Backoff is short (300ms, 900ms)
+  // because a real user is waiting synchronously on this response.
+  const MAX_ATTEMPTS = 3;
+  const BACKOFF_MS = [300, 900];
+  let lastErr;
 
-    const data = await res.json();
-    const raw = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+    try {
+      const res = await fetch(GEMINI_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body
+      });
 
-    return parseGeminiResponse(raw, isFirstTurn);
-  } catch (err) {
-    console.error('Gemini call failed, using fallback exercise:', err);
-    return { correct: gradeLocally(exercise, learnerAnswer), feedback: '', exercise: fallback(), greeting: null, conceptNote: null };
+      if (!res.ok) {
+        const retryable = res.status === 429 || res.status >= 500;
+        if (retryable && attempt < MAX_ATTEMPTS - 1) {
+          console.error(`Gemini ${res.status} (attempt ${attempt + 1}/${MAX_ATTEMPTS}), retrying...`);
+          await new Promise(r => setTimeout(r, BACKOFF_MS[attempt]));
+          continue;
+        }
+        throw new Error(`Gemini ${res.status}`);
+      }
+
+      const data = await res.json();
+      const raw = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+
+      return parseGeminiResponse(raw, isFirstTurn);
+    } catch (err) {
+      lastErr = err;
+      // A thrown non-ok-status Error (from just above) already had its
+      // retry decision made; a genuine network/fetch-level exception is
+      // always worth retrying since it's inherently transient.
+      const isStatusError = err instanceof Error && /^Gemini \d+$/.test(err.message);
+      if (!isStatusError && attempt < MAX_ATTEMPTS - 1) {
+        console.error(`Gemini call failed (attempt ${attempt + 1}/${MAX_ATTEMPTS}), retrying:`, err);
+        await new Promise(r => setTimeout(r, BACKOFF_MS[attempt]));
+        continue;
+      }
+      break;
+    }
   }
+
+  console.error('Gemini call failed after retries, using fallback exercise:', lastErr);
+  return { correct: gradeLocally(exercise, learnerAnswer), feedback: '', exercise: fallback(), greeting: null, conceptNote: null };
 }
 
 function parseGeminiResponse(raw, isFirstTurn) {
