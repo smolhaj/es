@@ -627,6 +627,33 @@ Cesar...) was at risk of having its example sentence hijacked. Fixed in
   passed initial QA, and sat in production before a user caught the
   specific instance that exposed the systemic issue.
 
+**Second bug found and fixed this session: cards graded "Again" never
+actually got rescheduled — they stayed permanently due.** A user reported
+"I keep getting the same words to review each time." Root cause was in
+the *shared* `functions/_lib/fsrs.js` (not flashcards-specific — this
+function also schedules the adaptive session's `vocabulary_items` queue,
+so the bug affected both systems): `due_at` was computed as `Date.now() +
+Math.round(stability) * 86400000`. A struggling/new card's FSRS stability
+is routinely well under 1 day (0.02-0.4 days is normal after a few
+"Again" grades), and `Math.round()` truncated all of that down to **0**,
+scheduling the card due at essentially the same instant it was just
+reviewed. That card then never actually spaced further out: every
+subsequent review recomputed another sub-day stability, rounded to 0
+again, so it stayed permanently "due" and kept winning the soonest-due
+sort in every future session, crowding out other due/new cards — exactly
+the reported symptom. Fixed by removing the rounding entirely (`Date.now()
++ stability * 86400000`) — real SRS systems (Anki's own learning steps,
+etc.) genuinely do re-show a failed card within minutes to hours, not
+after a full day, so using the raw fractional stability is both the fix
+and the more correct behavior. Verified via a repeated-"Again" simulation
+(stability/due-time now correctly shrinks from ~9.8h → ~4.2h → ~1.9h →
+~0.9h → ~0.4h instead of flatlining at "due now" every time) and via a
+live end-to-end test hitting the real `/api/flashcards/review` endpoint.
+**Because this lives in the shared FSRS function, the same one-line fix
+also corrected the adaptive session's vocabulary spaced-repetition
+scheduling**, not just Flashcards — worth remembering that any future
+change to `scheduleReview()` affects both systems at once.
+
 ---
 
 ## Deployment & ops conventions (established this session)
