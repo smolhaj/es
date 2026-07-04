@@ -90,7 +90,6 @@ export default function Dashboard() {
   const wordsSeen = profile?.vocabulary?.seen ?? 0;
   const dueForReview = profile?.vocabulary?.dueForReview ?? 0;
   const weakConcepts = profile?.weakConcepts ?? [];
-  const streak = profile?.streak ?? 0;
   // Show seed prompt when user has done sessions but hasn't imported the bulk vocab list.
   // Session exercises auto-add words, so we use a low threshold (< 30) rather than === 0.
   const showSeedPrompt = !loading && !error && totalSessions >= 2 && wordsSeen < 30;
@@ -137,7 +136,6 @@ export default function Dashboard() {
                 <StatCard label="Sessions" value={totalSessions} />
                 <StatCard label="Accuracy" value={accuracy} sub="all time" />
                 <StatCard label="Words seen" value={wordsSeen} sub={`${wordsMastered} mastered`} />
-                <StatCard label="Streak" value={streak} sub={streak === 1 ? 'day' : 'days'} />
                 <StatCard label="Level" value={cefr} sub="CEFR" />
               </div>
             </section>
@@ -206,7 +204,7 @@ export default function Dashboard() {
 
           {/* Reference links */}
           <section className={styles.refSection}>
-            <Link to="/get-started" className={styles.refLink}>Get started →</Link>
+            <Link to="/learn" className={styles.refLink}>Learn →</Link>
             <Link to="/flashcards" className={styles.refLink}>Flashcards →</Link>
             <Link to="/concepts" className={styles.refLink}>Concepts →</Link>
             <Link to="/grammar" className={styles.refLink}>Grammar →</Link>
@@ -216,6 +214,7 @@ export default function Dashboard() {
             <Link to="/false-friends" className={styles.refLink}>False friends →</Link>
             <Link to="/pronunciation" className={styles.refLink}>Pronunciation →</Link>
             <Link to="/regional" className={styles.refLink}>Regional →</Link>
+            <Link to="/resources" className={styles.refLink}>Free resources →</Link>
             <Link to="/writing" className={styles.refLink}>Writing →</Link>
             <Link to="/history" className={styles.refLink}>History →</Link>
             <Link to="/profile" className={styles.refLink}>Profile →</Link>

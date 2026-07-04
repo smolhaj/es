@@ -76,7 +76,7 @@ export default function Lesson() {
         <main className={styles.main}>
           <div className={styles.inner}>
             <p>Lesson not found.</p>
-            <Link to="/get-started" className="btn btn-secondary">← Back to Get started</Link>
+            <Link to="/learn" className="btn btn-secondary">← Back to Learn</Link>
           </div>
         </main>
       </div>
@@ -91,7 +91,7 @@ export default function Lesson() {
           <div className={styles.inner}>
             <h1 className={styles.title}>{unit.title}</h1>
             <p className={styles.comingSoonText}>This lesson is being written and isn't ready yet.</p>
-            <Link to="/get-started" className="btn btn-secondary">← Back to Get started</Link>
+            <Link to="/learn" className="btn btn-secondary">← Back to Learn</Link>
           </div>
         </main>
       </div>
@@ -103,7 +103,7 @@ export default function Lesson() {
       <NavBar />
       <main className={styles.main}>
         <div className={styles.inner}>
-          <Link to="/get-started" className={styles.backLink}>← Get started</Link>
+          <Link to="/learn" className={styles.backLink}>← Learn</Link>
 
           {phase === 'reading' && (
             <>
@@ -203,7 +203,7 @@ export default function Lesson() {
                 {correctCount} of {unit.practice.length} correct on the first try.
               </p>
               <div className={styles.completeActions}>
-                <Link to="/get-started" className="btn btn-primary">More lessons →</Link>
+                <Link to="/learn" className="btn btn-primary">More lessons →</Link>
                 <Link to="/session" className="btn btn-secondary">Adaptive practice →</Link>
               </div>
             </div>

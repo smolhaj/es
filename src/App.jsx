@@ -19,6 +19,7 @@ import History from './pages/History.jsx';
 import Regional from './pages/Regional.jsx';
 import Writing from './pages/Writing.jsx';
 import Concepts from './pages/Concepts.jsx';
+import Resources from './pages/Resources.jsx';
 
 function Protected({ children }) {
   const { isLoggedIn } = useAuth();
@@ -38,7 +39,8 @@ export default function App() {
         <Route path="/login" element={<Guest><Auth mode="login" /></Guest>} />
         <Route path="/register" element={<Guest><Auth mode="register" /></Guest>} />
         <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
-        <Route path="/get-started" element={<Protected><GetStarted /></Protected>} />
+        <Route path="/learn" element={<Protected><GetStarted /></Protected>} />
+        <Route path="/get-started" element={<Navigate to="/learn" replace />} />
         <Route path="/lessons/:unitId" element={<Protected><Lesson /></Protected>} />
         <Route path="/session" element={<Protected><Session /></Protected>} />
         <Route path="/flashcards" element={<Protected><Flashcards /></Protected>} />
@@ -54,6 +56,7 @@ export default function App() {
         <Route path="/regional" element={<Protected><Regional /></Protected>} />
         <Route path="/writing" element={<Protected><Writing /></Protected>} />
         <Route path="/concepts" element={<Protected><Concepts /></Protected>} />
+        <Route path="/resources" element={<Protected><Resources /></Protected>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>

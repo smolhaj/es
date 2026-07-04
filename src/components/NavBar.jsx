@@ -61,7 +61,7 @@ export default function NavBar({ cefrLevel }) {
 
           {isLoggedIn ? (
             <>
-              <Link to="/get-started" className={`btn btn-ghost ${styles.navLink}`}>Get started</Link>
+              <Link to="/learn" className={`btn btn-ghost ${styles.navLink}`}>Learn</Link>
               <Link to="/session" className={`btn btn-ghost ${styles.navLink}`}>Practice</Link>
               <Link to="/flashcards" className={`btn btn-ghost ${styles.navLink}`}>Flashcards</Link>
               <Link to="/dashboard" className={`btn btn-ghost ${styles.navLink}`}>Dashboard</Link>
@@ -95,7 +95,7 @@ export default function NavBar({ cefrLevel }) {
         <div className={styles.mobileMenu} role="menu">
           {isLoggedIn ? (
             <>
-              <Link to="/get-started" className={styles.mobileLink} role="menuitem">Get started</Link>
+              <Link to="/learn"     className={styles.mobileLink} role="menuitem">Learn</Link>
               <Link to="/session"   className={styles.mobileLink} role="menuitem">Practice</Link>
               <Link to="/flashcards" className={styles.mobileLink} role="menuitem">Flashcards</Link>
               <Link to="/dashboard" className={styles.mobileLink} role="menuitem">Dashboard</Link>
@@ -105,6 +105,7 @@ export default function NavBar({ cefrLevel }) {
               <Link to="/vocab"     className={styles.mobileLink} role="menuitem">Vocabulary</Link>
               <Link to="/idioms"    className={styles.mobileLink} role="menuitem">Idioms</Link>
               <Link to="/regional"  className={styles.mobileLink} role="menuitem">Regional</Link>
+              <Link to="/resources" className={styles.mobileLink} role="menuitem">Free resources</Link>
               <Link to="/history"   className={styles.mobileLink} role="menuitem">History</Link>
               <Link to="/profile"   className={styles.mobileLink} role="menuitem">Profile</Link>
               <button onClick={handleLogout} className={`${styles.mobileLink} ${styles.mobileLinkBtn}`} role="menuitem">
