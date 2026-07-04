@@ -24,6 +24,7 @@ import recentOngoing from './unit16-recent-ongoing.js';
 import pastInDetail from './unit17-past-in-detail.js';
 import futureHypotheticals from './unit18-future-hypotheticals.js';
 import opinionsCommands from './unit19-opinions-commands.js';
+import nuanceConnection from './unit20-nuance-connection.js';
 
 const CONTENT = {
   'saying-hello': sayingHello,
@@ -45,6 +46,7 @@ const CONTENT = {
   'past-in-detail': pastInDetail,
   'future-hypotheticals': futureHypotheticals,
   'opinions-commands': opinionsCommands,
+  'nuance-connection': nuanceConnection,
 };
 
 export const UNIT_METADATA = [
