@@ -42,17 +42,19 @@ export default function Flashcards() {
   const [reviewedCount, setReviewedCount] = useState(0);
   const [deckSize, setDeckSize] = useState(0);
   const [saveFailed, setSaveFailed] = useState(false);
+  const [progressLoadFailed, setProgressLoadFailed] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const [{ default: allCards }, { progress }] = await Promise.all([
+      const [{ default: allCards }, progressResult] = await Promise.all([
         import('../content/flashcards/frequency-5000.js'),
-        api.flashcards.progress(token).catch(() => ({ progress: {} })),
+        api.flashcards.progress(token).catch(() => null),
       ]);
       if (cancelled) return;
+      if (!progressResult) setProgressLoadFailed(true);
       setDeckSize(allCards.length);
-      const built = buildQueue(allCards, progress);
+      const built = buildQueue(allCards, progressResult?.progress ?? {});
       setQueue(built);
       setPhase(built.length === 0 ? 'empty' : 'session');
     })();
@@ -119,6 +121,11 @@ export default function Flashcards() {
                 <span className={styles.deckNote}>{deckSize.toLocaleString()}-word deck</span>
               </header>
 
+              {progressLoadFailed && (
+                <p className={styles.saveWarning}>
+                  Couldn't load your saved progress — this session may show cards you've already learned.
+                </p>
+              )}
               {saveFailed && (
                 <p className={styles.saveWarning}>
                   Some reviews didn't save — check your connection. Progress for those cards may not be recorded.
