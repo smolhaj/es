@@ -533,6 +533,39 @@ viewport-only screenshot, which shows the panel correctly covering the
 full viewport with no bleed-through, exactly as a real user would see
 it).
 
+## Dashboard visual polish (this session)
+
+First round of a broader "QOL: better UI" pass, scoped via 24 direction-
+setting multiple-choice questions to the user beforehand — the answer to
+nearly every open lever (density, typography, buttons, card elevation,
+stats-as-plain-numbers, motion/animation, empty states, loading spinner,
+mobile nav) was "keep as-is." That left refinement of concrete,
+already-broken specifics as the actual scope, not a redesign:
+
+- **CEFR level was shown three times on one screen**: the small pill in
+  `NavBar` (only Dashboard passes the `cefrLevel` prop, so this triple-up
+  is Dashboard-specific), a second standalone `<CefrBadge>` floating in
+  the page's own header next to the greeting, and a third time as the
+  "Level / CEFR" stat card. Removed the redundant header badge (and the
+  now-unused `CefrBadge` import) — down to two, an ambient nav indicator
+  and an explicit stats-grid data point, which is a defensible amount of
+  overlap rather than true duplication.
+- **`.statsGrid` was still `grid-template-columns: repeat(5, 1fr)`**,
+  leftover from before this session's earlier removal of the Streak stat
+  card (see "Naming/positioning changes" above) — only 4 `StatCard`s
+  render now, so the grid left a dead 5th-column gap of blank space on
+  the right on every viewport. Fixed to `repeat(4, 1fr)`. The `640px`
+  breakpoint had the same problem one level down (`repeat(3, 1fr)` with
+  4 cards left a lone orphaned 4th card under column 1) — changed to a
+  clean `repeat(2, 1fr)` 2×2 grid; the existing sub-`400px` single-column
+  fallback was already correct and left untouched.
+
+Verified via Playwright against a real local `wrangler pages dev` + D1
+server at 1280px, 600px, and 390px: CEFR text now appears exactly twice
+(nav + stat card, confirmed via a page-wide text count), zero page
+errors, and all three viewport tiers render the stats grid without dead
+space or orphaned cards.
+
 ## Production outage: schema-v8.sql applied locally but never to prod D1
 
 **Real incident, caught by the user in production, not by any QA pass

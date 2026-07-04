@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
-import CefrBadge from '../components/CefrBadge.jsx';
 import styles from './Dashboard.module.css';
 
 const CONCEPT_LABELS = {
@@ -102,17 +101,14 @@ export default function Dashboard() {
         <div className={styles.inner}>
           {/* Header */}
           <header className={styles.header}>
-            <div>
-              <h1 className={styles.greeting}>
-                {greeting(user?.email)}
-              </h1>
-              <p className={styles.subGreeting}>
-                {totalSessions === 0
-                  ? 'Your first session is ready.'
-                  : `${totalSessions} session${totalSessions !== 1 ? 's' : ''} completed.`}
-              </p>
-            </div>
-            <CefrBadge level={cefr} />
+            <h1 className={styles.greeting}>
+              {greeting(user?.email)}
+            </h1>
+            <p className={styles.subGreeting}>
+              {totalSessions === 0
+                ? 'Your first session is ready.'
+                : `${totalSessions} session${totalSessions !== 1 ? 's' : ''} completed.`}
+            </p>
           </header>
 
           {/* Start session */}
