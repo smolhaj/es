@@ -8,6 +8,7 @@ import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import { getUnit } from '../content/curriculum/index.js';
+import { buildCheckpointPractice } from '../lib/checkpoints.js';
 import styles from './Lesson.module.css';
 
 // English contractions and their expansions — a learner shouldn't be marked
@@ -89,17 +90,59 @@ function isAnswerCorrect(exercise, learnerAnswer) {
 
 // phase: 'reading' | 'practice' | 'checking' | 'feedback' | 'complete'
 
+// Checkpoint units have no static content — this builds their {sections,
+// vocab, practice} at lesson-load time instead, so it reflects the
+// learner's CURRENT weak spots every time they open it (checkpoints are
+// redoable, deliberately not frozen at first-completion state).
+function buildCheckpointContent(unit, weakConcepts) {
+  return {
+    sections: [{
+      heading: 'Review Checkpoint',
+      paragraphs: [
+        `This checkpoint reviews ${unit.coversUnits} — weighted toward the concepts you've found trickiest so far. No new grammar here, just practice.`,
+      ],
+      examples: [],
+      commonMistakes: [],
+    }],
+    vocab: [],
+    practice: buildCheckpointPractice(unit.checkpointUpTo, weakConcepts),
+  };
+}
+
 export default function Lesson() {
   const { unitId } = useParams();
   const { token } = useAuth();
   const navigate = useNavigate();
-  const unit = useMemo(() => getUnit(unitId), [unitId]);
+  const baseUnit = useMemo(() => getUnit(unitId), [unitId]);
 
+  const [checkpointContent, setCheckpointContent] = useState(null);
   const [phase, setPhase] = useState('reading');
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [feedback, setFeedback] = useState(null);
   const [marking, setMarking] = useState(false);
+
+  // Checkpoints: fetch the learner's current weak spots and assemble a
+  // fresh, personalized practice set every time this lesson mounts.
+  useEffect(() => {
+    setCheckpointContent(null);
+    if (!baseUnit?.isCheckpoint || !token) return;
+    let cancelled = false;
+    api.learner.profile(token)
+      .then(res => {
+        if (cancelled) return;
+        setCheckpointContent(buildCheckpointContent(baseUnit, res.weakConcepts ?? []));
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setCheckpointContent(buildCheckpointContent(baseUnit, []));
+      });
+    return () => { cancelled = true; };
+  }, [baseUnit, token]);
+
+  const unit = baseUnit?.isCheckpoint
+    ? (checkpointContent ? { ...baseUnit, ...checkpointContent } : null)
+    : baseUnit;
 
   // Seed lesson vocab into the FSRS-scheduled review queue (best-effort;
   // ignore "already exists" conflicts for words the learner has already met).
@@ -142,7 +185,7 @@ export default function Lesson() {
     setPhase('practice');
   }, [exerciseIndex, unit, token]);
 
-  if (!unit) {
+  if (!baseUnit) {
     return (
       <div className={styles.page}>
         <NavBar />
@@ -150,6 +193,20 @@ export default function Lesson() {
           <div className={styles.inner}>
             <p>Lesson not found.</p>
             <Link to="/learn" className="btn btn-secondary">← Back to Learn</Link>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  if (baseUnit.isCheckpoint && !unit) {
+    return (
+      <div className={styles.page}>
+        <NavBar />
+        <main className={styles.main}>
+          <div className={styles.inner}>
+            <h1 className={styles.title}>{baseUnit.title}</h1>
+            <p className={styles.summary}>Building your personalized review…</p>
           </div>
         </main>
       </div>

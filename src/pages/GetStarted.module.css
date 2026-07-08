@@ -118,6 +118,18 @@
   color: var(--text-placeholder);
 }
 
+.checkpointBadge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-gold);
+}
+
+.unitCardCheckpoint {
+  border-style: dashed;
+}
+
 .doneCheck {
   margin-left: auto;
   color: var(--correct);

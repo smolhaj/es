@@ -72,7 +72,9 @@ function UnitCard({ unit, done }) {
   const content = (
     <>
       <div className={styles.unitHeader}>
-        <span className={styles.unitOrder}>{unit.order}</span>
+        {unit.isCheckpoint
+          ? <span className={styles.checkpointBadge}>Review</span>
+          : <span className={styles.unitOrder}>{unit.order}</span>}
         {done && <span className={styles.doneCheck} aria-label="Completed">✓</span>}
         {unit.comingSoon && <span className={styles.comingSoon}>Coming soon</span>}
       </div>
@@ -86,7 +88,10 @@ function UnitCard({ unit, done }) {
   }
 
   return (
-    <Link to={`/lessons/${unit.id}`} className={`${styles.unitCard} ${done ? styles.unitCardDone : ''}`}>
+    <Link
+      to={`/lessons/${unit.id}`}
+      className={`${styles.unitCard} ${unit.isCheckpoint ? styles.unitCardCheckpoint : ''} ${done ? styles.unitCardDone : ''}`}
+    >
       {content}
     </Link>
   );

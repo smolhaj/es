@@ -103,6 +103,9 @@ export const UNIT_METADATA = [
   { id: 'who-you-are', order: 4, level: 'A1', title: 'Who You Are',
     concepts: ['ser_basics', 'adjective_agreement'],
     summary: 'Describe yourself and others with ser, and make adjectives agree.' },
+  { id: 'checkpoint-a1', order: 4.5, level: 'A1', title: 'Checkpoint: Units 1-4', isCheckpoint: true,
+    checkpointUpTo: 4, coversUnits: 'Units 1-4', concepts: [],
+    summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'where-you-are', order: 5, level: 'A1', title: 'Where You Are',
     concepts: ['estar_basics', 'hay'],
     summary: 'Talk about location with estar, and say what there is with hay.' },
@@ -112,6 +115,9 @@ export const UNIT_METADATA = [
   { id: 'asking-questions', order: 7, level: 'A1', title: 'Asking Questions',
     concepts: ['question_words'],
     summary: 'Qué, quién, cómo, dónde, cuándo, por qué — ask about anything.' },
+  { id: 'checkpoint-a1-full', order: 7.5, level: 'A1', title: 'Checkpoint: All of A1', isCheckpoint: true,
+    checkpointUpTo: 7, coversUnits: 'Units 1-7', concepts: [],
+    summary: 'A1 complete — a personalized review of the whole level before moving on.' },
 
   // A2 — Building Fluency
   { id: 'daily-routine', order: 8, level: 'A2', title: 'Your Daily Routine',
@@ -126,6 +132,9 @@ export const UNIT_METADATA = [
   { id: 'what-happened', order: 11, level: 'A2', title: 'What Happened',
     concepts: ['preterite_regular', 'negation'],
     summary: 'Talk about completed past events and say what did NOT happen.' },
+  { id: 'checkpoint-a2', order: 11.5, level: 'A2', title: 'Checkpoint: Units 1-11', isCheckpoint: true,
+    checkpointUpTo: 11, coversUnits: 'Units 1-11', concepts: [],
+    summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'obligations-requests', order: 12, level: 'A2', title: 'Obligations & Requests',
     concepts: ['modal_verbs', 'obligation_infinitive'],
     summary: 'Say what you can, want, or have to do.' },
@@ -138,6 +147,9 @@ export const UNIT_METADATA = [
   { id: 'irregular-present', order: 15, level: 'A2', title: 'Irregular Verbs in the Present',
     concepts: ['irregular_present'],
     summary: 'The high-frequency irregular verbs every conversation needs.' },
+  { id: 'checkpoint-a2-full', order: 15.5, level: 'A2', title: 'Checkpoint: All of A2', isCheckpoint: true,
+    checkpointUpTo: 15, coversUnits: 'Units 1-15', concepts: [],
+    summary: 'A2 complete — a personalized review of the whole level before moving on.' },
 
   // B1 — Expressing Yourself
   { id: 'recent-ongoing', order: 16, level: 'B1', title: 'Recent & Ongoing Actions',
@@ -152,12 +164,18 @@ export const UNIT_METADATA = [
   { id: 'opinions-commands', order: 19, level: 'B1', title: 'Opinions & Commands',
     concepts: ['present_subjunctive', 'imperative'],
     summary: 'The subjunctive mood and giving direct commands.' },
+  { id: 'checkpoint-b1', order: 19.5, level: 'B1', title: 'Checkpoint: Units 1-19', isCheckpoint: true,
+    checkpointUpTo: 19, coversUnits: 'Units 1-19', concepts: [],
+    summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'nuance-connection', order: 20, level: 'B1', title: 'Nuance & Connection',
     concepts: ['por_vs_para', 'relative_clauses', 'saber_vs_conocer', 'lo_neutro'],
     summary: 'The trickiest small words in Spanish, finally explained clearly.' },
   { id: 'efficiency-emphasis', order: 21, level: 'B1', title: 'Efficiency & Emphasis',
     concepts: ['object_pronoun_order', 'se_impersonal', 'infinitive_vs_subjunctive', 'exclamativas'],
     summary: 'Stack your pronouns, drop the subject Spanish already knows, and say things with real feeling.' },
+  { id: 'checkpoint-b1-full', order: 21.5, level: 'B1', title: 'Checkpoint: All of B1', isCheckpoint: true,
+    checkpointUpTo: 21, coversUnits: 'Units 1-21', concepts: [],
+    summary: 'B1 complete — a personalized review of the whole level before moving on.' },
 
   // B2 — Advanced Structures
   { id: 'perfect-tenses', order: 22, level: 'B2', title: 'Perfect Tenses',
@@ -172,6 +190,9 @@ export const UNIT_METADATA = [
   { id: 'fine-details', order: 25, level: 'B2', title: 'Fine Details',
     concepts: ['comparatives', 'diminutives_augmentatives', 'relative_pronouns_advanced', 'adjectives_ser_estar', 'adjective_position', 'verbos_cambio'],
     summary: 'The polish that separates advanced learners from natives.' },
+  { id: 'checkpoint-b2', order: 25.5, level: 'B2', title: 'Checkpoint: All of B2', isCheckpoint: true,
+    checkpointUpTo: 25, coversUnits: 'Units 1-25', concepts: [],
+    summary: 'B2 complete — a personalized review of the whole level before moving on.' },
 
   // C1 — Near-Native Precision
   { id: 'subjunctive-limits', order: 26, level: 'C1', title: 'Subjunctive at Its Limits',
@@ -189,6 +210,9 @@ export const UNIT_METADATA = [
   { id: 'connectors-cohesion', order: 30, level: 'C1', title: 'Connectors & Cohesion',
     concepts: ['connectors_contrast', 'connectors_consequence', 'connectors_addition_sequence', 'connectors_cause_reason'],
     summary: 'Sin embargo, por lo tanto, además, ya que — the basic connectors every advanced argument needs.' },
+  { id: 'checkpoint-c1', order: 30.5, level: 'C1', title: 'Checkpoint: All of C1', isCheckpoint: true,
+    checkpointUpTo: 30, coversUnits: 'Units 1-30', concepts: [],
+    summary: 'C1 complete — a personalized review of the whole level before moving on.' },
 
   // C2 — Native-Level Mastery
   { id: 'discourse-markers', order: 31, level: 'C2', title: 'Discourse Markers',
@@ -212,13 +236,38 @@ export const UNIT_METADATA = [
   { id: 'reading-between-lines', order: 37, level: 'C2', title: 'Reading Between the Lines',
     concepts: ['implicatura_pragmatica', 'generos_discursivos_formales', 'referencias_culturales_avanzadas'],
     summary: 'What people mean but don\'t say, formal report vs. essay structure, and the cultural references fluent speakers catch. The final stop on this path.' },
+  { id: 'checkpoint-c2', order: 37.5, level: 'C2', title: 'Checkpoint: The Whole Course', isCheckpoint: true,
+    checkpointUpTo: 37, coversUnits: 'Units 1-37', concepts: [],
+    summary: 'The full A1-C2 path, reviewed — a personalized capstone weighted toward whatever still needs work.' },
 ];
 
 export function getUnit(id) {
   const meta = UNIT_METADATA.find(u => u.id === id);
   if (!meta) return null;
+  // Checkpoints have no static CONTENT entry — their practice set is
+  // assembled dynamically at lesson-load time (see src/lib/checkpoints.js)
+  // from getPracticePoolUpTo() below, personalized per learner and rebuilt
+  // fresh every visit rather than frozen at first completion.
+  if (meta.isCheckpoint) return { ...meta, comingSoon: false };
   const content = CONTENT[id];
   return content ? { ...meta, ...content, comingSoon: false } : { ...meta, comingSoon: true };
 }
 
-export const UNITS = UNIT_METADATA.map(m => ({ ...m, comingSoon: !CONTENT[m.id] }));
+export const UNITS = UNIT_METADATA.map(m => ({ ...m, comingSoon: !m.isCheckpoint && !CONTENT[m.id] }));
+
+// Exercise pool for checkpoint units, grouped by concept_id, pooled from
+// every real (non-checkpoint) unit's practice array at or before the given
+// order. Consumed by src/lib/checkpoints.js's weak-spot-weighted selection.
+export function getPracticePoolUpTo(order) {
+  const pool = {};
+  for (const meta of UNIT_METADATA) {
+    if (meta.isCheckpoint || meta.order > order) continue;
+    const content = CONTENT[meta.id];
+    if (!content) continue;
+    for (const exercise of content.practice) {
+      if (!exercise.concept_id) continue;
+      (pool[exercise.concept_id] ??= []).push(exercise);
+    }
+  }
+  return pool;
+}
