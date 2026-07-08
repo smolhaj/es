@@ -128,7 +128,7 @@ export default {
     { type: 'fill_blank', prompt: 'Complete with the correct form of ser: "¿De dónde ___ tú?"', word: 'ser', english: 'to be', answer: 'eres', concept_id: 'ser_basics', difficulty: 1 },
     { type: 'multiple_choice', prompt: 'Which form of ser goes with "nosotros"?', word: 'ser', english: 'to be (we)', answer: 'somos', options: ['somos', 'sois', 'son', 'es'], concept_id: 'ser_basics', difficulty: 1 },
     { type: 'translation_to_spanish', prompt: "Translate: 'She is a doctor.'", english: 'She is a doctor.', answer: 'Ella es médica.', word: 'ser', concept_id: 'ser_basics', difficulty: 2 },
-    { type: 'translation_to_english', prompt: '¿Qué significa "Son de México"?', word: 'son', english: 'they are', answer: 'They are from Mexico.', concept_id: 'ser_basics', difficulty: 1 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Son de México"?', word: 'son', english: 'they are', answer: 'They are from Mexico.', altAnswers: ['You all are from Mexico.', 'You are from Mexico.'], concept_id: 'ser_basics', difficulty: 1 },
     { type: 'error_correction', prompt: 'Fix the mistake: "Usted eres profesor."', word: 'ser', english: 'to be (formal you)', answer: 'Usted es profesor.', concept_id: 'ser_basics', difficulty: 2 },
 
     // ── adjective_agreement block (kept separate from ser_basics; blocked before mixed review) ──

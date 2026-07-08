@@ -175,7 +175,7 @@ export default {
 
     // ── exclamativas block (kept separate; blocked before mixed review) ──
     { type: 'multiple_choice', prompt: 'Which is the correct pure exclamation for "How beautiful!"?', word: '¡qué bonito!', english: 'how beautiful!', answer: '¡Qué bonito!', options: ['¡Qué bonito!', '¡Cuánto bonito!', '¡Qué es bonito!', '¡Bonito qué!'], concept_id: 'exclamativas', difficulty: 1 },
-    { type: 'translation_to_spanish', prompt: "Translate: 'What a beautiful house!' (using qué + noun + más/tan + adjective)", english: 'What a beautiful house!', answer: '¡Qué casa más bonita!', word: 'qué casa más bonita', concept_id: 'exclamativas', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'What a beautiful house!' (using qué + noun + más/tan + adjective)", english: 'What a beautiful house!', answer: '¡Qué casa más bonita!', altAnswers: ['¡Qué casa tan bonita!'], word: 'qué casa más bonita', concept_id: 'exclamativas', difficulty: 2 },
     { type: 'fill_blank', prompt: 'Complete with the correctly agreeing form: "¡___ gente hay aquí!" (how many people, fem. sing.)', word: 'cuánta', english: 'how much/many', answer: 'Cuánta', concept_id: 'exclamativas', difficulty: 2 },
     { type: 'error_correction', prompt: 'Find and correct the agreement error: "¡Qué chicos más simpático!"', word: 'simpáticos', english: 'nice', answer: '¡Qué chicos más simpáticos!', concept_id: 'exclamativas', difficulty: 3 },
   ],

@@ -172,7 +172,7 @@ export default {
     { type: 'fill_blank', prompt: 'Complete: "Quiero que tú ___ más despacio." (comer)', word: 'comer', english: 'to eat', answer: 'comas', concept_id: 'present_subjunctive', difficulty: 2 },
     { type: 'fill_blank', prompt: 'Complete with the irregular subjunctive form: "Espero que ___ (tener, tú) suerte."', word: 'tener', english: 'to have', answer: 'tengas', concept_id: 'present_subjunctive', difficulty: 2 },
     { type: 'error_correction', prompt: 'Find and correct the error: "Quiero que tú vas al médico."', word: 'ir (subjunctive)', english: 'to go', answer: 'Quiero que tú vayas al médico.', concept_id: 'present_subjunctive', difficulty: 2 },
-    { type: 'translation_to_english', prompt: '¿Qué significa "Es necesario que ella sea puntual"?', word: 'ser (subjunctive)', english: 'to be', answer: 'It is necessary that she be punctual.', concept_id: 'present_subjunctive', difficulty: 2 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Es necesario que ella sea puntual"?', word: 'ser (subjunctive)', english: 'to be', answer: 'It is necessary that she be punctual.', altAnswers: ["It's necessary for her to be punctual."], concept_id: 'present_subjunctive', difficulty: 2 },
 
     // ── present_subjunctive block: WEIRDO triggers (still blocked, one level up from raw formation) ──
     { type: 'multiple_choice', prompt: 'Which sentence correctly expresses doubt using the subjunctive?', word: 'dudar que', english: 'to doubt that', answer: 'Dudo que él tenga razón.', options: ['Dudo que él tiene razón.', 'Dudo que él tenga razón.', 'Creo que él tenga razón.', 'Sé que él tenga razón.'], concept_id: 'present_subjunctive', difficulty: 2 },
@@ -184,7 +184,7 @@ export default {
     // ── imperative block: affirmative tú (blocked separately from subjunctive-based commands) ──
     { type: 'multiple_choice', prompt: 'What is the affirmative tú command for hablar?', word: 'hablar', english: 'to speak', answer: 'habla', options: ['habla', 'hable', 'hables', 'hablas'], concept_id: 'imperative', difficulty: 1 },
     { type: 'fill_blank', prompt: 'Complete the irregular tú command: "¡___ (decir) la verdad!"', word: 'decir', english: 'to say/tell', answer: 'di', concept_id: 'imperative', difficulty: 1 },
-    { type: 'translation_to_spanish', prompt: "Translate the command: 'Come here!' (tú, informal, addressing a friend)", english: 'Come here!', answer: '¡Ven aquí!', word: 'venir (command)', concept_id: 'imperative', difficulty: 1 },
+    { type: 'translation_to_spanish', prompt: "Translate the command: 'Come here!' (tú, informal, addressing a friend)", english: 'Come here!', answer: '¡Ven aquí!', altAnswers: ['¡Ven acá!'], word: 'venir (command)', concept_id: 'imperative', difficulty: 1 },
 
     // ── imperative block: negative tú and usted/ustedes (payoff — reuses present_subjunctive) ──
     { type: 'multiple_choice', prompt: 'Which is the correct negative tú command form of hablar?', word: 'hablar', english: 'to speak', answer: 'No hables', options: ['No habla', 'No hables', 'No hablas', 'No hable'], concept_id: 'imperative', difficulty: 2 },

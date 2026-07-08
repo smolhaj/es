@@ -139,7 +139,7 @@ export default {
     { type: 'translation_to_english', prompt: '¿Qué significa "escribís"?', word: 'escribir', english: 'you all write', answer: 'you all write', concept_id: 'present_er_ir', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which ending completes the nosotros form of a regular -ir verb like vivir?', word: 'vivir', english: 'to live', answer: '-imos', options: ['-emos', '-imos', '-ís', '-en'], concept_id: 'present_er_ir', difficulty: 2 },
     { type: 'fill_blank', prompt: 'Complete with the correct form of leer: "Ella ___ un libro nuevo cada mes."', word: 'leer', english: 'to read', answer: 'lee', concept_id: 'present_er_ir', difficulty: 1 },
-    { type: 'translation_to_spanish', prompt: 'Translate: "They share an apartment."', english: 'They share an apartment.', answer: 'Comparten un apartamento.', word: 'compartir', concept_id: 'present_er_ir', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: 'Translate: "They share an apartment."', english: 'They share an apartment.', answer: 'Comparten un apartamento.', altAnswers: ['Comparten un departamento.', 'Comparten un piso.'], word: 'compartir', concept_id: 'present_er_ir', difficulty: 2 },
   ],
 };
 
