@@ -7,11 +7,13 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
   const [selected, setSelected] = useState(null);
   const inputRef = useRef(null);
 
+  const isMultipleType = t => t === 'multiple_choice' || t === 'register_identify';
+
   // Reset state when exercise changes
   useEffect(() => {
     setAnswer('');
     setSelected(null);
-    if (exercise?.type !== 'multiple_choice' && inputRef.current) {
+    if (!isMultipleType(exercise?.type) && inputRef.current) {
       inputRef.current.focus();
     }
   }, [exercise?.prompt]);
@@ -20,7 +22,7 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
 
   function handleSubmit(e) {
     e?.preventDefault();
-    const value = exercise.type === 'multiple_choice' ? selected : answer.trim();
+    const value = isMultipleType(exercise.type) ? selected : answer.trim();
     if (!value) return;
     onSubmit(value);
   }
@@ -30,9 +32,9 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
     setSelected(option);
   }
 
-  // Keyboard shortcuts: 1–4 select + immediately submit MC option
+  // Keyboard shortcuts: 1–4 select + immediately submit MC/register option
   useEffect(() => {
-    if (exercise?.type !== 'multiple_choice' || disabled) return;
+    if (!isMultipleType(exercise?.type) || disabled) return;
     const opts = exercise.options ?? [];
     function onKey(e) {
       const idx = parseInt(e.key, 10) - 1;
@@ -45,7 +47,7 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [exercise?.type, exercise?.options, disabled, onSubmit]);
 
-  const isMultiple = exercise.type === 'multiple_choice';
+  const isMultiple = isMultipleType(exercise.type);
   const canSubmit = isMultiple ? !!selected : answer.trim().length > 0;
 
   return (
@@ -62,6 +64,16 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
             <p className={styles.passageEs}>{exercise.passage}</p>
           </div>
           {exercise.passageEn && <p className={styles.passageEn}>{exercise.passageEn}</p>}
+        </div>
+      )}
+
+      {exercise.type === 'register_identify' && exercise.sentence && (
+        <div className={styles.passage}>
+          <div className={styles.passageRow}>
+            <SpeakButton text={exercise.sentence} />
+            <p className={styles.passageEs}>{exercise.sentence}</p>
+          </div>
+          {exercise.sentenceEn && <p className={styles.passageEn}>{exercise.sentenceEn}</p>}
         </div>
       )}
 
@@ -127,6 +139,7 @@ function typeLabel(type) {
     case 'translation_to_spanish': return 'Translate to Spanish';
     case 'translation_to_english': return 'Translate to English';
     case 'error_correction':       return 'Error correction';
+    case 'register_identify':      return 'Identify the register';
     default: return 'Exercise';
   }
 }

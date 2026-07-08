@@ -1,35 +1,4 @@
-const CONCEPT_LABELS = {
-  greeting_basics: 'Greetings', numbers_1_20: 'Numbers 1–20', subject_pronouns: 'Subject pronouns',
-  noun_gender: 'Noun gender', definite_articles: 'Articles (el/la)', indefinite_articles: 'Articles (un/una)',
-  ser_basics: 'Ser', estar_basics: 'Estar', present_ar: 'Present -ar', present_er_ir: 'Present -er/-ir',
-  adjective_agreement: 'Adjective agreement', question_words: 'Question words', hay: 'Hay',
-  numbers_21_100: 'Numbers 21–100', ser_vs_estar: 'Ser vs. estar', reflexive_verbs: 'Reflexive verbs',
-  gustar_type: 'Gustar-type', direct_object_pronouns: 'Direct obj. pronouns',
-  indirect_object_pronouns: 'Indirect obj. pronouns', demonstratives: 'Demonstratives',
-  possessives: 'Possessives', preterite_regular: 'Preterite (regular)', modal_verbs: 'Modal verbs',
-  obligation_infinitive: 'Obligation (tener que)',
-  time_expressions: 'Time expressions', present_progressive: 'Present progressive',
-  irregular_present: 'Irregular present', negation: 'Negation', prepositions_basic: 'Basic prepositions', near_future: 'Near future (ir a)', adverbs_formation: 'Adverbs (-mente)',
-  acabar_de: 'Recent past (acabar de)',
-  llevar_gerund: 'Duration (llevar + gerund)', preterite_irregular: 'Preterite (irregular)',
-  imperfect: 'Imperfect', preterite_vs_imperfect: 'Pret. vs. imperfect',
-  future_simple: 'Simple future', conditional: 'Conditional', present_subjunctive: 'Subjunctive',
-  imperative: 'Imperative', por_vs_para: 'Por vs. para', relative_clauses: 'Relative clauses',
-  object_pronoun_order: 'Double object pronouns', se_impersonal: 'Impersonal se',
-  infinitive_vs_subjunctive: 'Inf. vs. subjunctive', exclamativas: 'Exclamatory sentences',
-  present_perfect: 'Present perfect', pluperfect: 'Pluperfect', future_perfect: 'Future perfect',
-  conditional_perfect: 'Conditional perfect', passive_voice: 'Passive voice', passive_se: 'Passive se',
-  imperfect_subjunctive: 'Imperfect subjunctive', si_clauses: 'Si-clauses',
-  subjunctive_adverbial: 'Subjunctive (adverbial)', comparatives: 'Comparatives',
-  ser_estar_participle: 'Ser/estar + participio', diminutives_augmentatives: 'Diminutives',
-  relative_pronouns_advanced: 'Relative pronouns (adv.)', adjectives_ser_estar: 'Ser/estar adj. meanings',
-  subjunctive_noun_clauses: 'Subjunctive (noun clauses)',
-  subjunctive_adjective_clauses: 'Subjunctive (adj. clauses)', gerund_advanced: 'Gerund (advanced)',
-  ser_passive: 'Ser passive', estilo_indirecto: 'Indirect speech', nominalisation: 'Nominalisation',
-  subjunctive_temporal: 'Subjunctive (temporal)', cuantificadores: 'Quantifiers',
-  futuro_probabilidad: 'Future probability', condicional_probabilidad: 'Conditional inference',
-  perifraseis_avanzadas: 'Advanced periphrases',
-};
+import { CONCEPT_LABELS } from '../../../src/content/conceptLabels.js';
 
 function buildSessionNotes({ itemsReviewed, accuracy, abandoned, errors, cefrChanged }) {
   if (itemsReviewed < 3) return null;
@@ -57,12 +26,13 @@ function buildSessionNotes({ itemsReviewed, accuracy, abandoned, errors, cefrCha
 }
 
 function computeCefrLevel(accuracy, sessionCount, current) {
-  const order = ['A1', 'A2', 'B1', 'B2', 'C1'];
+  const order = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   const thresholds = {
     A1: { acc: 0.70, sessions: 3 },
     A2: { acc: 0.75, sessions: 5 },
     B1: { acc: 0.80, sessions: 8 },
     B2: { acc: 0.82, sessions: 10 },
+    C1: { acc: 0.85, sessions: 12 },
   };
   const idx = order.indexOf(current);
   if (idx === -1 || idx === order.length - 1) return current;

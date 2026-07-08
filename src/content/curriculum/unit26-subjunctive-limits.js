@@ -1,6 +1,6 @@
 // Unit 26 — Subjunctive at Its Limits (C1)
 // Covers: subjunctive_noun_clauses, subjunctive_adjective_clauses,
-// subjunctive_temporal, pluperfect_subjunctive
+// subjunctive_concessive_intensifiers, pluperfect_subjunctive
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -10,6 +10,15 @@
 // Spanish claim below was verified against SpanishDict, established C1
 // grammar references, and Bowdoin/Lawless Spanish-style pedagogical sources
 // before writing — see the audit note at the bottom of this file.
+//
+// Revision note: this unit originally taught subjunctive_temporal (cuando/en
+// cuanto/hasta que + subjunctive for pending future time) as its third
+// section, but a later full-site audit found that concept duplicated Unit
+// 24's subjunctive_adverbial (same "cuando + subjunctive" material, two
+// concept ids). subjunctive_temporal was removed from the concept graph
+// entirely and this section was replaced with subjunctive_concessive_
+// intensifiers (por más/mucho que) — new, non-duplicate C1 material. See
+// ES.md's C2-curriculum section for the full account.
 
 export default {
   sections: [
@@ -57,25 +66,24 @@ export default {
       ],
     },
     {
-      heading: "Not Yet Real: Subjunctive in Temporal Clauses",
+      heading: "No Matter How Much: Concessive Intensifiers with Por más/mucho que",
       paragraphs: [
-        'Time conjunctions — cuando (when), en cuanto and tan pronto como (as soon as), hasta que (until), después de que (after), mientras (while) — describe when something happens relative to something else. The mood of the verb that follows them depends on one question: has this moment already happened or become a settled habit, or is it still pending, out in the future?',
-        "If the moment is still ahead of you — hasn't happened yet — Spanish uses the subjunctive: Cuando llegues, llámame (\"When you arrive, call me\" — you haven't arrived yet), En cuanto pueda, te escribo (\"As soon as I can, I'll write to you\"), Hasta que termines, no salgas (\"Until you finish, don't go out\"). If instead the clause describes something habitual or already completed — a routine, a repeated past action, a fact already true — Spanish uses the indicative: Cuando llueve, me quedo en casa (\"When it rains, I stay home\" — every time, a general pattern) or Cuando llegaba, siempre llamaba (\"When he arrived, he always called\" — a repeated past habit, not a pending event).",
-        "Look at how close these two get in English and how firmly Spanish keeps them apart: Cuando venga, hablaremos (future, hasn't happened — subjunctive) versus Cuando viene, hablamos (habitual, happens every time — indicative). English collapses both into \"when he comes,\" but Spanish insists on marking whether that arrival is still hypothetical or already an established pattern.",
-        'One conjunction breaks the "not yet happened" logic and just always takes the subjunctive, regardless of tense or context: antes de que ("before"). Llámame antes de que salgas is subjunctive even in a context that otherwise reads as habitual, because the moment described by antes de que is by definition something that hasn\'t occurred relative to the main clause yet. Worth knowing as you read more advanced Spanish: en cuanto is the more neutral, all-purpose choice for "as soon as" in both speech and writing, while tan pronto como leans more formal and shows up more in writing than in casual conversation — the subjunctive/indicative rule is identical for both, only the register differs.',
+        'Por más que and por mucho que both mean "no matter how much" or "however much" — they intensify a concession the way aunque does, but with an added sense of effort, quantity, or degree. Por más que insisto, no me escucha ("No matter how much I insist, he doesn\'t listen to me") and Por mucho que le guste, no se lo puede permitir ("However much he likes it, he can\'t afford it") both frame the following clause as true or ongoing despite itself changing nothing about the outcome.',
+        "Here's the part that actually matters for your mood choice: these two work by the exact same logic as aunque, which you already know from an earlier unit. Subjunctive is the standard, far more common choice — Por más que estudie, no voy a aprobar sin practicar treats the studying as a general point being emphasized, not a specific confirmed fact being reported. Indicative is also correct, and RAE explicitly confirms it, when you're stating a real, already-completed fact rather than emphasizing the idea in the abstract: Por mucho que se esforzó, no pasó el examen (\"However much he tried, he didn't pass the exam\") reports a specific, finished event as plain fact.",
+        "One genuine regional pattern worth knowing, not just a stylistic footnote: RAE notes the indicative option shows up more frequently in American Spanish than in European Spanish, where the subjunctive dominates even more heavily. Either way, if you're not sure which to reach for, the subjunctive is the safer default — it's correct far more often than not, and it's never wrong to emphasize a point instead of just reporting it as settled fact.",
+        'A small structural note: que can have a noun or adjective inserted right before it without changing anything about the mood rule — por mucho dinero que tenga ("however much money he has"), por más veces que lo repitas ("no matter how many times you repeat it"). And for something further in the past, the subjunctive slot becomes the imperfect subjunctive, not the present: Por más que lo intentáramos, no conseguimos abrir la puerta ("No matter how hard we tried, we couldn\'t get the door open").',
       ],
       examples: [
-        { es: 'Cuando llegues, llámame.', en: "When you arrive, call me. (hasn't happened yet)" },
-        { es: 'Cuando llegaba, siempre llamaba.', en: 'When he arrived, he always called. (past habit)' },
-        { es: 'En cuanto pueda, te escribo.', en: "As soon as I can, I'll write to you." },
-        { es: 'Hasta que termines, no salgas.', en: "Until you finish, don't go out." },
-        { es: 'Llámame antes de que salgas.', en: 'Call me before you leave. (antes de que: always subjunctive)' },
-        { es: 'Después de que hayan comido, saldremos.', en: "After they've eaten, we'll leave." },
+        { es: 'Por más que estudie, no voy a aprobar sin practicar.', en: "No matter how much I study, I won't pass without practicing. (subjunctive — the standard choice)" },
+        { es: 'Por mucho que se esforzó, no pasó el examen.', en: "However much he tried, he didn't pass the exam. (indicative — a specific, completed fact)" },
+        { es: 'Por mucho que le insistas, no va a cambiar de opinión.', en: "However much you insist to him, he's not going to change his mind." },
+        { es: 'Por mucho dinero que tenga, nunca está satisfecho.', en: "However much money he has, he's never satisfied." },
+        { es: 'Por más que lo intentáramos, no conseguimos abrir la puerta.', en: "No matter how hard we tried, we couldn't get the door open. (past — imperfect subjunctive)" },
       ],
       commonMistakes: [
-        "Applying the future/habitual test to antes de que — it doesn't apply there. Antes de que is always subjunctive, full stop, even when the surrounding sentence otherwise describes a routine.",
-        'Using subjunctive after cuando for a plain habitual statement ("cuando llueve, me quedo en casa") just because cuando "feels" like a subjunctive trigger from other contexts — habitual and past cuando clauses take the indicative.',
-        "Missing that the same conjunction can go either way in the same conversation depending on meaning — cuando isn't inherently subjunctive or indicative; it depends entirely on whether the event is still pending.",
+        'Assuming por más/mucho que is "always subjunctive, no exceptions" — it isn\'t. It patterns exactly like aunque: subjunctive is the standard/default, but indicative is genuinely correct (per RAE) for a plain, confirmed fact, and it\'s more common in that role in American Spanish.',
+        'Forgetting the imperfect subjunctive for past reference — por más que lo intentamos (indicative, treating it as settled fact) is different in nuance from por más que lo intentáramos (subjunctive, emphasizing the effort itself); both exist, but don\'t default to a present-tense subjunctive form for a past event.',
+        'Confusing this construction\'s vocabulary with aunque\'s — they\'re interchangeable in the mood logic but not in wording; you can\'t mix them into "aunque más que" or "por más aunque."',
       ],
     },
     {
@@ -120,6 +128,9 @@ export default {
     { es: 'el presentimiento', en: 'the hunch, the premonition', example: 'Tengo el presentimiento de que algo va a cambiar.', exampleEn: 'I have a hunch that something is going to change.' },
     { es: 'replantearse', en: 'to reconsider, to rethink', example: 'Después del rechazo, decidió replantearse sus planes.', exampleEn: 'After the rejection, she decided to rethink her plans.' },
     { es: 'el malentendido', en: 'the misunderstanding', example: 'Todo fue por un malentendido, no por mala intención.', exampleEn: 'It was all because of a misunderstanding, not bad intent.' },
+    { es: 'esforzarse', en: 'to make an effort, to push oneself', example: 'Por mucho que te esfuerces, el cuerpo necesita descanso también.', exampleEn: 'However much you push yourself, the body needs rest too.' },
+    { es: 'la constancia', en: 'consistency, perseverance', example: 'Nada sustituye la constancia cuando se entrena para una maratón.', exampleEn: 'Nothing replaces consistency when training for a marathon.' },
+    { es: 'vencer', en: 'to overcome, to defeat', example: 'El calor lo venció antes de terminar la carrera.', exampleEn: 'The heat beat him before he finished the race.' },
   ],
 
   practice: [
@@ -226,58 +237,58 @@ export default {
       passageEn: 'Ana: Have you found a flat yet?\nCarlos: Not yet. I\'m looking for one that has two bedrooms and is near the metro.\nAna: Well, I know of a flat that has exactly that, in my cousin\'s neighborhood.\nCarlos: Really? Do you know if the landlord allows pets?\nAna: I\'m not sure, but I know someone who lives there and could ask them.\nCarlos: Perfect. I need something that will accept my dog, otherwise it\'s no good to me.',
     },
 
-    // ── subjunctive_temporal block (kept separate; blocked before mixed review) ──
-    { type: 'multiple_choice', prompt: "Complete: 'Cuando ___ (llegar) el tren, avísame.' (it hasn't arrived yet)", word: 'llegue', english: 'arrives (subjunctive)', answer: 'llegue', options: ['llega', 'llegue', 'llegará', 'llegaba'], concept_id: 'subjunctive_temporal', difficulty: 2 },
-    { type: 'translation_to_english', prompt: "¿Qué significa: 'Llámame antes de que salgas'?", word: 'antes de que', english: 'before', answer: 'Call me before you leave.', concept_id: 'subjunctive_temporal', difficulty: 2 },
+    // ── subjunctive_concessive_intensifiers block (kept separate; blocked before mixed review) ──
+    { type: 'multiple_choice', prompt: "Complete: 'Por más que ___ (correr) cada mañana, no logra bajar de las cuatro horas.' (emphasizing the effort, not reporting a single event)", word: 'corra', english: 'runs (subjunctive — standard choice)', answer: 'corra', options: ['corre', 'corra', 'correrá', 'corría'], concept_id: 'subjunctive_concessive_intensifiers', difficulty: 2 },
+    { type: 'translation_to_english', prompt: "¿Qué significa: 'Por mucho que le insistas, no va a cambiar de opinión'?", word: 'por mucho que', english: 'however much', answer: "However much you insist to him, he's not going to change his mind.", concept_id: 'subjunctive_concessive_intensifiers', difficulty: 2 },
     {
       type: 'fill_blank',
-      prompt: "Según el texto, completa: 'Cuando me ___ (llamar), contestaré enseguida.'",
-      word: 'llamen',
-      english: 'they call (subjunctive)',
-      answer: 'llamen',
-      concept_id: 'subjunctive_temporal',
+      prompt: "Según el texto, completa: 'Por más que ___ (correr) cada mañana, todavía no logra bajar de las cuatro horas.'",
+      word: 'corra',
+      english: 'he runs (subjunctive)',
+      answer: 'corra',
+      concept_id: 'subjunctive_concessive_intensifiers',
       difficulty: 2,
-      passage: 'Marta lleva dos semanas esperando noticias sobre el puesto en la empresa de diseño. Antes de que se lo ofrecieran, tenía miedo de ilusionarse demasiado. "Cuando me llamen, contestaré enseguida", se repite cada mañana. En cuanto reciba la oferta, se lo dirá a toda su familia, pero hasta que no firme el contrato, prefiere no celebrar. De niña, cuando su padre conseguía un trabajo nuevo, la familia entera salía a cenar esa misma noche — pero esta vez Marta quiere esperar a tener algo seguro entre las manos.',
-      passageEn: '"Marta has been waiting two weeks for news about the job at the design company. Before they offered it to her, she was afraid of getting her hopes up too much. \'When they call me, I\'ll answer right away,\' she tells herself every morning. As soon as she gets the offer, she\'ll tell her whole family, but until she signs the contract, she\'d rather not celebrate. As a girl, whenever her father got a new job, the whole family would go out to dinner that same night — but this time Marta wants to wait until she has something certain in her hands."',
+      passage: 'Marcos lleva tres meses entrenando para la maratón. Por más que corra cada mañana, todavía no logra bajar de las cuatro horas. Su entrenadora le dice: "Por mucho que te esfuerces, el cuerpo necesita descanso también." La semana pasada, por más que lo intentó, no consiguió terminar los últimos cinco kilómetros — el calor lo venció. Aun así, por muy cansado que esté al final de cada sesión, Marcos se repite: "Por mucho dinero que gastara en zapatillas nuevas, nada sustituye la constancia."',
+      passageEn: '"Marcos has been training for the marathon for three months. No matter how much he runs every morning, he still can\'t get under four hours. His coach tells him: \'However much you push yourself, the body needs rest too.\' Last week, no matter how hard he tried, he couldn\'t finish the last five kilometers — the heat beat him. Even so, however tired he is at the end of each session, Marcos repeats to himself: \'However much money I spent on new shoes, nothing replaces consistency.\'"',
     },
     {
       type: 'fill_blank',
-      prompt: "Según el texto, completa: 'En cuanto ___ (recibir) la oferta, se lo dirá a toda su familia.'",
-      word: 'reciba',
-      english: 'she receives (subjunctive)',
-      answer: 'reciba',
-      concept_id: 'subjunctive_temporal',
-      difficulty: 2,
-      passage: 'Marta lleva dos semanas esperando noticias sobre el puesto en la empresa de diseño. Antes de que se lo ofrecieran, tenía miedo de ilusionarse demasiado. "Cuando me llamen, contestaré enseguida", se repite cada mañana. En cuanto reciba la oferta, se lo dirá a toda su familia, pero hasta que no firme el contrato, prefiere no celebrar. De niña, cuando su padre conseguía un trabajo nuevo, la familia entera salía a cenar esa misma noche — pero esta vez Marta quiere esperar a tener algo seguro entre las manos.',
-      passageEn: '"Marta has been waiting two weeks for news about the job at the design company. Before they offered it to her, she was afraid of getting her hopes up too much. \'When they call me, I\'ll answer right away,\' she tells herself every morning. As soon as she gets the offer, she\'ll tell her whole family, but until she signs the contract, she\'d rather not celebrate. As a girl, whenever her father got a new job, the whole family would go out to dinner that same night — but this time Marta wants to wait until she has something certain in her hands."',
+      prompt: "Según el texto, completa: 'La semana pasada, por más que lo ___ (intentar), no consiguió terminar los últimos cinco kilómetros.'",
+      word: 'intentó',
+      english: 'he tried (indicative — a specific, completed fact)',
+      answer: 'intentó',
+      concept_id: 'subjunctive_concessive_intensifiers',
+      difficulty: 3,
+      passage: 'Marcos lleva tres meses entrenando para la maratón. Por más que corra cada mañana, todavía no logra bajar de las cuatro horas. Su entrenadora le dice: "Por mucho que te esfuerces, el cuerpo necesita descanso también." La semana pasada, por más que lo intentó, no consiguió terminar los últimos cinco kilómetros — el calor lo venció. Aun así, por muy cansado que esté al final de cada sesión, Marcos se repite: "Por mucho dinero que gastara en zapatillas nuevas, nada sustituye la constancia."',
+      passageEn: '"Marcos has been training for the marathon for three months. No matter how much he runs every morning, he still can\'t get under four hours. His coach tells him: \'However much you push yourself, the body needs rest too.\' Last week, no matter how hard he tried, he couldn\'t finish the last five kilometers — the heat beat him. Even so, however tired he is at the end of each session, Marcos repeats to himself: \'However much money I spent on new shoes, nothing replaces consistency.\'"',
     },
     {
       type: 'multiple_choice',
-      prompt: "Según el texto: 'De niña, cuando su padre conseguía un trabajo nuevo...' ¿Por qué se usa el indicativo (conseguía) aquí y no el subjuntivo?",
-      word: 'cuando conseguía',
-      english: 'when he used to get (indicative)',
-      answer: 'Porque describe una acción habitual y repetida en el pasado, no un evento futuro pendiente',
+      prompt: "Según el texto: 'por más que lo intentó, no consiguió terminar...' ¿Por qué se usa el indicativo (intentó) aquí y no el subjuntivo?",
+      word: 'por más que intentó',
+      english: 'no matter how much he tried (indicative)',
+      answer: 'Porque describe un hecho concreto y ya terminado la semana pasada, no una idea que se está enfatizando en general',
       options: [
-        'Porque describe una acción habitual y repetida en el pasado, no un evento futuro pendiente',
-        'Porque "cuando" nunca lleva subjuntivo',
-        'Porque el sujeto de la oración es "su padre"',
-        'Porque se refiere a algo que todavía no ha pasado',
+        'Porque describe un hecho concreto y ya terminado la semana pasada, no una idea que se está enfatizando en general',
+        'Porque "por más que" nunca lleva subjuntivo',
+        'Porque el sujeto de la oración es "Marcos"',
+        'Porque el subjuntivo no existe en el pretérito',
       ],
-      concept_id: 'subjunctive_temporal',
+      concept_id: 'subjunctive_concessive_intensifiers',
       difficulty: 3,
-      passage: 'Marta lleva dos semanas esperando noticias sobre el puesto en la empresa de diseño. Antes de que se lo ofrecieran, tenía miedo de ilusionarse demasiado. "Cuando me llamen, contestaré enseguida", se repite cada mañana. En cuanto reciba la oferta, se lo dirá a toda su familia, pero hasta que no firme el contrato, prefiere no celebrar. De niña, cuando su padre conseguía un trabajo nuevo, la familia entera salía a cenar esa misma noche — pero esta vez Marta quiere esperar a tener algo seguro entre las manos.',
-      passageEn: '"Marta has been waiting two weeks for news about the job at the design company. Before they offered it to her, she was afraid of getting her hopes up too much. \'When they call me, I\'ll answer right away,\' she tells herself every morning. As soon as she gets the offer, she\'ll tell her whole family, but until she signs the contract, she\'d rather not celebrate. As a girl, whenever her father got a new job, the whole family would go out to dinner that same night — but this time Marta wants to wait until she has something certain in her hands."',
+      passage: 'Marcos lleva tres meses entrenando para la maratón. Por más que corra cada mañana, todavía no logra bajar de las cuatro horas. Su entrenadora le dice: "Por mucho que te esfuerces, el cuerpo necesita descanso también." La semana pasada, por más que lo intentó, no consiguió terminar los últimos cinco kilómetros — el calor lo venció. Aun así, por muy cansado que esté al final de cada sesión, Marcos se repite: "Por mucho dinero que gastara en zapatillas nuevas, nada sustituye la constancia."',
+      passageEn: '"Marcos has been training for the marathon for three months. No matter how much he runs every morning, he still can\'t get under four hours. His coach tells him: \'However much you push yourself, the body needs rest too.\' Last week, no matter how hard he tried, he couldn\'t finish the last five kilometers — the heat beat him. Even so, however tired he is at the end of each session, Marcos repeats to himself: \'However much money I spent on new shoes, nothing replaces consistency.\'"',
     },
     {
       type: 'translation_to_english',
-      prompt: "Translate this sentence from the text: 'Hasta que no firme el contrato, prefiere no celebrar.'",
-      word: 'hasta que',
-      english: 'until',
-      answer: "Until she signs the contract, she'd rather not celebrate.",
-      concept_id: 'subjunctive_temporal',
+      prompt: "Translate this sentence from the text: 'Por mucho dinero que gastara en zapatillas nuevas, nada sustituye la constancia.'",
+      word: 'por mucho dinero que',
+      english: 'however much money',
+      answer: 'However much money I spent on new shoes, nothing replaces consistency.',
+      concept_id: 'subjunctive_concessive_intensifiers',
       difficulty: 3,
-      passage: 'Marta lleva dos semanas esperando noticias sobre el puesto en la empresa de diseño. Antes de que se lo ofrecieran, tenía miedo de ilusionarse demasiado. "Cuando me llamen, contestaré enseguida", se repite cada mañana. En cuanto reciba la oferta, se lo dirá a toda su familia, pero hasta que no firme el contrato, prefiere no celebrar. De niña, cuando su padre conseguía un trabajo nuevo, la familia entera salía a cenar esa misma noche — pero esta vez Marta quiere esperar a tener algo seguro entre las manos.',
-      passageEn: '"Marta has been waiting two weeks for news about the job at the design company. Before they offered it to her, she was afraid of getting her hopes up too much. \'When they call me, I\'ll answer right away,\' she tells herself every morning. As soon as she gets the offer, she\'ll tell her whole family, but until she signs the contract, she\'d rather not celebrate. As a girl, whenever her father got a new job, the whole family would go out to dinner that same night — but this time Marta wants to wait until she has something certain in her hands."',
+      passage: 'Marcos lleva tres meses entrenando para la maratón. Por más que corra cada mañana, todavía no logra bajar de las cuatro horas. Su entrenadora le dice: "Por mucho que te esfuerces, el cuerpo necesita descanso también." La semana pasada, por más que lo intentó, no consiguió terminar los últimos cinco kilómetros — el calor lo venció. Aun así, por muy cansado que esté al final de cada sesión, Marcos se repite: "Por mucho dinero que gastara en zapatillas nuevas, nada sustituye la constancia."',
+      passageEn: '"Marcos has been training for the marathon for three months. No matter how much he runs every morning, he still can\'t get under four hours. His coach tells him: \'However much you push yourself, the body needs rest too.\' Last week, no matter how hard he tried, he couldn\'t finish the last five kilometers — the heat beat him. Even so, however tired he is at the end of each session, Marcos repeats to himself: \'However much money I spent on new shoes, nothing replaces consistency.\'"',
     },
 
     // ── pluperfect_subjunctive block (kept separate; blocked before mixed review) ──
@@ -350,16 +361,17 @@ export default {
 //   subjunctive exception (el mejor... que haya probado) matches the
 //   existing GRAMMAR_CARDS entry for this concept in src/content/grammar.js
 //   (itself previously corrected in an earlier audit per ES.md).
-// - subjunctive_temporal: cuando/en cuanto/tan pronto como/hasta que/
-//   después de que take subjunctive for a future, not-yet-realized event
-//   and indicative for habitual or completed past reference (cuando venga
-//   vs. cuando viene); antes de que always takes subjunctive regardless of
-//   time reference — checked against Collins' "indicative or subjunctive"
-//   guide, the 123teachme adverbial-clause page, and Yabla's "Using
-//   Subjunctive after Conjunctions of Time" lesson. The register note (en
-//   cuanto = neutral/all-purpose, tan pronto como = more formal/written,
-//   identical mood rule for both) was checked separately against
-//   SpanishDict's "en cuanto vs. tan pronto como" comparison page.
+// - subjunctive_concessive_intensifiers: por más/mucho que follow the SAME
+//   mood rule as aunque (not an unconditional "always subjunctive" rule, an
+//   earlier draft of this concept overstated that) — subjunctive is the
+//   standard, far more common default, but RAE's Nueva gramática explicitly
+//   confirms indicative is also correct for a plain, confirmed fact (por
+//   mucho que se esforzó, no pasó el examen) and is more frequent in that
+//   role in American Spanish than in European Spanish; past reference uses
+//   the imperfect subjunctive, not the present — checked against RAE's
+//   "Elección del modo con las conjunciones subordinantes" and "El modo:
+//   ¿indicativo o subjuntivo?" style-guide pages directly, not just
+//   secondary pedagogical sources.
 // - pluperfect_subjunctive: formed with hubiera/hubiese (imperfect
 //   subjunctive of haber) + past participle; hubiera more frequent in
 //   speech, hubiese more formal/literary, both fully interchangeable in
@@ -373,6 +385,7 @@ export default {
 //   Tell Me in Spanish's past-perfect-subjunctive guide.
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // subjunctive_noun_clauses, subjunctive_adjective_clauses,
-// subjunctive_temporal, and pluperfect_subjunctive in src/content/grammar.js
-// (same facts, fuller C1-paced walkthrough with original passages) and does
+// subjunctive_concessive_intensifiers, and pluperfect_subjunctive in
+// src/content/grammar.js (same facts, fuller C1-paced walkthrough with
+// original passages) and does
 // not contradict them.
