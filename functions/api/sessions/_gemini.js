@@ -32,6 +32,9 @@ translation_to_english:
 error_correction — prompt shows a sentence with an error, learner must correct it:
 {"type":"error_correction","prompt":"Find and correct the error: \"Le lo dije ayer.\"","word":"le → se","english":"le becomes se before lo","answer":"Se lo dije ayer.","concept_id":"object_pronoun_order","difficulty":2}
 
+register_identify — only for C2 register-switching content. Include "sentence" (the Spanish utterance being judged, separate from "prompt") and "options" array of exactly 4 register labels from this fixed set: "formal", "neutral", "informal", "colloquial" (matches the same 4-way scale already used to tag idioms.js entries):
+{"type":"register_identify","prompt":"What register is this sentence?","sentence":"¿Podría usted ayudarme, por favor?","word":"podría usted","english":"Could you help me, please? (formal)","answer":"formal","options":["formal","neutral","informal","colloquial"],"concept_id":"registro_formal_informal","difficulty":2}
+
 concept_id must be one of:
 A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_articles, indefinite_articles,
     ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100,
@@ -48,9 +51,16 @@ B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_vo
     diminutives_augmentatives, relative_pronouns_advanced, adjectives_ser_estar, perfect_subjunctive,
     verbos_cambio, adjective_position
 C1: subjunctive_noun_clauses, subjunctive_adjective_clauses, gerund_advanced, ser_passive,
-    estilo_indirecto, nominalisation, subjunctive_temporal, cuantificadores,
+    estilo_indirecto, nominalisation, subjunctive_concessive_intensifiers, cuantificadores,
     futuro_probabilidad, condicional_probabilidad, perifraseis_avanzadas, pluperfect_subjunctive,
-    aunque_concessive, verbos_preposicionales
+    aunque_concessive, verbos_preposicionales, connectors_contrast, connectors_consequence,
+    connectors_addition_sequence, connectors_cause_reason
+C2: reformuladores, estructuradores_informacion, operadores_discursivos, registro_formal_informal,
+    modalizacion_epistemica, controladores_contacto, subjunctive_indefinite_relative,
+    subjunctive_rare_triggers, preterito_anterior, futuro_subjuntivo_relic, presente_historico_narrativo,
+    dislocacion_topicalizacion, oraciones_hendidas, inversion_literaria, connotacion_denotacion,
+    pares_registro_lexico, ironia_doble_sentido, implicatura_pragmatica, generos_discursivos_formales,
+    referencias_culturales_avanzadas
 
 difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced contrast)
 
@@ -60,7 +70,8 @@ A1: greetings, numbers, colors, family, food, ser/estar basics, present -ar/-er/
 A2: ser vs estar contrast, preterite (regular), reflexives, gustar-type verbs, object pronouns (direct/indirect), demonstratives, possessives, modal verbs, obligation (tener que/hay que), time expressions (hace/ayer/desde hace), present progressive (estar + gerund), irregular present tense (ir/tener/hacer/poder/venir/saber + yo-go + stem-changes), negation (no/nada/nadie/nunca double negatives), adverbs of manner (-mente formation), basic comparatives (más/menos...que, tan...como)
 B1: preterite irregular, imperfect, preterite vs imperfect, future, conditional, present subjunctive, imperative, por/para, relative clauses, acabar de, llevar + gerund, double object pronouns (me lo/se lo), impersonal se, infinitive vs subjunctive (same/different subject), exclamatory sentences (¡Qué!, ¡Cuánto!), saber vs. conocer, neuter lo (lo + adjective, lo que)
 B2: present perfect, pluperfect, future perfect, conditional perfect, passive constructions (ser + participio, pasiva se), imperfect subjunctive, si-clauses, subjunctive in adverbial clauses, comparatives, diminutives/augmentatives, advanced relative pronouns, present perfect subjunctive (haya + participio), verbs of change (ponerse/volverse/hacerse/llegar a ser), adjective position (before/after noun) — only if CEFR level is B2+
-C1: subjunctive in noun/adjective/temporal clauses, gerund (advanced), ser passive, indirect speech, nominalisation, quantifiers, future/conditional for probability inference, advanced verb periphrases (soler, ponerse a, volver a, dejar de, llevar sin), pluperfect subjunctive (hubiera/hubiese + participio), concessive aunque (indicative vs. subjunctive), verbs with fixed prepositions (pensar en, soñar con, consistir en) — only if CEFR level is C1
+C1: subjunctive in noun/adjective clauses, gerund (advanced), ser passive, indirect speech, nominalisation, concessive intensifiers (por más/mucho que — same mood rule as aunque, subjunctive is the standard/default choice), quantifiers, future/conditional for probability inference, advanced verb periphrases (soler, ponerse a, volver a, dejar de, llevar sin), pluperfect subjunctive (hubiera/hubiese + participio), concessive aunque (indicative vs. subjunctive), verbs with fixed prepositions (pensar en, soñar con, consistir en), discourse connectors (contrast: sin embargo/no obstante; consequence: por lo tanto/así que; addition: además/es más; cause: ya que/puesto que) — only if CEFR level is C1
+C2: discourse markers (reformulators: o sea/es decir; information structurers: por una parte...por otra; operators: de hecho/en realidad), register switching (formal/informal/colloquial/technical) and epistemic hedging (al parecer/se supone que), contact controllers (¿verdad?/fíjate), rare subjunctive (indefinite relative: quienquiera que; rare triggers: ni que/por si), literary tenses (pretérito anterior, futuro de subjuntivo — recognition only, explain these are largely obsolete), narrative present & free indirect style, word order for emphasis (dislocation, cleft sentences, literary inversion), connotation vs. denotation, register-marked synonym pairs, irony/double meaning, pragmatic implicature, formal written genres (informe, ensayo), advanced cultural references — only if CEFR level is C2
 
 FEEDBACK RULES:
 - Wrong: name the exact rule violated. One sentence on how to fix it.
@@ -272,9 +283,9 @@ export const FALLBACK_EXERCISES = [
   // C1 — nominalisation
   { type: 'translation_to_english', prompt: '¿Qué significa "el llegar tarde" en "El llegar tarde es una falta de respeto"?', word: 'el + infinitivo', english: 'nominalised infinitive (arriving late)', answer: 'Arriving late is a sign of disrespect.', concept_id: 'nominalisation', difficulty: 3 },
   { type: 'fill_blank', prompt: 'Complete: "___ importante es la honestidad." (The important thing is…)', word: 'lo + adjective', english: 'lo + adjective = nominalised concept', answer: 'Lo', concept_id: 'nominalisation', difficulty: 3 },
-  // C1 — subjunctive_temporal
-  { type: 'fill_blank', prompt: 'Complete: "Avísame cuando ___ (terminar, tú) el informe." (future action)', word: 'terminar', english: 'to finish', answer: 'termines', concept_id: 'subjunctive_temporal', difficulty: 3 },
-  { type: 'multiple_choice', prompt: 'Which sentence correctly uses subjunctive after a temporal conjunction?', word: 'cuando + subjunctive (future)', english: 'temporal conjunction + future action → subjunctive', answer: 'Te llamo en cuanto llegue.', options: ['Te llamo en cuanto llegué.', 'Te llamo en cuanto llegaré.', 'Te llamo en cuanto llegue.', 'Te llamo en cuanto llego mañana.'], concept_id: 'subjunctive_temporal', difficulty: 3 },
+  // B2 — subjunctive_adverbial (reassigned from removed duplicate subjunctive_temporal)
+  { type: 'fill_blank', prompt: 'Complete: "Avísame cuando ___ (terminar, tú) el informe." (future action)', word: 'terminar', english: 'to finish', answer: 'termines', concept_id: 'subjunctive_adverbial', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which sentence correctly uses subjunctive after a temporal conjunction?', word: 'cuando + subjunctive (future)', english: 'temporal conjunction + future action → subjunctive', answer: 'Te llamo en cuanto llegue.', options: ['Te llamo en cuanto llegué.', 'Te llamo en cuanto llegaré.', 'Te llamo en cuanto llegue.', 'Te llamo en cuanto llego mañana.'], concept_id: 'subjunctive_adverbial', difficulty: 3 },
   // C1 — cuantificadores
   { type: 'fill_blank', prompt: 'Complete: "___ de los estudiantes aprobaron." (The majority)', word: 'la mayoría', english: 'the majority', answer: 'La mayoría', concept_id: 'cuantificadores', difficulty: 3 },
   { type: 'multiple_choice', prompt: 'Which quantifier expresses a small amount (uncountable)?', word: 'poco', english: 'little (uncountable)', answer: 'poco dinero', options: ['pocos dineros', 'poco dinero', 'algunos dinero', 'un poco dineros'], concept_id: 'cuantificadores', difficulty: 2 },
@@ -451,8 +462,8 @@ export const FALLBACK_EXERCISES = [
   { type: 'fill_blank', prompt: 'Complete (indirect speech): "Dijo que ___ (estar, él) cansado." (backshift: estaba)', word: 'estar', english: 'to be (backshifted: estaba)', answer: 'estaba', concept_id: 'estilo_indirecto', difficulty: 3 },
   // C1 — nominalisation
   { type: 'translation_to_spanish', prompt: "Translate: 'The difficulty lies in finding the right words.'", english: 'The difficulty lies in finding the right words.', answer: 'La dificultad radica en encontrar las palabras adecuadas.', word: 'infinitivo nominal', concept_id: 'nominalisation', difficulty: 3 },
-  // C1 — subjunctive_temporal
-  { type: 'error_correction', prompt: 'Correct: "Te llamo cuando llegaré." (future time clause)', word: 'llegaré → llegue', english: 'future time clauses use subjunctive in Spanish', answer: 'Te llamo cuando llegue.', concept_id: 'subjunctive_temporal', difficulty: 3 },
+  // B2 — subjunctive_adverbial (reassigned from removed duplicate subjunctive_temporal)
+  { type: 'error_correction', prompt: 'Correct: "Te llamo cuando llegaré." (future time clause)', word: 'llegaré → llegue', english: 'future time clauses use subjunctive in Spanish', answer: 'Te llamo cuando llegue.', concept_id: 'subjunctive_adverbial', difficulty: 3 },
   // C1 — cuantificadores
   { type: 'fill_blank', prompt: 'Complete: "Han venido ___ de cincuenta personas." (more than)', word: 'más de', english: 'more than (before a number)', answer: 'más de', concept_id: 'cuantificadores', difficulty: 2 },
   // C1 — futuro_probabilidad
@@ -731,10 +742,10 @@ export const FALLBACK_EXERCISES = [
   { type: 'fill_blank', prompt: 'Complete: "___ bueno de este trabajo es el horario flexible." (The good thing)', word: 'lo + adjetivo', english: 'the good thing', answer: 'Lo', concept_id: 'nominalisation', difficulty: 3 },
   { type: 'translation_to_spanish', prompt: "Translate: 'Smoking is bad for your health.' (use el + infinitive)", english: 'Smoking is bad for your health.', answer: 'El fumar es malo para la salud.', word: 'el + infinitivo', concept_id: 'nominalisation', difficulty: 3 },
   { type: 'translation_to_english', prompt: '¿Qué significa "Lo difícil fue convencerlo"?', word: 'lo + adjetivo', english: 'nominalised adjective', answer: 'The hard part was convincing him.', concept_id: 'nominalisation', difficulty: 3 },
-  // C1 — subjunctive_temporal
-  { type: 'fill_blank', prompt: 'Complete: "Vamos a esperar hasta que ___ (parar) de llover." (future action)', word: 'parar', english: 'to stop (subjunctive)', answer: 'pare', concept_id: 'subjunctive_temporal', difficulty: 3 },
-  { type: 'translation_to_spanish', prompt: "Translate: 'As soon as you finish, call me.'", english: 'As soon as you finish, call me.', answer: 'En cuanto termines, llámame.', word: 'en cuanto', concept_id: 'subjunctive_temporal', difficulty: 3 },
-  { type: 'multiple_choice', prompt: 'Which sentence is correct for a habitual action (not a future event)?', word: 'cuando + indicativo', english: 'habitual action → indicative', answer: 'Siempre la saludo cuando la veo.', options: ['Siempre la saludo cuando la vea.', 'Siempre la saludo cuando la veo.', 'Siempre la saludo cuando la viera.', 'Siempre la saludo cuando la ve.'], concept_id: 'subjunctive_temporal', difficulty: 3 },
+  // B2 — subjunctive_adverbial (reassigned from removed duplicate subjunctive_temporal)
+  { type: 'fill_blank', prompt: 'Complete: "Vamos a esperar hasta que ___ (parar) de llover." (future action)', word: 'parar', english: 'to stop (subjunctive)', answer: 'pare', concept_id: 'subjunctive_adverbial', difficulty: 3 },
+  { type: 'translation_to_spanish', prompt: "Translate: 'As soon as you finish, call me.'", english: 'As soon as you finish, call me.', answer: 'En cuanto termines, llámame.', word: 'en cuanto', concept_id: 'subjunctive_adverbial', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which sentence is correct for a habitual action (not a future event)?', word: 'cuando + indicativo', english: 'habitual action → indicative', answer: 'Siempre la saludo cuando la veo.', options: ['Siempre la saludo cuando la vea.', 'Siempre la saludo cuando la veo.', 'Siempre la saludo cuando la viera.', 'Siempre la saludo cuando la ve.'], concept_id: 'subjunctive_adverbial', difficulty: 3 },
   // C1 — cuantificadores
   { type: 'fill_blank', prompt: 'Complete: "___ personas vinieron a la reunión de las que esperábamos." (fewer)', word: 'menos', english: 'fewer', answer: 'Menos', concept_id: 'cuantificadores', difficulty: 2 },
   { type: 'translation_to_spanish', prompt: "Translate: 'Several students failed the exam.'", english: 'Several students failed the exam.', answer: 'Varios estudiantes suspendieron el examen.', word: 'varios', concept_id: 'cuantificadores', difficulty: 2 },
@@ -807,6 +818,58 @@ export const FALLBACK_EXERCISES = [
   { type: 'translation_to_spanish', prompt: "Translate: 'It depends on the situation.'", english: 'It depends on the situation.', answer: 'Depende de la situación.', word: 'depender de', concept_id: 'verbos_preposicionales', difficulty: 2 },
   { type: 'translation_to_english', prompt: '¿Qué significa "Me alegro de verte"?', word: 'alegrarse de', english: 'to be glad about', answer: "I'm glad to see you.", concept_id: 'verbos_preposicionales', difficulty: 1 },
   { type: 'error_correction', prompt: 'Correct: "¿Qué piensas en esta idea?" (asking for an opinion)', word: 'piensas en → piensas de', english: 'pensar de = to have an opinion of', answer: '¿Qué piensas de esta idea?', concept_id: 'verbos_preposicionales', difficulty: 3 },
+  // C1 — subjunctive_concessive_intensifiers (replaces removed duplicate subjunctive_temporal)
+  { type: 'fill_blank', prompt: 'Complete: "Por más que lo ___ (intentar), no puedo entender esta fórmula." (no matter how much)', word: 'intentar', english: 'to try (subjunctive)', answer: 'intente', concept_id: 'subjunctive_concessive_intensifiers', difficulty: 3 },
+  { type: 'multiple_choice', prompt: 'Which is correct for "No matter how much you study, you won\'t pass without practicing"?', word: 'por mucho que + subjunctive', english: 'subjunctive is the standard choice with por mucho/más que', answer: 'Por mucho que estudies, no vas a aprobar sin practicar.', options: ['Por mucho que estudias, no vas a aprobar sin practicar.', 'Por mucho que estudies, no vas a aprobar sin practicar.', 'Por mucho que estudiarás, no vas a aprobar sin practicar.', 'Por mucho que estudiaste, no vas a aprobar sin practicar.'], concept_id: 'subjunctive_concessive_intensifiers', difficulty: 3 },
+  // C1 — connectors_contrast
+  { type: 'multiple_choice', prompt: 'Which connector best fits: "Estudió mucho; ___, no aprobó el examen"?', word: 'sin embargo', english: 'however (contrast)', answer: 'sin embargo', options: ['sin embargo', 'además', 'ya que', 'es decir'], concept_id: 'connectors_contrast', difficulty: 2 },
+  // C1 — connectors_consequence
+  { type: 'fill_blank', prompt: 'Complete: "No estudió nada; ___ suspendió el examen." (therefore)', word: 'por lo tanto', english: 'therefore', answer: 'por lo tanto', concept_id: 'connectors_consequence', difficulty: 2 },
+  // C1 — connectors_addition_sequence
+  { type: 'translation_to_spanish', prompt: "Translate: 'Furthermore, the plan has another problem.'", english: 'Furthermore, the plan has another problem.', answer: 'Es más, el plan tiene otro problema.', word: 'es más', concept_id: 'connectors_addition_sequence', difficulty: 2 },
+  // C1 — connectors_cause_reason
+  { type: 'multiple_choice', prompt: 'Which of these can correctly START a sentence (unlike "porque")?', word: 'ya que', english: 'since/given that', answer: 'Ya que no viniste, empezamos sin ti.', options: ['Porque no viniste, empezamos sin ti.', 'Ya que no viniste, empezamos sin ti.', 'Que no viniste, empezamos sin ti.', 'Pues no viniste, empezamos sin ti.'], concept_id: 'connectors_cause_reason', difficulty: 3 },
+  // C2 — reformuladores
+  { type: 'fill_blank', prompt: 'Complete: "Va a dimitir, ___, va a dejar el cargo." (in other words)', word: 'o sea', english: 'that is / in other words', answer: 'o sea', concept_id: 'reformuladores', difficulty: 2 },
+  // C2 — estructuradores_informacion
+  { type: 'translation_to_spanish', prompt: "Translate: 'On the one hand, it's expensive; on the other, it's worth it.'", english: "On the one hand, it's expensive; on the other, it's worth it.", answer: 'Por una parte, es caro; por otra, vale la pena.', word: 'por una parte...por otra', concept_id: 'estructuradores_informacion', difficulty: 3 },
+  // C2 — operadores_discursivos
+  { type: 'multiple_choice', prompt: 'Which operator reinforces a point with a surprising/tangential fact?', word: 'de hecho', english: 'in fact / actually', answer: 'De hecho, ni siquiera lo sabía.', options: ['De hecho, ni siquiera lo sabía.', 'Es decir, ni siquiera lo sabía.', 'Por lo tanto, ni siquiera lo sabía.', 'Aunque, ni siquiera lo sabía.'], concept_id: 'operadores_discursivos', difficulty: 3 },
+  // C2 — registro_formal_informal
+  { type: 'register_identify', prompt: 'What register is this sentence?', sentence: '¿Podría usted ayudarme, por favor?', word: 'podría usted', english: 'Could you help me, please? (formal)', answer: 'formal', options: ['formal', 'neutral', 'informal', 'colloquial'], concept_id: 'registro_formal_informal', difficulty: 2 },
+  { type: 'register_identify', prompt: 'What register is this sentence?', sentence: '¿Me pasas la sal, tío?', word: 'tío', english: "Pass me the salt, dude? (colloquial, Spain)", answer: 'colloquial', options: ['formal', 'neutral', 'informal', 'colloquial'], concept_id: 'registro_formal_informal', difficulty: 2 },
+  // C2 — modalizacion_epistemica
+  { type: 'translation_to_english', prompt: '¿Qué significa "Al parecer, el vuelo se retrasó"?', word: 'al parecer', english: 'apparently / it seems that', answer: 'Apparently, the flight was delayed.', concept_id: 'modalizacion_epistemica', difficulty: 2 },
+  // C2 — controladores_contacto
+  { type: 'multiple_choice', prompt: 'Which phrase checks that the listener is following along/agrees?', word: '¿verdad?', english: 'right? / isn\'t that so?', answer: 'Hace frío hoy, ¿verdad?', options: ['Hace frío hoy, ¿verdad?', 'Hace frío hoy, o sea.', 'Hace frío hoy, por lo tanto.', 'Hace frío hoy, es más.'], concept_id: 'controladores_contacto', difficulty: 1 },
+  // C2 — subjunctive_indefinite_relative
+  { type: 'fill_blank', prompt: 'Complete: "___ que llames, te encontraré." (wherever)', word: 'dondequiera', english: 'wherever', answer: 'Dondequiera', concept_id: 'subjunctive_indefinite_relative', difficulty: 3 },
+  // C2 — subjunctive_rare_triggers
+  { type: 'translation_to_spanish', prompt: "Translate (indignant tone): 'As if you were my boss!'", english: 'As if you were my boss!', answer: '¡Ni que fueras mi jefe!', word: 'ni que', concept_id: 'subjunctive_rare_triggers', difficulty: 3 },
+  // C2 — preterito_anterior
+  { type: 'translation_to_english', prompt: '¿Qué significa "Apenas hubo terminado la cena, se marcharon"? (literary)', word: 'hubo terminado', english: 'pretérito anterior — immediate succession', answer: 'As soon as dinner had finished, they left.', concept_id: 'preterito_anterior', difficulty: 3 },
+  // C2 — futuro_subjuntivo_relic
+  { type: 'multiple_choice', prompt: 'Which fixed expression uses the (now largely obsolete) futuro de subjuntivo?', word: 'fuere', english: 'come what may (legal/literary relic)', answer: 'Sea como fuere, lo intentaremos.', options: ['Sea como fuere, lo intentaremos.', 'Sea como sea, lo intentaremos.', 'Sea como es, lo intentaremos.', 'Sea como será, lo intentaremos.'], concept_id: 'futuro_subjuntivo_relic', difficulty: 3 },
+  // C2 — presente_historico_narrativo
+  { type: 'translation_to_english', prompt: '¿Qué efecto tiene el presente histórico en "En 1492, Colón llega a América"?', word: 'presente histórico', english: 'narrative present for immediacy/vividness', answer: 'It narrates a past event as if happening now, for vividness.', concept_id: 'presente_historico_narrativo', difficulty: 2 },
+  // C2 — dislocacion_topicalizacion
+  { type: 'translation_to_spanish', prompt: "Translate with fronting for emphasis: 'That book, I already read it.'", english: 'That book, I already read it.', answer: 'Ese libro, ya lo leí.', word: 'dislocación', concept_id: 'dislocacion_topicalizacion', difficulty: 3 },
+  // C2 — oraciones_hendidas
+  { type: 'fill_blank', prompt: 'Complete (cleft sentence): "___ pasa es que no tenemos tiempo." (what happens)', word: 'lo que', english: 'what happens is that...', answer: 'Lo que', concept_id: 'oraciones_hendidas', difficulty: 2 },
+  // C2 — inversion_literaria
+  { type: 'multiple_choice', prompt: 'Which shows literary subject-verb inversion (formal narrative register)?', word: 'inversión', english: 'literary word order', answer: 'Dijo Juan que llegaría tarde.', options: ['Juan dijo que llegaría tarde.', 'Dijo Juan que llegaría tarde.', 'Juan que llegaría tarde dijo.', 'Que llegaría tarde, Juan dijo.'], concept_id: 'inversion_literaria', difficulty: 3 },
+  // C2 — connotacion_denotacion
+  { type: 'multiple_choice', prompt: 'Which word carries a more negative connotation than "delgado" (slim) while sharing its denotation?', word: 'flaco', english: 'skinny (more negative than "delgado")', answer: 'flaco', options: ['flaco', 'esbelto', 'delgado', 'atlético'], concept_id: 'connotacion_denotacion', difficulty: 2 },
+  // C2 — pares_registro_lexico
+  { type: 'multiple_choice', prompt: 'Which word for "car" is the most formal/technical register?', word: 'vehículo', english: 'vehicle (formal register)', answer: 'vehículo', options: ['coche', 'carro', 'vehículo', 'auto'], concept_id: 'pares_registro_lexico', difficulty: 2 },
+  // C2 — ironia_doble_sentido
+  { type: 'translation_to_english', prompt: '¿Qué significa realmente "¡Qué bien!" dicho con tono sarcástico tras una mala noticia?', word: 'ironía', english: 'the opposite of its literal meaning', answer: "It means the opposite — something like 'great, just great' (sarcastic, not genuinely positive).", concept_id: 'ironia_doble_sentido', difficulty: 2 },
+  // C2 — implicatura_pragmatica
+  { type: 'translation_to_english', prompt: '¿Qué implica responder "Tengo que trabajar" a "¿Vienes a la fiesta?"?', word: 'implicatura', english: 'implied "no" without saying it directly', answer: "It implies 'no, I'm not coming' without saying so directly.", concept_id: 'implicatura_pragmatica', difficulty: 3 },
+  // C2 — generos_discursivos_formales
+  { type: 'multiple_choice', prompt: 'Which structural feature is expected in a formal "informe" (report) but not a personal email?', word: 'informe', english: 'formal report register', answer: 'Impersonal constructions and numbered sections', options: ['Impersonal constructions and numbered sections', 'First-person anecdotes', 'Emoji and abbreviations', 'Regional slang'], concept_id: 'generos_discursivos_formales', difficulty: 2 },
+  // C2 — referencias_culturales_avanzadas
+  { type: 'translation_to_english', prompt: '¿A qué se refiere alguien que dice "eso es muy quijotesco"?', word: 'quijotesco', english: 'idealistic/impractical, like Don Quixote', answer: 'Something idealistic or impractically noble, like Don Quixote.', concept_id: 'referencias_culturales_avanzadas', difficulty: 2 },
 ];
 
 function fallback(focusConcept = null) {

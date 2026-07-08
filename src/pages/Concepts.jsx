@@ -5,7 +5,7 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import styles from './Concepts.module.css';
 
-const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2', 'C1'];
+const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
 const CATEGORY_LABELS = {
   verb: 'Verbs',
@@ -14,6 +14,7 @@ const CATEGORY_LABELS = {
   syntax: 'Syntax',
   vocabulary: 'Vocabulary',
   prepositions: 'Prepositions',
+  discourse: 'Discourse',
 };
 
 function masteryClass(score) {

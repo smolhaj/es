@@ -159,8 +159,8 @@ export const UNIT_METADATA = [
 
   // C1 — Near-Native Precision
   { id: 'subjunctive-limits', order: 26, level: 'C1', title: 'Subjunctive at Its Limits',
-    concepts: ['subjunctive_noun_clauses', 'subjunctive_adjective_clauses', 'subjunctive_temporal', 'pluperfect_subjunctive'],
-    summary: 'Doubt, unknown antecedents, future time clauses, and unreal pasts — the subjunctive\'s full range.' },
+    concepts: ['subjunctive_noun_clauses', 'subjunctive_adjective_clauses', 'subjunctive_concessive_intensifiers', 'pluperfect_subjunctive'],
+    summary: 'Doubt, unknown antecedents, concessive intensifiers, and unreal pasts — the subjunctive\'s full range.' },
   { id: 'reported-speech', order: 27, level: 'C1', title: 'Reported Speech & Nominalisation',
     concepts: ['estilo_indirecto', 'nominalisation', 'gerund_advanced'],
     summary: 'Report what someone said with the right tense shift, and turn whole ideas into noun phrases.' },

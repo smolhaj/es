@@ -376,10 +376,10 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['subjunctive_noun_clauses'],
     explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },
-  subjunctive_temporal: {
-    id: 'subjunctive_temporal', label: 'Subjunctive in temporal clauses', cefr: 'C1',
-    category: 'syntax', prereqs: ['present_subjunctive', 'subjunctive_adverbial'],
-    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  subjunctive_concessive_intensifiers: {
+    id: 'subjunctive_concessive_intensifiers', label: 'Concessive intensifiers (por más/mucho que)', cefr: 'C1',
+    category: 'syntax', prereqs: ['aunque_concessive', 'present_subjunctive'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
   },
   cuantificadores: {
     id: 'cuantificadores', label: 'Quantifiers (bastante, demasiado, cada)', cefr: 'C1',
@@ -415,6 +415,130 @@ export const CONCEPTS = {
     id: 'verbos_preposicionales', label: 'Verbs with fixed prepositions (pensar en, soñar con…)', cefr: 'C1',
     category: 'prepositions', prereqs: ['prepositions_basic', 'por_vs_para'],
     explanationStyles: ['rule_first', 'example_first', 'pattern'],
+  },
+
+  // ── C1 (Connectors & Cohesion — foundation for C2 discourse work) ──────
+  connectors_contrast: {
+    id: 'connectors_contrast', label: 'Contrast connectors (sin embargo, no obstante, en cambio)', cefr: 'C1',
+    category: 'discourse', prereqs: ['aunque_concessive'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  connectors_consequence: {
+    id: 'connectors_consequence', label: 'Consequence connectors (por lo tanto, así que, de ahí que)', cefr: 'C1',
+    category: 'discourse', prereqs: ['connectors_contrast'],
+    explanationStyles: ['rule_first', 'example_first', 'pattern'],
+  },
+  connectors_addition_sequence: {
+    id: 'connectors_addition_sequence', label: 'Addition & sequence connectors (además, es más, en primer/último lugar)', cefr: 'C1',
+    category: 'discourse', prereqs: ['connectors_contrast'],
+    explanationStyles: ['rule_first', 'example_first', 'pattern'],
+  },
+  connectors_cause_reason: {
+    id: 'connectors_cause_reason', label: 'Cause/reason connectors (ya que, puesto que, dado que)', cefr: 'C1',
+    category: 'discourse', prereqs: ['connectors_consequence'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+
+  // ── C2 ──────────────────────────────────────────────────────────────────
+  reformuladores: {
+    id: 'reformuladores', label: 'Reformulators (o sea, es decir, mejor dicho)', cefr: 'C2',
+    category: 'discourse', prereqs: ['connectors_addition_sequence'],
+    explanationStyles: ['rule_first', 'example_first', 'pattern'],
+  },
+  estructuradores_informacion: {
+    id: 'estructuradores_informacion', label: 'Information structurers (por una parte…por otra, en primer lugar…en definitiva)', cefr: 'C2',
+    category: 'discourse', prereqs: ['connectors_addition_sequence'],
+    explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
+  operadores_discursivos: {
+    id: 'operadores_discursivos', label: 'Discourse operators (de hecho, en realidad, por cierto)', cefr: 'C2',
+    category: 'discourse', prereqs: ['reformuladores'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  registro_formal_informal: {
+    id: 'registro_formal_informal', label: 'Register switching (formal, informal, colloquial, technical)', cefr: 'C2',
+    category: 'discourse', prereqs: ['operadores_discursivos'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
+  modalizacion_epistemica: {
+    id: 'modalizacion_epistemica', label: 'Epistemic modalization & hedging (al parecer, se supone que, presuntamente)', cefr: 'C2',
+    category: 'discourse', prereqs: ['futuro_probabilidad', 'condicional_probabilidad'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  controladores_contacto: {
+    id: 'controladores_contacto', label: 'Contact controllers (¿verdad?, fíjate, oye)', cefr: 'C2',
+    category: 'discourse', prereqs: ['registro_formal_informal'],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
+  },
+  subjunctive_indefinite_relative: {
+    id: 'subjunctive_indefinite_relative', label: 'Indefinite relative subjunctive (quienquiera que, dondequiera que, comoquiera que)', cefr: 'C2',
+    category: 'syntax', prereqs: ['subjunctive_adjective_clauses'],
+    explanationStyles: ['rule_first', 'example_first', 'pattern'],
+  },
+  subjunctive_rare_triggers: {
+    id: 'subjunctive_rare_triggers', label: 'Rare subjunctive triggers (ni que, por si + subjunctive, que yo sepa)', cefr: 'C2',
+    category: 'syntax', prereqs: ['subjunctive_noun_clauses'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  preterito_anterior: {
+    id: 'preterito_anterior', label: 'Pretérito anterior — literary compound past (hubo cantado)', cefr: 'C2',
+    category: 'verb', prereqs: ['pluperfect'],
+    explanationStyles: ['rule_first', 'example_first', 'table'],
+  },
+  futuro_subjuntivo_relic: {
+    id: 'futuro_subjuntivo_relic', label: 'Futuro de subjuntivo — legal/literary relic tense (sea como fuere)', cefr: 'C2',
+    category: 'verb', prereqs: ['imperfect_subjunctive'],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
+  },
+  presente_historico_narrativo: {
+    id: 'presente_historico_narrativo', label: 'Historic/narrative present & free indirect style', cefr: 'C2',
+    category: 'verb', prereqs: ['estilo_indirecto'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  dislocacion_topicalizacion: {
+    id: 'dislocacion_topicalizacion', label: 'Dislocation & topicalization for emphasis', cefr: 'C2',
+    category: 'syntax', prereqs: ['object_pronoun_order'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  oraciones_hendidas: {
+    id: 'oraciones_hendidas', label: 'Cleft sentences (lo que pasa es que…, lo que hizo fue…)', cefr: 'C2',
+    category: 'syntax', prereqs: ['lo_neutro'],
+    explanationStyles: ['rule_first', 'pattern', 'example_first'],
+  },
+  inversion_literaria: {
+    id: 'inversion_literaria', label: 'Literary subject-verb inversion', cefr: 'C2',
+    category: 'syntax', prereqs: ['dislocacion_topicalizacion'],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
+  },
+  connotacion_denotacion: {
+    id: 'connotacion_denotacion', label: 'Connotation vs. denotation', cefr: 'C2',
+    category: 'vocabulary', prereqs: [],
+    explanationStyles: ['contrastive', 'example_first', 'rule_first'],
+  },
+  pares_registro_lexico: {
+    id: 'pares_registro_lexico', label: 'Register-marked synonym pairs (coche/vehículo/carro)', cefr: 'C2',
+    category: 'vocabulary', prereqs: ['registro_formal_informal'],
+    explanationStyles: ['contrastive', 'table', 'example_first'],
+  },
+  ironia_doble_sentido: {
+    id: 'ironia_doble_sentido', label: 'Irony, sarcasm & double meaning', cefr: 'C2',
+    category: 'vocabulary', prereqs: ['connotacion_denotacion'],
+    explanationStyles: ['example_first', 'story', 'contrastive'],
+  },
+  implicatura_pragmatica: {
+    id: 'implicatura_pragmatica', label: 'Pragmatic implicature (what\'s meant vs. what\'s said)', cefr: 'C2',
+    category: 'discourse', prereqs: ['ironia_doble_sentido'],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
+  },
+  generos_discursivos_formales: {
+    id: 'generos_discursivos_formales', label: 'Formal written genres (informe, ensayo argumentativo)', cefr: 'C2',
+    category: 'discourse', prereqs: ['estructuradores_informacion'],
+    explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
+  referencias_culturales_avanzadas: {
+    id: 'referencias_culturales_avanzadas', label: 'Advanced cultural references & allusions', cefr: 'C2',
+    category: 'vocabulary', prereqs: [],
+    explanationStyles: ['example_first', 'story', 'rule_first'],
   },
 };
 
