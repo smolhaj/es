@@ -821,12 +821,31 @@ function normalizeAnswer(s) {
   return String(s).trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.!?¡¿]+$/g, '');
 }
 
+// Some answers carry a parenthetical aside ("gran (before noun)") or use
+// "/" to list alternative phrasings ("One must recycle more. / We need to
+// recycle more.") — a learner isn't expected to reproduce those verbatim.
+function coreAnswer(s) {
+  return String(s).replace(/\s*\([^)]*\)/g, '').replace(/\s+—.*$/, '').trim();
+}
+
+function acceptableAnswers(exercise) {
+  const sources = [exercise.answer, exercise.english, ...(exercise.altAnswers || [])].filter(Boolean);
+  const variants = new Set();
+  sources.forEach(text => {
+    text.split('/').forEach(part => {
+      variants.add(normalizeAnswer(part));
+      variants.add(normalizeAnswer(coreAnswer(part)));
+    });
+  });
+  return variants;
+}
+
 // When Gemini is unavailable we can't have it grade the previous answer, but
 // we still know the correct answer for the exercise the learner just
 // submitted — grade it locally instead of unconditionally marking it wrong.
 function gradeLocally(exercise, learnerAnswer) {
   if (!exercise || learnerAnswer == null) return false;
-  return normalizeAnswer(learnerAnswer) === normalizeAnswer(exercise.answer);
+  return acceptableAnswers(exercise).has(normalizeAnswer(learnerAnswer));
 }
 
 export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false, briefing = null, focusConcept = null) {

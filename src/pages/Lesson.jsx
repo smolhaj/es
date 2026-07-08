@@ -14,6 +14,33 @@ function normalizeAnswer(s) {
   return String(s).trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.!?¡¿]+$/g, '');
 }
 
+// Some answers carry a parenthetical aside or an em-dash clarification
+// ("one hundred (100)", "you all — used only in Spain") that a learner
+// isn't expected to reproduce verbatim; strip it to get the core phrase.
+function coreAnswer(s) {
+  return String(s).replace(/\s*\([^)]*\)/g, '').replace(/\s+—.*$/, '').trim();
+}
+
+// Build the set of strings that should count as correct for an exercise:
+// the canonical answer, its "core" (parenthetical/aside stripped) form, the
+// short `english` gloss some exercises carry, any explicit `altAnswers`, and
+// "/"-separated alternative phrasings within any of those.
+function acceptableAnswers(exercise) {
+  const sources = [exercise.answer, exercise.english, ...(exercise.altAnswers || [])].filter(Boolean);
+  const variants = new Set();
+  sources.forEach(text => {
+    text.split('/').forEach(part => {
+      variants.add(normalizeAnswer(part));
+      variants.add(normalizeAnswer(coreAnswer(part)));
+    });
+  });
+  return variants;
+}
+
+function isAnswerCorrect(exercise, learnerAnswer) {
+  return acceptableAnswers(exercise).has(normalizeAnswer(learnerAnswer));
+}
+
 // phase: 'reading' | 'practice' | 'checking' | 'feedback' | 'complete'
 
 export default function Lesson() {
@@ -47,7 +74,7 @@ export default function Lesson() {
   const handleAnswer = useCallback((learnerAnswer) => {
     setPhase('checking');
     const exercise = unit.practice[exerciseIndex];
-    const correct = normalizeAnswer(learnerAnswer) === normalizeAnswer(exercise.answer);
+    const correct = isAnswerCorrect(exercise, learnerAnswer);
     if (correct) setCorrectCount(c => c + 1);
     setFeedback({ correct, correctAnswer: correct ? null : exercise.answer });
     setPhase('feedback');
