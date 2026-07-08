@@ -154,8 +154,9 @@ added specifically so a fresh coding session wouldn't either freeze on a
   pronunciation, regional differences, free resources — all with
   `ClickableSpanish` word-popover support
 - Dashboard, session history, profile
-- **Structured "Learn" curriculum — all 38 units (0-37), A1 through C2,
-  complete.** See "Architecture" above.
+- **Structured "Learn" curriculum — all 38 taught units (0-37), A1 through
+  C2, complete, plus 9 cumulative review checkpoints (47 total).** See
+  "Architecture" above.
 - Audio/TTS via the Web Speech API (no per-character billing, unlike the
   original spec's proposed Google Cloud TTS)
 - Anki-style Flashcards (top 5,000 words by frequency)
@@ -237,7 +238,8 @@ along the way — see the relevant dated section in `ES-HISTORY.md`.
 
 ### Structured "Learn" curriculum
 
-38 units (0-37), A1 through C2, at `/learn`. Alongside the adaptive Gemini
+38 taught units (0-37) plus 9 review checkpoints (47 total), A1 through
+C2, at `/learn`. Alongside the adaptive Gemini
 session and reference pages — doesn't replace either.
 
 - `src/content/curriculum/index.js` — `UNIT_METADATA` (id, order, level,
@@ -292,6 +294,35 @@ session and reference pages — doesn't replace either.
   duplicating it).
 - `schema-v6.sql` / `functions/api/curriculum/progress.js` — `module_progress`
   table tracks per-unit completion, no gating.
+
+**Review checkpoints** (added 07-08-2026) — 9 units (`checkpoint-a1`,
+`checkpoint-a1-full`, `checkpoint-a2`, `checkpoint-a2-full`, `checkpoint-b1`,
+`checkpoint-b1-full`, `checkpoint-b2`, `checkpoint-c1`, `checkpoint-c2`),
+one at the midpoint and end of each CEFR level, giving cumulative
+interleaved review across all prior units — no new Spanish content, no
+schema changes, no new backend route:
+- `UNIT_METADATA` entries carry `isCheckpoint: true` and `checkpointUpTo:
+  <order>` instead of a fixed `concepts` list, and use **fractional
+  `order` values** (4.5, 7.5, ...) so they slot between real units without
+  ever renumbering an existing unit's `order` — the same rule that's kept
+  every prior content addition additive.
+- `getPracticePoolUpTo(order)` (in `curriculum/index.js`) pools every
+  real unit's `practice` array by `concept_id`, for every unit at or
+  before that order — reads data that's already in the bundle, since all
+  unit content is statically imported.
+- `src/lib/checkpoints.js`'s `buildCheckpointPractice()` assembles a fresh
+  ~20-exercise set from that pool: weakest concepts (from the existing
+  `GET /learner/profile` `weakConcepts`, already ordered worst-mastery-
+  first) get priority slots, concepts with no mastery signal yet fall back
+  to even sampling — never breaks for a learner who skipped ahead.
+- `Lesson.jsx` branches on `isCheckpoint`: real units use the static
+  `CONTENT[id]` as before; checkpoints fetch `weakConcepts` and call
+  `buildCheckpointPractice()` in a `useEffect`, rebuilding the set **fresh
+  every time the lesson mounts** — checkpoints are redoable and
+  deliberately not frozen at first-completion state. `getUnit()` returns
+  `comingSoon: false` for a checkpoint even with no `CONTENT[id]` entry.
+- Completion still writes to `module_progress` via the same
+  `markComplete` call every other unit uses — no new tracking needed.
 
 ### Verb reference (`/verbs`)
 
@@ -600,9 +631,8 @@ measures):**
     masculine "a cut" but exampled with feminine "court"); ~5.6% also have
     no example at all. Worth a pipeline pass flagging gender/article
     mismatches between gloss and example.
-13. **No cumulative/interleaved cross-unit review layer** — each unit's
-    practice is self-contained; nothing resurfaces earlier units'
-    structures later. More relevant now at 38 units than it was at 25.
+13. ~~No cumulative/interleaved cross-unit review layer~~ — **done**, see
+    "Review checkpoints" in Architecture above (07-08-2026).
 14. **Minor content duplication, flagged but not fixed**: `vocabulary.js`'s
     `cuñado`/`cuñada` (A2 and B2, different examples, looks unintentional);
     `idioms.js`'s "a buenas horas(,) mangas verdes" comma/no-comma
