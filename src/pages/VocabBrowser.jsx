@@ -15,6 +15,13 @@ const DOMAIN_LABELS = {
   emotions: 'Emotions', clothes: 'Clothes', house: 'House & Home', health: 'Health',
   travel: 'Travel', technology: 'Technology',
   education: 'Education', nature: 'Nature',
+  business: 'Business', academic: 'Academic', abstract_concepts: 'Abstract Concepts',
+  media_news: 'Media & News',
+};
+
+const REGISTER_COLORS = {
+  colloquial: 'regColloquial', informal: 'regInformal',
+  neutral: 'regNeutral', formal: 'regFormal',
 };
 
 export default function VocabBrowser() {
@@ -23,6 +30,7 @@ export default function VocabBrowser() {
   const [filterCefr, setFilterCefr] = useState('');
   const [filterDomain, setFilterDomain] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
+  const [filterRegister, setFilterRegister] = useState('');
   const [addWord, setAddWord] = useState('');
   const [addTranslation, setAddTranslation] = useState('');
   const [addStatus, setAddStatus] = useState('');
@@ -67,10 +75,11 @@ export default function VocabBrowser() {
       if (filterDomain && v.domain !== filterDomain) return false;
       if (filterStatus === 'seen' && !wordStatus[v.es]) return false;
       if (filterStatus === 'unseen' && wordStatus[v.es]) return false;
+      if (filterRegister && v.register !== filterRegister) return false;
       if (q && !v.es.toLowerCase().includes(q) && !v.en.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [search, filterCefr, filterDomain, filterStatus, wordStatus]);
+  }, [search, filterCefr, filterDomain, filterStatus, filterRegister, wordStatus]);
 
   const seenCount = useMemo(
     () => VOCABULARY.filter(v => wordStatus[v.es]).length,
@@ -87,7 +96,7 @@ export default function VocabBrowser() {
             <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
             <h1 className={styles.title}>Vocabulary</h1>
             <p className={styles.subtitle}>
-              {VOCABULARY.length} words across {DOMAINS.length} domains · A1 through C1
+              {VOCABULARY.length} words across {DOMAINS.length} domains · A1 through C2
               {seenCount > 0 && ` · ${seenCount} in your queue`}
             </p>
           </header>
@@ -133,6 +142,17 @@ export default function VocabBrowser() {
                   onClick={() => setFilterCefr(v => v === l ? '' : l)}
                 >
                   {l}
+                </button>
+              ))}
+            </div>
+            <div className={styles.filterRow}>
+              {['colloquial', 'informal', 'neutral', 'formal'].map(r => (
+                <button
+                  key={r}
+                  className={`${styles.filterBtn} ${styles.filterSmall} ${filterRegister === r ? styles.filterActive : ''}`}
+                  onClick={() => setFilterRegister(v => v === r ? '' : r)}
+                >
+                  {r}
                 </button>
               ))}
             </div>
@@ -194,6 +214,11 @@ function WordCard({ item, status }) {
             <span className={`${styles.seenDot} ${status.reviewCount >= 3 ? styles.seenDotStrong : ''}`}
               title={`${status.reviewCount} review${status.reviewCount !== 1 ? 's' : ''}`}
             />
+          )}
+          {item.register && (
+            <span className={`${styles.regBadge} ${styles[REGISTER_COLORS[item.register]]}`}>
+              {item.register}
+            </span>
           )}
           <span className={`${styles.cefr} ${styles['cefr' + item.cefr.replace('.', '')]}`}>
             {item.cefr}
