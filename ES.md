@@ -1576,6 +1576,222 @@ the "Content accuracy audits" section above rather than repeating it):**
   classroom rather than a solo learner — raised by the "university department" lens of
   the review, not a bug).
 
+## C2 tier: units 30-37, the curriculum's final stretch (this session)
+
+The "Learn" path previously topped out at C1 (units 0-29, orientation
+through B2 plus 4 C1 units). This session scoped and built a full C2
+tier, taking the curriculum from A1 all the way to C2 — 38 units total.
+Scoped conversationally with the user first (research-grounded questions,
+not a blind build), then implemented via a mix of direct work and
+background content-writing agents, following the same division-of-labor
+established for the C1 rollout (content agents never touch shared files).
+
+**Research finding that shaped the whole approach**: DELE/Instituto
+Cervantes sources are explicit that C2 is not primarily a grammar tier —
+"there are no specific tasks about grammar" at C2; the differentiator is
+vocabulary scope, register control, discourse markers, and pragmatic
+nuance. This directly contradicted the A1-C1 model of "one new grammar
+point per lesson," so the user was asked up front whether to keep that
+model or pivot. Decision: **pivot to a discourse/register/pragmatics
+model** for C2, while keeping a few genuinely-new rare-grammar units
+where real grammar gaps existed (indefinite relative subjunctive, literary
+tenses).
+
+**Real prerequisite gaps found and fixed before building C2**, because the
+user specifically asked "make sure it can flow naturally from C1 — if
+there's a large gap in skill, more content in lower tiers is needed":
+
+- **Discourse markers/connectors had zero foundation anywhere below C2.**
+  The B1 unit literally named "Nuance & Connection" (`unit20`) turned out
+  to be about por/para, relative clauses, saber/conocer, and lo neutro —
+  tricky *words*, not discourse *cohesion*. A brand-new C1 foundation
+  unit, **`unit30-connectors-cohesion.js`** (sin embargo, por lo tanto,
+  además, ya que — basic connectors, taught explicitly for the first
+  time), was inserted before the C2 tier so the new C2 "Discourse
+  Markers" unit isn't the learner's first-ever exposure to the category.
+- **`verbs.js`'s reference tables stopped at present subjunctive** — no
+  imperative, no imperfect subjunctive, no compound tenses — despite
+  units 19/22/24/26 already teaching those forms (a gap flagged in the
+  prior four-lens site review but not yet fixed). Closed via a new
+  rerunnable pipeline, `scripts/extend-verb-tenses.mjs`, which mechanically
+  derives 11 new tense columns for all 125 verbs: imperfect subjunctive
+  and the relic futuro de subjuntivo (both derived from the preterite
+  stem, including the antepenultimate-stress accent rule for the nosotros
+  form — habláramos, dijéramos, fuéramos), all 6 compound tenses (haber +
+  participle, including reflexive-pronoun placement for the 6 `-se`
+  verbs), the literary pretérito anterior, and both imperative moods
+  (affirmative/negative, all 5 non-yo persons — imperative has no `yo`
+  form, stored as `yo: '—'` so the existing generic `FORM_KEYS`-driven
+  table renderer doesn't need a special case). 20 verbs needed a WebSearch-
+  verified tú-imperative exception (8 classic irregulars + haber + 11
+  inheriting compounds — with `predecir`/`contradecir` confirmed as
+  **not** inheriting decir's "di", unlike most decir-compounds), 16
+  needed an irregular-participle override, 6 reflexive verbs needed
+  enclitic-pronoun handling (levántate/levantémonos/levantaos, with the
+  nosotros -s-drop and vosotros -d-drop spelling rules applied
+  correctly). Verified via `node --check`, a full-coverage structural
+  check, and WebSearch spot-checks against RAE/SpanishDict for the
+  trickiest forms before trusting the mechanical derivation.
+
+**Unit 26 rework, folded into this same session's work.** The four-lens
+review had already flagged `unit26-subjunctive-limits.js` as miscalibrated
+— its `subjunctive_temporal` concept (cuando/en cuanto/hasta que +
+subjunctive) genuinely duplicated `unit24`'s `subjunctive_adverbial`
+(same "cuando + subjunctive" material, two concept ids). Fixed by
+**removing `subjunctive_temporal` from the concept graph entirely**
+(deleting the concepts.js entry, the grammar.js card, and reassigning its
+6 `FALLBACK_EXERCISES` items to the correct `subjunctive_adverbial`) and
+replacing Unit 26's third section with a new, genuinely non-duplicate C1
+concept: **`subjunctive_concessive_intensifiers`** (por más/mucho que).
+`subjunctive_noun_clauses` and `subjunctive_adjective_clauses` were kept
+at C1 as-is (reframed as refinement of judgment calls the learner has
+partial exposure to already, not brand-new territory), since actually
+downgrading them to B2 and merging into Unit 24 would have bloated that
+unit to 6 concepts, breaking the "one concept at a time" blocked-practice
+principle worse than the original miscalibration did.
+
+**A real grammar error caught and fixed during this rework, worth noting
+as a lesson in not trusting a first WebSearch pass**: an initial round of
+research suggested por más/mucho que is "always subjunctive, unlike
+aunque" — this is what a content-writing agent was briefed with, and it
+produced example sentences that directly contradicted its own stated rule
+(`Por más que estudio...` — indicative — used as an example of an
+"always subjunctive" construction). A follow-up, more targeted WebSearch
+directly against RAE's *Nueva gramática de la lengua española* found the
+actual rule: por más/mucho que follows **the same mood logic as aunque**
+(subjunctive is the standard default, but indicative is explicitly
+correct for a stated, confirmed fact, and more common in that role in
+American Spanish than European Spanish). Corrected in `concepts.js`'s
+label, the `grammar.js` card, `_gemini.js`'s prompt/fallback content, and
+the Unit 26 lesson prose itself before any of it shipped — a good
+reminder that "verify via WebSearch" needs a second, more targeted pass
+when a source's claim doesn't survive contact with its own examples.
+
+**The C2 tier itself — 7 new units (31-37), 20 new concepts:**
+1. **Discourse Markers** (`discourse-markers`) — reformuladores (o sea, es
+   decir), estructuradores de la información (por una parte...por otra),
+   operadores discursivos (de hecho, en realidad) — builds directly on
+   Unit 30's basic connectors.
+2. **Register & Stance** (`register-stance`) — register switching across
+   formal/neutral/informal/colloquial (explicitly reusing `idioms.js`'s
+   existing 4-way register scale, extended to full sentences/constructions
+   rather than single idioms), epistemic hedging (al parecer, se supone
+   que), contact controllers (¿verdad?, oye). **First use of a new
+   exercise type, `register_identify`** (see below).
+3. **The Subjunctive's Final Reaches** (`subjunctive-final-reaches`) —
+   only 2 concepts by design (deliberately denser/narrower than a typical
+   unit): indefinite relative subjunctive (quienquiera que) and 3 rare
+   triggers (ni que, por si + subjunctive — verified this is restricted
+   to imperfect/pluperfect subjunctive only, never present — and the
+   fixed hedge "que yo sepa").
+4. **Literary & Formal Tenses** (`literary-formal-tenses`) — pretérito
+   anterior and futuro de subjuntivo, framed honestly as near-obsolete
+   recognition-only knowledge (RAE confirms both are essentially confined
+   to legal/literary fixed contexts today), plus narrative present/free
+   indirect style.
+5. **Word Order for Effect** (`word-order-effect`) — dislocation/
+   topicalization with resumptive pronouns (Ese libro, ya lo leí), cleft
+   sentences (lo que pasa es que...), literary subject-verb inversion.
+6. **Idiom, Connotation & Wordplay** (`idiom-connotation-wordplay`) —
+   connotation vs. denotation (flaco vs. delgado vs. esbelto), register-
+   marked synonym pairs with careful regional accuracy (coche/carro/auto/
+   vehículo, matching this site's established Spain-vs-Latin-America
+   diligence), irony/sarcasm/double meaning.
+7. **Reading Between the Lines** (`reading-between-lines`) — pragmatic
+   implicature, formal written genres (informe vs. ensayo argumentativo),
+   and pan-Hispanic cultural references (quijotesco, kafkiano, el talón
+   de Aquiles — deliberately restricted to genuinely widely-recognized
+   allusions, not single-country trivia). **Closing unit of the entire
+   38-unit curriculum**, framed with that in mind.
+
+**New exercise type: `register_identify`.** Given a Spanish sentence
+(`sentence`/`sentenceEn` fields, rendered like the existing `passage`
+field with audio via `SpeakButton`), the learner picks one of exactly 4
+fixed register labels (formal/neutral/informal/colloquial). Wired into
+`ExerciseCard.jsx` (reuses the multiple-choice interaction/keyboard-
+shortcut code path via a small `isMultipleType()` helper rather than
+duplicating it), `Session.jsx`'s `formatType()`, and `_gemini.js`'s
+system prompt (so live Gemini calls can generate it too, not just the
+static content). Verified end-to-end in both the curriculum lesson flow
+and the adaptive session's focus-mode drilling.
+
+**`CONCEPT_LABELS` consolidated into one shared file.** This exact class
+of bug had already bitten the project once (`History.jsx` was fixed to
+have all 81 keys, but `Dashboard.jsx`/`Session.jsx`/`end.js` were never
+updated, silently drifting back out of sync) — adding 25 more concept ids
+across 4 separate hand-copied maps would have guaranteed a third
+recurrence. Consolidated into `src/content/conceptLabels.js`, imported by
+all 4 consumers (including the backend `functions/api/sessions/end.js`,
+which can import from `src/` the same way `functions/api/vocabulary/
+seed.js` already does — confirmed this cross-boundary import pattern is
+established and safe in this codebase before relying on it).
+
+**Same "forgotten array" bug class pre-empted in 5 more places.** The C1
+rollout postmortem already documented one instance (`GetStarted.jsx`'s
+hardcoded `LEVELS` array missing `'C1'`, making 4 real units invisible
+despite being real data). A proactive grep for the same
+`['A1', 'A2', 'B1', 'B2', ...]` pattern found `vocabulary.js`,
+`grammar.js`, `verbs.js` (`CEFR_LEVELS` filter-dropdown exports),
+`Concepts.jsx` (`CEFR_ORDER`), and `sessions/end.js` (`computeCefrLevel`'s
+level-progression `order` array) all missing `'C1'` and/or `'C2'` — fixed
+all of them before they could reproduce the exact same class of bug,
+including adding a `C1` accuracy/session-count threshold to
+`computeCefrLevel` so a learner can now actually auto-advance from C1 to
+C2 (previously impossible even to attempt, since C1 was hardcoded as the
+last level in that function's `order` array).
+
+**Also fixed while touching curriculum copy**: the four-lens review above
+had flagged `unit00-why-spanish.js:45` for claiming the course is "24
+units... A1 through... B2" when it was actually 30 units through C1 —
+never fixed at the time. Now doubly wrong with the C2 addition, so fixed
+for real: updated to accurately say 37 units, A1 through C2.
+
+**Process notes for future sessions extending this further:**
+- Same division of labor as the C1 rollout: shared files (`concepts.js`,
+  `grammar.js`, `curriculum/index.js`, `_gemini.js`) were only ever
+  touched directly by the orchestrating session, never by a content-
+  writing agent, and never in parallel with each other. All 8 new unit
+  files (`unit30` through `unit37`) were genuinely disjoint and safe to
+  write in parallel.
+- **A batch of 5 parallel agents hit an account-level API session limit
+  mid-write simultaneously** (`unit30`-`unit34`, `unit31` succeeded, the
+  other 4 needed inspection). Per the established "always check `git diff`
+  / re-verify after an agent completes or fails" practice: 4 of the 5
+  files that did get written were syntactically complete and fine;
+  **one (`unit32-register-stance.js`) had the exact known corruption
+  pattern** — a session cut-off mid-write leaving an unescaped apostrophe
+  inside a single-quoted string (`'...they'll change...'`) — caught by
+  `node --check`, not by trusting the agent's own report, and fixed with
+  a single-line edit rather than a full rewrite. The 3 units that never
+  got any file written at all (`unit35`-`unit37`) were simply re-
+  dispatched fresh, with an explicit warning about the exact apostrophe-
+  escaping failure mode added to their briefs to reduce recurrence risk.
+- Every new/changed concept was cross-checked programmatically (not just
+  visually) for total consistency across `concepts.js`, `grammar.js`,
+  `conceptLabels.js`, `_gemini.js`'s prompt whitelist, and
+  `FALLBACK_EXERCISES` coverage (every one of the 105 tracked concepts
+  now has at least one fallback exercise — preserving the "focus mode
+  never silently degrades to random" invariant from the earlier focus-
+  mode bug fix) before wiring anything into `index.js`.
+
+**Verified end-to-end** via a live local `wrangler pages dev` + D1
+server and Playwright: registration → `/learn` correctly shows "0 of 38
+available units" with both a "Near-Native Precision" (C1) and a
+"Native-Level Mastery" (C2) section, each new unit renders real content
+(no "coming soon" placeholders), the `register_identify` exercise type
+renders and grades correctly in both the curriculum lesson flow and the
+adaptive session's `?focus=` drilling mode, `/concepts` and `/grammar`
+correctly surface the new `Discourse` category and C2 level, and
+`/verbs` shows all 17 tense tabs (including the new imperative and
+compound tenses) rendering real conjugated forms. One test-script false
+positive worth remembering (same class as a prior one already logged in
+this file): a fuzzy `button, a` + `/practice/i` text selector clicked
+NavBar's generic "Practice" link (→ `/session`) instead of the lesson's
+own "Practice this lesson →" button, since the nav renders earlier in DOM
+order — fixed by scoping to the exact button text, same lesson as the
+earlier `[class*="option"]` matching `.options` false positive: fuzzy
+selectors need to be scoped precisely, not just "contains this word."
+
 ## What still needs to be built
 
 Prioritized punch list as of this writing. If you're picking this project up
