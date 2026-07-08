@@ -35,6 +35,14 @@ import subjunctiveLimits from './unit26-subjunctive-limits.js';
 import reportedSpeech from './unit27-reported-speech.js';
 import probabilityAspect from './unit28-probability-aspect.js';
 import fixedExpressions from './unit29-fixed-expressions.js';
+import connectorsCohesion from './unit30-connectors-cohesion.js';
+import discourseMarkers from './unit31-discourse-markers.js';
+import registerStance from './unit32-register-stance.js';
+import subjunctiveFinalReaches from './unit33-subjunctive-final-reaches.js';
+import literaryFormalTenses from './unit34-literary-formal-tenses.js';
+import wordOrderEffect from './unit35-word-order-effect.js';
+import idiomConnotationWordplay from './unit36-idiom-connotation-wordplay.js';
+import readingBetweenLines from './unit37-reading-between-lines.js';
 
 const CONTENT = {
   'why-spanish': whySpanish,
@@ -67,6 +75,14 @@ const CONTENT = {
   'reported-speech': reportedSpeech,
   'probability-aspect': probabilityAspect,
   'fixed-expressions': fixedExpressions,
+  'connectors-cohesion': connectorsCohesion,
+  'discourse-markers': discourseMarkers,
+  'register-stance': registerStance,
+  'subjunctive-final-reaches': subjunctiveFinalReaches,
+  'literary-formal-tenses': literaryFormalTenses,
+  'word-order-effect': wordOrderEffect,
+  'idiom-connotation-wordplay': idiomConnotationWordplay,
+  'reading-between-lines': readingBetweenLines,
 };
 
 export const UNIT_METADATA = [
@@ -170,6 +186,32 @@ export const UNIT_METADATA = [
   { id: 'fixed-expressions', order: 29, level: 'C1', title: 'Passive, Concession & Fixed Expressions',
     concepts: ['ser_passive', 'aunque_concessive', 'verbos_preposicionales', 'cuantificadores'],
     summary: 'Formal passive voice, aunque\'s mood switch, verbs with fixed prepositions, and precise quantifiers.' },
+  { id: 'connectors-cohesion', order: 30, level: 'C1', title: 'Connectors & Cohesion',
+    concepts: ['connectors_contrast', 'connectors_consequence', 'connectors_addition_sequence', 'connectors_cause_reason'],
+    summary: 'Sin embargo, por lo tanto, además, ya que — the basic connectors every advanced argument needs.' },
+
+  // C2 — Native-Level Mastery
+  { id: 'discourse-markers', order: 31, level: 'C2', title: 'Discourse Markers',
+    concepts: ['reformuladores', 'estructuradores_informacion', 'operadores_discursivos'],
+    summary: 'O sea, por una parte...por otra, de hecho — structure and reinforce an argument like a fluent adult speaker.' },
+  { id: 'register-stance', order: 32, level: 'C2', title: 'Register & Stance',
+    concepts: ['registro_formal_informal', 'modalizacion_epistemica', 'controladores_contacto'],
+    summary: 'Shift a whole sentence across formal, neutral, informal, and colloquial register, and hedge a claim with al parecer.' },
+  { id: 'subjunctive-final-reaches', order: 33, level: 'C2', title: "The Subjunctive's Final Reaches",
+    concepts: ['subjunctive_indefinite_relative', 'subjunctive_rare_triggers'],
+    summary: 'Quienquiera que, ni que, por si — the rarest subjunctive triggers left to learn.' },
+  { id: 'literary-formal-tenses', order: 34, level: 'C2', title: 'Literary & Formal Tenses',
+    concepts: ['preterito_anterior', 'futuro_subjuntivo_relic', 'presente_historico_narrativo'],
+    summary: 'Recognize the near-obsolete tenses of legal texts and literature, and the narrative present of journalism.' },
+  { id: 'word-order-effect', order: 35, level: 'C2', title: 'Word Order for Effect',
+    concepts: ['dislocacion_topicalizacion', 'oraciones_hendidas', 'inversion_literaria'],
+    summary: 'Front, cleave, and invert a sentence for emphasis, the way native speakers do without thinking.' },
+  { id: 'idiom-connotation-wordplay', order: 36, level: 'C2', title: 'Idiom, Connotation & Wordplay',
+    concepts: ['connotacion_denotacion', 'pares_registro_lexico', 'ironia_doble_sentido'],
+    summary: 'Why flaco stings and delgado doesn\'t, coche vs. carro by country, and reading sarcasm off the page.' },
+  { id: 'reading-between-lines', order: 37, level: 'C2', title: 'Reading Between the Lines',
+    concepts: ['implicatura_pragmatica', 'generos_discursivos_formales', 'referencias_culturales_avanzadas'],
+    summary: 'What people mean but don\'t say, formal report vs. essay structure, and the cultural references fluent speakers catch. The final stop on this path.' },
 ];
 
 export function getUnit(id) {
