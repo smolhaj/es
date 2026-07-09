@@ -2899,3 +2899,63 @@ build` passes.
 **Curriculum-unit-content pacing lag is now fully resolved** — both
 phases of the fix are done, closing out the last open item from the
 whole CEFR-accuracy-audit thread that began with concepts.js Phase A.
+
+## Reading-passages proof of concept: prose, tone, and a data-driven glossary
+
+*Date: 07-09-2026*
+
+Picked up the reading-passages feature (scoped since early in the project,
+never started) with the narrowest possible first step: one standalone A1
+scene ("El pan de cada mañana," a bakery vignette) plus the existing
+Blahaj story Chapter 1 draft, delivered as a private artifact for a
+tone/prose reaction — no schema, no UI, no comprehension questions yet,
+per this project's own "human spot-check before scaling up" rule.
+
+**Grammar-level QA, and the process gap it exposed.** Both passages
+initially leaned on direct/indirect object pronouns, and Blahaj's had a
+stray preterite verb and one relative clause — all genuinely A2, not A1,
+per `concepts.js`, invisible to a plain "does this sound simple" read.
+Fixed by rewriting to repeat nouns instead of using pronouns and
+splitting the one relative clause into two sentences. Codified as a new
+step in `ES.md`'s prose-writing process: check every grammar structure a
+draft uses against `concepts.js` before it ships with a level tag, the
+same discipline already applied everywhere else in this project.
+
+**Vocabulary-gloss density: three iterations to get right.** Extending
+that same "never exceed the claimed level" logic to *vocabulary*
+overshot badly — glossed nearly 70 words (roughly one in three) across
+both passages, including connectors and common verbs that repeated
+exposure is supposed to teach, not a popover. User feedback: "a little
+heavy for true beginners." Pulled back to a hand-curated ~24, then
+realized hand-curation itself was the wrong model: the site's own
+`ClickableSpanish` component (`src/lib/dictionary.js`) already glosses
+*any* word with a real `vocabulary.js` match, at any level, with zero
+curation, specifically to guarantee "real, sourced data — never a
+guess." Rebuilt the glossary a third time to reuse that exact matching
+logic (scoped to `vocabulary.js` alone, excluding curriculum units' own
+vocab boxes — those intentionally list bare prepositions like a/de/en as
+new lesson vocabulary, which floods a flowing story with clicks on
+function words). Landed at 79 genuinely-sourced glossed words across both
+passages, driven entirely by real data, no invented CEFR levels, no
+subjective "is this worth it" calls. Also added a second `ES.md` process
+step: grammar and vocabulary need different QA rules, and don't apply
+one's binary logic to the other.
+
+**Real content-gap fix, shipped separately (PR #62).** Running the real
+matching logic surfaced 49 ordinary words missing from `vocabulary.js`
+outright — panadería, mostrador, vitrina, magdalena, horno, dejar,
+contestar, sacar, sonreír, oler, intercambiar, and 38 others. Dispatched
+a research pass (cross-referencing SpanishDict/Kwiziq/similar, not
+cvc.cervantes.es, which still 403s in this environment) to add each with
+a real audited CEFR level, following the existing schema/domain
+conventions. Spot-checked one of the "genuinely uncertain" tier
+(`tiburón` → B1) against an independent source before trusting the rest
+— matched. 1439 → 1488 words. This is a general fix, not reading-passage-
+specific: any word missing from `vocabulary.js` was already invisible to
+`ClickableSpanish` everywhere it's used across the site.
+
+**Still not started**: the actual reading-passages feature (schema,
+route, comprehension-question exercise type, story continuity across
+CEFR levels as chapters progress) — this session was prose/glossary
+calibration only, still living in a private artifact, nothing committed
+to the repo beyond the vocabulary.js fill.
