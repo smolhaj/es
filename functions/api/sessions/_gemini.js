@@ -61,16 +61,16 @@ B2: future_perfect, conditional_perfect, passive_voice, ser_estar_participle,
     adjectives_ser_estar, perfect_subjunctive, verbos_cambio,
     adjective_position, conectores_argumentativos_basicos,
     controladores_contacto, registro_formal_correspondencia,
-    reformuladores_basico, genero_informe, subjunctive_adjective_clauses,
-    condicional_probabilidad, pluperfect_subjunctive, aunque_concessive
+    reformuladores_basico, operadores_discursivos, genero_informe,
+    subjunctive_adjective_clauses, condicional_probabilidad,
+    pluperfect_subjunctive, aunque_concessive
 C1: subjunctive_noun_clauses, gerund_advanced, ser_passive, estilo_indirecto,
     nominalisation, subjunctive_concessive_intensifiers, connectors_contrast,
     connectors_consequence, connectors_addition_sequence,
-    connectors_cause_reason
-C2: reformuladores, estructuradores_informacion, operadores_discursivos,
-    registro_formal_informal, modalizacion_epistemica,
-    subjunctive_indefinite_relative, subjunctive_rare_triggers,
-    preterito_anterior, futuro_subjuntivo_relic,
+    connectors_cause_reason, estructuradores_informacion,
+    registro_formal_informal
+C2: reformuladores, modalizacion_epistemica, subjunctive_indefinite_relative,
+    subjunctive_rare_triggers, preterito_anterior, futuro_subjuntivo_relic,
     presente_historico_narrativo, dislocacion_topicalizacion,
     oraciones_hendidas, inversion_literaria, connotacion_denotacion,
     pares_registro_lexico, ironia_doble_sentido, implicatura_pragmatica,

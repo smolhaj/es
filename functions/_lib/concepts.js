@@ -404,6 +404,11 @@ export const CONCEPTS = {
     category: 'discourse', prereqs: ['conectores_argumentativos_basicos'],
     explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },
+  operadores_discursivos: {
+    id: 'operadores_discursivos', label: 'Discourse operators (de hecho, en realidad, por cierto)', cefr: 'B2',
+    category: 'discourse', prereqs: ['reformuladores_basico'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
   genero_informe: {
     id: 'genero_informe', label: 'Formal genre: the informe (report)', cefr: 'B2',
     category: 'discourse', prereqs: ['registro_formal_correspondencia'],
@@ -503,27 +508,22 @@ export const CONCEPTS = {
     category: 'discourse', prereqs: ['connectors_consequence', 'conectores_argumentativos_basicos'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
+  estructuradores_informacion: {
+    id: 'estructuradores_informacion', label: 'Information structurers (por una parte…por otra, en primer lugar…en definitiva)', cefr: 'C1',
+    category: 'discourse', prereqs: ['connectors_addition_sequence'],
+    explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
+  registro_formal_informal: {
+    id: 'registro_formal_informal', label: 'Register switching (formal, informal, colloquial, technical)', cefr: 'C1',
+    category: 'discourse', prereqs: ['operadores_discursivos'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
 
   // ── C2 ──────────────────────────────────────────────────────────────────
   reformuladores: {
     id: 'reformuladores', label: 'Reformulators — self-correction (mejor dicho, más bien)', cefr: 'C2',
     category: 'discourse', prereqs: ['connectors_addition_sequence', 'reformuladores_basico'],
     explanationStyles: ['rule_first', 'example_first', 'pattern'],
-  },
-  estructuradores_informacion: {
-    id: 'estructuradores_informacion', label: 'Information structurers (por una parte…por otra, en primer lugar…en definitiva)', cefr: 'C2',
-    category: 'discourse', prereqs: ['connectors_addition_sequence'],
-    explanationStyles: ['rule_first', 'table', 'example_first'],
-  },
-  operadores_discursivos: {
-    id: 'operadores_discursivos', label: 'Discourse operators (de hecho, en realidad, por cierto)', cefr: 'C2',
-    category: 'discourse', prereqs: ['reformuladores'],
-    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
-  },
-  registro_formal_informal: {
-    id: 'registro_formal_informal', label: 'Register switching (formal, informal, colloquial, technical)', cefr: 'C2',
-    category: 'discourse', prereqs: ['operadores_discursivos'],
-    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
   },
   modalizacion_epistemica: {
     id: 'modalizacion_epistemica', label: 'Epistemic modalization & hedging (al parecer, se supone que, presuntamente)', cefr: 'C2',

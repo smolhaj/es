@@ -2483,3 +2483,100 @@ level after their corrected level rather than several; but
 teaches `controladores_contacto`, now correctly B2 — both a full level
 of lag). Not fixed here, per the same reasoning as every prior phase:
 this is curriculum unit content work, scoped as its own future phase.
+
+## CEFR-accuracy audit of concepts.js: closing the last 3 deferred concepts
+
+The 3 concepts pulled out of Phase A back at the start of this audit —
+`operadores_discursivos`, `registro_formal_informal`,
+`estructuradores_informacion` — were individually flagged as likely
+mistagged at the time, but never actually researched to a specific
+target level; they were deferred purely because their sole prereqs
+(`reformuladores`, `connectors_addition_sequence`) needed Phase B's
+splitting work done first. Phase B finished that splitting weeks
+earlier in this same session, technically unblocking these three, but
+"prereq unblocked" was never the same as "level confirmed" — so this
+pass did the dedicated research Phase D-style before touching anything,
+rather than trusting the original inference.
+
+**PCIC context that shaped all three calls**: search results
+established that the Plan Curricular del Instituto Cervantes doesn't
+treat "marcadores del discurso" as a monolithic C1-C2 block — it
+explicitly spans A1-A2, B1-B2, and C1-C2 bands, with each of its five
+marker subcategories (connector, information structurer, reformulator,
+discourse operator, contact controller) having both a basic and an
+advanced tier. This session had already independently discovered that
+exact pattern for connectors (`conectores_argumentativos_basicos` at
+B2 feeding the four `connectors_*` concepts at C1) and reformulators
+(`reformuladores_basico` at B2 feeding `reformuladores` at C2) without
+knowing PCIC formalizes it this way — finding the explicit PCIC
+statement after the fact was a good sanity check that the pattern
+being applied wasn't invented, it matches the source curriculum's own
+structure.
+
+**`operadores_discursivos` (de hecho, en realidad, por cierto): C2 →
+B2.** Direct evidence: "de hecho" and "en realidad" turned up in B2-
+level teaching materials in search results, and "claro" — the same
+PCIC discourse-operator subcategory (operadores de refuerzo
+argumentativo) — starts at B1 per PCIC. These are also, by ordinary
+native-speaker intuition, extremely common everyday connectives, not
+rare or literary — "por cierto" (by the way) and "de hecho" (in fact)
+get used constantly in casual B1/B2-level conversation, which is a red
+flag for over-leveling on reflection. Its prereq was `reformuladores`
+(C2) — backwards once retagged to B2 — repointed to
+`reformuladores_basico` (B2, already existing from Phase B), a clean
+same-tier link rather than inventing anything new.
+
+**`estructuradores_informacion` (por una parte…por otra, en primer
+lugar…en definitiva) and `registro_formal_informal` (register
+switching): both C2 → C1.** The clinching evidence for the register
+concept: "la presentación de las marcas de registro (coloquial,
+formal) se inicia en B2 y es abundante en C1" (register marking begins
+at B2 and is abundant at C1) — "abundant at C1" means the bulk of this
+skill's real teaching load sits at C1, with C2 presumably reserved for
+the rarest edge cases, not the core concept. A second, independent
+source's C1 can-do description explicitly lists "handle varied
+registers" as a defining C1 (not C2) capability. For
+`estructuradores_informacion`, no equally precise per-example PCIC
+citation was found, but the same "C1-C2 span with a real tier
+boundary" evidence applied to the parent category, and its content
+(basic argument-structuring connectors) is thematically and lexically
+close to `connectors_addition_sequence`, which the audit had already
+independently placed at C1 — kept the retag to C1 rather than pushing
+further to B1/B2 without example-level evidence for that finer a cut.
+Neither concept needed a new split-off id — a straight retag was
+enough, since (unlike the Phase B bundles) nothing here required two
+tiers to coexist under different ids.
+
+**Verification**: prereq graph re-checked across all 117 concepts (no
+count change, 3 moved) — zero backwards deps; the two things that
+depend on these three (`pares_registro_lexico` on
+`registro_formal_informal`, `generos_discursivos_formales` on
+`estructuradores_informacion`, both C2) only gained a safer margin from
+the downward moves. `grammar.js` re-synced 117/117, zero cefr
+mismatches. `_gemini.js` whitelist regenerated programmatically.
+`npm run build` passes.
+
+**Same pacing-lag pattern as every prior phase, worth flagging since
+this one's more severe than most**: `discourse-markers` (Unit 31,
+still tagged C2 in `curriculum/index.js`) teaches
+`operadores_discursivos`, now correctly B2 — two full levels of lag,
+the largest gap found in this entire audit. `register-stance` (Unit
+32, C2) teaches `registro_formal_informal`, now C1 — one level of lag.
+Both units also still teach other genuinely-C2 concepts alongside
+these (e.g. `discourse-markers` still correctly teaches `reformuladores`
+at C2), so this isn't a case where a whole unit needs to move levels
+the way Phase C's units did — it's the curriculum-unit-content
+reordering problem this audit keeps surfacing and keeps deferring,
+this time with its most severe single instance. Not fixed here, same
+reasoning as every prior phase.
+
+This closes out every concept flagged across the original Phase 1
+research pass. What remains from the original "full site audit to
+conform to CEFR and real world academic standards" scope: the
+curriculum-unit-content-reordering phase (mentioned above, affects most
+concepts retagged across Phases A/B/C/D and this pass), and the
+still-unaudited `vocabulary.js` (1439 words), `verbs.js` (147 verbs),
+`idioms.js` (166 items), and `false-friends.js` (110 items) — each of
+which currently carries CEFR tags that were added or spot-checked
+earlier this session but never put through this same real-world-
+standards audit process.
