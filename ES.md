@@ -374,15 +374,53 @@ from curriculum vocab and the adaptive session's `vocabulary_items` queue.
   require.
 - `src/content/flashcards/frequency-5000.js` — loaded via dynamic
   `import()` in `Flashcards.jsx` so it code-splits into its own chunk.
-- `schema-v7.sql` / `functions/api/flashcards/{progress,review}.js` — a
-  `flashcard_progress` table (per-user FSRS state only; card content stays
-  static in the frontend bundle). Reuses `functions/_lib/fsrs.js`'s
-  `scheduleReview()` — the exact same function the adaptive session's
-  vocabulary queue uses, so any future change to it affects both systems.
+- `schema-v7.sql` (+`v9.sql`) / `functions/api/flashcards/{progress,review,
+  undo,suspend,stats}.js` — a `flashcard_progress` table (per-user FSRS +
+  Anki-style state; card content stays static in the frontend bundle).
+- **Anki-style learning/relearning steps** (`functions/_lib/
+  flashcardScheduler.js`), layered on top of `fsrs.js`'s `scheduleReview()`
+  (still the exact same function the adaptive session's vocabulary queue
+  uses — any future change to it affects both systems). State machine: new
+  → `learning` (steps `[1, 10]` minutes, must pass both to graduate) →
+  `review` (full FSRS-scale intervals) → a lapse (grade Again while in
+  `review`) drops it into `relearning` (one 10-minute step) before it
+  returns to `review`. `scheduleFlashcard(item, grade)` is a pure function
+  with no DB/env dependency, so `Flashcards.jsx` imports it directly
+  (`../../functions/_lib/flashcardScheduler.js`) to compute live interval
+  previews on the grade buttons without a network round-trip.
+- **Same-session requeue**: a card still mid-steps after grading gets
+  spliced back into the client-side queue a few cards ahead (`REQUEUE_GAP`)
+  instead of only reappearing on a future visit — this is what makes
+  "Again" actually behave like Anki instead of vanishing for hours.
+- **Leech flagging**: `lapses >= LEECH_THRESHOLD` (8, matching Anki's
+  default) sets `is_leech`; flagged cards stay in normal rotation (shown as
+  a badge) rather than being auto-suspended. `lapses` only ever increases,
+  so this is a one-way flag by design — once a word is stuck, it stays
+  flagged for visibility rather than un-flagging itself later.
+- **Suspend** (`flashcards/suspend.js`): manually excludes a card from
+  scheduling ("I already know this word") without touching its FSRS state.
+  **Undo** (`flashcards/undo.js`): single-level, via a JSON snapshot of the
+  pre-grade row (`undo_snapshot` column) taken on every `review.js` call; a
+  card graded for the very first time snapshots the sentinel `'NEW'`, so
+  undoing it deletes the row entirely rather than restoring one.
+- **`flashcard_review_log`** (append-only, mirrors Anki's revlog): every
+  grade submission regardless of learning/review/relearning phase, so the
+  stats page can compute exact same-day/7-day review counts and retention
+  without overloading the FSRS-purpose counters on `flashcard_progress`.
+- **`/flashcards/stats`** page: due-forecast (next 7 days), state
+  breakdown (new/learning/review/suspended), retention %, and a stuck-words
+  (leech) list — linked from the Flashcards empty/complete states.
 - `Flashcards.jsx` queues due cards + new cards up to `SESSION_SIZE = 20`,
-  new cards capped at `NEW_PER_SESSION = 10`. **Known simplification**: the
-  new-card cap is per page-load, not a true calendar-day quota — see "What
-  still needs to be built" below.
+  new cards capped at `NEW_PER_SESSION = 10` (session length isn't
+  strictly fixed once requeued cards start looping back in, same as Anki).
+  Keyboard shortcuts: Space/Enter to flip, `1`-`4` to grade. **Known
+  simplification**: the new-card cap is per page-load, not a true
+  calendar-day quota — see "What still needs to be built" below.
+- **Deliberately out of scope for this pass**: the adaptive session's
+  `vocabulary_items` queue does *not* get learning steps/requeue/leech/
+  undo/suspend — scoped to Flashcards only since it's the one page
+  explicitly styled as an Anki-like card deck; `vocabulary_items` serves a
+  different UI (a due-list, not a card-by-card session).
 
 ### Adaptive session (`/session`)
 
@@ -697,6 +735,10 @@ measures):**
 
 ## Session history index
 
+- **07-09-2026** — Flashcards rebuilt Anki-style: learning/relearning
+  steps, same-session requeue, leech flagging, undo, suspend, keyboard
+  shortcuts, interval preview, and a new `/flashcards/stats` page.
+  `vocabulary_items` deliberately untouched (scoped to Flashcards only).
 - **07-09-2026** — Spaced repetition + progress-tracking deep-dive audit:
   4 real bugs found and fixed (new vocab words invisible for ~3 days;
   fossilization off-by-one + permanently-stuck flag; dashboard CEFR level

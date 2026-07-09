@@ -8,6 +8,7 @@ import GetStarted from './pages/GetStarted.jsx';
 import Lesson from './pages/Lesson.jsx';
 import Session from './pages/Session.jsx';
 import Flashcards from './pages/Flashcards.jsx';
+import FlashcardStats from './pages/FlashcardStats.jsx';
 import GrammarRef from './pages/GrammarRef.jsx';
 import VocabReview from './pages/VocabReview.jsx';
 import VocabBrowser from './pages/VocabBrowser.jsx';
@@ -46,6 +47,7 @@ export default function App() {
         <Route path="/lessons/:unitId" element={<Protected><Lesson /></Protected>} />
         <Route path="/session" element={<Protected><Session /></Protected>} />
         <Route path="/flashcards" element={<Protected><Flashcards /></Protected>} />
+        <Route path="/flashcards/stats" element={<Protected><FlashcardStats /></Protected>} />
         <Route path="/vocab-review" element={<Protected><VocabReview /></Protected>} />
         <Route path="/vocab" element={<Protected><VocabBrowser /></Protected>} />
         <Route path="/grammar" element={<Protected><GrammarRef /></Protected>} />

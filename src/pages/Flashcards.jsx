@@ -4,16 +4,21 @@ import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import SpeakButton from '../components/SpeakButton.jsx';
+import { scheduleFlashcard, formatInterval } from '../../functions/_lib/flashcardScheduler.js';
 import styles from './Flashcards.module.css';
 
 const SESSION_SIZE = 20;
 const NEW_PER_SESSION = 10;
+// How many cards ahead a just-missed (still learning/relearning) card gets
+// re-inserted, so it reappears within the same sitting instead of only on
+// a future visit -- matching Anki's same-session requeue behavior.
+const REQUEUE_GAP = 3;
 
 const GRADES = [
-  { grade: 1, label: 'Again', className: 'again' },
-  { grade: 2, label: 'Hard', className: 'hard' },
-  { grade: 3, label: 'Good', className: 'good' },
-  { grade: 4, label: 'Easy', className: 'easy' },
+  { grade: 1, label: 'Again', key: '1', className: 'again' },
+  { grade: 2, label: 'Hard', key: '2', className: 'hard' },
+  { grade: 3, label: 'Good', key: '3', className: 'good' },
+  { grade: 4, label: 'Easy', key: '4', className: 'easy' },
 ];
 
 function buildQueue(allCards, progress) {
@@ -23,6 +28,7 @@ function buildQueue(allCards, progress) {
   for (const card of allCards) {
     const p = progress[card.id];
     if (!p) { fresh.push(card); continue; }
+    if (p.suspended) continue;
     if (p.dueAt && new Date(p.dueAt).getTime() <= now) due.push({ card, dueAt: p.dueAt });
   }
   due.sort((a, b) => new Date(a.dueAt) - new Date(b.dueAt));
@@ -30,6 +36,16 @@ function buildQueue(allCards, progress) {
   const remaining = SESSION_SIZE - queue.length;
   if (remaining > 0) queue.push(...fresh.slice(0, Math.min(remaining, NEW_PER_SESSION)));
   return queue;
+}
+
+// Shape a /flashcards/progress entry into what scheduleFlashcard expects.
+function toSchedulerItem(p) {
+  if (!p) return null;
+  return {
+    state: p.state, step: p.step, stability: p.stability, difficulty: p.difficulty,
+    lapses: p.lapses, review_count: p.reviewCount, correct_count: p.correctCount,
+    last_reviewed_at: p.lastReviewedAt,
+  };
 }
 
 export default function Flashcards() {
@@ -43,6 +59,9 @@ export default function Flashcards() {
   const [deckSize, setDeckSize] = useState(0);
   const [saveFailed, setSaveFailed] = useState(false);
   const [progressLoadFailed, setProgressLoadFailed] = useState(false);
+  const [progress, setProgress] = useState({});
+  const [undoState, setUndoState] = useState(null);
+  const [suspending, setSuspending] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -54,7 +73,9 @@ export default function Flashcards() {
       if (cancelled) return;
       if (!progressResult) setProgressLoadFailed(true);
       setDeckSize(allCards.length);
-      const built = buildQueue(allCards, progressResult?.progress ?? {});
+      const p = progressResult?.progress ?? {};
+      setProgress(p);
+      const built = buildQueue(allCards, p);
       setQueue(built);
       setPhase(built.length === 0 ? 'empty' : 'session');
     })();
@@ -65,11 +86,29 @@ export default function Flashcards() {
 
   const handleFlip = useCallback(() => setFlipped(true), []);
 
+  const intervalPreviews = useMemo(() => {
+    if (!current || !flipped) return null;
+    const item = toSchedulerItem(progress[current.id]);
+    const out = {};
+    for (const g of GRADES) {
+      try { out[g.grade] = formatInterval(scheduleFlashcard(item, g.grade).due_at); }
+      catch { out[g.grade] = ''; }
+    }
+    return out;
+  }, [current, flipped, progress]);
+
   const handleGrade = useCallback(async (grade) => {
     if (!current || grading) return;
     setGrading(true);
+
+    const preGrade = {
+      queue: [...queue], index, reviewedCount,
+      cardId: current.id, progressEntry: progress[current.id],
+    };
+
+    let result = null;
     try {
-      await api.flashcards.review(token, current.id, grade);
+      result = await api.flashcards.review(token, current.id, grade);
     } catch {
       // Scheduling is best-effort so a network blip doesn't block the
       // session -- but silently swallowing every failure meant a run of
@@ -78,21 +117,96 @@ export default function Flashcards() {
       // cards again with zero signal anything was wrong. Surface it instead.
       setSaveFailed(true);
     }
+
+    let nextQueue = queue;
+    if (result) {
+      setProgress(prev => ({
+        ...prev,
+        [current.id]: {
+          ...prev[current.id],
+          stability: result.stability, difficulty: result.difficulty, dueAt: result.dueAt,
+          reviewCount: result.reviewCount, state: result.state, step: result.step,
+          lapses: result.lapses, isLeech: result.isLeech, suspended: false,
+        },
+      }));
+      // Still mid-steps (not yet graduated to full FSRS review scheduling)?
+      // Requeue it a few cards ahead so it reappears this session.
+      if (result.state === 'learning' || result.state === 'relearning') {
+        nextQueue = [...queue];
+        const insertAt = Math.min(nextQueue.length, index + 1 + REQUEUE_GAP);
+        nextQueue.splice(insertAt, 0, current);
+        setQueue(nextQueue);
+      }
+      setUndoState(preGrade);
+    }
+
     setGrading(false);
     setReviewedCount(c => c + 1);
     const next = index + 1;
-    if (next >= queue.length) {
+    if (next >= nextQueue.length) {
       setPhase('complete');
     } else {
       setIndex(next);
       setFlipped(false);
     }
-  }, [current, grading, index, queue.length, token]);
+  }, [current, grading, index, queue, reviewedCount, progress, token]);
+
+  const handleUndo = useCallback(async () => {
+    if (!undoState) return;
+    try { await api.flashcards.undo(token, undoState.cardId); } catch { /* best-effort */ }
+    setQueue(undoState.queue);
+    setIndex(undoState.index);
+    setReviewedCount(undoState.reviewedCount);
+    setProgress(prev => {
+      const next = { ...prev };
+      if (undoState.progressEntry) next[undoState.cardId] = undoState.progressEntry;
+      else delete next[undoState.cardId];
+      return next;
+    });
+    setFlipped(true);
+    setPhase('session');
+    setUndoState(null);
+  }, [undoState, token]);
+
+  const handleSuspend = useCallback(async () => {
+    if (!current || suspending) return;
+    setSuspending(true);
+    try { await api.flashcards.suspend(token, current.id, true); } catch { /* best-effort */ }
+    setProgress(prev => ({ ...prev, [current.id]: { ...prev[current.id], suspended: true } }));
+    setSuspending(false);
+    // Remove every occurrence of this card (including any same-session
+    // requeue copy) — removing the one at `index` shifts the next card
+    // into that same slot, so `index` itself doesn't need to advance.
+    const remaining = queue.filter(c => c.id !== current.id);
+    setQueue(remaining);
+    if (index >= remaining.length) {
+      setPhase('complete');
+    } else {
+      setFlipped(false);
+    }
+  }, [current, suspending, queue, index, token]);
+
+  // Keyboard shortcuts: Space/Enter to flip, 1-4 to grade once flipped.
+  useEffect(() => {
+    function onKeyDown(e) {
+      if (phase !== 'session' || !current || grading) return;
+      if (!flipped) {
+        if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); handleFlip(); }
+        return;
+      }
+      const g = GRADES.find(g => g.key === e.key);
+      if (g) { e.preventDefault(); handleGrade(g.grade); }
+    }
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [phase, current, flipped, grading, handleFlip, handleGrade]);
 
   const progressPct = useMemo(
     () => queue.length ? Math.round((index / queue.length) * 100) : 0,
     [index, queue.length]
   );
+
+  const currentIsLeech = current && progress[current.id]?.isLeech;
 
   return (
     <div className={styles.page}>
@@ -110,7 +224,10 @@ export default function Flashcards() {
                 No cards are due right now, and you've already introduced today's new
                 cards. Come back later — spaced repetition works best with a little patience.
               </p>
-              <Link to="/dashboard" className="btn btn-primary">← Dashboard</Link>
+              <div className={styles.completeActions}>
+                <Link to="/dashboard" className="btn btn-primary">← Dashboard</Link>
+                <Link to="/flashcards/stats" className="btn btn-secondary">Deck stats →</Link>
+              </div>
             </div>
           )}
 
@@ -139,6 +256,12 @@ export default function Flashcards() {
                 <span className={styles.progressText}>{index + 1}/{queue.length}</span>
               </div>
 
+              {currentIsLeech && (
+                <span className={styles.leechBadge} title={`Failed repeatedly (${progress[current.id].lapses} lapses)`}>
+                  ⚑ Stuck word
+                </span>
+              )}
+
               <div className={styles.card} onClick={!flipped ? handleFlip : undefined}>
                 <div className={styles.cardFront}>
                   <span className={styles.pos}>{current.pos}</span>
@@ -165,23 +288,41 @@ export default function Flashcards() {
               </div>
 
               {!flipped ? (
-                <button className={`btn btn-primary ${styles.showBtn}`} onClick={handleFlip}>
-                  Show answer
-                </button>
+                <>
+                  <button className={`btn btn-primary ${styles.showBtn}`} onClick={handleFlip}>
+                    Show answer
+                  </button>
+                  <p className={styles.kbdHint}>Space to flip</p>
+                </>
               ) : (
-                <div className={styles.gradeRow}>
-                  {GRADES.map(g => (
-                    <button
-                      key={g.grade}
-                      className={`${styles.gradeBtn} ${styles[g.className]}`}
-                      onClick={() => handleGrade(g.grade)}
-                      disabled={grading}
-                    >
-                      {g.label}
-                    </button>
-                  ))}
-                </div>
+                <>
+                  <div className={styles.gradeRow}>
+                    {GRADES.map(g => (
+                      <button
+                        key={g.grade}
+                        className={`${styles.gradeBtn} ${styles[g.className]}`}
+                        onClick={() => handleGrade(g.grade)}
+                        disabled={grading}
+                      >
+                        <span>{g.label}</span>
+                        {intervalPreviews && <span className={styles.gradeInterval}>{intervalPreviews[g.grade]}</span>}
+                      </button>
+                    ))}
+                  </div>
+                  <p className={styles.kbdHint}>1-4 to grade</p>
+                </>
               )}
+
+              <div className={styles.utilityRow}>
+                <button className={styles.suspendLink} onClick={handleSuspend} disabled={suspending}>
+                  I already know this — stop showing it
+                </button>
+                {undoState && (
+                  <button className={styles.undoLink} onClick={handleUndo}>
+                    ↺ Undo last review
+                  </button>
+                )}
+              </div>
             </>
           )}
 
@@ -194,8 +335,14 @@ export default function Flashcards() {
                   Some reviews didn't save — those cards may show up again next session.
                 </p>
               )}
+              {undoState && (
+                <button className={styles.undoLink} onClick={handleUndo}>
+                  ↺ Undo last review
+                </button>
+              )}
               <div className={styles.completeActions}>
                 <Link to="/dashboard" className="btn btn-primary">← Dashboard</Link>
+                <Link to="/flashcards/stats" className="btn btn-secondary">Deck stats →</Link>
                 <button className="btn btn-secondary" onClick={() => window.location.reload()}>
                   Study more →
                 </button>

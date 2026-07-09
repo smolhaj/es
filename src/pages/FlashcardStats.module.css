@@ -1,0 +1,211 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+}
+
+.inner {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.backLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.backLink:hover { color: var(--accent); }
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+}
+
+.loading, .error {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+/* Tiles */
+.tileGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+}
+
+.tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-5) var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  text-align: center;
+}
+
+.tileValue {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--text);
+  line-height: 1;
+}
+
+.tileLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Sections */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  color: var(--text);
+}
+
+.sectionNote {
+  font-family: var(--font-sans, inherit);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Retention */
+.retentionRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+}
+
+.retentionStat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.retentionPct {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--text);
+}
+
+.retentionLabel {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.retentionCount {
+  font-size: 0.75rem;
+  color: var(--text-placeholder);
+}
+
+/* Forecast chart */
+.forecastChart {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--sp-2);
+  align-items: end;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-5) var(--sp-4) var(--sp-4);
+}
+
+.forecastBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-1);
+}
+
+.forecastBarInner {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.forecastFill {
+  width: 100%;
+  background: var(--accent);
+  border-radius: 3px 3px 0 0;
+  min-height: 4px;
+}
+
+.forecastCount {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.forecastLabel {
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+/* Leech list */
+.leechIntro {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.leechList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.leechItem {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  padding: var(--sp-3) var(--sp-4);
+}
+
+.leechWord {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.leechEn {
+  flex: 1;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.leechLapses {
+  font-size: 0.75rem;
+  color: var(--incorrect);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .main { padding: var(--sp-5); }
+  .tileGrid { grid-template-columns: repeat(2, 1fr); }
+  .retentionRow { grid-template-columns: 1fr; }
+}
