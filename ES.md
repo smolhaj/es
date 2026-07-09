@@ -163,7 +163,8 @@ connectors, contractions, and elisions real dialogue uses because
 - Overuse of em dashes as a default punctuation crutch, and avoidance of
   contractions/elisions where natural register calls for them.
 
-**Process** (all 5 confirmed by the user, 07-09-2026):
+**Process** (steps 1-9 confirmed by the user 07-09-2026; step 10 added the
+same day after it caught a real gap in the reading-passages POC):
 1. **Reference-corpus calibration before drafting** — skim 1-2 real,
    human-authored passages at a similar register/genre (a real children's
    graded reader, a real Spanish blog post, a real news brief) first, not
@@ -199,6 +200,27 @@ connectors, contractions, and elisions real dialogue uses because
    committing to writing the full planned set. Confirmed working this way
    for the Blahaj story: chapter 1 first, full 18-chapter build only after
    that reads right.
+10. **Grammar-structure CEFR check against `concepts.js` before any level
+    tag ships, not just a vocabulary-difficulty eyeball** — user directive
+    (07-09-2026): "apply this level of discipline and testing QA to all
+    future writing." A passage claiming A1 (or any level) has to actually
+    hold to that level's real grammar, not just simple-sounding vocabulary.
+    Concretely: list every grammar structure the draft actually uses
+    (tenses, moods, pronoun types, clause types — not just individual
+    verbs), look up each one's real tag in `concepts.js`, and flag/fix
+    anything above the claimed level rather than assuming short sentences
+    and easy words are sufficient. Caught on the first real pass at this
+    (07-09-2026, this same session): an A1-tagged reading-passage POC used
+    direct/indirect object pronouns (`direct_object_pronouns`/
+    `indirect_object_pronouns`, A2), one preterite verb (`preterite_regular`,
+    A2), and one relative clause (`relative_clauses_core`, A2) — all
+    invisible to a plain "does this sound simple" read, all caught by
+    checking the grammar against `concepts.js` directly. If a structure
+    above the claimed level is kept on purpose (deliberate i+1
+    comprehensible-input exposure), say so explicitly rather than let it
+    pass silently as an oversight. Applies to any future original prose
+    that carries a CEFR label — reading passages first, but the same
+    check applies to any other leveled content type this project adds.
 
 ---
 
