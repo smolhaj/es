@@ -1,6 +1,5 @@
 // Unit 26 — Subjunctive at Its Limits (C1)
-// Covers: subjunctive_noun_clauses, subjunctive_adjective_clauses,
-// subjunctive_concessive_intensifiers, pluperfect_subjunctive
+// Covers: subjunctive_noun_clauses, subjunctive_concessive_intensifiers
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -45,27 +44,6 @@ export default {
       ],
     },
     {
-      heading: 'Real or Hypothetical? Subjunctive in Adjective Clauses',
-      paragraphs: [
-        'An "adjective clause" (also called a relative clause) is a que-clause that describes a noun — the way an adjective would, just longer: un piso que tenga terraza ("a flat that has a terrace") describes piso the same way un piso grande does. The question this unit adds at C1 is: does the noun being described actually, definitely exist for the speaker, or is it still unknown, hypothetical, or possibly nonexistent? That answer decides the mood of the clause.',
-        'Compare these two side by side, because the contrast is the whole lesson: Busco un piso que tenga terraza — "I\'m looking for a flat that has a terrace," any flat, I haven\'t found it yet, it may not even exist in the size and price I need. Now: Conozco un piso que tiene terraza — "I know of a flat that has a terrace," a specific, real one I have in mind. Same verb (tener), same structure, different mood — because the first piso is still just an idea and the second is a known fact.',
-        "A useful (though not perfectly airtight) signal: an indefinite article — un, una — often points toward subjunctive, because un piso means \"some flat or other,\" while el, la, or a name points toward indicative, because it identifies one specific thing. Treat this as a strong tendency to help you notice the pattern, not a rule you can apply blindly — the real test is always whether the antecedent is definite in the speaker's mind, not which article happens to appear.",
-        "Negative antecedents behave predictably once you see the logic: if the thing doesn't exist at all, it obviously can't be a known, specific entity, so the subjunctive is automatic — No hay nadie que sepa la respuesta (\"There's no one who knows the answer\"), No conozco a nadie que hable ruso (\"I don't know anyone who speaks Russian\"). One more C1-level wrinkle: after a superlative (el mejor, el único, el primero…), Spanish typically still reaches for the subjunctive, because a claim like \"the best I've ever tried\" is inherently a personal, unverifiable judgment, not a checkable fact — Es el mejor restaurante que haya probado. The indicative (que he probado) is also heard and simply treats the claim as a plain statement instead.",
-      ],
-      examples: [
-        { es: 'Busco un piso que tenga terraza.', en: "I'm looking for a flat that has a terrace. (unknown — any flat)" },
-        { es: 'Conozco un piso que tiene terraza.', en: 'I know of a flat that has a terrace. (specific, real one)' },
-        { es: 'No hay nadie que sepa la respuesta.', en: "There's no one who knows the answer." },
-        { es: 'Necesito a alguien que hable alemán.', en: "I need someone who speaks German. (whoever that turns out to be)" },
-        { es: 'Es el mejor restaurante que haya probado.', en: "It's the best restaurant I've ever tried." },
-      ],
-      commonMistakes: [
-        'Defaulting to the indicative everywhere, the way beginners do — using the subjunctive correctly here is one of the clearest markers that separates a fluent C1 speaker from an intermediate one, so it\'s worth the deliberate effort.',
-        "Forgetting that a negative antecedent (nadie, nada, ningún) forces subjunctive even without an obvious \"unknown\" flavor to the sentence.",
-        "Relying on the article alone (un/una = subjunctive, el/la = indicative) without checking whether the antecedent is really definite — the article is a helpful hint, not the actual grammatical rule.",
-      ],
-    },
-    {
       heading: "No Matter How Much: Concessive Intensifiers with Por más/mucho que",
       paragraphs: [
         'Por más que and por mucho que both mean "no matter how much" or "however much" — they intensify a concession the way aunque does, but with an added sense of effort, quantity, or degree. Por más que insisto, no me escucha ("No matter how much I insist, he doesn\'t listen to me") and Por mucho que le guste, no se lo puede permitir ("However much he likes it, he can\'t afford it") both frame the following clause as true or ongoing despite itself changing nothing about the outcome.',
@@ -86,27 +64,6 @@ export default {
         'Confusing this construction\'s vocabulary with aunque\'s — they\'re interchangeable in the mood logic but not in wording; you can\'t mix them into "aunque más que" or "por más aunque."',
       ],
     },
-    {
-      heading: 'Regret and the Unreal Past: The Pluperfect Subjunctive',
-      paragraphs: [
-        'The pluperfect subjunctive is formed with the imperfect subjunctive of haber — hubiera or hubiese — plus a past participle: hubiera hablado, hubiese comido, hubieran salido. Both forms are fully correct and interchangeable in meaning; hubiera is the more common choice in everyday speech (especially across Latin America), while hubiese carries a slightly more formal or literary flavor. You\'ll meet both while reading, so it\'s worth recognizing each even if you settle on producing just one.',
-        "Its first major job is the unreal, counterfactual past — talking about a past condition that didn't actually happen, and what would have followed if it had. The standard pattern is si + pluperfect subjunctive, ...conditional perfect: Si hubiera estudiado más, habría aprobado el examen (\"If I had studied more, I would have passed the exam\") — in real life, the studying didn't happen and the passing didn't happen either. This is the past-tense sibling of the si + imperfect subjunctive, conditional pattern you may already know for present hypotheticals (si tuviera dinero, viajaría) — same logic, one tense further back.",
-        "Its second job is expressing a wish about something in the past that can no longer be changed, triggered by ojalá: Ojalá hubieras venido a la fiesta (\"I wish you had come to the party\" — you didn't, and now it's too late). This is a different tense from the ojalá + present subjunctive you use for a wish that could still come true (ojalá venga — \"I hope she comes,\" still possible) — reaching for the wrong one is a common, meaning-changing mistake.",
-        'One more pattern worth knowing at this level: in the result half of a counterfactual si-sentence, spoken Spanish quite often lets the pluperfect subjunctive substitute for the expected conditional perfect — Si lo hubiera sabido, no lo hubiera hecho works as an informal, equally understood alternative to no lo habría hecho. Either is correct; the habría version is the more neutral, textbook-safe choice if you\'re not sure which register you\'re in.',
-      ],
-      examples: [
-        { es: 'Si hubiera estudiado más, habría aprobado el examen.', en: 'If I had studied more, I would have passed the exam.' },
-        { es: 'Ojalá hubieras venido a la fiesta.', en: 'I wish you had come to the party.' },
-        { es: 'No creía que hubiera terminado tan rápido.', en: "I didn't believe he had finished so fast." },
-        { es: 'Me habría gustado que me lo hubieras dicho antes.', en: 'I would have liked you to have told me sooner.' },
-        { es: 'Si lo hubiera sabido, no lo hubiera hecho.', en: "If I had known, I wouldn't have done it. (informal alternative to no lo habría hecho)" },
-      ],
-      commonMistakes: [
-        'Confusing the pluperfect subjunctive (hubiera/hubiese + participle, for the past) with the plain imperfect subjunctive (fuera, tuviera, for present/future hypotheticals) — si tuviera dinero is "if I had money [now]," not "if I had had money."',
-        'Using ojalá + present subjunctive for a regret that\'s already over — ojalá venga only works for something still possible; a past, closed-off wish needs ojalá + pluperfect subjunctive (ojalá hubiera venido).',
-        "Pairing the pluperfect subjunctive's si-clause with a simple past tense instead of the conditional perfect in the result clause — the standard pattern needs habría + participle (or, informally, a second hubiera + participle) on the result side, not the preterite or imperfect.",
-      ],
-    },
   ],
 
   vocab: [
@@ -116,18 +73,6 @@ export default {
     { es: 'el ascenso', en: 'the promotion', example: 'Le dieron el ascenso que tanto esperaba.', exampleEn: "They gave her the promotion she'd been waiting for." },
     { es: 'el rumor', en: 'the rumor', example: 'No hagas caso a ese rumor.', exampleEn: "Don't pay attention to that rumor." },
     { es: 'imprescindible', en: 'essential, indispensable', example: 'Es imprescindible que llegues puntual.', exampleEn: "It's essential that you arrive on time." },
-    { es: 'el piso', en: 'the flat, the apartment', example: 'Alquilamos un piso en el centro.', exampleEn: 'We rented a flat downtown.' },
-    { es: 'el casero / la casera', en: 'the landlord / landlady', example: 'El casero subió el alquiler otra vez.', exampleEn: 'The landlord raised the rent again.' },
-    { es: 'el alquiler', en: 'the rent', example: 'El alquiler sube cada año en esta ciudad.', exampleEn: 'The rent goes up every year in this city.' },
-    { es: 'la entrevista', en: 'the interview', example: 'Tengo una entrevista de trabajo mañana.', exampleEn: 'I have a job interview tomorrow.' },
-    { es: 'el currículum', en: 'the résumé, the CV', example: 'Actualicé mi currículum antes de enviarlo.', exampleEn: 'I updated my résumé before sending it.' },
-    { es: 'arrepentirse', en: 'to regret', example: 'Se arrepiente de no haber aceptado la oferta.', exampleEn: 'He regrets not having accepted the offer.' },
-    { es: 'el plazo', en: 'the deadline', example: 'El plazo para entregar la solicitud termina mañana.', exampleEn: 'The deadline to submit the application ends tomorrow.' },
-    { es: 'exigir', en: 'to demand, to require', example: 'La empresa exige que los candidatos hablen dos idiomas.', exampleEn: 'The company requires candidates to speak two languages.' },
-    { es: 'previsto / prevista', en: 'planned, expected, scheduled', example: 'El vuelo tiene previsto salir a las ocho.', exampleEn: 'The flight is scheduled to leave at eight.' },
-    { es: 'el presentimiento', en: 'the hunch, the premonition', example: 'Tengo el presentimiento de que algo va a cambiar.', exampleEn: 'I have a hunch that something is going to change.' },
-    { es: 'replantearse', en: 'to reconsider, to rethink', example: 'Después del rechazo, decidió replantearse sus planes.', exampleEn: 'After the rejection, she decided to rethink her plans.' },
-    { es: 'el malentendido', en: 'the misunderstanding', example: 'Todo fue por un malentendido, no por mala intención.', exampleEn: 'It was all because of a misunderstanding, not bad intent.' },
     { es: 'esforzarse', en: 'to make an effort, to push oneself', example: 'Por mucho que te esfuerces, el cuerpo necesita descanso también.', exampleEn: 'However much you push yourself, the body needs rest too.' },
     { es: 'la constancia', en: 'consistency, perseverance', example: 'Nada sustituye la constancia cuando se entrena para una maratón.', exampleEn: 'Nothing replaces consistency when training for a marathon.' },
     { es: 'vencer', en: 'to overcome, to defeat', example: 'El calor lo venció antes de terminar la carrera.', exampleEn: 'The heat beat him before he finished the race.' },
@@ -183,60 +128,6 @@ export default {
       passageEn: "There's a rumor going around the office that they're going to promote Sara, but I doubt it's true yet — nobody has confirmed it to her. It's possible they'll decide this week, though it's also possible the project gets delayed again. Sara denies knowing anything, and honestly, I believe her: she's not the type to hide these things. That said, it is true that she's worked incredibly hard this past year, so if the promotion comes, no one would say she doesn't deserve it.",
     },
 
-    // ── subjunctive_adjective_clauses block (kept separate from noun clauses; blocked before mixed review) ──
-    { type: 'multiple_choice', prompt: "Complete: 'Busco un empleado que ___ (hablar) tres idiomas.' (an ideal candidate, not yet found)", word: 'hable', english: 'speaks (subjunctive)', answer: 'hable', options: ['habla', 'hable', 'hablará', 'hablaría'], concept_id: 'subjunctive_adjective_clauses', difficulty: 2 },
-    { type: 'translation_to_spanish', prompt: "Translate: 'There's no one who knows the answer.'", english: "There's no one who knows the answer.", answer: 'No hay nadie que sepa la respuesta.', word: 'no hay nadie que', concept_id: 'subjunctive_adjective_clauses', difficulty: 3 },
-    {
-      type: 'fill_blank',
-      prompt: "Según el diálogo, completa la línea de Carlos: 'Necesito algo que ___ (admitir) a mi perro.'",
-      word: 'admita',
-      english: 'admits, accepts (subjunctive)',
-      answer: 'admita',
-      concept_id: 'subjunctive_adjective_clauses',
-      difficulty: 2,
-      passage: 'Ana: ¿Ya encontraste piso?\nCarlos: Todavía no. Busco uno que tenga dos habitaciones y que esté cerca del metro.\nAna: Pues yo conozco un piso que tiene justo eso, en el barrio de mi prima.\nCarlos: ¿En serio? ¿Y sabes si el casero acepta mascotas?\nAna: No estoy segura, pero conozco a alguien que vive allí y podría preguntarle.\nCarlos: Perfecto. Necesito algo que admita a mi perro, si no, no me sirve.',
-      passageEn: 'Ana: Have you found a flat yet?\nCarlos: Not yet. I\'m looking for one that has two bedrooms and is near the metro.\nAna: Well, I know of a flat that has exactly that, in my cousin\'s neighborhood.\nCarlos: Really? Do you know if the landlord allows pets?\nAna: I\'m not sure, but I know someone who lives there and could ask them.\nCarlos: Perfect. I need something that will accept my dog, otherwise it\'s no good to me.',
-    },
-    {
-      type: 'multiple_choice',
-      prompt: "En el diálogo, Carlos dice 'Busco uno que tenga dos habitaciones.' ¿Por qué usa el subjuntivo (tenga) en vez del indicativo (tiene)?",
-      word: 'busco uno que tenga',
-      english: 'I am looking for one that has (subjunctive)',
-      answer: 'Porque todavía no ha encontrado el piso — es una posibilidad, no algo concreto',
-      options: [
-        'Porque todavía no ha encontrado el piso — es una posibilidad, no algo concreto',
-        'Porque "piso" es una palabra femenina',
-        'Porque está hablando del pasado',
-        'Porque "buscar" siempre exige el subjuntivo, sin excepción',
-      ],
-      concept_id: 'subjunctive_adjective_clauses',
-      difficulty: 3,
-      passage: 'Ana: ¿Ya encontraste piso?\nCarlos: Todavía no. Busco uno que tenga dos habitaciones y que esté cerca del metro.\nAna: Pues yo conozco un piso que tiene justo eso, en el barrio de mi prima.\nCarlos: ¿En serio? ¿Y sabes si el casero acepta mascotas?\nAna: No estoy segura, pero conozco a alguien que vive allí y podría preguntarle.\nCarlos: Perfecto. Necesito algo que admita a mi perro, si no, no me sirve.',
-      passageEn: 'Ana: Have you found a flat yet?\nCarlos: Not yet. I\'m looking for one that has two bedrooms and is near the metro.\nAna: Well, I know of a flat that has exactly that, in my cousin\'s neighborhood.\nCarlos: Really? Do you know if the landlord allows pets?\nAna: I\'m not sure, but I know someone who lives there and could ask them.\nCarlos: Perfect. I need something that will accept my dog, otherwise it\'s no good to me.',
-    },
-    {
-      type: 'fill_blank',
-      prompt: "Según el diálogo, completa la línea de Ana: 'Yo conozco un piso que ___ (tener) justo eso.'",
-      word: 'tiene',
-      english: 'has (indicative — a real, known flat)',
-      answer: 'tiene',
-      concept_id: 'subjunctive_adjective_clauses',
-      difficulty: 2,
-      passage: 'Ana: ¿Ya encontraste piso?\nCarlos: Todavía no. Busco uno que tenga dos habitaciones y que esté cerca del metro.\nAna: Pues yo conozco un piso que tiene justo eso, en el barrio de mi prima.\nCarlos: ¿En serio? ¿Y sabes si el casero acepta mascotas?\nAna: No estoy segura, pero conozco a alguien que vive allí y podría preguntarle.\nCarlos: Perfecto. Necesito algo que admita a mi perro, si no, no me sirve.',
-      passageEn: 'Ana: Have you found a flat yet?\nCarlos: Not yet. I\'m looking for one that has two bedrooms and is near the metro.\nAna: Well, I know of a flat that has exactly that, in my cousin\'s neighborhood.\nCarlos: Really? Do you know if the landlord allows pets?\nAna: I\'m not sure, but I know someone who lives there and could ask them.\nCarlos: Perfect. I need something that will accept my dog, otherwise it\'s no good to me.',
-    },
-    {
-      type: 'translation_to_english',
-      prompt: "Translate Ana's line from the dialogue: 'Conozco a alguien que vive allí y podría preguntarle.'",
-      word: 'conozco a alguien que vive',
-      english: 'I know someone who lives (indicative)',
-      answer: 'I know someone who lives there and could ask them.',
-      concept_id: 'subjunctive_adjective_clauses',
-      difficulty: 2,
-      passage: 'Ana: ¿Ya encontraste piso?\nCarlos: Todavía no. Busco uno que tenga dos habitaciones y que esté cerca del metro.\nAna: Pues yo conozco un piso que tiene justo eso, en el barrio de mi prima.\nCarlos: ¿En serio? ¿Y sabes si el casero acepta mascotas?\nAna: No estoy segura, pero conozco a alguien que vive allí y podría preguntarle.\nCarlos: Perfecto. Necesito algo que admita a mi perro, si no, no me sirve.',
-      passageEn: 'Ana: Have you found a flat yet?\nCarlos: Not yet. I\'m looking for one that has two bedrooms and is near the metro.\nAna: Well, I know of a flat that has exactly that, in my cousin\'s neighborhood.\nCarlos: Really? Do you know if the landlord allows pets?\nAna: I\'m not sure, but I know someone who lives there and could ask them.\nCarlos: Perfect. I need something that will accept my dog, otherwise it\'s no good to me.',
-    },
-
     // ── subjunctive_concessive_intensifiers block (kept separate; blocked before mixed review) ──
     { type: 'multiple_choice', prompt: "Complete: 'Por más que ___ (correr) cada mañana, no logra bajar de las cuatro horas.' (emphasizing the effort, not reporting a single event)", word: 'corra', english: 'runs (subjunctive — standard choice)', answer: 'corra', options: ['corre', 'corra', 'correrá', 'corría'], concept_id: 'subjunctive_concessive_intensifiers', difficulty: 2 },
     { type: 'translation_to_english', prompt: "¿Qué significa: 'Por mucho que le insistas, no va a cambiar de opinión'?", word: 'por mucho que', english: 'however much', answer: "However much you insist to him, he's not going to change his mind.", concept_id: 'subjunctive_concessive_intensifiers', difficulty: 2 },
@@ -290,52 +181,6 @@ export default {
       passage: 'Marcos lleva tres meses entrenando para la maratón. Por más que corra cada mañana, todavía no logra bajar de las cuatro horas. Su entrenadora le dice: "Por mucho que te esfuerces, el cuerpo necesita descanso también." La semana pasada, por más que lo intentó, no consiguió terminar los últimos cinco kilómetros — el calor lo venció. Aun así, por muy cansado que esté al final de cada sesión, Marcos se repite: "Por mucho dinero que gastara en zapatillas nuevas, nada sustituye la constancia."',
       passageEn: '"Marcos has been training for the marathon for three months. No matter how much he runs every morning, he still can\'t get under four hours. His coach tells him: \'However much you push yourself, the body needs rest too.\' Last week, no matter how hard he tried, he couldn\'t finish the last five kilometers — the heat beat him. Even so, however tired he is at the end of each session, Marcos repeats to himself: \'However much money I spent on new shoes, nothing replaces consistency.\'"',
     },
-
-    // ── pluperfect_subjunctive block (kept separate; blocked before mixed review) ──
-    { type: 'multiple_choice', prompt: "Complete: 'Si ___ (saber) la verdad, no habría dicho nada.'", word: 'hubiera sabido', english: 'had known', answer: 'hubiera sabido', options: ['supiera', 'hubiera sabido', 'sabría', 'sabía'], concept_id: 'pluperfect_subjunctive', difficulty: 2 },
-    { type: 'error_correction', prompt: "Fix the error: 'Ojalá vengas ayer a la fiesta.' (a wish about something already over)", word: 'ojalá hubieras venido', english: 'I wish you had come', answer: 'Ojalá hubieras venido ayer a la fiesta.', concept_id: 'pluperfect_subjunctive', difficulty: 3 },
-    {
-      type: 'fill_blank',
-      prompt: "Según el texto, completa: 'Si ___ (investigar) mejor la empresa, habría respondido con más seguridad.'",
-      word: 'hubiera investigado',
-      english: 'he had researched',
-      answer: 'hubiera investigado',
-      concept_id: 'pluperfect_subjunctive',
-      difficulty: 2,
-      passage: 'Diego no dejaba de pensar en la entrevista de la semana pasada. Si hubiera investigado mejor la empresa, habría respondido con más seguridad. Ojalá hubiera preparado ejemplos concretos de su experiencia, en vez de improvisar. Su amiga Lucía, que también buscaba trabajo, le dijo: "Yo, si hubiera estado en tu lugar, habría hecho preguntas sobre el equipo." Diego suspiró. No creía que hubiera arruinado sus posibilidades del todo, pero sí sentía que, si se hubiera tomado más tiempo para prepararse, el resultado habría sido distinto.',
-      passageEn: 'Diego couldn\'t stop thinking about last week\'s interview. If he had researched the company better, he would have answered more confidently. He wished he had prepared concrete examples of his experience instead of improvising. His friend Lucía, who was also job-hunting, told him: "If I had been in your shoes, I would have asked about the team." Diego sighed. He didn\'t think he had ruined his chances completely, but he did feel that if he had taken more time to prepare, the outcome would have been different.',
-    },
-    {
-      type: 'translation_to_english',
-      prompt: "Translate Lucía's line from the text: 'Yo, si hubiera estado en tu lugar, habría hecho preguntas sobre el equipo.'",
-      word: 'si hubiera estado',
-      english: 'if I had been',
-      answer: 'If I had been in your shoes, I would have asked questions about the team.',
-      concept_id: 'pluperfect_subjunctive',
-      difficulty: 3,
-      passage: 'Diego no dejaba de pensar en la entrevista de la semana pasada. Si hubiera investigado mejor la empresa, habría respondido con más seguridad. Ojalá hubiera preparado ejemplos concretos de su experiencia, en vez de improvisar. Su amiga Lucía, que también buscaba trabajo, le dijo: "Yo, si hubiera estado en tu lugar, habría hecho preguntas sobre el equipo." Diego suspiró. No creía que hubiera arruinado sus posibilidades del todo, pero sí sentía que, si se hubiera tomado más tiempo para prepararse, el resultado habría sido distinto.',
-      passageEn: 'Diego couldn\'t stop thinking about last week\'s interview. If he had researched the company better, he would have answered more confidently. He wished he had prepared concrete examples of his experience instead of improvising. His friend Lucía, who was also job-hunting, told him: "If I had been in your shoes, I would have asked about the team." Diego sighed. He didn\'t think he had ruined his chances completely, but he did feel that if he had taken more time to prepare, the outcome would have been different.',
-    },
-    {
-      type: 'fill_blank',
-      prompt: "Según el texto, completa: 'Diego no creía que ___ (arruinar) sus posibilidades del todo.'",
-      word: 'hubiera arruinado',
-      english: 'had ruined',
-      answer: 'hubiera arruinado',
-      concept_id: 'pluperfect_subjunctive',
-      difficulty: 3,
-      passage: 'Diego no dejaba de pensar en la entrevista de la semana pasada. Si hubiera investigado mejor la empresa, habría respondido con más seguridad. Ojalá hubiera preparado ejemplos concretos de su experiencia, en vez de improvisar. Su amiga Lucía, que también buscaba trabajo, le dijo: "Yo, si hubiera estado en tu lugar, habría hecho preguntas sobre el equipo." Diego suspiró. No creía que hubiera arruinado sus posibilidades del todo, pero sí sentía que, si se hubiera tomado más tiempo para prepararse, el resultado habría sido distinto.',
-      passageEn: 'Diego couldn\'t stop thinking about last week\'s interview. If he had researched the company better, he would have answered more confidently. He wished he had prepared concrete examples of his experience instead of improvising. His friend Lucía, who was also job-hunting, told him: "If I had been in your shoes, I would have asked about the team." Diego sighed. He didn\'t think he had ruined his chances completely, but he did feel that if he had taken more time to prepare, the outcome would have been different.',
-    },
-    {
-      type: 'translation_to_spanish',
-      prompt: "Translate: 'He wished he had prepared concrete examples of his experience.'",
-      english: 'He wished he had prepared concrete examples of his experience.',
-      answer: 'Ojalá hubiera preparado ejemplos concretos de su experiencia.',
-      word: 'ojalá hubiera preparado',
-      concept_id: 'pluperfect_subjunctive',
-      difficulty: 3,
-    },
   ],
 };
 
@@ -349,18 +194,6 @@ export default {
 //   checked against SpanishDict's "Subjunctive vs. Indicative in Spanish"
 //   and "Expressing Doubts and Denial with the Subjunctive" guides, and the
 //   Bowdoin (Enrique Yepes) grammar book's noun-clause chapter.
-// - subjunctive_adjective_clauses: unknown/hypothetical/nonexistent
-//   antecedent → subjunctive (busco un piso que tenga terraza) vs. known/
-//   specific antecedent → indicative (conozco un piso que tiene terraza);
-//   negative antecedents (nadie que, nada que) always subjunctive; the
-//   un/una vs. el/la article pattern is a helpful but non-absolute signal,
-//   not a hard rule — checked against SpanishDict's "Subjunctive in
-//   Relative Clauses" / "Subjunctive vs. Indicative: Relative Clauses"
-//   guides, Lawless Spanish's adjective-clause page, and the Bowdoin
-//   grammar book's adjective-clause chapter. The superlative-triggers-
-//   subjunctive exception (el mejor... que haya probado) matches the
-//   existing GRAMMAR_CARDS entry for this concept in src/content/grammar.js
-//   (itself previously corrected in an earlier audit per ES.md).
 // - subjunctive_concessive_intensifiers: por más/mucho que follow the SAME
 //   mood rule as aunque (not an unconditional "always subjunctive" rule, an
 //   earlier draft of this concept overstated that) — subjunctive is the
@@ -372,20 +205,16 @@ export default {
 //   "Elección del modo con las conjunciones subordinantes" and "El modo:
 //   ¿indicativo o subjuntivo?" style-guide pages directly, not just
 //   secondary pedagogical sources.
-// - pluperfect_subjunctive: formed with hubiera/hubiese (imperfect
-//   subjunctive of haber) + past participle; hubiera more frequent in
-//   speech, hubiese more formal/literary, both fully interchangeable in
-//   meaning; used for unreal/counterfactual si-clauses in the past (si +
-//   pluperfect subjunctive, ...conditional perfect: si hubiera estudiado,
-//   habría aprobado) and for ojalá-wishes about a closed-off past (ojalá
-//   hubieras venido); the informal substitution of a second hubiera-clause
-//   for the expected habría in the result clause (si lo hubiera sabido, no
-//   lo hubiera hecho) — checked against Lawless Spanish's "Pluperfect
-//   Subjunctive" page, the Elon.io "si-clauses tipo 3" grammar note, and
-//   Tell Me in Spanish's past-perfect-subjunctive guide.
 // This content is complementary to the existing GRAMMAR_CARDS entries for
-// subjunctive_noun_clauses, subjunctive_adjective_clauses,
-// subjunctive_concessive_intensifiers, and pluperfect_subjunctive in
+// subjunctive_noun_clauses and subjunctive_concessive_intensifiers in
 // src/content/grammar.js (same facts, fuller C1-paced walkthrough with
-// original passages) and does
-// not contradict them.
+// original passages) and does not contradict them.
+//
+// Curriculum-pacing-lag fix (07-09-2026): subjunctive_adjective_clauses
+// and pluperfect_subjunctive were moved out of this unit — the CEFR audit
+// retagged both to B2, and they now live in the new
+// subjunctive-counterfactuals-concession unit alongside condicional_probabilidad
+// and aunque_concessive (all B2, all sharing an unreal/hypothetical-
+// reasoning theme). Their prose and practice moved with them verbatim;
+// this unit's remaining two concepts (subjunctive_noun_clauses,
+// subjunctive_concessive_intensifiers) are both still correctly C1.

@@ -2788,3 +2788,114 @@ cohere at their assigned level (`probability-aspect`, `subjunctive-deep-dive`,
 `register-stance`, `perfect-tenses`) — that's a larger restructuring
 job (new units, content redistribution, `curriculum/index.js` reordering)
 scoped as its own follow-up phase.
+
+## Curriculum-unit-content pacing-lag fix, Phase 2: restructuring the 7 incoherent units
+
+The larger follow-up scoped at the end of Phase 1: the 7 units where the
+CEFR audit had left most or all of the content no longer matching the
+unit's own assigned level. User approved the plan directly ("sounds
+good, execute.") after `AskUserQuestion` again hit repeated transport
+errors and the options were relayed as plain text: leave the 8
+minor-lag units alone (already decided in Phase 1); split the 7
+incoherent units into properly-leveled units rather than simple
+whole-unit relabeling; fold orphaned concepts into existing units
+(N/A here, that was Phase 1's job).
+
+**Classification pass before touching any file**: for each of the 7
+units, checked whether removing a mismatched concept would break a
+same-file grammatical dependency for a concept staying behind. This
+caught one important exception to the "just split it" default:
+
+- `subjunctive-deep-dive` turned out to be a single, deliberately
+  sequenced teaching arc, not a loose grab-bag — `si_clauses`' practice
+  literally depends on `imperfect_subjunctive`'s forms, taught two
+  sections earlier in the *same file*. Splitting it would have meant
+  either duplicating the imperfect-subjunctive forms or breaking the
+  si_clauses section's scaffolding. Instead, relabeled the whole unit
+  B2 → B1 (matching 3 of its 4 concepts) and kept `perfect_subjunctive`
+  — genuinely B2 — as a documented, deliberate "taught early" exception,
+  the unit's natural capstone. No section/vocab/practice content in this
+  file changed at all, only the header framing.
+- `perfect-tenses` had a smaller-scale version of the same issue:
+  `present_perfect`'s section taught participle formation (-ado/-ido,
+  irregulars) from scratch, and `pluperfect`/`future_perfect`/
+  `conditional_perfect` all lean on that same foundation. Rather than
+  leave `present_perfect` in place (perpetuating its 2-level lag) or
+  duplicate participle-formation teaching in two files, moved the full
+  teaching to `what-happened` (A2) — the new correct home for
+  `present_perfect`, and also the first unit where a learner would
+  otherwise meet a compound tense — and condensed `perfect-tenses`'
+  opening section to *recap* participle formation as known background
+  rather than re-teach it. This is the only wholly new prose written
+  this phase; everything else was relocation.
+- The other 5 units (`fixed-expressions`, `subjunctive-limits`,
+  `discourse-markers`, `register-stance`, plus `probability-aspect`
+  itself) turned out to be loose collections of independently
+  comprehensible topics, each with its own self-contained example or
+  passage — confirmed safe to split by checking each section actually
+  stands alone, even where the prose cross-references its now-departing
+  siblings (`discourse-markers`' and `register-stance`'s sections
+  occasionally said things like "the other two families in this unit" —
+  harmless dangling framing left as-is rather than over-engineering a
+  fix for a minor prose wrinkle).
+
+**The moves, concept by concept** (all content relocated verbatim —
+prose, examples, passages, practice — never rewritten, since every
+"needs to move" concept already had fully-written, audited content
+sitting in some file):
+
+- `present_perfect` — out of `perfect-tenses`, into a new 5th section in
+  `what-happened` (A2), the only newly-written prose this phase.
+- `probability-aspect`'s **id and file slot were repurposed in place**
+  (kept, not deleted — the same "never break a referenced id, only
+  repurpose" principle used throughout the whole CEFR-audit thread) into
+  a new B1 unit, "Verb Nuance: Periphrases, Prepositions & Quantifiers":
+  kept `futuro_probabilidad` and `perifraseis_avanzadas` (both correctly
+  B1 all along, just previously bundled with a C1 sibling), and gained
+  `verbos_preposicionales`/`cuantificadores`, both split off the old
+  `fixed-expressions` (also correctly B1). `condicional_probabilidad`
+  moved out.
+- `subjunctive-deep-dive` relabeled B2 → B1 wholesale (see above);
+  vacated its old order-24 slot.
+- A brand-new unit, `subjunctive-counterfactuals-concession` (B2), was
+  created in that freshly-vacated order-24 slot, consolidating four
+  concepts that all share an unreal/hypothetical-reasoning theme but
+  previously sat scattered across three different mismatched C1 units:
+  `pluperfect_subjunctive` and `subjunctive_adjective_clauses` (split off
+  `subjunctive-limits`), `condicional_probabilidad` (split off the old
+  `probability-aspect`), and `aunque_concessive` (split off the old
+  `fixed-expressions`). `subjunctive-limits` keeps its other two
+  concepts (`subjunctive_noun_clauses`, `subjunctive_concessive_
+  intensifiers`), both still correctly C1 — including the orphaned vocab
+  entries (el piso/el casero/el alquiler; la entrevista/el currículum/
+  arrepentirse/el plazo/exigir/previsto/el presentimiento/replantearse/
+  el malentendido) that had been supporting the two departed sections,
+  moved along with them into the new unit rather than left stranded.
+- `fixed-expressions` kept `ser_passive` (correctly C1) and gained
+  `estructuradores_informacion` and `registro_formal_informal`, both
+  split off `discourse-markers` and `register-stance` respectively (both
+  C2 units that the audit retagged one concept each down to C1).
+  `discourse-markers` and `register-stance` are each left with their one
+  remaining, still-correctly-C2 concept (`reformuladores`,
+  `modalizacion_epistemica`).
+- The other two concepts split off `discourse-markers`/`register-stance`
+  — `operadores_discursivos` and `controladores_contacto`, both retagged
+  B2 — folded into `argumentation-workplace`, already the natural
+  workplace/conversational-register B2 home (it picked up
+  `reformuladores_basico`/`genero_informe` the same way in Phase 1).
+
+**Verification**: a full concept-lag script (cross-referencing every
+`concepts.js` entry's `cefr` against the unit that teaches it and at
+what level) confirmed 0 duplicate unit ids, 0 untaught concepts, 0
+concepts taught by more than one unit, and exactly 11 remaining lag
+entries — the same 10 minor (`lag: 1`) plus 1 deliberate-exception
+(`lag: -1`, `perfect_subjunctive`) accepted back in Phase 1's data pull,
+now covering the *entire* curriculum rather than just the units this
+phase left untouched. Every touched unit's practice `concept_id`s were
+cross-checked against both `concepts.js` and that unit's own registered
+`concepts` array in `curriculum/index.js` — zero mismatches. `npm run
+build` passes.
+
+**Curriculum-unit-content pacing lag is now fully resolved** — both
+phases of the fix are done, closing out the last open item from the
+whole CEFR-accuracy-audit thread that began with concepts.js Phase A.

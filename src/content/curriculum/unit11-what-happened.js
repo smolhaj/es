@@ -1,5 +1,5 @@
 // Unit 11 — What Happened (A2)
-// Covers: preterite_regular, negation
+// Covers: preterite_regular, negation, present_perfect
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -94,6 +94,27 @@ export default {
         'Watch the shortening: it\'s ningún problema (before a masculine singular noun), not ninguno problema — ninguno only keeps its full form before a feminine noun (ninguna razón) or when it stands alone without a noun right after it (Ninguno vino, "None of them came").',
       ],
     },
+    {
+      heading: 'A Second Way to Talk About the Past: He Comido',
+      paragraphs: [
+        'The preterite isn\'t the only way to talk about the past — Spanish has a second past tense, the present perfect (he comido, "I have eaten"), built from a completely different pattern: a conjugated form of haber ("to have," here just a helper verb, not possession) — he, has, ha, hemos, habéis, han — plus a past participle that never changes. To form a regular participle, drop the infinitive ending and add -ado for -ar verbs, or -ido for -er and -ir verbs: hablar → hablado, comer → comido, vivir → vivido.',
+        'A handful of very common verbs have irregular participles that just have to be memorized: hacer → hecho (done/made), decir → dicho (said), poner → puesto (put), ver → visto (seen), volver → vuelto (returned), escribir → escrito (written), abrir → abierto (opened), romper → roto (broken). You\'ll meet a few more later, but these are the ones worth knowing first.',
+        'Use the present perfect for something completed at some point up to now, often with a felt connection to the present moment — ¿Has comido algo hoy? ("Have you eaten anything today?") asks about today as a whole, not one specific past moment the way the preterite would. Compare with the preterite from earlier in this unit: Comí a las dos ("I ate at two") names one finished, specific-time event; He comido ("I have eaten") just states that the eating happened at some point in the current stretch of time, without pinning down when.',
+        'One regional note worth knowing early: in Spain, the present perfect is used very freely for same-day events — Esta mañana he desayunado tarde ("This morning I had a late breakfast") — while much of Latin America prefers the preterite for that same sentence (Esta mañana desayuné tarde), regardless of how recent it was. Both are correct; it\'s a difference in everyday habit, not a grammar error.',
+      ],
+      examples: [
+        { es: 'He comido ya.', en: 'I have already eaten.' },
+        { es: '¿Has visto mis llaves?', en: 'Have you seen my keys?' },
+        { es: 'Todavía no he hecho la tarea.', en: "I haven't done the homework yet." },
+        { es: 'Hemos vivido aquí dos años.', en: "We have lived here for two years." },
+        { es: 'Nunca ha estado en Perú.', en: 'She has never been to Peru.' },
+      ],
+      commonMistakes: [
+        'Don\'t insert an adverb or ya between haber and the participle — He ya terminado is wrong; it must be Ya he terminado or He terminado ya.',
+        'Don\'t regularize the irregular participles — "hacido" and "decido" (for hacer and decir) are common learner errors; the correct forms are hecho and dicho.',
+        'The past participle after haber never agrees with the subject\'s gender or number — hemos comido stays exactly the same whether "we" are men, women, or a mixed group; don\'t write "hemos comidas."',
+      ],
+    },
   ],
 
   vocab: [
@@ -112,6 +133,9 @@ export default {
     { es: 'ninguno / ningún', en: 'none / not any', example: 'No tengo ningún interés en eso.', exampleEn: "I don't have any interest in that." },
     { es: 'tampoco', en: 'neither / not either', example: 'Yo no fui, y ella tampoco.', exampleEn: "I didn't go, and neither did she." },
     { es: 'todavía no', en: 'not yet', example: 'Todavía no comí.', exampleEn: "I haven't eaten yet." },
+    { es: 'he', en: 'I have (present of haber, auxiliary)', example: 'He comido ya.', exampleEn: 'I have already eaten.' },
+    { es: 'hecho', en: 'done / made (irregular participle of hacer)', example: 'Todavía no he hecho la tarea.', exampleEn: "I haven't done the homework yet." },
+    { es: 'visto', en: 'seen (irregular participle of ver)', example: '¿Has visto mis llaves?', exampleEn: 'Have you seen my keys?' },
   ],
 
   practice: [
@@ -133,6 +157,14 @@ export default {
     { type: 'translation_to_english', prompt: '¿Qué significa "No vi a nadie en la calle"?', word: 'nadie', english: 'nobody / anyone', answer: "I didn't see anyone on the street.", concept_id: 'negation', difficulty: 2 },
     { type: 'error_correction', prompt: 'Find and fix the error: "Tengo nada en la mochila."', word: 'no...nada', english: "I don't have anything", answer: 'No tengo nada en la mochila.', concept_id: 'negation', difficulty: 2 },
     { type: 'error_correction', prompt: 'Find and fix the error: "No vi nadie en la fiesta."', word: 'a nadie', english: 'anyone (personal a)', answer: 'No vi a nadie en la fiesta.', concept_id: 'negation', difficulty: 3 },
+
+    // ── present_perfect block: he + participio ──
+    { type: 'fill_blank', prompt: 'Complete: "___ comido ya." (yo, present perfect of comer)', word: 'he', english: 'have (I have)', answer: 'He', concept_id: 'present_perfect', difficulty: 1 },
+    { type: 'multiple_choice', prompt: 'What is the past participle of hacer?', word: 'hecho', english: 'done/made', answer: 'hecho', options: ['hacido', 'hecho', 'hacho', 'hacía'], concept_id: 'present_perfect', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "¿___ visto mis llaves?" (tú, present perfect of ver)', word: 'has', english: 'have (you have)', answer: 'Has', concept_id: 'present_perfect', difficulty: 1 },
+    { type: 'error_correction', prompt: 'Fix the error: "He ya terminado el informe."', word: 'ya he', english: 'already (correct word order)', answer: 'Ya he terminado el informe.', concept_id: 'present_perfect', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'We have lived here two years.'", english: 'We have lived here two years.', answer: 'Hemos vivido aquí dos años.', word: 'hemos vivido', concept_id: 'present_perfect', difficulty: 2 },
+    { type: 'translation_to_english', prompt: 'Translate: "Todavía no he hecho la tarea."', word: 'he hecho', english: "I haven't done the homework yet.", answer: "I haven't done the homework yet.", concept_id: 'present_perfect', difficulty: 2 },
   ],
 };
 
@@ -163,3 +195,14 @@ export default {
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // preterite_regular and negation in src/content/grammar.js (same facts,
 // fuller beginner-paced walkthrough) and does not contradict them.
+//
+// Curriculum-pacing-lag fix (07-09-2026): added present_perfect (he
+// comido) section/vocab/practice — the CEFR audit found this concept's
+// real level is A2, not B2, but it was previously only taught in the B2
+// perfect-tenses unit, two levels late. Folded in here since both
+// concepts are about narrating the past, giving a natural preterite-vs-
+// present-perfect contrast. The fuller B2 unit (pluperfect, future
+// perfect, conditional perfect) now assumes this participle-formation
+// content as known background rather than re-teaching it. Content
+// cross-checked against SpanishDict; agrees with and does not contradict
+// the existing GRAMMAR_CARDS entry for present_perfect.

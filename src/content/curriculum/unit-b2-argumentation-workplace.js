@@ -1,6 +1,7 @@
 // Unit — Argumentation & Workplace Correspondence (B2)
 // Covers: conectores_argumentativos_basicos, registro_formal_correspondencia,
-// reformuladores_basico, genero_informe
+// reformuladores_basico, genero_informe, operadores_discursivos,
+// controladores_contacto
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -154,6 +155,47 @@ export default {
         "Skipping the three-part structure — a real informe signals its introducción, desarrollo/análisis, and conclusiones y recomendaciones clearly, even with simple heading words, rather than blending everything into one undifferentiated block of text.",
       ],
     },
+    {
+      heading: 'De hecho, En realidad, Por cierto: Reinforcing, Correcting, and Digressing',
+      paragraphs: [
+        "One last set of everyday tools rounds out this unit's toolkit for connected, natural-sounding speech: three short markers that tell the listener exactly what kind of move you're making with the specific claim you're about to say. Are you backing up your last point with harder evidence? Correcting a wrong impression? Or stepping sideways into something unrelated? Three markers, three completely different jobs, and mixing them up is a common near-fluent slip.",
+        "De hecho and en realidad both reinforce a claim, but in different ways. De hecho (\"in fact, as a matter of fact\") adds a stronger, more concrete piece of supporting evidence to something already said: Le gusta el cine; de hecho, va todas las semanas (\"He likes cinema; in fact, he goes every week\") — the second clause is hard evidence for the first. En realidad (\"actually, in reality\") does something closer to correcting an assumption or a false impression, often reorienting what came before: Parece fácil, pero en realidad es bastante complicado (\"It looks easy, but it's actually quite complicated\") — here the second half doesn't just add support, it overturns what the first half implied. A useful test: if what follows confirms and strengthens the previous idea with a concrete fact, reach for de hecho; if it corrects a wrong impression the previous idea created, reach for en realidad.",
+        "Por cierto is a different creature altogether — it introduces a comment that sits outside the logical thread of the conversation, an aside: Por cierto, ¿ya reservaste el hotel para el viaje? (\"By the way, did you already book the hotel for the trip?\"). Nothing about the sentence that follows por cierto needs to connect logically to what was just said — that's the whole point of a digression marker, and it's precisely what separates por cierto from de hecho/en realidad, which do connect logically (as reinforcement or correction) to the prior claim.",
+      ],
+      examples: [
+        { es: 'Le gusta el cine; de hecho, va todas las semanas.', en: 'He likes cinema; in fact, he goes every week.' },
+        { es: 'Parece fácil, pero en realidad es bastante complicado.', en: "It looks easy, but it's actually quite complicated." },
+        { es: 'Por cierto, ¿ya reservaste el hotel para el viaje?', en: 'By the way, did you already book the hotel for the trip?' },
+        { es: 'Todos pensaban que había fracasado; de hecho, fue un éxito rotundo.', en: 'Everyone thought it had failed; in fact, it was a resounding success.' },
+        { es: 'Se dice que el equipo no rinde bien; en realidad, los resultados han mejorado mucho.', en: "People say the team isn't performing well; actually, the results have improved a lot." },
+      ],
+      commonMistakes: [
+        "Using de hecho when the intent is to correct a false impression rather than add supporting evidence — if the second clause overturns what the first implied (not just backs it up), en realidad is the more accurate choice.",
+        "Using por cierto to reinforce an argument — it introduces a tangential, tonally unrelated remark, not another piece of evidence for the point you were just making; that job belongs to de hecho or en realidad, not por cierto.",
+        "Confusing de hecho with en efecto — de hecho adds new concrete supporting detail; en efecto simply confirms that a prior statement or expectation was correct. They aren't freely interchangeable.",
+      ],
+    },
+    {
+      heading: 'Staying Connected: ¿Verdad?, ¿No?, Fíjate, Oye/Oiga, ¿Sabes?',
+      paragraphs: [
+        "These last few words don't add any new fact to a conversation — they manage the conversation itself: checking that the listener is still following, inviting agreement, or grabbing attention before the real point arrives. This is squarely a spoken, informal phenomenon, and it's exactly what makes a learner's Spanish sound alive rather than just correct.",
+        '¿Verdad? and ¿no? both function like English tag questions — "right?", "isn\'t that so?" — inviting the listener to confirm or agree: Hace un día precioso, ¿verdad? A useful, if not perfectly rigid, distinction: ¿no? tends to feel quicker and more casual, while ¿verdad? sits a touch more neutral and pairs naturally with either an affirmative or a negative statement just before it.',
+        'Fíjate ("get this," "just imagine") draws the listener\'s focus to something you\'re about to say is notable or surprising: Fíjate, al final ganamos el partido. Oye and its formal counterpart oiga both grab someone\'s attention before you actually speak, and there\'s a small register split of their own worth knowing: oye is the tú-register version, used with friends, peers, or anyone you\'d already address informally, while oiga is the usted-register equivalent, used with a stranger, an elder, or anyone you\'d formally address — Oye, ¿tienes hora? versus Oiga, perdone, ¿sabe dónde está la estación?',
+        '¿Sabes? ("you know?") checks rapport and comprehension more than it asks a literal question — Me costó mucho decidirlo, ¿sabes? isn\'t really asking whether the listener has information; it\'s inviting them to stay engaged and empathize. Across all of these markers, translating them word-for-word into English badly misses their function — they\'re conversational glue holding a spoken exchange together, not extra facts being asserted.',
+      ],
+      examples: [
+        { es: 'Hace mucho calor hoy, ¿verdad?', en: "It's very hot today, isn't it?" },
+        { es: 'Vas a venir a la fiesta, ¿no?', en: "You're coming to the party, right?" },
+        { es: 'Fíjate, al final resultó que era todo un malentendido.', en: 'Get this — it turned out to all be a misunderstanding.' },
+        { es: 'Oye, ¿tienes un momento para hablar? — Oiga, perdone, ¿sabe dónde está la estación?', en: 'Hey, do you have a moment to talk? — Excuse me, sir, do you know where the station is?' },
+        { es: '¿Sabes? Creo que deberíamos replantear el plan.', en: 'You know? I think we should rethink the plan.' },
+      ],
+      commonMistakes: [
+        'Answering these as if they were literal, content-bearing questions — a native listener rarely expects a real yes/no answer to ¿verdad? or ¿no?; the expected response is agreement, a nod, or a continuation of the conversation.',
+        'Using oye with a stranger, an official, or a boss instead of the usted-register oiga — even within this set of overwhelmingly informal markers, that one pair still tracks the tú/usted distance split.',
+        'Sprinkling fíjate, oye, or ¿sabes? into formal writing (an informe, an ensayo argumentativo) — these belong almost exclusively to spoken or informal written registers (chat, dialogue) and read as strikingly casual in a formal document, the exact opposite of the estimado/le escribo para register taught earlier in this unit.',
+      ],
+    },
   ],
 
   vocab: [
@@ -182,6 +224,15 @@ export default {
     { es: 'el informe', en: 'the report', example: 'El presente informe analiza los resultados.', exampleEn: 'This report analyzes the results.' },
     { es: 'la introducción', en: 'the introduction', example: 'En la introducción se explica el objetivo.', exampleEn: 'The introduction explains the objective.' },
     { es: 'las conclusiones', en: 'the conclusions', example: 'Las conclusiones resumen los hallazgos.', exampleEn: 'The conclusions summarize the findings.' },
+    { es: 'de hecho', en: 'in fact, as a matter of fact (reinforcing with evidence)', example: 'Le gusta el cine; de hecho, va todas las semanas.', exampleEn: 'He likes cinema; in fact, he goes every week.' },
+    { es: 'en realidad', en: 'actually, in reality (correcting a false impression)', example: 'Parece fácil, pero en realidad es bastante complicado.', exampleEn: "It looks easy, but it's actually quite complicated." },
+    { es: 'por cierto', en: 'by the way (digression, unrelated aside)', example: 'Por cierto, ¿ya reservaste el hotel?', exampleEn: 'By the way, did you already book the hotel?' },
+    { es: 'el rendimiento', en: 'performance, output', example: 'El rendimiento del equipo mejoró este trimestre.', exampleEn: "The team's performance improved this quarter." },
+    { es: '¿verdad?', en: "right?, isn't that so? (informal tag question)", example: 'Hace un día precioso, ¿verdad?', exampleEn: "It's a beautiful day, isn't it?" },
+    { es: '¿no?', en: 'right? (informal, especially quick/casual tag question)', example: 'Ya has terminado el informe, ¿no?', exampleEn: "You've already finished the report, right?" },
+    { es: 'fíjate', en: 'get this, just imagine (informal, attention-grabbing)', example: 'Fíjate, al final ganamos el partido.', exampleEn: 'Get this — we ended up winning the game.' },
+    { es: 'oye / oiga', en: 'hey / excuse me (oye = tú-register, oiga = usted-register)', example: 'Oye, ¿tienes hora? — Oiga, perdone, ¿sabe dónde está la estación?', exampleEn: 'Hey, do you have the time? — Excuse me, sir, do you know where the station is?' },
+    { es: '¿sabes?', en: 'you know? (informal, checks rapport/comprehension)', example: 'Me costó mucho decidirlo, ¿sabes?', exampleEn: "It was hard for me to decide, you know?" },
   ],
 
   practice: [
@@ -220,6 +271,135 @@ export default {
     { type: 'fill_blank', prompt: 'Complete with the impersonal construction: "___ recomienda aumentar la inversión." (it is recommended)', word: 'se', english: 'impersonal se', answer: 'Se', concept_id: 'genero_informe', difficulty: 2 },
     { type: 'translation_to_spanish', prompt: "Translate in report register (impersonal, not personal): 'This report analyzes the first-quarter results.'", english: 'This report analyzes the first-quarter results.', answer: 'El presente informe analiza los resultados del primer trimestre.', word: 'informe', concept_id: 'genero_informe', difficulty: 2 },
     { type: 'error_correction', prompt: 'Find and correct the register error in an informe: "Yo creo que deberíamos invertir más en formación."', word: 'se recomienda', english: 'it is recommended', answer: 'Se recomienda invertir más en formación.', concept_id: 'genero_informe', difficulty: 3 },
+
+    // ── operadores_discursivos block (kept separate; blocked before mixed review) ──
+    {
+      type: 'multiple_choice',
+      prompt: 'Read the dialogue, then answer: why does the employee use "en realidad" at the start of her reply?',
+      word: 'en realidad',
+      english: 'actually, in reality',
+      answer: 'To correct a false impression the boss just expressed',
+      options: [
+        'To agree completely with what the boss just said',
+        'To correct a false impression the boss just expressed',
+        'To change the subject entirely, unrelated to the boss\'s comment',
+        'To ask the boss a question',
+      ],
+      concept_id: 'operadores_discursivos',
+      difficulty: 2,
+      passage: 'Jefe: Se dice que el nuevo horario no está funcionando bien.\nEmpleada: En realidad, la mayoría del equipo está satisfecha. De hecho, el rendimiento subió un quince por ciento este trimestre.\nJefe: Qué buena noticia. Por cierto, ¿ya enviaste el informe de la encuesta?\nEmpleada: Sí, lo envié ayer por la tarde.',
+      passageEn: "Boss: People say the new schedule isn't working well.\nEmployee: Actually, most of the team is satisfied. In fact, performance went up fifteen percent this quarter.\nBoss: That's great news. By the way, did you already send the survey report?\nEmployee: Yes, I sent it yesterday afternoon.",
+    },
+    {
+      type: 'multiple_choice',
+      prompt: 'In the same dialogue, why does the employee follow up with "de hecho" right after "en realidad"?',
+      word: 'de hecho',
+      english: 'in fact, as a matter of fact',
+      answer: 'To reinforce her point with a concrete supporting fact (the 15% figure)',
+      options: [
+        'To reinforce her point with a concrete supporting fact (the 15% figure)',
+        'To contradict what she just said',
+        'To apologize for the schedule change',
+        'To introduce a completely unrelated topic',
+      ],
+      concept_id: 'operadores_discursivos',
+      difficulty: 2,
+      passage: 'Jefe: Se dice que el nuevo horario no está funcionando bien.\nEmpleada: En realidad, la mayoría del equipo está satisfecha. De hecho, el rendimiento subió un quince por ciento este trimestre.\nJefe: Qué buena noticia. Por cierto, ¿ya enviaste el informe de la encuesta?\nEmpleada: Sí, lo envié ayer por la tarde.',
+      passageEn: "Boss: People say the new schedule isn't working well.\nEmployee: Actually, most of the team is satisfied. In fact, performance went up fifteen percent this quarter.\nBoss: That's great news. By the way, did you already send the survey report?\nEmployee: Yes, I sent it yesterday afternoon.",
+    },
+    {
+      type: 'fill_blank',
+      prompt: 'Completa la línea del jefe: "Qué buena noticia. ___, ¿ya enviaste el informe de la encuesta?" (introduces an unrelated, tangential question)',
+      word: 'Por cierto',
+      english: 'by the way',
+      answer: 'Por cierto',
+      concept_id: 'operadores_discursivos',
+      difficulty: 1,
+      passage: 'Jefe: Se dice que el nuevo horario no está funcionando bien.\nEmpleada: En realidad, la mayoría del equipo está satisfecha. De hecho, el rendimiento subió un quince por ciento este trimestre.\nJefe: Qué buena noticia. Por cierto, ¿ya enviaste el informe de la encuesta?\nEmpleada: Sí, lo envié ayer por la tarde.',
+      passageEn: "Boss: People say the new schedule isn't working well.\nEmployee: Actually, most of the team is satisfied. In fact, performance went up fifteen percent this quarter.\nBoss: That's great news. By the way, did you already send the survey report?\nEmployee: Yes, I sent it yesterday afternoon.",
+    },
+    {
+      type: 'translation_to_english',
+      prompt: 'Translate this sentence from the text: "En realidad, la mayoría del equipo está satisfecha. De hecho, el rendimiento subió un quince por ciento este trimestre."',
+      word: 'en realidad / de hecho',
+      english: 'actually / in fact',
+      answer: 'Actually, most of the team is satisfied. In fact, performance went up fifteen percent this quarter.',
+      concept_id: 'operadores_discursivos',
+      difficulty: 2,
+      passage: 'Jefe: Se dice que el nuevo horario no está funcionando bien.\nEmpleada: En realidad, la mayoría del equipo está satisfecha. De hecho, el rendimiento subió un quince por ciento este trimestre.\nJefe: Qué buena noticia. Por cierto, ¿ya enviaste el informe de la encuesta?\nEmpleada: Sí, lo envié ayer por la tarde.',
+      passageEn: "Boss: People say the new schedule isn't working well.\nEmployee: Actually, most of the team is satisfied. In fact, performance went up fifteen percent this quarter.\nBoss: That's great news. By the way, did you already send the survey report?\nEmployee: Yes, I sent it yesterday afternoon.",
+    },
+    {
+      type: 'error_correction',
+      prompt: 'Fix the misuse: the speaker wants to reinforce their claim with supporting evidence, but "por cierto" only introduces asides, not reinforcement: "El equipo trabaja muy bien en remoto; por cierto, la productividad subió un veinte por ciento."',
+      word: 'de hecho',
+      english: 'in fact (reinforcing evidence, not a tangent)',
+      answer: 'El equipo trabaja muy bien en remoto; de hecho, la productividad subió un veinte por ciento.',
+      concept_id: 'operadores_discursivos',
+      difficulty: 3,
+    },
+    {
+      type: 'translation_to_spanish',
+      prompt: "Translate: 'It looks easy, but it's actually quite complicated.'",
+      english: "It looks easy, but it's actually quite complicated.",
+      answer: 'Parece fácil, pero en realidad es bastante complicado.',
+      word: 'en realidad',
+      concept_id: 'operadores_discursivos',
+      difficulty: 2,
+    },
+
+    // ── controladores_contacto block (kept separate; blocked before mixed review) ──
+    { type: 'multiple_choice', prompt: 'Which phrase checks that the listener is following along/agrees, tag-question style?', word: '¿verdad?', english: "right? / isn't that so?", answer: 'Hace frío hoy, ¿verdad?', options: ['Hace frío hoy, ¿verdad?', 'Hace frío hoy, o sea.', 'Hace frío hoy, por lo tanto.', 'Hace frío hoy, es más.'], concept_id: 'controladores_contacto', difficulty: 1 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Fíjate, al final resultó que era todo un malentendido"?', word: 'fíjate', english: 'get this / just imagine', answer: 'Get this — it turned out to all be a misunderstanding.', concept_id: 'controladores_contacto', difficulty: 2 },
+    {
+      type: 'fill_blank',
+      prompt: "Según el diálogo, completa la primera línea de Marta: '___, ¿sabes que Diego se va a vivir a Chile?'",
+      word: 'oye',
+      english: 'hey (tú-register attention-getter)',
+      answer: 'Oye',
+      concept_id: 'controladores_contacto',
+      difficulty: 1,
+      passage: 'Marta: Oye, ¿sabes que Diego se va a vivir a Chile?\nLaura: ¿En serio? Fíjate, no me lo esperaba para nada.\nMarta: Ya llevaba tiempo pensándolo, ¿no? Siempre decía que quería cambiar de aires.\nLaura: Sí, tienes razón. Va a ser una experiencia increíble para él, ¿verdad?\nMarta: Seguro que sí. Aunque le va a costar despedirse de todos, ¿sabes?',
+      passageEn: "Marta: Hey, did you know Diego is going to live in Chile?\nLaura: Really? Get this, I didn't expect that at all.\nMarta: He'd been thinking about it for a while, right? He always said he wanted a change of scenery.\nLaura: Yeah, you're right. It's going to be an incredible experience for him, don't you think?\nMarta: For sure. Although it's going to be hard for him to say goodbye to everyone, you know?",
+    },
+    {
+      type: 'multiple_choice',
+      prompt: "En el diálogo, Marta dice: 'Ya llevaba tiempo pensándolo, ¿no?' ¿Qué función cumple '¿no?' aquí?",
+      word: '¿no?',
+      english: 'right? (seeking agreement, not literal information)',
+      answer: 'Invita a Laura a confirmar o estar de acuerdo, no pide información nueva',
+      options: [
+        'Invita a Laura a confirmar o estar de acuerdo, no pide información nueva',
+        'Pregunta si Laura sabe la respuesta correcta',
+        'Niega lo que se acaba de decir',
+        'Introduce una idea completamente nueva y sin relación',
+      ],
+      concept_id: 'controladores_contacto',
+      difficulty: 2,
+      passage: 'Marta: Oye, ¿sabes que Diego se va a vivir a Chile?\nLaura: ¿En serio? Fíjate, no me lo esperaba para nada.\nMarta: Ya llevaba tiempo pensándolo, ¿no? Siempre decía que quería cambiar de aires.\nLaura: Sí, tienes razón. Va a ser una experiencia increíble para él, ¿verdad?\nMarta: Seguro que sí. Aunque le va a costar despedirse de todos, ¿sabes?',
+      passageEn: "Marta: Hey, did you know Diego is going to live in Chile?\nLaura: Really? Get this, I didn't expect that at all.\nMarta: He'd been thinking about it for a while, right? He always said he wanted a change of scenery.\nLaura: Yeah, you're right. It's going to be an incredible experience for him, don't you think?\nMarta: For sure. Although it's going to be hard for him to say goodbye to everyone, you know?",
+    },
+    {
+      type: 'fill_blank',
+      prompt: "Según el diálogo, completa la línea de Laura: 'Va a ser una experiencia increíble para él, ___?'",
+      word: '¿verdad?',
+      english: "right?, isn't that so?",
+      answer: '¿verdad?',
+      concept_id: 'controladores_contacto',
+      difficulty: 1,
+      passage: 'Marta: Oye, ¿sabes que Diego se va a vivir a Chile?\nLaura: ¿En serio? Fíjate, no me lo esperaba para nada.\nMarta: Ya llevaba tiempo pensándolo, ¿no? Siempre decía que quería cambiar de aires.\nLaura: Sí, tienes razón. Va a ser una experiencia increíble para él, ¿verdad?\nMarta: Seguro que sí. Aunque le va a costar despedirse de todos, ¿sabes?',
+      passageEn: "Marta: Hey, did you know Diego is going to live in Chile?\nLaura: Really? Get this, I didn't expect that at all.\nMarta: He'd been thinking about it for a while, right? He always said he wanted a change of scenery.\nLaura: Yeah, you're right. It's going to be an incredible experience for him, don't you think?\nMarta: For sure. Although it's going to be hard for him to say goodbye to everyone, you know?",
+    },
+    { type: 'translation_to_spanish', prompt: "Translate, using an informal contact-controller ending: 'You already know the answer, right?'", english: 'You already know the answer, right?', answer: 'Ya sabes la respuesta, ¿no?', word: '¿no?', concept_id: 'controladores_contacto', difficulty: 2 },
+    {
+      type: 'error_correction',
+      prompt: "Fix the register mismatch: a customer says to a stranger clerk they've never met: 'Oye, ¿sabe dónde está la salida?' (mixing the tú-register attention-getter with the usted verb form)",
+      word: 'oiga',
+      english: 'excuse me (usted-register attention-getter)',
+      answer: 'Oiga, ¿sabe dónde está la salida?',
+      concept_id: 'controladores_contacto',
+      difficulty: 3,
+    },
   ],
 };
 
@@ -281,7 +461,7 @@ export default {
 // (Unit 18), and the imperative (Unit 19) without re-teaching their basics
 // from scratch.
 //
-// Curriculum-pacing-lag fix (07-09-2026): added reformuladores_basico
+// Curriculum-pacing-lag fix (07-09-2026, Phase 1): added reformuladores_basico
 // (o sea, es decir) and genero_informe (the informe/report genre)
 // sections/practice — both split off from C2 concepts (reformuladores,
 // generos_discursivos_formales) during the CEFR audit as their B2 core,
@@ -292,3 +472,18 @@ export default {
 // against multiple Spanish business-writing guides. Content agrees with
 // and does not contradict the existing GRAMMAR_CARDS entries for
 // reformuladores_basico and genero_informe.
+//
+// Curriculum-pacing-lag fix (07-09-2026, Phase 2): added operadores_
+// discursivos (de hecho, en realidad, por cierto) and controladores_
+// contacto (¿verdad?, ¿no?, fíjate, oye/oiga, ¿sabes?), relocated verbatim
+// from the old unit31-discourse-markers.js and unit32-register-stance.js
+// (both C2 units), since the CEFR audit retagged both concepts to B2. This
+// unit was already the natural workplace/conversational-register home for
+// them. Claims for both were originally verified via WebSearch against the
+// CVC (Centro Virtual Cervantes) "Diccionario de términos clave de ELE"
+// marcadores del discurso entry, RAE's Nueva gramática, the Martín
+// Zorraquino & Portolés discourse-marker taxonomy, and PRESEEA-corpus
+// pragmatics literature on contact-control markers — see ES.md's punch-list
+// item 29 for the full pacing-lag writeup. Content agrees with and does not
+// contradict the existing GRAMMAR_CARDS entries for operadores_discursivos
+// and controladores_contacto.
