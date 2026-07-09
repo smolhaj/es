@@ -2694,3 +2694,97 @@ removes content.
 earlier this session but never checked against real-world standards.
 The curriculum-unit-content pacing lag also stays deferred, same
 reasoning as every prior phase.
+
+## Curriculum-unit-content pacing-lag fix, Phase 1: folding in the 8 orphaned concepts
+
+With every content-type-level CEFR audit either done or explicitly
+deferred, picked up the one remaining item flagged repeatedly across
+this whole thread: the curriculum-unit-content pacing lag itself — every
+CEFR audit phase retagged concepts.js entries to their correct
+real-world level, but never touched which curriculum unit actually
+*teaches* each concept, so a lot of now-correctly-tagged concepts sat in
+units positioned at their old, higher level.
+
+**Data pull before touching anything**: cross-referenced every
+concept's current `cefr` against which unit in `curriculum/index.js`
+registers it, and at what level that unit sits. Three distinct
+categories emerged, not one uniform problem:
+- **8 concepts with zero teaching unit at all** — all 8 new concepts
+  minted during Phase B's concept-splitting (`irregular_present_core`,
+  `gustar_basico`, `prepositions_core`, `modal_verbs_core`,
+  `imperative_affirmative`, `relative_clauses_core`,
+  `reformuladores_basico`, `genero_informe`). These were purely additive
+  at the time — Phase B explicitly noted they'd need a future
+  curriculum-content pass to actually get taught.
+- **8 units with a minor 1-concept lag** (e.g. `daily-routine`, A2,
+  teaching `reflexive_verbs`/`possessives`, both now correctly A1) —
+  low-severity, a learner isn't blocked or contradicted, just reinforced
+  a level later than ideal.
+- **7 units where most or all content no longer coheres at the unit's
+  assigned level** — most strikingly `probability-aspect` (C1), which
+  after the audit has **zero** C1 concepts left (all 3 of its concepts
+  moved to B1/B2), and `subjunctive-deep-dive` (B2), which is 3 of 4
+  concepts B1.
+
+**Scoped the fix with the user** (`AskUserQuestion`, though the tool
+hit repeated transport errors this round and the questions ended up
+relayed as plain text instead) rather than picking a direction alone,
+given the size: confirmed leave the 8 minor-lag units as-is
+(documented only), split/restructure the 7 incoherent units into
+properly-leveled units rather than just moving whole units down, and
+fold the 8 orphaned concepts into existing sibling units rather than
+standing up 8 new standalone units. Phased the actual work into two
+pieces given the size — orphaned-concept content-writing first (smaller,
+contained), the 7-unit restructuring second (bigger, needs new units).
+
+**Placement logic for the 8 orphaned concepts**, thought through unit by
+unit rather than mechanically defaulting to "whichever unit teaches the
+sibling concept" — that default would have been wrong for the 4 A1
+concepts, since their sibling concepts (`irregular_present`,
+`gustar_type`, `prepositions_basic`, `modal_verbs`) are all taught in
+A2-positioned units; folding an A1 concept into an A2 unit wouldn't
+actually fix a pacing mismatch, it would just relocate it. Checked the
+early A1 units' existing concept lists first to find real openings:
+- `irregular_present_core` (tener, ir), `modal_verbs_core` (poder,
+  querer), and `gustar_basico` (gustar) all went into `everyday-actions`
+  (A1, order 6) — the unit that already teaches regular present-tense
+  conjugation, a natural next step to "your first irregulars."
+- `prepositions_core` (a, de, en) went into `asking-questions` (A1,
+  order 7) — question words and their answers pair naturally (¿dónde?/en,
+  ¿de dónde?/de).
+- `imperative_affirmative` (regular tú commands + the 8 common
+  irregulars) went into `obligations-requests` (A2) — this unit's
+  closing section is already about making polite requests, and direct
+  commands are a closely related speech act.
+- `relative_clauses_core` (que, donde) went into `comparing-describing`
+  (A2) — describing with a whole clause is a natural extension of this
+  unit's describe-with-adjectives/adverbs/prepositions focus.
+- `reformuladores_basico` (o sea, es decir) and `genero_informe` (the
+  informe/report genre) both went into `argumentation-workplace` (B2) —
+  already the natural home, since this unit already covers
+  workplace/formal writing register at B2 and already teaches the
+  sibling B2 concepts (`conectores_argumentativos_basicos`,
+  `registro_formal_correspondencia`).
+
+**Content written, not just metadata**: each of the 8 concepts got a
+full new section (heading, paragraphs, examples, common mistakes)
+matching each unit's existing pedagogical style, plus new vocab entries
+and 3-5 tagged practice exercises per concept — not a token registration.
+Every new section's Spanish content and grammar claims were written
+consistent with the existing GRAMMAR_CARDS entries for these concepts
+(same facts, same rule statements) rather than introducing any new or
+conflicting claims.
+
+**Verification**: confirmed zero concepts now lack a teaching unit
+(down from 8). For all 5 modified unit files, checked every practice
+exercise's `concept_id` resolves to a real `concepts.js` entry AND is
+present in that unit's own `concepts` array in `curriculum/index.js` (no
+orphaned or unregistered concept_ids introduced) — zero issues found.
+`npm run build` passes.
+
+**Deliberately not done in this phase**: the 7 units that no longer
+cohere at their assigned level (`probability-aspect`, `subjunctive-deep-dive`,
+`fixed-expressions`, `subjunctive-limits`, `discourse-markers`,
+`register-stance`, `perfect-tenses`) — that's a larger restructuring
+job (new units, content redistribution, `curriculum/index.js` reordering)
+scoped as its own follow-up phase.

@@ -1,5 +1,5 @@
 // Unit 12 — Obligations & Requests (A2)
-// Covers: modal_verbs, obligation_infinitive
+// Covers: modal_verbs, obligation_infinitive, imperative_affirmative
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -111,6 +111,26 @@ export default {
         "Quisiera isn't just a fancier version of quiero to memorize as a whole different verb — it's the same verb querer, used in a special polite form. You don't need to produce it yet; just recognize it as a courteous \"I would like\" when you hear or read it.",
       ],
     },
+    {
+      heading: 'Direct Commands: The Affirmative Tú Form',
+      paragraphs: [
+        'Questions built on poder and querer are the polite, roundabout way to ask for something. Spanish also has a direct command form — the imperative — for when you want to tell a friend or family member to simply do something, no question mark needed: ¡Espera! ("Wait!"), ¡Come algo! ("Eat something!").',
+        'The good news for regular verbs: the affirmative tú command reuses a form you already know. For -ar verbs, it\'s identical to the él/ella present-tense form: hablar → habla ("speak!"), just like él habla ("he speaks"). Same pattern for -er and -ir verbs: comer → come ("eat!"), escribir → escribe ("write!") — both match the él/ella present form exactly.',
+        'A handful of very common verbs break this pattern and simply have to be memorized: di (decir), haz (hacer), ve (ir), pon (poner), sal (salir), sé (ser), ten (tener), ven (venir). These eight are worth learning as a set now, since you\'ll reach for them constantly — ¡Ven aquí! ("Come here!"), ¡Ten cuidado! ("Be careful!").',
+      ],
+      examples: [
+        { es: '¡Habla más despacio, por favor!', en: 'Speak more slowly, please!' },
+        { es: '¡Come la verdura!', en: 'Eat your vegetables!' },
+        { es: '¡Escribe tu nombre aquí!', en: 'Write your name here!' },
+        { es: '¡Ven aquí un momento!', en: 'Come here for a moment!' },
+        { es: '¡Ten cuidado con el escalón!', en: 'Be careful with the step!' },
+      ],
+      commonMistakes: [
+        'The affirmative tú command form comes from the él/ella present tense, not from the yo form — habla (not "hablo"), come (not "como").',
+        'Eight common verbs are irregular in this form and must be memorized individually: di, haz, ve, pon, sal, sé, ten, ven — none of these come from the él/ella present tense the regular way.',
+        'This is only the affirmative form (telling someone TO do something) — telling someone NOT to do something uses a completely different form, covered in a later unit.',
+      ],
+    },
   ],
 
   vocab: [
@@ -128,6 +148,9 @@ export default {
     { es: 'imposible', en: 'impossible', example: 'Es imposible terminar hoy.', exampleEn: "It's impossible to finish today." },
     { es: 'quisiera', en: 'I would like (polite)', example: 'Quisiera un vaso de agua, por favor.', exampleEn: 'I would like a glass of water, please.' },
     { es: 'obligación', en: 'obligation', example: 'No tienes obligación de ayudar.', exampleEn: "You're not obligated to help." },
+    { es: 'espera', en: 'wait! (tú command)', example: '¡Espera un momento!', exampleEn: 'Wait a moment!' },
+    { es: 'ven', en: 'come! (tú command, irregular)', example: '¡Ven aquí!', exampleEn: 'Come here!' },
+    { es: 'ten cuidado', en: 'be careful! (tú command, irregular)', example: '¡Ten cuidado con el perro!', exampleEn: 'Be careful with the dog!' },
   ],
 
   practice: [
@@ -148,6 +171,13 @@ export default {
     { type: 'error_correction', prompt: 'Fix the error: "Ella hay que trabajar mañana."', word: 'hay que', english: 'impersonal — no subject allowed', answer: 'Ella tiene que trabajar mañana.', concept_id: 'obligation_infinitive', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which sentence means "You don\'t have to come" (it\'s entirely optional, not forbidden)?', word: 'no tener que', english: "don't have to (no obligation)", answer: 'No tienes que venir.', options: ['No tienes que venir.', 'No debes venir.', 'Hay que venir.', 'No puedes venir.'], concept_id: 'obligation_infinitive', difficulty: 2 },
     { type: 'translation_to_spanish', prompt: "Translate: 'To learn a language, one has to practice every day.' (general rule, no one named)", english: 'To learn a language, one has to practice every day.', answer: 'Para aprender un idioma, hay que practicar todos los días.', word: 'hay que', concept_id: 'obligation_infinitive', difficulty: 2 },
+
+    // ── imperative_affirmative block: regular + the 8 irregular tú commands ──
+    { type: 'multiple_choice', prompt: 'What is the affirmative tú command for hablar?', word: 'hablar', english: 'to speak', answer: 'habla', options: ['habla', 'hablo', 'hablas', 'hable'], concept_id: 'imperative_affirmative', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete the command: "¡___ (comer) la verdura!"', word: 'comer', english: 'to eat', answer: 'come', concept_id: 'imperative_affirmative', difficulty: 1 },
+    { type: 'multiple_choice', prompt: 'Which is the correct irregular tú command for venir?', word: 'venir', english: 'to come', answer: 'ven', options: ['vene', 'ven', 'viene', 'vienes'], concept_id: 'imperative_affirmative', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate the command: 'Write your name here!' (tú)", english: 'Write your name here!', answer: '¡Escribe tu nombre aquí!', word: 'escribir', concept_id: 'imperative_affirmative', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Find and correct the error: "¡Hazes la tarea ahora!" (do the homework now, tú)', word: 'hacer', english: 'to do/make', answer: '¡Haz la tarea ahora!', concept_id: 'imperative_affirmative', difficulty: 2 },
   ],
 };
 
@@ -179,3 +209,13 @@ export default {
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // modal_verbs and obligation_infinitive in src/content/grammar.js (same
 // facts, fuller beginner-paced walkthrough) and does not contradict them.
+//
+// Curriculum-pacing-lag fix (07-09-2026): added imperative_affirmative
+// (regular tú commands + the 8 common irregulars) section/practice — split
+// off from imperative during the CEFR audit as the A2 affirmative-only
+// core (negative/formal commands and clitic placement stayed at B1 under
+// imperative), but had no A2 unit teaching it. Folded in here since making
+// requests (this unit's closing section) and giving direct commands are
+// closely related speech acts. Forms cross-checked against SpanishDict;
+// agrees with and does not contradict the existing GRAMMAR_CARDS entry for
+// imperative_affirmative.

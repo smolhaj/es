@@ -1047,6 +1047,33 @@ measures):**
     scoped OUT of this phase (user chose verbs+vocabulary only) and
     remain unaudited against real-world standards. See `ES-HISTORY.md`
     for full methodology and per-batch findings.
+29. **Curriculum-unit-content pacing-lag fix, Phase 1 of 2 (07-09-2026)** —
+    the systemic issue flagged in item 27 above. Full data pull found: 8
+    concepts (all from Phase B's splits) had **zero** teaching unit at
+    all, 8 units had a minor 1-concept lag (left as-is, documented only —
+    a learner isn't blocked, just reinforced slightly late), and 7 units
+    no longer cohered at their assigned level at all (`probability-aspect`
+    had **zero** C1 content left after its 3 concepts all moved to
+    B1/B2; `subjunctive-deep-dive` was 3/4 B1). Scoped the fix with the
+    user before touching anything: fold the 8 orphaned concepts into
+    existing sibling units (Phase 1, done this entry); split/restructure
+    the 7 incoherent units into properly-leveled units (Phase 2, not yet
+    done). **Phase 1 result**: wrote new sections + practice for all 8
+    orphaned concepts, folded into 5 existing units — `irregular_present_core`/
+    `modal_verbs_core`/`gustar_basico` into `everyday-actions` (A1,
+    placed here rather than the A2 units that still teach the higher
+    rest, since an A1 concept in an A2-positioned unit wouldn't actually
+    fix the pacing mismatch); `prepositions_core` into `asking-questions`
+    (A1); `imperative_affirmative` into `obligations-requests` (A2);
+    `relative_clauses_core` into `comparing-describing` (A2);
+    `reformuladores_basico`/`genero_informe` into `argumentation-workplace`
+    (B2, already the natural home — it already covers workplace/formal
+    register at B2). Zero concepts now lack a teaching unit. Every
+    practice exercise's `concept_id` verified against both `concepts.js`
+    and its own unit's `concepts` array; `npm run build` passes. **Phase
+    2 (restructuring the 7 incoherent units) is a separate, larger
+    follow-up** — likely 2-3 new units to properly house ~14 concepts
+    currently stranded in units several levels above their corrected tag.
 
 ## Session history index
 

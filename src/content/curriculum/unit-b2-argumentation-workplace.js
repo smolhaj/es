@@ -1,5 +1,6 @@
 // Unit — Argumentation & Workplace Correspondence (B2)
-// Covers: conectores_argumentativos_basicos, registro_formal_correspondencia
+// Covers: conectores_argumentativos_basicos, registro_formal_correspondencia,
+// reformuladores_basico, genero_informe
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -117,6 +118,42 @@ export default {
         "Leaving out the purpose sentence (le escribo para...) and jumping straight into the complaint — even in an assertive email, state why you're writing before you make your case.",
       ],
     },
+    {
+      heading: 'Restating Yourself Clearly: O Sea and Es Decir',
+      paragraphs: [
+        "Sometimes the clearest way to make a point isn't a new sentence — it's rephrasing the one you just said, either to simplify it or to spell out exactly what you meant. O sea and es decir both do this job, restating an idea \"in other words,\" and they're close enough in meaning that you can treat them as a pair for now.",
+        "Es decir is the more neutral, all-purpose choice, equally at home in speech and in writing: El proyecto se pospone, es decir, no se cancela, solo se retrasa (\"The project is being postponed, that is, it's not cancelled, just delayed\"). O sea does the identical job but leans more conversational — it shows up constantly in spoken Spanish and in casual writing, and can sound a touch informal in a strictly formal document, where es decir is the safer pick: Llego en una hora, o sea, sobre las ocho (\"I'll arrive in an hour — that is, around eight\").",
+        "Both slot in the same way: state your first version, then o sea or es decir, then the clarified or simplified restatement. You're not adding new information — you're making sure the listener or reader didn't miss your point the first time.",
+      ],
+      examples: [
+        { es: 'Trabajo desde casa, es decir, no voy a la oficina.', en: "I work from home, that is, I don't go to the office." },
+        { es: 'Llego en una hora, o sea, sobre las ocho.', en: "I'll arrive in an hour — that is, around eight." },
+        { es: 'El informe está casi listo, es decir, falta solo la conclusión.', en: 'The report is almost ready, that is, only the conclusion is missing.' },
+        { es: 'No tengo tiempo hoy, o sea que no puedo ir a la reunión.', en: "I don't have time today, so I can't go to the meeting." },
+      ],
+      commonMistakes: [
+        "Treating o sea as automatically appropriate in a formal document — it's fine in speech and casual writing, but es decir is the safer, more neutral choice in a formal email or report.",
+        "Using es decir/o sea to add brand-new information rather than restate what you already said — their whole job is clarifying or simplifying an idea you've already introduced, not introducing a fresh one.",
+      ],
+    },
+    {
+      heading: 'The Informe: Structuring a Formal Report',
+      paragraphs: [
+        "The last piece of workplace writing worth knowing at this level is the informe (report) — a genre with its own predictable shape, distinct from the complaint email you just wrote. Where an email states a purpose and makes one focused request, an informe organizes information into clear sections and favors an impersonal, factual tone over a personal one.",
+        "A standard informe moves through three parts: introducción (what the report covers and why), desarrollo or análisis (the actual findings, laid out point by point), and conclusiones y recomendaciones (what the findings mean and what should happen next). El presente informe analiza los resultados del primer trimestre y propone tres recomendaciones (\"This report analyzes the first-quarter results and proposes three recommendations\") is a typical opening line — notice it names the report's own purpose in the third person, not \"I will analyze...\"",
+        "That third-person, impersonal voice is the informe's defining feature, and it's a real shift from the polite-but-personal voice of the email you just practiced. Instead of Quisiera informarle de que... (an email's personal, polite \"I would like to inform you\"), an informe favors constructions like Se recomienda aumentar la inversión en formación (\"It is recommended to increase investment in training\") — the impersonal se, which you've met before, doing the work of keeping the report's voice objective and fact-focused rather than personal.",
+      ],
+      examples: [
+        { es: 'El presente informe analiza los resultados del primer trimestre.', en: 'This report analyzes the first-quarter results.' },
+        { es: 'En la introducción se explica el objetivo del estudio.', en: 'The introduction explains the objective of the study.' },
+        { es: 'Se recomienda aumentar la inversión en formación del personal.', en: 'It is recommended to increase investment in staff training.' },
+        { es: 'En conclusión, los datos muestran una mejora notable.', en: 'In conclusion, the data show a notable improvement.' },
+      ],
+      commonMistakes: [
+        "Writing an informe in the same personal, first-person voice as a formal email — an informe favors the impersonal se or third person (se recomienda, el informe analiza) over Quisiera informarle or Le escribo para.",
+        "Skipping the three-part structure — a real informe signals its introducción, desarrollo/análisis, and conclusiones y recomendaciones clearly, even with simple heading words, rather than blending everything into one undifferentiated block of text.",
+      ],
+    },
   ],
 
   vocab: [
@@ -140,6 +177,11 @@ export default {
     { es: 'el plazo', en: 'the deadline / time frame', example: '¿Podría confirmarme el plazo?', exampleEn: 'Could you confirm the deadline for me?' },
     { es: 'la disconformidad', en: 'the dissatisfaction / disagreement', example: 'Le escribo para expresar mi disconformidad.', exampleEn: 'I am writing to express my dissatisfaction.' },
     { es: 'adjuntar', en: 'to attach', example: 'Adjunto encontrará el documento.', exampleEn: 'Please find the document attached.' },
+    { es: 'es decir', en: 'that is / in other words', example: 'Trabajo desde casa, es decir, no voy a la oficina.', exampleEn: "I work from home, that is, I don't go to the office." },
+    { es: 'o sea', en: 'that is / in other words (conversational)', example: 'Llego en una hora, o sea, sobre las ocho.', exampleEn: "I'll arrive in an hour, that is, around eight." },
+    { es: 'el informe', en: 'the report', example: 'El presente informe analiza los resultados.', exampleEn: 'This report analyzes the results.' },
+    { es: 'la introducción', en: 'the introduction', example: 'En la introducción se explica el objetivo.', exampleEn: 'The introduction explains the objective.' },
+    { es: 'las conclusiones', en: 'the conclusions', example: 'Las conclusiones resumen los hallazgos.', exampleEn: 'The conclusions summarize the findings.' },
   ],
 
   practice: [
@@ -166,6 +208,18 @@ export default {
     { type: 'translation_to_english', prompt: 'Translate: "Le escribo para solicitar información sobre el puesto."', word: 'le escribo para', english: 'I am writing to', answer: 'I am writing to request information about the position.', concept_id: 'registro_formal_correspondencia', difficulty: 2 },
     { type: 'translation_to_spanish', prompt: "Translate, using a polite request instead of a command: 'Could you confirm receipt of this email for me?'", english: 'Could you confirm receipt of this email for me?', answer: '¿Podría confirmarme la recepción de este correo?', word: 'podría', concept_id: 'registro_formal_correspondencia', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which punctuation follows the greeting in a Spanish formal letter?', word: 'dos puntos', english: 'colon', answer: 'Estimada señora García: (colon)', options: ['Estimada señora García: (colon)', 'Estimada señora García, (comma)', 'Estimada señora García! (exclamation)', 'Estimada señora García (nothing)'], concept_id: 'registro_formal_correspondencia', difficulty: 2 },
+
+    // ── reformuladores_basico block: o sea, es decir ──
+    { type: 'multiple_choice', prompt: 'Which is the more neutral, formal-safe choice for "that is / in other words"?', word: 'es decir', english: 'that is', answer: 'es decir', options: ['es decir', 'o sea', 'por eso', 'además'], concept_id: 'reformuladores_basico', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "El proyecto se pospone, ___, no se cancela." (that is)', word: 'es decir', english: 'that is', answer: 'es decir', concept_id: 'reformuladores_basico', difficulty: 1 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'The report is almost ready, that is, only the conclusion is missing.'", english: 'The report is almost ready, that is, only the conclusion is missing.', answer: 'El informe está casi listo, es decir, falta solo la conclusión.', word: 'es decir', concept_id: 'reformuladores_basico', difficulty: 2 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Llego en una hora, o sea, sobre las ocho"?', word: 'o sea', english: "I'll arrive in an hour, that is, around eight", answer: "I'll arrive in an hour — that is, around eight.", concept_id: 'reformuladores_basico', difficulty: 2 },
+
+    // ── genero_informe block ──
+    { type: 'multiple_choice', prompt: 'Which structure does a standard informe follow?', word: 'informe', english: 'report', answer: 'introducción, desarrollo/análisis, conclusiones y recomendaciones', options: ['introducción, desarrollo/análisis, conclusiones y recomendaciones', 'saludo, cuerpo, despedida', 'pregunta, respuesta, agradecimiento', 'resumen, ejemplos, opinión personal'], concept_id: 'genero_informe', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete with the impersonal construction: "___ recomienda aumentar la inversión." (it is recommended)', word: 'se', english: 'impersonal se', answer: 'Se', concept_id: 'genero_informe', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate in report register (impersonal, not personal): 'This report analyzes the first-quarter results.'", english: 'This report analyzes the first-quarter results.', answer: 'El presente informe analiza los resultados del primer trimestre.', word: 'informe', concept_id: 'genero_informe', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Find and correct the register error in an informe: "Yo creo que deberíamos invertir más en formación."', word: 'se recomienda', english: 'it is recommended', answer: 'Se recomienda invertir más en formación.', concept_id: 'genero_informe', difficulty: 3 },
   ],
 };
 
@@ -226,3 +280,15 @@ export default {
 // framing), and builds directly on comparatives (Unit 25), the conditional
 // (Unit 18), and the imperative (Unit 19) without re-teaching their basics
 // from scratch.
+//
+// Curriculum-pacing-lag fix (07-09-2026): added reformuladores_basico
+// (o sea, es decir) and genero_informe (the informe/report genre)
+// sections/practice — both split off from C2 concepts (reformuladores,
+// generos_discursivos_formales) during the CEFR audit as their B2 core,
+// but had no B2 unit teaching them. Folded in here since this unit already
+// covers workplace/formal writing register at B2, making it the natural
+// home for both. o sea/es decir cross-checked against SpanishDict; the
+// informe's three-part structure and impersonal-se register confirmed
+// against multiple Spanish business-writing guides. Content agrees with
+// and does not contradict the existing GRAMMAR_CARDS entries for
+// reformuladores_basico and genero_informe.

@@ -1,5 +1,5 @@
 // Unit 07 — Asking Questions (A1)
-// Covers: question_words
+// Covers: question_words, prepositions_core
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -76,6 +76,26 @@ export default {
         'Dropping the accent on por qué is a small-looking mistake that actually changes the word — without the accent it reads as porque\'s two-word cousin por que (roughly "for which"), which is a different, much rarer construction.',
       ],
     },
+    {
+      heading: 'Answering With A, De, and En',
+      paragraphs: [
+        'Now that you can ask dónde, cuándo, and other questions, you need a few small words to actually answer them — Spanish\'s three most essential prepositions: a, de, and en. They\'re tiny, but they carry a lot of weight in nearly every sentence you\'ll build from here on.',
+        'A means "to" or "at," and shows up constantly with movement or a specific point in time: Voy a Madrid ("I\'m going to Madrid"), Empiezo a las ocho ("I start at eight"). De means "of" or "from," used for origin and possession: Soy de España ("I\'m from Spain"), el libro de María ("María\'s book" — literally "the book of María"). En means "in" or "on," for location: Vivo en Barcelona ("I live in Barcelona"), Está en la mesa ("It\'s on the table").',
+        'One contraction to lock in now, because it\'s mandatory, not optional: a + el always becomes al, and de + el always becomes del. Voy al mercado, never "voy a el mercado"; vengo del trabajo, never "vengo de el trabajo." This only happens with el (masculine singular "the") — a la, de la, a los, de los, and so on never contract.',
+      ],
+      examples: [
+        { es: 'Voy a la playa este fin de semana.', en: "I'm going to the beach this weekend." },
+        { es: 'Soy de México.', en: "I'm from Mexico." },
+        { es: 'Vivimos en un apartamento pequeño.', en: 'We live in a small apartment.' },
+        { es: 'Voy al cine con mis amigos.', en: 'I\'m going to the movies with my friends. (a + el → al)' },
+        { es: 'Ella viene del trabajo muy cansada.', en: 'She comes from work very tired. (de + el → del)' },
+      ],
+      commonMistakes: [
+        'Forgetting the mandatory contraction is one of the most common beginner slips: "voy a el parque" is incorrect — it must be voy al parque. The same applies to de + el → del.',
+        'Mixing up en (location, "in/on") with a (movement toward, "to/at") — Estoy en casa ("I\'m at home," already there) versus Voy a casa ("I\'m going home," heading there) express two different ideas.',
+        'A + el and de + el are the only contractions — don\'t apply the same shortcut to a la, de la, a los, or de los, which always stay as two separate words.',
+      ],
+    },
   ],
 
   vocab: [
@@ -94,6 +114,9 @@ export default {
     { es: 'cuánta', en: 'how much (fem. sing.)', example: '¿Cuánta agua necesitas?', exampleEn: 'How much water do you need?' },
     { es: 'cuántos', en: 'how many (masc. pl.)', example: '¿Cuántos años tienes?', exampleEn: 'How old are you?' },
     { es: 'cuántas', en: 'how many (fem. pl.)', example: '¿Cuántas personas vienen?', exampleEn: 'How many people are coming?' },
+    { es: 'a', en: 'to / at', example: 'Voy a Madrid.', exampleEn: "I'm going to Madrid." },
+    { es: 'de', en: 'of / from', example: 'Soy de España.', exampleEn: "I'm from Spain." },
+    { es: 'en', en: 'in / on', example: 'Vivo en Barcelona.', exampleEn: 'I live in Barcelona.' },
   ],
 
   practice: [
@@ -109,6 +132,13 @@ export default {
     { type: 'translation_to_english', prompt: '¿Qué significa "¿Cuánta agua necesitas?"?', word: 'cuánta', english: 'how much water do you need', answer: 'How much water do you need?', concept_id: 'question_words', difficulty: 1 },
     { type: 'fill_blank', prompt: 'Complete with the noun form: "No entiendo el ___ de tu decisión." (the reason)', word: 'porqué', english: 'the reason', answer: 'porqué', concept_id: 'question_words', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which of these is correctly punctuated as a Spanish question?', word: '¿...?', english: 'inverted question mark', answer: '¿Qué hora es?', options: ['Qué hora es?', '¿Qué hora es?', '¡Qué hora es?', '¿Qué hora es!'], concept_id: 'question_words', difficulty: 1 },
+
+    // ── prepositions_core block: a, de, en ──
+    { type: 'multiple_choice', prompt: 'Choose the correct preposition: "Voy ___ Madrid."', word: 'a', english: 'to', answer: 'a', options: ['a', 'de', 'en', 'al'], concept_id: 'prepositions_core', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "Soy ___ Argentina." (I am from Argentina)', word: 'de', english: 'from', answer: 'de', concept_id: 'prepositions_core', difficulty: 1 },
+    { type: 'error_correction', prompt: 'Find and correct the error: "Voy a el mercado."', word: 'al', english: 'to the', answer: 'Voy al mercado.', concept_id: 'prepositions_core', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'We live in Barcelona.'", english: 'We live in Barcelona.', answer: 'Vivimos en Barcelona.', word: 'en', concept_id: 'prepositions_core', difficulty: 1 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Vengo del trabajo"?', word: 'del', english: 'I come from work', answer: 'I come from work. (de + el → del)', concept_id: 'prepositions_core', difficulty: 2 },
   ],
 };
 
@@ -148,3 +178,11 @@ export default {
 // This content is complementary to the existing question_words entry in
 // src/content/grammar.js (same facts: qué/cuál distinction, cuánto
 // agreement, accent-marking rule) and does not contradict it.
+//
+// Curriculum-pacing-lag fix (07-09-2026): added prepositions_core (a, de,
+// en) section/practice — split off from prepositions_basic during the CEFR
+// audit as the A1 core (con, sin, por, para and the rest stayed at A2 under
+// prepositions_basic), but had no A1 unit teaching it. Folded in here since
+// question words and their answers (dónde/en, de dónde/de) pair naturally.
+// Contents cross-checked against SpanishDict; agrees with and does not
+// contradict the existing GRAMMAR_CARDS entry for prepositions_core.
