@@ -948,11 +948,45 @@ measures):**
     these two concepts' only prereqs, so the move only tightened the
     prereq gap rather than creating a backwards one); `grammar.js`
     still 117/117 synced; `npm run build` passes.
+    **Phase D is done**: dedicated WebSearch research (`cvc.cervantes.es`
+    still 403s directly, so this is secondary-source-synthesized, same
+    caveat as Phase 1) resolved all 5 flagged concepts. `near_future`
+    (ir a + infinitive) and `obligation_infinitive` (tener que/hay que)
+    both A2 → A1 — near-universally A1 content across major ELE course
+    sequencing (Aula Internacional, Nuevo Prisma, etc.); their prereqs
+    now point at Phase B's A1 core concepts (`irregular_present_core`,
+    `prepositions_core`, `hay`) instead of the A2 originals, which is
+    exactly the kind of retag Phase B's splits were meant to unblock.
+    `modal_verbs`' deber question turned out to already be correctly
+    resolved by Phase B + C: the obligation sense of deber is A2
+    (`modal_verbs`), the probability sense (deber de) is B1
+    (`expresiones_probabilidad_basica`, whose card already documents
+    exactly this split) — no change needed. `imperfect_subjunctive` and
+    `si_clauses` B2 → B1, matching the real-world pattern of type-2
+    hypothetical conditionals (si tuviera... iría...) at B1 with type-3
+    counterfactual-past (si hubiera... habría..., already
+    `pluperfect_subjunctive`, staying B2) a level above; `si_clauses`'
+    card narrowed to types 1-2 only, removing the type-3 content it
+    used to duplicate (that content requires a B2 prereq and is already
+    owned by `pluperfect_subjunctive`'s own card). `controladores_contacto`
+    C2 → B2, on direct PCIC evidence that this exact category of
+    discourse marker (¿no?/¿eh?/confirmation-seeking tags — the
+    concept's own listed ¿verdad?, fíjate, oye) is introduced at B1-B2,
+    not C2; dropped its now-backwards `registro_formal_informal` (C2)
+    prereq since nothing in the concept's actual content depends on
+    register-switching knowledge. Concept count unchanged at 117 (moves
+    only); prereq graph re-verified consistent; `grammar.js` re-synced
+    117/117; `_gemini.js` whitelist regenerated; `npm run build` passes.
     **Still open**:
-    - **Phase D**: 5 concepts flagged as genuine cross-source
-      disagreement, not resolved (near_future, obligation_infinitive,
-      modal_verbs' deber split, imperfect_subjunctive/si_clauses,
-      controladores_contacto) — needs dedicated research, not a guess.
+    - **3 concepts pulled from Phase A, still unresolved**:
+      `operadores_discursivos`, `registro_formal_informal`,
+      `estructuradores_informacion` — individually flagged as
+      likely mistagged, but never pinned to a specific real-world
+      target level with actual research (only inferred from their
+      prereqs needing Phase B's splits first, which is now done).
+      Retagging them without dedicated research would be exactly the
+      kind of guess the standing directive rules out — needs its own
+      small research pass, same treatment as Phase D got.
     - **A larger, newly-discovered systemic issue**: every one of the
       18 Phase-A-retagged concepts is currently *taught* (in
       `curriculum/index.js`'s unit sequence) 1-2 levels later than its

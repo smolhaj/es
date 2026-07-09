@@ -98,6 +98,16 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
     explanationStyles: ['example_first', 'rule_first', 'table'],
   },
+  obligation_infinitive: {
+    id: 'obligation_infinitive', label: 'Obligation (tener que / hay que)', cefr: 'A1',
+    category: 'verb', prereqs: ['irregular_present_core', 'hay'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  near_future: {
+    id: 'near_future', label: 'Near future (ir a + infinitive)', cefr: 'A1',
+    category: 'verb', prereqs: ['irregular_present_core', 'prepositions_core'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
 
   // ── A2 ──────────────────────────────────────────────────────────────────
   ser_vs_estar: {
@@ -145,11 +155,6 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['present_ar', 'present_er_ir', 'modal_verbs_core'],
     explanationStyles: ['example_first', 'rule_first', 'table'],
   },
-  obligation_infinitive: {
-    id: 'obligation_infinitive', label: 'Obligation (tener que / hay que)', cefr: 'A2',
-    category: 'verb', prereqs: ['modal_verbs', 'hay'],
-    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
-  },
   time_expressions: {
     id: 'time_expressions', label: 'Time expressions (ayer, hace…)', cefr: 'A2',
     category: 'vocabulary', prereqs: ['preterite_regular'],
@@ -173,11 +178,6 @@ export const CONCEPTS = {
   prepositions_basic: {
     id: 'prepositions_basic', label: 'Extended prepositions (con, sin, por, para, entre…)', cefr: 'A2',
     category: 'syntax', prereqs: ['definite_articles', 'present_ar', 'prepositions_core'],
-    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
-  },
-  near_future: {
-    id: 'near_future', label: 'Near future (ir a + infinitive)', cefr: 'A2',
-    category: 'verb', prereqs: ['irregular_present', 'prepositions_basic'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   adverbs_formation: {
@@ -297,6 +297,16 @@ export const CONCEPTS = {
     category: 'discourse', prereqs: ['present_subjunctive'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  imperfect_subjunctive: {
+    id: 'imperfect_subjunctive', label: 'Imperfect subjunctive (-ara/-iera)', cefr: 'B1',
+    category: 'verb', prereqs: ['present_subjunctive', 'imperfect'],
+    explanationStyles: ['table', 'rule_first', 'contrastive', 'example_first'],
+  },
+  si_clauses: {
+    id: 'si_clauses', label: 'Si-clauses — hypothetical conditionals (si tuviera... iría...)', cefr: 'B1',
+    category: 'syntax', prereqs: ['conditional', 'imperfect_subjunctive'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first', 'story'],
+  },
 
   // ── B2 ──────────────────────────────────────────────────────────────────
   present_perfect: {
@@ -328,16 +338,6 @@ export const CONCEPTS = {
     id: 'passive_se', label: 'Passive se (se vende, se habla)', cefr: 'B1',
     category: 'verb', prereqs: ['reflexive_verbs'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
-  },
-  imperfect_subjunctive: {
-    id: 'imperfect_subjunctive', label: 'Imperfect subjunctive (-ara/-iera)', cefr: 'B2',
-    category: 'verb', prereqs: ['present_subjunctive', 'imperfect'],
-    explanationStyles: ['table', 'rule_first', 'contrastive', 'example_first'],
-  },
-  si_clauses: {
-    id: 'si_clauses', label: 'Si-clauses (conditionals)', cefr: 'B2',
-    category: 'syntax', prereqs: ['conditional', 'imperfect_subjunctive'],
-    explanationStyles: ['rule_first', 'contrastive', 'example_first', 'story'],
   },
   subjunctive_adverbial: {
     id: 'subjunctive_adverbial', label: 'Subjunctive in adverbial clauses', cefr: 'B1',
@@ -388,6 +388,11 @@ export const CONCEPTS = {
     id: 'conectores_argumentativos_basicos', label: 'Basic argumentative connectors (pero, sin embargo, por eso)', cefr: 'B2',
     category: 'discourse', prereqs: ['comparatives'],
     explanationStyles: ['contrastive', 'example_first', 'table'],
+  },
+  controladores_contacto: {
+    id: 'controladores_contacto', label: 'Contact controllers (¿verdad?, fíjate, oye)', cefr: 'B2',
+    category: 'discourse', prereqs: [],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
   },
   registro_formal_correspondencia: {
     id: 'registro_formal_correspondencia', label: 'Formal correspondence & polite requests', cefr: 'B2',
@@ -524,11 +529,6 @@ export const CONCEPTS = {
     id: 'modalizacion_epistemica', label: 'Epistemic modalization & hedging (al parecer, se supone que, presuntamente)', cefr: 'C2',
     category: 'discourse', prereqs: ['futuro_probabilidad', 'condicional_probabilidad'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
-  },
-  controladores_contacto: {
-    id: 'controladores_contacto', label: 'Contact controllers (¿verdad?, fíjate, oye)', cefr: 'C2',
-    category: 'discourse', prereqs: ['registro_formal_informal'],
-    explanationStyles: ['rule_first', 'example_first', 'story'],
   },
   subjunctive_indefinite_relative: {
     id: 'subjunctive_indefinite_relative', label: 'Indefinite relative subjunctive (quienquiera que, dondequiera que, comoquiera que)', cefr: 'C2',

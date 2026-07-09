@@ -2384,3 +2384,102 @@ whitelist confirmed to contain all 117 ids. `npm run build` passes.
 Verified no other file references the old `unit-b2-reported-speech-basic.js`
 / `unit-b2-certainty-doubt-probability.js` paths or the old B2 cefr
 values for these two concepts (grepped across `src/` and `functions/`).
+
+## CEFR-accuracy audit of concepts.js: Phase D (5 disputed concepts, dedicated research)
+
+Phase 1's research flagged 5 concepts as genuine cross-source
+disagreement rather than a clean mistag — sources disagreed enough on
+each that a guess would have been exactly what the standing directive
+rules out. This phase did a dedicated WebSearch research pass per
+concept (`cvc.cervantes.es`, the PCIC primary source, still 403s
+directly in this environment — same standing limitation as Phase 1, so
+these findings rest on secondary-source synthesis, not the primary text)
+before touching anything.
+
+**`near_future` (ir a + infinitivo) and `obligation_infinitive` (tener
+que / hay que): A2 → A1.** Both are near-universally taught in the
+first level of major ELE course sequences (Aula Internacional, Nuevo
+Prisma, and others) — high-frequency, essential-for-survival-Spanish
+content, not something that waits for A2. Some individual resources
+tag pieces of this content A2 (e.g. one perífrasis-verbales worksheet
+labelled "Nivel A2"), which is presumably why the Phase 1 pass flagged
+disagreement rather than a clean signal — but the weight of evidence
+across major course sequencing points to A1. Their prereqs previously
+pointed at A2 concepts (`irregular_present`, `prepositions_basic` for
+`near_future`; `modal_verbs`, `hay` for `obligation_infinitive`), which
+would have been backwards at A1 — repointed to Phase B's new A1 core
+concepts instead (`irregular_present_core`, `prepositions_core` for
+near_future's ir/a; `irregular_present_core`, `hay` for
+obligation_infinitive's tener/hay). This is a direct, concrete payoff
+from Phase B's splits: without `irregular_present_core` and
+`prepositions_core` existing, this retag would have had nowhere
+CEFR-consistent to point its prereqs.
+
+**`modal_verbs`' deber question: no change, already correctly
+resolved.** The disagreement here was really about whether "deber"
+belongs at A2 or B1 — but checking the actual current data showed this
+was already fixed by Phase B + C without anyone noticing: Phase B
+narrowed `modal_verbs` to deber's obligation sense specifically ("you
+should study" — A2, genuinely basic), and `expresiones_probabilidad_basica`
+(moved to B1 in Phase C) already explicitly covers deber de's
+probability/inference sense ("debe de tener treinta años" — a more
+subtle hedging use, correctly a level up). Read both cards' actual rule
+text side by side to confirm before concluding no change was needed —
+this is exactly the kind of thing that's easy to flag as unresolved
+without realizing an earlier phase already fixed it as a side effect.
+
+**`imperfect_subjunctive` and `si_clauses`: B2 → B1.** Search results
+for this pair spanned an unusually wide range — one blog tagged basic
+hypothetical conditionals as A2, another labelled imperfect-subjunctive-
+plus-conditional exercises C1, a third tagged them B2 — confirming why
+this was flagged as genuine disagreement rather than noise. The
+coherent real-world pattern across the spread: type-2 hypothetical
+conditionals (si tuviera dinero, viajaría — contrary to present fact)
+belong at B1, one level below type-3 counterfactual-past conditionals
+(si hubiera sabido, no habría venido), which the audit already had
+correctly placed as `pluperfect_subjunctive` at B2. Retagging
+`si_clauses` to B1 without touching its content would have left a
+B1-tagged card still teaching type-3 examples that require a B2 prereq
+— so its rule/examples/exceptions were narrowed to types 1-2 only,
+removing the type-3 content it used to duplicate (that material is
+already properly owned by `pluperfect_subjunctive`'s own card, which
+already includes "si hubiera estudiado más, habría aprobado").
+
+**`controladores_contacto`: C2 → B2.** This one had the clearest
+evidence: PCIC's own discourse-marker taxonomy has a specific
+"controladores de contacto" category, and a paraphrased PCIC excerpt
+placed exactly this kind of marker (¿no?/¿eh?, confirmation-seeking
+tags — functionally identical to the concept's own listed ¿verdad?) at
+B1-B2, not C2. Fíjate and oye (attention-getting imperatives) are, if
+anything, even more basic and frequent in ordinary spoken Spanish. Its
+prereq (`registro_formal_informal`, C2) would have been backwards at
+B2 and wasn't semantically necessary anyway — contact controllers are
+pragmatic/conversational, not built on register-switching knowledge —
+so it was dropped to an empty prereq list rather than repointed to a
+substitute.
+
+**Verification**: full prereq-graph check across all 117 concepts (no
+count change, 5 concepts moved) — zero backwards deps. `grammar.js`
+re-synced 117/117, zero cefr mismatches. `_gemini.js` whitelist
+regenerated programmatically. `npm run build` passes.
+
+**Left unresolved, not part of this phase's named scope**: the 3
+concepts pulled from Phase A (`operadores_discursivos`,
+`registro_formal_informal`, `estructuradores_informacion`) were never
+individually researched to a specific target level — they were deferred
+purely because their prereqs needed Phase B's splits, which are now
+done, but "prereq unblocked" isn't the same as "correct level
+confirmed." Left as-is rather than guessed at; would need the same kind
+of dedicated research pass this phase just did for the other 5.
+
+**Same curriculum-pacing-lag pattern as every prior phase**: all 5
+concepts are currently taught by units positioned at their old,
+higher level (`obligations-requests` and `right-now-soon`, both
+already A2, teach `obligation_infinitive`/`near_future` — so those two
+specifically are *not* lagging now that they're A1, i.e. taught one
+level after their corrected level rather than several; but
+`subjunctive-deep-dive` (B2) still teaches `imperfect_subjunctive`/
+`si_clauses`, now correctly B1, and `register-stance` (C2) still
+teaches `controladores_contacto`, now correctly B2 — both a full level
+of lag). Not fixed here, per the same reasoning as every prior phase:
+this is curriculum unit content work, scoped as its own future phase.
