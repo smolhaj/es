@@ -2959,3 +2959,71 @@ route, comprehension-question exercise type, story continuity across
 CEFR levels as chapters progress) — this session was prose/glossary
 calibration only, still living in a private artifact, nothing committed
 to the repo beyond the vocabulary.js fill.
+
+## Reading section ships: from artifact to a real `/reading` feature
+
+*Date: 07-09-2026*
+
+Closed out the reading-passages proof-of-concept with a final QA pass and
+a real in-app build, following the user's explicit "yea I lean toward
+it's a little heavy... your unbiased objective thoughts?" exchange and
+the subsequent "yes" / "commit them as a real in app feature" directives.
+
+**Final vocabulary QA, before shipping anything.** Ran the real matching
+logic (a hand-built equivalent of `segmentSpanish`, later replaced by the
+actual function) against both passages one more time, post-merge of the
+49-word `vocabulary.js` fill from PR #62. Every remaining unmatched token
+turned out to be a proper noun, a pure grammatical function word, or a
+conjugated/inflected form of a verb or adjective already in
+`vocabulary.js` in its base form (a pre-existing, sitewide limitation of
+exact-string matching — `ClickableSpanish` has never done lemmatization,
+in lesson prose or anywhere else). But the check also caught 9 genuine
+remaining gaps the first research pass missed: `pero`, `más`, `algo`,
+`país`, `señor`/`señora`, `computadora`, `invitar`, `roto`, `verdad` — all
+extremely common words, added directly (no need for a dedicated research
+agent at this scale) with one corroborating WebSearch for the two least
+obvious (`verdad`, `roto`). `vocabulary.js`: 1488 → 1498.
+
+**Architecture decision: reuse `ClickableSpanish`, don't reinvent it.**
+Rather than port the artifact's hand-rolled vanilla-JS glossary into
+React, modified the real shared infrastructure: `src/lib/dictionary.js`'s
+`buildIndex`/`getIndex` gained an `includeUnitVocab` parameter (two cached
+indices, vocab-only and the existing full one), and `segmentSpanish`
+gained a `vocabOnly` parameter plumbed through to a new `vocabOnly` prop
+on `ClickableSpanish.jsx`. Every existing call site is unaffected — the
+parameter defaults preserve the exact prior behavior. Reading passages
+are the first (and so far only) caller to pass `vocabOnly`, since
+curriculum units' own vocab boxes intentionally list bare prepositions/
+pronouns as new lesson vocabulary, which would flood a flowing story with
+clicks on "a," "de," "en" if left in the match index.
+
+**Content and pages.** `src/content/reading.js` holds both passages
+(`PASSAGES` array, `getPassage(id)` helper) — paragraph-paired Spanish/
+English, extracted verbatim from the validated artifact. `Reading.jsx`
+lists passages at `/reading`; `ReadingPassage.jsx` renders one at
+`/reading/:passageId` with paragraphs run through `ClickableSpanish
+vocabOnly` and a "Ver traducción" toggle. Added to `NavBar.jsx`'s
+`REFERENCE_LINKS` and `App.jsx`'s routes, both `Protected` like every
+other reference page.
+
+**Verified live, not just built.** `npm run build` passed, but per this
+project's own UI-testing directive, also drove it for real: `wrangler
+pages dev` locally (hit a genuine environment snag — `pages dev --d1 DB`
+and `d1 execute --local` resolved to two *different* local SQLite files
+for the same binding, a wrangler quirk; worked around it by writing
+schema.sql + all migrations directly into the exact file the live dev
+process was using, via Node's `node:sqlite`), registered a real test
+account, and drove both passages end-to-end with Playwright: passage
+list renders both cards with correct level/format tags, clicking into
+Blahaj's chapter shows every word from the real vocabulary-only match
+underlined, clicking "tiburón" opens a popover with the real B1 entry
+(term, pronunciation button, English gloss, CEFR badge, example),
+translation toggle reveals the parallel English, and the nav dropdown
+correctly lists "Reading." Screenshots confirmed all of it visually
+before shipping. Test account and scratch Playwright scripts cleaned up
+afterward.
+
+**Still not built**: comprehension-question exercises, more passages, and
+the "story climbs in level chapter by chapter" design floated during
+scoping — all deliberately out of scope for this first ship, per the
+project's "one sample, get a reaction, then scale" rule.

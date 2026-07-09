@@ -1,0 +1,112 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+}
+
+.inner {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.pageHeader {}
+
+.backLink {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--sp-3);
+}
+.backLink:hover { color: var(--text); }
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin-top: var(--sp-2);
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-8);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+.card:hover { border-color: var(--accent); }
+
+.cardTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.tags {
+  display: flex;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+}
+
+.level,
+.format {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.level { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
+.format { background: var(--bg-alt); color: var(--text-muted); }
+
+.cardSummary {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.chapterNote {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .main { padding: var(--sp-5); }
+  .title { font-size: 1.75rem; }
+}

@@ -3,8 +3,8 @@ import { segmentSpanish } from '../lib/dictionary.js';
 import { speak } from '../hooks/useSpeech.jsx';
 import styles from './ClickableSpanish.module.css';
 
-export default function ClickableSpanish({ text, minWords = 1 }) {
-  const segments = segmentSpanish(text, minWords);
+export default function ClickableSpanish({ text, minWords = 1, vocabOnly = false }) {
+  const segments = segmentSpanish(text, minWords, vocabOnly);
   const [openIndex, setOpenIndex] = useState(null);
   const wrapRef = useRef(null);
 
