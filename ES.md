@@ -690,7 +690,15 @@ measures):**
     mismatches** on a small fraction of cards (e.g. `corte` glossed
     masculine "a cut" but exampled with feminine "court"); ~5.6% also have
     no example at all. Worth a pipeline pass flagging gender/article
-    mismatches between gloss and example.
+    mismatches between gloss and example. (Separately: a "nested-gloss
+    category header leaking through as a definition" bug in the same
+    pipeline was found and fixed 07-09-2026 — see Session history index —
+    but only the 12 confirmed-improved cards from that pass were patched
+    into the shipped deck; `build-flashcards.mjs` no longer produces this
+    bug on future regenerations, but a full regeneration wasn't done
+    because it also pulls in unrelated upstream dictionary-data drift that
+    reshuffles rank-based card IDs. A word-content-derived ID scheme would
+    remove that risk if a full regen is ever wanted.)
 13. ~~No cumulative/interleaved cross-unit review layer~~ — **done**, see
     "Review checkpoints" in Architecture above (07-08-2026).
 14. **Minor content duplication, flagged but not fixed**: `vocabulary.js`'s
@@ -735,6 +743,12 @@ measures):**
 
 ## Session history index
 
+- **07-09-2026** — Flashcard deck content fix: found and fixed the
+  "nested-gloss category header" bug in `build-flashcards.mjs` (e.g.
+  "venir" showing "Senses relating to figurative movement" instead of "to
+  come, to arrive"); patched 12 confirmed-improved cards in place without
+  a full regeneration (which would've reshuffled rank-based IDs against
+  existing `flashcard_progress` rows — see punch-list item 12).
 - **07-09-2026** — Flashcards rebuilt Anki-style: learning/relearning
   steps, same-session requeue, leech flagging, undo, suspend, keyboard
   shortcuts, interval preview, and a new `/flashcards/stats` page.

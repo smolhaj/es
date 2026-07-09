@@ -1821,3 +1821,89 @@ afterward.
 this ships live, per this project's established migration convention (the
 session has no Cloudflare credentials to run `--remote` migrations
 itself) — flagged explicitly in the PR description, not just buried here.
+
+## Flashcard deck content fix: nested-gloss category headers
+
+*Date: 07-09-2026*
+
+User spotted a bad flashcard while actually studying: "venir" showed the
+English side as "Senses relating to figurative movement" instead of an
+actual translation, and asked "some flashcards have iffy definitions and
+such - do you agree?"
+
+**Root cause**, traced by pulling the raw source data
+(`doozan/spanish_data`'s `es-en.data`, Wiktionary-derived) and reading
+`scripts/build-flashcards.mjs`'s parser: Wiktionary sometimes groups a
+word's senses under a label line with the real definitions nested one
+level deeper —
+
+```
+gloss: Senses relating to figurative movement
+    _gloss: to come from, originate
+    _gloss: to come (happen)
+```
+
+`loadDictionary()`'s regex only matched 2-space-indented `gloss:` lines,
+never the nested 4-space `_gloss:` lines — so for any headword using this
+structure, the pipeline read the label itself as if it were the
+definition and never saw the real ones underneath at all.
+
+A second, independent bug compounded this for "teléfono" (rank 402): its
+correct primary gloss, "telephone (a telecommunication device used for
+two-way talking with another person)," is 84 characters — `buildTranslation()`
+had a hard `length > 60` cutoff that discarded it outright with no
+fallback, falling through to whatever gloss came next in the file, which
+happened to be "pothos (Epipremnum aureum)" — a regional nickname for a
+houseplant. A frequency-1-5000 deck skews heavily toward exactly the kind
+of common, richly-documented, multi-sense words this pattern affects most.
+
+**Fix in `build-flashcards.mjs`**: (1) parse nested `_gloss:` lines as
+ordinary candidate entries alongside top-level ones; skip pushing a
+top-level `gloss:` line itself when it matches a "category label" pattern
+(`/^(senses?|uses?|meanings?)\s+(relating|related|pertaining)\s+to\b/i`)
+so it can never win a slot ahead of the real definitions nested under it.
+(2) When a gloss exceeds the length cutoff, try trimming a trailing
+explanatory parenthetical ("term (long clause)" → "term") before giving up
+on it entirely, instead of silently discarding a correct-but-verbose
+primary sense in favor of a shorter wrong one.
+
+**Regeneration risk found and avoided.** A full `node scripts/
+build-flashcards.mjs` re-run was tried first, but it re-downloads the
+three source files fresh — and the upstream `doozan/spanish_data` GitHub
+repo has evidently been edited since the deck was originally built,
+independent of this fix. That reshuffled which ~5000 words make the
+frequency cutoff (93 swapped in/out, starting as early as rank 15) and,
+since card `id`s are purely rank-positional (`fc<N>`), cascaded a rank/ID
+shift across most of the deck — which would have silently reassigned
+`flashcard_progress` rows (keyed by `card_id`) to different words than
+before. It also surfaced at least one regression unrelated to this fix's
+own logic: "con" (with) lost its "on" sense and picked up an awkward
+"Dependent preposition following certain verbs" usage-note fragment as a
+second gloss, purely from the updated upstream text. This directly
+contradicted what had been told to the user earlier in the session ("card
+IDs are rank-based, so a regeneration would keep the same IDs for the
+same words") — true only if word inclusion/order don't shift, which a
+full regen against fresh upstream data doesn't guarantee.
+
+**Recovery**: reverted the full regen, then wrote a scoped one-off patch
+script (not committed — scratch-only) that re-derives `en` only for the
+41 words in the *current* deck whose source entry uses the nested-gloss
+structure (222 total in the dictionary, 41 already selected into the
+top-5000), using the fixed parser, while keeping `id`/`es`/`pos`/`rank`/
+`example`/`exampleEn` byte-identical to the shipped file. That produced 23
+candidate diffs; each was read by hand rather than bulk-applied — several
+were lateral or worse (e.g. "triste" picked up a stray "As a temporary
+state" fragment; "grupo" lost a richer synonym list for a narrower "class
+group"; "pan," "goma," "foco," "trapo" each lost a useful colloquial sense
+in favor of a rarer one). Applied exactly the 12 unambiguous improvements:
+`sí`, `deber`, `venir`, `llevar`, `llamar`, `gustar` (whose *old* gloss was
+actively wrong — "to want, to experiment, to try" instead of "to like"),
+`sacar`, `escribir`, `teléfono`, `crimen`, `mono`, `Isabel`. Verified via a
+full structural diff against the original file that all 5000 cards'
+`id`/`es`/`pos`/`rank`/`example`/`exampleEn` are unchanged and exactly 12
+`en` fields differ — zero risk to existing `flashcard_progress` rows.
+
+The pipeline fix itself (`build-flashcards.mjs`) is real and shipped, so
+this bug class won't recur if a full deck regeneration is ever done —
+that would need a content-derived (not rank-positional) card ID scheme
+first, tracked as an addendum to punch-list item 12 in `ES.md`.
