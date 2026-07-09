@@ -2049,3 +2049,71 @@ Verified end-to-end via a live local `wrangler pages dev` + D1 + Playwright
 pass: all 3 new units render correctly on `/learn` under B2, clicking into
 one loads its lesson content, and starting practice correctly serves all
 20 exercises. Test accounts cleaned from local D1 afterward.
+
+## 22 new verbs: closing the C1/C2 gap on the verb reference
+
+*Date: 07-09-2026*
+
+Continuation of the "bang out written content" push, next item in the
+priority queue after B2 curriculum: `/verbs` had 14 C1 entries and zero
+C2, despite the C2 curriculum content (units 31-37) already teaching
+grammar — literary tenses, formal register — these verbs exist to
+demonstrate. Grounded via a direct count rather than guessing.
+
+**Verb selection.** 9 C1 (conllevar, plantear, suscitar, desempeñar,
+prescindir, discernir, incurrir, subyacer, obviar) to bring C1 toward
+parity with B1/B2's 23. 14 C2 split into three deliberate categories:
+7 weather/impersonal verbs (llover, nevar, atañer, concernir, acontecer,
+amanecer, anochecer), 6 rare/advanced irregulars (yacer, asir, raer, roer,
+erguir, argüir), and the archaic defective placer — chosen specifically
+because these are exactly the kind of rare-but-real grammar the existing
+C2 curriculum content already discusses (literary tenses, formal/archaic
+register) without having reference conjugation tables to point learners
+at.
+
+**Parallel dispatch via staging files, not direct edits.** `verbs.js` is
+a single shared file, so two background agents (one per CEFR level)
+each wrote to a separate standalone staging file
+(`verbs-staging-c1.js`/`verbs-staging-c2.js`) rather than both editing
+`verbs.js` directly — the same same-file-race mitigation used for the
+earlier vocabulary gap-fill and B2-unit work. Both were instructed to
+WebSearch-verify every single conjugation against SpanishDict/RAE/
+WordReference before writing, given how easy rare/irregular/literary
+forms are to get confidently wrong from memory, and to explicitly flag
+(not silently resolve) any case where standard references genuinely
+disagree or list multiple accepted forms.
+
+**Verification, including two independent spot-checks of the agents'
+own flagged uncertainties** (not just trusting their self-reported
+audit notes): the C1 agent flagged real uncertainty over obviar's
+yo-form (a search summary had claimed "obvío" with an accent, following
+the enviar/hiatus pattern, before the agent's own cross-check resolved
+it to "obvio," following the cambiar/anunciar diphthong pattern) — an
+independent fresh WebSearch against RAE's own *Diccionario panhispánico
+de dudas* confirmed "obvio" directly, matching the agent's resolution
+exactly. The C2 agent flagged roer as "the clearest documented case" of
+genuine three-way conjugation variation (roo/roigo/royo running through
+the entire present and present subjunctive) — an independent WebSearch
+against RAE's official grammar-consultation account confirmed this is
+real (not an exaggeration), including the exact same "most used: roo,
+roa" detail the agent had reported. Both spot-checks holding up exactly
+gave enough confidence in the agents' overall work to not individually
+re-verify all 23 verbs by hand.
+
+**A real duplicate found and fixed during merge**: the C1 agent picked
+"plantear" without cross-checking the *entire* existing 125-verb list
+(only against existing C1 entries) — plantear already existed as a B2
+verb. Since it was a plain regular -ar verb with nothing else riding on
+it, the duplicate C1 entry was simply dropped rather than rushing an
+unverified replacement under time pressure, landing C1 at 22 instead of
+23 (still effectively at parity with B1/B2). Structural verification
+(a Node script checking all 21 required keys × all 17 tenses × 6 persons
+non-empty, run before AND after the duplicate fix) confirms zero
+remaining issues across all 147 verbs and zero duplicate infinitives.
+
+Verified end-to-end via a live local `wrangler pages dev` + D1 +
+Playwright pass: `/verbs` C2 filter correctly shows all 14 new verbs
+(confirmed roer and llover specifically), clicking into roer's card
+expands its full note (the three-way variation explanation) and tense
+tabs including Pretérito Anterior and Futuro de Subjuntivo (Literary),
+zero console errors. Test account cleaned from local D1 afterward.

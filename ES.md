@@ -330,18 +330,25 @@ schema changes, no new backend route:
 
 ### Verb reference (`/verbs`)
 
-`src/content/verbs.js` — 125 verbs, 17 tenses each (`TENSES`/`TENSE_LABELS`
+`src/content/verbs.js` — 147 verbs, 17 tenses each (`TENSES`/`TENSE_LABELS`
 exports drive the UI generically): present, preterite, imperfect, future,
 conditional, present subjunctive, imperfect subjunctive, 6 compound tenses
 (present/pluperfect/future/conditional perfect + present/pluperfect perfect
 subjunctive), the literary pretérito anterior and futuro de subjuntivo, and
 imperative (affirmative/negative). Imperative has no `yo` form — stored as
-`yo: '—'` rather than special-cased in the renderer. Regenerable via
-`scripts/extend-verb-tenses.mjs`, which mechanically derives all of this
-from each verb's existing present/preterite/subjunctive data plus a small
-set of WebSearch-verified irregular-form exception lists (tú-imperative
-irregulars, irregular participles, reflexive enclitic-pronoun placement) —
-see `ES-HISTORY.md`, 07-08-2026, if regenerating and something looks wrong.
+`yo: '—'` rather than special-cased in the renderer. The original 125 are
+regenerable via `scripts/extend-verb-tenses.mjs`, which mechanically
+derives all of this from each verb's existing present/preterite/subjunctive
+data plus a small set of WebSearch-verified irregular-form exception lists
+(tú-imperative irregulars, irregular participles, reflexive
+enclitic-pronoun placement) — see `ES-HISTORY.md`, 07-08-2026, if
+regenerating and something looks wrong. The 22 added 07-09-2026 (closing a
+C1/C2 gap — was 14 C1 / 0 C2, now 22/14) were hand-written directly with
+every tense filled per-verb rather than run through that script, since
+several (the rare/defective C2 verbs especially) needed individual
+WebSearch verification and documented multi-form variation notes that a
+mechanical deriver can't produce — running `extend-verb-tenses.mjs` again
+would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
@@ -777,6 +784,11 @@ measures):**
 
 ## Session history index
 
+- **07-09-2026** — 22 new verbs added to `/verbs` (9 C1, 14 C2 — one
+  C1 candidate dropped as a duplicate of an existing B2 entry), closing
+  the "zero C2 verbs" gap. Two parallel background agents, each
+  WebSearch-verifying every conjugation individually; both independent
+  spot-checks against RAE's own dictionary held up exactly.
 - **07-09-2026** — 3 new B2 curriculum units (reported speech basics,
   certainty/doubt/probability, argumentation + formal correspondence)
   closing B2's unit-count gap (4 → 7, parity with neighboring levels).
