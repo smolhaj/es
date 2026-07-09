@@ -73,6 +73,19 @@ async function loadFrequency() {
 // then one or more "pos: X" sections, each followed by indented metadata
 // lines and one or more "  gloss: ..." lines (possibly with a nested
 // "    q: ..." qualifier on the next line).
+// Some headwords group several senses under a label line with the real
+// definitions nested one level deeper, e.g. (from "venir"):
+//   gloss: Senses relating to figurative movement
+//       _gloss: to come from, originate
+//       _gloss: to come (happen)
+// The label itself ("Senses relating to figurative movement") isn't a
+// translation of anything — it's Wiktionary's own category description for
+// the group — but the old parser only matched 2-space-indented "gloss:"
+// lines, so it read the label as if it *were* the definition and never saw
+// the real "_gloss:" children at all. Matches "Senses/Uses/Meanings
+// relating/related/pertaining to X".
+const CATEGORY_HEADER_RE = /^(senses?|uses?|meanings?)\s+(relating|related|pertaining)\s+to\b/i;
+
 function loadDictionary() {
   const raw = fs.readFileSync(`${DIR}/es-en.data`, 'utf8');
   const blocks = raw.split('\n_____\n');
@@ -96,14 +109,26 @@ function loadDictionary() {
       const line = lines[i];
       const posMatch = line.match(/^pos:\s*(\S+)/);
       if (posMatch) { currentPos = posMatch[1]; continue; }
+      // "  gloss: ..." (2-space indent) is a normal top-level sense; a
+      // nested "    _gloss: ..." (4-space indent, underscore-prefixed) is
+      // a specific definition living under a parent gloss/category line —
+      // both get pushed as ordinary candidate entries so buildTranslation()
+      // has the real definitions available, not just their group label.
       const glossMatch = line.match(/^\s{2}gloss:\s*(.+)/);
-      if (glossMatch && currentPos) {
-        let gloss = glossMatch[1].trim();
+      const subGlossMatch = !glossMatch && line.match(/^\s{4}_gloss:\s*(.+)/);
+      const match = glossMatch || subGlossMatch;
+      if (match && currentPos) {
+        let gloss = match[1].trim();
         // Drop trailing multi-line continuations (glosses can wrap with \n
         // literal sequences in this dataset) — keep just the first clause.
         gloss = gloss.split('\\n')[0].trim();
         const lower = gloss.toLowerCase();
         if (BAD_GLOSS_PREFIXES.some(p => lower.startsWith(p))) continue;
+        // A pure category label has no standalone meaning — skip it so it
+        // can never win a slot in buildTranslation() ahead of the real
+        // "_gloss:" definitions nested underneath it (parsed above, and
+        // already queued right after this line in `entries`).
+        if (glossMatch && CATEGORY_HEADER_RE.test(gloss)) continue;
         entries.push({ pos: currentPos, gloss });
       }
     }
@@ -120,6 +145,23 @@ function cleanGloss(gloss) {
   // genuinely useful sense info, e.g. "to be (in the passive voice sense)",
   // are fine to keep, they read naturally on a flashcard).
   return gloss.replace(/\s*\.$/, '').trim();
+}
+
+const GLOSS_MAX = 60;
+
+// A gloss over GLOSS_MAX gets dropped outright by buildTranslation() below,
+// which used to mean a correct-but-verbose primary sense (e.g. "telephone
+// (a telecommunication device used for two-way talking with another
+// person)") lost silently to whatever short gloss happened to come next in
+// the file — for "teléfono" that was "pothos (Epipremnum aureum)", a
+// regional plant nickname. Most of these follow the same "term (long
+// explanatory clause)" shape, where the clause is pure explanation, not a
+// short useful qualifier (contrast "to be (in the passive voice sense)",
+// which already fits under GLOSS_MAX and is never touched by this). Try
+// trimming to just the head term before giving up on the gloss entirely.
+function shortenGloss(gloss) {
+  const m = gloss.match(/^([^(]{2,40}?)\s*\(.+\)$/);
+  return m ? m[1].trim() : gloss;
 }
 
 const USELESS_POS = new Set(['letter', 'suffix', 'prefix']);
@@ -155,8 +197,13 @@ function buildTranslation(entries, pos) {
   const parts = [];
   let linesUsed = 0;
   for (const e of sameBlock) {
-    const g = cleanGloss(e.gloss);
-    if (!g || g.length > 60) continue;
+    let g = cleanGloss(e.gloss);
+    if (!g) continue;
+    if (g.length > GLOSS_MAX) {
+      const shortened = shortenGloss(g);
+      if (shortened.length > GLOSS_MAX) continue;
+      g = shortened;
+    }
     if (USELESS_GLOSS.test(g)) continue;
     for (const part of g.split(';').map(s => s.trim()).filter(Boolean)) {
       const key = part.toLowerCase();
