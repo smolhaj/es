@@ -977,16 +977,26 @@ measures):**
     register-switching knowledge. Concept count unchanged at 117 (moves
     only); prereq graph re-verified consistent; `grammar.js` re-synced
     117/117; `_gemini.js` whitelist regenerated; `npm run build` passes.
+    **The 3 concepts pulled from Phase A are now resolved too**
+    (07-09-2026, dedicated WebSearch research, same `cvc.cervantes.es`-
+    403 caveat as every prior phase): `operadores_discursivos` (de
+    hecho, en realidad, por cierto) C2 → B2 — direct evidence these
+    exact connectors appear in B2 teaching materials, and "claro" (the
+    same PCIC discourse-operator subcategory) starts at B1; its prereq
+    repointed from `reformuladores` (C2) to `reformuladores_basico`
+    (B2). `estructuradores_informacion` (por una parte…por otra, en
+    primer lugar…en definitiva) C2 → C1, and `registro_formal_informal`
+    (register switching) C2 → C1 — PCIC evidence that "marcas de
+    registro... se inicia en B2 y es abundante en C1" (register marking
+    begins at B2, is abundant at C1) and that C1 can-do descriptors
+    explicitly include register adaptation, meaning C2 was overclaiming
+    for what's actually core C1 content. All three retags were
+    downward moves, which can't create backwards prereqs for anything
+    depending on them (`pares_registro_lexico` and
+    `generos_discursivos_formales`, both C2, only got a safer margin).
+    Concept count still 117; prereq graph, `grammar.js` (117/117), and
+    `_gemini.js` whitelist all re-verified; `npm run build` passes.
     **Still open**:
-    - **3 concepts pulled from Phase A, still unresolved**:
-      `operadores_discursivos`, `registro_formal_informal`,
-      `estructuradores_informacion` — individually flagged as
-      likely mistagged, but never pinned to a specific real-world
-      target level with actual research (only inferred from their
-      prereqs needing Phase B's splits first, which is now done).
-      Retagging them without dedicated research would be exactly the
-      kind of guess the standing directive rules out — needs its own
-      small research pass, same treatment as Phase D got.
     - **A larger, newly-discovered systemic issue**: every one of the
       18 Phase-A-retagged concepts is currently *taught* (in
       `curriculum/index.js`'s unit sequence) 1-2 levels later than its
