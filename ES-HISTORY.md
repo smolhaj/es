@@ -1907,3 +1907,77 @@ The pipeline fix itself (`build-flashcards.mjs`) is real and shipped, so
 this bug class won't recur if a full deck regeneration is ever done —
 that would need a content-derived (not rank-positional) card ID scheme
 first, tracked as an addendum to punch-list item 12 in `ES.md`.
+
+## Written-content push, part 1: CEFR-tagging idioms and false friends
+
+*Date: 07-09-2026*
+
+Kicked off by the user asking "how do I know [my displayed CEFR level] is
+correct?" — answered honestly (it's a grammar-only accuracy gate, not a
+true 4-skill assessment; logged as punch-list item 23, deliberately
+deprioritized). User then redirected: "I want to bang out all possible
+written content for now first," followed by a request to scope real
+content additions — either curriculum expansion or original + open-source
+reading passages with comprehension questions.
+
+**Content inventory** (grounded before scoping, not guessed): vocabulary
+1439 words (balanced), grammar concepts/cards 105 (balanced 14-20/level),
+curriculum 38 taught units (B2 notably thin at 4 vs 6-8 at neighboring
+levels), verbs reference 125 entries (C1 only 14, **zero C2**), idioms 166
+and false-friends 110 (both had **no CEFR field at all**, unlike every
+other content file — couldn't be filtered by level).
+
+Scoped via MC questions: (1) tag idioms/false-friends by CEFR — yes; (2)
+priority gaps to fill — B2 curriculum + C1/C2 verbs (not "more idioms" or
+"more false friends" — volume was fine, tagging was the actual gap); (3)
+pace — one gap at a time in priority order. A follow-up message also
+scoped a **reading-passages section** (new territory — no in-app reading/
+comprehension system exists at all, only an outbound-links resources
+page): mixed original + open-source-adapted content per the user's
+judgment call each time, both a serialized recurring-characters story
+*and* standalone topic passages (the spec literally calls for "short
+stories with recurring characters"), delivered as a new standalone
+"Reading" section — queued to start after the 3 already-agreed items.
+
+**Execution**: two `general-purpose` agents dispatched in parallel,
+`isolation: "worktree"`, one per file (`idioms.js`+`Idioms.jsx` /
+`false-friends.js`+`FalseFriends.jsx`) — safe to parallelize since they
+touch disjoint files. Both were told to level by real-world pragmatic
+commonness (not raw word difficulty), to actually spread across the full
+range rather than defaulting into one bucket, and to replicate
+`VocabBrowser.jsx`'s existing CEFR-filter-row/badge pattern exactly rather
+than invent a new one.
+
+**A near-miss both agents independently hit and caught**: each one's
+first attempt tried to bulk-edit via a Node script run through plain
+`Bash`, which — unlike the `Edit` tool — isn't worktree-isolation-guarded,
+so it wrote to the *shared main checkout* instead of the agent's own
+worktree. Both agents caught this themselves via `git status`/`git diff
+--stat` on the main checkout, reverted cleanly with `git checkout --`,
+and redid the work against the correct worktree path. Confirmed after the
+fact that the main checkout was genuinely untouched in both cases. Worth
+remembering for any future large scripted edit inside a worktree agent:
+prefer the `Edit` tool (path-guarded) over `Bash`+Node-script writes
+(not guarded) when the isolation actually matters.
+
+Both agents left their changes uncommitted in their worktrees per
+instructions ("I'll review and merge back myself"). Verified each
+independently before merging: `node --check`, a throwaway distribution-
+count script confirming every item got a valid `cefr` value with no
+skew into a single bucket, and `npm run build`. `git merge` on the
+worktree branches found nothing to merge (the agents' changes were
+uncommitted working-tree edits, not commits on their branch) — copied the
+three changed files per agent directly into the main checkout instead,
+re-verified there, then removed both worktrees/branches.
+
+Final distributions — idioms (166): `A1:1, A2:16, B1:47, B2:71, C1:23,
+C2:8`. False friends (110): `A1:13, A2:36, B1:35, B2:20, C1:4, C2:2`. Both
+genuinely spread across the full range rather than clustering in one
+bucket, and the shapes make sense for what each content type actually is
+(idioms skew B1/B2 since idiomatic language is inherently past-beginner;
+false friends taper from A2/B1 since the classic ones — embarazada,
+actualmente, sensible — are exactly what trips up early/intermediate
+learners, not advanced ones).
+
+Next in the queue: B2 curriculum units, then C1/C2 verbs, then the
+reading-passages section (scoped above but not yet started).

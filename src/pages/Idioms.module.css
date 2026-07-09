@@ -152,6 +152,23 @@
 .regNeutral    { background: var(--bg-alt); color: var(--text-muted); }
 .regFormal     { background: rgba(58, 103, 65, 0.1); color: var(--accent-green); }
 
+.cefr {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cefrA1 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
+.cefrA2 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
+.cefrB1 { background: rgba(200, 134, 10, 0.1); color: var(--accent-gold); }
+.cefrB2 { background: rgba(90, 130, 80, 0.12); color: #3d7a42; }
+.cefrC1 { background: rgba(80, 90, 160, 0.1); color: #4a56a6; }
+.cefrC2 { background: rgba(140, 60, 130, 0.1); color: #8c3c82; }
+
 .meaning {
   font-size: 0.875rem;
   color: var(--text-muted);

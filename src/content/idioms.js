@@ -9,6 +9,7 @@ export const IDIOMS = [
     exampleEn: 'The tickets cost a fortune.',
     register: 'colloquial',
     category: 'money',
+    cefr: 'B1',
   },
   {
     idiom: 'no hay mal que por bien no venga',
@@ -18,6 +19,7 @@ export const IDIOMS = [
     exampleEn: 'I lost my job but found a better one. Every cloud has a silver lining.',
     register: 'neutral',
     category: 'life',
+    cefr: 'B2',
   },
   {
     idiom: 'matar dos pájaros de un tiro',
@@ -27,6 +29,7 @@ export const IDIOMS = [
     exampleEn: 'I went to the bank and the supermarket — killed two birds with one stone.',
     register: 'informal',
     category: 'efficiency',
+    cefr: 'B1',
   },
   {
     idiom: 'ni hablar',
@@ -36,6 +39,7 @@ export const IDIOMS = [
     exampleEn: 'Can I borrow your car? — No way.',
     register: 'colloquial',
     category: 'refusal',
+    cefr: 'A2',
   },
   {
     idiom: 'estar en las nubes',
@@ -45,6 +49,7 @@ export const IDIOMS = [
     exampleEn: 'He\'s always daydreaming during class.',
     register: 'informal',
     category: 'mind',
+    cefr: 'B1',
   },
   {
     idiom: 'tomar el pelo',
@@ -54,6 +59,7 @@ export const IDIOMS = [
     exampleEn: 'Are you pulling my leg?',
     register: 'colloquial',
     category: 'deception',
+    cefr: 'B1',
   },
   {
     idiom: 'no pegar ojo',
@@ -63,6 +69,7 @@ export const IDIOMS = [
     exampleEn: 'Last night I didn\'t sleep a wink because of the noise.',
     register: 'colloquial',
     category: 'sleep',
+    cefr: 'B2',
   },
   {
     idiom: 'meter la pata',
@@ -72,6 +79,7 @@ export const IDIOMS = [
     exampleEn: 'I put my foot in it when I asked if she was pregnant.',
     register: 'colloquial',
     category: 'mistakes',
+    cefr: 'B1',
   },
   {
     idiom: 'ponerse las pilas',
@@ -81,6 +89,7 @@ export const IDIOMS = [
     exampleEn: 'If you want to pass, you need to get your act together.',
     register: 'colloquial',
     category: 'effort',
+    cefr: 'B1',
   },
   {
     idiom: 'ser pan comido',
@@ -90,6 +99,7 @@ export const IDIOMS = [
     exampleEn: 'The exam was a piece of cake.',
     register: 'informal',
     category: 'ease',
+    cefr: 'B1',
   },
   {
     idiom: 'estar hasta las narices',
@@ -99,6 +109,7 @@ export const IDIOMS = [
     exampleEn: 'I\'m fed up with this job.',
     register: 'colloquial',
     category: 'frustration',
+    cefr: 'B2',
   },
   {
     idiom: 'no dar abasto',
@@ -108,6 +119,7 @@ export const IDIOMS = [
     exampleEn: 'The restaurant couldn\'t keep up during the weekend.',
     register: 'informal',
     category: 'work',
+    cefr: 'B2',
   },
   {
     idiom: 'llueve sobre mojado',
@@ -117,6 +129,7 @@ export const IDIOMS = [
     exampleEn: 'The car broke down and on top of that I got sick. It never rains but it pours.',
     register: 'neutral',
     category: 'misfortune',
+    cefr: 'C1',
   },
   {
     idiom: 'coger el toro por los cuernos',
@@ -126,6 +139,7 @@ export const IDIOMS = [
     exampleEn: 'We need to take the bull by the horns and talk to the boss.',
     register: 'neutral',
     category: 'courage',
+    cefr: 'B1',
   },
   {
     idiom: 'echar una mano',
@@ -135,6 +149,7 @@ export const IDIOMS = [
     exampleEn: 'Can you give me a hand with this?',
     register: 'informal',
     category: 'help',
+    cefr: 'A2',
   },
   {
     idiom: 'no es para tanto',
@@ -144,6 +159,7 @@ export const IDIOMS = [
     exampleEn: 'It hurts so much! — It\'s not a big deal.',
     register: 'colloquial',
     category: 'reactions',
+    cefr: 'A2',
   },
   {
     idiom: 'a última hora',
@@ -153,6 +169,7 @@ export const IDIOMS = [
     exampleEn: 'He always leaves everything to the last minute.',
     register: 'neutral',
     category: 'time',
+    cefr: 'A2',
   },
   {
     idiom: 'quedarse con la boca abierta',
@@ -162,6 +179,7 @@ export const IDIOMS = [
     exampleEn: 'I was left speechless when I saw the price.',
     register: 'informal',
     category: 'surprise',
+    cefr: 'B1',
   },
   {
     idiom: 'dar en el clavo',
@@ -171,6 +189,7 @@ export const IDIOMS = [
     exampleEn: 'You hit the nail on the head with that observation.',
     register: 'neutral',
     category: 'accuracy',
+    cefr: 'B2',
   },
   {
     idiom: 'no tener pelos en la lengua',
@@ -180,6 +199,7 @@ export const IDIOMS = [
     exampleEn: 'María doesn\'t mince words — she says what she thinks.',
     register: 'informal',
     category: 'communication',
+    cefr: 'B2',
   },
   {
     idiom: 'ser un hueso duro de roer',
@@ -189,6 +209,7 @@ export const IDIOMS = [
     exampleEn: 'The subjunctive is a tough nut to crack.',
     register: 'informal',
     category: 'difficulty',
+    cefr: 'B2',
   },
   {
     idiom: 'a ver',
@@ -198,6 +219,7 @@ export const IDIOMS = [
     exampleEn: 'Let\'s see, what exactly do you mean?',
     register: 'colloquial',
     category: 'fillers',
+    cefr: 'A1',
   },
   {
     idiom: 'al pie de la letra',
@@ -207,6 +229,7 @@ export const IDIOMS = [
     exampleEn: 'She followed the instructions to the letter.',
     register: 'neutral',
     category: 'precision',
+    cefr: 'B2',
   },
   {
     idiom: 'estar en forma',
@@ -216,6 +239,7 @@ export const IDIOMS = [
     exampleEn: 'She exercises to stay in shape.',
     register: 'neutral',
     category: 'health',
+    cefr: 'A2',
   },
   {
     idiom: 'perder la cabeza',
@@ -225,6 +249,7 @@ export const IDIOMS = [
     exampleEn: 'You\'ve lost your mind if you believe that.',
     register: 'informal',
     category: 'mind',
+    cefr: 'B1',
   },
   {
     idiom: 'de vez en cuando',
@@ -234,6 +259,7 @@ export const IDIOMS = [
     exampleEn: 'From time to time I feel like having ice cream.',
     register: 'neutral',
     category: 'frequency',
+    cefr: 'A2',
   },
   {
     idiom: 'no cabe duda',
@@ -243,6 +269,7 @@ export const IDIOMS = [
     exampleEn: 'There\'s no doubt that he\'s the best.',
     register: 'neutral',
     category: 'certainty',
+    cefr: 'B2',
   },
   {
     idiom: 'poner al día',
@@ -252,6 +279,7 @@ export const IDIOMS = [
     exampleEn: 'Fill me in on the news.',
     register: 'informal',
     category: 'communication',
+    cefr: 'B2',
   },
   {
     idiom: 'en el fondo',
@@ -261,6 +289,7 @@ export const IDIOMS = [
     exampleEn: 'Deep down, he\'s a good person.',
     register: 'neutral',
     category: 'truth',
+    cefr: 'B2',
   },
   {
     idiom: 'a lo mejor',
@@ -270,6 +299,7 @@ export const IDIOMS = [
     exampleEn: 'Maybe she\'ll come this afternoon.',
     register: 'informal',
     category: 'probability',
+    cefr: 'A2',
   },
   {
     idiom: 'hacer falta',
@@ -279,6 +309,7 @@ export const IDIOMS = [
     exampleEn: 'I need a dictionary.',
     register: 'neutral',
     category: 'need',
+    cefr: 'A2',
   },
   {
     idiom: 'tener buena/mala pinta',
@@ -288,6 +319,7 @@ export const IDIOMS = [
     exampleEn: 'That dish looks really good.',
     register: 'colloquial',
     category: 'appearances',
+    cefr: 'B1',
   },
   {
     idiom: 'ser un rollo',
@@ -297,6 +329,7 @@ export const IDIOMS = [
     exampleEn: 'This meeting is such a drag.',
     register: 'colloquial',
     category: 'boredom',
+    cefr: 'B1',
   },
   {
     idiom: 'tomar la delantera',
@@ -306,6 +339,7 @@ export const IDIOMS = [
     exampleEn: 'We need to take the lead in the market.',
     register: 'neutral',
     category: 'competition',
+    cefr: 'B2',
   },
   {
     idiom: 'no pasa nada',
@@ -315,6 +349,7 @@ export const IDIOMS = [
     exampleEn: 'I\'m so sorry. — Don\'t worry about it.',
     register: 'colloquial',
     category: 'reassurance',
+    cefr: 'A2',
   },
   {
     idiom: 'valer la pena',
@@ -324,6 +359,7 @@ export const IDIOMS = [
     exampleEn: 'Learning Spanish is worth it.',
     register: 'neutral',
     category: 'value',
+    cefr: 'B1',
   },
   {
     idiom: 'a grandes rasgos',
@@ -333,6 +369,7 @@ export const IDIOMS = [
     exampleEn: 'Broadly speaking, the plan works.',
     register: 'neutral',
     category: 'summary',
+    cefr: 'B2',
   },
   {
     idiom: 'con las manos en la masa',
@@ -342,6 +379,7 @@ export const IDIOMS = [
     exampleEn: 'They caught him red-handed.',
     register: 'informal',
     category: 'crime',
+    cefr: 'B2',
   },
   {
     idiom: 'dar la lata',
@@ -351,6 +389,7 @@ export const IDIOMS = [
     exampleEn: 'Stop being a nuisance about that.',
     register: 'colloquial',
     category: 'annoyance',
+    cefr: 'B2',
   },
   {
     idiom: 'en un abrir y cerrar de ojos',
@@ -360,6 +399,7 @@ export const IDIOMS = [
     exampleEn: 'He did it in the blink of an eye.',
     register: 'neutral',
     category: 'speed',
+    cefr: 'B2',
   },
   {
     idiom: 'no dar pie con bola',
@@ -369,6 +409,7 @@ export const IDIOMS = [
     exampleEn: 'Today I can\'t do anything right — everything goes wrong.',
     register: 'colloquial',
     category: 'failure',
+    cefr: 'C1',
   },
   {
     idiom: 'tirar la casa por la ventana',
@@ -378,6 +419,7 @@ export const IDIOMS = [
     exampleEn: 'For the wedding they spared no expense.',
     register: 'informal',
     category: 'money',
+    cefr: 'B2',
   },
   {
     idiom: 'llevarse como el perro y el gato',
@@ -387,6 +429,7 @@ export const IDIOMS = [
     exampleEn: 'My siblings fight like cat and dog.',
     register: 'informal',
     category: 'relationships',
+    cefr: 'B1',
   },
   {
     idiom: 'no hay mal que cien años dure',
@@ -396,6 +439,7 @@ export const IDIOMS = [
     exampleEn: 'Cheer up! This too shall pass.',
     register: 'neutral',
     category: 'life',
+    cefr: 'C1',
   },
   {
     idiom: 'quemar las naves',
@@ -405,6 +449,7 @@ export const IDIOMS = [
     exampleEn: 'He quit his job and burned his bridges.',
     register: 'neutral',
     category: 'decisions',
+    cefr: 'C1',
   },
   {
     idiom: 'ver los toros desde la barrera',
@@ -414,6 +459,7 @@ export const IDIOMS = [
     exampleEn: 'He prefers to play it safe and not commit.',
     register: 'neutral',
     category: 'caution',
+    cefr: 'C1',
   },
   {
     idiom: 'buscarle tres pies al gato',
@@ -423,6 +469,7 @@ export const IDIOMS = [
     exampleEn: 'Don\'t overcomplicate things — the solution is simple.',
     register: 'informal',
     category: 'problems',
+    cefr: 'B2',
   },
   {
     idiom: 'dormir a pierna suelta',
@@ -432,6 +479,7 @@ export const IDIOMS = [
     exampleEn: 'After the trip I slept like a log.',
     register: 'informal',
     category: 'sleep',
+    cefr: 'B2',
   },
   {
     idiom: 'en boca cerrada no entran moscas',
@@ -441,6 +489,7 @@ export const IDIOMS = [
     exampleEn: 'Better say nothing — silence is golden.',
     register: 'neutral',
     category: 'advice',
+    cefr: 'B2',
   },
   {
     idiom: 'tener mano izquierda',
@@ -450,6 +499,7 @@ export const IDIOMS = [
     exampleEn: 'She has great tact when resolving conflicts.',
     register: 'informal',
     category: 'personality',
+    cefr: 'B2',
   },
   {
     idiom: 'a lo hecho, pecho',
@@ -459,6 +509,7 @@ export const IDIOMS = [
     exampleEn: 'Don\'t regret it — what\'s done is done.',
     register: 'informal',
     category: 'acceptance',
+    cefr: 'B2',
   },
   {
     idiom: 'hacer de tripas corazón',
@@ -468,6 +519,7 @@ export const IDIOMS = [
     exampleEn: 'She steeled herself and delivered the report.',
     register: 'informal',
     category: 'courage',
+    cefr: 'C1',
   },
   {
     idiom: 'no saber ni papa',
@@ -477,6 +529,7 @@ export const IDIOMS = [
     exampleEn: 'I don\'t have a clue about computing.',
     register: 'colloquial',
     category: 'knowledge',
+    cefr: 'B2',
   },
   {
     idiom: 'andarse por las ramas',
@@ -486,6 +539,7 @@ export const IDIOMS = [
     exampleEn: 'Stop beating around the bush and tell me the truth.',
     register: 'informal',
     category: 'communication',
+    cefr: 'B2',
   },
   {
     idiom: 'estar como una cabra',
@@ -495,6 +549,7 @@ export const IDIOMS = [
     exampleEn: 'He starts singing at 3am — he\'s off his rocker.',
     register: 'colloquial',
     category: 'personality',
+    cefr: 'B1',
   },
   {
     idiom: 'a rajatabla',
@@ -504,6 +559,7 @@ export const IDIOMS = [
     exampleEn: 'She followed the rules to the letter.',
     register: 'neutral',
     category: 'precision',
+    cefr: 'B2',
   },
   {
     idiom: 'estar entre la espada y la pared',
@@ -513,6 +569,7 @@ export const IDIOMS = [
     exampleEn: 'He left me between a rock and a hard place.',
     register: 'neutral',
     category: 'dilemmas',
+    cefr: 'B1',
   },
   {
     idiom: 'poner el dedo en la llaga',
@@ -522,6 +579,7 @@ export const IDIOMS = [
     exampleEn: 'With that question he hit a raw nerve.',
     register: 'informal',
     category: 'truth',
+    cefr: 'B2',
   },
   {
     idiom: 'salir el tiro por la culata',
@@ -531,6 +589,7 @@ export const IDIOMS = [
     exampleEn: 'The plan backfired on her.',
     register: 'informal',
     category: 'failure',
+    cefr: 'B2',
   },
   {
     idiom: 'no hay dos sin tres',
@@ -540,6 +599,7 @@ export const IDIOMS = [
     exampleEn: 'That\'s two delays this week — these things come in threes.',
     register: 'informal',
     category: 'patterns',
+    cefr: 'B2',
   },
   {
     idiom: 'más vale tarde que nunca',
@@ -549,6 +609,7 @@ export const IDIOMS = [
     exampleEn: 'She arrived two hours late, but better late than never.',
     register: 'neutral',
     category: 'time',
+    cefr: 'A2',
   },
   {
     idiom: 'no todo el monte es orégano',
@@ -558,6 +619,7 @@ export const IDIOMS = [
     exampleEn: 'You\'ll be in for a surprise — it\'s not all sunshine and roses.',
     register: 'informal',
     category: 'reality',
+    cefr: 'C1',
   },
   {
     idiom: 'poner toda la carne en el asador',
@@ -567,6 +629,7 @@ export const IDIOMS = [
     exampleEn: 'For the final exam, she gave it everything she had.',
     register: 'informal',
     category: 'effort',
+    cefr: 'B2',
   },
   {
     idiom: 'echar leña al fuego',
@@ -576,6 +639,7 @@ export const IDIOMS = [
     exampleEn: 'His comments only added fuel to the fire.',
     register: 'informal',
     category: 'conflict',
+    cefr: 'B2',
   },
   {
     idiom: 'quedarse en blanco',
@@ -585,6 +649,7 @@ export const IDIOMS = [
     exampleEn: 'In the exam I drew a blank.',
     register: 'informal',
     category: 'mind',
+    cefr: 'B1',
   },
   {
     idiom: 'a trancas y barrancas',
@@ -594,6 +659,7 @@ export const IDIOMS = [
     exampleEn: 'She managed to finish the project despite all the obstacles.',
     register: 'informal',
     category: 'difficulty',
+    cefr: 'C1',
   },
   {
     idiom: 'tener la cabeza en su sitio',
@@ -603,6 +669,7 @@ export const IDIOMS = [
     exampleEn: 'She\'s young, but she has her head screwed on.',
     register: 'informal',
     category: 'sense',
+    cefr: 'B2',
   },
   {
     idiom: 'meterse en camisa de once varas',
@@ -612,6 +679,7 @@ export const IDIOMS = [
     exampleEn: 'Don\'t get into unnecessary trouble — just let it go.',
     register: 'informal',
     category: 'problems',
+    cefr: 'C2',
   },
   {
     idiom: 'a pie juntillas',
@@ -621,6 +689,7 @@ export const IDIOMS = [
     exampleEn: 'She believes everything unquestioningly.',
     register: 'informal',
     category: 'belief',
+    cefr: 'C2',
   },
   {
     idiom: 'tomar las de Villadiego',
@@ -630,6 +699,7 @@ export const IDIOMS = [
     exampleEn: 'When he saw the inspector, he made a run for it.',
     register: 'colloquial',
     category: 'escape',
+    cefr: 'C2',
   },
   {
     idiom: 'subírsele los humos a la cabeza',
@@ -639,6 +709,7 @@ export const IDIOMS = [
     exampleEn: 'Since his promotion, success has gone to his head.',
     register: 'colloquial',
     category: 'personality',
+    cefr: 'B2',
   },
   {
     idiom: 'estar como pez en el agua',
@@ -648,6 +719,7 @@ export const IDIOMS = [
     exampleEn: 'On stage she\'s completely in her element.',
     register: 'informal',
     category: 'comfort',
+    cefr: 'B1',
   },
   {
     idiom: 'a otro perro con ese hueso',
@@ -657,6 +729,7 @@ export const IDIOMS = [
     exampleEn: 'I have no money. — Pull the other one.',
     register: 'colloquial',
     category: 'disbelief',
+    cefr: 'B2',
   },
   {
     idiom: 'llevar la voz cantante',
@@ -666,6 +739,7 @@ export const IDIOMS = [
     exampleEn: 'She\'s always called the shots in this company.',
     register: 'neutral',
     category: 'power',
+    cefr: 'B2',
   },
   {
     idiom: 'no hay tu tía',
@@ -675,6 +749,7 @@ export const IDIOMS = [
     exampleEn: 'There\'s no way around it — you\'ll have to do it yourself.',
     register: 'colloquial',
     category: 'impossibility',
+    cefr: 'C2',
   },
   {
     idiom: 'caérsele el alma a los pies',
@@ -684,6 +759,7 @@ export const IDIOMS = [
     exampleEn: 'My heart sank when I heard the news.',
     register: 'informal',
     category: 'emotion',
+    cefr: 'B2',
   },
   {
     idiom: 'hacer la vista gorda',
@@ -693,6 +769,7 @@ export const IDIOMS = [
     exampleEn: 'The boss turned a blind eye to the lateness.',
     register: 'informal',
     category: 'ignorance',
+    cefr: 'B1',
   },
   {
     idiom: 'tirarse a la piscina',
@@ -702,6 +779,7 @@ export const IDIOMS = [
     exampleEn: 'I finally took the plunge and asked for a job.',
     register: 'informal',
     category: 'courage',
+    cefr: 'B1',
   },
   {
     idiom: 'no dar un palo al agua',
@@ -711,6 +789,7 @@ export const IDIOMS = [
     exampleEn: 'That guy doesn\'t do a stroke of work all day.',
     register: 'colloquial',
     category: 'laziness',
+    cefr: 'B2',
   },
   {
     idiom: 'a buenas horas mangas verdes',
@@ -720,6 +799,7 @@ export const IDIOMS = [
     exampleEn: 'Oh, NOW you show up! We already finished without you.',
     register: 'colloquial',
     category: 'timing',
+    cefr: 'C2',
   },
   {
     idiom: 'hablar por los codos',
@@ -729,6 +809,7 @@ export const IDIOMS = [
     exampleEn: 'My neighbour talks nineteen to the dozen; she never stops.',
     register: 'colloquial',
     category: 'speech',
+    cefr: 'B1',
   },
   {
     idiom: 'costar sangre, sudor y lágrimas',
@@ -738,6 +819,7 @@ export const IDIOMS = [
     exampleEn: 'Getting that job cost him blood, sweat, and tears.',
     register: 'neutral',
     category: 'effort',
+    cefr: 'B1',
   },
   {
     idiom: 'tener la sartén por el mango',
@@ -747,6 +829,7 @@ export const IDIOMS = [
     exampleEn: 'In that company she calls the shots.',
     register: 'informal',
     category: 'power',
+    cefr: 'B2',
   },
   {
     idiom: 'estar con el agua al cuello',
@@ -756,6 +839,7 @@ export const IDIOMS = [
     exampleEn: 'We\'re up to our necks with these debts.',
     register: 'informal',
     category: 'difficulty',
+    cefr: 'B1',
   },
   {
     idiom: 'ir al grano',
@@ -765,6 +849,7 @@ export const IDIOMS = [
     exampleEn: 'Stop beating around the bush and get to the point.',
     register: 'informal',
     category: 'communication',
+    cefr: 'A2',
   },
   {
     idiom: 'echar de menos',
@@ -774,6 +859,7 @@ export const IDIOMS = [
     exampleEn: 'I really miss my friends from secondary school.',
     register: 'neutral',
     category: 'emotion',
+    cefr: 'A2',
   },
   {
     idiom: 'romper el hielo',
@@ -783,6 +869,7 @@ export const IDIOMS = [
     exampleEn: 'He told a joke to break the ice at the start of the meeting.',
     register: 'neutral',
     category: 'social',
+    cefr: 'A2',
   },
   {
     idiom: 'nadar entre dos aguas',
@@ -792,6 +879,7 @@ export const IDIOMS = [
     exampleEn: 'She always sits on the fence and never takes a side.',
     register: 'informal',
     category: 'decisions',
+    cefr: 'B2',
   },
   {
     idiom: 'pedir peras al olmo',
@@ -801,6 +889,7 @@ export const IDIOMS = [
     exampleEn: 'Expecting punctuality from Juan is asking for the impossible.',
     register: 'informal',
     category: 'impossibility',
+    cefr: 'B2',
   },
   {
     idiom: 'saltar a la vista',
@@ -810,6 +899,7 @@ export const IDIOMS = [
     exampleEn: 'It\'s plain to see that he hasn\'t slept well.',
     register: 'neutral',
     category: 'obviousness',
+    cefr: 'B1',
   },
   {
     idiom: 'dar calabazas',
@@ -819,6 +909,7 @@ export const IDIOMS = [
     exampleEn: 'He asked her out and she turned him down.',
     register: 'colloquial',
     category: 'relationships',
+    cefr: 'C1',
   },
   {
     idiom: 'irse por las ramas',
@@ -828,6 +919,7 @@ export const IDIOMS = [
     exampleEn: 'Don\'t beat around the bush — tell me exactly what happened.',
     register: 'informal',
     category: 'communication',
+    cefr: 'B2',
   },
   {
     idiom: 'meter las narices',
@@ -837,6 +929,7 @@ export const IDIOMS = [
     exampleEn: 'She\'s always poking her nose into other people\'s business.',
     register: 'colloquial',
     category: 'meddling',
+    cefr: 'B1',
   },
   {
     idiom: 'ser un gallina',
@@ -846,6 +939,7 @@ export const IDIOMS = [
     exampleEn: 'Don\'t be a coward! Jump in the water, it\'s not cold.',
     register: 'colloquial',
     category: 'courage',
+    cefr: 'B1',
   },
   {
     idiom: 'estar a dos velas',
@@ -855,6 +949,7 @@ export const IDIOMS = [
     exampleEn: 'I can\'t go out this week — I\'m flat broke.',
     register: 'colloquial',
     category: 'money',
+    cefr: 'B2',
   },
   {
     idiom: 'costar un riñón',
@@ -864,6 +959,7 @@ export const IDIOMS = [
     exampleEn: 'That coat cost me an arm and a leg, but it\'s worth it.',
     register: 'colloquial',
     category: 'money',
+    cefr: 'B1',
   },
   {
     idiom: 'perder los papeles',
@@ -873,6 +969,7 @@ export const IDIOMS = [
     exampleEn: 'He lost his temper when he found out the truth.',
     register: 'colloquial',
     category: 'emotion',
+    cefr: 'B1',
   },
   {
     idiom: 'estar en las últimas',
@@ -882,6 +979,7 @@ export const IDIOMS = [
     exampleEn: 'The phone battery is on its last legs.',
     register: 'informal',
     category: 'condition',
+    cefr: 'B2',
   },
   {
     idiom: 'hacer el agosto',
@@ -891,6 +989,7 @@ export const IDIOMS = [
     exampleEn: 'The hotels made a killing this summer.',
     register: 'informal',
     category: 'money',
+    cefr: 'C1',
   },
   {
     idiom: 'tener mucha cara',
@@ -900,6 +999,7 @@ export const IDIOMS = [
     exampleEn: 'You\'ve got a lot of nerve asking me for money after what you did.',
     register: 'colloquial',
     category: 'audacity',
+    cefr: 'B1',
   },
   {
     idiom: 'más sabe el diablo por viejo que por diablo',
@@ -909,6 +1009,7 @@ export const IDIOMS = [
     exampleEn: 'Listen to her — wisdom comes with experience.',
     register: 'neutral',
     category: 'wisdom',
+    cefr: 'C2',
   },
   {
     idiom: 'cortar el bacalao',
@@ -918,6 +1019,7 @@ export const IDIOMS = [
     exampleEn: 'Around here it\'s the managing director who calls the shots.',
     register: 'colloquial',
     category: 'power',
+    cefr: 'C1',
   },
   {
     idiom: 'quien mucho abarca poco aprieta',
@@ -927,6 +1029,7 @@ export const IDIOMS = [
     exampleEn: 'You\'re taking on too many projects — don\'t bite off more than you can chew.',
     register: 'neutral',
     category: 'caution',
+    cefr: 'B2',
   },
   {
     idiom: 'ponerse morado',
@@ -936,6 +1039,7 @@ export const IDIOMS = [
     exampleEn: 'We stuffed ourselves with paella at the party.',
     register: 'colloquial',
     category: 'food',
+    cefr: 'B2',
   },
   {
     idiom: 'estar hecho polvo',
@@ -945,6 +1049,7 @@ export const IDIOMS = [
     exampleEn: 'After the marathon he was completely shattered.',
     register: 'colloquial',
     category: 'exhaustion',
+    cefr: 'B1',
   },
   {
     idiom: 'ganarse las habichuelas',
@@ -954,6 +1059,7 @@ export const IDIOMS = [
     exampleEn: 'I work twelve hours a day to earn a living.',
     register: 'informal',
     category: 'work',
+    cefr: 'C1',
   },
   {
     idiom: 'hacer la pelota',
@@ -963,6 +1069,7 @@ export const IDIOMS = [
     exampleEn: 'He always sucks up to the boss to get the best shifts.',
     register: 'colloquial',
     category: 'work',
+    cefr: 'B1',
   },
   {
     idiom: 'estar quemado',
@@ -972,6 +1079,7 @@ export const IDIOMS = [
     exampleEn: 'He\'s gone five years without a holiday and is totally burned out.',
     register: 'informal',
     category: 'work',
+    cefr: 'B1',
   },
   {
     idiom: 'currárselo',
@@ -981,6 +1089,7 @@ export const IDIOMS = [
     exampleEn: 'They really worked hard on the presentation and it showed.',
     register: 'colloquial',
     category: 'work',
+    cefr: 'C1',
   },
   {
     idiom: 'estar pachucho',
@@ -990,6 +1099,7 @@ export const IDIOMS = [
     exampleEn: 'I\'m not going to work today — I feel a bit under the weather.',
     register: 'informal',
     category: 'health',
+    cefr: 'B2',
   },
   {
     idiom: 'estar como un toro',
@@ -999,6 +1109,7 @@ export const IDIOMS = [
     exampleEn: 'He\'s seventy years old but he\'s strong as an ox.',
     register: 'informal',
     category: 'health',
+    cefr: 'B2',
   },
   {
     idiom: 'no estar para muchos trotes',
@@ -1008,6 +1119,7 @@ export const IDIOMS = [
     exampleEn: 'After the operation she wasn\'t up to much.',
     register: 'informal',
     category: 'health',
+    cefr: 'C1',
   },
   {
     idiom: 'no ser plato de buen gusto',
@@ -1017,6 +1129,7 @@ export const IDIOMS = [
     exampleEn: 'Giving bad news is never a pleasant thing.',
     register: 'neutral',
     category: 'food',
+    cefr: 'B2',
   },
   {
     idiom: 'en todas partes cuecen habas',
@@ -1026,6 +1139,7 @@ export const IDIOMS = [
     exampleEn: 'I thought the new company would be different, but it\'s the same everywhere.',
     register: 'neutral',
     category: 'food',
+    cefr: 'B2',
   },
   {
     idiom: 'quedarse de piedra',
@@ -1035,6 +1149,7 @@ export const IDIOMS = [
     exampleEn: 'When they told me I\'d won the prize I was completely gobsmacked.',
     register: 'informal',
     category: 'reactions',
+    cefr: 'B1',
   },
   {
     idiom: 'flipar en colores',
@@ -1044,6 +1159,7 @@ export const IDIOMS = [
     exampleEn: 'When I saw the apartment price I was absolutely blown away.',
     register: 'colloquial',
     category: 'reactions',
+    cefr: 'C1',
   },
   {
     idiom: 'ponérsele los pelos de punta',
@@ -1053,6 +1169,7 @@ export const IDIOMS = [
     exampleEn: 'The horror film made my hair stand on end.',
     register: 'informal',
     category: 'reactions',
+    cefr: 'B1',
   },
   {
     idiom: 'de chiripa',
@@ -1062,6 +1179,7 @@ export const IDIOMS = [
     exampleEn: 'I passed the exam by sheer luck — I hadn\'t even studied.',
     register: 'colloquial',
     category: 'probability',
+    cefr: 'B2',
   },
   {
     idiom: 'de milagro',
@@ -1071,6 +1189,7 @@ export const IDIOMS = [
     exampleEn: 'I made it to the airport by the skin of my teeth — the plane left in five minutes.',
     register: 'informal',
     category: 'probability',
+    cefr: 'B1',
   },
   {
     idiom: 'más vale prevenir que curar',
@@ -1080,6 +1199,7 @@ export const IDIOMS = [
     exampleEn: 'Take an umbrella even if it doesn\'t look like rain — better safe than sorry.',
     register: 'neutral',
     category: 'advice',
+    cefr: 'A2',
   },
   {
     idiom: 'a caballo regalado no le mires el diente',
@@ -1089,6 +1209,7 @@ export const IDIOMS = [
     exampleEn: 'The room was small, but don\'t look a gift horse in the mouth.',
     register: 'neutral',
     category: 'advice',
+    cefr: 'B1',
   },
   {
     idiom: 'hablar con el corazón en la mano',
@@ -1098,6 +1219,7 @@ export const IDIOMS = [
     exampleEn: 'I\'m telling you from the heart: your attitude worries me.',
     register: 'informal',
     category: 'honesty',
+    cefr: 'B2',
   },
   {
     idiom: 'estar en la flor de la vida',
@@ -1107,6 +1229,7 @@ export const IDIOMS = [
     exampleEn: 'She was thirty and in the prime of her life.',
     register: 'neutral',
     category: 'age',
+    cefr: 'B2',
   },
   // ── EMOTION ──────────────────────────────────────────────────────────────
   {
@@ -1117,6 +1240,7 @@ export const IDIOMS = [
     exampleEn: 'While we waited for the results, our hearts were in our mouths.',
     register: 'informal',
     category: 'emotion',
+    cefr: 'B2',
   },
   {
     idiom: 'estar con el alma en vilo',
@@ -1126,6 +1250,7 @@ export const IDIOMS = [
     exampleEn: 'We were on tenterhooks throughout the whole operation.',
     register: 'informal',
     category: 'emotion',
+    cefr: 'B2',
   },
   // ── DECEPTION ────────────────────────────────────────────────────────────
   {
@@ -1136,6 +1261,7 @@ export const IDIOMS = [
     exampleEn: 'They sold him a pup: the car had more problems than they let on.',
     register: 'colloquial',
     category: 'deception',
+    cefr: 'C1',
   },
   {
     idiom: 'hacerse el loco',
@@ -1145,6 +1271,7 @@ export const IDIOMS = [
     exampleEn: 'I asked him about the money and he played dumb.',
     register: 'colloquial',
     category: 'deception',
+    cefr: 'B1',
   },
   // ── MISTAKES ─────────────────────────────────────────────────────────────
   {
@@ -1155,6 +1282,7 @@ export const IDIOMS = [
     exampleEn: 'Don\'t worry so much — to err is human.',
     register: 'neutral',
     category: 'mistakes',
+    cefr: 'B1',
   },
   {
     idiom: 'tirar la piedra y esconder la mano',
@@ -1164,6 +1292,7 @@ export const IDIOMS = [
     exampleEn: 'He started the rumour but throws the stone and hides his hand.',
     register: 'colloquial',
     category: 'deception',
+    cefr: 'B2',
   },
   // ── FRUSTRATION ──────────────────────────────────────────────────────────
   {
@@ -1174,6 +1303,7 @@ export const IDIOMS = [
     exampleEn: 'Since the promotion, success has gone to his head.',
     register: 'informal',
     category: 'frustration',
+    cefr: 'B2',
   },
   {
     idiom: 'estar hasta la coronilla',
@@ -1183,6 +1313,7 @@ export const IDIOMS = [
     exampleEn: 'I\'m completely fed up with repeating the same thing.',
     register: 'colloquial',
     category: 'frustration',
+    cefr: 'B2',
   },
   // ── SURPRISE ─────────────────────────────────────────────────────────────
   {
@@ -1193,6 +1324,7 @@ export const IDIOMS = [
     exampleEn: 'I couldn\'t believe my eyes when I saw the exam results.',
     register: 'informal',
     category: 'surprise',
+    cefr: 'B1',
   },
   // ── SPEED ────────────────────────────────────────────────────────────────
   {
@@ -1203,6 +1335,7 @@ export const IDIOMS = [
     exampleEn: 'He was going flat out on the motorway.',
     register: 'colloquial',
     category: 'speed',
+    cefr: 'B2',
   },
   {
     idiom: 'sin perder ni un segundo',
@@ -1212,6 +1345,7 @@ export const IDIOMS = [
     exampleEn: 'As soon as the alarm went off, they acted without losing a moment.',
     register: 'neutral',
     category: 'speed',
+    cefr: 'A2',
   },
   // ── RELATIONSHIPS ─────────────────────────────────────────────────────────
   {
@@ -1222,6 +1356,7 @@ export const IDIOMS = [
     exampleEn: 'My friends hit it off from the very first moment.',
     register: 'informal',
     category: 'relationships',
+    cefr: 'B2',
   },
   {
     idiom: 'guardar las distancias',
@@ -1231,6 +1366,7 @@ export const IDIOMS = [
     exampleEn: 'She is friendly but always keeps her distance from clients.',
     register: 'neutral',
     category: 'relationships',
+    cefr: 'B1',
   },
   // ── FORMAL REGISTER ──────────────────────────────────────────────────────
   {
@@ -1241,6 +1377,7 @@ export const IDIOMS = [
     exampleEn: 'The report brings to light the structural flaws in the system.',
     register: 'formal',
     category: 'communication',
+    cefr: 'C1',
   },
   {
     idiom: 'dar lugar a',
@@ -1250,6 +1387,7 @@ export const IDIOMS = [
     exampleEn: 'The new law gave rise to a wave of protests.',
     register: 'formal',
     category: 'cause',
+    cefr: 'B2',
   },
   {
     idiom: 'en aras de',
@@ -1259,6 +1397,7 @@ export const IDIOMS = [
     exampleEn: 'In the interest of transparency, all data is made public.',
     register: 'formal',
     category: 'purpose',
+    cefr: 'C1',
   },
   {
     idiom: 'llevar a cabo',
@@ -1268,6 +1407,7 @@ export const IDIOMS = [
     exampleEn: 'The team carried out the project in record time.',
     register: 'formal',
     category: 'work',
+    cefr: 'B2',
   },
   {
     idiom: 'hacer hincapié en',
@@ -1277,6 +1417,7 @@ export const IDIOMS = [
     exampleEn: 'The director stressed the importance of teamwork.',
     register: 'formal',
     category: 'communication',
+    cefr: 'B2',
   },
   // ── UNDERREPRESENTED CATEGORIES (round 2) ───────────────────────────────
   {
@@ -1287,6 +1428,7 @@ export const IDIOMS = [
     exampleEn: 'Don\'t leave that secure job for a promise; a bird in the hand is worth two in the bush.',
     register: 'neutral',
     category: 'wisdom',
+    cefr: 'B1',
   },
   {
     idiom: 'el saber no ocupa lugar',
@@ -1296,6 +1438,7 @@ export const IDIOMS = [
     exampleEn: 'Sign up for the course — after all, it never hurts to learn something new.',
     register: 'neutral',
     category: 'knowledge',
+    cefr: 'B2',
   },
   {
     idiom: 'decir las verdades del barquero',
@@ -1305,6 +1448,7 @@ export const IDIOMS = [
     exampleEn: 'I told him the plain truth, even though he didn\'t like hearing it.',
     register: 'colloquial',
     category: 'honesty',
+    cefr: 'C2',
   },
   {
     idiom: 'hacer el vago',
@@ -1314,6 +1458,7 @@ export const IDIOMS = [
     exampleEn: 'On vacation I don\'t plan to do anything, just laze around all day.',
     register: 'colloquial',
     category: 'laziness',
+    cefr: 'B1',
   },
   {
     idiom: 'no tener ni pajolera idea',
@@ -1323,6 +1468,7 @@ export const IDIOMS = [
     exampleEn: 'I have no clue where I left my keys.',
     register: 'colloquial',
     category: 'ignorance',
+    cefr: 'C1',
   },
   {
     idiom: 'luchar a brazo partido',
@@ -1332,6 +1478,7 @@ export const IDIOMS = [
     exampleEn: 'Both teams fought tooth and nail for the title.',
     register: 'informal',
     category: 'competition',
+    cefr: 'B2',
   },
   {
     idiom: 'tener mala pata',
@@ -1341,6 +1488,7 @@ export const IDIOMS = [
     exampleEn: 'I have such bad luck that I always end up in the slowest line.',
     register: 'colloquial',
     category: 'misfortune',
+    cefr: 'B1',
   },
   {
     idiom: 'no es el fin del mundo',
@@ -1350,6 +1498,7 @@ export const IDIOMS = [
     exampleEn: 'You failed one exam, but it\'s not the end of the world.',
     register: 'neutral',
     category: 'reassurance',
+    cefr: 'A2',
   },
   {
     idiom: 'hacer novillos',
@@ -1359,6 +1508,7 @@ export const IDIOMS = [
     exampleEn: 'As a teenager, I played truant almost every Friday.',
     register: 'colloquial',
     category: 'escape',
+    cefr: 'C1',
   },
   {
     idiom: 'poner los puntos sobre las íes',
@@ -1368,6 +1518,7 @@ export const IDIOMS = [
     exampleEn: 'Before signing, I want to spell everything out clearly.',
     register: 'neutral',
     category: 'precision',
+    cefr: 'B2',
   },
   {
     idiom: 'no dejar títere con cabeza',
@@ -1377,6 +1528,7 @@ export const IDIOMS = [
     exampleEn: 'In his review, he tore everything and everyone apart.',
     register: 'informal',
     category: 'conflict',
+    cefr: 'C1',
   },
   {
     idiom: 'cortar por lo sano',
@@ -1386,6 +1538,7 @@ export const IDIOMS = [
     exampleEn: 'Since they couldn\'t agree, he decided to take drastic action and fire them both.',
     register: 'informal',
     category: 'decisions',
+    cefr: 'B2',
   },
   {
     idiom: 'hacerse de rogar',
@@ -1395,6 +1548,7 @@ export const IDIOMS = [
     exampleEn: 'Don\'t play hard to get — come to the party.',
     register: 'informal',
     category: 'refusal',
+    cefr: 'B2',
   },
   {
     idiom: 'por si las moscas',
@@ -1404,6 +1558,7 @@ export const IDIOMS = [
     exampleEn: 'Take an umbrella, just in case.',
     register: 'colloquial',
     category: 'caution',
+    cefr: 'B1',
   },
   {
     idiom: 'tocar las narices',
@@ -1413,6 +1568,7 @@ export const IDIOMS = [
     exampleEn: 'Stop annoying me with that little song.',
     register: 'colloquial',
     category: 'annoyance',
+    cefr: 'B1',
   },
   {
     idiom: 'estar más claro que el agua',
@@ -1422,6 +1578,7 @@ export const IDIOMS = [
     exampleEn: 'It\'s crystal clear he\'s not interested in the project.',
     register: 'informal',
     category: 'obviousness',
+    cefr: 'B1',
   },
   {
     idiom: 'no valer un pimiento',
@@ -1431,6 +1588,7 @@ export const IDIOMS = [
     exampleEn: 'That promise isn\'t worth a thing if he doesn\'t keep it.',
     register: 'colloquial',
     category: 'value',
+    cefr: 'B1',
   },
   {
     idiom: 'vivir a cuerpo de rey',
@@ -1440,6 +1598,7 @@ export const IDIOMS = [
     exampleEn: 'Ever since he won the lottery, he\'s been living like a king.',
     register: 'informal',
     category: 'comfort',
+    cefr: 'B2',
   },
   {
     idiom: 'estar en el ajo',
@@ -1449,6 +1608,7 @@ export const IDIOMS = [
     exampleEn: 'I didn\'t know anything about the plan, but it\'s clear she\'s in the loop.',
     register: 'colloquial',
     category: 'social',
+    cefr: 'B2',
   },
   {
     idiom: 'con miras a',
@@ -1458,6 +1618,7 @@ export const IDIOMS = [
     exampleEn: 'They met with a view to signing the agreement before the end of the year.',
     register: 'formal',
     category: 'purpose',
+    cefr: 'C1',
   },
   {
     idiom: 'a raíz de',
@@ -1467,6 +1628,7 @@ export const IDIOMS = [
     exampleEn: 'As a result of the scandal, two executives resigned.',
     register: 'formal',
     category: 'cause',
+    cefr: 'B2',
   },
   {
     idiom: 'a río revuelto, ganancia de pescadores',
@@ -1476,6 +1638,7 @@ export const IDIOMS = [
     exampleEn: 'Prices dropped suddenly and some people bought cheap: it\'s an ill wind that blows nobody good.',
     register: 'neutral',
     category: 'wisdom',
+    cefr: 'C2',
   },
   {
     idiom: 'meter baza',
@@ -1485,6 +1648,7 @@ export const IDIOMS = [
     exampleEn: 'They talk so fast that I can\'t get a word in.',
     register: 'informal',
     category: 'speech',
+    cefr: 'C1',
   },
   {
     idiom: 'aburrirse como una ostra',
@@ -1494,6 +1658,7 @@ export const IDIOMS = [
     exampleEn: 'The movie was so slow that I was bored stiff.',
     register: 'colloquial',
     category: 'boredom',
+    cefr: 'B2',
   },
   {
     idiom: 'aquí hay gato encerrado',
@@ -1503,7 +1668,9 @@ export const IDIOMS = [
     exampleEn: 'They\'re offering us the apartment really cheap... something fishy is going on.',
     register: 'informal',
     category: 'disbelief',
+    cefr: 'B2',
   },
 ];
 
 export const CATEGORIES = [...new Set(IDIOMS.map(i => i.category))].sort();
+export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];

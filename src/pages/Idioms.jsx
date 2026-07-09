@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
-import { IDIOMS, CATEGORIES } from '../content/idioms.js';
+import { IDIOMS, CATEGORIES, CEFR_LEVELS } from '../content/idioms.js';
 import styles from './Idioms.module.css';
 
 const categoryCounts = IDIOMS.reduce((acc, i) => {
@@ -28,6 +28,9 @@ function IdiomCard({ item }) {
       <div className={styles.cardTop}>
         <div className={styles.idiomWrap}>
           <span className={styles.idiom}>{item.idiom}</span>
+          <span className={`${styles.cefr} ${styles['cefr' + item.cefr.replace('.', '')]}`}>
+            {item.cefr}
+          </span>
           <span className={`${styles.regBadge} ${styles[REGISTER_COLORS[item.register]]}`}>
             {item.register}
           </span>
@@ -62,16 +65,18 @@ export default function Idioms() {
   const [search, setSearch] = useState('');
   const [filterCat, setFilterCat] = useState('');
   const [filterReg, setFilterReg] = useState('');
+  const [filterCefr, setFilterCefr] = useState('');
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
     return IDIOMS.filter(i => {
+      if (filterCefr && i.cefr !== filterCefr) return false;
       if (filterCat && i.category !== filterCat) return false;
       if (filterReg && i.register !== filterReg) return false;
       if (q && !i.idiom.toLowerCase().includes(q) && !i.meaning.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [search, filterCat, filterReg]);
+  }, [search, filterCat, filterReg, filterCefr]);
 
   return (
     <div className={styles.page}>
@@ -93,6 +98,17 @@ export default function Idioms() {
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
+            <div className={styles.filterRow}>
+              {CEFR_LEVELS.map(l => (
+                <button
+                  key={l}
+                  className={`${styles.filterBtn} ${filterCefr === l ? styles.filterActive : ''}`}
+                  onClick={() => setFilterCefr(v => v === l ? '' : l)}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
             <div className={styles.filterRow}>
               {['colloquial', 'informal', 'neutral', 'formal'].map(r => (
                 <button

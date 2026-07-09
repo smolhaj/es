@@ -361,6 +361,21 @@ intentional duplicate spelling: `tío` appears twice (existing "uncle,"
 A1, `family`; new "dude/mate" colloquial address term, C2, `greetings`)
 — a genuine second sense, not a data bug.
 
+### Idioms (`/idioms`) and False Friends (`/false-friends`)
+
+`src/content/idioms.js` (166 entries) and `src/content/false-friends.js`
+(110 entries) both got a `cefr` field added 07-09-2026 — until then neither
+had any level tagging at all, unlike every other content file. Both export
+`CEFR_LEVELS` and render a level filter row + badge identical in pattern to
+`VocabBrowser.jsx`'s. Idioms leveled by real-world pragmatic
+commonness (not word difficulty) — distribution skews B1/B2 as expected
+for everyday idiomatic language: `A1:1, A2:16, B1:47, B2:71, C1:23, C2:8`.
+False friends leveled by how early a learner encounters the *Spanish* word
+in question — most classic false friends (`embarazada`, `sensible`,
+`actualmente`) trip up early/intermediate learners, so the distribution
+tapers from A2/B1 rather than clustering high: `A1:13, A2:36, B1:35,
+B2:20, C1:4, C2:2`.
+
 ### Flashcards (`/flashcards`)
 
 Separate Anki-style deck (top 5,000 Spanish words by frequency), distinct
@@ -759,6 +774,11 @@ measures):**
 
 ## Session history index
 
+- **07-09-2026** — CEFR-tagged idioms.js (166) and false-friends.js (110)
+  in parallel via two background worktree agents; wired level filters into
+  both pages. First step of a "bang out written content" push, queued
+  ahead of B2 curriculum units, C1/C2 verbs, and a new reading-passages
+  section.
 - **07-09-2026** — Flashcard deck content fix: found and fixed the
   "nested-gloss category header" bug in `build-flashcards.mjs` (e.g.
   "venir" showing "Senses relating to figurative movement" instead of "to

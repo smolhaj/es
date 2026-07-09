@@ -160,6 +160,23 @@
 .dangerMed  { background: rgba(200, 134, 10, 0.12); color: var(--accent-gold); }
 .dangerLow  { background: rgba(58, 103, 65, 0.1); color: var(--accent-green); }
 
+.cefr {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.cefrA1 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
+.cefrA2 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
+.cefrB1 { background: rgba(200, 134, 10, 0.1); color: var(--accent-gold); }
+.cefrB2 { background: rgba(90, 130, 80, 0.12); color: #3d7a42; }
+.cefrC1 { background: rgba(80, 90, 160, 0.1); color: #4a56a6; }
+.cefrC2 { background: rgba(140, 70, 150, 0.1); color: #8c4696; }
+
 .chevron {
   color: var(--text-muted);
   transition: transform 0.2s;
