@@ -10,12 +10,20 @@ function normalizeKey(s) {
 }
 
 let index = null;
+let vocabOnlyIndex = null;
 
 // Builds a phrase-aware dictionary from every Spanish source already in the
 // app (vocabulary.js + written curriculum units) so clickable words only
 // ever show real, sourced data — never a guess. Longest known phrase wins
 // (e.g. "buenos días" over "buenos" + "días" separately).
-function buildIndex() {
+//
+// includeUnitVocab controls whether curriculum units' own vocab boxes are
+// merged in. Those boxes intentionally list bare prepositions/pronouns
+// (a, de, en, la...) as new grammar-lesson vocabulary for that specific
+// unit — right for a lesson paragraph, but it floods a flowing reading
+// passage with clicks on function words. Pass false (see
+// segmentSpanish's vocabOnly option) to match against vocabulary.js alone.
+function buildIndex(includeUnitVocab) {
   const map = new Map();
 
   function add(es, entry) {
@@ -28,11 +36,13 @@ function buildIndex() {
     add(v.es, { en: v.en, example: v.example, exampleEn: v.exampleEn, cefr: v.cefr });
   }
 
-  for (const meta of UNIT_METADATA) {
-    if (meta.comingSoon) continue;
-    const unit = getUnit(meta.id);
-    for (const v of unit.vocab ?? []) {
-      add(v.es, { en: v.en, example: v.example, exampleEn: v.exampleEn, cefr: meta.level });
+  if (includeUnitVocab) {
+    for (const meta of UNIT_METADATA) {
+      if (meta.comingSoon) continue;
+      const unit = getUnit(meta.id);
+      for (const v of unit.vocab ?? []) {
+        add(v.es, { en: v.en, example: v.example, exampleEn: v.exampleEn, cefr: meta.level });
+      }
     }
   }
 
@@ -40,8 +50,12 @@ function buildIndex() {
   return { map, maxWords };
 }
 
-function getIndex() {
-  if (!index) index = buildIndex();
+function getIndex(includeUnitVocab) {
+  if (!includeUnitVocab) {
+    if (!vocabOnlyIndex) vocabOnlyIndex = buildIndex(false);
+    return vocabOnlyIndex;
+  }
+  if (!index) index = buildIndex(true);
   return index;
 }
 
@@ -57,8 +71,13 @@ function getIndex() {
 // misfire inside ordinary English sentences. Multi-word Spanish phrases
 // (e.g. "buenos días") essentially never collide with English, so those
 // stay safe to match even in prose.
-export function segmentSpanish(text, minWords = 1) {
-  const { map, maxWords } = getIndex();
+//
+// vocabOnly excludes curriculum units' own vocab boxes from the match
+// index (see buildIndex's comment) — pass true for extended narrative
+// prose (reading passages), where those grammar-lesson-scoped entries
+// would otherwise gloss bare prepositions/pronouns throughout the text.
+export function segmentSpanish(text, minWords = 1, vocabOnly = false) {
+  const { map, maxWords } = getIndex(!vocabOnly);
   // Tokenize keeping whitespace/punctuation as separate segments so we can
   // reassemble the exact original string.
   const tokens = text.match(/[\wÀ-ÿ]+|[^\wÀ-ÿ]+/g) ?? [];

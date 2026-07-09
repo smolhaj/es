@@ -544,6 +544,45 @@ in question — most classic false friends (`embarazada`, `sensible`,
 tapers from A2/B1 rather than clustering high: `A1:13, A2:36, B1:35,
 B2:20, C1:4, C2:2`.
 
+### Reading (`/reading`)
+
+2 original A1 passages as of 07-09-2026 (`src/content/reading.js`) — a
+standalone scene ("El pan de cada mañana") and Chapter 1 of a planned
+18-chapter serialized story ("Las Aventuras de Blahaj"), the first ship
+from the reading-passages feature scoped early in the project. `/reading`
+lists passages (`Reading.jsx`); `/reading/:passageId` renders one
+(`ReadingPassage.jsx`) with a "Ver traducción" toggle for the English.
+
+Every word gets a definition via the exact same `ClickableSpanish`
+component used everywhere else on the site — no separate reading-specific
+glossary logic, no curated word list, no invented data. The only change
+needed: `segmentSpanish`/`buildIndex` in `src/lib/dictionary.js` gained an
+optional `vocabOnly` param (plumbed through `ClickableSpanish`'s new
+`vocabOnly` prop) that excludes curriculum units' own vocab boxes from the
+match index. Those boxes intentionally list bare prepositions/pronouns
+(a, de, en, la...) as new grammar-lesson vocabulary for their specific
+unit — right for a lesson paragraph, wrong for a flowing story, which
+would otherwise get a popover on nearly every function word. Reading
+passages pass `vocabOnly`; every other existing call site is unaffected
+(defaults preserve the old behavior exactly).
+
+Getting the passages themselves right took three corrected passes, all
+narrated in punch-list item 29 and `ES-HISTORY.md`'s dated entry: a
+grammar-level QA gap (object pronouns/preterite/relative clauses sneaking
+into an "A1" draft), then a vocabulary-glossing density overshoot (nearly
+70 words glossed, including connectors that repetition should teach, not
+a popover), corrected by switching to this same real-data-only matching
+approach instead of any hand-curated list. That correction surfaced 49
+ordinary words missing from `vocabulary.js` entirely (panadería, dejar,
+contestar, tiburón, intercambiar...), researched and added with real CEFR
+levels rather than invented ones — a general fix, not reading-specific,
+since any vocabulary.js gap was already invisible to `ClickableSpanish`
+sitewide.
+
+Not yet built: comprehension-question exercises, additional passages/
+chapters, and letting a serialized story's own level climb chapter by
+chapter (the natural design for chapters 2+, discussed but not started).
+
 ### Flashcards (`/flashcards`)
 
 Separate Anki-style deck (top 5,000 Spanish words by frequency), distinct
@@ -1250,3 +1289,9 @@ full account of any of these.
   (`subjunctive-counterfactuals-concession`) for four concepts that all
   share an unreal/hypothetical-reasoning theme — full account in
   punch-list item 29.
+- **07-09-2026** — Reading section shipped: 2 original A1 passages at
+  `/reading`, three corrected passes (grammar-level QA, then a
+  vocabulary-glossing overshoot, then a switch to real-data-only matching
+  reusing `ClickableSpanish` sitewide) surfacing and fixing 49 real
+  `vocabulary.js` gaps along the way — full current state in
+  "Architecture" above, full narrative in `ES-HISTORY.md`.
