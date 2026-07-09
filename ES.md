@@ -729,15 +729,31 @@ measures):**
     self-assessment), don't have Gemini grade free text on every submit.
 22. **Conversation/role-play exercise type** — no open-ended dialogue type
     exists.
+23. **The displayed CEFR level is a grammar-only accuracy gate, not a true
+    4-skill assessment.** `skill_profiles` seeds `reading`/`listening`/
+    `writing`/`grammar` rows at registration, but only `grammar` is ever
+    written to (`sessions/end.js`) — the other three sit frozen at their
+    A1/0% defaults forever, so the Dashboard's CEFR badge reflects
+    grammar/exercise-accuracy alone, not "all four skills equally" per the
+    original spec above. It's also a rolling-10-session accuracy-threshold
+    gate (`computeCefrLevel()`), not a proctored assessment against CEFR
+    can-do descriptors — high accuracy on review-heavy sessions can
+    advance the label without a real skills check across reading,
+    listening, writing, and speaking. User flagged this by inspection
+    (07-09-2026) after the level-tracking audit/fixes earlier that day;
+    deliberately deprioritized — fixing it properly means wiring real
+    listening/writing exercise types (items 20/21 above) into the skill
+    rows, not a quick patch, and the user wants to focus on written
+    content first.
 
 **Housekeeping:**
-23. **Confirm GitHub branch protection is actually enabled** on
+24. **Confirm GitHub branch protection is actually enabled** on
     `smolhaj/es` — shown to the user but never verified done; no API this
     session type has access to for checking directly.
-24. **Flashcards' daily new-card cap is per page-load, not per calendar
+25. **Flashcards' daily new-card cap is per page-load, not per calendar
     day** — `NEW_PER_SESSION = 10` caps per visit, but reloading
     immediately offers 10 more. Low priority for solo/small-group use.
-25. Cloudflare R2 (bound, unused), a secondary/fallback LLM provider, and
+26. Cloudflare R2 (bound, unused), a secondary/fallback LLM provider, and
     explicit exponential backoff around the Gemini call are all
     unstarted, low-risk, well-scoped if picked up.
 
