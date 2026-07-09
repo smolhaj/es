@@ -92,6 +92,75 @@ is the source of truth for intent — the codebase should be judged against it.
   school of thought.
 - Spanish is one of the best-resourced languages in the world — use that;
   don't reinvent content that authoritative sources already have right.
+- **Original prose (story chapters, reading passages, dialogue, any
+  extended narrative content) must read as natively-written Spanish, never
+  as AI-generated or translated-from-English** — see "Writing
+  natural, human-sounding Spanish prose" below for the concrete checklist.
+  User directive (07-09-2026): "no ai slop or phrasing."
+
+---
+
+## Writing natural, human-sounding Spanish prose
+
+Applies to any extended original prose — the reading-passages story/
+standalone passages first, but the same discipline applies to lesson
+prose and any future narrative content. Short single-sentence content
+(vocab examples, exercise prompts) is lower-risk; full paragraphs are
+where AI-sounding writing actually shows.
+
+**Why this needs an explicit checklist**: AI-generated text (in any
+language, confirmed by research into LLM writing patterns) leans on
+predictable structural tics — uniform sentence/paragraph length, formulaic
+transitions, over-hedged or over-balanced phrasing, "telling" emotional
+states outright instead of showing them — and default to neutral/formal
+register even in casual contexts. In Spanish specifically, this compounds
+with a second failure mode: translated-from-English phrasing (translating
+English idiom/word-order directly instead of asking "how would a native
+speaker actually say this") and avoiding the natural oral-register
+connectors, contractions, and elisions real dialogue uses because
+"textbook-correct" Spanish feels safer to generate.
+
+**Concrete red flags to check drafts against**:
+- Overused connector/filler phrases: *cabe destacar, es importante
+  mencionar/señalar, en resumen, sin duda alguna, huelga decir, no cabe
+  duda de que, a lo largo de, en definitiva* — these read as
+  essay-transition scaffolding, not narrative or natural speech.
+- Mechanical paragraph-opening connectors (*Además..., Sin embargo..., Por
+  otro lado...*) reused as a structural crutch across consecutive
+  paragraphs instead of varying how ideas connect.
+- Uniform sentence length/rhythm and identical paragraph shapes
+  (topic sentence → explanation → example, every time) — real writing
+  varies pace, includes short/fragment sentences for effect, occasionally
+  runs long.
+- Narrating emotions/subtext directly ("Lucía sintió una mezcla de
+  tristeza y esperanza") instead of showing them through action, dialogue,
+  or concrete detail — a classic AI-fiction tell.
+- Dialogue that's grammatically pristine but sounds nobody would actually
+  say it out loud — real spoken Spanish (even in a "neutral,
+  universally-understood" register per this project's dialect policy)
+  uses *bueno, pues, o sea, vale, claro*, natural contractions/elisions,
+  and interruption/incompleteness; textbook-clean dialogue is a tell.
+- Literal English-idiom translation instead of the natural Spanish
+  equivalent (the existing false-friends/idioms content is a good
+  cross-reference for what genuine idiomatic Spanish looks like vs. a
+  literal calque).
+- Overuse of em dashes as a default punctuation crutch, and avoidance of
+  contractions/elisions where natural register calls for them.
+
+**Process**:
+1. Draft the content.
+2. Do a **dedicated second pass specifically hunting for the patterns
+   above** — don't rely on getting it right in one shot, the same way
+   grammar accuracy already gets a dedicated audit pass, not just
+   first-draft trust.
+3. Calibrate voice against how a real native author would write this
+   specific register/genre (a graded-reader children's story reads
+   differently than a news passage or a formal complaint letter) rather
+   than defaulting to one flat neutral-AI voice throughout.
+4. Read dialogue "aloud" (mentally) — if a sentence wouldn't actually be
+   said that way by a real person, rewrite it.
+5. Vary sentence/paragraph structure deliberately rather than settling
+   into a repeating template.
 
 ---
 
