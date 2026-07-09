@@ -697,6 +697,13 @@ measures):**
 
 ## Session history index
 
+- **07-09-2026** — Spaced repetition + progress-tracking deep-dive audit:
+  4 real bugs found and fixed (new vocab words invisible for ~3 days;
+  fossilization off-by-one + permanently-stuck flag; dashboard CEFR level
+  frozen at A1 forever; CEFR leveling unresponsive after enough sessions
+  and unable to downgrade from C2). Verified live via `wrangler pages dev`
+  + D1 with simulated accelerated time.
+
 Every section below was moved to `ES-HISTORY.md` as part of a 07-08-2026
 cleanup pass (this file had grown to ~1900 lines of accreted session
 narrative). One-line pointer + date each — see `ES-HISTORY.md` for the

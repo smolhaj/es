@@ -82,10 +82,19 @@ export async function onRequestPost({ request, env, data }) {
       const newMastery = Math.min(1, Math.max(0, prevMastery + (correct ? 0.1 : -0.15)));
       const newErrorCount = (existing?.error_count ?? 0) + errorDelta;
       const newSessionErrors = (existing?.session_error_count ?? 0) + errorDelta;
-      const sessionsSeen = existing?.sessions_seen ?? 1;
 
-      // Fossilization: error in 3+ distinct sessions
-      const fossilized = newErrorCount >= 3 && sessionsSeen >= 3 && newMastery < 0.4 ? 1 : (existing?.fossilization_flagged ?? 0);
+      // sessions_seen as of THIS turn (not the pre-update DB value) so a 3rd-session
+      // error is actually counted as "seen in 3 sessions" instead of requiring a 4th.
+      const sessionsSeenDelta = existing && existing.last_session_id !== sessionId ? 1 : 0;
+      const sessionsSeen = existing ? existing.sessions_seen + sessionsSeenDelta : 1;
+
+      // Fossilization: error in 3+ distinct sessions. Clears once mastery recovers
+      // (>=0.6, the same "ready" bar used elsewhere) instead of staying stuck forever,
+      // so a concept can't sit permanently flagged "at risk" while also showing as
+      // mastered in the professor briefing.
+      const fossilized = newErrorCount >= 3 && sessionsSeen >= 3 && newMastery < 0.4
+        ? 1
+        : (newMastery >= 0.6 ? 0 : (existing?.fossilization_flagged ?? 0));
 
       if (!existing) {
         const firstStyle = getNextExplanationStyle(exercise.concept_id, []);
@@ -99,9 +108,6 @@ export async function onRequestPost({ request, env, data }) {
           JSON.stringify([firstStyle]), now, now, fossilized, sessionId
         ).run();
       } else {
-        // Only increment sessions_seen once per session, not once per turn
-        const sessionsSeenDelta = existing.last_session_id !== sessionId ? 1 : 0;
-
         // Record the explanation style used this session so the professor rotates next time
         let triedStylesJson = existing.explanation_styles_tried ?? '[]';
         if (sessionsSeenDelta === 1) {
