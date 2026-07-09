@@ -1703,3 +1703,121 @@ safety) — the user has explicitly deprioritized those for this solo-use
 context ("im not gonna tamper anything... if that changes in future we
 can worry then"). This audit stayed scoped to correctness of the learning
 mechanics themselves, per the user's framing: "i want to learn properly."
+
+## Flashcards rebuilt Anki-style
+
+*Date: 07-09-2026*
+
+User: "focus on progressive learning mechanics and make sure the
+flashcards are working anki style. hit me with 10-12 mc questions to set
+direction." Grounded the questions in the actual code first: `fsrs.js`'s
+first-review math meant a brand-new card graded "Again" scheduled ~9.8
+hours out (`W[0] = 0.4072` days) with no short-interval learning phase and
+no way to reappear in the same session — real Anki uses minute-scale
+learning steps before a card graduates to day-scale FSRS intervals.
+Scoped via two rounds of `AskUserQuestion` (4 questions each, the tool's
+per-call cap):
+
+1. Add Anki-style learning steps (recommended, chosen).
+2. Same-session requeue for Again/Hard cards (recommended, chosen).
+3. Scope: Flashcards only, not `vocabulary_items` (recommended, chosen) —
+   Flashcards is the one page explicitly styled as an Anki-like deck;
+   `vocabulary_items` serves a different UI (a due-list, not a
+   card-by-card session) and can follow later if this works well.
+4. UX features wanted: stats/forecast page, leech detection, keyboard
+   shortcuts, interval preview on grade buttons — all four picked.
+5. Undo last review — yes.
+6. Manual suspend/bury — yes.
+7. Leech action on hitting the lapse threshold: flag it and keep
+   reviewing (Anki's default "tag only" behavior), not auto-suspend.
+8. Build pacing: one full pass covering everything, ship as one PR.
+
+**Architecture.** `functions/_lib/flashcardScheduler.js` is a new pure
+function, `scheduleFlashcard(item, grade)`, layered on top of the existing
+`fsrs.js` (untouched) rather than modifying it — FSRS math only runs on a
+genuine recall event (first-ever exposure, or any grade while already in
+`review` state, including the lapse that starts relearning); the
+learning/relearning steps themselves are just a "did you actually retain
+it" gate on top of the stability FSRS already computed. Being a pure
+function with no DB/env dependency, the same module drives both the
+server-side grading endpoint (`flashcards/review.js`) *and* a client-side
+interval preview in `Flashcards.jsx` (imported directly via
+`../../functions/_lib/flashcardScheduler.js` — confirmed this resolves
+fine through Vite's client build since neither `fsrs.js` nor the scheduler
+touch any Workers-only global) — avoiding the classic duplicated-logic
+trap where the preview shown to the user could drift out of sync with
+what the server actually schedules.
+
+State machine: `new` → `learning` (steps `[1, 10]` minutes) → `review`
+(full FSRS-scale) → a lapse (Again while in `review`) → `relearning` (one
+10-minute step) → back to `review`, reusing whatever stability
+`nextStabilityForget` computed at the moment of the lapse (recomputed once,
+not re-run on every relearning-step answer). Grading Easy always graduates
+immediately, matching Anki. `schema-v9.sql` adds `state`/`step`/`lapses`/
+`is_leech`/`suspended`/`undo_snapshot` to `flashcard_progress` (existing
+rows default to `state='review'` — they're already past initial learning
+under the old pure-FSRS flow and keep their real stability; brand-new rows
+are explicitly inserted with `state='new'`/`'learning'`) plus a new
+append-only `flashcard_review_log` table (mirrors Anki's revlog) so the
+stats page can compute exact same-day/7-day review counts and retention
+without overloading the FSRS-purpose counters on `flashcard_progress`
+(which don't increment on every learning-step answer, only on genuine FSRS
+runs).
+
+New endpoints: `flashcards/undo.js` (single-level, restores from a JSON
+`undo_snapshot` written on every `review.js` call; a card graded for the
+very first time snapshots the sentinel `'NEW'` so undoing it deletes the
+row rather than restoring one; also deletes the matching
+`flashcard_review_log` entry so stats stay accurate after an undo).
+`flashcards/suspend.js` (upserts the `suspended` flag; a never-reviewed
+card gets a bare row with `state='new'` explicitly, not the column's
+`'review'` default, so if it's later unsuspended its first real review
+still goes through learning steps instead of skipping straight to
+`review`-state FSRS math). `flashcards/stats.js` (due-forecast histogram,
+state breakdown, retention %, leech list — doesn't know total deck size
+since the static word list lives in the frontend bundle, so the client
+combines it with its own card count to derive the "new" tile).
+
+`Flashcards.jsx`: same-session requeue splices a still-learning/relearning
+card back into the local queue array `REQUEUE_GAP` (3) cards ahead after
+grading; keyboard shortcuts (Space/Enter to flip, `1`-`4` to grade); live
+interval preview on each grade button via `formatInterval(scheduleFlashcard(
+...).due_at)`; a leech badge when the current card's `isLeech` is true; a
+"stop showing it" suspend link; an "Undo last review" link that calls the
+undo endpoint and restores local queue/index/progress state from a
+single-level snapshot kept in React state. New `FlashcardStats.jsx` page
+at `/flashcards/stats`, linked from the Flashcards empty/complete states
+(no new top-level nav entry — consistent with how other deeply-nested
+pages in this app are reached).
+
+**Verification.** Local `wrangler pages dev` + D1 with `schema-v9.sql`
+applied, driven entirely through the real HTTP API. Hand-verified the
+state machine against the exact FSRS numbers: graded a new card Good twice
+(1m step → 10m step → graduated to `review` with `stability=3.1262`,
+matching `W[2]`), then Again from `review` (lapse: stability correctly
+shrank to `0.8845`, `relearning` entered), then Good in `relearning`
+(graduated back to `review` using the already-computed stability, due_at
+~21h out matching `0.8845` days). Ran 8 full lapse→relearn→graduate cycles
+on one card and confirmed `is_leech` flips `true` at exactly the 8th
+lapse, not before/after. Verified undo two ways: on a brand-new card
+(deletes the row entirely) and on an already-reviewed card (restores the
+exact pre-grade row, single-level only — undoing a second time has
+nothing to restore); cross-checked the stats endpoint's review-count and
+retention-% math by hand against every logged grade call, including the
+two deleted-by-undo log entries, and it matched exactly (20 total, 11
+correct). Verified suspend creates a bare `state='new'` row for a
+never-reviewed card. Playwright pass against the real UI confirmed:
+Space-to-flip and `1`-`4`-to-grade keyboard shortcuts work; interval
+preview renders correctly ("Again 1m · Hard 2m · Good 10m · Easy 15.5d"
+for a fresh card, matching the scheduler's math exactly); grading a
+still-learning card visibly grows the session queue length (same-session
+requeue confirmed: "1/10" → "2/11"); the Undo and suspend links render and
+function (suspend correctly shrinks the queue, "1/10" → "1/9"); the stats
+page renders tiles/retention/forecast bar chart correctly with real
+numbers and zero console errors. All test users and their D1 rows deleted
+afterward.
+
+`schema-v9.sql` needs a manual `--remote` apply to production D1 before
+this ships live, per this project's established migration convention (the
+session has no Cloudflare credentials to run `--remote` migrations
+itself) — flagged explicitly in the PR description, not just buried here.

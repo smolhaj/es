@@ -110,5 +110,19 @@ export const api = {
         method: 'POST',
         body: JSON.stringify({ cardId, grade })
       }, token),
+
+    undo: (token, cardId) =>
+      req('/flashcards/undo', {
+        method: 'POST',
+        body: JSON.stringify({ cardId })
+      }, token),
+
+    suspend: (token, cardId, suspended) =>
+      req('/flashcards/suspend', {
+        method: 'POST',
+        body: JSON.stringify({ cardId, suspended })
+      }, token),
+
+    stats: (token) => req('/flashcards/stats', {}, token),
   }
 };
