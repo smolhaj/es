@@ -2580,3 +2580,117 @@ still-unaudited `vocabulary.js` (1439 words), `verbs.js` (147 verbs),
 which currently carries CEFR tags that were added or spot-checked
 earlier this session but never put through this same real-world-
 standards audit process.
+
+## CEFR-accuracy audit of vocabulary.js and verbs.js
+
+With `concepts.js` fully resolved, scoped the next piece of the
+"full site audit" with the user via `AskUserQuestion` rather than just
+picking a direction: which content types to cover (`verbs.js` and
+`vocabulary.js`, not `idioms.js`/`false-friends.js` this round), what
+methodology to use for `vocabulary.js` given its size (1439 words is
+12x `concepts.js`'s 117 — a frequency-consistency scan flagging
+outliers for targeted research, not a full manual pass on every word),
+and confirmed the curriculum-unit-content pacing lag stays deferred as
+its own future phase rather than folding into this one.
+
+**The methodology problem, and a course-correction found before
+dispatching any research.** `vocabulary.js` stores a `frequencyRank`
+per word (lower = more frequent), so the first mechanical pass sorted
+all 1439 words by that rank and compared each word's actual cefr
+against an "expected level" computed from its rank position (using the
+current per-level counts as band sizes — a data-driven baseline, not an
+externally-calibrated one). That first pass flagged 537 words. Looking
+at the results immediately surfaced a flaw: colors (rojo, azul, verde),
+meals (desayuno, almuerzo, cena), and emotions (contento, nervioso,
+preocupado) all got flagged as "should be C1/C2" purely because
+they're low-frequency in a general corpus sense — but these are
+universal, correctly-tagged A1/A2 thematic vocabulary in every real
+Spanish course. Frequency alone doesn't determine level for
+thematic/functional domains; communicative necessity does (a beginner
+needs "red" and "dinner" long before corpus frequency would predict).
+Excluding those domains (colors, food, family, body, emotions,
+education, numbers, greetings, time, weather, clothes, house, nature,
+health, places, professions, travel, technology) from the
+under-leveled check dropped that side to near-zero — confirming it was
+mostly noise. The over-leveled side held up as real: 268 words,
+concentrated in verbs (90), nouns (66), adjectives (37), connectors
+(21), and adverbs (13) — common, everyday, general-register words
+tagged 2+ CEFR bands higher than their real-world frequency/commonness
+would suggest. This mirrors exactly the pattern that started the whole
+audit (the original `venir` bug): abstract-sounding words that are
+actually extremely common in real usage getting stuck at an
+inappropriately high level.
+
+**Dispatch**: split the 268 vocabulary candidates into 3 roughly-equal
+domain-grouped batches (verbs; nouns+connectors; everything else) and
+ran them as parallel background research agents, mirroring the original
+Phase 1 pattern for `concepts.js`. A 4th parallel agent handled
+`verbs.js` separately, since it has no stored frequency data — that
+agent had to first establish a real canonical Spanish-verb-frequency
+ranking via WebSearch (Davies' frequency dictionary, corpus data
+confirming ser/estar/tener/hacer/poder/decir/ir/ver/dar/saber as the
+top-10) before cross-referencing all 147 verbs against it. All 4 agents
+were explicitly told to use judgment about register, not just raw
+frequency — a word can be common in written/news Spanish (bureaucratic,
+legal, journalistic vocabulary) while still being genuinely advanced
+for a learner to produce naturally, so "frequent but formal" was
+treated differently from "frequent and basic."
+
+**Two specific predictions confirmed by research rather than assumed**:
+the `verbs.js` agent was pointed at `llover`/`nevar` (rain/snow, both
+tagged C2) and asked to investigate specifically, since weather verbs
+being C2-tagged looked suspicious on its face — confirmed as a real bug
+(both retagged to A1; the lack of a full 6-person conjugation paradigm,
+since these are used almost exclusively in the impersonal 3rd person,
+is irrelevant to CEFR level — weather vocabulary is explicit A1 content
+in every beginner course). Also asked about `leer` (A1, alongside
+hablar/comer/vivir) given its preterite/gerund spelling-change
+irregularity (leyó/leyendo) — confirmed correct as A1, since the
+irregularity surfaces later as a footnote to an already-known verb, not
+a reason to withhold the whole verb from A1.
+
+**Results**: across all 4 agents' findings, 167 of the 268 flagged
+`vocabulary.js` candidates were confirmed as genuine over-tags and
+retagged (e.g. `alcanzar`, `suponer`, `establecer`, `objetivo`,
+`empleo`, `equipo`, `fútbol`, `dispositivo`, `¿no?` — this last one a
+basic spoken-Spanish tag-question pattern that was absurdly tagged C2).
+About 101 were reviewed and kept as-is, either because the agents found
+genuine formal/legal/literary-register justification despite frequency
+(`esclarecer`, `vulnerar`, `menoscabar`, `salvaguardar`, `en aras de`,
+`cabe destacar`) or because confidence wasn't high enough to commit to
+a specific correction ("keep as-is, uncertain" — used deliberately
+rather than guessing, per the standing no-guessing directive). For
+`verbs.js`, 11 of 147 verbs were retagged: `llover`/`nevar` (C2→A1, the
+predicted bug), `haber` as auxiliary (B1→A2, matching PCIC's explicit
+placement of the present-perfect construction at A2), `correr` (B1→A1,
+fully regular high-frequency verb with no reason to delay it),
+`oír` (B1→A2, inconsistent with its own irregular-yo-form sibling
+cluster already tagged A2), `seguir` (B1→A2, matching its
+e→i-stem-change siblings pedir/servir/repetir already at A2), `valer`
+(B2→A2, the dominant everyday "how much is it worth" sense), and the
+daily-routine reflexive pair `despertarse`/`vestirse` (B1→A2, brought
+into line with levantarse/ducharse/acostarse, already A2 — the original
+tagging had split one thematic reflexive-verb set across two levels for
+no structural reason), plus `preferir` (B1→A2) and `impedir` (C1→B2,
+medium confidence).
+
+**Merge mechanics**: `vocabulary.js` mixes single- and double-quoted
+string literals across different sections (older entries use `'`,
+the ~480 C1/C2 words added earlier this session use `"`) — a script
+written assuming one quote style silently matched only 69 of the first
+167 targeted entries; caught by checking the "not found" list rather
+than trusting a partial-success count, and fixed by trying both quote
+styles per entry with a verify-before-replace check (confirm the
+current cefr matches the expected pre-change value before writing,
+so any accidental mismatch reports loudly instead of silently
+corrupting an unrelated entry). All 167 vocabulary.js changes and all
+11 verbs.js changes were verified against the file post-edit before
+committing. `npm run build` passes; item counts unchanged in both files
+(1439 words, 147 verbs) since this phase only retags, never adds or
+removes content.
+
+**Explicitly out of scope this round** (user's choice, not an oversight):
+`idioms.js` and `false-friends.js` remain untouched — CEFR-tagged
+earlier this session but never checked against real-world standards.
+The curriculum-unit-content pacing lag also stays deferred, same
+reasoning as every prior phase.

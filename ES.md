@@ -1011,6 +1011,42 @@ measures):**
     Directly relevant to writing true-A1 reading-passage content, since
     the story needs to know what a learner has actually been taught by
     each level. See "Standing directives" above.
+28. **CEFR-accuracy audit of `vocabulary.js` and `verbs.js` (07-09-2026,
+    same session as item 27).** Different methodology than `concepts.js`
+    since these aren't sequenced by curriculum order — `vocabulary.js`
+    has a stored `frequencyRank` per word, so a mechanical
+    frequency-consistency scan (does a word's real-world frequency match
+    its assigned cefr band?) flagged candidates, which 3 parallel
+    research agents then verified/corrected; `verbs.js` has no stored
+    frequency data, so a 4th agent cross-referenced all 147 verbs
+    against real canonical Spanish-verb-frequency sources directly.
+    **Important methodology finding**: raw frequency alone produces
+    false positives for *thematic/functional* vocabulary (colors, food,
+    emotions, family, school items) — these are legitimately taught
+    early despite low corpus frequency, because they're taught for
+    communicative necessity, not frequency. Excluding those domains
+    from the "under-leveled" check left a much smaller, high-confidence
+    signal, entirely on the "over-leveled" side: common, everyday words
+    (mostly verbs, nouns, adjectives, connectors) tagged 2+ CEFR bands
+    higher than warranted — the same over-leveling pattern that started
+    the whole audit (the original `venir` bug).
+    **Result**: 167 of 1439 `vocabulary.js` words retagged (e.g.
+    `alcanzar`, `establecer`, `objetivo`, `equipo`, `dispositivo`,
+    `¿no?` — all were much more basic/common than their B2/C1/C2 tags
+    suggested), 11 of 147 `verbs.js` verbs retagged (most notably
+    `llover`/`nevar`, weather verbs mistagged C2 despite being taught in
+    the first A1 weather unit of every real course — flagged and
+    confirmed exactly as suspected before dispatching the research;
+    also `haber`, `correr`, `oír`, `seguir`, `despertarse`, `vestirse`,
+    `preferir`, `valer`, `impedir`). Item counts unchanged in both files
+    (retags only). ~100 additional flagged vocabulary candidates were
+    reviewed and kept as-is — either genuinely formal/legal/literary
+    register despite frequency (e.g. `esclarecer`, `vulnerar`,
+    `menoscabar`) or flagged "uncertain" by the research agents rather
+    than guessed. `idioms.js` and `false-friends.js` were explicitly
+    scoped OUT of this phase (user chose verbs+vocabulary only) and
+    remain unaudited against real-world standards. See `ES-HISTORY.md`
+    for full methodology and per-batch findings.
 
 ## Session history index
 
