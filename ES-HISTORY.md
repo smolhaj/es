@@ -1480,3 +1480,112 @@ order — fixed by scoping to the exact button text, same lesson as the
 earlier `[class*="option"]` matching `.options` false positive: fuzzy
 selectors need to be scoped precisely, not just "contains this word."
 
+
+## Review checkpoints: cumulative interleaved review (this session)
+
+*Date: 07-08-2026*
+
+Picked as the top "what to build next" candidate specifically because it
+needed zero new Spanish content and zero schema changes — the safest
+possible addition under the standing constraint that new content must
+never reset or lose existing users' progress. Scoped conversationally via
+two rounds of MC questions before building: placement (a real unit in the
+Learn sequence, not a separate page or bolted onto an existing feature),
+content source (reuse existing units' practice pools, not fresh content or
+live Gemini generation), selection logic (weighted toward the learner's
+actual weak spots via `concept_mastery`, falling back to even sampling for
+cold-start cases), and cadence (level-boundary-anchored, ~9 checkpoints).
+A second round nailed down exercise count (~20, matching a normal unit),
+repeatability (redoable anytime, freshly personalized each time — not
+frozen at first-completion state, matching the spec's "aggressive
+weak-spot resurfacing" directive), and visual treatment (a light "Review"
+badge, not a full redesign).
+
+**Key technical decision**: checkpoints use fractional `UNIT_METADATA`
+`order` values (4.5, 7.5, 11.5, ...) so they slot between existing units
+without ever renumbering one — the same discipline that kept the C1/C2
+rollout additive. `getPracticePoolUpTo()` and `buildCheckpointPractice()`
+assemble each checkpoint's exercise set from data already in the bundle
+(every unit's `practice` array is statically imported already), so no new
+content files or backend routes were needed — personalization reads the
+existing `GET /learner/profile` `weakConcepts` response client-side.
+
+Verified end-to-end via a live local `wrangler pages dev` + D1 server and
+Playwright (15/15 checks): registration → `/learn` shows "0 of 47
+available units" with Review badges → a checkpoint builds and completes a
+real 20-exercise practice loop → redoing it rebuilds a fresh set → the
+capstone `checkpoint-c2` (largest pool, spanning all 37 taught units)
+loads without error. Full architecture description now lives in `ES.md`'s
+"Architecture" section under "Review checkpoints."
+
+**Process note**: a `git checkout -B <branch> origin/main` performed right
+after committing (as part of the "restart from main after a merged PR"
+protocol) orphaned the just-made commit, since there were no uncommitted
+changes left for `git stash` to preserve and carry across the reset —
+recovered via `git reflog` + `git cherry-pick`. Lesson: check `git log
+--oneline -3` immediately after any branch reset before assuming the
+restart worked cleanly, don't just trust the stash-pop step to have
+carried everything.
+
+## C1/C2 vocabulary gap fill: 1005 → 1439 words (this session)
+
+*Date: 07-09-2026*
+
+Found by data, not guesswork: a size comparison across all content files
+(`vocabulary.js`, `verbs.js`, `idioms.js`, `false-friends.js`,
+`pronunciation.js`, `regional.js`) turned up one glaring gap —
+`vocabulary.js` had only 80 words at C1 and **zero at C2**, despite the
+site having a full 12-unit C1/C2 curriculum (units 26-37). Scoped via two
+rounds of MC questions: target size (aggressive parity with A1/A2, ~280
+each — the largest of three offered options, not the recommended
+middle option), sourcing (promote the curriculum units' own already-
+verified `vocab` arrays first, ~139 words free, then fill the remainder
+via fresh WebSearch-verified research), domain scope (add 4 new domains
+for professional/abstract topics the prior 22 concrete/everyday domains
+didn't cover: `business`, `academic`, `abstract_concepts`, `media_news`),
+and register tagging (extend `idioms.js`'s existing 4-way
+colloquial/informal/neutral/formal scale into the main vocabulary browser
+for the first time, on new entries only).
+
+**Execution**: 4 parallel background agents, each writing to its own
+staging file (never `vocabulary.js` directly, per the established
+same-file-race rule) — one promoting curriculum vocab, one researching
+fresh C1 words, two researching fresh C2 words (split: existing domains vs.
+the 4 new ones). All 4 hit an account-level API session limit
+simultaneously on the first attempt; 2 had already finished and written
+valid files, 2 had produced nothing yet and were cleanly re-dispatched
+with an explicit early-write instruction added to reduce recurrence risk.
+A custom merge script (`scripts/merge-vocab-staging.mjs`, deleted after
+use — one-time tool, not a reusable pipeline) combined all 4 batches,
+deduped 8 cross-batch collisions (priority: promoted > c1 > c2a > c2b),
+confirmed zero collisions against the existing 1005 words, and spliced
+each domain's new entries into that domain's existing section in
+`vocabulary.js` (or appended a new section for the 4 brand-new domains)
+by line-position text insertion rather than regenerating the whole file.
+
+**One deliberate exception to "no duplicate spellings"**: `tío` now
+appears twice — the existing "uncle" sense (A1, `family`) and a new,
+genuinely distinct colloquial "dude/mate" address-term sense (C2,
+`greetings`) that the C2 register-and-stance curriculum unit already
+teaches in its lesson prose but that never made it into the standalone
+vocabulary browser. The curriculum-promotion agent correctly flagged and
+skipped it as a same-spelling collision rather than guessing; added back
+manually with a disambiguating note in the `en` field.
+
+**Real regional/register findings from this batch's WebSearch
+verification** (matching this file's established audit rigor): `autónomo`
+(Spain's legal term for self-employed; Latin America favors "trabajador
+independiente"), `copia de seguridad`/`respaldo` (technical-everywhere vs.
+everyday-Latin-American split), `formación`/`capacitación` (Spain vs.
+Latin America for "training"), `complexión` confirmed as a genuine false
+friend (means "build/physique," not skin tone — that's "tez"/"cutis"),
+`plantilla` (Spain "staff/workforce" vs. Latin America "template"),
+`colega` (Spain casual "buddy" vs. elsewhere usually just "colleague"),
+`menudo` (Peninsular ironic-intensifier use vs. Mexican "tripe soup/spare
+change").
+
+Verified end-to-end via a live local `wrangler pages dev` + D1 server and
+Playwright: `/vocab` shows "1439 words across 27 domains · A1 through C2,"
+new domain and register filter chips render and combine correctly (C2 +
+formal → 95 words), no console errors. Full current-state description
+lives in `ES.md`'s "Architecture" section under "Vocabulary reference."

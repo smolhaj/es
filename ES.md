@@ -143,16 +143,17 @@ added specifically so a fresh coding session wouldn't either freeze on a
 
 ## Current implementation status vs. spec
 
-**Built, current as of the C2 rollout (07-08-2026):**
+**Built, current as of 07-09-2026:**
 - Auth (JWT, D1-backed `users` table)
 - Gemini-driven adaptive session with graceful local-grading fallback
 - FSRS-4.5 vocabulary spaced repetition, shared between the adaptive
   session's vocab queue and Flashcards
 - Concept mastery tracking with fossilization detection and
   explanation-style rotation
-- Reference pages: grammar, verbs, vocabulary, idioms, false friends,
-  pronunciation, regional differences, free resources — all with
-  `ClickableSpanish` word-popover support
+- Reference pages: grammar, verbs, vocabulary (1439 words, A1-C2 parity
+  across all 6 levels, 27 domains), idioms, false friends, pronunciation,
+  regional differences, free resources — all with `ClickableSpanish`
+  word-popover support
 - Dashboard, session history, profile
 - **Structured "Learn" curriculum — all 38 taught units (0-37), A1 through
   C2, complete, plus 9 cumulative review checkpoints (47 total).** See
@@ -744,3 +745,11 @@ full account of any of these.
 - **07-08-2026** — C2 tier build: units 30-37, the `verbs.js` tense
   extension, the Unit 26 duplicate-concept fix, and the `CONCEPT_LABELS`/
   CEFR-array consolidation.
+- **07-08-2026** — Review checkpoints: 9 cumulative interleaved-review
+  units, scoped via MC questions, zero new content/schema — full current
+  state in "Architecture" above, decision narrative and a git-reflog
+  recovery incident in this entry.
+- **07-09-2026** — C1/C2 vocabulary gap fill: `vocabulary.js` 1005 → 1439
+  words, found via a plain file-size comparison across content files, not
+  a punch-list item. 4 parallel research/promotion batches, 4 new domains,
+  a new `register` field — full current state in "Architecture" above.
