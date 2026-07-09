@@ -926,13 +926,29 @@ measures):**
     count: 109 → 117, all prereqs verified consistent (zero backwards
     deps), all 117 `grammar.js` cards synced 1:1 by cefr, `_gemini.js`
     whitelist regenerated programmatically from `concepts.js`.
+    **Phase C is done**: `estilo_indirecto_basico` and
+    `expresiones_probabilidad_basica` retagged B2 → B1 (their real
+    level per the Phase 1 findings), moved to the B1 section of
+    `concepts.js`/`grammar.js`, `_gemini.js` whitelist regenerated. Their
+    two curriculum units (`reported-speech-basic`,
+    `certainty-doubt-probability`, from PR #55) moved from B2's order
+    range to B1's (order 21.1/21.2, right after `efficiency-emphasis`
+    and before `checkpoint-b1-full`, whose `checkpointUpTo` moved
+    21 → 21.2), files renamed `unit-b2-*` → `unit-b1-*` with their
+    internal level comments corrected too. `argumentation-workplace`
+    (the third PR #55 unit, teaching `conectores_argumentativos_basicos`
+    + `registro_formal_correspondencia`, both genuinely B2) stayed put
+    and was renumbered to order 25.1 to fill the gap; `checkpoint-b2`'s
+    `checkpointUpTo` moved 25.3 → 25.1. Net effect: B2 back to 5 units,
+    B1 to 8 — exactly undoing the B2-unit-count-parity math that
+    motivated building the 3 units in the first place, since 2 of the 3
+    were never really B2 content. Total concept count still 117
+    (no concepts added/removed, only moved); prereqs re-verified
+    consistent (`imperfect` and `present_subjunctive`, both B1, are
+    these two concepts' only prereqs, so the move only tightened the
+    prereq gap rather than creating a backwards one); `grammar.js`
+    still 117/117 synced; `npm run build` passes.
     **Still open**:
-    - **Phase C**: move the two concepts created *this same session*
-      for the new B2 units (`estilo_indirecto_basico`,
-      `expresiones_probabilidad_basica`) — real level is B1, so their
-      just-shipped units (PR #55) need to move too, which also undoes
-      the B2-parity math that motivated building them (B2 goes back to
-      5 units, B1 to 8).
     - **Phase D**: 5 concepts flagged as genuine cross-source
       disagreement, not resolved (near_future, obligation_infinitive,
       modal_verbs' deber split, imperfect_subjunctive/si_clauses,

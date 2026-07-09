@@ -287,6 +287,16 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['adjective_agreement', 'relative_clauses'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  estilo_indirecto_basico: {
+    id: 'estilo_indirecto_basico', label: 'Basic reported speech (dijo que...)', cefr: 'B1',
+    category: 'syntax', prereqs: ['imperfect'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  expresiones_probabilidad_basica: {
+    id: 'expresiones_probabilidad_basica', label: 'Certainty & doubt (deber de, es posible que)', cefr: 'B1',
+    category: 'discourse', prereqs: ['present_subjunctive'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
 
   // ── B2 ──────────────────────────────────────────────────────────────────
   present_perfect: {
@@ -373,16 +383,6 @@ export const CONCEPTS = {
     id: 'adjective_position', label: 'Adjective position (before/after the noun)', cefr: 'B2',
     category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
     explanationStyles: ['contrastive', 'rule_first', 'example_first'],
-  },
-  estilo_indirecto_basico: {
-    id: 'estilo_indirecto_basico', label: 'Basic reported speech (dijo que...)', cefr: 'B2',
-    category: 'syntax', prereqs: ['imperfect'],
-    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
-  },
-  expresiones_probabilidad_basica: {
-    id: 'expresiones_probabilidad_basica', label: 'Certainty & doubt (deber de, es posible que)', cefr: 'B2',
-    category: 'discourse', prereqs: ['present_subjunctive'],
-    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   conectores_argumentativos_basicos: {
     id: 'conectores_argumentativos_basicos', label: 'Basic argumentative connectors (pero, sin embargo, por eso)', cefr: 'B2',

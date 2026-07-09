@@ -2318,3 +2318,69 @@ still teach the *combined* content under the original (now narrowed)
 concept id, so nothing is broken, but the new finer-grained ids are
 inert until the already-scoped future curriculum-content-reordering
 phase picks them up.
+
+## CEFR-accuracy audit of concepts.js: Phase C (fixing this session's own B2 units)
+
+Unlike Phases A/B, this phase corrects a mistake made earlier in the
+*same* session rather than pre-existing content: when the 3 new B2
+curriculum units were built (reported speech, certainty/doubt,
+argumentation — PR #55), two of the three concepts created for them
+(`estilo_indirecto_basico`, `expresiones_probabilidad_basica`) were
+placed at B2 partly to hit a unit-count-parity target across levels,
+not purely on real-world CEFR grounds. The Phase 1 research pass this
+session flagged both as really B1 — unsurprising in hindsight, since
+both are explicitly scoped as the "everyday, present-tense-only" or
+"basic" version of concepts whose fuller form (`estilo_indirecto`,
+`futuro_probabilidad`) is already correctly placed at C1/B1.
+
+**Data layer**: retagged both B2 → B1 in `concepts.js`, and moved their
+object literals physically into the file's B1 section (not just a cefr
+field flip — kept the file's section-comment grouping meaningful, same
+standard applied to Phase B's `reformuladores_basico`/`genero_informe`).
+Checked their prereqs before moving: `imperfect` and `present_subjunctive`
+are both already B1, so retagging tightened what had been a same-level
+dependency into... still a same-level dependency (B1 depending on B1) —
+no backwards-prereq risk either direction. Also checked what depends on
+them: `estilo_indirecto` (C1) has `estilo_indirecto_basico` as a prereq,
+which only gets *more* comfortably valid (C1 depending on B1, was C1
+depending on B2). Re-ran the full 117-concept prereq-consistency check
+after the move — zero issues. Moved their `grammar.js` cards to the B1
+section too, updated their `cefr` fields, regenerated the `_gemini.js`
+whitelist programmatically from the corrected `concepts.js`, same
+approach as both prior phases.
+
+**Curriculum layer** (the part Phase A/B's retags deliberately did NOT
+touch, since this phase's units were built *this same session* and
+hadn't shipped long enough to accumulate the same inertia): moved the
+`reported-speech-basic` and `certainty-doubt-probability` unit entries
+out of the B2 order range (25.1/25.2) into the B1 range (21.1/21.2),
+right after `efficiency-emphasis` (order 21) and before
+`checkpoint-b1-full` (order 21.5, whose `checkpointUpTo` moved from
+21 to 21.2 and `coversUnits` updated to match). Renamed the two content
+files `unit-b2-reported-speech-basic.js` → `unit-b1-reported-speech-basic.js`
+and `unit-b2-certainty-doubt-probability.js` →
+`unit-b1-certainty-doubt-probability.js` (updating the corresponding
+`curriculum/index.js` import paths), and fixed the internal level
+comments inside each file (header comment and the trailing
+accuracy-audit note that referenced `cefr: 'B2'`) so nothing inside the
+file still claims B2. The third PR #55 unit, `argumentation-workplace`
+(teaching `conectores_argumentativos_basicos` and
+`registro_formal_correspondencia` — both independently confirmed B2 in
+Phase 1, untouched here), stayed in the B2 section and was renumbered
+from order 25.3 to 25.1 to fill the gap left by the other two;
+`checkpoint-b2`'s `checkpointUpTo` moved from 25.3 to 25.1 to match.
+
+**Net effect, exactly as flagged when this was deferred**: B2 drops
+from 7 units back to 5, B1 rises from 6 to 8 — undoing the B2-unit-count
+parity with neighboring levels that motivated building all 3 units in
+the first place, since 2 of the 3 were never really B2 content to begin
+with. This is treated as a correct outcome, not a regression — parity
+for its own sake isn't a goal, real-world CEFR accuracy is.
+
+**Verification**: prereq-graph check across all 117 concepts (no count
+change, only 2 concepts moved) — zero backwards deps. `grammar.js`
+still 117/117, zero cefr mismatches against `concepts.js`. `_gemini.js`
+whitelist confirmed to contain all 117 ids. `npm run build` passes.
+Verified no other file references the old `unit-b2-reported-speech-basic.js`
+/ `unit-b2-certainty-doubt-probability.js` paths or the old B2 cefr
+values for these two concepts (grepped across `src/` and `functions/`).

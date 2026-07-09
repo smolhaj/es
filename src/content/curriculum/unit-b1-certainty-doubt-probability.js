@@ -1,4 +1,4 @@
-// Unit B2 — Certainty & Doubt: Everyday Probability Expressions (B2)
+// Unit B1 — Certainty & Doubt: Everyday Probability Expressions (B1)
 // Covers: expresiones_probabilidad_basica
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
