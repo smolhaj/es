@@ -1,5 +1,6 @@
 // Unit 14 — Comparing & Describing (A2)
-// Covers: ser_vs_estar, adverbs_formation, comparatives_basic, prepositions_basic
+// Covers: ser_vs_estar, adverbs_formation, comparatives_basic, prepositions_basic,
+// relative_clauses_core
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -118,6 +119,26 @@ export default {
         "Para and por both sometimes translate as \"for,\" so don't assume they're interchangeable — for now, lean on para for purpose/destination/recipient and por for reason/exchange, and expect a full dedicated lesson on the finer points later.",
       ],
     },
+    {
+      heading: 'Describing with a Whole Clause: Que and Donde',
+      paragraphs: [
+        'Everything in this unit so far describes with a single word — an adjective, an adverb, a comparison. Que and donde let you describe with a whole clause instead, folding a second idea directly into your description: "the book that I read," "the city where I was born."',
+        'Que (no accent mark here — this is different from the question word qué) is by far the most common relative word in Spanish and works for both people and things: El libro que leí es bueno ("The book that I read is good"), La mujer que trabaja aquí es mi jefa ("The woman who works here is my boss"). Unlike English, Spanish never drops que the way English casually drops "that" — "The book I read" without "that" is fine in English, but Spanish always keeps que: El libro que leí, never "El libro leí."',
+        'Donde works the same way but specifically for places: La ciudad donde nací es pequeña ("The city where I was born is small"). Both que and donde simply attach a full clause after the noun they describe, with no extra words or reordering needed — you just say the noun, then que or donde, then the rest of the description as its own mini-sentence.',
+      ],
+      examples: [
+        { es: 'El restaurante que me recomendaste es excelente.', en: 'The restaurant that you recommended to me is excellent.' },
+        { es: 'Este es el libro que compré ayer.', en: 'This is the book that I bought yesterday.' },
+        { es: 'La ciudad donde vivo es muy tranquila.', en: 'The city where I live is very quiet.' },
+        { es: 'Tengo un amigo que habla cuatro idiomas.', en: 'I have a friend who speaks four languages.' },
+        { es: 'Ese es el parque donde jugábamos de niños.', en: 'That\'s the park where we used to play as kids.' },
+      ],
+      commonMistakes: [
+        'Don\'t drop que the way English can drop "that" — "El libro leí es bueno" is incorrect; Spanish always keeps que: "El libro que leí es bueno."',
+        'Que never carries a written accent in this use — qué with an accent is reserved for questions and exclamations, a completely different word.',
+        'Donde is only for places — don\'t reach for it when describing a person or thing; that\'s always que\'s job.',
+      ],
+    },
   ],
 
   vocab: [
@@ -139,6 +160,8 @@ export default {
     { es: 'sin', en: 'without', example: 'No puedo vivir sin café.', exampleEn: "I can't live without coffee." },
     { es: 'para', en: 'for (purpose/destination/recipient)', example: 'Este café es para mi mamá.', exampleEn: 'This coffee is for my mom.' },
     { es: 'por', en: 'for / by (reason, exchange, through)', example: 'Gracias por todo.', exampleEn: 'Thanks for everything.' },
+    { es: 'que', en: 'that / which / who', example: 'El libro que leí es bueno.', exampleEn: 'The book that I read is good.' },
+    { es: 'donde', en: 'where', example: 'La ciudad donde nací es pequeña.', exampleEn: 'The city where I was born is small.' },
   ],
 
   practice: [
@@ -167,6 +190,12 @@ export default {
     { type: 'fill_blank', prompt: 'Complete: "Voy ___ Madrid mañana." (to)', word: 'a', english: 'to', answer: 'a', concept_id: 'prepositions_basic', difficulty: 1 },
     { type: 'multiple_choice', prompt: 'Which sentence correctly uses the personal "a"?', word: 'a', english: 'personal a', answer: 'Veo a mi hermana en el parque.', options: ['Veo mi hermana en el parque.', 'Veo a mi hermana en el parque.', 'Veo a el parque mi hermana.', 'A veo mi hermana en el parque.'], concept_id: 'prepositions_basic', difficulty: 2 },
     { type: 'translation_to_english', prompt: '¿Qué significa "Vengo del trabajo y voy al gimnasio"?', word: 'del / al', english: 'from the / to the', answer: "I'm coming from work and going to the gym.", concept_id: 'prepositions_basic', difficulty: 2 },
+
+    // ── relative_clauses_core block: que, donde ──
+    { type: 'multiple_choice', prompt: 'Choose the correct relative word: "El libro ___ leí es muy interesante."', word: 'que', english: 'that', answer: 'que', options: ['que', 'donde', 'qué', 'cuál'], concept_id: 'relative_clauses_core', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "La ciudad ___ nací es muy pequeña." (where)', word: 'donde', english: 'where', answer: 'donde', concept_id: 'relative_clauses_core', difficulty: 1 },
+    { type: 'error_correction', prompt: 'Find and correct the error: "El restaurante me recomendaste es excelente."', word: 'que', english: 'that', answer: 'El restaurante que me recomendaste es excelente.', concept_id: 'relative_clauses_core', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'I have a friend who speaks four languages.'", english: 'I have a friend who speaks four languages.', answer: 'Tengo un amigo que habla cuatro idiomas.', word: 'que', concept_id: 'relative_clauses_core', difficulty: 2 },
   ],
 };
 
@@ -210,3 +239,12 @@ export default {
 // does not duplicate the ser_basics/estar_basics conjugation content
 // already taught in Units 4-5, nor the fuller B2 adjectives_ser_estar/
 // comparatives treatments reserved for later.
+//
+// Curriculum-pacing-lag fix (07-09-2026): added relative_clauses_core
+// (que, donde) section/practice — split off from relative_clauses during
+// the CEFR audit as the A2 core (quien and the subjunctive-in-relative
+// nuance stayed at B1 under relative_clauses), but had no A2 unit teaching
+// it. Folded in here since describing people/places/things with a whole
+// clause is a natural extension of this unit's describing-with-adjectives/
+// adverbs/prepositions focus. Content agrees with and does not contradict
+// the existing GRAMMAR_CARDS entry for relative_clauses_core.

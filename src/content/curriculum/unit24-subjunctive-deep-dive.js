@@ -1,5 +1,19 @@
-// Unit 23 — Subjunctive Deep Dive (B2)
+// Unit 23 — Subjunctive Deep Dive (B1)
 // Covers: imperfect_subjunctive, si_clauses, subjunctive_adverbial, perfect_subjunctive
+//
+// Curriculum-pacing-lag fix (07-09-2026): this unit moved from B2 to B1.
+// The CEFR audit retagged imperfect_subjunctive, si_clauses, and
+// subjunctive_adverbial to B1 (matching real-world type-2-hypothetical-
+// before-type-3-counterfactual sequencing and PCIC placement), while
+// perfect_subjunctive stays genuinely B2. Rather than splitting this unit
+// apart, it's kept as one deliberately-sequenced teaching arc — si_clauses
+// literally cannot be taught without imperfect_subjunctive's forms, built
+// two sections earlier in this same unit — and moved wholesale to B1 to
+// match 3 of its 4 concepts. perfect_subjunctive is a documented,
+// accepted exception: it's taught here as the natural capstone of the
+// same sequence (it directly extends the imperfect subjunctive build-up
+// with the perfect aspect) even though its own correct level is one step
+// ahead of the unit's new B1 position. See ES.md punch-list item 29.
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective

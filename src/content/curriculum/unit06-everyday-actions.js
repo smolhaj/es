@@ -1,5 +1,6 @@
 // Unit 06 — Everyday Actions (A1)
-// Covers: present_ar, present_er_ir
+// Covers: present_ar, present_er_ir, irregular_present_core, modal_verbs_core,
+// gustar_basico
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -98,6 +99,65 @@ export default {
         'English speakers often place frequency words exactly where English would ("I read always") — Spanish rarely does this; as a beginner, put siempre and a veces right before the conjugated verb, and save todos los días for the start or end of the sentence, and you\'ll sound natural.',
       ],
     },
+    {
+      heading: 'Your First Irregular Verbs: Tener and Ir',
+      paragraphs: [
+        'Every verb you\'ve conjugated so far has followed a clean, predictable pattern — but two of the most useful verbs in the entire language break the mold from day one, and you need them constantly enough that they can\'t wait for a later unit. Tener ("to have") and ir ("to go") are irregular, meaning their endings don\'t come from stripping -ar/-er/-ir the way hablar or vivir do.',
+        'Tener changes in every form except nosotros/vosotros: tengo, tienes, tiene, tenemos, tenéis, tienen. Notice the pattern — an unpredictable yo form (tengo, not "teno"), then e→ie everywhere else except the two "we/you-all" forms. Ir is even more compact and simply has to be memorized outright: voy, vas, va, vamos, vais, van — none of it resembles an -ir verb\'s regular pattern at all.',
+        'These two verbs earn their place this early because of how much everyday communication depends on them. Tener + años tells your age (Tengo veinticinco años), and tener alone expresses possession or a relationship (Tengo dos hermanos). Ir + a + place says where you\'re headed (Voy al trabajo) — you\'ll build directly on this construction in a later unit to talk about the near future.',
+      ],
+      examples: [
+        { es: 'Tengo un hermano y una hermana.', en: 'I have one brother and one sister.' },
+        { es: '¿Cuántos años tienes?', en: 'How old are you? (lit. how many years do you have)' },
+        { es: 'Voy al supermercado los sábados.', en: 'I go to the supermarket on Saturdays.' },
+        { es: 'Mis padres tienen una casa grande.', en: 'My parents have a big house.' },
+        { es: '¿A dónde vas después del trabajo?', en: 'Where are you going after work?' },
+      ],
+      commonMistakes: [
+        'Don\'t try to conjugate tener as a regular -er verb ("teno") — the yo form is irregular (tengo), and the rest stem-changes e→ie except nosotros/vosotros (tenemos, tenéis).',
+        'Ir doesn\'t look like a regular -ir verb at all (voy, not "ivo") — it simply has to be memorized as its own short list of six forms.',
+        'Tener + años, not "tener + edad," is how Spanish states age — Tengo veinte años, never a literal "I am twenty years."',
+      ],
+    },
+    {
+      heading: 'Saying What You Can and Want to Do: Poder and Querer',
+      paragraphs: [
+        'Poder ("to be able to / can") and querer ("to want") are two more verbs you\'ll reach for in nearly every conversation, and — like tener and ir — they don\'t follow the regular patterns from earlier in this unit. Both are stem-changing: the vowel in the middle of the stem shifts in every form except nosotros and vosotros.',
+        'Poder changes o→ue: puedo, puedes, puede, podemos, podéis, pueden. Querer changes e→ie: quiero, quieres, quiere, queremos, queréis, quieren. In both, notice that nosotros and vosotros keep the original vowel (podemos, not "puedemos"; queremos, not "quieremos") — that\'s the one part of the pattern that stays regular.',
+        'Both verbs are almost always followed directly by an infinitive, with no word in between: Puedo hablar español ("I can speak Spanish"), Quiero aprender más ("I want to learn more"). This infinitive-after-conjugated-verb structure is one you\'ll reuse constantly as your Spanish grows.',
+      ],
+      examples: [
+        { es: 'Puedo ayudarte esta tarde.', en: 'I can help you this afternoon.' },
+        { es: '¿Puedes venir a la fiesta?', en: 'Can you come to the party?' },
+        { es: 'Quiero aprender a cocinar.', en: 'I want to learn to cook.' },
+        { es: 'Queremos viajar a España este verano.', en: 'We want to travel to Spain this summer.' },
+        { es: 'No podemos salir hoy porque llueve.', en: "We can't go out today because it's raining." },
+      ],
+      commonMistakes: [
+        'Both verbs stem-change everywhere except nosotros/vosotros — puedo but podemos, quiero but queremos; don\'t apply the stem change to those two forms.',
+        'Poder and querer are followed directly by an infinitive with no preposition: Quiero comer, not "Quiero a comer" — that\'s an easy English-calque mistake to avoid.',
+      ],
+    },
+    {
+      heading: 'Talking About Likes: Gustar',
+      paragraphs: [
+        'Gustar ("to like") works differently from every verb you\'ve met so far, because Spanish builds the sentence backwards from what English speakers expect. In English, the person does the liking: "I like coffee." In Spanish, the thing liked is actually the grammatical subject, and the verb agrees with it — gustar itself means closer to "to be pleasing to."',
+        'The everyday pattern is: me/te/le/nos/os/les + gusta (if one thing is liked) or gustan (if more than one thing is liked). Me gusta el café literally works out to "coffee is pleasing to me," which is why gusta agrees with el café (singular), not with "I." Me gustan las películas uses gustan because películas is plural.',
+        'For now, treat me, te, and le as fixed little words that show who\'s doing the liking — you\'ll learn the full grammar behind them later. What matters today is the pattern: pick the right pronoun for the person, then gusta or gustan depending on whether one thing or several things are liked.',
+      ],
+      examples: [
+        { es: 'Me gusta el chocolate.', en: 'I like chocolate.' },
+        { es: 'Me gustan los perros.', en: 'I like dogs.' },
+        { es: '¿Te gusta la música clásica?', en: 'Do you like classical music?' },
+        { es: 'A mi hermano le gusta el fútbol.', en: 'My brother likes soccer.' },
+        { es: 'No me gusta el café sin azúcar.', en: "I don't like coffee without sugar." },
+      ],
+      commonMistakes: [
+        'Don\'t treat gustar like a normal verb that agrees with the person — Me gusto el café is wrong; it\'s Me gusta el café, agreeing with el café.',
+        'Before an infinitive, always use gusta, never gustan, even with more than one activity: Me gusta bailar y cantar (not gustan), because the "thing liked" is treated as one idea.',
+        'Yo gusta and tú gusta are common beginner mistakes — gustar almost never appears with yo/tú as its subject; the person who likes something is expressed with me/te/le, not with the subject pronoun.',
+      ],
+    },
   ],
 
   vocab: [
@@ -121,6 +181,11 @@ export default {
     { es: 'recibir', en: 'to receive', example: 'Recibimos correos electrónicos cada día.', exampleEn: 'We receive emails every day.' },
     { es: 'compartir', en: 'to share', example: 'Compartimos la comida con nuestros amigos.', exampleEn: 'We share food with our friends.' },
     { es: 'decidir', en: 'to decide', example: '¿Decides tú o decido yo?', exampleEn: 'Do you decide or do I?' },
+    { es: 'tener', en: 'to have', example: 'Tengo un perro y un gato.', exampleEn: 'I have a dog and a cat.' },
+    { es: 'ir', en: 'to go', example: 'Voy a la escuela todos los días.', exampleEn: 'I go to school every day.' },
+    { es: 'poder', en: 'to be able to / can', example: 'Puedo nadar muy bien.', exampleEn: 'I can swim very well.' },
+    { es: 'querer', en: 'to want', example: 'Quiero un café, por favor.', exampleEn: 'I want a coffee, please.' },
+    { es: 'gustar', en: 'to like (lit. to be pleasing to)', example: 'Me gusta leer por las noches.', exampleEn: 'I like reading at night.' },
   ],
 
   practice: [
@@ -140,6 +205,22 @@ export default {
     { type: 'multiple_choice', prompt: 'Which ending completes the nosotros form of a regular -ir verb like vivir?', word: 'vivir', english: 'to live', answer: '-imos', options: ['-emos', '-imos', '-ís', '-en'], concept_id: 'present_er_ir', difficulty: 2 },
     { type: 'fill_blank', prompt: 'Complete with the correct form of leer: "Ella ___ un libro nuevo cada mes."', word: 'leer', english: 'to read', answer: 'lee', concept_id: 'present_er_ir', difficulty: 1 },
     { type: 'translation_to_spanish', prompt: 'Translate: "They share an apartment."', english: 'They share an apartment.', answer: 'Comparten un apartamento.', altAnswers: ['Comparten un departamento.', 'Comparten un piso.'], word: 'compartir', concept_id: 'present_er_ir', difficulty: 2 },
+
+    // ── irregular_present_core block: tener, ir ──
+    { type: 'multiple_choice', prompt: 'Choose the correct form: "Yo ___ dos hermanos." (tener)', word: 'tener', english: 'to have', answer: 'tengo', options: ['tengo', 'tenes', 'teno', 'tienes'], concept_id: 'irregular_present_core', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete with the correct form of ir: "Nosotros ___ al parque los domingos."', word: 'ir', english: 'to go', answer: 'vamos', concept_id: 'irregular_present_core', difficulty: 1 },
+    { type: 'translation_to_spanish', prompt: 'Translate: "She has a big family."', english: 'She has a big family.', answer: 'Ella tiene una familia grande.', word: 'tener', concept_id: 'irregular_present_core', difficulty: 2 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "¿A dónde van ustedes?"?', word: 'ir', english: 'Where are you all going?', answer: 'Where are you all going?', concept_id: 'irregular_present_core', difficulty: 2 },
+
+    // ── modal_verbs_core block: poder, querer ──
+    { type: 'multiple_choice', prompt: 'Choose the correct form: "¿___ ayudarme?" (poder, tú)', word: 'poder', english: 'to be able to / can', answer: 'Puedes', options: ['Podes', 'Puedes', 'Podas', 'Puedas'], concept_id: 'modal_verbs_core', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete with the correct form of querer: "Nosotros ___ viajar a México."', word: 'querer', english: 'to want', answer: 'queremos', concept_id: 'modal_verbs_core', difficulty: 1 },
+    { type: 'translation_to_spanish', prompt: 'Translate: "I want to learn Spanish."', english: 'I want to learn Spanish.', answer: 'Quiero aprender español.', word: 'querer', concept_id: 'modal_verbs_core', difficulty: 2 },
+
+    // ── gustar_basico block ──
+    { type: 'multiple_choice', prompt: 'Choose the correct form: "Me ___ los perros." (gustar)', word: 'gustar', english: 'to like', answer: 'gustan', options: ['gusta', 'gustan', 'gusto', 'gustas'], concept_id: 'gustar_basico', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "___ gusta el chocolate." (I like chocolate)', word: 'gustar', english: 'to like', answer: 'Me', concept_id: 'gustar_basico', difficulty: 1 },
+    { type: 'translation_to_spanish', prompt: 'Translate: "Do you (informal) like classical music?"', english: 'Do you like classical music?', answer: '¿Te gusta la música clásica?', word: 'gustar', concept_id: 'gustar_basico', difficulty: 2 },
   ],
 };
 
@@ -176,3 +257,15 @@ export default {
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // present_ar and present_er_ir in src/content/grammar.js (same facts,
 // fuller beginner-paced walkthrough) and does not contradict them.
+//
+// Curriculum-pacing-lag fix (07-09-2026): added irregular_present_core
+// (tener, ir), modal_verbs_core (poder, querer), and gustar_basico
+// sections/practice — these 3 concepts were split off from
+// irregular_present, modal_verbs, and gustar_type during the CEFR audit
+// (all A1, the most basic slice of each family) but had no A1 curriculum
+// unit teaching them; folded in here rather than into the A2 units that
+// still teach the higher-level rest (venir/hacer/etc., deber,
+// encantar/doler/etc.) since teaching an A1 concept in an A2-positioned
+// unit wouldn't actually fix the pacing mismatch. Conjugations
+// cross-checked against SpanishDict; content agrees with and does not
+// contradict the existing GRAMMAR_CARDS entries for these 3 concepts.

@@ -1,5 +1,5 @@
-// Unit 29 — Passive, Concession & Fixed Expressions (C1)
-// Covers: ser_passive, aunque_concessive, verbos_preposicionales, cuantificadores
+// Unit 29 — Passive Voice & Discourse Structure (C1)
+// Covers: ser_passive, estructuradores_informacion, registro_formal_informal
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -7,14 +7,26 @@
 // is C1-level, but the prose explaining it stays as plain and direct as
 // unit01's, per the style precedent set there. Every Spanish claim below was
 // verified against SpanishDict, WordReference-adjacent pedagogical sources,
-// Kwiziq, and other established grammar references before writing — see the
-// audit note at the bottom of this file for the specific claims checked.
-// This is the first C1 unit in the curriculum (units 1-24 covered A1-B2;
-// unit 25 was the B2 capstone "Fine Details" catch-all). Like unit25, this
-// unit groups several loosely related advanced topics into one cohesive
-// unit rather than a single grammar thread. Ordering follows the assignment
-// given for this unit: ser_passive, aunque_concessive,
-// verbos_preposicionales, cuantificadores.
+// Kwiziq, CVC (Centro Virtual Cervantes), LanguageTool, and other established
+// grammar references before writing — see the audit note at the bottom of
+// this file for the specific claims checked. This is the first C1 unit in
+// the curriculum (units 1-24 covered A1-B2; unit 25 was the B2 capstone
+// "Fine Details" catch-all). Like unit25, this unit groups several loosely
+// related advanced topics into one cohesive unit rather than a single
+// grammar thread.
+//
+// Curriculum-pacing-lag fix (07-09-2026): this unit's original four
+// concepts (ser_passive, aunque_concessive, verbos_preposicionales,
+// cuantificadores) no longer cohered at C1 once the CEFR audit retagged
+// three of them down a level. aunque_concessive (retagged B2) moved to the
+// new subjunctive-counterfactuals-concession unit; verbos_preposicionales
+// and cuantificadores (both retagged B1) moved to the repurposed probability-
+// aspect unit. In their place, this unit gained estructuradores_
+// informacion and registro_formal_informal, both genuinely C1, relocated
+// verbatim from the old unit31-discourse-markers.js and unit32-register-
+// stance.js (both C2 units that had one concept each retagged down to C1).
+// ser_passive's own content is untouched. See ES.md's punch-list item 29
+// for the full pacing-lag writeup.
 
 export default {
   sections: [
@@ -23,7 +35,7 @@ export default {
       paragraphs: [
         "You already know Spanish has a passive-like structure with se — se aprobó la ley (\"the law was approved\") — and that this se-construction is by far the most common way Spanish expresses a passive idea in everyday speech and writing. C1 Spanish adds the other passive: ser + past participle, the direct structural cousin of the English passive (\"the law was approved by parliament\"). La ley fue aprobada por el parlamento uses exactly this pattern — ser (conjugated in whatever tense fits) plus a past participle that agrees in gender and number with the subject, optionally followed by por + the agent, the person or thing doing the action.",
         "Here's the part that matters most at this level: the ser-passive is not simply a formal-sounding synonym for the se-passive — it's a genuinely different register choice. Spoken Spanish strongly prefers active voice or the se-passive; reaching for ser + participio in casual conversation can sound stiff, translated, or unnatural, almost like a native English speaker hearing someone say \"it was decided by this committee that...\" in a text message. The ser-passive belongs to formal written registers — news reporting, legal and administrative documents, academic writing, historical narration — precisely the contexts where English speakers instinctively expect a passive construction and where Spanish, unusually, actually delivers one that maps closely onto English syntax.",
-        'Two more pieces complete the picture. First, the ser-passive almost always benefits from stating or at least implying an agent (the por phrase) — El puente fue construido por una empresa francesa (\"The bridge was built by a French company\"). When there\'s no agent to mention and the focus is purely on the action itself, Spanish usually reaches for se instead (se construyó el puente), which is one more reason the se-passive dominates ordinary usage: most everyday statements don\'t bother naming who did something. Second, don\'t confuse the passive (an event, an action being done) with the resultant state built from estar + participle: La ley fue aprobada describes the act of approval happening; La ley está aprobada describes the state of already being approved, with no focus on the act at all.',
+        'Two more pieces complete the picture. First, the ser-passive almost always benefits from stating or at least implying an agent (the por phrase) — El puente fue construido por una empresa francesa ("The bridge was built by a French company"). When there\'s no agent to mention and the focus is purely on the action itself, Spanish usually reaches for se instead (se construyó el puente), which is one more reason the se-passive dominates ordinary usage: most everyday statements don\'t bother naming who did something. Second, don\'t confuse the passive (an event, an action being done) with the resultant state built from estar + participle: La ley fue aprobada describes the act of approval happening; La ley está aprobada describes the state of already being approved, with no focus on the act at all.',
       ],
       examples: [
         { es: 'La ley fue aprobada por el parlamento.', en: 'The law was approved by parliament.' },
@@ -39,71 +51,45 @@ export default {
       ],
     },
     {
-      heading: 'Aunque: One Word, Two Very Different Meanings',
+      heading: 'Structuring a Multi-Part Argument: Por una parte…por otra, En primer lugar…en definitiva',
       paragraphs: [
-        'Aunque translates to both "although" and "even if" in English, and which one you mean is signaled entirely by whether the verb that follows is in the indicative or the subjunctive — this single mood choice does real, meaningful work in Spanish that English has to handle with two different words instead. Get comfortable with this pattern and you unlock a genuinely C1-level piece of precision.',
-        'Aunque + indicative presents the concession as a known, established fact — something the speaker accepts as true and is conceding despite. Aunque llueve, salgo ("Although it\'s raining — and it genuinely is raining right now — I\'m going out") states plainly that rain is a real, current fact; the speaker is simply saying it won\'t change their plans. Aunque es caro, lo voy a comprar ("Although it\'s expensive, I\'m going to buy it") works the same way — the price is a known, agreed-upon fact, not a guess.',
-        'Aunque + subjunctive shifts the concession into hypothetical, uncertain, or dismissed territory — "even if," rather than "although." Aunque llueva, saldré ("Even if it rains — we don\'t yet know whether it will, or it simply doesn\'t matter to the plan — I\'ll go out") treats the rain as unconfirmed or irrelevant to the outcome, not as an established fact. The subjunctive here isn\'t about objective truth — it\'s about the speaker\'s stance toward the information: are they presenting it as settled reality, or waving it off as uncertain, unknown, or beside the point? Aunque no tengas dinero, puedes venir ("Even if you don\'t have money, you can come") dismisses a hypothetical objection as irrelevant to the invitation, regardless of whether it turns out to be true.',
-        "A useful mental test: if you could naturally follow the sentence with \"...and this is definitely true,\" you want the indicative. If it feels more like \"...whether or not that ends up being the case,\" you want the subjunctive. The same indicative/subjunctive split extends to other concessive conjunctions you may encounter in more formal or written Spanish, like a pesar de que and pese a que — same logic, same test.",
+        "Once you're building a real argument — weighing two sides of an issue, or walking through several points in order — you need markers that organize the whole structure, not just connect two clauses. Spanish calls this family estructuradores de la información (information structurers), and within it, the specific markers you need at this level are ordenadores: markers whose entire job is to tell the listener where a piece fits within a larger, ordered whole.",
+        "Por una parte…por otra (parte) frames two sides of the same issue as a single, deliberately balanced comparison — not two random facts, but two faces of one coin: Por una parte, el teletrabajo mejora la conciliación familiar; por otra parte, dificulta la supervisión directa (\"On the one hand, telework improves work-life balance; on the other, it makes direct supervision harder\"). The pairing only works as a pair — starting with por una parte commits you to a por otra (parte) later, and using por otra parte alone, with no earlier por una parte, reads as structurally incomplete in careful writing (you'll hear it done anyway in speech, where the first half is sometimes just implied). Por un lado…por otro (lado) means exactly the same thing and is a completely correct, slightly less formal everyday variant — reach for parte in a report, lado in a conversation, and don't feel you have to pick one for the whole text.",
+        "En primer lugar…en segundo lugar…(en último lugar) do a related but different job: they number a sequence of points in a list or argument, the way \"first…second…lastly\" does in English. What closes this kind of structured sequence is a separate pair of markers: en definitiva and en resumen. En definitiva means \"ultimately\" or \"in short\" — it signals the real, bottom-line conclusion the whole preceding discussion was building toward, not just \"the last item on my list.\" En resumen (\"in summary\") does something slightly different: it condenses everything said before into a compact restatement, useful when you genuinely want to summarize rather than conclude. Both wrap up a structured passage; en definitiva leans toward \"here's what it comes down to,\" en resumen leans toward \"here's the short version of everything I just said.\"",
       ],
       examples: [
-        { es: 'Aunque llueve, salgo a caminar.', en: "Although it's raining (it really is), I'm going out for a walk." },
-        { es: 'Aunque llueva, saldré a caminar.', en: "Even if it rains (we don't know / it doesn't matter), I'll go out for a walk." },
-        { es: 'Aunque es caro, lo voy a comprar.', en: "Although it's expensive (known fact), I'm going to buy it." },
-        { es: 'Aunque fuera millonario, no se lo compraría.', en: "Even if he were a millionaire (he isn't), he wouldn't buy it for himself." },
-        { es: 'Aunque no tengas dinero, puedes venir a la fiesta.', en: "Even if you don't have money, you can come to the party." },
+        { es: 'Por una parte, el teletrabajo mejora la conciliación familiar; por otra parte, dificulta la supervisión directa.', en: 'On the one hand, telework improves work-life balance; on the other, it makes direct supervision harder.' },
+        { es: 'Por un lado me encanta empezar más tarde; por otro, echo de menos ver al equipo por la mañana.', en: 'On one hand I love starting later; on the other, I miss seeing the team in the morning.' },
+        { es: 'En primer lugar, hay que revisar el presupuesto. En segundo lugar, contactar con los proveedores.', en: 'First, we need to review the budget. Second, contact the suppliers.' },
+        { es: 'En definitiva, la decisión dependerá de los resultados de la encuesta.', en: 'Ultimately, the decision will depend on the results of the survey.' },
+        { es: 'En resumen, las tres propuestas comparten el mismo objetivo.', en: 'In summary, all three proposals share the same goal.' },
       ],
       commonMistakes: [
-        'The choice between indicative and subjunctive after aunque is about the known-vs-hypothetical distinction, not about whether the statement is actually true in the end — a speaker can use the subjunctive about something that later turns out to be true, because at the moment of speaking they were framing it as unconfirmed or irrelevant.',
-        'Don\'t assume aunque always means "although" — check the mood of the verb that follows before you translate: aunque + indicative = "although" (real fact), aunque + subjunctive = "even if" (hypothetical/dismissed).',
-        "This same indicative/subjunctive split applies to other concessive expressions like a pesar de que and pese a que — don't treat aunque as an isolated special case.",
+        "Opening with por una parte and then never delivering por otra parte — the two halves are a matched pair, and dropping the second half (or replacing it with an unrelated además) leaves the structure visibly incomplete in formal writing.",
+        "Treating por una parte/por otra parte and por un lado/por otro (lado) as different in meaning — they aren't; the only real difference is register (parte skews more formal/written, lado more everyday/spoken), so mixing them within one text is a style inconsistency, not a grammar error.",
+        "Using en definitiva as if it just meant \"lastly\" in a numbered list — it specifically signals the overall conclusion or bottom line the discussion was building toward, which is a different job from en primer lugar/en segundo lugar's simple numbering.",
       ],
     },
     {
-      heading: 'Verbs That Insist on Their Own Preposition',
+      heading: 'The Four-Level Register System: Formal, Neutral, Informal, Colloquial',
       paragraphs: [
-        "English and Spanish verbs almost never line up preposition-for-preposition, and this is one of the most common sources of subtly \"off\" Spanish even from otherwise advanced learners. Many Spanish verbs are simply fused to a specific preposition — not because of any deeper logic you can derive, but because that's the fixed pairing native speakers use, full stop. These pairings have to be memorized as a unit, verb + preposition together, the same way you'd memorize a single vocabulary item.",
-        'Some of the most useful pairs at this level: pensar en (to think about) — Pienso en ti todos los días ("I think about you every day"); soñar con (to dream about/of) — Sueño con viajar por el mundo ("I dream of traveling the world"); consistir en (to consist of) — El éxito consiste en la constancia ("Success consists of persistence"); depender de (to depend on) — Depende de la situación ("It depends on the situation"); and alegrarse de (to be glad about) — Me alegro de verte ("I\'m glad to see you"). Notice none of these match their English preposition: "think about" isn\'t pensar sobre, "dream of" isn\'t soñar de, "depend on" isn\'t depender en. Fighting the instinct to translate the English preposition literally is most of the battle here.',
-        'One extra wrinkle worth knowing: pensar en (thinking about a person, thing, or topic — what\'s occupying your mind) is different from pensar de (asking or giving an opinion about something) — ¿Qué piensas de esta idea? ("What do you think of this idea?") is a completely separate, equally valid pattern, not an error. And when the complement of one of these verbs is an infinitive rather than a noun, the fixed preposition stays exactly in place: Sueño con vivir en España ("I dream of living in Spain"), Trato de entenderlo ("I try to understand it") — the preposition doesn\'t drop just because a verb follows.',
+        "You've actually already met a version of this idea if you've browsed this site's idioms reference: every single idiom there is tagged on a four-way scale — colloquial, informal, neutral, formal — from the most casual slang to the most careful, polished phrasing. This section puts that exact same four-way scale to work at the level of whole sentences and requests, not just fixed expressions — a genuinely advanced skill, because it's the ability to reshape an entire sentence, not just swap a pronoun, depending on who you're talking to and how formal the situation is.",
+        "The clearest way to see register in action is to watch one request slide across all four levels. Imagine you need the same document from four different people. To your boss: ¿Podría usted enviarme el informe antes de las cinco, por favor? — formal, built on the conditional podría plus usted, maximally indirect and polite. To someone you don't know well: ¿Podría enviarme el informe antes de las cinco? — still polite and indirect, but usted is dropped since the verb form alone signals the same distance; call this neutral-formal. To a trusted coworker: ¿Puedes enviarme el informe antes de las cinco? — informal, present tense puedes, still a real question but far less hedged. To your best friend: Oye, ¿me pasas el informe ese antes de las cinco o qué? — colloquial, with the attention-grabber oye, the vague filler ese, and the blunt tag o qué. Same request, four entirely different sentences.",
+        "Notice that tú vs. usted is only one ingredient here, and a fairly small one — it's covered on its own, grammatically, back in Unit 1. The bigger skill is everything else that shifts alongside it: word choice (comprar vs. adquirir, casa vs. domicilio), sentence length and subordination (formal register tolerates, even rewards, longer and more layered sentences), and above all the level of indirection. Formal Spanish routinely wraps a request in a conditional or a hedge — quisiera, ¿le importaría?, le agradecería que — treating direct imperatives or blunt questions as too abrupt. Colloquial Spanish does the opposite: it favors bluntness, fillers, slang address terms (tío, tía, colega), and even grammatically redundant emphatic pronouns (¿Puedes tú ayudarme con esto? adds tú purely for emphasis, not because the verb needs it).",
+        "One more high-level pattern worth internalizing: the most formal register of all often drops personal reference entirely, favoring impersonal constructions like se ruega a los señores pasajeros abrocharse el cinturón (\"passengers are kindly requested to fasten their seatbelt\") — no tú, no usted, just an impersonal se. That's the formal end of the spectrum taken to its logical conclusion: distance isn't just about which pronoun you pick, it's about whether you address the listener directly at all.",
       ],
       examples: [
-        { es: 'Pienso en ti todos los días.', en: 'I think about you every day.' },
-        { es: 'Sueño con vivir en otro país algún día.', en: 'I dream of living in another country someday.' },
-        { es: 'El éxito consiste en la constancia y la paciencia.', en: 'Success consists of persistence and patience.' },
-        { es: 'Todo depende de la decisión del jefe.', en: "Everything depends on the boss's decision." },
-        { es: 'Me alegro de que hayas venido.', en: "I'm glad that you came." },
-        { es: '¿Qué piensas de esta idea? — Pienso que es excelente.', en: 'What do you think of this idea? — I think it\'s excellent.' },
+        { es: '¿Podría usted facilitarme los datos, por favor? (formal)', en: 'Could you please provide me with the details?' },
+        { es: '¿Puede darme los datos, por favor? (neutral)', en: 'Can you give me the details, please?' },
+        { es: '¿Puedes darme los datos? (informal)', en: 'Can you give me the details?' },
+        { es: '¿Me pasas el dato ese, tío? (colloquial)', en: 'Can you pass me that thing/detail, dude?' },
+        { es: 'Se ruega a los señores pasajeros abrocharse el cinturón. (very formal, impersonal)', en: 'Passengers are kindly requested to fasten their seatbelt.' },
+        { es: 'Quisiera hacerle una pregunta, si no le importa.', en: "I'd like to ask you a question, if you don't mind. (formal, hedged with the conditional quisiera)" },
       ],
       commonMistakes: [
-        "Don't translate the English preposition literally — \"depend on\" is depender de (not depender en), \"dream of/about\" is soñar con (not soñar de), and \"think about\" is pensar en (not pensar sobre).",
-        "Pensar en (thinking about someone/something) and pensar de (giving an opinion about something) look similar but do different jobs — mixing them up is a common intermediate-to-advanced slip.",
-        "When these verbs are followed by an infinitive instead of a noun, the fixed preposition doesn't disappear: Sueño con viajar, not *Sueño viajar.",
-      ],
-    },
-    {
-      heading: 'Precision Quantifiers: Bastante, Demasiado, Cada, Ambos, Cualquiera',
-      paragraphs: [
-        "You already know the basic quantity words — mucho, poco — but C1 Spanish calls for sharper tools: quantifiers that carry more specific shades of meaning and, in several cases, their own distinct agreement quirks. Getting these exactly right is a clear marker of advanced fluency, because each one behaves just a little differently from the pattern you'd expect.",
-        'Bastante means "quite a lot of" or "enough," and it changes only for number, never gender: bastante (singular, either gender) and bastantes (plural, either gender) — Tengo bastante tiempo ("I have quite a bit of time"), Hay bastantes personas aquí ("There are quite a few people here," not *bastante personas). Demasiado means "too much/too many," and as an adjective it fully agrees in both gender and number: demasiado ruido (masc. sing.), demasiada sal (fem. sing.), demasiados problemas (masc. pl.), demasiadas opciones (fem. pl.). But when demasiado instead modifies an adjective or adverb — meaning "too" rather than "too much" — it becomes invariable: La casa es demasiado grande ("The house is too big") never changes to *demasiada grande, even describing a feminine noun, because here demasiado is modifying grande (an adjective), not standing in for a noun itself.',
-        'Cada ("each," "every") is invariable — it never takes a feminine or plural form at all, and the noun that follows it is normally singular even though the English translation ("every") can feel plural in spirit: cada estudiante ("each/every student," whether that student is male or female), cada casa ("each house"). The one exception: when cada is followed by a number greater than one, the following noun does pluralize — cada diez años ("every ten years"), cada tres días ("every three days") — because there you\'re counting a group of units, not a single item.',
-        "Ambos/ambas means \"both,\" is always plural, agrees in gender with the noun (ambos hermanos, ambas hermanas), and — unlike los dos, its more everyday equivalent — never takes an article in front of it: ambos hermanos is correct, los ambos hermanos is not. Ambos also reads as more formal than los dos, so expect it more in writing and careful speech than in casual chat. Finally, cualquiera (\"any,\" \"whichever\") shortens to cualquier directly before a singular noun of either gender — cualquier libro, cualquier persona — but keeps its full form cualquiera when it stands alone as a pronoun or comes after the noun: Cualquiera puede hacerlo (\"Anyone can do it\"), un libro cualquiera (\"any book at all,\" with a slightly dismissive \"just any old book\" flavor when placed after the noun).",
-      ],
-      examples: [
-        { es: 'Tengo bastante tiempo esta semana.', en: 'I have quite a bit of time this week.' },
-        { es: 'Hay bastantes personas en la sala.', en: 'There are quite a few people in the room.' },
-        { es: 'Compré demasiados libros este mes.', en: 'I bought too many books this month.' },
-        { es: 'Esta sopa está demasiado salada.', en: 'This soup is too salty. (invariable, modifying an adjective)' },
-        { es: 'Cada estudiante debe entregar su tarea el viernes.', en: 'Each student must turn in their homework on Friday.' },
-        { es: 'El médico revisa el equipo cada seis meses.', en: 'The doctor checks the equipment every six months.' },
-        { es: 'Ambas hermanas estudian medicina.', en: 'Both sisters are studying medicine.' },
-        { es: 'Cualquier persona puede inscribirse; cualquiera puede intentarlo.', en: 'Any person can enroll; anyone can try.' },
-      ],
-      commonMistakes: [
-        "Bastante only changes for number (bastante/bastantes), never gender — bastantes personas is correct, but there's no such thing as a special feminine form of bastante itself.",
-        'Don\'t confuse demasiado-as-adjective (agrees fully: demasiados problemas) with demasiado-as-adverb (invariable: demasiado grande, demasiado caro, never *demasiada grande) — check whether it\'s modifying a noun or an adjective/adverb.',
-        "Cada never changes form and is normally followed by a singular noun (cada estudiante, not *cada estudiantes) — except right before a number greater than one, where the following noun does pluralize: cada tres días.",
-        "Never place an article before ambos/ambas — los ambos hermanos is incorrect; it's simply ambos hermanos.",
-        "Cualquier (shortened) goes directly before the noun; cualquiera (full form) goes after the noun or stands alone as a pronoun — cualquier libro, but un libro cualquiera or Cualquiera sabe la respuesta.",
+        "Treating register as nothing more than tú-vs.-usted — that pronoun choice is real, but it's the smallest piece. A sentence can use usted and still sound clumsy if the vocabulary and structure around it are casual, or vice versa.",
+        'Mixing registers within one utterance — pairing an elevated, formal noun phrase with tú, or a slangy filler with usted — tends to sound unnatural or unintentionally ironic rather than genuinely polite or casual. Consistency across the whole sentence is what makes a register read as authentic.',
+        "Overcorrecting in either direction: staying maximally formal with close friends can come across as cold or distant, while using colloquial phrasing (tío, o qué) with a boss or a stranger can read as disrespectful. Match the register to the actual relationship, not to a single fixed 'safe' choice.",
       ],
     },
   ],
@@ -112,20 +98,17 @@ export default {
     { es: 'ser + participio', en: 'formal passive voice ("was done by")', example: 'La ley fue aprobada por el parlamento.', exampleEn: 'The law was approved by parliament.' },
     { es: 'por (agente)', en: 'by (introduces the agent in a passive)', example: 'El puente fue construido por una empresa francesa.', exampleEn: 'The bridge was built by a French company.' },
     { es: 'redactar', en: 'to draft / write up (formally)', example: 'El informe ya está redactado.', exampleEn: 'The report is already written up.' },
-    { es: 'aunque + indicativo', en: 'although (known, real fact)', example: 'Aunque llueve, salgo a caminar.', exampleEn: "Although it's raining, I'm going out for a walk." },
-    { es: 'aunque + subjuntivo', en: 'even if (hypothetical, dismissed)', example: 'Aunque llueva, saldré a caminar.', exampleEn: "Even if it rains, I'll go out for a walk." },
-    { es: 'a pesar de que', en: 'despite the fact that (concessive, same mood logic as aunque)', example: 'A pesar de que es tarde, voy a terminar.', exampleEn: "Despite the fact that it's late, I'm going to finish." },
-    { es: 'pensar en', en: 'to think about (someone/something)', example: 'Pienso en ti todos los días.', exampleEn: 'I think about you every day.' },
-    { es: 'soñar con', en: 'to dream about/of', example: 'Sueño con viajar por el mundo.', exampleEn: 'I dream of traveling the world.' },
-    { es: 'consistir en', en: 'to consist of', example: 'El éxito consiste en la constancia.', exampleEn: 'Success consists of persistence.' },
-    { es: 'depender de', en: 'to depend on', example: 'Depende de la situación.', exampleEn: 'It depends on the situation.' },
-    { es: 'alegrarse de', en: 'to be glad about', example: 'Me alegro de verte.', exampleEn: "I'm glad to see you." },
-    { es: 'bastante / bastantes', en: 'quite a lot of / enough (agrees only in number)', example: 'Hay bastantes personas aquí.', exampleEn: 'There are quite a few people here.' },
-    { es: 'demasiado/a(s)', en: 'too much/many (adjective, agrees) / too (adverb, invariable)', example: 'Compré demasiados libros.', exampleEn: 'I bought too many books.' },
-    { es: 'cada', en: 'each / every (invariable, singular noun)', example: 'Cada estudiante tiene su propio horario.', exampleEn: 'Each student has their own schedule.' },
-    { es: 'ambos/ambas', en: 'both (no article, agrees in gender)', example: 'Ambas hermanas estudian medicina.', exampleEn: 'Both sisters are studying medicine.' },
-    { es: 'cualquier', en: 'any (shortened form, before a singular noun)', example: 'Cualquier persona puede inscribirse.', exampleEn: 'Any person can enroll.' },
-    { es: 'cualquiera', en: 'anyone / any (full form, pronoun or after noun)', example: 'Cualquiera puede intentarlo.', exampleEn: 'Anyone can try it.' },
+    { es: 'el teletrabajo', en: 'remote work, telework', example: 'La empresa amplió el teletrabajo a tres días por semana.', exampleEn: 'The company expanded remote work to three days a week.' },
+    { es: 'la conciliación (laboral y familiar)', en: 'work-life balance', example: 'El nuevo horario mejora la conciliación laboral y familiar.', exampleEn: 'The new schedule improves work-life balance.' },
+    { es: 'la productividad', en: 'productivity', example: 'La productividad del equipo subió este trimestre.', exampleEn: "The team's productivity went up this quarter." },
+    { es: 'la encuesta', en: 'survey, poll', example: 'Los resultados de la encuesta se publicarán el lunes.', exampleEn: 'The survey results will be published on Monday.' },
+    { es: 'resentirse', en: 'to suffer, to be adversely affected', example: 'Temen que la comunicación del equipo se resienta.', exampleEn: "They fear the team's communication will suffer." },
+    { es: 'quisiera', en: 'I would like (formal, softened with the conditional)', example: 'Quisiera hacerle una pregunta, si no le importa.', exampleEn: "I would like to ask you a question, if you don't mind." },
+    { es: 'le agradecería que', en: 'I would be grateful if... (formal)', example: 'Le agradecería que me confirmara la cita.', exampleEn: 'I would be grateful if you could confirm the appointment.' },
+    { es: '¿te importaría?', en: 'would you mind? (neutral-informal, polite)', example: '¿Te importaría cerrar la ventana?', exampleEn: 'Would you mind closing the window?' },
+    { es: '¿me haces un favor?', en: 'can you do me a favor? (informal)', example: '¿Me haces un favor y me pasas el móvil?', exampleEn: 'Can you do me a favor and hand me my phone?' },
+    { es: 'tío / tía', en: 'dude, mate (colloquial address term, Spain)', example: 'Tío, no te vas a creer lo que pasó.', exampleEn: "Dude, you're not going to believe what happened." },
+    { es: 'colega', en: 'buddy, pal (informal/colloquial)', example: 'Oye, colega, ¿me echas una mano con esto?', exampleEn: 'Hey, buddy, can you give me a hand with this?' },
   ],
 
   practice: [
@@ -148,49 +131,146 @@ export default {
     { type: 'multiple_choice', prompt: 'Which sentence would a Spanish speaker most naturally say in casual conversation about a law being passed?', word: 'se aprobó', english: 'the se-passive (casual/everyday)', answer: 'Se aprobó la ley ayer.', options: ['La ley fue aprobada ayer por el parlamento.', 'Se aprobó la ley ayer.', 'La ley ha sido siendo aprobada.', 'La ley fue aprobar ayer.'], concept_id: 'ser_passive', difficulty: 3 },
     { type: 'translation_to_english', prompt: 'Translate, noting the difference from a simple passive: "El informe ya está redactado."', word: 'está redactado', english: 'The report is already written (up). (resultant state, not an action)', answer: 'The report is already written (up). (resultant state, not an action)', concept_id: 'ser_passive', difficulty: 3 },
 
-    // ── aunque_concessive block ──
+    // ── estructuradores_informacion block (kept separate; blocked before mixed review) ──
     {
       type: 'multiple_choice',
-      prompt: 'Read the mini-dialogue, then answer: why does the second speaker say "aunque llueva" instead of "aunque llueve"?',
-      passage: '— ¿Vas a ir a la excursión mañana?\n— Sí, voy a ir aunque llueva. Todavía no sabemos el pronóstico, así que no quiero cancelar mis planes por algo que ni siquiera es seguro.\n— Yo también iré. Aunque hace mucho frío hoy, mañana debería estar más templado.',
-      passageEn: '— Are you going on the trip tomorrow?\n— Yes, I\'m going even if it rains. We still don\'t know the forecast, so I don\'t want to cancel my plans over something that isn\'t even certain.\n— I\'ll go too. Although it\'s very cold today, tomorrow should be milder.',
-      word: 'aunque llueva',
-      english: 'because whether it will rain is still unknown/uncertain',
-      answer: 'because whether it will rain is still unknown/uncertain',
-      options: ['because it is definitely going to rain', 'because whether it will rain is still unknown/uncertain', 'because "llueva" is more polite than "llueve"', 'there is no real difference between the two forms'],
-      concept_id: 'aunque_concessive',
-      difficulty: 3,
+      prompt: 'Read the passage, then answer: what function do "por una parte" and "por otra parte" serve together?',
+      passage: 'Sobre la propuesta de teletrabajo hay opiniones divididas en la empresa. Por una parte, muchos empleados valoran la flexibilidad y la conciliación que ofrece. Por otra parte, algunos jefes de equipo temen que la comunicación se resienta. En primer lugar, conviene analizar el impacto en la productividad. En segundo lugar, hay que evaluar el coste de mantener oficinas más pequeñas. En definitiva, la decisión dependerá de los resultados de la encuesta interna que se realizará el próximo mes.',
+      passageEn: "Opinions are divided at the company about the telework proposal. On the one hand, many employees value the flexibility and work-life balance it offers. On the other hand, some team leaders fear that communication will suffer. First, we should analyze the impact on productivity. Second, we need to assess the cost of maintaining smaller offices. Ultimately, the decision will depend on the results of the internal survey to be carried out next month.",
+      word: 'por una parte...por otra parte',
+      english: 'on the one hand...on the other hand',
+      answer: 'They present two contrasting sides of the same issue as one balanced comparison',
+      options: [
+        'They present two contrasting sides of the same issue as one balanced comparison',
+        'They list unrelated topics in random order',
+        'They introduce the final conclusion of the text',
+        'They correct something said earlier in the text',
+      ],
+      concept_id: 'estructuradores_informacion',
+      difficulty: 2,
     },
-    { type: 'fill_blank', prompt: 'Complete with the indicative (it really is raining right now): "Aunque ___ (llover), salgo a caminar."', word: 'llueve', english: 'it is raining', answer: 'llueve', concept_id: 'aunque_concessive', difficulty: 2 },
-    { type: 'fill_blank', prompt: "Complete with the subjunctive (we don't yet know if it will rain): \"Aunque ___ (llover) mañana, saldré de todas formas.\"", word: 'llueva', english: 'it rains', answer: 'llueva', concept_id: 'aunque_concessive', difficulty: 3 },
-    { type: 'translation_to_spanish', prompt: "Translate (the price is a known, agreed fact): 'Although it's expensive, I'm going to buy it.'", english: "Although it's expensive, I'm going to buy it.", answer: 'Aunque es caro, lo voy a comprar.', altAnswers: ['Aunque es caro, voy a comprarlo.'], word: 'aunque es', concept_id: 'aunque_concessive', difficulty: 3 },
-    { type: 'translation_to_spanish', prompt: "Translate (dismissing a hypothetical objection as irrelevant): 'Even if you don't have money, you can come.'", english: "Even if you don't have money, you can come.", answer: 'Aunque no tengas dinero, puedes venir.', word: 'aunque no tengas', concept_id: 'aunque_concessive', difficulty: 3 },
-    { type: 'error_correction', prompt: 'Fix the mood: the speaker is describing a purely hypothetical scenario (he is not a millionaire), so the indicative here is wrong: "Aunque es millonario, no se lo compraría."', word: 'fuera', english: 'even if he were (a millionaire)', answer: 'Aunque fuera millonario, no se lo compraría.', concept_id: 'aunque_concessive', difficulty: 3 },
+    {
+      type: 'fill_blank',
+      prompt: 'Completa: "___, muchos empleados valoran la flexibilidad; por otra parte, algunos jefes temen que la comunicación se resienta."',
+      word: 'Por una parte',
+      english: 'on the one hand',
+      answer: 'Por una parte',
+      concept_id: 'estructuradores_informacion',
+      difficulty: 1,
+      passage: 'Sobre la propuesta de teletrabajo hay opiniones divididas en la empresa. Por una parte, muchos empleados valoran la flexibilidad y la conciliación que ofrece. Por otra parte, algunos jefes de equipo temen que la comunicación se resienta. En primer lugar, conviene analizar el impacto en la productividad. En segundo lugar, hay que evaluar el coste de mantener oficinas más pequeñas. En definitiva, la decisión dependerá de los resultados de la encuesta interna que se realizará el próximo mes.',
+      passageEn: "Opinions are divided at the company about the telework proposal. On the one hand, many employees value the flexibility and work-life balance it offers. On the other hand, some team leaders fear that communication will suffer. First, we should analyze the impact on productivity. Second, we need to assess the cost of maintaining smaller offices. Ultimately, the decision will depend on the results of the internal survey to be carried out next month.",
+    },
+    {
+      type: 'fill_blank',
+      prompt: 'Completa la conclusión del texto: "___, la decisión dependerá de los resultados de la encuesta interna." (the marker meaning "ultimately, in short")',
+      word: 'En definitiva',
+      english: 'ultimately, in short',
+      answer: 'En definitiva',
+      concept_id: 'estructuradores_informacion',
+      difficulty: 2,
+      passage: 'Sobre la propuesta de teletrabajo hay opiniones divididas en la empresa. Por una parte, muchos empleados valoran la flexibilidad y la conciliación que ofrece. Por otra parte, algunos jefes de equipo temen que la comunicación se resienta. En primer lugar, conviene analizar el impacto en la productividad. En segundo lugar, hay que evaluar el coste de mantener oficinas más pequeñas. En definitiva, la decisión dependerá de los resultados de la encuesta interna que se realizará el próximo mes.',
+      passageEn: "Opinions are divided at the company about the telework proposal. On the one hand, many employees value the flexibility and work-life balance it offers. On the other hand, some team leaders fear that communication will suffer. First, we should analyze the impact on productivity. Second, we need to assess the cost of maintaining smaller offices. Ultimately, the decision will depend on the results of the internal survey to be carried out next month.",
+    },
+    {
+      type: 'translation_to_english',
+      prompt: 'Translate this sentence from the text: "En primer lugar, conviene analizar el impacto en la productividad. En segundo lugar, hay que evaluar el coste de mantener oficinas más pequeñas."',
+      word: 'en primer lugar...en segundo lugar',
+      english: 'first...second',
+      answer: 'First, we should analyze the impact on productivity. Second, we need to assess the cost of maintaining smaller offices.',
+      concept_id: 'estructuradores_informacion',
+      difficulty: 2,
+      passage: 'Sobre la propuesta de teletrabajo hay opiniones divididas en la empresa. Por una parte, muchos empleados valoran la flexibilidad y la conciliación que ofrece. Por otra parte, algunos jefes de equipo temen que la comunicación se resienta. En primer lugar, conviene analizar el impacto en la productividad. En segundo lugar, hay que evaluar el coste de mantener oficinas más pequeñas. En definitiva, la decisión dependerá de los resultados de la encuesta interna que se realizará el próximo mes.',
+      passageEn: "Opinions are divided at the company about the telework proposal. On the one hand, many employees value the flexibility and work-life balance it offers. On the other hand, some team leaders fear that communication will suffer. First, we should analyze the impact on productivity. Second, we need to assess the cost of maintaining smaller offices. Ultimately, the decision will depend on the results of the internal survey to be carried out next month.",
+    },
+    {
+      type: 'error_correction',
+      prompt: 'Fix the gender agreement error: "Por una parte, el equipo apoya la medida; por otro parte, los directores dudan."',
+      word: 'por otra parte',
+      english: 'on the other hand',
+      answer: 'Por una parte, el equipo apoya la medida; por otra parte, los directores dudan.',
+      concept_id: 'estructuradores_informacion',
+      difficulty: 2,
+    },
+    {
+      type: 'multiple_choice',
+      prompt: 'Read the dialogue, then answer: is "por un lado...por otro" more or less formal than "por una parte...por otra parte"?',
+      word: 'por un lado...por otro',
+      english: 'on one hand...on the other (informal variant)',
+      answer: 'Less formal — an equally correct, more everyday variant',
+      options: [
+        'More formal — reserved for legal and academic writing',
+        'Less formal — an equally correct, more everyday variant',
+        'They are never interchangeable in meaning',
+        'Only "por un lado" is grammatically correct',
+      ],
+      concept_id: 'estructuradores_informacion',
+      difficulty: 3,
+      passage: 'Jefe: ¿Qué opináis del nuevo horario flexible?\nMarta: Por un lado, me encanta poder empezar más tarde. Por otro, echo de menos ver a todo el equipo junto por la mañana.\nJefe: Entiendo. En resumen, parece que la flexibilidad tiene ventajas y desventajas para todos.',
+      passageEn: 'Boss: What do you all think of the new flexible schedule?\nMarta: On one hand, I love being able to start later. On the other, I miss seeing the whole team together in the morning.\nBoss: I understand. In short, it seems flexibility has both advantages and disadvantages for everyone.',
+    },
+    {
+      type: 'translation_to_spanish',
+      prompt: "Translate, using the closing/summary structurer meaning 'in short': 'In short, all three proposals share the same goal.'",
+      english: 'In short, all three proposals share the same goal.',
+      answer: 'En resumen, las tres propuestas comparten el mismo objetivo.',
+      word: 'en resumen',
+      concept_id: 'estructuradores_informacion',
+      difficulty: 2,
+    },
 
-    // ── verbos_preposicionales block ──
-    { type: 'fill_blank', prompt: 'Complete with the correct preposition: "Pienso ___ ti todos los días."', word: 'en', english: 'about', answer: 'en', concept_id: 'verbos_preposicionales', difficulty: 2 },
-    { type: 'fill_blank', prompt: 'Complete with the correct preposition: "Sueño ___ vivir en otro país."', word: 'con', english: 'of/about', answer: 'con', concept_id: 'verbos_preposicionales', difficulty: 2 },
-    { type: 'multiple_choice', prompt: 'Which preposition correctly completes "El éxito consiste ___ la constancia"?', word: 'en', english: 'of', answer: 'en', options: ['de', 'en', 'con', 'a'], concept_id: 'verbos_preposicionales', difficulty: 2 },
-    { type: 'translation_to_spanish', prompt: "Translate: 'It depends on the situation.'", english: 'It depends on the situation.', answer: 'Depende de la situación.', word: 'depender de', concept_id: 'verbos_preposicionales', difficulty: 2 },
-    { type: 'translation_to_spanish', prompt: "Translate: 'I'm glad that you came.'", english: "I'm glad that you came.", answer: 'Me alegro de que hayas venido.', word: 'alegrarse de', concept_id: 'verbos_preposicionales', difficulty: 3 },
-    { type: 'error_correction', prompt: 'Fix the preposition error: "Todo depende en la decisión del jefe."', word: 'depende de', english: 'depends on', answer: 'Todo depende de la decisión del jefe.', concept_id: 'verbos_preposicionales', difficulty: 3 },
-    { type: 'translation_to_english', prompt: 'Translate, noting the different pattern: "¿Qué piensas de esta idea?"', word: 'pensar de', english: 'What do you think of this idea?', answer: 'What do you think of this idea?', altAnswers: ['What do you think about this idea?'], concept_id: 'verbos_preposicionales', difficulty: 3 },
-
-    // ── cuantificadores block ──
-    { type: 'fill_blank', prompt: 'Complete (agreement in number only): "Hay bastant___ personas en la sala."', word: 'bastantes', english: 'quite a few', answer: 'bastantes', concept_id: 'cuantificadores', difficulty: 2 },
-    { type: 'fill_blank', prompt: 'Complete (adjective, agrees with masculine plural "problemas"): "Tenemos demasiad___ problemas."', word: 'demasiados', english: 'too many', answer: 'demasiados', concept_id: 'cuantificadores', difficulty: 2 },
-    { type: 'multiple_choice', prompt: 'Which is correct: "Esta sopa está ___ salada" (too, modifying an adjective — invariable)?', word: 'demasiado', english: 'too', answer: 'demasiado', options: ['demasiada', 'demasiado', 'demasiados', 'demasiadas'], concept_id: 'cuantificadores', difficulty: 3 },
-    { type: 'translation_to_spanish', prompt: "Translate: 'Each student must turn in their homework.'", english: 'Each student must turn in their homework.', answer: 'Cada estudiante debe entregar su tarea.', word: 'cada', concept_id: 'cuantificadores', difficulty: 2 },
-    { type: 'error_correction', prompt: 'Fix the article error: "Los ambos hermanos estudian medicina."', word: 'ambos', english: 'both', answer: 'Ambos hermanos estudian medicina.', concept_id: 'cuantificadores', difficulty: 3 },
-    { type: 'multiple_choice', prompt: 'Which correctly completes "___ persona puede inscribirse" (directly before the noun)?', word: 'cualquier', english: 'any', answer: 'Cualquier', options: ['Cualquiera', 'Cualquier', 'Cualesquiera', 'Cada'], concept_id: 'cuantificadores', difficulty: 3 },
-    { type: 'translation_to_english', prompt: 'Translate: "El médico revisa el equipo cada seis meses."', word: 'cada seis meses', english: 'The doctor checks the equipment every six months.', answer: 'The doctor checks the equipment every six months.', concept_id: 'cuantificadores', difficulty: 2 },
+    // ── registro_formal_informal block (blocked practice: drilled alone before mixing with other concepts) ──
+    { type: 'register_identify', prompt: 'What register is this sentence?', sentence: '¿Podría usted ayudarme, por favor?', sentenceEn: 'Could you help me, please?', word: 'podría usted', english: 'formal — conditional + usted, maximally indirect', answer: 'formal', options: ['formal', 'neutral', 'informal', 'colloquial'], concept_id: 'registro_formal_informal', difficulty: 2 },
+    { type: 'register_identify', prompt: 'What register is this sentence?', sentence: '¿Puede darme los datos, por favor?', sentenceEn: 'Can you give me the details, please?', word: 'puede darme', english: 'neutral — polite but no usted needed for the same distance', answer: 'neutral', options: ['formal', 'neutral', 'informal', 'colloquial'], concept_id: 'registro_formal_informal', difficulty: 2 },
+    { type: 'register_identify', prompt: 'What register is this sentence?', sentence: '¿Me haces un favor y me pasas el móvil?', sentenceEn: 'Can you do me a favor and hand me my phone?', word: 'me haces un favor', english: 'informal — direct present-tense question, no hedge', answer: 'informal', options: ['formal', 'neutral', 'informal', 'colloquial'], concept_id: 'registro_formal_informal', difficulty: 2 },
+    { type: 'register_identify', prompt: 'What register is this sentence?', sentence: '¿Me pasas el informe ese, tío, o qué?', sentenceEn: 'Are you gonna pass me that report, dude, or what?', word: 'tío... o qué', english: 'colloquial — slang address term, vague filler, blunt tag', answer: 'colloquial', options: ['formal', 'neutral', 'informal', 'colloquial'], concept_id: 'registro_formal_informal', difficulty: 2 },
+    {
+      type: 'multiple_choice',
+      prompt: 'Según el texto, ¿qué frase está dirigida al jefe (registro formal)?',
+      word: 'podría usted enviarme',
+      english: 'could you (formal) send me',
+      answer: '¿Podría usted enviarme el informe antes de las cinco, por favor?',
+      options: [
+        '¿Podría usted enviarme el informe antes de las cinco, por favor?',
+        '¿Puedes enviarme el informe antes de las cinco?',
+        'Oye, ¿me pasas el informe ese antes de las cinco o qué?',
+        '¿Podría enviarme el informe antes de las cinco?',
+      ],
+      concept_id: 'registro_formal_informal',
+      difficulty: 2,
+      passage: 'Necesitas el mismo informe urgente de cuatro personas distintas, y cada vez ajustas el registro a la relación que tienes con cada una. A tu jefe: "¿Podría usted enviarme el informe antes de las cinco, por favor?" A una clienta con la que apenas has hablado: "¿Podría enviarme el informe antes de las cinco?" A un compañero de confianza: "¿Puedes enviarme el informe antes de las cinco?" A tu mejor amigo: "Oye, ¿me pasas el informe ese antes de las cinco o qué?"',
+      passageEn: 'You need the same urgent report from four different people, and each time you adjust the register to your relationship with them. To your boss: "Could you please send me the report before five?" To a client you\'ve barely spoken to: "Could you send me the report before five?" To a trusted coworker: "Can you send me the report before five?" To your best friend: "Hey, are you gonna send me that report before five or what?"',
+    },
+    {
+      type: 'fill_blank',
+      prompt: "Según el texto, completa la línea dirigida al mejor amigo: 'Oye, ¿me ___ el informe ese antes de las cinco o qué?'",
+      word: 'pasas',
+      english: 'you pass/send (informal present tense)',
+      answer: 'pasas',
+      concept_id: 'registro_formal_informal',
+      difficulty: 2,
+      passage: 'Necesitas el mismo informe urgente de cuatro personas distintas, y cada vez ajustas el registro a la relación que tienes con cada una. A tu jefe: "¿Podría usted enviarme el informe antes de las cinco, por favor?" A una clienta con la que apenas has hablado: "¿Podría enviarme el informe antes de las cinco?" A un compañero de confianza: "¿Puedes enviarme el informe antes de las cinco?" A tu mejor amigo: "Oye, ¿me pasas el informe ese antes de las cinco o qué?"',
+      passageEn: 'You need the same urgent report from four different people, and each time you adjust the register to your relationship with them. To your boss: "Could you please send me the report before five?" To a client you\'ve barely spoken to: "Could you send me the report before five?" To a trusted coworker: "Can you send me the report before five?" To your best friend: "Hey, are you gonna send me that report before five or what?"',
+    },
+    {
+      type: 'translation_to_english',
+      prompt: "Translate the line aimed at the trusted coworker: '¿Puedes enviarme el informe antes de las cinco?'",
+      word: 'puedes enviarme',
+      english: 'can you send me (informal)',
+      answer: 'Can you send me the report before five?',
+      concept_id: 'registro_formal_informal',
+      difficulty: 1,
+      passage: 'Necesitas el mismo informe urgente de cuatro personas distintas, y cada vez ajustas el registro a la relación que tienes con cada una. A tu jefe: "¿Podría usted enviarme el informe antes de las cinco, por favor?" A una clienta con la que apenas has hablado: "¿Podría enviarme el informe antes de las cinco?" A un compañero de confianza: "¿Puedes enviarme el informe antes de las cinco?" A tu mejor amigo: "Oye, ¿me pasas el informe ese antes de las cinco o qué?"',
+      passageEn: 'You need the same urgent report from four different people, and each time you adjust the register to your relationship with them. To your boss: "Could you please send me the report before five?" To a client you\'ve barely spoken to: "Could you send me the report before five?" To a trusted coworker: "Can you send me the report before five?" To your best friend: "Hey, are you gonna send me that report before five or what?"',
+    },
+    { type: 'translation_to_spanish', prompt: "Translate, using formal register: 'I would be grateful if you could confirm the appointment.'", english: 'I would be grateful if you could confirm the appointment.', answer: 'Le agradecería que me confirmara la cita.', word: 'le agradecería que', concept_id: 'registro_formal_informal', difficulty: 3 },
   ],
 };
 
 // ── Accuracy audit note ──────────────────────────────────────────────────
 // Claims cross-verified via WebSearch against SpanishDict, WordReference-
-// adjacent pedagogical sources, Kwiziq, Lawless Spanish, and other
-// established grammar references before writing (July 2026):
+// adjacent pedagogical sources, Kwiziq, Lawless Spanish, CVC (Centro Virtual
+// Cervantes), LanguageTool, and other established grammar references before
+// writing (July 2026):
 // - ser + past participle as the formal/written passive, agreeing in
 //   gender/number with the subject, with por introducing the agent; the
 //   se-passive and active voice as the strongly preferred everyday-spoken
@@ -198,58 +278,48 @@ export default {
 //   writing, and formal speeches (Mango Languages "How to use the passive
 //   voice in Spanish?"; Spanish.academy "How to Master the Passive Voice in
 //   Spanish"; SpanishDict "Impersonal Se vs. Passive Se"), consistent with
-//   the existing ser_passive card in src/content/grammar.js
+//   the existing ser_passive card in src/content/grammar.js.
 // - the estar + participio resultant-state contrast (está redactado = the
 //   state of being written, vs. fue redactado = the act of being written)
 //   as a standard companion distinction to the ser-passive (SpanishDict
 //   ser/estar + participle guidance, consistent with the existing
-//   ser_passive card's estar note)
-// - aunque + indicative = concedes a known/established fact ("although");
-//   aunque + subjunctive = frames the concession as hypothetical,
-//   unconfirmed, or dismissed as irrelevant ("even if"), with the choice
-//   governed by the speaker's stance toward the information rather than
-//   objective truth (Kwiziq "Aunque + indicative or subjunctive"; Yabla
-//   "Aunque + Present Indicative vs. Subjunctive"; Collins Education "When
-//   should you use the indicative or the subjunctive in Spanish?"),
-//   consistent with the existing aunque_concessive card in
-//   src/content/grammar.js
-// - a pesar de que / pese a que following the same indicative/subjunctive
-//   concessive logic as aunque (Gymglish "Aunque and pese a que followed by
-//   the indicative or subjunctive"), consistent with the existing
-//   aunque_concessive card's "exceptions" note
-// - fixed verb+preposition pairings pensar en, soñar con, consistir en,
-//   depender de, alegrarse de, none of which map to their literal English
-//   prepositions, plus the pensar en (think about) vs. pensar de (opinion
-//   of) distinction and preposition retention before an infinitive
-//   complement (blog.worldsacross.com "How to use 'pensar en', 'soñar con',
-//   and other key structures"; Real Fast Spanish "25 Common Spanish Verbs
-//   and Their Prepositions"), consistent with the existing
-//   verbos_preposicionales card in src/content/grammar.js
-// - bastante/bastantes agreeing only in number, never gender, as both
-//   adjective and adverb (spanishgrammar.net "Spanish Quantifiers Guide")
-// - demasiado/a(s) agreeing fully in gender and number as an adjective
-//   modifying a noun (demasiados problemas) but staying invariable as an
-//   adverb modifying an adjective/adverb (demasiado grande) (Study.com/
-//   Wyzant adverb-vs-adjective guides; spanishgrammar.net quantifiers guide)
-// - cada as invariable (no gender or plural form) and normally followed by
-//   a singular noun, with the specific exception that a following numeral
-//   greater than one pluralizes the noun (cada diez años) (Kwiziq "Cada +
-//   noun for each + noun"; Kwiziq "Cada and plural nouns"; Elon.io "Cada:
-//   'cada día'")
-// - ambos/ambas as always plural, agreeing in gender with its noun, never
-//   preceded by an article (ambos hermanos, not los ambos hermanos), and
-//   more formal in register than los dos (SpanishStep "'Ambos' vs 'Los dos'
-//   in Spanish"; SpanishStep "How to Use 'Ambos' in Spanish in Clear Formal
-//   Sentences")
-// - cualquiera shortening to cualquier directly before a singular noun of
-//   either gender, and retaining its full form as a pronoun or when placed
-//   after the noun (FluentU "Apocopation in Spanish"; Spanish for London
-//   "Cualquier vs Cualquiera in Spanish"; Kwiziq "Cualquier/a = any")
+//   ser_passive card's estar note).
+// - estructuradores_informacion: the estructuradores category splits into
+//   comentadores, ordenadores, and digresores; por una parte/por otra
+//   parte and en primer lugar/en segundo lugar are ordenadores, whose job
+//   is placing a discourse member within an ordered sequence of parts; en
+//   definitiva functions as a marcador conclusivo (bottom-line conclusion,
+//   distinct from simply "the last item in a numbered list") — checked
+//   against Retóricas "Ejemplos de Marcadores Estructuradores" and the CVC
+//   ELE dictionary's marcadores del discurso entry, consistent with the
+//   existing estructuradores_informacion card in src/content/grammar.js
+//   (which likewise notes por una parte requiring its por otra parte
+//   counterpart, and por un lado/por otro as an equally correct, less
+//   formal variant).
+// - registro_formal_informal: the four-way register scale (formal, neutral,
+//   informal, colloquial) matching this site's own idioms.js register field;
+//   the request spectrum from ¿podría usted...? through ¿me pasas...?, and
+//   that register control involves word choice, sentence length/
+//   subordination, and level of indirection, not just tú/usted — checked
+//   against LanguageTool's "Registro formal o informal" guide, the CVC
+//   Didactired "Tabla de diferencias entre el registro informal y el
+//   formal," and RAE's Diccionario panhispánico de dudas entry on usted
+//   (formality/distance function). Matches the existing GRAMMAR_CARDS entry
+//   for registro_formal_informal in src/content/grammar.js (same core
+//   examples: ¿podría usted...?/¿puede.../¿puedes.../se ruega a los señores
+//   pasajeros).
 // This content is complementary to the existing GRAMMAR_CARDS entries for
-// ser_passive, aunque_concessive, verbos_preposicionales, and
-// cuantificadores in src/content/grammar.js (same facts, fuller C1-paced
-// walkthrough with worked contrasts and two original reading passages) and
-// does not contradict them. As the first C1 unit in the curriculum, its
-// register notes (ser_passive as formal/written-only, cualquiera/ambos as
-// leaning formal) are kept brief per the assignment, matching this unit's
-// overall goal of advanced precision rather than new foundational ground.
+// ser_passive, estructuradores_informacion, and registro_formal_informal in
+// src/content/grammar.js (same facts, fuller C1-paced walkthrough with
+// worked contrasts and original reading passages) and does not contradict
+// them. As the first C1 unit in the curriculum, its register notes
+// (ser_passive as formal/written-only) are kept brief per the assignment,
+// matching this unit's overall goal of advanced precision rather than new
+// foundational ground.
+//
+// Curriculum-pacing-lag fix (07-09-2026): aunque_concessive, verbos_
+// preposicionales, and cuantificadores were removed from this unit (see
+// header note above for where each relocated); estructuradores_informacion
+// and registro_formal_informal were added, verbatim, from the old
+// unit31-discourse-markers.js and unit32-register-stance.js respectively.
+// See ES.md's punch-list item 29.

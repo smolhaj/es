@@ -1,5 +1,5 @@
 // Unit 21 — Perfect Tenses (B2, first unit of the B2 tier)
-// Covers: present_perfect, pluperfect, future_perfect, conditional_perfect
+// Covers: pluperfect, future_perfect, conditional_perfect
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -7,51 +7,37 @@
 // claim below was verified against SpanishDict, StudySpanish.com, and other
 // established grammar references before writing — see the audit note at
 // the bottom of this file for the specific claims checked. This unit
-// orders present_perfect first (per functions/_lib/concepts.js, it is the
-// shared prerequisite of all three other perfect tenses), then pluperfect,
-// future_perfect, conditional_perfect, matching the task's specified order.
+// orders pluperfect first, then future_perfect, conditional_perfect.
+//
+// Curriculum-pacing-lag fix (07-09-2026): present_perfect was removed from
+// this unit and its participle-formation teaching moved to Unit 11
+// (what-happened, A2) — the CEFR audit found present_perfect's real level
+// is A2, not B2, and it was previously only taught here, two levels late.
+// This unit's opening section (the shared haber + participle pattern) is
+// trimmed to assume participle formation is already known from that A2
+// unit, rather than re-teaching it. pluperfect itself is B1 per the same
+// audit (1 level below this unit's B2) but stays here as a documented,
+// accepted minor lag — see ES.md punch-list item 29.
 
 export default {
   sections: [
     {
-      heading: 'One Pattern, Four Tenses: Meet the Perfect Tenses',
+      heading: 'One Pattern, Three More Tenses',
       paragraphs: [
-        "Here's the good news before you learn anything new: you already know almost all of what's in this unit. Every one of the four \"perfect\" tenses in Spanish — present perfect, pluperfect, future perfect, and conditional perfect — is built from exactly the same two-piece pattern: a conjugated form of the helper verb haber (\"to have,\" in the sense of an auxiliary, not possession), plus a past participle that never changes. He hablado, había hablado, habré hablado, habría hablado — same participle, hablado, every single time. The only thing that changes across all four tenses is which tense haber itself is conjugated in.",
-        "This is a genuinely different way to think about this unit than most grammar topics: you're not learning four unrelated things, you're learning one participle-formation rule and four small sets of haber conjugations, then combining them. Present perfect uses haber in the present (he, has, ha…); pluperfect uses haber in the imperfect (había, habías…); future perfect uses haber in the simple future (habré, habrás…); conditional perfect uses haber in the conditional (habría, habrías…). If you already know the present, imperfect, future, and conditional conjugations of regular verbs, you already know the pattern haber follows in each case — haber is irregular in a few of these tenses, but predictably so, and you'll see the exact forms in each section below.",
-        "One rule holds across all four tenses without exception, and it's worth fixing in your mind now: haber and the past participle are never separated. No adverb, no negation word, nothing goes between them. \"I have already eaten\" is Ya he comido or He comido ya — never *He ya comido. And the past participle itself never changes for gender or number when it follows haber — hemos comido is the same whether \"we\" are two women, two men, or a mixed group. (This is different from when a participle is used as a plain adjective, like la puerta está abierta — but that's not what's happening in these four tenses, so don't let it confuse you here.)",
+        "You already met the present perfect (he hablado) in an earlier unit, along with the past-participle system it's built on: drop the infinitive ending and add -ado (-ar verbs) or -ido (-er/-ir verbs) — hablado, comido, vivido — plus a short list of irregulars to memorize (hecho, dicho, puesto, visto, vuelto, escrito, abierto, muerto, roto, cubierto). Good news: that's the hardest part, and you already have it. This unit reuses the exact same participle, unchanged, across three more tenses — pluperfect, future perfect, and conditional perfect — and the only thing that shifts between them is which tense haber itself is conjugated in.",
+        "Pluperfect uses haber in the imperfect (había, habías…); future perfect uses haber in the simple future (habré, habrás…); conditional perfect uses haber in the conditional (habría, habrías…). If you already know the imperfect, future, and conditional conjugations of regular verbs, you already know the pattern haber follows in each case — haber is irregular in a few of these tenses, but predictably so, and you'll see the exact forms in each section below.",
+        "One rule holds across all of these without exception, and it's worth fixing in your mind now: haber and the past participle are never separated. No adverb, no negation word, nothing goes between them. \"I had already eaten\" is Ya había comido or Había comido ya — never *Había ya comido. And the past participle itself never changes for gender or number when it follows haber — habíamos comido is the same whether \"we\" are two women, two men, or a mixed group. (This is different from when a participle is used as a plain adjective, like la puerta está abierta — but that's not what's happening in these tenses, so don't let it confuse you here.)",
       ],
       examples: [
-        { es: 'He comido. — Había comido. — Habré comido. — Habría comido.', en: 'I have eaten. — I had eaten. — I will have eaten. — I would have eaten.' },
-        { es: 'Ya hemos terminado.', en: 'We have already finished. (never *hemos ya terminado)' },
-        { es: 'No he visto esa película todavía.', en: "I haven't seen that movie yet." },
-        { es: 'Ellas han vivido aquí, y ellos también han vivido aquí.', en: 'They (f.) have lived here, and they (m.) have too. (participle never changes)' },
+        { es: 'Había comido. — Habré comido. — Habría comido.', en: 'I had eaten. — I will have eaten. — I would have eaten.' },
+        { es: 'Ya habíamos terminado.', en: 'We had already finished. (never *habíamos ya terminado)' },
+        { es: 'No había visto esa película todavía.', en: "I hadn't seen that movie yet." },
+        { es: 'Ellas habían vivido aquí, y ellos también habían vivido aquí.', en: 'They (f.) had lived here, and they (m.) had too. (participle never changes)' },
       ],
       commonMistakes: [
-        "Don't insert an adverb or ya between haber and the participle — He ya terminado is wrong; it must be Ya he terminado or He terminado ya.",
-        'The past participle after haber is frozen — it does not agree with the subject\'s gender or number. Resist the instinct to write "hemos comidos" or "ha llegada"; it is always hemos comido, ha llegado, no matter who is speaking.',
-        "Don't try to memorize these four tenses as four separate vocabulary lists — they share one participle system. Learn the participle once, then just swap which tense haber is in.",
-      ],
-    },
-    {
-      heading: 'Present Perfect: Building the Past Participle',
-      paragraphs: [
-        'The present perfect (he hablado, "I have spoken") is built from haber conjugated in the present — he, has, ha, hemos, habéis, han — plus a past participle. To form a regular past participle, drop the infinitive ending and add -ado for -ar verbs, or -ido for -er and -ir verbs: hablar → hablado (spoken), comer → comido (eaten), vivir → vivido (lived). That\'s the whole regular rule, and it applies to the vast majority of Spanish verbs.',
-        "A handful of very common verbs, though, have irregular past participles that simply have to be memorized, because they don't follow the -ado/-ido pattern at all. The core list: hacer → hecho (done/made), decir → dicho (said), poner → puesto (put), ver → visto (seen), volver → vuelto (returned), escribir → escrito (written), abrir → abierto (opened), morir → muerto (died), romper → roto (broken), cubrir → cubierto (covered). Notice a pattern within the irregulars themselves: several end in -to (puesto, visto, vuelto, abierto, muerto, roto, cubierto) and two end in -cho (hecho, dicho) — that won't help you predict a new irregular participle from scratch, but it does make the list a bit easier to hold in memory once you've seen it a few times. Compound verbs built on these roots stay irregular the same way: descubrir → descubierto, devolver → devuelto, deshacer → deshecho.",
-        "Use the present perfect the way you'd use English \"have/has + past participle\" — for an action completed at some point up to now, often (though not always) with a connection to the present moment: ¿Has estado en España? (\"Have you been to Spain?\") asks about your whole life up to now, not a specific date. Hemos vivido aquí cinco años (\"We have lived here for five years\") describes something that started in the past and continues to be true. This is the same logical territory as English's present perfect, so if you can already feel the difference between \"I ate\" and \"I have eaten\" in English, you already have decent intuition for when Spanish reaches for this tense.",
-        "One regional note worth knowing, though it's a tendency rather than a hard rule: in Spain, the present perfect is used quite freely for same-day events — Esta mañana he desayunado tarde (\"This morning I had a late breakfast\") sounds completely natural there, even though the action is already over. In much of Latin America, the simple preterite is preferred for that same sentence — Esta mañana desayuné tarde — regardless of how recently it happened. (The Andean region is a partial exception, leaning closer to the Spain pattern.) Both are correct Spanish; this is a difference in everyday habit, not a grammar error, so don't be surprised when you hear either version.",
-      ],
-      examples: [
-        { es: 'He hablado con ella esta semana.', en: 'I have spoken with her this week.' },
-        { es: '¿Has comido algo hoy?', en: 'Have you eaten anything today?' },
-        { es: 'Ha vivido en tres países diferentes.', en: 'He has lived in three different countries.' },
-        { es: 'Todavía no he hecho la tarea.', en: "I haven't done the homework yet." },
-        { es: '¿Habéis visto mis llaves?', en: 'Have you all seen my keys? (Spain, vosotros)' },
-        { es: 'Nunca han estado en Perú.', en: 'They have never been to Peru.' },
-      ],
-      commonMistakes: [
-        'Don\'t regularize the irregular participles — "hacido" and "decido" (for hacer and decir) are common learner errors; the correct forms are hecho and dicho.',
-        'Watch out for compound verbs built on irregular roots: devolver follows volver (devuelto, not devolvido), and descubrir follows cubrir (descubierto, not descubrido).',
-        "Don't assume the present perfect is interchangeable with the preterite everywhere — in Spain it's the natural choice for same-day events, but a Latin American speaker will often reach for the preterite (desayuné, not he desayunado) in that exact same situation. Neither is wrong; it's regional.",
+        "Don't insert an adverb or ya between haber and the participle — Había ya terminado is wrong; it must be Ya había terminado or Había terminado ya.",
+        'The past participle after haber is frozen — it does not agree with the subject\'s gender or number. Resist the instinct to write "habíamos comidos" or "había llegada"; it is always habíamos comido, había llegado, no matter who is speaking.',
+        "Don't try to memorize these tenses as separate vocabulary lists — they share one participle system, already familiar from the present perfect. Just swap which tense haber is in.",
       ],
     },
     {
@@ -136,17 +122,7 @@ export default {
   ],
 
   practice: [
-    // ── present_perfect block (blocked practice: new-concept drill in isolation before interleaving elsewhere) ──
-    { type: 'fill_blank', prompt: 'Complete: "___ comido ya." (yo, present perfect of comer)', word: 'he', english: 'have (I have)', answer: 'He', concept_id: 'present_perfect', difficulty: 1 },
-    { type: 'multiple_choice', prompt: 'What is the past participle of hacer?', word: 'hecho', english: 'done/made', answer: 'hecho', options: ['hacido', 'hecho', 'hacho', 'hacido'], concept_id: 'present_perfect', difficulty: 1 },
-    { type: 'fill_blank', prompt: 'Complete: "¿___ visto mis llaves?" (tú, present perfect of ver)', word: 'has', english: 'have (you have)', answer: 'Has', concept_id: 'present_perfect', difficulty: 1 },
-    { type: 'error_correction', prompt: 'Fix the error: "He ya terminado el informe."', word: 'ya he', english: 'already (correct word order)', answer: 'Ya he terminado el informe.', concept_id: 'present_perfect', difficulty: 2 },
-    { type: 'translation_to_spanish', prompt: "Translate: 'We have lived here five years.'", english: 'We have lived here five years.', answer: 'Hemos vivido aquí cinco años.', word: 'hemos vivido', concept_id: 'present_perfect', difficulty: 2 },
-    { type: 'translation_to_english', prompt: 'Translate: "Todavía no he hecho la tarea."', word: 'he hecho', english: "I haven't done the homework yet.", answer: "I haven't done the homework yet.", concept_id: 'present_perfect', difficulty: 2 },
-    { type: 'error_correction', prompt: 'Fix the error: "Ellas han vividas aquí toda su vida."', word: 'han vivido', english: 'have lived (participle never agrees)', answer: 'Ellas han vivido aquí toda su vida.', concept_id: 'present_perfect', difficulty: 2 },
-    { type: 'multiple_choice', prompt: 'Which participle correctly completes: "La ventana está ___." (irregular participle of romper, used as adjective)', word: 'rota', english: 'broken', answer: 'rota', options: ['rompida', 'roto', 'rota', 'rompido'], concept_id: 'present_perfect', difficulty: 2 },
-
-    // ── pluperfect block (kept separate from present_perfect; blocked before mixed review) ──
+    // ── pluperfect block (blocked before mixed review) ──
     { type: 'fill_blank', prompt: 'Complete: "Cuando llegué, ya ___ comido." (ellos, pluperfect of comer)', word: 'habían', english: 'had (they had)', answer: 'habían', concept_id: 'pluperfect', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which sentence correctly shows one past action happening before another?', word: 'había', english: 'had (pluperfect)', answer: 'Cuando llegué, ya habían comido.', options: ['Cuando llegué, ya habían comido.', 'Cuando llegué, ya comen.', 'Cuando llego, ya han comido.', 'Cuando llegué, ya comeré.'], concept_id: 'pluperfect', difficulty: 2 },
     { type: 'translation_to_spanish', prompt: "Translate: 'I hadn't seen that movie before.'", english: "I hadn't seen that movie before.", answer: 'No había visto esa película antes.', word: 'había visto', concept_id: 'pluperfect', difficulty: 2 },
@@ -215,9 +191,9 @@ export default {
 //   and study.com Conditional Perfect guides; existing conditional_perfect
 //   card in src/content/grammar.js)
 // This content is complementary to the existing GRAMMAR_CARDS entries for
-// present_perfect, pluperfect, future_perfect, and conditional_perfect in
-// src/content/grammar.js (same facts, fuller B2-paced walkthrough that
-// foregrounds the shared haber + participle system across all four tenses)
-// and does not contradict them. Concept order (present_perfect first, as
-// shared prerequisite, then pluperfect, future_perfect, conditional_perfect)
-// matches the prereqs declared in functions/_lib/concepts.js.
+// pluperfect, future_perfect, and conditional_perfect in src/content/
+// grammar.js (same facts, fuller B2-paced walkthrough that foregrounds the
+// shared haber + participle system) and does not contradict them.
+// present_perfect's own GRAMMAR_CARDS entry and teaching content now live
+// in the A2 what-happened unit — see that unit's file for its
+// participle-formation content and accuracy audit.

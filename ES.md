@@ -1047,6 +1047,59 @@ measures):**
     scoped OUT of this phase (user chose verbs+vocabulary only) and
     remain unaudited against real-world standards. See `ES-HISTORY.md`
     for full methodology and per-batch findings.
+29. **Curriculum-unit-content pacing-lag fix, both phases done (07-09-2026)**
+    — the systemic issue flagged in item 27 above. Full data pull found: 8
+    concepts (all from Phase B's splits) had **zero** teaching unit at
+    all, 8 units had a minor 1-concept lag (left as-is, documented only —
+    a learner isn't blocked, just reinforced slightly late), and 7 units
+    no longer cohered at their assigned level at all (`probability-aspect`
+    had **zero** C1 content left after its 3 concepts all moved to
+    B1/B2; `subjunctive-deep-dive` was 3/4 B1). **Phase 1**: wrote new
+    sections + practice for all 8 orphaned concepts, folded into 5
+    existing units — `irregular_present_core`/`modal_verbs_core`/
+    `gustar_basico` into `everyday-actions` (A1, placed here rather than
+    the A2 units that still teach the higher rest, since an A1 concept in
+    an A2-positioned unit wouldn't actually fix the pacing mismatch);
+    `prepositions_core` into `asking-questions` (A1); `imperative_
+    affirmative` into `obligations-requests` (A2); `relative_clauses_core`
+    into `comparing-describing` (A2); `reformuladores_basico`/
+    `genero_informe` into `argumentation-workplace` (B2, already the
+    natural home). **Phase 2**: restructured the 7 incoherent units by
+    content-coherence, not just whole-unit relabeling — classified each as
+    either a tightly-sequenced arc (don't split; `subjunctive-deep-dive`,
+    where si_clauses' practice literally depends on imperfect_subjunctive's
+    forms taught 2 sections earlier in the same file — relabeled B2→B1
+    wholesale instead, keeping `perfect_subjunctive` as a documented "taught
+    early" exception) or a loose grab-bag (safe to split; the other 6).
+    Result: `perfect-tenses` lost `present_perfect` to a new section in
+    `what-happened` (A2), which now teaches participle formation from
+    scratch since it's the first place a learner meets it — `perfect-tenses`
+    recaps rather than re-teaches. `probability-aspect`'s slot was
+    repurposed in place (id kept, for progress-tracking safety) into a new
+    B1 "Verb Nuance" unit (`futuro_probabilidad`, `perifraseis_avanzadas`,
+    plus `verbos_preposicionales`/`cuantificadores` moved in from the old
+    `fixed-expressions`); its `condicional_probabilidad` moved out to a
+    brand-new B2 unit, `subjunctive-counterfactuals-concession` (reusing
+    the order-24 slot vacated when `subjunctive-deep-dive` relabeled to
+    B1), alongside `pluperfect_subjunctive` and `subjunctive_adjective_
+    clauses` (both split off `subjunctive-limits`, which keeps its 2
+    still-correctly-C1 concepts) and `aunque_concessive` (split off
+    `fixed-expressions`) — all four share an unreal/hypothetical-reasoning
+    theme. `fixed-expressions` gained `estructuradores_informacion` and
+    `registro_formal_informal`, both split off C2 units `discourse-markers`
+    and `register-stance` (each now down to their one remaining
+    genuinely-C2 concept: `reformuladores`, `modalizacion_epistemica`);
+    the other two split-off concepts, `operadores_discursivos` and
+    `controladores_contacto`, folded into `argumentation-workplace`
+    (already the workplace/conversational-register home). Every relocated
+    section's prose, examples, and practice moved verbatim — the only
+    wholly new prose this phase is `what-happened`'s participle-formation
+    section. Verified: concept-lag script (0 duplicate ids, 0 untaught
+    concepts, 0 double-taught concepts, exactly 11 accepted minor/
+    documented lags — same list as before, now covering the *whole*
+    curriculum, not just the units left untouched); every touched unit's
+    practice `concept_id`s cross-checked against both `concepts.js` and its
+    own unit's `concepts` array; `npm run build` passes.
 
 ## Session history index
 
@@ -1138,3 +1191,11 @@ full account of any of these.
   words, found via a plain file-size comparison across content files, not
   a punch-list item. 4 parallel research/promotion batches, 4 new domains,
   a new `register` field — full current state in "Architecture" above.
+- **07-09-2026** — Curriculum-unit-content pacing-lag fix, both phases:
+  Phase 1 folded 8 orphaned concepts into 5 existing units; Phase 2
+  restructured the 7 units the CEFR audit had left incoherent, splitting
+  loose grab-bags apart, relabeling one tightly-sequenced arc wholesale
+  instead of splitting it, and creating one new consolidated B2 unit
+  (`subjunctive-counterfactuals-concession`) for four concepts that all
+  share an unreal/hypothetical-reasoning theme — full account in
+  punch-list item 29.
