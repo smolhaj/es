@@ -1,4 +1,4 @@
-// Structured "Get Started" curriculum — thematic units mapped onto the 79
+// Structured "Get Started" curriculum — thematic units mapped onto the 109
 // tracked grammar concepts (see functions/_lib/concepts.js), CEFR-ordered.
 // Each unit with written content lives in its own file (unitNN-slug.js) and
 // is registered in CONTENT below; units without a file yet render as
@@ -31,6 +31,9 @@ import perfectTenses from './unit22-perfect-tenses.js';
 import passiveImpersonal from './unit23-passive-impersonal.js';
 import subjunctiveDeepDive from './unit24-subjunctive-deep-dive.js';
 import fineDetails from './unit25-fine-details.js';
+import reportedSpeechBasic from './unit-b2-reported-speech-basic.js';
+import certaintyDoubtProbability from './unit-b2-certainty-doubt-probability.js';
+import argumentationWorkplace from './unit-b2-argumentation-workplace.js';
 import subjunctiveLimits from './unit26-subjunctive-limits.js';
 import reportedSpeech from './unit27-reported-speech.js';
 import probabilityAspect from './unit28-probability-aspect.js';
@@ -71,6 +74,9 @@ const CONTENT = {
   'passive-impersonal': passiveImpersonal,
   'subjunctive-deep-dive': subjunctiveDeepDive,
   'fine-details': fineDetails,
+  'reported-speech-basic': reportedSpeechBasic,
+  'certainty-doubt-probability': certaintyDoubtProbability,
+  'argumentation-workplace': argumentationWorkplace,
   'subjunctive-limits': subjunctiveLimits,
   'reported-speech': reportedSpeech,
   'probability-aspect': probabilityAspect,
@@ -190,8 +196,17 @@ export const UNIT_METADATA = [
   { id: 'fine-details', order: 25, level: 'B2', title: 'Fine Details',
     concepts: ['comparatives', 'diminutives_augmentatives', 'relative_pronouns_advanced', 'adjectives_ser_estar', 'adjective_position', 'verbos_cambio'],
     summary: 'The polish that separates advanced learners from natives.' },
+  { id: 'reported-speech-basic', order: 25.1, level: 'B2', title: 'Reported Speech, the Everyday Version',
+    concepts: ['estilo_indirecto_basico'],
+    summary: 'Relay what someone told you — dijo que, me preguntó si, me preguntó dónde.' },
+  { id: 'certainty-doubt-probability', order: 25.2, level: 'B2', title: 'Certainty & Doubt',
+    concepts: ['expresiones_probabilidad_basica'],
+    summary: 'Hedge a guess with deber de, es posible que, and the one phrase that breaks the pattern.' },
+  { id: 'argumentation-workplace', order: 25.3, level: 'B2', title: 'Argumentation & Workplace Correspondence',
+    concepts: ['conectores_argumentativos_basicos', 'registro_formal_correspondencia'],
+    summary: 'Build a case with pero and sin embargo, then write it up in a proper formal email.' },
   { id: 'checkpoint-b2', order: 25.5, level: 'B2', title: 'Checkpoint: All of B2', isCheckpoint: true,
-    checkpointUpTo: 25, coversUnits: 'Units 1-25', concepts: [],
+    checkpointUpTo: 25.3, coversUnits: 'Units 1-25.3 (all of B2)', concepts: [],
     summary: 'B2 complete — a personalized review of the whole level before moving on.' },
 
   // C1 — Near-Native Precision
