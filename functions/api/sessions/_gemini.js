@@ -36,32 +36,45 @@ register_identify — only for C2 register-switching content. Include "sentence"
 {"type":"register_identify","prompt":"What register is this sentence?","sentence":"¿Podría usted ayudarme, por favor?","word":"podría usted","english":"Could you help me, please? (formal)","answer":"formal","options":["formal","neutral","informal","colloquial"],"concept_id":"registro_formal_informal","difficulty":2}
 
 concept_id must be one of:
-A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender, definite_articles, indefinite_articles,
-    ser_basics, estar_basics, present_ar, present_er_ir, adjective_agreement, question_words, hay, numbers_21_100,
-    plural_nouns
-A2: ser_vs_estar, reflexive_verbs, gustar_type, direct_object_pronouns, indirect_object_pronouns,
-    demonstratives, possessives, preterite_regular, modal_verbs, obligation_infinitive, time_expressions,
-    present_progressive, irregular_present, negation, prepositions_basic, near_future, adverbs_formation,
-    comparatives_basic
-B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imperfect, future_simple,
-    conditional, present_subjunctive, imperative, por_vs_para, relative_clauses,
-    object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, exclamativas, saber_vs_conocer, lo_neutro
-B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,
-    imperfect_subjunctive, si_clauses, subjunctive_adverbial, comparatives, ser_estar_participle,
-    diminutives_augmentatives, relative_pronouns_advanced, adjectives_ser_estar, perfect_subjunctive,
-    verbos_cambio, adjective_position, estilo_indirecto_basico, expresiones_probabilidad_basica,
-    conectores_argumentativos_basicos, registro_formal_correspondencia
-C1: subjunctive_noun_clauses, subjunctive_adjective_clauses, gerund_advanced, ser_passive,
-    estilo_indirecto, nominalisation, subjunctive_concessive_intensifiers, cuantificadores,
-    futuro_probabilidad, condicional_probabilidad, perifraseis_avanzadas, pluperfect_subjunctive,
-    aunque_concessive, verbos_preposicionales, connectors_contrast, connectors_consequence,
-    connectors_addition_sequence, connectors_cause_reason
-C2: reformuladores, estructuradores_informacion, operadores_discursivos, registro_formal_informal,
-    modalizacion_epistemica, controladores_contacto, subjunctive_indefinite_relative,
-    subjunctive_rare_triggers, preterito_anterior, futuro_subjuntivo_relic, presente_historico_narrativo,
-    dislocacion_topicalizacion, oraciones_hendidas, inversion_literaria, connotacion_denotacion,
-    pares_registro_lexico, ironia_doble_sentido, implicatura_pragmatica, generos_discursivos_formales,
-    referencias_culturales_avanzadas
+A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender,
+    definite_articles, indefinite_articles, ser_basics, estar_basics,
+    present_ar, present_er_ir, adjective_agreement, question_words, hay,
+    numbers_21_100, plural_nouns, irregular_present_core, gustar_basico,
+    prepositions_core, modal_verbs_core, obligation_infinitive, near_future,
+    reflexive_verbs, demonstratives, possessives
+A2: ser_vs_estar, gustar_type, direct_object_pronouns,
+    indirect_object_pronouns, preterite_regular, modal_verbs,
+    time_expressions, present_progressive, irregular_present, negation,
+    prepositions_basic, adverbs_formation, comparatives_basic,
+    imperative_affirmative, relative_clauses_core, preterite_irregular,
+    saber_vs_conocer, present_perfect
+B1: acabar_de, llevar_gerund, imperfect, preterite_vs_imperfect,
+    future_simple, conditional, present_subjunctive, imperative, por_vs_para,
+    relative_clauses, object_pronoun_order, se_impersonal,
+    infinitive_vs_subjunctive, exclamativas, lo_neutro,
+    estilo_indirecto_basico, expresiones_probabilidad_basica,
+    imperfect_subjunctive, si_clauses, pluperfect, passive_se,
+    subjunctive_adverbial, comparatives, cuantificadores,
+    futuro_probabilidad, perifraseis_avanzadas, verbos_preposicionales
+B2: future_perfect, conditional_perfect, passive_voice, ser_estar_participle,
+    diminutives_augmentatives, relative_pronouns_advanced,
+    adjectives_ser_estar, perfect_subjunctive, verbos_cambio,
+    adjective_position, conectores_argumentativos_basicos,
+    controladores_contacto, registro_formal_correspondencia,
+    reformuladores_basico, genero_informe, subjunctive_adjective_clauses,
+    condicional_probabilidad, pluperfect_subjunctive, aunque_concessive
+C1: subjunctive_noun_clauses, gerund_advanced, ser_passive, estilo_indirecto,
+    nominalisation, subjunctive_concessive_intensifiers, connectors_contrast,
+    connectors_consequence, connectors_addition_sequence,
+    connectors_cause_reason
+C2: reformuladores, estructuradores_informacion, operadores_discursivos,
+    registro_formal_informal, modalizacion_epistemica,
+    subjunctive_indefinite_relative, subjunctive_rare_triggers,
+    preterito_anterior, futuro_subjuntivo_relic,
+    presente_historico_narrativo, dislocacion_topicalizacion,
+    oraciones_hendidas, inversion_literaria, connotacion_denotacion,
+    pares_registro_lexico, ironia_doble_sentido, implicatura_pragmatica,
+    generos_discursivos_formales, referencias_culturales_avanzadas
 
 difficulty: 1 (easy recall), 2 (production), 3 (full translation or nuanced contrast)
 

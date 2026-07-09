@@ -1,4 +1,4 @@
-// Unit — Basic Reported Speech (B2)
+// Unit — Basic Reported Speech (B1)
 // Covers: estilo_indirecto_basico
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
@@ -162,7 +162,7 @@ export default {
 // GRAMMAR_CARDS entry for estilo_indirecto_basico in src/content/grammar.js
 // (same rule statement: dijo que + present→imperfect, si for reported
 // yes/no questions, question word retained with no inverted punctuation or
-// que for reported wh-questions) or the concepts.js entry (cefr: 'B2',
+// que for reported wh-questions) or the concepts.js entry (cefr: 'B1',
 // prereq: imperfect). It is deliberately scoped narrower than
 // unit27-reported-speech.js's estilo_indirecto (C1) — no preterite→
 // pluscuamperfecto, futuro→condicional, or command→subjunctive backshift is

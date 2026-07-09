@@ -92,6 +92,113 @@ is the source of truth for intent — the codebase should be judged against it.
   school of thought.
 - Spanish is one of the best-resourced languages in the world — use that;
   don't reinvent content that authoritative sources already have right.
+- **Original prose (story chapters, reading passages, dialogue, any
+  extended narrative content) must read as natively-written Spanish, never
+  as AI-generated or translated-from-English** — see "Writing
+  natural, human-sounding Spanish prose" below for the concrete checklist.
+  User directive (07-09-2026): "no ai slop or phrasing."
+- **Every CEFR level tag in this codebase (`concepts.js`, `vocabulary.js`,
+  curriculum units, idioms/false-friends, verbs, everything) must mirror
+  real-world CEFR requirements/expectations, at every level A1 through
+  C2 — the site's internal leveling must never drift from or invent its
+  own standard.** User directive (07-09-2026): "per ES.md A1 site should
+  mirror real world CEFR A1 expectations and requirements. they should
+  not differ" — then confirmed explicitly, "same goes for all cefr
+  levels." Triggered by finding `concepts.js` gates `tener`/`ir` behind
+  an A2-only `irregular_present` concept even though Unit 7 (A1) already
+  has a practice exercise using "¿Cuántos años tienes?" — real CEFR A1
+  (Instituto Cervantes' *Plan Curricular*) teaches tener/ir/hay/age/basic
+  wants at A1, not A2. When this site's tagging and the real standard
+  disagree, **the real standard wins and the site gets corrected — not
+  the other way around.** A full audit against the PCIC (and
+  cross-referenced against major ELE textbook sequencing) is planned; see
+  punch list.
+
+---
+
+## Writing natural, human-sounding Spanish prose
+
+Applies to any extended original prose — the reading-passages story/
+standalone passages first, but the same discipline applies to lesson
+prose and any future narrative content. Short single-sentence content
+(vocab examples, exercise prompts) is lower-risk; full paragraphs are
+where AI-sounding writing actually shows.
+
+**Why this needs an explicit checklist**: AI-generated text (in any
+language, confirmed by research into LLM writing patterns) leans on
+predictable structural tics — uniform sentence/paragraph length, formulaic
+transitions, over-hedged or over-balanced phrasing, "telling" emotional
+states outright instead of showing them — and default to neutral/formal
+register even in casual contexts. In Spanish specifically, this compounds
+with a second failure mode: translated-from-English phrasing (translating
+English idiom/word-order directly instead of asking "how would a native
+speaker actually say this") and avoiding the natural oral-register
+connectors, contractions, and elisions real dialogue uses because
+"textbook-correct" Spanish feels safer to generate.
+
+**Concrete red flags to check drafts against**:
+- Overused connector/filler phrases: *cabe destacar, es importante
+  mencionar/señalar, en resumen, sin duda alguna, huelga decir, no cabe
+  duda de que, a lo largo de, en definitiva* — these read as
+  essay-transition scaffolding, not narrative or natural speech.
+- Mechanical paragraph-opening connectors (*Además..., Sin embargo..., Por
+  otro lado...*) reused as a structural crutch across consecutive
+  paragraphs instead of varying how ideas connect.
+- Uniform sentence length/rhythm and identical paragraph shapes
+  (topic sentence → explanation → example, every time) — real writing
+  varies pace, includes short/fragment sentences for effect, occasionally
+  runs long.
+- Narrating emotions/subtext directly ("Lucía sintió una mezcla de
+  tristeza y esperanza") instead of showing them through action, dialogue,
+  or concrete detail — a classic AI-fiction tell.
+- Dialogue that's grammatically pristine but sounds nobody would actually
+  say it out loud — real spoken Spanish (even in a "neutral,
+  universally-understood" register per this project's dialect policy)
+  uses *bueno, pues, o sea, vale, claro*, natural contractions/elisions,
+  and interruption/incompleteness; textbook-clean dialogue is a tell.
+- Literal English-idiom translation instead of the natural Spanish
+  equivalent (the existing false-friends/idioms content is a good
+  cross-reference for what genuine idiomatic Spanish looks like vs. a
+  literal calque).
+- Overuse of em dashes as a default punctuation crutch, and avoidance of
+  contractions/elisions where natural register calls for them.
+
+**Process** (all 5 confirmed by the user, 07-09-2026):
+1. **Reference-corpus calibration before drafting** — skim 1-2 real,
+   human-authored passages at a similar register/genre (a real children's
+   graded reader, a real Spanish blog post, a real news brief) first, not
+   to copy content but to recalibrate rhythm and word choice away from
+   generic "AI Spanish" before writing a single word.
+2. Draft the content.
+3. **Blind second-reader pass — a genuinely separate agent/session with no
+   authoring context**, not the same pass that wrote it self-reviewing.
+   Cold read, no brief beyond "does this sound AI-written," flag anything
+   off, hand back for revision. The same context that just wrote something
+   is a weak judge of whether it sounds natural; a fresh read isn't.
+4. **Automated grep-check against the red-flag phrase list above** before
+   the blind read — a small script scanning new prose files for the
+   overused-connector list (cabe destacar, en resumen, etc.) and flagging
+   matches, the same spirit as this project's existing accuracy-audit
+   discipline. Catches the mechanical tells before a human even reads it.
+5. **Light per-character voice** for any content with multiple speakers
+   (the Blahaj story's pen pals especially) — subtly distinct word-choice
+   flavor per character rather than uniform voice across all of them,
+   kept tasteful and consistent with this project's "neutral but not
+   flavorless" existing approach to regional content (see `regional.js`).
+6. Calibrate voice against how a real native author would write this
+   specific register/genre (a graded-reader children's story reads
+   differently than a news passage or a formal complaint letter) rather
+   than defaulting to one flat neutral-AI voice throughout.
+7. Read dialogue "aloud" (mentally) — if a sentence wouldn't actually be
+   said that way by a real person, rewrite it.
+8. Vary sentence/paragraph structure deliberately rather than settling
+   into a repeating template.
+9. **Human spot-check before scaling up** — for any new extended-prose
+   content type (the reading-passages story specifically), write and ship
+   just one sample unit first for the user to read and react to, before
+   committing to writing the full planned set. Confirmed working this way
+   for the Blahaj story: chapter 1 first, full 18-chapter build only after
+   that reads right.
 
 ---
 
@@ -781,6 +888,119 @@ measures):**
 26. Cloudflare R2 (bound, unused), a secondary/fallback LLM provider, and
     explicit exponential backoff around the Gemini call are all
     unstarted, low-risk, well-scoped if picked up.
+27. **CEFR-accuracy audit of `concepts.js`, phased (07-09-2026).**
+    Phase 1 (research) found ~36 of 109 concepts mistagged against
+    real-world CEFR (Instituto Cervantes PCIC + cross-referenced ELE
+    textbook sequencing) — see `ES-HISTORY.md` for the full findings.
+    **Phase A (data layer) is done**: 18 high-confidence, non-bundled
+    mismatches retagged in `concepts.js`/`grammar.js`/`_gemini.js`'s
+    whitelist, all consistent (zero backwards prereqs, all 109
+    `grammar.js` cards re-verified to match `concepts.js` exactly).
+    **Phase B (data layer) is done**: 8 new concepts split off from 6
+    bundled ones that mixed two real CEFR levels —
+    `irregular_present_core` (A1, ir/tener) out of `irregular_present`
+    (A2, narrowed to venir/hacer/poner/salir), `gustar_basico` (A1,
+    gustar itself) out of `gustar_type` (A2, narrowed to
+    encantar/doler/molestar/parecer), `prepositions_core` (A1, a/de/en)
+    out of `prepositions_basic` (A2, narrowed to con/sin/por/para/entre),
+    `modal_verbs_core` (A1, poder/querer) out of `modal_verbs` (A2,
+    narrowed to deber), `imperative_affirmative` (A2, tú affirmative) out
+    of `imperative` (B1, narrowed to negative/formal commands + clitic
+    placement), `relative_clauses_core` (A2, que/donde) out of
+    `relative_clauses` (B1, narrowed to quien + subjunctive-in-relative
+    nuance). Each original concept keeps its id at the higher/broader
+    level (so no existing curriculum-unit registration or exercise
+    `concept_id` reference breaks) and gains the new concept as a
+    prereq; the new concept itself has no curriculum unit yet (same
+    "pacing lag" pattern as Phase A — see below). The four `connectors_*`
+    concepts (C1) and `reformuladores`/`generos_discursivos_formales`
+    (C2) turned out **not** to need new split concepts on inspection:
+    `conectores_argumentativos_basicos` (B2) already explicitly covers
+    the "conversational-tier" pero/sin embargo/por eso/además subset
+    with a note that the fuller C1 families build on it, so those four
+    just gained it as an explicit prereq instead of a redundant new
+    concept. `reformuladores`/`generos_discursivos_formales` did get one
+    genuine new concept each — `reformuladores_basico` (B2, o
+    sea/es decir) and `genero_informe` (B2, the informe/report genre) —
+    since no B2 concept already covered that content. Total concept
+    count: 109 → 117, all prereqs verified consistent (zero backwards
+    deps), all 117 `grammar.js` cards synced 1:1 by cefr, `_gemini.js`
+    whitelist regenerated programmatically from `concepts.js`.
+    **Phase C is done**: `estilo_indirecto_basico` and
+    `expresiones_probabilidad_basica` retagged B2 → B1 (their real
+    level per the Phase 1 findings), moved to the B1 section of
+    `concepts.js`/`grammar.js`, `_gemini.js` whitelist regenerated. Their
+    two curriculum units (`reported-speech-basic`,
+    `certainty-doubt-probability`, from PR #55) moved from B2's order
+    range to B1's (order 21.1/21.2, right after `efficiency-emphasis`
+    and before `checkpoint-b1-full`, whose `checkpointUpTo` moved
+    21 → 21.2), files renamed `unit-b2-*` → `unit-b1-*` with their
+    internal level comments corrected too. `argumentation-workplace`
+    (the third PR #55 unit, teaching `conectores_argumentativos_basicos`
+    + `registro_formal_correspondencia`, both genuinely B2) stayed put
+    and was renumbered to order 25.1 to fill the gap; `checkpoint-b2`'s
+    `checkpointUpTo` moved 25.3 → 25.1. Net effect: B2 back to 5 units,
+    B1 to 8 — exactly undoing the B2-unit-count-parity math that
+    motivated building the 3 units in the first place, since 2 of the 3
+    were never really B2 content. Total concept count still 117
+    (no concepts added/removed, only moved); prereqs re-verified
+    consistent (`imperfect` and `present_subjunctive`, both B1, are
+    these two concepts' only prereqs, so the move only tightened the
+    prereq gap rather than creating a backwards one); `grammar.js`
+    still 117/117 synced; `npm run build` passes.
+    **Phase D is done**: dedicated WebSearch research (`cvc.cervantes.es`
+    still 403s directly, so this is secondary-source-synthesized, same
+    caveat as Phase 1) resolved all 5 flagged concepts. `near_future`
+    (ir a + infinitive) and `obligation_infinitive` (tener que/hay que)
+    both A2 → A1 — near-universally A1 content across major ELE course
+    sequencing (Aula Internacional, Nuevo Prisma, etc.); their prereqs
+    now point at Phase B's A1 core concepts (`irregular_present_core`,
+    `prepositions_core`, `hay`) instead of the A2 originals, which is
+    exactly the kind of retag Phase B's splits were meant to unblock.
+    `modal_verbs`' deber question turned out to already be correctly
+    resolved by Phase B + C: the obligation sense of deber is A2
+    (`modal_verbs`), the probability sense (deber de) is B1
+    (`expresiones_probabilidad_basica`, whose card already documents
+    exactly this split) — no change needed. `imperfect_subjunctive` and
+    `si_clauses` B2 → B1, matching the real-world pattern of type-2
+    hypothetical conditionals (si tuviera... iría...) at B1 with type-3
+    counterfactual-past (si hubiera... habría..., already
+    `pluperfect_subjunctive`, staying B2) a level above; `si_clauses`'
+    card narrowed to types 1-2 only, removing the type-3 content it
+    used to duplicate (that content requires a B2 prereq and is already
+    owned by `pluperfect_subjunctive`'s own card). `controladores_contacto`
+    C2 → B2, on direct PCIC evidence that this exact category of
+    discourse marker (¿no?/¿eh?/confirmation-seeking tags — the
+    concept's own listed ¿verdad?, fíjate, oye) is introduced at B1-B2,
+    not C2; dropped its now-backwards `registro_formal_informal` (C2)
+    prereq since nothing in the concept's actual content depends on
+    register-switching knowledge. Concept count unchanged at 117 (moves
+    only); prereq graph re-verified consistent; `grammar.js` re-synced
+    117/117; `_gemini.js` whitelist regenerated; `npm run build` passes.
+    **Still open**:
+    - **3 concepts pulled from Phase A, still unresolved**:
+      `operadores_discursivos`, `registro_formal_informal`,
+      `estructuradores_informacion` — individually flagged as
+      likely mistagged, but never pinned to a specific real-world
+      target level with actual research (only inferred from their
+      prereqs needing Phase B's splits first, which is now done).
+      Retagging them without dedicated research would be exactly the
+      kind of guess the standing directive rules out — needs its own
+      small research pass, same treatment as Phase D got.
+    - **A larger, newly-discovered systemic issue**: every one of the
+      18 Phase-A-retagged concepts is currently *taught* (in
+      `curriculum/index.js`'s unit sequence) 1-2 levels later than its
+      corrected CEFR level — e.g. `present_perfect` is now correctly
+      tagged A2, but Unit 22 (B2) is still the only place it's taught.
+      Not a "used before taught" bug like the original tener/ir case
+      (nothing contradicts it), but it does mean the structured Learn
+      path systematically lags real-world CEFR pacing. Fixing this
+      means moving/rewriting curriculum unit content, not just
+      retagging metadata — a genuinely large undertaking, scoped as
+      its own future phase rather than folded into this one.
+    Directly relevant to writing true-A1 reading-passage content, since
+    the story needs to know what a learner has actually been taught by
+    each level. See "Standing directives" above.
 
 ## Session history index
 

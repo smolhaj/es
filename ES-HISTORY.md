@@ -2117,3 +2117,369 @@ Playwright pass: `/verbs` C2 filter correctly shows all 14 new verbs
 expands its full note (the three-way variation explanation) and tense
 tabs including Pretérito Anterior and Futuro de Subjuntivo (Literary),
 zero console errors. Test account cleaned from local D1 afterward.
+
+## CEFR-accuracy audit of concepts.js: Phase 1 (research) + Phase A (data fixes)
+
+*Date: 07-09-2026*
+
+Triggered by a real bug found while calibrating the reading-passages story: a
+Chapter 1 draft written "for A1" turned out to use preterite tense, object
+pronouns, a relative clause, and even *tener*/*ir* — all because
+`concepts.js` gates `tener`/*ir* behind an A2-only `irregular_present`
+concept, despite the site's own Unit 7 (A1) already having a practice
+exercise using "¿Cuántos años tienes?" before that grammar is formally
+taught. User directive: this site's internal CEFR leveling must never
+differ from real-world CEFR requirements, at every level — "same goes for
+all cefr levels." When they disagree, the real standard wins.
+
+**Phase 1 — research, no edits.** Three parallel background agents, split
+by level pair (A1+A2, B1+B2, C1+C2 — kept as pairs since boundary items
+like tener/ir sit right on a level seam), each auditing their ~33-38
+concepts against Instituto Cervantes' *Plan Curricular* (PCIC) cross-
+referenced against major ELE textbook sequencing (Aula Internacional,
+Nuevo Prisma, Gente Hoy, Bitácora) and DELE exam-prep guides. All three
+hit the same wall: `cvc.cervantes.es` (PCIC's own site) returned 403 on
+every WebFetch attempt, confirmed as a persistent proxy-level restriction
+in this environment (not a site-side block — the orchestrating session
+independently confirmed the same 403 afterward). Every finding therefore
+rests on WebSearch-synthesized secondary sources rather than raw primary
+pages — a real limitation, flagged explicitly rather than overstated.
+
+**Result: ~36 of 109 concepts mistagged (~33%)**, roughly triple the
+scale originally expected from a single confirmed bug. The standout,
+independently cross-validated by two separate agents using different
+sources: `present_perfect` was tagged B2, but real CEFR (PCIC + Aula
+Internacional 2, per one agent; CVC's own AVE materials + a University of
+Alicante academic paper, per the other) places it at A2 — a 2-level miss,
+worse than the tener/ir case that started this. The C1/C2 tier was worst:
+19 of 38 concepts mistagged, dominated by one repeated shape — common
+B1/B2 material (basic connectors, basic reported speech, basic
+doubt/probability) bundled under a C1 concept id. Notably, `ES-HISTORY.md`
+(this file, from an earlier session) **already documents in its own
+words** that `subjunctive_noun_clauses` was kept at C1 "since actually
+downgrading them to B2... would have bloated [Unit 24]" — i.e., a
+self-admitted curriculum-convenience decision, not a real-standard-
+grounded one. Direct textual evidence this failure mode isn't just
+imprecise research; it happened at least once by conscious tradeoff.
+
+**Phase A — the data layer, executed same session.** 18 of the ~36
+findings were high/medium-high confidence and didn't require splitting a
+bundled concept (the other ~18 do — deferred to Phase B): `reflexive_verbs`,
+`possessives`, `demonstratives` (all A2→A1); `present_perfect` (B2→A2,
+the cross-validated one); `preterite_irregular`, `saber_vs_conocer` (B1→A2);
+`pluperfect`, `passive_se`, `subjunctive_adverbial`, `comparatives`,
+`futuro_probabilidad`, `perifraseis_avanzadas`, `verbos_preposicionales`,
+`cuantificadores` (→B1); `condicional_probabilidad`, `pluperfect_subjunctive`,
+`subjunctive_adjective_clauses`, `aunque_concessive` (→B2).
+
+One retag required a prereq-graph fix, not just a tag change: `passive_se`
+moving to B1 would have left it depending on `passive_voice` (B2) — a
+backwards prereq (an earlier concept depending on a later one). The
+finding itself flagged why: real-world sequencing teaches se-passive
+*before* ser+participle passive, so the dependency was backwards to begin
+with, not just mistagged. Dropped `passive_voice` from `passive_se`'s
+prereqs entirely rather than leaving an inconsistent graph.
+
+Three findings (`operadores_discursivos`, `registro_formal_informal`,
+`estructuradores_informacion`) were pulled out of Phase A despite being
+individually high-confidence, because their only prereqs are concepts
+that need *splitting* in Phase B (`reformuladores`,
+`connectors_addition_sequence`) — retagging them now would have created
+the same backwards-prereq problem in reverse, resolved once Phase B
+actually splits those bundles.
+
+**Verification**: a full prereq-graph consistency check (every concept's
+prereqs must be at or below its own CEFR level) across all 109 concepts,
+not just the 18 touched — zero issues. `grammar.js`'s 109 reference cards
+regenerated to match `concepts.js` exactly (verified programmatically,
+zero mismatches). The `_gemini.js` Gemini-facing concept whitelist
+regenerated programmatically from the corrected `concepts.js` rather than
+hand-edited, to guarantee it couldn't drift from the source of truth.
+`npm run build` passes; `getReadyConcepts()` sanity-checked with a sample
+mastery map, no crash.
+
+**A newly-discovered systemic issue, explicitly not fixed this pass**:
+every one of the 18 retagged concepts is currently *taught* by a
+curriculum unit 1-2 levels later than its now-correct CEFR level (e.g.
+`present_perfect` is now A2, but Unit 22 — B2 — is still the only unit
+that teaches it). This isn't the same shape as the original tener/ir bug
+(nothing contradicts it; a learner won't hit a practice exercise using
+grammar they haven't seen) — but it does mean the structured Learn path
+systematically lags real-world CEFR pacing for these 18 concepts, and
+almost certainly for the ~18 more that Phase B will retag once bundles are
+split. Fixing this means moving/rewriting actual curriculum unit content
+across many units, not just metadata — correctly scoped as its own large
+future phase (see `ES.md` punch-list item 27) rather than rushed into this
+same session.
+
+**Also surfaced but deliberately deferred**: the two B2 concepts created
+*earlier this same session* for the just-shipped reported-speech and
+probability/doubt units (`estilo_indirecto_basico`,
+`expresiones_probabilidad_basica`) — both B1/B2 audit findings placed
+their real level at B1, not B2. Moving them means moving their matching
+curriculum units too, which also undoes the B2-unit-count parity math
+that motivated building them in the first place. Tracked as Phase C
+rather than folded into Phase A, since it touches already-shipped,
+already-merged content (PR #55) and needs its own careful handling.
+
+## CEFR-accuracy audit of concepts.js: Phase B (splitting bundled concepts)
+
+Phase 1's research had flagged 12 concepts as *bundled* — each mixes real
+content from two different CEFR levels under one id, which a simple
+retag can't fix without either over- or under-leveling half the content.
+Before touching `concepts.js`, checked which curriculum unit currently
+teaches each of the 12 (`curriculum/index.js` + the actual unit content
+files), since any split has to avoid breaking an existing unit's
+`concepts: [...]` registration or its exercises' `concept_id` tags.
+
+**6 genuine splits, 8 new concepts added at the lower level, originals
+narrowed and kept at the higher level (both a Phase-A-consistent pattern
+and a "minimal blast radius" one — the id an existing unit/exercise
+already points at never changes level or disappears):**
+
+- `irregular_present` (A2, "ir, tener, venir…") → new
+  `irregular_present_core` (A1, ir/tener/estar-adjacent survival verbs);
+  `irregular_present` narrowed to A2 or venir/hacer/poner/salir and the
+  rest. This is the concept that started the whole audit (the "venir"
+  garbled-definition report led to "is A1 really A1?").
+- `gustar_type` (A2, "gustar-type verbs") → new `gustar_basico` (A1, the
+  gustar pattern itself — PCIC places basic likes/dislikes at A1); kept
+  `gustar_type` at A2 narrowed to encantar/doler/molestar/parecer.
+  Checked `unit09-likes-dislikes.js`'s actual content by grep count:
+  gustar forms outnumber encantar/doler/molestar roughly 3:1, confirming
+  gustar is the dominant, more foundational content.
+- `prepositions_basic` (A2) → new `prepositions_core` (A1, a/de/en — the
+  three that appear from the first lesson); kept `prepositions_basic` at
+  A2 narrowed to con/sin/por/para/entre etc.
+- `modal_verbs` (A2, "poder, querer, deber") → new `modal_verbs_core`
+  (A1, poder/querer); kept `modal_verbs` at A2 narrowed to deber
+  (obligation/probability, genuinely a step up in nuance).
+- `imperative` (B1) → new `imperative_affirmative` (A2, tú affirmative
+  commands — same form as él/ella present tense, genuinely simpler);
+  kept `imperative` at B1 narrowed to negative/formal commands and
+  clitic-pronoun placement, which really is where the complexity lives
+  (confirmed against `unit19-opinions-commands.js`'s own structure — it
+  literally has two blocks, affirmative first then a harder negative
+  block that reuses the subjunctive).
+- `relative_clauses` (B1, "que, quien, donde") → new
+  `relative_clauses_core` (A2, que/donde); kept `relative_clauses` at B1
+  narrowed to quien and the subjunctive-in-relative-clause nuance.
+
+**4 concepts that looked like they needed splitting but didn't, on
+inspection:** `connectors_contrast`, `connectors_consequence`,
+`connectors_addition_sequence`, `connectors_cause_reason` (all C1) share
+the same headline lexical items — sin embargo, por lo tanto, además, ya
+que — with `conectores_argumentativos_basicos` (B2, built earlier this
+session for the reported-speech/probability unit trio). Reading that
+card's actual rule/exceptions text confirmed it already explicitly
+scopes itself as "the conversational-tier subset" and says outright that
+"the fuller, more formally categorized set... is covered later at C1."
+The C1 versions' content (formal-register punctuation conventions,
+subjunctive-triggering by de ahí que, etc.) is genuine C1 nuance, not
+mistagged beginner material. Fix was simpler than a split: added
+`conectores_argumentativos_basicos` as an explicit prereq to all four,
+formalizing the teaching progression that the content already implied,
+with no new concepts and no cefr changes.
+
+**2 genuine new concepts for the remaining C2 bundles:** `reformuladores`
+(C2, "o sea, es decir, mejor dicho") → new `reformuladores_basico` (B2,
+o sea/es decir — pure restatement); kept `reformuladores` at C2 narrowed
+to mejor dicho/más bien (self-correction, genuinely a harder pragmatic
+move). `generos_discursivos_formales` (C2, "informe, ensayo
+argumentativo") → new `genero_informe` (B2, the informe/report genre —
+more formulaic, closer to registro_formal_correspondencia which is
+already B2); kept `generos_discursivos_formales` at C2 narrowed to the
+ensayo argumentativo (open-ended argumentative essay, genuinely harder).
+
+**Content**: wrote 8 new `grammar.js` reference cards (not just metadata
+— each has its own rule/examples/exceptions), placed next to their
+related sibling card. `_gemini.js`'s concept whitelist regenerated
+programmatically from `concepts.js` again, same approach as Phase A.
+
+**Verification**: prereq-graph consistency check across all 117
+concepts (109 + 8 new) — zero backwards prereqs. `grammar.js` card count
+now 117, 1:1 with `concepts.js`, zero cefr mismatches. `npm run build`
+passes.
+
+**Left unresolved, still blocked on Phase B's remaining pieces**: the 3
+concepts pulled from Phase A (`operadores_discursivos`,
+`registro_formal_informal`, `estructuradores_informacion`) were
+individually flagged as likely mistagged, but their target CEFR levels
+were never pinned down with real research — retagging them now without
+that would be guessing, which the standing directive explicitly rules
+out. Left as-is; needs a small dedicated research pass (folding into
+Phase D, or its own follow-up) rather than being resolved by inference
+from this session's other findings.
+
+**Same curriculum-pacing-lag caveat as Phase A applies here too, doubled
+down**: none of the 8 new concepts have a curriculum unit teaching them
+yet — they're purely additive to the data model. The existing units
+still teach the *combined* content under the original (now narrowed)
+concept id, so nothing is broken, but the new finer-grained ids are
+inert until the already-scoped future curriculum-content-reordering
+phase picks them up.
+
+## CEFR-accuracy audit of concepts.js: Phase C (fixing this session's own B2 units)
+
+Unlike Phases A/B, this phase corrects a mistake made earlier in the
+*same* session rather than pre-existing content: when the 3 new B2
+curriculum units were built (reported speech, certainty/doubt,
+argumentation — PR #55), two of the three concepts created for them
+(`estilo_indirecto_basico`, `expresiones_probabilidad_basica`) were
+placed at B2 partly to hit a unit-count-parity target across levels,
+not purely on real-world CEFR grounds. The Phase 1 research pass this
+session flagged both as really B1 — unsurprising in hindsight, since
+both are explicitly scoped as the "everyday, present-tense-only" or
+"basic" version of concepts whose fuller form (`estilo_indirecto`,
+`futuro_probabilidad`) is already correctly placed at C1/B1.
+
+**Data layer**: retagged both B2 → B1 in `concepts.js`, and moved their
+object literals physically into the file's B1 section (not just a cefr
+field flip — kept the file's section-comment grouping meaningful, same
+standard applied to Phase B's `reformuladores_basico`/`genero_informe`).
+Checked their prereqs before moving: `imperfect` and `present_subjunctive`
+are both already B1, so retagging tightened what had been a same-level
+dependency into... still a same-level dependency (B1 depending on B1) —
+no backwards-prereq risk either direction. Also checked what depends on
+them: `estilo_indirecto` (C1) has `estilo_indirecto_basico` as a prereq,
+which only gets *more* comfortably valid (C1 depending on B1, was C1
+depending on B2). Re-ran the full 117-concept prereq-consistency check
+after the move — zero issues. Moved their `grammar.js` cards to the B1
+section too, updated their `cefr` fields, regenerated the `_gemini.js`
+whitelist programmatically from the corrected `concepts.js`, same
+approach as both prior phases.
+
+**Curriculum layer** (the part Phase A/B's retags deliberately did NOT
+touch, since this phase's units were built *this same session* and
+hadn't shipped long enough to accumulate the same inertia): moved the
+`reported-speech-basic` and `certainty-doubt-probability` unit entries
+out of the B2 order range (25.1/25.2) into the B1 range (21.1/21.2),
+right after `efficiency-emphasis` (order 21) and before
+`checkpoint-b1-full` (order 21.5, whose `checkpointUpTo` moved from
+21 to 21.2 and `coversUnits` updated to match). Renamed the two content
+files `unit-b2-reported-speech-basic.js` → `unit-b1-reported-speech-basic.js`
+and `unit-b2-certainty-doubt-probability.js` →
+`unit-b1-certainty-doubt-probability.js` (updating the corresponding
+`curriculum/index.js` import paths), and fixed the internal level
+comments inside each file (header comment and the trailing
+accuracy-audit note that referenced `cefr: 'B2'`) so nothing inside the
+file still claims B2. The third PR #55 unit, `argumentation-workplace`
+(teaching `conectores_argumentativos_basicos` and
+`registro_formal_correspondencia` — both independently confirmed B2 in
+Phase 1, untouched here), stayed in the B2 section and was renumbered
+from order 25.3 to 25.1 to fill the gap left by the other two;
+`checkpoint-b2`'s `checkpointUpTo` moved from 25.3 to 25.1 to match.
+
+**Net effect, exactly as flagged when this was deferred**: B2 drops
+from 7 units back to 5, B1 rises from 6 to 8 — undoing the B2-unit-count
+parity with neighboring levels that motivated building all 3 units in
+the first place, since 2 of the 3 were never really B2 content to begin
+with. This is treated as a correct outcome, not a regression — parity
+for its own sake isn't a goal, real-world CEFR accuracy is.
+
+**Verification**: prereq-graph check across all 117 concepts (no count
+change, only 2 concepts moved) — zero backwards deps. `grammar.js`
+still 117/117, zero cefr mismatches against `concepts.js`. `_gemini.js`
+whitelist confirmed to contain all 117 ids. `npm run build` passes.
+Verified no other file references the old `unit-b2-reported-speech-basic.js`
+/ `unit-b2-certainty-doubt-probability.js` paths or the old B2 cefr
+values for these two concepts (grepped across `src/` and `functions/`).
+
+## CEFR-accuracy audit of concepts.js: Phase D (5 disputed concepts, dedicated research)
+
+Phase 1's research flagged 5 concepts as genuine cross-source
+disagreement rather than a clean mistag — sources disagreed enough on
+each that a guess would have been exactly what the standing directive
+rules out. This phase did a dedicated WebSearch research pass per
+concept (`cvc.cervantes.es`, the PCIC primary source, still 403s
+directly in this environment — same standing limitation as Phase 1, so
+these findings rest on secondary-source synthesis, not the primary text)
+before touching anything.
+
+**`near_future` (ir a + infinitivo) and `obligation_infinitive` (tener
+que / hay que): A2 → A1.** Both are near-universally taught in the
+first level of major ELE course sequences (Aula Internacional, Nuevo
+Prisma, and others) — high-frequency, essential-for-survival-Spanish
+content, not something that waits for A2. Some individual resources
+tag pieces of this content A2 (e.g. one perífrasis-verbales worksheet
+labelled "Nivel A2"), which is presumably why the Phase 1 pass flagged
+disagreement rather than a clean signal — but the weight of evidence
+across major course sequencing points to A1. Their prereqs previously
+pointed at A2 concepts (`irregular_present`, `prepositions_basic` for
+`near_future`; `modal_verbs`, `hay` for `obligation_infinitive`), which
+would have been backwards at A1 — repointed to Phase B's new A1 core
+concepts instead (`irregular_present_core`, `prepositions_core` for
+near_future's ir/a; `irregular_present_core`, `hay` for
+obligation_infinitive's tener/hay). This is a direct, concrete payoff
+from Phase B's splits: without `irregular_present_core` and
+`prepositions_core` existing, this retag would have had nowhere
+CEFR-consistent to point its prereqs.
+
+**`modal_verbs`' deber question: no change, already correctly
+resolved.** The disagreement here was really about whether "deber"
+belongs at A2 or B1 — but checking the actual current data showed this
+was already fixed by Phase B + C without anyone noticing: Phase B
+narrowed `modal_verbs` to deber's obligation sense specifically ("you
+should study" — A2, genuinely basic), and `expresiones_probabilidad_basica`
+(moved to B1 in Phase C) already explicitly covers deber de's
+probability/inference sense ("debe de tener treinta años" — a more
+subtle hedging use, correctly a level up). Read both cards' actual rule
+text side by side to confirm before concluding no change was needed —
+this is exactly the kind of thing that's easy to flag as unresolved
+without realizing an earlier phase already fixed it as a side effect.
+
+**`imperfect_subjunctive` and `si_clauses`: B2 → B1.** Search results
+for this pair spanned an unusually wide range — one blog tagged basic
+hypothetical conditionals as A2, another labelled imperfect-subjunctive-
+plus-conditional exercises C1, a third tagged them B2 — confirming why
+this was flagged as genuine disagreement rather than noise. The
+coherent real-world pattern across the spread: type-2 hypothetical
+conditionals (si tuviera dinero, viajaría — contrary to present fact)
+belong at B1, one level below type-3 counterfactual-past conditionals
+(si hubiera sabido, no habría venido), which the audit already had
+correctly placed as `pluperfect_subjunctive` at B2. Retagging
+`si_clauses` to B1 without touching its content would have left a
+B1-tagged card still teaching type-3 examples that require a B2 prereq
+— so its rule/examples/exceptions were narrowed to types 1-2 only,
+removing the type-3 content it used to duplicate (that material is
+already properly owned by `pluperfect_subjunctive`'s own card, which
+already includes "si hubiera estudiado más, habría aprobado").
+
+**`controladores_contacto`: C2 → B2.** This one had the clearest
+evidence: PCIC's own discourse-marker taxonomy has a specific
+"controladores de contacto" category, and a paraphrased PCIC excerpt
+placed exactly this kind of marker (¿no?/¿eh?, confirmation-seeking
+tags — functionally identical to the concept's own listed ¿verdad?) at
+B1-B2, not C2. Fíjate and oye (attention-getting imperatives) are, if
+anything, even more basic and frequent in ordinary spoken Spanish. Its
+prereq (`registro_formal_informal`, C2) would have been backwards at
+B2 and wasn't semantically necessary anyway — contact controllers are
+pragmatic/conversational, not built on register-switching knowledge —
+so it was dropped to an empty prereq list rather than repointed to a
+substitute.
+
+**Verification**: full prereq-graph check across all 117 concepts (no
+count change, 5 concepts moved) — zero backwards deps. `grammar.js`
+re-synced 117/117, zero cefr mismatches. `_gemini.js` whitelist
+regenerated programmatically. `npm run build` passes.
+
+**Left unresolved, not part of this phase's named scope**: the 3
+concepts pulled from Phase A (`operadores_discursivos`,
+`registro_formal_informal`, `estructuradores_informacion`) were never
+individually researched to a specific target level — they were deferred
+purely because their prereqs needed Phase B's splits, which are now
+done, but "prereq unblocked" isn't the same as "correct level
+confirmed." Left as-is rather than guessed at; would need the same kind
+of dedicated research pass this phase just did for the other 5.
+
+**Same curriculum-pacing-lag pattern as every prior phase**: all 5
+concepts are currently taught by units positioned at their old,
+higher level (`obligations-requests` and `right-now-soon`, both
+already A2, teach `obligation_infinitive`/`near_future` — so those two
+specifically are *not* lagging now that they're A1, i.e. taught one
+level after their corrected level rather than several; but
+`subjunctive-deep-dive` (B2) still teaches `imperfect_subjunctive`/
+`si_clauses`, now correctly B1, and `register-stance` (C2) still
+teaches `controladores_contacto`, now correctly B2 — both a full level
+of lag). Not fixed here, per the same reasoning as every prior phase:
+this is curriculum unit content work, scoped as its own future phase.

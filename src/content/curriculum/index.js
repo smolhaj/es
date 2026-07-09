@@ -31,8 +31,8 @@ import perfectTenses from './unit22-perfect-tenses.js';
 import passiveImpersonal from './unit23-passive-impersonal.js';
 import subjunctiveDeepDive from './unit24-subjunctive-deep-dive.js';
 import fineDetails from './unit25-fine-details.js';
-import reportedSpeechBasic from './unit-b2-reported-speech-basic.js';
-import certaintyDoubtProbability from './unit-b2-certainty-doubt-probability.js';
+import reportedSpeechBasic from './unit-b1-reported-speech-basic.js';
+import certaintyDoubtProbability from './unit-b1-certainty-doubt-probability.js';
 import argumentationWorkplace from './unit-b2-argumentation-workplace.js';
 import subjunctiveLimits from './unit26-subjunctive-limits.js';
 import reportedSpeech from './unit27-reported-speech.js';
@@ -179,8 +179,14 @@ export const UNIT_METADATA = [
   { id: 'efficiency-emphasis', order: 21, level: 'B1', title: 'Efficiency & Emphasis',
     concepts: ['object_pronoun_order', 'se_impersonal', 'infinitive_vs_subjunctive', 'exclamativas'],
     summary: 'Stack your pronouns, drop the subject Spanish already knows, and say things with real feeling.' },
+  { id: 'reported-speech-basic', order: 21.1, level: 'B1', title: 'Reported Speech, the Everyday Version',
+    concepts: ['estilo_indirecto_basico'],
+    summary: 'Relay what someone told you — dijo que, me preguntó si, me preguntó dónde.' },
+  { id: 'certainty-doubt-probability', order: 21.2, level: 'B1', title: 'Certainty & Doubt',
+    concepts: ['expresiones_probabilidad_basica'],
+    summary: 'Hedge a guess with deber de, es posible que, and the one phrase that breaks the pattern.' },
   { id: 'checkpoint-b1-full', order: 21.5, level: 'B1', title: 'Checkpoint: All of B1', isCheckpoint: true,
-    checkpointUpTo: 21, coversUnits: 'Units 1-21', concepts: [],
+    checkpointUpTo: 21.2, coversUnits: 'Units 1-21.2 (all of B1)', concepts: [],
     summary: 'B1 complete — a personalized review of the whole level before moving on.' },
 
   // B2 — Advanced Structures
@@ -196,17 +202,11 @@ export const UNIT_METADATA = [
   { id: 'fine-details', order: 25, level: 'B2', title: 'Fine Details',
     concepts: ['comparatives', 'diminutives_augmentatives', 'relative_pronouns_advanced', 'adjectives_ser_estar', 'adjective_position', 'verbos_cambio'],
     summary: 'The polish that separates advanced learners from natives.' },
-  { id: 'reported-speech-basic', order: 25.1, level: 'B2', title: 'Reported Speech, the Everyday Version',
-    concepts: ['estilo_indirecto_basico'],
-    summary: 'Relay what someone told you — dijo que, me preguntó si, me preguntó dónde.' },
-  { id: 'certainty-doubt-probability', order: 25.2, level: 'B2', title: 'Certainty & Doubt',
-    concepts: ['expresiones_probabilidad_basica'],
-    summary: 'Hedge a guess with deber de, es posible que, and the one phrase that breaks the pattern.' },
-  { id: 'argumentation-workplace', order: 25.3, level: 'B2', title: 'Argumentation & Workplace Correspondence',
+  { id: 'argumentation-workplace', order: 25.1, level: 'B2', title: 'Argumentation & Workplace Correspondence',
     concepts: ['conectores_argumentativos_basicos', 'registro_formal_correspondencia'],
     summary: 'Build a case with pero and sin embargo, then write it up in a proper formal email.' },
   { id: 'checkpoint-b2', order: 25.5, level: 'B2', title: 'Checkpoint: All of B2', isCheckpoint: true,
-    checkpointUpTo: 25.3, coversUnits: 'Units 1-25.3 (all of B2)', concepts: [],
+    checkpointUpTo: 25.1, coversUnits: 'Units 1-25.1 (all of B2)', concepts: [],
     summary: 'B2 complete — a personalized review of the whole level before moving on.' },
 
   // C1 — Near-Native Precision
