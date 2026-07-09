@@ -155,9 +155,9 @@ added specifically so a fresh coding session wouldn't either freeze on a
   regional differences, free resources — all with `ClickableSpanish`
   word-popover support
 - Dashboard, session history, profile
-- **Structured "Learn" curriculum — all 38 taught units (0-37), A1 through
-  C2, complete, plus 9 cumulative review checkpoints (47 total).** See
-  "Architecture" above.
+- **Structured "Learn" curriculum — 41 taught units (0-37 plus 3 new B2
+  units), A1 through C2, plus 9 cumulative review checkpoints (50 total).**
+  See "Architecture" above.
 - Audio/TTS via the Web Speech API (no per-character billing, unlike the
   original spec's proposed Google Cloud TTS)
 - Anki-style Flashcards (top 5,000 words by frequency)
@@ -239,9 +239,12 @@ along the way — see the relevant dated section in `ES-HISTORY.md`.
 
 ### Structured "Learn" curriculum
 
-38 taught units (0-37) plus 9 review checkpoints (47 total), A1 through
-C2, at `/learn`. Alongside the adaptive Gemini
-session and reference pages — doesn't replace either.
+41 taught units plus 9 review checkpoints (50 total), A1 through C2, at
+`/learn`. Alongside the adaptive Gemini session and reference pages —
+doesn't replace either. B2 got 3 units added (fractional order 25.1-25.3,
+between "Fine Details" and the B2 checkpoint) closing a real gap: B2 had
+only 4 taught units against 6-8 at every neighboring level — see the
+Session history index for the full build note.
 
 - `src/content/curriculum/index.js` — `UNIT_METADATA` (id, order, level,
   title, concepts, summary) for every unit. `CONTENT` maps unit id → the
@@ -774,11 +777,16 @@ measures):**
 
 ## Session history index
 
+- **07-09-2026** — 3 new B2 curriculum units (reported speech basics,
+  certainty/doubt/probability, argumentation + formal correspondence)
+  closing B2's unit-count gap (4 → 7, parity with neighboring levels).
+  4 new grammar concepts added first as standalone groundwork, then 3
+  parallel background worktree agents wrote the unit content against
+  them. Queue continues with C1/C2 verbs, then a new reading-passages
+  section (scoped, not yet started) — see "What still needs to be built."
 - **07-09-2026** — CEFR-tagged idioms.js (166) and false-friends.js (110)
   in parallel via two background worktree agents; wired level filters into
-  both pages. First step of a "bang out written content" push, queued
-  ahead of B2 curriculum units, C1/C2 verbs, and a new reading-passages
-  section.
+  both pages. First step of a "bang out written content" push.
 - **07-09-2026** — Flashcard deck content fix: found and fixed the
   "nested-gloss category header" bug in `build-flashcards.mjs` (e.g.
   "venir" showing "Senses relating to figurative movement" instead of "to

@@ -1981,3 +1981,71 @@ learners, not advanced ones).
 
 Next in the queue: B2 curriculum units, then C1/C2 verbs, then the
 reading-passages section (scoped above but not yet started).
+
+## 3 new B2 curriculum units: closing the unit-count gap
+
+*Date: 07-09-2026*
+
+Continuation of the "bang out written content" push. Grounded in real
+counts pulled across every content file: B2 had only 4 taught units
+(Perfect Tenses, Passive & Impersonal, Subjunctive Deep Dive, Fine
+Details) against 6 at B1 and 5 at C1. Scoped via a tight single MC round
+(session usage was flagged as a constraint, so scoping was kept to one
+pass rather than the usual iterative back-and-forth): 3 new units,
+write-first-then-review. Picked topics: basic reported speech, certainty/
+doubt/probability, and argumentation + workplace correspondence —
+deliberately chosen because real DELE B2 leans on argumentation and
+hypothetical/concessive nuance, and because basic versions of "reported
+speech" and "probability" oddly only existed at C1 (`estilo_indirecto`,
+`futuro_probabilidad`) with no B2-level on-ramp.
+
+**Groundwork done directly (not delegated), to avoid the established
+same-file-race problem** — `concepts.js`, `grammar.js`, and `_gemini.js`'s
+concept whitelist are shared files three parallel agents would all need
+to touch. Added 4 new concepts myself first: `estilo_indirecto_basico`
+(prereq of the existing C1 `estilo_indirecto`, added there), `expresiones_
+probabilidad_basica`, `conectores_argumentativos_basicos` (prereq of the
+existing C1 `connectors_contrast`, added there), and `registro_formal_
+correspondencia`. Each new B2 concept was deliberately scoped as a
+simpler subset of an existing, richer C1 concept rather than overlapping
+it — e.g. `estilo_indirecto_basico` teaches only the present→imperfect
+shift for reported statements/questions, while C1's `estilo_indirecto`
+already taught the full backshift table (preterite→pluperfect, future→
+conditional, commands→subjunctive) and now explicitly builds on the new
+B2 concept as a prereq.
+
+**Hit the account-wide session usage limit mid-dispatch.** The first
+round of 3 parallel background agents (one per unit) all failed
+immediately with zero progress — worktrees auto-cleaned since no changes
+were made, nothing to recover. Committed and shipped the groundwork alone
+(PR #54) as a safe, additive checkpoint, then redispatched the identical
+3 agents after the reset (5am UTC) and all three completed successfully
+the second time.
+
+**Verification, each unit checked individually before merging**: `node
+--check`, a structural-validation script (correct section/vocab/practice
+counts, every practice item's `concept_id` matches what was assigned,
+every `multiple_choice` has exactly 4 options, no missing required
+fields), and a manual read of a sample of each unit's prose for voice/
+accuracy — all three came back high quality, including honest treatment
+of genuine native-usage variation rather than oversimplifying (e.g. the
+probability unit flags that `deber de` is often casually shortened to
+`deber` in speech, and that `quizá(s)`/`tal vez`'s mood choice signals
+confidence level rather than being a strict rule). The argumentation unit
+closes with a combined workplace-complaint-email example using both of
+its concepts together, directly answering the original spec's "real-world
+practical tasks" directive.
+
+**Wiring**: registered all 3 units in `curriculum/index.js` at fractional
+order `25.1`-`25.3` (between "Fine Details" at 25 and the existing B2
+checkpoint at 25.5) — the established purely-additive pattern, no
+renumbering. Updated `checkpoint-b2`'s `checkpointUpTo` from `25` to
+`25.3` and its `coversUnits` text; `getPracticePoolUpTo()`'s order
+comparison is generic so the fractional units were picked up automatically
+with no code change needed. Also fixed a stale "79 tracked grammar
+concepts" doc-comment (actual count is now 109).
+
+Verified end-to-end via a live local `wrangler pages dev` + D1 + Playwright
+pass: all 3 new units render correctly on `/learn` under B2, clicking into
+one loads its lesson content, and starting practice correctly serves all
+20 exercises. Test accounts cleaned from local D1 afterward.
