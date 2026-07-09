@@ -221,6 +221,35 @@ same day after it caught a real gap in the reading-passages POC):
     pass silently as an oversight. Applies to any future original prose
     that carries a CEFR label — reading passages first, but the same
     check applies to any other leveled content type this project adds.
+11. **Vocabulary-gloss density for reading passages is a different problem
+    from grammar-level QA (step 10) — don't apply the same binary logic to
+    both.** Grammar is checkable/binary: a structure either has or hasn't
+    been taught, so "never exceed the claimed level" is the right rule.
+    Vocabulary in a reading passage is supposed to work differently — some
+    exposure just past the reader's current level is the actual point of
+    reading practice, and it's supposed to be inferred from context and
+    repetition, not assisted every time a word appears. Real graded readers
+    target roughly 95-98% known-word coverage — only 2-5% of running words
+    should need a look-up at all. Caught by overshooting badly on the first
+    attempt (07-09-2026, same reading-passages POC): applied step 10's
+    "check everything against the real standard" instinct to vocabulary too
+    literally and ended up glossing ~70 words across two short passages —
+    connectors (todavía, entonces, antes, también), common core verbs
+    (decir, pensar, poner, llegar), and near-cognates (momento, página,
+    minuto) all got a popover, roughly one word in three. User feedback:
+    "a little heavy for true beginners." Corrected down to 24: **do**
+    gloss concrete nouns central to the scene (panadería, magdalena,
+    tiburón, peluche), idioms/phrases that can't be parsed word-by-word
+    ("invita la casa"), genuinely irregular/non-guessable verbs (oler),
+    and words load-bearing for the plot mechanic itself even if not
+    obviously rare (intercambiar, correo, where the story's premise
+    doesn't land without them); **don't** gloss connectors/discourse
+    markers, common high-frequency verbs, adjectives/adverbs, or obvious
+    cognates/loanwords — glossing those exact words undermines the skill
+    reading practice exists to build (inferring meaning from pattern and
+    repeated exposure) and reads as distrustful of the learner. Applies to
+    any future reading-passage or extended-prose content with a vocabulary
+    axis, not just grammar.
 
 ---
 
