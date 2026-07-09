@@ -97,6 +97,22 @@ is the source of truth for intent — the codebase should be judged against it.
   as AI-generated or translated-from-English** — see "Writing
   natural, human-sounding Spanish prose" below for the concrete checklist.
   User directive (07-09-2026): "no ai slop or phrasing."
+- **Every CEFR level tag in this codebase (`concepts.js`, `vocabulary.js`,
+  curriculum units, idioms/false-friends, verbs, everything) must mirror
+  real-world CEFR requirements/expectations, at every level A1 through
+  C2 — the site's internal leveling must never drift from or invent its
+  own standard.** User directive (07-09-2026): "per ES.md A1 site should
+  mirror real world CEFR A1 expectations and requirements. they should
+  not differ" — then confirmed explicitly, "same goes for all cefr
+  levels." Triggered by finding `concepts.js` gates `tener`/`ir` behind
+  an A2-only `irregular_present` concept even though Unit 7 (A1) already
+  has a practice exercise using "¿Cuántos años tienes?" — real CEFR A1
+  (Instituto Cervantes' *Plan Curricular*) teaches tener/ir/hay/age/basic
+  wants at A1, not A2. When this site's tagging and the real standard
+  disagree, **the real standard wins and the site gets corrected — not
+  the other way around.** A full audit against the PCIC (and
+  cross-referenced against major ELE textbook sequencing) is planned; see
+  punch list.
 
 ---
 
@@ -872,6 +888,16 @@ measures):**
 26. Cloudflare R2 (bound, unused), a secondary/fallback LLM provider, and
     explicit exponential backoff around the Gemini call are all
     unstarted, low-risk, well-scoped if picked up.
+27. **Full CEFR-accuracy audit of `concepts.js` (109 concepts) against
+    real-world CEFR requirements** (Instituto Cervantes PCIC +
+    cross-referenced major ELE textbook sequencing), all 6 levels — not
+    just the one confirmed mismatch (tener/ir gated behind an A2-only
+    `irregular_present`, contradicting Unit 7's own A1 practice exercise
+    using "¿Cuántos años tienes?"). Likely surfaces more mismatches;
+    fixes may cascade into curriculum unit reordering since content is
+    taught in unit sequence. Directly blocks writing true-A1 reading-
+    passage content, since the story needs to know what a learner has
+    actually been taught by each level. See "Standing directives" above.
 
 ## Session history index
 
