@@ -344,6 +344,26 @@ export const CONCEPTS = {
     category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
     explanationStyles: ['contrastive', 'rule_first', 'example_first'],
   },
+  estilo_indirecto_basico: {
+    id: 'estilo_indirecto_basico', label: 'Basic reported speech (dijo que...)', cefr: 'B2',
+    category: 'syntax', prereqs: ['imperfect'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  expresiones_probabilidad_basica: {
+    id: 'expresiones_probabilidad_basica', label: 'Certainty & doubt (deber de, es posible que)', cefr: 'B2',
+    category: 'discourse', prereqs: ['present_subjunctive'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  conectores_argumentativos_basicos: {
+    id: 'conectores_argumentativos_basicos', label: 'Basic argumentative connectors (pero, sin embargo, por eso)', cefr: 'B2',
+    category: 'discourse', prereqs: ['comparatives'],
+    explanationStyles: ['contrastive', 'example_first', 'table'],
+  },
+  registro_formal_correspondencia: {
+    id: 'registro_formal_correspondencia', label: 'Formal correspondence & polite requests', cefr: 'B2',
+    category: 'discourse', prereqs: ['conditional'],
+    explanationStyles: ['rule_first', 'example_first', 'story'],
+  },
 
   // ── C1 ──────────────────────────────────────────────────────────────────
   subjunctive_noun_clauses: {
@@ -368,7 +388,7 @@ export const CONCEPTS = {
   },
   estilo_indirecto: {
     id: 'estilo_indirecto', label: 'Indirect speech (estilo indirecto)', cefr: 'C1',
-    category: 'syntax', prereqs: ['imperfect_subjunctive', 'conditional'],
+    category: 'syntax', prereqs: ['imperfect_subjunctive', 'conditional', 'estilo_indirecto_basico'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive', 'story'],
   },
   nominalisation: {
@@ -420,7 +440,7 @@ export const CONCEPTS = {
   // ── C1 (Connectors & Cohesion — foundation for C2 discourse work) ──────
   connectors_contrast: {
     id: 'connectors_contrast', label: 'Contrast connectors (sin embargo, no obstante, en cambio)', cefr: 'C1',
-    category: 'discourse', prereqs: ['aunque_concessive'],
+    category: 'discourse', prereqs: ['aunque_concessive', 'conectores_argumentativos_basicos'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   connectors_consequence: {

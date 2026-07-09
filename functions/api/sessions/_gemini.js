@@ -49,7 +49,8 @@ B1: acabar_de, llevar_gerund, preterite_irregular, imperfect, preterite_vs_imper
 B2: present_perfect, pluperfect, future_perfect, conditional_perfect, passive_voice, passive_se,
     imperfect_subjunctive, si_clauses, subjunctive_adverbial, comparatives, ser_estar_participle,
     diminutives_augmentatives, relative_pronouns_advanced, adjectives_ser_estar, perfect_subjunctive,
-    verbos_cambio, adjective_position
+    verbos_cambio, adjective_position, estilo_indirecto_basico, expresiones_probabilidad_basica,
+    conectores_argumentativos_basicos, registro_formal_correspondencia
 C1: subjunctive_noun_clauses, subjunctive_adjective_clauses, gerund_advanced, ser_passive,
     estilo_indirecto, nominalisation, subjunctive_concessive_intensifiers, cuantificadores,
     futuro_probabilidad, condicional_probabilidad, perifraseis_avanzadas, pluperfect_subjunctive,
