@@ -78,6 +78,26 @@ export const CONCEPTS = {
     category: 'morphology', prereqs: ['noun_gender'],
     explanationStyles: ['rule_first', 'pattern', 'example_first'],
   },
+  irregular_present_core: {
+    id: 'irregular_present_core', label: 'Core irregular present verbs (ser, tener, ir)', cefr: 'A1',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['table', 'pattern', 'example_first'],
+  },
+  gustar_basico: {
+    id: 'gustar_basico', label: 'Gustar (basic likes/dislikes)', cefr: 'A1',
+    category: 'verb', prereqs: ['subject_pronouns'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  prepositions_core: {
+    id: 'prepositions_core', label: 'Core prepositions (a, de, en)', cefr: 'A1',
+    category: 'syntax', prereqs: ['definite_articles', 'present_ar'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  modal_verbs_core: {
+    id: 'modal_verbs_core', label: 'Core modal verbs (poder, querer)', cefr: 'A1',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['example_first', 'rule_first', 'table'],
+  },
 
   // ── A2 ──────────────────────────────────────────────────────────────────
   ser_vs_estar: {
@@ -91,8 +111,8 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'example_first', 'table'],
   },
   gustar_type: {
-    id: 'gustar_type', label: 'Gustar-type verbs', cefr: 'A2',
-    category: 'verb', prereqs: ['indirect_object_pronouns'],
+    id: 'gustar_type', label: 'Gustar-type verbs (encantar, doler, molestar, parecer…)', cefr: 'A2',
+    category: 'verb', prereqs: ['indirect_object_pronouns', 'gustar_basico'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   direct_object_pronouns: {
@@ -121,8 +141,8 @@ export const CONCEPTS = {
     explanationStyles: ['table', 'rule_first', 'contrastive', 'example_first'],
   },
   modal_verbs: {
-    id: 'modal_verbs', label: 'Modal verbs (poder, querer, deber)', cefr: 'A2',
-    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    id: 'modal_verbs', label: 'Modal verbs — deber (obligation/probability)', cefr: 'A2',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir', 'modal_verbs_core'],
     explanationStyles: ['example_first', 'rule_first', 'table'],
   },
   obligation_infinitive: {
@@ -141,8 +161,8 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'example_first', 'table'],
   },
   irregular_present: {
-    id: 'irregular_present', label: 'Irregular present tense (ir, tener, venir…)', cefr: 'A2',
-    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    id: 'irregular_present', label: 'Irregular present tense (venir, hacer, poner, salir…)', cefr: 'A2',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir', 'irregular_present_core'],
     explanationStyles: ['table', 'pattern', 'example_first'],
   },
   negation: {
@@ -151,8 +171,8 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   prepositions_basic: {
-    id: 'prepositions_basic', label: 'Basic prepositions (a, de, en, con, sin…)', cefr: 'A2',
-    category: 'syntax', prereqs: ['definite_articles', 'present_ar'],
+    id: 'prepositions_basic', label: 'Extended prepositions (con, sin, por, para, entre…)', cefr: 'A2',
+    category: 'syntax', prereqs: ['definite_articles', 'present_ar', 'prepositions_core'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   near_future: {
@@ -169,6 +189,16 @@ export const CONCEPTS = {
     id: 'comparatives_basic', label: 'Basic comparatives (más/menos…que, tan…como)', cefr: 'A2',
     category: 'morphology', prereqs: ['adjective_agreement'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  imperative_affirmative: {
+    id: 'imperative_affirmative', label: 'Affirmative informal commands (tú)', cefr: 'A2',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
+    explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
+  relative_clauses_core: {
+    id: 'relative_clauses_core', label: 'Core relative clauses (que, donde)', cefr: 'A2',
+    category: 'syntax', prereqs: ['question_words'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
 
   // ── B1 ──────────────────────────────────────────────────────────────────
@@ -213,8 +243,8 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'example_first', 'contrastive', 'story'],
   },
   imperative: {
-    id: 'imperative', label: 'Imperative (commands)', cefr: 'B1',
-    category: 'verb', prereqs: ['present_ar', 'present_er_ir', 'reflexive_verbs'],
+    id: 'imperative', label: 'Imperative — negative & formal commands, clitic placement', cefr: 'B1',
+    category: 'verb', prereqs: ['present_ar', 'present_er_ir', 'reflexive_verbs', 'imperative_affirmative'],
     explanationStyles: ['rule_first', 'table', 'example_first'],
   },
   por_vs_para: {
@@ -223,8 +253,8 @@ export const CONCEPTS = {
     explanationStyles: ['contrastive', 'rule_first', 'example_first', 'story'],
   },
   relative_clauses: {
-    id: 'relative_clauses', label: 'Relative clauses (que, quien, donde)', cefr: 'B1',
-    category: 'syntax', prereqs: ['question_words', 'present_subjunctive'],
+    id: 'relative_clauses', label: 'Relative clauses — quien, subjunctive-in-relative nuance', cefr: 'B1',
+    category: 'syntax', prereqs: ['question_words', 'present_subjunctive', 'relative_clauses_core'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   object_pronoun_order: {
@@ -364,6 +394,16 @@ export const CONCEPTS = {
     category: 'discourse', prereqs: ['conditional'],
     explanationStyles: ['rule_first', 'example_first', 'story'],
   },
+  reformuladores_basico: {
+    id: 'reformuladores_basico', label: 'Basic reformulators (o sea, es decir)', cefr: 'B2',
+    category: 'discourse', prereqs: ['conectores_argumentativos_basicos'],
+    explanationStyles: ['rule_first', 'example_first', 'pattern'],
+  },
+  genero_informe: {
+    id: 'genero_informe', label: 'Formal genre: the informe (report)', cefr: 'B2',
+    category: 'discourse', prereqs: ['registro_formal_correspondencia'],
+    explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
 
   // ── C1 ──────────────────────────────────────────────────────────────────
   subjunctive_noun_clauses: {
@@ -439,30 +479,30 @@ export const CONCEPTS = {
 
   // ── C1 (Connectors & Cohesion — foundation for C2 discourse work) ──────
   connectors_contrast: {
-    id: 'connectors_contrast', label: 'Contrast connectors (sin embargo, no obstante, en cambio)', cefr: 'C1',
+    id: 'connectors_contrast', label: 'Contrast connectors — formal register nuance (sin embargo, no obstante, en cambio)', cefr: 'C1',
     category: 'discourse', prereqs: ['aunque_concessive', 'conectores_argumentativos_basicos'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   connectors_consequence: {
-    id: 'connectors_consequence', label: 'Consequence connectors (por lo tanto, así que, de ahí que)', cefr: 'C1',
-    category: 'discourse', prereqs: ['connectors_contrast'],
+    id: 'connectors_consequence', label: 'Consequence connectors — formal register nuance (por lo tanto, así que, de ahí que)', cefr: 'C1',
+    category: 'discourse', prereqs: ['connectors_contrast', 'conectores_argumentativos_basicos'],
     explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },
   connectors_addition_sequence: {
-    id: 'connectors_addition_sequence', label: 'Addition & sequence connectors (además, es más, en primer/último lugar)', cefr: 'C1',
-    category: 'discourse', prereqs: ['connectors_contrast'],
+    id: 'connectors_addition_sequence', label: 'Addition & sequence connectors — formal register nuance (además, es más, en primer/último lugar)', cefr: 'C1',
+    category: 'discourse', prereqs: ['connectors_contrast', 'conectores_argumentativos_basicos'],
     explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },
   connectors_cause_reason: {
-    id: 'connectors_cause_reason', label: 'Cause/reason connectors (ya que, puesto que, dado que)', cefr: 'C1',
-    category: 'discourse', prereqs: ['connectors_consequence'],
+    id: 'connectors_cause_reason', label: 'Cause/reason connectors — formal register nuance (ya que, puesto que, dado que)', cefr: 'C1',
+    category: 'discourse', prereqs: ['connectors_consequence', 'conectores_argumentativos_basicos'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
 
   // ── C2 ──────────────────────────────────────────────────────────────────
   reformuladores: {
-    id: 'reformuladores', label: 'Reformulators (o sea, es decir, mejor dicho)', cefr: 'C2',
-    category: 'discourse', prereqs: ['connectors_addition_sequence'],
+    id: 'reformuladores', label: 'Reformulators — self-correction (mejor dicho, más bien)', cefr: 'C2',
+    category: 'discourse', prereqs: ['connectors_addition_sequence', 'reformuladores_basico'],
     explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },
   estructuradores_informacion: {
@@ -551,8 +591,8 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'example_first', 'story'],
   },
   generos_discursivos_formales: {
-    id: 'generos_discursivos_formales', label: 'Formal written genres (informe, ensayo argumentativo)', cefr: 'C2',
-    category: 'discourse', prereqs: ['estructuradores_informacion'],
+    id: 'generos_discursivos_formales', label: 'Formal written genres — ensayo argumentativo', cefr: 'C2',
+    category: 'discourse', prereqs: ['estructuradores_informacion', 'genero_informe'],
     explanationStyles: ['rule_first', 'table', 'example_first'],
   },
   referencias_culturales_avanzadas: {

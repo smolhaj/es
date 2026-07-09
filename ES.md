@@ -896,12 +896,37 @@ measures):**
     mismatches retagged in `concepts.js`/`grammar.js`/`_gemini.js`'s
     whitelist, all consistent (zero backwards prereqs, all 109
     `grammar.js` cards re-verified to match `concepts.js` exactly).
+    **Phase B (data layer) is done**: 8 new concepts split off from 6
+    bundled ones that mixed two real CEFR levels —
+    `irregular_present_core` (A1, ir/tener) out of `irregular_present`
+    (A2, narrowed to venir/hacer/poner/salir), `gustar_basico` (A1,
+    gustar itself) out of `gustar_type` (A2, narrowed to
+    encantar/doler/molestar/parecer), `prepositions_core` (A1, a/de/en)
+    out of `prepositions_basic` (A2, narrowed to con/sin/por/para/entre),
+    `modal_verbs_core` (A1, poder/querer) out of `modal_verbs` (A2,
+    narrowed to deber), `imperative_affirmative` (A2, tú affirmative) out
+    of `imperative` (B1, narrowed to negative/formal commands + clitic
+    placement), `relative_clauses_core` (A2, que/donde) out of
+    `relative_clauses` (B1, narrowed to quien + subjunctive-in-relative
+    nuance). Each original concept keeps its id at the higher/broader
+    level (so no existing curriculum-unit registration or exercise
+    `concept_id` reference breaks) and gains the new concept as a
+    prereq; the new concept itself has no curriculum unit yet (same
+    "pacing lag" pattern as Phase A — see below). The four `connectors_*`
+    concepts (C1) and `reformuladores`/`generos_discursivos_formales`
+    (C2) turned out **not** to need new split concepts on inspection:
+    `conectores_argumentativos_basicos` (B2) already explicitly covers
+    the "conversational-tier" pero/sin embargo/por eso/además subset
+    with a note that the fuller C1 families build on it, so those four
+    just gained it as an explicit prereq instead of a redundant new
+    concept. `reformuladores`/`generos_discursivos_formales` did get one
+    genuine new concept each — `reformuladores_basico` (B2, o
+    sea/es decir) and `genero_informe` (B2, the informe/report genre) —
+    since no B2 concept already covered that content. Total concept
+    count: 109 → 117, all prereqs verified consistent (zero backwards
+    deps), all 117 `grammar.js` cards synced 1:1 by cefr, `_gemini.js`
+    whitelist regenerated programmatically from `concepts.js`.
     **Still open**:
-    - **Phase B**: ~13 concepts that need *splitting* (a bundle mixes
-      items from two real CEFR levels) — `irregular_present`,
-      `gustar_type`, `prepositions_basic`, `modal_verbs`, `imperative`,
-      `relative_clauses`, all four `connectors_*` concepts,
-      `reformuladores`, `generos_discursivos_formales`.
     - **Phase C**: move the two concepts created *this same session*
       for the new B2 units (`estilo_indirecto_basico`,
       `expresiones_probabilidad_basica`) — real level is B1, so their

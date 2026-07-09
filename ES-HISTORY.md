@@ -2221,3 +2221,100 @@ curriculum units too, which also undoes the B2-unit-count parity math
 that motivated building them in the first place. Tracked as Phase C
 rather than folded into Phase A, since it touches already-shipped,
 already-merged content (PR #55) and needs its own careful handling.
+
+## CEFR-accuracy audit of concepts.js: Phase B (splitting bundled concepts)
+
+Phase 1's research had flagged 12 concepts as *bundled* — each mixes real
+content from two different CEFR levels under one id, which a simple
+retag can't fix without either over- or under-leveling half the content.
+Before touching `concepts.js`, checked which curriculum unit currently
+teaches each of the 12 (`curriculum/index.js` + the actual unit content
+files), since any split has to avoid breaking an existing unit's
+`concepts: [...]` registration or its exercises' `concept_id` tags.
+
+**6 genuine splits, 8 new concepts added at the lower level, originals
+narrowed and kept at the higher level (both a Phase-A-consistent pattern
+and a "minimal blast radius" one — the id an existing unit/exercise
+already points at never changes level or disappears):**
+
+- `irregular_present` (A2, "ir, tener, venir…") → new
+  `irregular_present_core` (A1, ir/tener/estar-adjacent survival verbs);
+  `irregular_present` narrowed to A2 or venir/hacer/poner/salir and the
+  rest. This is the concept that started the whole audit (the "venir"
+  garbled-definition report led to "is A1 really A1?").
+- `gustar_type` (A2, "gustar-type verbs") → new `gustar_basico` (A1, the
+  gustar pattern itself — PCIC places basic likes/dislikes at A1); kept
+  `gustar_type` at A2 narrowed to encantar/doler/molestar/parecer.
+  Checked `unit09-likes-dislikes.js`'s actual content by grep count:
+  gustar forms outnumber encantar/doler/molestar roughly 3:1, confirming
+  gustar is the dominant, more foundational content.
+- `prepositions_basic` (A2) → new `prepositions_core` (A1, a/de/en — the
+  three that appear from the first lesson); kept `prepositions_basic` at
+  A2 narrowed to con/sin/por/para/entre etc.
+- `modal_verbs` (A2, "poder, querer, deber") → new `modal_verbs_core`
+  (A1, poder/querer); kept `modal_verbs` at A2 narrowed to deber
+  (obligation/probability, genuinely a step up in nuance).
+- `imperative` (B1) → new `imperative_affirmative` (A2, tú affirmative
+  commands — same form as él/ella present tense, genuinely simpler);
+  kept `imperative` at B1 narrowed to negative/formal commands and
+  clitic-pronoun placement, which really is where the complexity lives
+  (confirmed against `unit19-opinions-commands.js`'s own structure — it
+  literally has two blocks, affirmative first then a harder negative
+  block that reuses the subjunctive).
+- `relative_clauses` (B1, "que, quien, donde") → new
+  `relative_clauses_core` (A2, que/donde); kept `relative_clauses` at B1
+  narrowed to quien and the subjunctive-in-relative-clause nuance.
+
+**4 concepts that looked like they needed splitting but didn't, on
+inspection:** `connectors_contrast`, `connectors_consequence`,
+`connectors_addition_sequence`, `connectors_cause_reason` (all C1) share
+the same headline lexical items — sin embargo, por lo tanto, además, ya
+que — with `conectores_argumentativos_basicos` (B2, built earlier this
+session for the reported-speech/probability unit trio). Reading that
+card's actual rule/exceptions text confirmed it already explicitly
+scopes itself as "the conversational-tier subset" and says outright that
+"the fuller, more formally categorized set... is covered later at C1."
+The C1 versions' content (formal-register punctuation conventions,
+subjunctive-triggering by de ahí que, etc.) is genuine C1 nuance, not
+mistagged beginner material. Fix was simpler than a split: added
+`conectores_argumentativos_basicos` as an explicit prereq to all four,
+formalizing the teaching progression that the content already implied,
+with no new concepts and no cefr changes.
+
+**2 genuine new concepts for the remaining C2 bundles:** `reformuladores`
+(C2, "o sea, es decir, mejor dicho") → new `reformuladores_basico` (B2,
+o sea/es decir — pure restatement); kept `reformuladores` at C2 narrowed
+to mejor dicho/más bien (self-correction, genuinely a harder pragmatic
+move). `generos_discursivos_formales` (C2, "informe, ensayo
+argumentativo") → new `genero_informe` (B2, the informe/report genre —
+more formulaic, closer to registro_formal_correspondencia which is
+already B2); kept `generos_discursivos_formales` at C2 narrowed to the
+ensayo argumentativo (open-ended argumentative essay, genuinely harder).
+
+**Content**: wrote 8 new `grammar.js` reference cards (not just metadata
+— each has its own rule/examples/exceptions), placed next to their
+related sibling card. `_gemini.js`'s concept whitelist regenerated
+programmatically from `concepts.js` again, same approach as Phase A.
+
+**Verification**: prereq-graph consistency check across all 117
+concepts (109 + 8 new) — zero backwards prereqs. `grammar.js` card count
+now 117, 1:1 with `concepts.js`, zero cefr mismatches. `npm run build`
+passes.
+
+**Left unresolved, still blocked on Phase B's remaining pieces**: the 3
+concepts pulled from Phase A (`operadores_discursivos`,
+`registro_formal_informal`, `estructuradores_informacion`) were
+individually flagged as likely mistagged, but their target CEFR levels
+were never pinned down with real research — retagging them now without
+that would be guessing, which the standing directive explicitly rules
+out. Left as-is; needs a small dedicated research pass (folding into
+Phase D, or its own follow-up) rather than being resolved by inference
+from this session's other findings.
+
+**Same curriculum-pacing-lag caveat as Phase A applies here too, doubled
+down**: none of the 8 new concepts have a curriculum unit teaching them
+yet — they're purely additive to the data model. The existing units
+still teach the *combined* content under the original (now narrowed)
+concept id, so nothing is broken, but the new finer-grained ids are
+inert until the already-scoped future curriculum-content-reordering
+phase picks them up.
