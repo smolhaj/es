@@ -339,6 +339,27 @@ set of WebSearch-verified irregular-form exception lists (tú-imperative
 irregulars, irregular participles, reflexive enclitic-pronoun placement) —
 see `ES-HISTORY.md`, 07-08-2026, if regenerating and something looks wrong.
 
+### Vocabulary reference (`/vocab`)
+
+`src/content/vocabulary.js` — 1439 words, `{ es, en, cefr, domain, example,
+exampleEn, frequencyRank, register? }`. `DOMAINS`/`CEFR_LEVELS` are exported
+for `VocabBrowser.jsx`'s filter chips; `DOMAINS` is auto-derived
+(`[...new Set(...)].sort()`), so a new domain string just works with no
+separate whitelist to update. A 07-08-2026 pass closed a real gap: C1 had
+only 80 words and C2 had zero, despite the C1/C2 curriculum (units 26-37)
+existing — brought both to parity with A1/A2 (C1 → 280, C2 → 234) by
+promoting the curriculum units' own already-verified `vocab` arrays plus
+fresh WebSearch-verified research, and added 4 new domains (`business`,
+`academic`, `abstract_concepts`, `media_news`) the prior 22 concrete/
+everyday domains didn't cover. New entries (and only new entries — the
+original 1005 are untouched) carry a `register` field
+(`colloquial`/`informal`/`neutral`/`formal`), reusing `idioms.js`'s
+existing 4-way scale rather than inventing a new one; `VocabBrowser.jsx`
+renders it as a badge (only when present) and as a filter chip row. One
+intentional duplicate spelling: `tío` appears twice (existing "uncle,"
+A1, `family`; new "dude/mate" colloquial address term, C2, `greetings`)
+— a genuine second sense, not a data bug.
+
 ### Flashcards (`/flashcards`)
 
 Separate Anki-style deck (top 5,000 Spanish words by frequency), distinct
