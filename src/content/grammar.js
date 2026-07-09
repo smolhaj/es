@@ -1340,6 +1340,78 @@ export const GRAMMAR_CARDS = [
     ],
     related: ['adjective_agreement', 'comparatives'],
   },
+  {
+    id: 'estilo_indirecto_basico',
+    concept_id: 'estilo_indirecto_basico',
+    cefr: 'B2',
+    category: 'Discourse',
+    title: 'Basic Reported Speech (dijo que...)',
+    rule: 'To report what someone said, use dijo que + a shifted-back verb tense: present becomes imperfect. Reported yes/no questions use si; reported wh-questions keep the question word, no upside-down punctuation or que.',
+    examples: [
+      { es: '"Estoy cansado." → Dijo que estaba cansado.', en: '"I\'m tired." → He said he was tired.' },
+      { es: '"¿Vienes?" → Me preguntó si venía.', en: '"Are you coming?" → She asked me if I was coming.' },
+      { es: '"¿Dónde vives?" → Me preguntó dónde vivía.', en: '"Where do you live?" → He asked me where I lived.' },
+    ],
+    exceptions: [
+      'This is the everyday, present-tense-shift version of reported speech — the full backshift table (preterite→pluperfect, future→conditional, commands→subjunctive) is covered later at C1.',
+    ],
+    related: ['imperfect', 'estilo_indirecto'],
+  },
+  {
+    id: 'expresiones_probabilidad_basica',
+    concept_id: 'expresiones_probabilidad_basica',
+    cefr: 'B2',
+    category: 'Discourse',
+    title: 'Certainty & Doubt (deber de, es posible que)',
+    rule: 'Deber de + infinitive hedges a guess ("must be"). Es posible/probable que, puede que, and quizá(s) all express doubt and trigger the subjunctive. A lo mejor and seguramente express a stronger hunch and use the indicative instead.',
+    examples: [
+      { es: 'Debe de tener treinta años.', en: 'He must be around thirty.' },
+      { es: 'Es posible que llueva mañana.', en: "It's possible it'll rain tomorrow." },
+      { es: 'A lo mejor ya se fue.', en: 'Maybe she already left. (indicative — a lo mejor never takes the subjunctive)' },
+      { es: 'Puede que no lo sepa.', en: 'She might not know it.' },
+    ],
+    exceptions: [
+      'Deber (without de) means obligation ("should"); deber de is the hedging/probability sense — many native speakers blur the two in casual speech, but the distinction is worth keeping straight.',
+      'Quizá(s) and tal vez can take either indicative or subjunctive depending on how confident the speaker is — subjunctive is more common and the safer default.',
+    ],
+    related: ['present_subjunctive', 'futuro_probabilidad'],
+  },
+  {
+    id: 'conectores_argumentativos_basicos',
+    concept_id: 'conectores_argumentativos_basicos',
+    cefr: 'B2',
+    category: 'Discourse',
+    title: 'Basic Argumentative Connectors',
+    rule: 'Pero contrasts within a sentence; sin embargo contrasts across sentences/clauses with more weight; por eso and por lo tanto introduce a consequence; además adds a point. These are the everyday building blocks for stating and defending an opinion.',
+    examples: [
+      { es: 'Me gusta, pero es caro.', en: 'I like it, but it\'s expensive.' },
+      { es: 'Llovía mucho. Sin embargo, salimos a caminar.', en: 'It was raining hard. Even so, we went for a walk.' },
+      { es: 'No tenía dinero, por eso no fui.', en: "I didn't have money, so I didn't go." },
+      { es: 'El plan es caro. Además, tardaría meses.', en: "The plan is expensive. What's more, it would take months." },
+    ],
+    exceptions: [
+      'This is the conversational-tier subset — the fuller, more formally categorized set (contrast/consequence/addition/cause connectors as separate families) is covered later at C1.',
+    ],
+    related: ['comparatives', 'connectors_contrast'],
+  },
+  {
+    id: 'registro_formal_correspondencia',
+    concept_id: 'registro_formal_correspondencia',
+    cefr: 'B2',
+    category: 'Discourse',
+    title: 'Formal Correspondence & Polite Requests',
+    rule: 'Formal Spanish correspondence opens with Estimado/a + name or title, states the purpose with le escribo para..., and closes with Atentamente or Un cordial saludo. Polite requests soften a command with quisiera or podría instead of a direct imperative.',
+    examples: [
+      { es: 'Estimada señora García: Le escribo para solicitar información sobre...', en: 'Dear Ms. García: I am writing to request information about...' },
+      { es: 'Quisiera hacer una reserva para dos personas.', en: "I'd like to make a reservation for two." },
+      { es: '¿Podría enviarme el informe antes del viernes?', en: 'Could you send me the report before Friday?' },
+      { es: 'Atentamente, / Un cordial saludo,', en: 'Sincerely, / Best regards,' },
+    ],
+    exceptions: [
+      'Quisiera (imperfect subjunctive of querer) is the standard polite "I would like" — más educado than quiero, and more natural in writing than querría.',
+    ],
+    related: ['conditional', 'present_subjunctive'],
+  },
 
   // ── C1 ─────────────────────────────────────────────────────────────────
   {
