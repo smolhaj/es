@@ -86,7 +86,7 @@ export const CONCEPTS = {
     explanationStyles: ['contrastive', 'rule_first', 'story', 'example_first'],
   },
   reflexive_verbs: {
-    id: 'reflexive_verbs', label: 'Reflexive verbs (llamarse, levantarse)', cefr: 'A2',
+    id: 'reflexive_verbs', label: 'Reflexive verbs (llamarse, levantarse)', cefr: 'A1',
     category: 'verb', prereqs: ['present_ar', 'present_er_ir', 'subject_pronouns'],
     explanationStyles: ['rule_first', 'example_first', 'table'],
   },
@@ -106,12 +106,12 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   demonstratives: {
-    id: 'demonstratives', label: 'Demonstratives (este/ese/aquel)', cefr: 'A2',
+    id: 'demonstratives', label: 'Demonstratives (este/ese/aquel)', cefr: 'A1',
     category: 'morphology', prereqs: ['adjective_agreement'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   possessives: {
-    id: 'possessives', label: 'Possessives (mi/tu/su/nuestro)', cefr: 'A2',
+    id: 'possessives', label: 'Possessives (mi/tu/su/nuestro)', cefr: 'A1',
     category: 'morphology', prereqs: ['adjective_agreement'],
     explanationStyles: ['table', 'rule_first', 'example_first'],
   },
@@ -183,7 +183,7 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   preterite_irregular: {
-    id: 'preterite_irregular', label: 'Preterite irregular (ir/ser/tener)', cefr: 'B1',
+    id: 'preterite_irregular', label: 'Preterite irregular (ir/ser/tener)', cefr: 'A2',
     category: 'verb', prereqs: ['preterite_regular'],
     explanationStyles: ['table', 'rule_first', 'pattern', 'story'],
   },
@@ -248,7 +248,7 @@ export const CONCEPTS = {
     explanationStyles: ['example_first', 'rule_first', 'pattern'],
   },
   saber_vs_conocer: {
-    id: 'saber_vs_conocer', label: 'Saber vs. conocer', cefr: 'B1',
+    id: 'saber_vs_conocer', label: 'Saber vs. conocer', cefr: 'A2',
     category: 'verb', prereqs: ['irregular_present'],
     explanationStyles: ['contrastive', 'rule_first', 'example_first'],
   },
@@ -260,12 +260,12 @@ export const CONCEPTS = {
 
   // ── B2 ──────────────────────────────────────────────────────────────────
   present_perfect: {
-    id: 'present_perfect', label: 'Present perfect (he/has/ha)', cefr: 'B2',
+    id: 'present_perfect', label: 'Present perfect (he/has/ha)', cefr: 'A2',
     category: 'verb', prereqs: ['preterite_regular'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   pluperfect: {
-    id: 'pluperfect', label: 'Pluperfect (había + participio)', cefr: 'B2',
+    id: 'pluperfect', label: 'Pluperfect (había + participio)', cefr: 'B1',
     category: 'verb', prereqs: ['present_perfect', 'imperfect'],
     explanationStyles: ['rule_first', 'example_first', 'story'],
   },
@@ -285,8 +285,8 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   passive_se: {
-    id: 'passive_se', label: 'Passive se (se vende, se habla)', cefr: 'B2',
-    category: 'verb', prereqs: ['reflexive_verbs', 'passive_voice'],
+    id: 'passive_se', label: 'Passive se (se vende, se habla)', cefr: 'B1',
+    category: 'verb', prereqs: ['reflexive_verbs'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   imperfect_subjunctive: {
@@ -300,12 +300,12 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'contrastive', 'example_first', 'story'],
   },
   subjunctive_adverbial: {
-    id: 'subjunctive_adverbial', label: 'Subjunctive in adverbial clauses', cefr: 'B2',
+    id: 'subjunctive_adverbial', label: 'Subjunctive in adverbial clauses', cefr: 'B1',
     category: 'syntax', prereqs: ['present_subjunctive'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   comparatives: {
-    id: 'comparatives', label: 'Comparatives & superlatives', cefr: 'B2',
+    id: 'comparatives', label: 'Comparatives & superlatives', cefr: 'B1',
     category: 'morphology', prereqs: ['adjective_agreement', 'comparatives_basic'],
     explanationStyles: ['rule_first', 'table', 'example_first', 'contrastive'],
   },
@@ -372,7 +372,7 @@ export const CONCEPTS = {
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
   subjunctive_adjective_clauses: {
-    id: 'subjunctive_adjective_clauses', label: 'Subjunctive in adjective clauses', cefr: 'C1',
+    id: 'subjunctive_adjective_clauses', label: 'Subjunctive in adjective clauses', cefr: 'B2',
     category: 'syntax', prereqs: ['present_subjunctive', 'relative_clauses'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
@@ -402,37 +402,37 @@ export const CONCEPTS = {
     explanationStyles: ['contrastive', 'rule_first', 'example_first'],
   },
   cuantificadores: {
-    id: 'cuantificadores', label: 'Quantifiers (bastante, demasiado, cada)', cefr: 'C1',
+    id: 'cuantificadores', label: 'Quantifiers (bastante, demasiado, cada)', cefr: 'B1',
     category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
     explanationStyles: ['rule_first', 'example_first', 'table'],
   },
   futuro_probabilidad: {
-    id: 'futuro_probabilidad', label: 'Future for probability (Serán las diez)', cefr: 'C1',
+    id: 'futuro_probabilidad', label: 'Future for probability (Serán las diez)', cefr: 'B1',
     category: 'verb', prereqs: ['future_simple', 'conditional'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   condicional_probabilidad: {
-    id: 'condicional_probabilidad', label: 'Conditional for past inference (Tendría 30 años)', cefr: 'C1',
+    id: 'condicional_probabilidad', label: 'Conditional for past inference (Tendría 30 años)', cefr: 'B2',
     category: 'verb', prereqs: ['conditional', 'futuro_probabilidad'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   perifraseis_avanzadas: {
-    id: 'perifraseis_avanzadas', label: 'Advanced verb periphrases (soler, ponerse a…)', cefr: 'C1',
+    id: 'perifraseis_avanzadas', label: 'Advanced verb periphrases (soler, ponerse a…)', cefr: 'B1',
     category: 'verb', prereqs: ['acabar_de', 'llevar_gerund', 'present_subjunctive'],
     explanationStyles: ['rule_first', 'table', 'example_first'],
   },
   pluperfect_subjunctive: {
-    id: 'pluperfect_subjunctive', label: 'Pluperfect subjunctive (hubiera/hubiese + participio)', cefr: 'C1',
+    id: 'pluperfect_subjunctive', label: 'Pluperfect subjunctive (hubiera/hubiese + participio)', cefr: 'B2',
     category: 'verb', prereqs: ['imperfect_subjunctive', 'pluperfect'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first', 'story'],
   },
   aunque_concessive: {
-    id: 'aunque_concessive', label: 'Concessive clauses with aunque (indicative vs. subjunctive)', cefr: 'C1',
+    id: 'aunque_concessive', label: 'Concessive clauses with aunque (indicative vs. subjunctive)', cefr: 'B2',
     category: 'syntax', prereqs: ['present_subjunctive', 'subjunctive_adverbial'],
     explanationStyles: ['contrastive', 'rule_first', 'example_first'],
   },
   verbos_preposicionales: {
-    id: 'verbos_preposicionales', label: 'Verbs with fixed prepositions (pensar en, soñar con…)', cefr: 'C1',
+    id: 'verbos_preposicionales', label: 'Verbs with fixed prepositions (pensar en, soñar con…)', cefr: 'B1',
     category: 'prepositions', prereqs: ['prepositions_basic', 'por_vs_para'],
     explanationStyles: ['rule_first', 'example_first', 'pattern'],
   },

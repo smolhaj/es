@@ -489,7 +489,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'reflexive_verbs',
     concept_id: 'reflexive_verbs',
-    cefr: 'A2',
+    cefr: 'A1',
     category: 'Verbs',
     title: 'Reflexive Verbs',
     rule: 'Reflexive verbs use reflexive pronouns (me, te, se, nos, os, se) to show the action reflects back on the subject.',
@@ -566,7 +566,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'demonstratives',
     concept_id: 'demonstratives',
-    cefr: 'A2',
+    cefr: 'A1',
     category: 'Morphology',
     title: 'Demonstratives — este / ese / aquel',
     rule: 'Three spatial distances: este/esta (this, near the speaker), ese/esa (that, near the listener), aquel/aquella (that over there, distant from both). All forms must agree in gender and number with the noun they modify.',
@@ -586,7 +586,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'possessives',
     concept_id: 'possessives',
-    cefr: 'A2',
+    cefr: 'A1',
     category: 'Morphology',
     title: 'Possessives',
     rule: 'Short (unstressed) possessives precede the noun: mi, tu, su, nuestro/a, vuestro/a, su. They agree in number only (except nuestro/vuestro which also agree in gender). Long (stressed) forms follow the noun or stand alone as pronouns: mío/mía, tuyo/tuya, suyo/suya, nuestro/a, vuestro/a.',
@@ -666,7 +666,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'preterite_irregular',
     concept_id: 'preterite_irregular',
-    cefr: 'B1',
+    cefr: 'A2',
     category: 'Verbs',
     title: 'Preterite — Irregular Verbs',
     rule: 'Key irregular preterites must be memorized. Ir and ser share identical forms (context distinguishes them). Irregular stems drop the accent marks.',
@@ -963,7 +963,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'saber_vs_conocer',
     concept_id: 'saber_vs_conocer',
-    cefr: 'B1',
+    cefr: 'A2',
     category: 'Verbs',
     title: 'Saber vs. Conocer',
     rule: 'Saber means to know facts, information, or how to do something (a skill). Conocer means to know or be familiar with people, places, or things (acquaintance).',
@@ -1006,7 +1006,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'present_perfect',
     concept_id: 'present_perfect',
-    cefr: 'B2',
+    cefr: 'A2',
     category: 'Verbs',
     title: 'Present Perfect (he hablado)',
     rule: 'Formed with haber (present) + past participle. In Spain, used for recent past or past connected to now. In Latin America, the preterite often replaces it.',
@@ -1026,7 +1026,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'pluperfect',
     concept_id: 'pluperfect',
-    cefr: 'B2',
+    cefr: 'B1',
     category: 'Verbs',
     title: 'Pluperfect (había hablado)',
     rule: 'Formed with haber (imperfect) + past participle. Expresses a past action that happened before another past action — the "past of the past".',
@@ -1104,7 +1104,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'passive_se',
     concept_id: 'passive_se',
-    cefr: 'B2',
+    cefr: 'B1',
     category: 'Verbs',
     title: 'Passive Se and Impersonal Se',
     rule: 'Se + 3rd person verb: if followed by singular noun → singular verb; plural noun → plural verb. When no noun follows, it is impersonal (like "one" or "you" in English).',
@@ -1162,7 +1162,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'subjunctive_adverbial',
     concept_id: 'subjunctive_adverbial',
-    cefr: 'B2',
+    cefr: 'B1',
     category: 'Verbs',
     title: 'Subjunctive in Adverbial Clauses',
     rule: 'Certain conjunctions always take the subjunctive (time clauses when referring to the future; purpose; condition). Others switch between indicative (fact) and subjunctive (hypothesis).',
@@ -1182,7 +1182,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'comparatives',
     concept_id: 'comparatives',
-    cefr: 'B2',
+    cefr: 'B1',
     category: 'Syntax',
     title: 'Comparatives and Superlatives',
     rule: 'Comparatives: más/menos + adjective + que (more/less than). Superlatives: el/la/los/las + más/menos + adjective. Irregular forms must be memorized.',
@@ -1437,7 +1437,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'subjunctive_adjective_clauses',
     concept_id: 'subjunctive_adjective_clauses',
-    cefr: 'C1',
+    cefr: 'B2',
     category: 'Mood',
     title: 'Subjunctive in adjective clauses',
     rule: 'When a relative clause modifies an antecedent that is unknown, non-existent, or imaginary, use the subjunctive. When the antecedent is a specific, known entity, use the indicative. The key test: does the thing definitely exist in your mind?',
@@ -1536,7 +1536,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'cuantificadores',
     concept_id: 'cuantificadores',
-    cefr: 'C1',
+    cefr: 'B1',
     category: 'Morphology',
     title: 'Quantifiers and intensifiers',
     rule: 'Spanish has a rich system of quantifiers. Muy (very) modifies adjectives/adverbs; mucho (much/many/a lot) modifies nouns or verbs.',
@@ -1556,7 +1556,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'futuro_probabilidad',
     concept_id: 'futuro_probabilidad',
-    cefr: 'C1',
+    cefr: 'B1',
     category: 'Verbs',
     title: 'Future tense — probability and inference',
     rule: 'The simple future is used to express probability, inference, or supposition about the present. It replaces expressions like "debe de ser" or "probablemente es" in natural speech.',
@@ -1576,7 +1576,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'condicional_probabilidad',
     concept_id: 'condicional_probabilidad',
-    cefr: 'C1',
+    cefr: 'B2',
     category: 'Verbs',
     title: 'Conditional — past inference and probability',
     rule: 'The conditional tense is used to express probability or inference about the past, just as the future is used for the present. It suggests "must have been" or "was probably."',
@@ -1596,7 +1596,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'perifraseis_avanzadas',
     concept_id: 'perifraseis_avanzadas',
-    cefr: 'C1',
+    cefr: 'B1',
     category: 'Verbs',
     title: 'Advanced verb periphrases',
     rule: 'Verb periphrases combine an auxiliary verb with an infinitive or gerund to express nuanced aspect, mode, or phase of action. C1-level periphrases express habituality, sudden onset, resumption, and cessation.',
@@ -1616,7 +1616,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'pluperfect_subjunctive',
     concept_id: 'pluperfect_subjunctive',
-    cefr: 'C1',
+    cefr: 'B2',
     category: 'Verbs',
     title: 'Pluperfect Subjunctive — hubiera/hubiese + participio',
     rule: 'Used for hypothetical past conditions (unreal si-clauses) and for actions that had happened before another past action, viewed subjunctively. Formed with the imperfect subjunctive of haber (hubiera/hubiese...) + past participle.',
@@ -1635,7 +1635,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'aunque_concessive',
     concept_id: 'aunque_concessive',
-    cefr: 'C1',
+    cefr: 'B2',
     category: 'Syntax',
     title: 'Concessive Clauses with Aunque',
     rule: 'Aunque + indicative expresses a known, accepted fact ("although," conceding real information). Aunque + subjunctive expresses a hypothetical or dismissed objection ("even if," treated as irrelevant or unconfirmed).',
@@ -1654,7 +1654,7 @@ export const GRAMMAR_CARDS = [
   {
     id: 'verbos_preposicionales',
     concept_id: 'verbos_preposicionales',
-    cefr: 'C1',
+    cefr: 'B1',
     category: 'Prepositions',
     title: 'Verbs with Fixed Prepositions',
     rule: 'Many Spanish verbs require a specific preposition before their object or complement, often different from the preposition (or lack of one) used with the equivalent English verb. These pairings must be memorized.',

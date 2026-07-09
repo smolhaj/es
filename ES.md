@@ -888,16 +888,44 @@ measures):**
 26. Cloudflare R2 (bound, unused), a secondary/fallback LLM provider, and
     explicit exponential backoff around the Gemini call are all
     unstarted, low-risk, well-scoped if picked up.
-27. **Full CEFR-accuracy audit of `concepts.js` (109 concepts) against
-    real-world CEFR requirements** (Instituto Cervantes PCIC +
-    cross-referenced major ELE textbook sequencing), all 6 levels — not
-    just the one confirmed mismatch (tener/ir gated behind an A2-only
-    `irregular_present`, contradicting Unit 7's own A1 practice exercise
-    using "¿Cuántos años tienes?"). Likely surfaces more mismatches;
-    fixes may cascade into curriculum unit reordering since content is
-    taught in unit sequence. Directly blocks writing true-A1 reading-
-    passage content, since the story needs to know what a learner has
-    actually been taught by each level. See "Standing directives" above.
+27. **CEFR-accuracy audit of `concepts.js`, phased (07-09-2026).**
+    Phase 1 (research) found ~36 of 109 concepts mistagged against
+    real-world CEFR (Instituto Cervantes PCIC + cross-referenced ELE
+    textbook sequencing) — see `ES-HISTORY.md` for the full findings.
+    **Phase A (data layer) is done**: 18 high-confidence, non-bundled
+    mismatches retagged in `concepts.js`/`grammar.js`/`_gemini.js`'s
+    whitelist, all consistent (zero backwards prereqs, all 109
+    `grammar.js` cards re-verified to match `concepts.js` exactly).
+    **Still open**:
+    - **Phase B**: ~13 concepts that need *splitting* (a bundle mixes
+      items from two real CEFR levels) — `irregular_present`,
+      `gustar_type`, `prepositions_basic`, `modal_verbs`, `imperative`,
+      `relative_clauses`, all four `connectors_*` concepts,
+      `reformuladores`, `generos_discursivos_formales`.
+    - **Phase C**: move the two concepts created *this same session*
+      for the new B2 units (`estilo_indirecto_basico`,
+      `expresiones_probabilidad_basica`) — real level is B1, so their
+      just-shipped units (PR #55) need to move too, which also undoes
+      the B2-parity math that motivated building them (B2 goes back to
+      5 units, B1 to 8).
+    - **Phase D**: 5 concepts flagged as genuine cross-source
+      disagreement, not resolved (near_future, obligation_infinitive,
+      modal_verbs' deber split, imperfect_subjunctive/si_clauses,
+      controladores_contacto) — needs dedicated research, not a guess.
+    - **A larger, newly-discovered systemic issue**: every one of the
+      18 Phase-A-retagged concepts is currently *taught* (in
+      `curriculum/index.js`'s unit sequence) 1-2 levels later than its
+      corrected CEFR level — e.g. `present_perfect` is now correctly
+      tagged A2, but Unit 22 (B2) is still the only place it's taught.
+      Not a "used before taught" bug like the original tener/ir case
+      (nothing contradicts it), but it does mean the structured Learn
+      path systematically lags real-world CEFR pacing. Fixing this
+      means moving/rewriting curriculum unit content, not just
+      retagging metadata — a genuinely large undertaking, scoped as
+      its own future phase rather than folded into this one.
+    Directly relevant to writing true-A1 reading-passage content, since
+    the story needs to know what a learner has actually been taught by
+    each level. See "Standing directives" above.
 
 ## Session history index
 
