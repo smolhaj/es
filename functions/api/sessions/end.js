@@ -35,7 +35,11 @@ function computeCefrLevel(accuracy, sessionCount, current) {
     C1: { acc: 0.85, sessions: 12 },
   };
   const idx = order.indexOf(current);
-  if (idx === -1 || idx === order.length - 1) return current;
+  if (idx === -1) return current;
+  // No threshold exists for C2 (nothing above it to advance to), so this is
+  // naturally a no-op there — but the downgrade check below must still run at
+  // C2, otherwise a learner who reaches the top level can never be brought
+  // back down even if their performance craters afterward.
   const t = thresholds[current];
   if (t && accuracy >= t.acc && sessionCount >= t.sessions) {
     return order[idx + 1];
@@ -97,9 +101,26 @@ export async function onRequestPost({ request, env, data }) {
 
   if (!skipCefrUpdate) {
     const newSessionCount = (prevSkill?.session_count ?? 0) + 1;
-    const prevAcc = prevSkill?.accuracy ?? 0;
-    const newAcc = prevSkill
-      ? (prevAcc * prevSkill.session_count + accuracy) / newSessionCount
+
+    // Accuracy used for leveling comes from a rolling window of the most recent
+    // sessions (this one included, since ended_at was just set above), not a
+    // lifetime cumulative average. A lifetime average dilutes more with every
+    // session — by session ~20 a single new session barely moves it at all — so
+    // level-ups and downgrades would stop reflecting current performance almost
+    // entirely. session_count itself stays cumulative; it's just an experience
+    // gate, not something that needs to be "recent".
+    const RECENT_WINDOW = 10;
+    const recentSessions = await env.DB.prepare(`
+      SELECT overall_accuracy FROM sessions
+      WHERE user_id = ? AND ended_at IS NOT NULL
+        AND NOT (abandoned = 1 AND items_reviewed < 5)
+      ORDER BY started_at DESC LIMIT ?
+    `).bind(data.user.sub, RECENT_WINDOW).all();
+    const recentAccs = (recentSessions.results ?? [])
+      .map(r => r.overall_accuracy)
+      .filter(a => a != null);
+    const newAcc = recentAccs.length > 0
+      ? recentAccs.reduce((a, b) => a + b, 0) / recentAccs.length
       : accuracy;
     newCefr = computeCefrLevel(newAcc, newSessionCount, prevCefr);
 

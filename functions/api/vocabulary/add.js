@@ -1,5 +1,3 @@
-import { scheduleReview } from '../../_lib/fsrs.js';
-
 export async function onRequestPost({ request, env, data }) {
   let body;
   try {
@@ -23,20 +21,28 @@ export async function onRequestPost({ request, env, data }) {
     return Response.json({ error: 'Word already exists', id: existing.id }, { status: 409 });
   }
 
-  const fsrs = scheduleReview({}, 3);
   const now = new Date().toISOString();
   const id = crypto.randomUUID();
 
+  // due_at = now (not a future FSRS-computed date) so a brand-new,
+  // never-reviewed word shows up immediately in /vocab-review — matching
+  // vocabulary/seed.js's "all words due immediately" behavior. This used
+  // to call scheduleReview({}, 3), which scheduled new words ~3.13 days
+  // out (grade-3 stability) while still recording review_count: 0 — an
+  // internally inconsistent state (due_at implied "already reviewed once",
+  // review_count said "never reviewed") that made every word added here
+  // (including the automatic per-lesson vocab seeding in Lesson.jsx)
+  // invisible in the review queue for days after being added, since
+  // /api/vocabulary/due only returns rows with due_at <= now and has no
+  // separate "new word" bucket. stability/difficulty/retrievability are
+  // left at the schema's neutral defaults (1.0/5.0/1.0), same as seed.js.
   await env.DB.prepare(`
     INSERT INTO vocabulary_items
       (id, user_id, word, translation, domain, review_count, correct_count,
-       created_at, last_reviewed_at, stability, difficulty, retrievability, due_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, ?, ?)
+       created_at, last_reviewed_at, due_at)
+    VALUES (?, ?, ?, ?, ?, 0, 0, ?, NULL, ?)
   `).bind(
-    id, data.user.sub, word, translation, domain,
-    0, 0, now,
-    fsrs.stability, fsrs.difficulty, fsrs.retrievability,
-    now
+    id, data.user.sub, word, translation, domain, now, now
   ).run();
 
   return Response.json({ id, word, translation, domain });

@@ -49,11 +49,13 @@ export async function onRequestGet({ env, data }) {
     skills[row.skill] = { accuracy: row.accuracy, level: row.cefr_level, sessions: row.session_count };
   }
 
-  const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  const skillLevels = Object.values(skills).map(s => levels.indexOf(s.level));
-  const overallLevel = skillLevels.length > 0
-    ? levels[Math.min(...skillLevels)]
-    : 'A1';
+  // 'grammar' is the only skill the adaptive session engine actually writes to —
+  // reading/listening/writing rows are seeded at registration (auth/register.js)
+  // but nothing ever updates them, so they sit frozen at A1/0% forever. Taking
+  // Math.min() across all four skills pinned the dashboard's headline level at
+  // A1 permanently regardless of real progress. 'grammar' is also what
+  // vocabulary/seed.js already treats as the canonical level, so use it here too.
+  const overallLevel = skills.grammar?.level ?? 'A1';
 
   const streak = computeStreak(streakDates?.results ?? []);
 

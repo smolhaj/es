@@ -1589,3 +1589,117 @@ Playwright: `/vocab` shows "1439 words across 27 domains · A1 through C2,"
 new domain and register filter chips render and combine correctly (C2 +
 formal → 95 words), no console errors. Full current-state description
 lives in `ES.md`'s "Architecture" section under "Vocabulary reference."
+
+## Spaced repetition + progress-tracking deep-dive audit
+
+*Date: 07-09-2026*
+
+User: "direct your attention to making sure the spaced repetition and user
+progress functionalities are working properly. i want to learn properly.
+let's deep dive. ask me mc questions to scope and read ES.md." Scoped via
+MC questions: all three systems in scope (vocabulary FSRS, concept
+mastery, module progress); code audit first, then live end-to-end testing
+by manipulating DB timestamps to simulate accelerated time; fix
+immediately as found rather than batching for approval.
+
+**Code audit.** Read `functions/_lib/fsrs.js` (confirmed correct, no
+changes — the historical sub-day-rounding bug was already fixed),
+`vocabulary/review.js`, `flashcards/review.js`, `sessions/turn.js`,
+`vocabulary/due.js`, `vocabulary/seed.js`, `src/pages/VocabReview.jsx`,
+`src/pages/Flashcards.jsx`'s `buildQueue()`, `curriculum/progress.js`,
+`learner/profile.js`, `sessions/start.js`, `sessions/end.js`, and
+`_lib/professor.js`. Four real, previously-shipped bugs found and fixed:
+
+1. **New vocabulary words were invisible in `/vocab-review` for ~3 days.**
+   `vocabulary/add.js` called `scheduleReview({}, 3)` to seed a brand-new
+   word, which back-dated `due_at` to ~3.13 days in the future (grade-3
+   FSRS stability) while still hardcoding `review_count: 0` in the same
+   INSERT — an internally inconsistent state (due_at implied "already
+   reviewed once," review_count said "never reviewed"). Since
+   `/api/vocabulary/due` only returns rows with `due_at <= now` and has no
+   separate "new word" bucket, every word added this way — including the
+   automatic per-lesson vocab seeding in `Lesson.jsx` — sat invisible in
+   the review queue for days. Fixed by setting `due_at = now` directly
+   (matching the sibling `vocabulary/seed.js` endpoint's existing correct
+   pattern) and relying on the schema's neutral column defaults
+   (stability 1.0 / difficulty 5.0 / retrievability 1.0) instead of a
+   fabricated FSRS state. `Flashcards.jsx`'s separate deck was checked and
+   does **not** share this bug class — `flashcard_progress` rows are only
+   created on first actual review, never pre-scheduled with a fake future
+   date.
+
+2. **Fossilization detection had an off-by-one and never cleared.**
+   `sessions/turn.js`'s concept-mastery upsert computed "sessions_seen"
+   from the pre-update DB value even when the current turn was itself the
+   3rd distinct session touching a concept, so the "errors persist across
+   3+ sessions" fossilization flag actually required a 4th session to
+   fire. Separately, once flagged, the ternary fallback
+   (`existing?.fossilization_flagged ?? 0`) meant the flag could never be
+   cleared even after mastery fully recovered — a concept could end up
+   simultaneously listed as "MASTERED" and "FOSSILIZATION RISK" in the
+   same professor briefing. Fixed by computing `sessions_seen` inclusive
+   of the current turn's session delta, and clearing the flag once
+   mastery recovers to ≥0.6 (the same "ready" bar used elsewhere in
+   `concepts.js`). Verified live: a concept forced wrong across 3
+   distinct simulated sessions now flags on the 3rd (not 4th), and 6
+   subsequent correct sessions pushed mastery to 0.6 and cleared the flag.
+
+3. **The CEFR level shown on the dashboard was permanently stuck at A1.**
+   `auth/register.js` seeds four skill rows (`reading`, `listening`,
+   `writing`, `grammar`), but only `grammar` is ever written to anywhere
+   in the backend — the other three sit frozen at their seeded
+   A1/0%-accuracy default forever. `learner/profile.js`'s `overallLevel`
+   took `Math.min(...)` across all four skills, so the dashboard's
+   headline CEFR level could never advance past A1 for any user,
+   regardless of real grammar progress. Fixed by using the `grammar`
+   skill directly as the canonical level — consistent with
+   `vocabulary/seed.js`, which already treats `grammar`'s `cefr_level` as
+   the source of truth for level-appropriate content. Verified live: after
+   enough all-correct sessions to legitimately reach C2, the `/api/
+   learner/profile` response's top-level `cefr` field went from
+   permanently "A1" to correctly tracking `skills.grammar.level`.
+
+4. **CEFR leveling used a lifetime cumulative accuracy average that became
+   unresponsive after enough sessions, and C2 blocked its own downgrade
+   path.** `sessions/end.js`'s `computeCefrLevel` compared a rolling
+   lifetime average (`(prevAcc * prevSessionCount + accuracy) /
+   newSessionCount`) against fixed thresholds — by session ~20+, a single
+   new session barely moves the average at all, so both level-ups and the
+   `accuracy < 0.45` downgrade path would stop reflecting current
+   performance almost entirely. Separately, `idx === order.length - 1`
+   (i.e. current level is C2) short-circuited the whole function and
+   returned early, which correctly no-ops the level-up path (there's
+   nothing above C2) but also incorrectly skipped the downgrade check —
+   once a learner reached C2 they could never be brought back down no
+   matter how badly they performed afterward. Fixed by computing accuracy
+   from a rolling window of the most recent 10 sessions (this session
+   included) instead of a lifetime average, and by removing the early
+   return so the downgrade check always runs regardless of current level.
+   Verified live end-to-end: pushed a test account from A1 to C2 across
+   ~19 sessions of forced-correct answers (confirming multi-level
+   cascading advancement works), then fed it 4 consecutive forced-wrong
+   sessions — before the fix this produced zero movement at C2; after the
+   fix it correctly cascaded C2 → C1 → B2 → B1 → A2, one level per bad
+   session.
+
+**Live end-to-end verification method.** Local `wrangler pages dev` + D1,
+driven entirely through the real HTTP API (register → add/review
+vocabulary → start/turn/end sessions) rather than direct DB writes, using
+`UPDATE vocabulary_items SET due_at = <past-date>` to simulate elapsed
+time for a second FSRS review cycle (confirmed grade-1 "Again" on an
+overdue word correctly shrinks stability from 3.13 → 0.89 and raises
+difficulty, rather than just checking the first-review math). Gemini
+calls used the built-in static-fallback exercise bank (no real API key
+needed locally) with locally-graded correctness, so the full session
+start/turn/end loop could be exercised deterministically by choosing
+right/wrong answers. All test data (1 throwaway account) deleted from the
+local D1 DB afterward; the 13 pre-existing local test accounts from
+earlier sessions in this environment were left alone.
+
+No changes were made to the previously-identified security/integrity
+punch-list items (client-controlled exercise grading, prompt-injectable
+personal context, no rate limiting, no read-modify-write transaction
+safety) — the user has explicitly deprioritized those for this solo-use
+context ("im not gonna tamper anything... if that changes in future we
+can worry then"). This audit stayed scoped to correctness of the learning
+mechanics themselves, per the user's framing: "i want to learn properly."
