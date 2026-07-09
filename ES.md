@@ -147,20 +147,42 @@ connectors, contractions, and elisions real dialogue uses because
 - Overuse of em dashes as a default punctuation crutch, and avoidance of
   contractions/elisions where natural register calls for them.
 
-**Process**:
-1. Draft the content.
-2. Do a **dedicated second pass specifically hunting for the patterns
-   above** — don't rely on getting it right in one shot, the same way
-   grammar accuracy already gets a dedicated audit pass, not just
-   first-draft trust.
-3. Calibrate voice against how a real native author would write this
+**Process** (all 5 confirmed by the user, 07-09-2026):
+1. **Reference-corpus calibration before drafting** — skim 1-2 real,
+   human-authored passages at a similar register/genre (a real children's
+   graded reader, a real Spanish blog post, a real news brief) first, not
+   to copy content but to recalibrate rhythm and word choice away from
+   generic "AI Spanish" before writing a single word.
+2. Draft the content.
+3. **Blind second-reader pass — a genuinely separate agent/session with no
+   authoring context**, not the same pass that wrote it self-reviewing.
+   Cold read, no brief beyond "does this sound AI-written," flag anything
+   off, hand back for revision. The same context that just wrote something
+   is a weak judge of whether it sounds natural; a fresh read isn't.
+4. **Automated grep-check against the red-flag phrase list above** before
+   the blind read — a small script scanning new prose files for the
+   overused-connector list (cabe destacar, en resumen, etc.) and flagging
+   matches, the same spirit as this project's existing accuracy-audit
+   discipline. Catches the mechanical tells before a human even reads it.
+5. **Light per-character voice** for any content with multiple speakers
+   (the Blahaj story's pen pals especially) — subtly distinct word-choice
+   flavor per character rather than uniform voice across all of them,
+   kept tasteful and consistent with this project's "neutral but not
+   flavorless" existing approach to regional content (see `regional.js`).
+6. Calibrate voice against how a real native author would write this
    specific register/genre (a graded-reader children's story reads
    differently than a news passage or a formal complaint letter) rather
    than defaulting to one flat neutral-AI voice throughout.
-4. Read dialogue "aloud" (mentally) — if a sentence wouldn't actually be
+7. Read dialogue "aloud" (mentally) — if a sentence wouldn't actually be
    said that way by a real person, rewrite it.
-5. Vary sentence/paragraph structure deliberately rather than settling
+8. Vary sentence/paragraph structure deliberately rather than settling
    into a repeating template.
+9. **Human spot-check before scaling up** — for any new extended-prose
+   content type (the reading-passages story specifically), write and ship
+   just one sample unit first for the user to read and react to, before
+   committing to writing the full planned set. Confirmed working this way
+   for the Blahaj story: chapter 1 first, full 18-chapter build only after
+   that reads right.
 
 ---
 
