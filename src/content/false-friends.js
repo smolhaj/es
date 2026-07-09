@@ -8,6 +8,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say embarrassed, use avergonzado/a',
     example: 'Ella está embarazada. — She is pregnant.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'actualmente',
@@ -16,6 +17,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say actually, use en realidad or de hecho',
     example: 'Actualmente vivo en Madrid. — I currently live in Madrid.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'sensible',
@@ -24,6 +26,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say sensible, use sensato/a or razonable',
     example: 'Ella es muy sensible. — She is very sensitive.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'éxito',
@@ -32,6 +35,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say exit, use salida',
     example: 'Tuvo mucho éxito. — He had a lot of success.',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'librería',
@@ -40,6 +44,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say library (where you borrow books), use biblioteca',
     example: 'Compré el libro en la librería. — I bought the book at the bookshop.',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'carpeta',
@@ -48,6 +53,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say carpet, use alfombra (rug/carpet) or moqueta (fitted carpet)',
     example: 'Guarda los documentos en la carpeta. — Keep the documents in the folder.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'realizar',
@@ -56,6 +62,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say realize (become aware), use darse cuenta de',
     example: 'Vamos a realizar el proyecto. — We will carry out the project.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'recordar',
@@ -64,6 +71,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say to record (audio/video), use grabar',
     example: 'No recuerdo su nombre. — I don\'t remember his name.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'largo',
@@ -72,6 +80,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say large/big, use grande or gran',
     example: 'El pasillo es muy largo. — The hallway is very long.',
     dangerLevel: 'high',
+    cefr: 'A1',
   },
   {
     spanish: 'sopa',
@@ -80,6 +89,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say soap, use jabón',
     example: 'La sopa está caliente. — The soup is hot.',
     dangerLevel: 'medium',
+    cefr: 'A1',
   },
   {
     spanish: 'introducir',
@@ -88,6 +98,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To introduce a person, use presentar. Introducir is for objects or data.',
     example: 'Introduce tu contraseña. — Enter your password.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'pretender',
@@ -96,6 +107,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say pretend (fake), use fingir or hacer como si',
     example: 'Pretende estudiar medicina. — He intends to study medicine.',
     dangerLevel: 'high',
+    cefr: 'B2',
   },
   {
     spanish: 'asistir',
@@ -104,6 +116,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say assist (help), use ayudar',
     example: 'Asistí a la conferencia. — I attended the conference.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'molestar',
@@ -112,6 +125,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Molestar is perfectly ordinary. For to molest in the criminal sense, use abusar sexualmente de.',
     example: '¿Te molesta el ruido? — Does the noise bother you?',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'constipado',
@@ -120,6 +134,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say constipated, use estreñido/a',
     example: 'Estoy constipado. — I have a cold.',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'simpático',
@@ -128,6 +143,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say sympathetic, use comprensivo/a or empático/a',
     example: 'Tu profesora es muy simpática. — Your teacher is very nice.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'gracioso',
@@ -136,6 +152,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say gracious (courteous/kind), use amable, cortés, or gentil',
     example: 'El chiste fue muy gracioso. — The joke was very funny.',
     dangerLevel: 'low',
+    cefr: 'A2',
   },
   {
     spanish: 'tópico',
@@ -144,6 +161,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'The RAE says tópico should mean "cliché," not "topic" — that is a calque from English. In Spain this rule holds strictly. In much of Latin America, tópico is nonetheless commonly used to mean "topic," so context matters there. To be safe everywhere, use tema for topic.',
     example: 'Es un tópico que todos los españoles duermen la siesta. — It\'s a cliché that all Spaniards take siestas.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'compromiso',
@@ -152,6 +170,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say compromise (mutual concession), use acuerdo or término medio',
     example: 'Tengo un compromiso el viernes. — I have a commitment on Friday.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'padres',
@@ -160,6 +179,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'The plural of padre means parents, not just fathers',
     example: 'Mis padres viven en Sevilla. — My parents live in Seville.',
     dangerLevel: 'medium',
+    cefr: 'A1',
   },
   {
     spanish: 'fábrica',
@@ -168,6 +188,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say fabric (cloth), use tela',
     example: 'Trabaja en una fábrica de coches. — He works in a car factory.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'colegio',
@@ -176,6 +197,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say college/university, use universidad',
     example: 'Los niños van al colegio. — The children go to school.',
     dangerLevel: 'medium',
+    cefr: 'A1',
   },
   {
     spanish: 'lectura',
@@ -184,6 +206,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say lecture (a talk), use conferencia or clase magistral',
     example: 'La lectura del texto fue difícil. — Reading the text was difficult.',
     dangerLevel: 'low',
+    cefr: 'B1',
   },
   {
     spanish: 'ropa',
@@ -192,6 +215,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say rope, use cuerda',
     example: 'Necesito ropa de invierno. — I need winter clothes.',
     dangerLevel: 'low',
+    cefr: 'A1',
   },
   {
     spanish: 'informal',
@@ -200,6 +224,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Calling someone informal means they can\'t be counted on, not that they\'re casual',
     example: 'Es muy informal — nunca llega a tiempo. — He\'s very unreliable — he never arrives on time.',
     dangerLevel: 'medium',
+    cefr: 'C1',
   },
   {
     spanish: 'ignorar',
@@ -208,6 +233,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'In formal Spanish, ignorar often means "not to know." To say ignore (snub), use hacer caso omiso de.',
     example: 'Ignoro por qué no vino. — I don\'t know why he didn\'t come.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'arena',
@@ -216,6 +242,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say arena (sports venue), use estadio, pabellón, or ruedo (bullfighting).',
     example: 'La playa tiene arena blanca. — The beach has white sand.',
     dangerLevel: 'low',
+    cefr: 'A2',
   },
   {
     spanish: 'discutir',
@@ -224,6 +251,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To discuss (calmly), use hablar de or tratar. Discutir usually implies an argument.',
     example: 'Discutieron toda la noche. — They argued all night.',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'enérgico',
@@ -232,6 +260,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Enérgico describes a strong or firm manner, not necessarily high physical energy. For energetic (lively), use activo or lleno de energía.',
     example: 'Dio una respuesta enérgica. — He gave a firm reply.',
     dangerLevel: 'low',
+    cefr: 'B2',
   },
   {
     spanish: 'sano',
@@ -240,6 +269,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say sane (mentally sound), use cuerdo or sensato. Sano = physically or generally healthy.',
     example: 'Lleva una vida sana. — She leads a healthy life.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'injuria',
@@ -248,6 +278,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say injury (physical), use herida or lesión. Injuria is a verbal or legal affront.',
     example: 'Le lanzó injurias. — He hurled insults at her.',
     dangerLevel: 'medium',
+    cefr: 'C2',
   },
   {
     spanish: 'trampa',
@@ -256,6 +287,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say tramp (vagrant), use vagabundo. Trampa = a trap or a cheat.',
     example: 'Hizo trampa en el examen. — He cheated in the exam.',
     dangerLevel: 'low',
+    cefr: 'B1',
   },
   {
     spanish: 'disgusto',
@@ -264,6 +296,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Disgusto is milder than English disgust. Strong physical disgust is asco or repugnancia.',
     example: 'Le dio un gran disgusto. — It upset him greatly.',
     dangerLevel: 'low',
+    cefr: 'B1',
   },
   {
     spanish: 'preservativo',
@@ -272,6 +305,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Preservativo exclusively means condom in Spanish. Preservar itself is a true cognate (to preserve/protect), but its noun form preservativo is a trap. For food preservative, use conservante.',
     example: 'Sin conservantes artificiales. — Without artificial preservatives.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'actual',
@@ -280,6 +314,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say actual (real/genuine), use real or verdadero. Actual = happening now.',
     example: 'El precio actual es más alto. — The current price is higher.',
     dangerLevel: 'high',
+    cefr: 'B2',
   },
   {
     spanish: 'argumento',
@@ -288,6 +323,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say argument (fight/dispute), use discusión or pelea.',
     example: 'El argumento de la novela es complejo. — The plot of the novel is complex.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'eventualmente',
@@ -296,6 +332,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say eventually (after a long time), use al final, con el tiempo, or finalmente.',
     example: 'Eventualmente podría ocurrir. — It could possibly happen.',
     dangerLevel: 'high',
+    cefr: 'B2',
   },
   {
     spanish: 'emocionante',
@@ -304,6 +341,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say emotional (showing feelings), use emotivo or sentimental.',
     example: 'Fue un partido muy emocionante. — It was a very exciting match.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'comprensivo',
@@ -312,6 +350,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say comprehensive, use exhaustivo, completo, or amplio.',
     example: 'Mi jefe es muy comprensivo con los errores. — My boss is very understanding about mistakes.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'intoxicado',
@@ -320,6 +359,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say intoxicated (drunk), use borracho or ebrio. Intoxicado = poisoned.',
     example: 'Estoy intoxicado — comí algo malo. — I have food poisoning — I ate something bad.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'once',
@@ -328,6 +368,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say once (one time), use una vez.',
     example: 'Son las once de la noche. — It\'s eleven o\'clock at night.',
     dangerLevel: 'medium',
+    cefr: 'A1',
   },
   {
     spanish: 'suceso',
@@ -336,6 +377,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say success, use éxito. Suceso = an event that took place.',
     example: 'El suceso ocurrió a medianoche. — The incident occurred at midnight.',
     dangerLevel: 'high',
+    cefr: 'B2',
   },
   {
     spanish: 'genial',
@@ -344,6 +386,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say genial (friendly and cheerful), use amable, afable, or simpático.',
     example: '¡Qué idea tan genial! — What a brilliant idea!',
     dangerLevel: 'low',
+    cefr: 'A2',
   },
   {
     spanish: 'apología',
@@ -352,6 +395,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say apology, use disculpa or perdón. Apología is a formal defense of something.',
     example: 'Hizo una apología del régimen. — He made a defense of the regime.',
     dangerLevel: 'medium',
+    cefr: 'C2',
   },
   {
     spanish: 'reclamar',
@@ -360,6 +404,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To reclaim (take back), use recuperar or recobrar.',
     example: 'Reclamó su dinero. — She demanded her money back.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'grosería',
@@ -368,6 +413,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say grocery, use supermercado (supermarket) or tienda de comestibles.',
     example: 'Decir eso es una grosería. — Saying that is rude.',
     dangerLevel: 'low',
+    cefr: 'B1',
   },
   {
     spanish: 'bizarro',
@@ -376,6 +422,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'In Spain (literary), bizarro means brave. In Latin America it has shifted to mean bizarre/odd like the English.',
     example: 'Un gesto bizarro de valentía. — A brave/gallant gesture.',
     dangerLevel: 'low',
+    cefr: 'B2',
   },
   {
     spanish: 'cuestión',
@@ -384,6 +431,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say question (something asked), use pregunta. Cuestión = a topic or issue under consideration.',
     example: 'Es una cuestión de tiempo. — It\'s a matter of time.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'coraje',
@@ -392,6 +440,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'In Spain, coraje = courage/bravery. In Mexico and much of Latin America, coraje = anger. Use valor for courage to be safe everywhere.',
     example: 'Me da coraje cuando llega tarde. (LatAm) — It makes me angry when he arrives late.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'decepción',
@@ -400,6 +449,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say deception or deceit, use engaño or fraude',
     example: 'Fue una gran decepción. — It was a great disappointment.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'pie',
@@ -408,6 +458,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say pie (the pastry), use pastel, tarta, or empanada depending on the country',
     example: 'Me duele el pie. — My foot hurts.',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'conductor',
@@ -416,6 +467,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say conductor (of an orchestra), use director de orquesta',
     example: 'El conductor del autobús frenó de golpe. — The bus driver braked suddenly.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'firma',
@@ -424,6 +476,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say firm/company, use empresa or compañía',
     example: 'Necesito tu firma aquí. — I need your signature here.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'mayor',
@@ -432,6 +485,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say city mayor, use alcalde/alcaldesa',
     example: 'Él es mayor que yo. — He is older than me.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'ganga',
@@ -440,6 +494,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say gang (criminal), use pandilla or banda',
     example: '¡Qué ganga! — What a bargain!',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'vaso',
@@ -448,6 +503,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say vase (for flowers), use florero or jarrón',
     example: 'Dame un vaso de agua, por favor. — Give me a glass of water, please.',
     dangerLevel: 'medium',
+    cefr: 'A1',
   },
   {
     spanish: 'pena',
@@ -456,6 +512,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say physical or emotional pain, use dolor. Pena can also mean "pity" or "sentence"',
     example: '¡Qué pena! — What a shame!  |  Siente pena por él. — She feels sorry for him.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'nombre',
@@ -464,6 +521,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say number, use número',
     example: '¿Cuál es tu nombre? — What is your name?',
     dangerLevel: 'high',
+    cefr: 'A1',
   },
   {
     spanish: 'campo',
@@ -472,6 +530,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say camp (camping), use campamento or campo de camping',
     example: 'Vivía en el campo. — He lived in the countryside.',
     dangerLevel: 'low',
+    cefr: 'A2',
   },
   {
     spanish: 'copa',
@@ -480,6 +539,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say a regular cup/mug, use taza. A drinking glass is vaso',
     example: 'Tomamos una copa de vino. — We had a glass of wine.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'soportar',
@@ -488,6 +548,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say support (emotionally or financially), use apoyar or sostener',
     example: 'No lo soporto — es insoportable. — I can\'t stand him — he\'s insufferable.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'parientes',
@@ -496,6 +557,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say parents (mother and father), use padres',
     example: 'Tengo muchos parientes en el sur. — I have many relatives in the south.',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'eventual',
@@ -504,6 +566,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say eventual (final/ultimate), use final or definitivo. Eventual in Spanish means contingent or possible.',
     example: 'Es un trabajador eventual, no fijo. — He is a temporary worker, not permanent.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'salvar',
@@ -512,6 +575,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To soothe or apply a salve, use calmar or aliviar. Salvar means to save a life or rescue.',
     example: 'Los bomberos salvaron a la familia. — The firefighters saved the family.',
     dangerLevel: 'low',
+    cefr: 'A2',
   },
   {
     spanish: 'formidable',
@@ -520,6 +584,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'In English, formidable usually means impressive and intimidating. In Spanish it means great or wonderful.',
     example: '¡Qué actuación tan formidable! — What a fantastic performance!',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'relativo',
@@ -528,6 +593,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'For a family relative, use pariente or familiar. Relativo means related to or not absolute.',
     example: 'Todo es relativo en la vida. — Everything is relative in life.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'extrañar',
@@ -536,6 +602,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Extrañar can mean both to miss something/someone AND to find something odd. Context clarifies.',
     example: 'Te extraño mucho. — I miss you a lot.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'renta',
@@ -544,6 +611,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'For housing rent, use alquiler. Renta usually refers to income or a tax declaration.',
     example: 'Tengo que hacer la declaración de la renta. — I have to file my income tax return.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'esperar',
@@ -552,6 +620,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'For to expire (run out), use caducar or vencer. Esperar has three related English meanings.',
     example: 'Te espero aquí. — I\'ll wait for you here.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'enfadado',
@@ -560,6 +629,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'No connection to the English word faded. Enfadado derives from enfadar (to anger). Use desteñido for faded colour.',
     example: 'Está muy enfadado contigo. — He\'s very angry with you.',
     dangerLevel: 'low',
+    cefr: 'A1',
   },
   {
     spanish: 'habitación',
@@ -568,6 +638,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say habitation (dwelling), use vivienda or morada. Habitación is an ordinary room — "una habitación doble" is a double room.',
     example: 'Quisiera reservar una habitación. — I\'d like to book a room.',
     dangerLevel: 'medium',
+    cefr: 'A1',
   },
   {
     spanish: 'propaganda',
@@ -576,6 +647,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'In Spanish, propaganda is a neutral word for advertising or flyers. For political propaganda in the negative sense, use manipulación or desinformación.',
     example: 'El buzón estaba lleno de propaganda. — The letterbox was full of leaflets.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'red',
@@ -584,6 +656,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say the colour red, use rojo. Red in Spanish means a net, a network (la red de transportes), or the internet (en la red).',
     example: 'El pez cayó en la red. — The fish fell into the net.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'casualidad',
@@ -592,6 +665,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say casualty (someone killed or injured), use víctima or baja. Casualidad means a coincidence.',
     example: '¡Qué casualidad encontrarte aquí! — What a coincidence running into you here!',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'idioma',
@@ -600,6 +674,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say idiom (a set phrase like "kick the bucket"), use modismo or expresión idiomática. Idioma = a language.',
     example: 'Habla cuatro idiomas. — She speaks four languages.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'agenda',
@@ -608,6 +683,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say agenda (as in a hidden agenda or meeting agenda), use orden del día or motivos ocultos. Agenda in everyday Spanish is a planner or diary.',
     example: 'Apunta la cita en tu agenda. — Write the appointment in your diary.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'tabla',
@@ -616,6 +692,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say table (the piece of furniture you eat at), use mesa. Tabla means a flat board, a data table, or a tablet.',
     example: 'La tabla de surf está en el garaje. — The surfboard is in the garage.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'chocar',
@@ -624,6 +701,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say shock (surprise strongly), use sorprender, impactar, or conmocionar. Chocar = to collide or crash.',
     example: 'Los dos coches chocaron en la autopista. — The two cars crashed on the motorway.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'sensato',
@@ -632,6 +710,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Sensato is what sensible looks like in Spanish. To say sensitive, use sensible (which in turn looks like sensible — see that entry).',
     example: 'Es una decisión muy sensata. — It\'s a very sensible decision.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'local',
@@ -640,6 +719,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'As an adjective, local works the same as in English. As a noun, un local means a shop unit, venue, or commercial premises.',
     example: 'Alquilamos un local en el centro. — We rented premises in the city centre.',
     dangerLevel: 'low',
+    cefr: 'B1',
   },
   {
     spanish: 'excitado',
@@ -648,6 +728,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say excited (happy/enthusiastic), use emocionado/a or entusiasmado/a. Never use excitado to mean "I\'m excited about the trip!"',
     example: 'Estoy muy emocionado por el viaje. — I\'m very excited about the trip.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'educado',
@@ -656,6 +737,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say someone is educated (has studied), use culto, formado, or con estudios. Educado refers to manners, not qualifications.',
     example: 'Es una persona muy educada. — She is a very polite person.',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'afición',
@@ -664,6 +746,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say affection, use cariño or afecto. Afición means what you love to do, or the fans in a stadium.',
     example: 'Su afición es la fotografía. — Her hobby / passion is photography.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'contestar',
@@ -672,6 +755,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say contest in the sense of dispute, use disputar, impugnar, or cuestionar. Contestar simply means to answer (the phone, a question, a message).',
     example: 'No me contestó al teléfono. — She didn\'t answer the phone.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'atender',
@@ -680,6 +764,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say attend in the sense of going to an event or class, use asistir a. Atender means to see to someone: a customer, a patient, a request.',
     example: 'La enfermera atendió al paciente. — The nurse attended to the patient.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'preservativo',
@@ -688,6 +773,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'To say food preservative, use conservante. Preservativo exclusively means condom in Spanish — using it in a food context will cause great confusion.',
     example: 'Este producto no tiene conservantes. — This product contains no preservatives.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'regular',
@@ -696,6 +782,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'When a Spanish speaker answers "¿Cómo estás?" with "Regular", it means they are not doing great — not that they are doing normally. For regular as in consistent or standard, use habitual or normal.',
     example: '—¿Cómo estás? —Regular. — How are you? — So-so.',
     dangerLevel: 'high',
+    cefr: 'A1',
   },
   {
     spanish: 'complexión',
@@ -704,6 +791,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Complexión refers to body build (robust, slim, athletic), not to skin colour or complexion. For skin appearance, use cutis (skin tone) or tez (complexion of the face).',
     example: 'Tiene una complexión atlética. — He has an athletic build.',
     dangerLevel: 'high',
+    cefr: 'C1',
   },
   {
     spanish: 'ingenuidad',
@@ -712,6 +800,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Ingenuidad comes from ingenuo (naive), not ingenioso (clever). For ingenuity (clever problem-solving), use ingenio or inventiva.',
     example: 'Se aprovecharon de su ingenuidad. — They took advantage of his naivety.',
     dangerLevel: 'medium',
+    cefr: 'C1',
   },
   {
     spanish: 'calificar',
@@ -720,6 +809,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Calificar means to assign a grade or to characterise something. To say qualify in the sense of being eligible, use clasificarse or reunir los requisitos.',
     example: 'El profesor calificó los exámenes. — The teacher graded the exams.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'dependiente',
@@ -728,6 +818,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Dependiente/a as a noun is the person who serves you in a shop, not someone who is dependent. For dependent (relying on someone), use dependiente de or a cargo de as an adjective phrase.',
     example: 'La dependienta me ayudó a encontrar la talla correcta. — The shop assistant helped me find the right size.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'solicitud',
@@ -736,6 +827,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Solicitud is completely neutral — it simply means an application form or a formal request. There is no negative connotation. For solicitation in a legal sense, use acoso or inducción.',
     example: 'Envié mi solicitud de empleo ayer. — I sent my job application yesterday.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'noticia',
@@ -744,6 +836,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Noticia is one item of news, not a physical notice or sign. For notice as in a sign on a wall, use aviso, cartel, or letrero. For the plural "the news", use las noticias.',
     example: 'Recibí una noticia sorprendente. — I received a surprising piece of news.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'carrera',
@@ -752,6 +845,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Carrera can mean career, but also a university degree programme, or a race (running/driving). Context decides: hacer una carrera = to study for a degree; una carrera de F1 = a Formula 1 race; hacer carrera = to build a career.',
     example: 'Estudia una carrera de medicina. — She is studying a medicine degree.',
     dangerLevel: 'low',
+    cefr: 'B1',
   },
   {
     spanish: 'procurar',
@@ -760,6 +854,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Procurar is a neutral, common verb meaning to try or ensure: procura llegar a tiempo = try to arrive on time. It carries no connotation of obtaining something questionable. For procure in the supply sense, use conseguir or adquirir.',
     example: 'Procura no llegar tarde. — Make sure you do not arrive late.',
     dangerLevel: 'low',
+    cefr: 'C1',
   },
   {
     spanish: 'asistir',
@@ -768,6 +863,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Asistir a means to attend an event. To say help/assist, use ayudar.',
     example: 'Asistí a la reunión. — I attended the meeting.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'molestar',
@@ -776,6 +872,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Molestar is completely neutral and extremely common. ¿Te molesta? = Does it bother you? For sexual assault, use abusar sexualmente de or agredir sexualmente.',
     example: '¿Te molesta si abro la ventana? — Do you mind if I open the window?',
     dangerLevel: 'high',
+    cefr: 'A2',
   },
   {
     spanish: 'pretender',
@@ -784,6 +881,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Pretender means to intend or attempt, not to fake. To say pretend, use fingir or hacer como si.',
     example: 'Pretendo terminar el proyecto esta semana. — I intend to finish the project this week.',
     dangerLevel: 'high',
+    cefr: 'B2',
   },
   {
     spanish: 'soportar',
@@ -792,6 +890,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Soportar expresses tolerance — often negative. No lo soporto = I can\'t stand him. To say support someone emotionally or financially, use apoyar.',
     example: 'No soporto el ruido por la noche. — I can\'t stand noise at night.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'largo',
@@ -800,6 +899,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Largo describes length, not size. A large house is una casa grande; a long corridor is un pasillo largo.',
     example: 'Es un viaje muy largo. — It\'s a very long journey.',
     dangerLevel: 'high',
+    cefr: 'A1',
   },
   {
     spanish: 'firma',
@@ -808,6 +908,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Firma primarily means a handwritten signature. It can also mean a company in formal/business Spanish, but in everyday use it almost always means signature. For a business firm, use empresa or compañía to be safe.',
     example: 'Necesito tu firma aquí. — I need your signature here.',
     dangerLevel: 'high',
+    cefr: 'B1',
   },
   {
     spanish: 'ropa',
@@ -816,6 +917,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Ropa has nothing to do with ropes. It means clothing in general. For rope, use cuerda or soga.',
     example: 'Tengo que lavar la ropa. — I have to do the laundry / wash my clothes.',
     dangerLevel: 'high',
+    cefr: 'A1',
   },
   {
     spanish: 'introducir',
@@ -824,6 +926,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Introducir means to insert or enter data. To introduce a person, use presentar.',
     example: 'Introduce tu contraseña. — Enter your password.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'delito',
@@ -832,6 +935,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Delito is a legal term for a crime. For delight (pleasure), use deleite, placer, or encanto.',
     example: 'Cometió un delito grave. — He committed a serious crime.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'disgusto',
@@ -840,6 +944,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Disgusto is milder than English "disgust." Me llevé un disgusto = I was upset / disappointed. For the physical sensation of disgust/revulsion, use asco.',
     example: 'Se llevó un disgusto cuando perdió el partido. — He was really upset when he lost the match.',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'casual',
@@ -848,6 +953,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Casual in Spanish describes something happening by chance, not a relaxed style. ¡Qué casual! = What a coincidence! For a casual dress code, use informal or relajado.',
     example: '¡Qué casual que nos hayamos encontrado aquí! — What a coincidence running into each other here!',
     dangerLevel: 'medium',
+    cefr: 'B1',
   },
   {
     spanish: 'renta',
@@ -856,6 +962,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Renta usually means income or yield (declaración de la renta = income tax return). For monthly housing rent, use alquiler.',
     example: 'Tiene una renta fija de sus inversiones. — He has a fixed income from his investments.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
   {
     spanish: 'propina',
@@ -864,6 +971,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Propina is the everyday word for a tip at a restaurant or for a small reward. Dejar propina = to leave a tip.',
     example: 'Dejamos una propina del diez por ciento. — We left a ten per cent tip.',
     dangerLevel: 'low',
+    cefr: 'A2',
   },
   {
     spanish: 'educado',
@@ -872,6 +980,7 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Educado describes good manners, not academic achievement. Es muy educado = He is very well-mannered. For academically educated, use instruido, culto, or con estudios.',
     example: 'Los niños son muy educados. — The children are very well-mannered.',
     dangerLevel: 'medium',
+    cefr: 'A2',
   },
   {
     spanish: 'eventual',
@@ -880,5 +989,8 @@ export const FALSE_FRIENDS = [
     correctUsage: 'Eventual means something that may or may not happen, or temporary work. Un trabajo eventual = a temporary/casual job. For "eventual" in the English sense (final, ultimate), use final or definitivo.',
     example: 'Tiene un contrato eventual de tres meses. — She has a three-month temporary contract.',
     dangerLevel: 'medium',
+    cefr: 'B2',
   },
 ];
+
+export const CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
