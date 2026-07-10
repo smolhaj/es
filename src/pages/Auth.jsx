@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
@@ -10,6 +10,19 @@ export default function Auth({ mode }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
+  // Guards against StrictMode's dev-only double effect invocation, which
+  // would otherwise consume+clear the sessionStorage flag on the first
+  // (discarded) run and leave the real run seeing nothing.
+  const consumedFlagRef = useRef(false);
+  useEffect(() => {
+    if (consumedFlagRef.current) return;
+    consumedFlagRef.current = true;
+    if (sessionStorage.getItem('capi_session_expired')) {
+      sessionStorage.removeItem('capi_session_expired');
+      setSessionExpired(true);
+    }
+  }, []);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -45,6 +58,10 @@ export default function Auth({ mode }) {
               ? 'Sign in to continue your sessions.'
               : 'Create your account — no credit card, no trial.'}
           </p>
+
+          {isLogin && sessionExpired && (
+            <p className={styles.error} role="alert">Your session expired — sign in again to continue.</p>
+          )}
 
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
             <div className={styles.field}>

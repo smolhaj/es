@@ -946,8 +946,19 @@ measures):**
 6. ~~`Feedback.module.css`'s `.conceptNote` references an undefined CSS
    token~~ — **done** (07-10-2026): `var(--bg-card)` changed to
    `--surface`.
-7. **No global 401/expired-token handling** — `lib/api.js`'s `req()`
-   throws a plain `Error`; nothing intercepts a 401 to call `logout()`.
+7. ~~No global 401/expired-token handling~~ — **done** (07-10-2026): user
+   report — an expired 7-day token left every authenticated page showing a
+   bare literal "Unauthorized" instead of any real content. `lib/api.js`'s
+   `req()` now dispatches a `capi:unauthorized` window event whenever an
+   *authenticated* call (one that sent a token) gets back a 401 — a public
+   endpoint like login rejecting bad credentials is unaffected and still
+   handled locally. `AuthProvider` listens for that event and calls
+   `logout()`, which flips `isLoggedIn` false and lets the existing
+   `Protected` route wrapper redirect to `/login` on its own; a
+   `sessionStorage` flag surfaces "Your session expired — sign in again"
+   on that redirect. Consuming the flag needed a `useRef` guard against
+   React 18 StrictMode's dev-only double effect invocation, which
+   otherwise cleared it before the real render read it.
 8. ~~Keyboard-submitted multiple-choice answers never show as selected~~
    — **done** (07-10-2026): `ExerciseCard.jsx`'s `1`-`4` keyboard
    shortcut now calls `setSelected` before `onSubmit`.
