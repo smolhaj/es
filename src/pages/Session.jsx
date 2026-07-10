@@ -67,7 +67,7 @@ export default function Session() {
   const handleAnswer = useCallback(async (learnerAnswer) => {
     setPhase('checking');
     try {
-      const result = await api.sessions.turn(token, sessionId, exercise, learnerAnswer);
+      const result = await api.sessions.turn(token, sessionId, learnerAnswer);
       setFeedback({
         correct: result.correct,
         text: result.feedback,

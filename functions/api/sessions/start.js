@@ -51,5 +51,11 @@ export async function onRequestPost({ request, env, data }) {
 
   const { exercise, greeting, source, fallbackReason } = await callGemini(env, userMessage, null, null, true, briefing, focusConcept);
 
+  // Persist the exercise actually issued so turn.js can grade against this
+  // trusted server-side copy instead of whatever the client echoes back.
+  await env.DB.prepare(
+    'UPDATE sessions SET pending_exercise = ? WHERE id = ?'
+  ).bind(JSON.stringify(exercise), sessionId).run();
+
   return Response.json({ sessionId, exercise, greeting, source, fallbackReason });
 }

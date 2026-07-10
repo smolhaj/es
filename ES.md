@@ -870,12 +870,22 @@ any item below (where one exists) is in `ES-HISTORY.md`.
 
 **Security/integrity (highest priority — these undermine what the product
 measures):**
-1. **The adaptive session grades itself off client-controlled data.**
-   `functions/api/sessions/turn.js` takes the `exercise` object (including
-   its `answer` field) straight from the request body — nothing
-   server-side records what exercise was actually issued. Fix: persist the
-   issued exercise server-side keyed by `sessionId` when generated, grade
-   against that stored copy, not the request body's echo of it.
+1. ~~The adaptive session grades itself off client-controlled data~~ —
+   **done** (07-10-2026): `sessions.pending_exercise` (new column,
+   `schema-v10.sql`) now stores the exercise the server actually issued;
+   `start.js` writes it after the first exercise, `turn.js` reads and
+   grades against it instead of trusting `body.exercise`, then overwrites
+   it with the next issued exercise each turn. The client no longer even
+   sends an `exercise` field to `/sessions/turn`. Verified locally with
+   `wrangler pages dev` + local D1: submitting a doctored
+   `exercise.answer` matching a bogus `learnerAnswer` no longer forges a
+   correct grade (server ignores it and grades against the stored copy);
+   the legitimate path (no `exercise` field sent at all) still grades
+   correctly. **Requires a remote D1 migration before this is live in
+   production** — `schema-v10.sql` hasn't been run against the prod
+   database from this environment (no Cloudflare credentials here); run
+   `wrangler d1 execute es --remote --file=schema-v10.sql` before/at
+   merge, or writes to the new column will fail in production.
 2. **Saved profile context is prompt-injectable into Gemini's system
    prompt, persistently.** `functions/api/learner/context.js`'s free-text
    `key`/`value` pairs get spliced verbatim into the briefing text sent on
