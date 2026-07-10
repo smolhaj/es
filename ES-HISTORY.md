@@ -3230,3 +3230,105 @@ the new passages, and a full comprehension-question run-through on
 Blahaj Chapter 2 (5 questions, one deliberately via multiple-choice, one
 free-text) produced the correct "You got 5 of 5 correct" summary. Scratch
 scripts deleted afterward.
+
+**A real user hit a real grading gap, fixed within the hour.** After PR
+#65 merged, the user reported (with a screenshot) that "El domingo en el
+parque"'s comprehension question — "What does Sara ask the man before she
+leaves?" — marked "What's your name?" wrong, accepting only "his name."
+Both are genuinely correct: the passage's own line is "Sara pregunta el
+nombre del hombre," and a direct rendering of that question is at least
+as natural an answer as the indirect description. Fixed by widening
+`altAnswers` rather than narrowing the question — the lesson: a "what
+does X ask" comprehension prompt is structurally ambiguous between a
+topic-description answer and a direct-quote answer, worth double-checking
+on any future question phrased that way.
+
+**A completion checkmark, requested next, mirroring Learn.** The user
+asked for a Learn-style progress checkmark on `/readings` cards. Rather
+than stand up a backend table (the natural Learn-parity move, since Learn
+units persist via a real `module_progress` table + `/api/curriculum/
+progress` endpoint), this reused the *actual* precedent already set for
+this feature: reading comprehension has been explicitly no-backend,
+client-only since it shipped. `src/lib/readingProgress.js` is a ~20-line
+localStorage wrapper (`capi_readings_completed`, `{ [passageId]: true }`)
+— a passage is marked complete the moment the learner reaches the end of
+its question set, same completion bar Learn uses (not gated on a perfect
+score). `Readings.jsx` renders the same ✓ badge + border-tint pattern as
+`GetStarted.jsx`'s `UnitCard`, plus an "N of M complete" progress line.
+Verified live: completing all 5 questions on Blahaj Chapter 2 writes
+`{"blahaj-ch2":true}` to `localStorage`, and only that card gets a
+checkmark on return to the list.
+
+## Blahaj Chapter 3, and a third standalone/practical-task passage each
+
+Follow-up scoping request: continue Blahaj (closing out the current
+mini-arc rather than starting a new trip), plus one more standalone scene
+and one more practical-task passage — a small, reviewable batch rather
+than another 4-wide sweep. `AskUserQuestion` failed once mid-scoping
+(a recurring tool hiccup in this environment), handled by falling back to
+plain-text options as before. Scoped concretely via two follow-up
+rounds: Blahaj ch3 closes the arc (Blahaj returns home rather than moving
+to a new country), the third standalone scene is a corner pharmacy
+(Marcos, a headache), the second practical-task passage is ordering at a
+café (Valentina, an apple tart) — deliberately not another phone call or
+directions scene, to keep the site's small but growing content mix from
+repeating a template too soon.
+
+**A tighter grammar-structure pass this round**, informed by the last
+batch's own final QA finding that the shipped bakery passage uses "No
+dice nada, solo espera" — a real, still-unfixed A2 `negation` violation
+(the `nada`/`nadie`/`nunca`/`tampoco` concept) that the very first QA
+pass missed. Held every new sentence in this batch to the same explicit
+checklist: present tense only; no object pronouns (rewrote "Lucía la
+abre rápido" → "Lucía abre la caja rápido" and "para recibirlo" → "para
+recibir a Blahaj otra vez" — both are enclitic/attached object-pronoun
+constructions that slipped in on a first draft and were caught on
+review); no preterite/imperfect/future/conditional/subjunctive; no
+relative clauses; no present progressive; no comparatives; no
+imperative (the pharmacist's dosage instructions use "puede tomar" +
+"también es bueno descansar," not a command form); no
+`nada`/`nadie`/`nunca`/`tampoco`.
+
+**Vocabulary gaps, closed with the same rigor, one homograph fix mid-
+batch.** Manual drafting plus a `segmentSpanish` matcher pass (the
+standard verification step as of the last batch) surfaced 20 genuinely
+missing words: `terminar`, `regalo`, `buzón`, `historia`, `contar`,
+`medicina`, `cada`, `ya no`, `desear`, `camarero`, `señalar`, `pastel`,
+`popular`, `probar`, `pedazo`, `esquina`, `descansar`, `entrar`,
+`hambre`. One near-miss: a first-draft `detrás de` phrase entry silently
+wouldn't have matched the actual passage text ("Detrás **del**
+mostrador") — Spanish's obligatory *de + el → del* contraction meant the
+literal two-token phrase "detrás de" never appears next to a definite
+article. Fixed by entering the bare adverb `detrás` instead (matching
+the existing `cerca`/`lejos` pattern of single-word adverbs that combine
+productively with a following "de + noun"), the same lesson the site's
+`buscar`-a-`banco` homograph near-miss taught two batches ago: check
+what the *actual sentence* looks like, not just what the dictionary
+entry "should" say in isolation. Also reused an existing entry instead
+of adding a new one: `rico` already means "delicious" (A1), so the café
+scene's "it's delicious!" line used that instead of coining a new
+`delicioso` entry. `vocabulary.js`: 1543 → 1563.
+
+**Blind second-reader pass** (fresh agent, no authoring context) found
+the Blahaj chapter clean, but flagged two real issues in the other two:
+the pharmacist's line ended with a trailing "también" that reads as an
+English "...too" tacked onto the end — reordered to front-load it
+("También es bueno descansar un poco"); and the café scene's "—¡Está muy
+rica! — dice, sorprendida" narrated the surprise directly instead of
+letting the exclamation carry it — dropped the tag. The reviewer also
+flagged, as a softer note rather than a hard defect, that the pharmacy
+and café scenes share the same underlying template (customer walks in
+with a need, a lone shopkeeper helps, they pay, everything resolves
+neatly) — accepted as a reasonable trade-off for this size of batch
+rather than reworked into a bigger rewrite, but worth remembering for
+the next practical-task passage: give it a genuinely different shape
+(a complication, a different register, a different resolution) rather
+than a fourth variation on the same accept-and-pay arc.
+
+**Verified live**: `npm run build` passed throughout; Playwright
+confirmed all 9 passage cards now render on `/readings`, new vocabulary
+(`regalo`, `buzón`, `esquina`, `medicina`, `camarero`, `pedazo`) renders
+clickable on the three new passages, all three comprehension-question
+flows complete correctly, and the completion-checkmark feature correctly
+shows "3 of 9 complete" with exactly 3 checkmarks after finishing all
+three. Scratch scripts deleted afterward.
