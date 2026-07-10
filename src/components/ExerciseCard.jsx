@@ -40,6 +40,7 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
       const idx = parseInt(e.key, 10) - 1;
       if (idx >= 0 && idx < opts.length && !e.metaKey && !e.ctrlKey && !e.altKey) {
         e.preventDefault();
+        setSelected(opts[idx]);
         onSubmit(opts[idx]);
       }
     }

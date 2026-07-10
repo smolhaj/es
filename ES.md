@@ -897,17 +897,23 @@ measures):**
    new reading-comprehension exercises), and `normalizeAnswer()` now
    strips accents via `stripAccents()` (now exported from
    `dictionary.js`) before comparing.
-6. **`Feedback.module.css`'s `.conceptNote` references an undefined CSS
-   token** (`var(--bg-card)` — should be `--surface`) — every "Professor's
-   note" callout renders with no background.
+6. ~~`Feedback.module.css`'s `.conceptNote` references an undefined CSS
+   token~~ — **done** (07-10-2026): `var(--bg-card)` changed to
+   `--surface`.
 7. **No global 401/expired-token handling** — `lib/api.js`'s `req()`
    throws a plain `Error`; nothing intercepts a 401 to call `logout()`.
-8. **Keyboard-submitted multiple-choice answers never show as selected**
-   — `ExerciseCard.jsx`'s `1`-`4` keyboard shortcut calls `onSubmit`
-   directly and skips `handleOptionSelect`.
-9. **Keyboard accessibility is inconsistent across reference pages** —
-   some use `<article onClick>` with no `role`/`tabIndex` at all; others
-   added `role="button" tabIndex={0}` but only wired Enter, not Space.
+8. ~~Keyboard-submitted multiple-choice answers never show as selected~~
+   — **done** (07-10-2026): `ExerciseCard.jsx`'s `1`-`4` keyboard
+   shortcut now calls `setSelected` before `onSubmit`.
+9. ~~Keyboard accessibility is inconsistent across reference pages~~ —
+   **done** (07-10-2026): all reference-page cards
+   (`Regional.jsx`, `VocabBrowser.jsx`, `History.jsx`, `VerbsRef.jsx`,
+   `Writing.jsx`, `FalseFriends.jsx`, `Idioms.jsx`, `Resources.jsx`,
+   `GrammarRef.jsx`, `Pronunciation.jsx`) now have `role="button"
+   tabIndex={0}` and an `onKeyDown` that handles both Enter and Space.
+   (`Flashcards.jsx`'s flip-card was checked and already has full
+   keyboard parity via a separate global keydown listener, so it was
+   left as-is.)
 10. **No deploy-time/startup check that the schema a build expects
     actually exists in production D1** — this has already caused two
     outages (`schema-v7.sql`/`schema-v8.sql`, see `ES-HISTORY.md`,
@@ -915,11 +921,10 @@ measures):**
     remote migration.
 
 **Curriculum content:**
-11. **C1 vocab breaks the "neutral, universally understood Spanish" spec**
-    in one spot: Unit 26 teaches "el piso — the flat, the apartment" with
-    no Spain/LatAm note, though the rest of `vocabulary.js` is careful
-    about exactly this (`piso` means "floor" across most of Latin
-    America).
+11. ~~C1 vocab breaks the "neutral, universally understood Spanish" spec~~
+    — **done** (07-10-2026): Unit 26's "el piso" entry now notes
+    "the flat, the apartment (Spain; departamento in LatAm — piso means
+    'floor' across most of Latin America)".
 12. **`frequency-5000.js` (flashcard deck) has homograph gloss/example
     mismatches** on a small fraction of cards (e.g. `corte` glossed
     masculine "a cut" but exampled with feminine "court"); ~5.6% also have
@@ -935,10 +940,13 @@ measures):**
     remove that risk if a full regen is ever wanted.)
 13. ~~No cumulative/interleaved cross-unit review layer~~ — **done**, see
     "Review checkpoints" in Architecture above (07-08-2026).
-14. **Minor content duplication, flagged but not fixed**: `vocabulary.js`'s
-    `cuñado`/`cuñada` (A2 and B2, different examples, looks unintentional);
-    `idioms.js`'s "a buenas horas(,) mangas verdes" comma/no-comma
-    duplicate; `regional.js`'s near-duplicate `le_lo`/`leismo` sections.
+14. ~~Minor content duplication, flagged but not fixed~~ — **checked
+    07-10-2026, already resolved**: `vocabulary.js` now has exactly one
+    `cuñado`/`cuñada` entry each (both A2); `idioms.js` has exactly one
+    "a buenas horas mangas verdes" entry (no comma-variant duplicate);
+    `regional.js` has exactly one `leismo` section, no separate `le_lo`.
+    All three must have been cleaned up in an earlier pass since this
+    item was written; nothing left to do.
 
 **Product/account gaps:**
 15. No password reset flow — a forgotten password is unrecoverable.
@@ -1160,3 +1168,12 @@ full account of any of these.
   already) down to current-state facts + pointers; fixed a stale
   cross-reference (Readings section pointed at the wrong punch-list
   item); updated stale word counts. ~240 lines shorter net (1403 → 1162).
+- **07-10-2026** — 6 small wins closed in one batch: fixed
+  `Feedback.module.css`'s undefined `--bg-card` token; fixed
+  `ExerciseCard.jsx`'s keyboard MC shortcut to show the selection before
+  submitting; added a Spain/LatAm dialect note to Unit 26's "el piso"
+  entry; added prev/next chapter navigation to story-format reading
+  passages (`getAdjacentChapter()` in `readings.js`); confirmed 3
+  previously-flagged content duplications were already resolved; and
+  added full keyboard accessibility (Enter + Space) to 10 reference-page
+  card components. See punch-list items 6, 8, 9, 11, 14 above.

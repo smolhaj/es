@@ -96,6 +96,23 @@
 
 .translationParagraph { margin: 0; }
 
+.chapterNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+
+.chapterNavLink {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+.chapterNavLink:hover { text-decoration: underline; }
+
 .comprehension {
   display: flex;
   flex-direction: column;

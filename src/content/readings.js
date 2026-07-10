@@ -471,3 +471,13 @@ export const PASSAGES = [
 export function getPassage(id) {
   return PASSAGES.find(p => p.id === id) ?? null;
 }
+
+// For a story-format passage, finds the immediately adjacent chapter (by
+// chapter number) of the same story, if one exists — powers the prev/next
+// chapter links on the passage page. Returns null for standalone passages
+// or when there's no adjacent chapter (first/last in the story so far).
+export function getAdjacentChapter(passage, direction) {
+  if (!passage?.story) return null;
+  const targetChapter = passage.chapter + (direction === 'next' ? 1 : -1);
+  return PASSAGES.find(p => p.story === passage.story && p.chapter === targetChapter) ?? null;
+}

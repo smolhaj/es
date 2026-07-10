@@ -204,7 +204,7 @@ function WordCard({ item, status }) {
       onClick={() => setOpen(o => !o)}
       role="button"
       tabIndex={0}
-      onKeyDown={e => e.key === 'Enter' && setOpen(o => !o)}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(o => !o); } }}
     >
       <div className={styles.cardMain}>
         <span className={styles.es}>{item.es}</span>
