@@ -294,6 +294,9 @@ export default {
       concept_id: 'gerund_advanced',
       difficulty: 2,
     },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Cuenta lo que un compañero de trabajo te dijo en una reunión reciente, usando estilo indirecto y, si puedes, una nominalización ("el hecho de que...").', word: null, english: null, answer: 'Mi compañera dijo que el proyecto se retrasaría dos semanas. Explicó que el hecho de que faltara personal había complicado todo. Añadió que hablaría con el jefe esa misma tarde.', concept_id: 'estilo_indirecto', difficulty: 3 },
   ],
 };
 

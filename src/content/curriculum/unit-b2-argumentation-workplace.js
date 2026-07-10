@@ -400,6 +400,9 @@ export default {
       concept_id: 'controladores_contacto',
       difficulty: 3,
     },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Escribe un correo breve y formal a tu jefe explicando por qué necesitas cambiar la hora de una reunión. Usa al menos un conector como "sin embargo" o "por eso".', word: null, english: null, answer: 'Estimado señor Ruiz: Tengo una cita médica el jueves a las diez, la misma hora de nuestra reunión. Por eso, le escribo para preguntar si podemos cambiarla a las tres. Sin embargo, si no es posible, puedo asistir por videollamada. Gracias de antemano.', concept_id: 'conectores_argumentativos_basicos', difficulty: 3 },
   ],
 };
 

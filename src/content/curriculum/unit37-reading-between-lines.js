@@ -326,6 +326,9 @@ export default {
       concept_id: 'referencias_culturales_avanzadas',
       difficulty: 3,
     },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Escribe la frase inicial de un breve ensayo argumentativo sobre si la tecnología nos hace más o menos conectados entre nosotros.', word: null, english: null, answer: 'En la era digital, resulta paradójico que, cuanto más conectados estamos a través de las pantallas, más distantes nos sentimos de quienes tenemos alrededor.', concept_id: 'generos_discursivos_formales', difficulty: 3 },
   ],
 };
 

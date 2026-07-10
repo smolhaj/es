@@ -164,6 +164,9 @@ export default {
       concept_id: 'reformuladores',
       difficulty: 3,
     },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Escribe una frase sobre cualquier tema. Después, en una segunda frase, corrígela o matízala usando un reformulador como "mejor dicho" o "más bien".', word: null, english: null, answer: 'Mi jefe es muy estricto. Mejor dicho, es exigente, pero siempre justo con todo el equipo.', concept_id: 'reformuladores', difficulty: 3 },
   ],
 };
 

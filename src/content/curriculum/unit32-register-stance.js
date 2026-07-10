@@ -105,6 +105,9 @@ export default {
       concept_id: 'modalizacion_epistemica',
       difficulty: 3,
     },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Hay un rumor en tu oficina que no puedes confirmar. Escribe 2-3 frases sobre el rumor usando expresiones como "al parecer", "se supone que", o "presuntamente".', word: null, english: null, answer: 'Al parecer, la empresa va a abrir una oficina nueva en Valencia. Se supone que anunciarán los detalles la próxima semana. Presuntamente, varios empleados ya han pedido el traslado.', concept_id: 'modalizacion_epistemica', difficulty: 3 },
   ],
 };
 

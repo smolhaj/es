@@ -116,6 +116,9 @@ export default {
     { type: 'translation_to_spanish', prompt: "Translate using a lo mejor (indicative): \"We might go to the beach this weekend.\"", english: 'We might go to the beach this weekend.', answer: 'A lo mejor vamos a la playa este fin de semana.', word: 'a lo mejor', concept_id: 'expresiones_probabilidad_basica', difficulty: 3 },
     { type: 'translation_to_spanish', prompt: "Translate using es posible que (subjunctive): \"It's possible we'll go to the beach this weekend.\"", english: "It's possible we'll go to the beach this weekend.", answer: 'Es posible que vayamos a la playa este fin de semana.', word: 'es posible que', concept_id: 'expresiones_probabilidad_basica', difficulty: 3 },
     { type: 'translation_to_english', prompt: 'Seguramente llega tarde.', word: 'seguramente', english: 'surely / probably', answer: "She'll probably arrive late.", concept_id: 'expresiones_probabilidad_basica', difficulty: 2 },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'No sabes dónde está un amigo ahora mismo. Escribe 2-3 frases especulando dónde puede estar, usando expresiones como "debe de", "es posible que", o "a lo mejor".', word: null, english: null, answer: 'Debe de estar todavía en el trabajo. Es posible que tenga una reunión larga hoy. A lo mejor me llama cuando termine.', concept_id: 'expresiones_probabilidad_basica', difficulty: 2 },
   ],
 };
 
