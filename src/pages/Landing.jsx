@@ -1,6 +1,18 @@
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import styles from './Landing.module.css';
+import { GRAMMAR_CARDS, CEFR_LEVELS } from '../content/grammar.js';
+import { VOCABULARY, DOMAINS } from '../content/vocabulary.js';
+import { VERBS } from '../content/verbs.js';
+import { IDIOMS } from '../content/idioms.js';
+
+// Stats below are derived from the actual content arrays, not hand-typed,
+// so this copy can't go stale the way it did before (see ES.md punch-list
+// item 15) — it just tracks whatever ships in src/content/*.
+const LOWEST_LEVEL = CEFR_LEVELS[0];
+const HIGHEST_LEVEL = CEFR_LEVELS[CEFR_LEVELS.length - 1];
+const LEVEL_RANGE = `${LOWEST_LEVEL} to ${HIGHEST_LEVEL}`;
+const LEVEL_RANGE_ARROW = `${LOWEST_LEVEL} → ${HIGHEST_LEVEL}`;
 
 const FEATURE_COLUMNS = [
   [
@@ -25,12 +37,12 @@ const FEATURE_COLUMNS = [
   ],
   [
     {
-      label: 'A1 to C1',
-      body: 'A full curriculum built to CEFR standards — 79 tracked grammar concepts, 1056 vocabulary items across 23 domains, 125 conjugated verbs, idioms, regional differences.'
+      label: LEVEL_RANGE,
+      body: `A full curriculum built to CEFR standards — ${GRAMMAR_CARDS.length} tracked grammar concepts, ${VOCABULARY.length} vocabulary items across ${DOMAINS.length} domains, ${VERBS.length} conjugated verbs, idioms, regional differences.`
     },
     {
       label: 'Built-in references',
-      body: 'Grammar rules, verb conjugations, 167 idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.'
+      body: `Grammar rules, verb conjugations, ${IDIOMS.length} idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.`
     }
   ]
 ];
@@ -43,7 +55,7 @@ export default function Landing() {
       <main>
         <section className={styles.hero}>
           <div className={styles.heroInner}>
-            <div className={styles.eyebrow}>Spanish · A1 → C1</div>
+            <div className={styles.eyebrow}>Spanish · {LEVEL_RANGE_ARROW}</div>
             <h1 className={styles.headline}>
               Learn Spanish.<br />The right way.
             </h1>

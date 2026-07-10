@@ -1097,6 +1097,20 @@ measures):**
     untaught, 0 double-taught, 11 accepted/documented minor 1-concept
     lags (a learner isn't blocked, just reinforced slightly late). Full
     phase-by-phase methodology: `ES-HISTORY.md`.
+30. ~~Landing page + onboarding copy undersell the product by 15-32%~~ —
+    **done** (07-10-2026). A full site QA pass found `Landing.jsx`'s
+    feature-grid stats and `unit00-why-spanish.js`'s "37 units" claim were
+    stale hand-typed numbers nobody had re-checked since content shipped
+    (actual: 117 grammar concepts vs. the claimed 79, 1563 vocab items
+    across 27 domains vs. 1056/23, 147 verbs vs. 125, 166 idioms vs. 167,
+    42 taught units vs. 37, curriculum runs to C2 not C1). Fixed
+    structurally, not just numerically: `Landing.jsx` now imports
+    `GRAMMAR_CARDS`/`VOCABULARY`/`DOMAINS`/`VERBS`/`IDIOMS`/`CEFR_LEVELS`
+    directly and interpolates their lengths/range into the copy, so this
+    exact class of drift can't recur. `unit00-why-spanish.js`'s unit count
+    is a static narrative string (imported *by* `curriculum/index.js`, so
+    it can't import `UNIT_METADATA` back without a cycle) and was hand-
+    corrected to 42 instead.
 
 ## Session history index
 
