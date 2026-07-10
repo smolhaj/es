@@ -1368,6 +1368,50 @@ measures):**
 
     Readings content (still 9 passages, 100% A1, 0% A2-C2 — the other,
     more acute finding from the same audit) is scoped separately next.
+34. ~~5 new A1 reading passages~~ — **done** (07-10-2026). First slice of
+    the readings gap (item above): "El gato perdido," "El regalo de
+    cumpleaños," "Un día de lluvia," "La parada del autobús," and "La
+    pizza del viernes," 9 A1 passages → 14. A2-C2 (still 0 each) are a
+    separate, larger effort to scope with the user next, not started here.
+
+    Followed ES.md's prose-writing process in full: calibrated against the
+    existing 9 A1 passages' house style (present tense only, no object
+    pronouns substituting nouns, no imperative, no comparatives, no
+    relative "que" clauses, no preterite — the same discipline the file's
+    header comment already documents) rather than re-deriving CEFR limits
+    from `concepts.js` from scratch; ran a grep pass against the
+    red-flag connector-phrase list (clean); and — the part that actually
+    caught real problems — sent the five passages' raw Spanish to a
+    genuinely separate blind-review agent with zero authoring context,
+    asking only "does this read as natural human-written Spanish."
+
+    That review surfaced a real, checkable AI-writing signature the
+    self-authored draft had missed: all 5 endings independently converged
+    on the same "pero..., [cozy adjective]" closing shape, "contento/a"
+    was used as a post-dialogue emotion *tag* 6 times instead of being
+    shown through action, and the bus-stop passage's second character was
+    referred to as "el hombre"/"él" six times in eleven lines with no
+    name — the only unnamed adult in 14 passages. Fixed all of it: varied
+    every ending to its own distinct shape, cut most of the "contento"
+    tags in favor of a concrete action (a small smile, taking an
+    umbrella, a slice already in hand), named the bus-stop character
+    (introduced organically through a mutual-introduction line, not a
+    forced aside), and thinned the mechanical "la voz"/"el hombre"
+    dialogue-tag repetition by dropping tags where turn-taking is already
+    unambiguous — the same technique a human editor would use.
+
+    Every new content word was checked against `vocabulary.js` (26 total
+    gaps found — "cumpleaños," "número," and "gata" among them,
+    surprisingly basic words that had never been needed before) and added
+    with a real CEFR level and a fresh example sentence before any passage
+    shipped, per the file's existing rule 12 — including a second pass
+    after the AI-tell fixes introduced a few more new words.
+
+    Verified live: `node --check` on both files, a full-file
+    duplicate-vocabulary-entry scan (clean), production build, and a real
+    headless-browser run confirming all 5 titles list on `/readings` and
+    that "El gato perdido" renders correctly with the new "gata" entry's
+    hover-popover showing the right gloss and CEFR tag.
 
 ## Session history index
 
