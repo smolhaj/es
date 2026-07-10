@@ -43,10 +43,14 @@ export const api = {
         body: JSON.stringify({ focusConcept }),
       }, token),
 
-    turn: (token, sessionId, learnerAnswer) =>
+    // selfGrade is only for a writing_prompt's confirm phase (see
+    // Session.jsx) — omitted entirely (not even `undefined`) for every
+    // other call, matching turn.js's `selfGrade === undefined` check for
+    // the reveal-phase branch.
+    turn: (token, sessionId, learnerAnswer, selfGrade) =>
       req('/sessions/turn', {
         method: 'POST',
-        body: JSON.stringify({ sessionId, learnerAnswer })
+        body: JSON.stringify({ sessionId, learnerAnswer, ...(selfGrade !== undefined ? { selfGrade } : {}) })
       }, token),
 
     end: (token, sessionId, abandoned = false) =>

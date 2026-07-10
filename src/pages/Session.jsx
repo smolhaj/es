@@ -11,7 +11,8 @@ import { CONCEPT_LABELS } from '../content/conceptLabels.js';
 
 const SESSION_LENGTH = 10;
 
-// phase: 'starting' | 'exercise' | 'checking' | 'feedback' | 'ending' | 'summary' | 'error'
+// phase: 'starting' | 'exercise' | 'checking' | 'reveal' | 'feedback' | 'ending' | 'summary' | 'error'
+// 'reveal' is writing_prompt-only: model answer shown, awaiting self-assessment.
 
 export default function Session() {
   const { token } = useAuth();
@@ -30,6 +31,7 @@ export default function Session() {
   const [error, setError] = useState('');
   const [source, setSource] = useState(null);           // 'gemini' | 'fallback' | null
   const [fallbackReason, setFallbackReason] = useState(null);
+  const [writingReveal, setWritingReveal] = useState(null); // { modelAnswer, learnerAnswer } | null
 
   // Start session on mount, and restart whenever focusConcept changes.
   // /session and /session?focus=X are the same route, so React Router does
@@ -48,6 +50,7 @@ export default function Session() {
     setError('');
     setSource(null);
     setFallbackReason(null);
+    setWritingReveal(null);
 
     api.sessions.start(token, focusConcept)
       .then(({ sessionId: sid, exercise: ex, greeting: gr, source: src, fallbackReason: fr }) => {
@@ -67,6 +70,17 @@ export default function Session() {
   const handleAnswer = useCallback(async (learnerAnswer) => {
     setPhase('checking');
     try {
+      // writing_prompt is open-ended — nothing to auto-grade. The first
+      // call just reveals the model answer (no stats/exercise advance yet);
+      // handleSelfAssess below makes the second call once the learner has
+      // compared their own writing to it.
+      if (exercise.type === 'writing_prompt') {
+        const result = await api.sessions.turn(token, sessionId, learnerAnswer);
+        setWritingReveal({ modelAnswer: result.modelAnswer, learnerAnswer });
+        setPhase('reveal');
+        return;
+      }
+
       const result = await api.sessions.turn(token, sessionId, learnerAnswer);
       setFeedback({
         correct: result.correct,
@@ -89,6 +103,33 @@ export default function Session() {
       setPhase('error');
     }
   }, [token, sessionId, exercise]);
+
+  const handleSelfAssess = useCallback(async (correct) => {
+    setPhase('checking');
+    try {
+      const result = await api.sessions.turn(token, sessionId, writingReveal.learnerAnswer, correct);
+      setFeedback({
+        correct: result.correct,
+        text: result.feedback,
+        correctAnswer: null, // already compared against the model answer during reveal
+        conceptNote: result.conceptNote ?? null,
+      });
+      setNextExercise(result.exercise);
+      setSource(result.source ?? null);
+      setFallbackReason(result.fallbackReason ?? null);
+      setWritingReveal(null);
+
+      setStats(prev => ({
+        count: prev.count + 1,
+        correct: prev.correct + (result.correct ? 1 : 0)
+      }));
+
+      setPhase('feedback');
+    } catch (err) {
+      setError(err.message);
+      setPhase('error');
+    }
+  }, [token, sessionId, writingReveal]);
 
   const handleNext = useCallback(async () => {
     const newCount = stats.count; // already incremented
@@ -171,7 +212,7 @@ export default function Session() {
         <div className={styles.inner}>
 
           {/* Progress bar */}
-          {(phase === 'exercise' || phase === 'checking' || phase === 'feedback') && (
+          {(phase === 'exercise' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && (
             <div className={styles.progressWrap} aria-label={`Exercise ${stats.count + 1} of ${SESSION_LENGTH}`}>
               <div className={styles.progressBar}>
                 <div
@@ -200,7 +241,7 @@ export default function Session() {
           )}
 
           {/* Focus mode banner */}
-          {focusConcept && (phase === 'exercise' || phase === 'checking' || phase === 'feedback') && (
+          {focusConcept && (phase === 'exercise' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && (
             <p className={styles.focusBanner}>
               Drilling: <strong>{CONCEPT_LABELS[focusConcept] ?? focusConcept}</strong>
             </p>
@@ -220,13 +261,40 @@ export default function Session() {
           )}
 
           {/* Exercise + Feedback */}
-          {(phase === 'exercise' || phase === 'checking' || phase === 'feedback') && exercise && (
+          {(phase === 'exercise' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && exercise && (
             <div className={styles.exerciseArea}>
               <ExerciseCard
                 exercise={exercise}
                 onSubmit={handleAnswer}
-                disabled={phase === 'checking' || phase === 'feedback'}
+                disabled={phase !== 'exercise'}
               />
+
+              {phase === 'reveal' && writingReveal && (
+                <div className={styles.writingReveal}>
+                  <p className={styles.writingRevealLabel}>One way to write this:</p>
+                  <p className={styles.writingRevealText}>{writingReveal.modelAnswer}</p>
+                  <p className={styles.writingRevealHint}>
+                    Compare it to what you wrote — there's no single correct answer here.
+                  </p>
+                  <div className={styles.writingRevealActions}>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => handleSelfAssess(false)}
+                    >
+                      Needs work
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => handleSelfAssess(true)}
+                      autoFocus
+                    >
+                      Got it
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {(phase === 'checking' || phase === 'feedback') && (
                 <Feedback
@@ -348,7 +416,7 @@ export default function Session() {
           )}
 
           {/* End early button */}
-          {(phase === 'exercise' || phase === 'feedback') && (
+          {(phase === 'exercise' || phase === 'reveal' || phase === 'feedback') && (
             <button
               className={`btn btn-ghost ${styles.endBtn}`}
               onClick={handleEndEarly}

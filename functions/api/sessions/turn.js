@@ -15,10 +15,13 @@ export async function onRequestPost({ request, env, data }) {
     return Response.json({ error: 'Invalid JSON' }, { status: 400 });
   }
 
-  const { sessionId, learnerAnswer } = body;
+  const { sessionId, learnerAnswer, selfGrade } = body;
   if (!sessionId) return Response.json({ error: 'sessionId required' }, { status: 400 });
   if (typeof learnerAnswer === 'string' && learnerAnswer.length > 2000) {
     return Response.json({ error: 'Answer too long' }, { status: 400 });
+  }
+  if (selfGrade !== undefined && typeof selfGrade !== 'boolean') {
+    return Response.json({ error: 'selfGrade must be a boolean' }, { status: 400 });
   }
 
   const session = await env.DB.prepare(
@@ -36,8 +39,23 @@ export async function onRequestPost({ request, env, data }) {
   try { exercise = session.pending_exercise ? JSON.parse(session.pending_exercise) : null; } catch {}
   if (!exercise) return Response.json({ error: 'No exercise pending for this session' }, { status: 400 });
 
+  // writing_prompt is open-ended — Gemini isn't asked to exact-match-grade
+  // free text (see ES.md item 21). The client makes two calls to this same
+  // endpoint instead: this "reveal" phase just hands back the model answer
+  // already cached in pending_exercise (no Gemini call, no DB writes, no
+  // exercise advance), so the learner can compare it to what they wrote.
+  // The "confirm" phase below (selfGrade present) is what actually records
+  // a result and asks Gemini for the next exercise.
+  if (exercise.type === 'writing_prompt' && selfGrade === undefined) {
+    if (typeof learnerAnswer !== 'string' || !learnerAnswer.trim()) {
+      return Response.json({ error: 'learnerAnswer required' }, { status: 400 });
+    }
+    return Response.json({ phase: 'reveal', modelAnswer: exercise.answer });
+  }
+
   const { correct, feedback, exercise: nextExercise, conceptNote, source, fallbackReason } = await callGemini(
-    env, '', exercise, learnerAnswer ?? '', false, session.briefing_text ?? null, session.focus_concept ?? null, data.user.sub
+    env, '', exercise, learnerAnswer ?? '', false, session.briefing_text ?? null, session.focus_concept ?? null, data.user.sub,
+    exercise.type === 'writing_prompt' ? selfGrade : null
   );
 
   const now = new Date().toISOString();
@@ -173,15 +191,17 @@ export async function onRequestPost({ request, env, data }) {
     WHERE id = ?
   `).bind(correct ? 1 : 0, JSON.stringify(nextExercise), sessionId).run();
 
-  // Capture writing samples for translation-to-spanish exercises, and use
-  // them to keep skill_profiles' 'writing' row real. `estimated_cefr` used
-  // to be the exercise's difficulty number relabeled as a CEFR level (1/2/3
-  // -> A1/B1/B2) regardless of whether the translation was any good — an
-  // actively wrong signal, not just a missing one. Left NULL until a real
-  // per-sample assessment exists; `correct` (which this handler already
-  // knows) is what actually drives leveling now, the same way grammar's
-  // right/wrong exercise history drives its level in sessions/end.js.
-  if (exercise.type === 'translation_to_spanish' && learnerAnswer?.trim().length > 3) {
+  // Capture writing samples for translation-to-spanish and writing_prompt
+  // exercises (the latter self-assessed above, not exact-match graded), and
+  // use them to keep skill_profiles' 'writing' row real. `estimated_cefr`
+  // used to be the exercise's difficulty number relabeled as a CEFR level
+  // (1/2/3 -> A1/B1/B2) regardless of whether the translation was any good
+  // — an actively wrong signal, not just a missing one. Left NULL until a
+  // real per-sample assessment exists; `correct` (which this handler
+  // already knows, self-reported for writing_prompt) is what actually
+  // drives leveling now, the same way grammar's right/wrong exercise
+  // history drives its level in sessions/end.js.
+  if ((exercise.type === 'translation_to_spanish' || exercise.type === 'writing_prompt') && learnerAnswer?.trim().length > 3) {
     await env.DB.prepare(`
       INSERT INTO writing_samples
         (id, user_id, session_id, created_at, prompt, content, word_count, correct, professor_notes)

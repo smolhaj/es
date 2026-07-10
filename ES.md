@@ -1041,10 +1041,39 @@ measures):**
 20. **Dedicated listening-comprehension exercises** — the existing
     `SpeakButton` only replays visible text, it's not an assessed skill.
     Needs a new exercise type where audio is the only information given.
-21. **An open-ended writing-prompt exercise type** — every current type has
-    one matchable correct string. Cheapest $0-compatible version: show a
-    model answer after the learner writes their own (Flashcards-style
-    self-assessment), don't have Gemini grade free text on every submit.
+21. ~~An open-ended writing-prompt exercise type~~ — **done** (07-10-2026).
+    Built the cheap $0-compatible version this item already scoped: a new
+    `writing_prompt` exercise type (`answer` field holds one illustrative
+    model response, not a strict-match target) that Gemini offers roughly
+    1-in-6-8 exercises for B1+ learners not currently under the
+    frustration/fatigue override. Grading is a two-call flow through the
+    same `turn.js` endpoint rather than a new one: the learner submits free
+    text and gets back the model answer with **zero Gemini calls and zero
+    DB writes** (the "reveal" phase — `exercise.type === 'writing_prompt'
+    && selfGrade === undefined`), then self-assesses "Got it" / "Needs
+    work" against it, which is what actually records a result (the
+    "confirm" phase, `selfGrade` present) and makes the one Gemini call to
+    get the next exercise — same total Gemini-call cost as any other
+    exercise type, just split across two requests instead of one, and
+    without ever asking Gemini to exact-match-grade open-ended text.
+    `callGemini()` gained a `selfGrade` parameter: when set, it tells
+    Gemini to echo the learner's self-report as the `CORRECT:` line rather
+    than re-deriving it, while still writing genuinely useful
+    error-specific feedback text (verified live — it named the exact
+    conjugation mistake on a "needs work" self-report, not generic
+    boilerplate). Feeds the same `skill_profiles` 'writing' row item 23
+    built (translation exercises remain an additional contributor, not
+    replaced).
+
+    Verified live: direct API calls confirmed the reveal phase makes no
+    writes at all (session's `pending_exercise`/`items_reviewed` unchanged,
+    `writing_samples` empty) and the confirm phase correctly threads
+    `selfGrade` through to `writing_samples.correct`, `skill_profiles`,
+    `concept_mastery`, and `error_events` (on "needs work") exactly like a
+    normal exercise. A real headless-browser run through the actual UI
+    (textarea entry → "Show model answer" → "Got it") captured the exact
+    two-request shape designed: first `POST /sessions/turn` with no
+    `selfGrade`, second with `selfGrade:true`.
 22. **Conversation/role-play exercise type** — no open-ended dialogue type
     exists.
 23. ~~The displayed CEFR level is a grammar-only accuracy gate, not a true
