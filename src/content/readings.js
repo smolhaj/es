@@ -217,7 +217,7 @@ export const PASSAGES = [
         type: 'comprehension',
         prompt: 'What does Sara ask the man before she leaves?',
         answer: 'his name',
-        altAnswers: ['his name', 'what his name is', 'for his name', 'she asks his name'],
+        altAnswers: ['his name', 'what his name is', 'for his name', 'she asks his name', "what's your name", 'what is your name', 'what is his name'],
       },
       {
         type: 'multiple_choice',
