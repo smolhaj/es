@@ -201,71 +201,44 @@ same day after it caught a real gap in the reading-passages POC):
    for the Blahaj story: chapter 1 first, full 18-chapter build only after
    that reads right.
 10. **Grammar-structure CEFR check against `concepts.js` before any level
-    tag ships, not just a vocabulary-difficulty eyeball** — user directive
-    (07-09-2026): "apply this level of discipline and testing QA to all
-    future writing." A passage claiming A1 (or any level) has to actually
-    hold to that level's real grammar, not just simple-sounding vocabulary.
-    Concretely: list every grammar structure the draft actually uses
-    (tenses, moods, pronoun types, clause types — not just individual
-    verbs), look up each one's real tag in `concepts.js`, and flag/fix
-    anything above the claimed level rather than assuming short sentences
-    and easy words are sufficient. Caught on the first real pass at this
-    (07-09-2026, this same session): an A1-tagged reading-passage POC used
-    direct/indirect object pronouns (`direct_object_pronouns`/
-    `indirect_object_pronouns`, A2), one preterite verb (`preterite_regular`,
-    A2), and one relative clause (`relative_clauses_core`, A2) — all
-    invisible to a plain "does this sound simple" read, all caught by
-    checking the grammar against `concepts.js` directly. If a structure
-    above the claimed level is kept on purpose (deliberate i+1
-    comprehensible-input exposure), say so explicitly rather than let it
-    pass silently as an oversight. Applies to any future original prose
-    that carries a CEFR label — reading passages first, but the same
-    check applies to any other leveled content type this project adds.
-11. **Vocabulary-gloss density for reading passages is a different problem
-    from grammar-level QA (step 10) — don't apply the same binary logic to
-    both, but the final answer is data-driven, not hand-curated.** Grammar
-    is checkable/binary: a structure either has or hasn't been taught, so
-    "never exceed the claimed level" is the right rule. Vocabulary glossing
-    went through two wrong models before landing on the right one
-    (07-09-2026, same reading-passages POC): first, over-applying step 10's
-    "check everything" instinct to vocabulary too literally and glossing
-    ~70 words including connectors/common verbs/near-cognates a learner
-    should infer from repetition, not get handed; user feedback "a little
-    heavy for true beginners." Second correction: hand-curating a smaller
-    ~24-word list by editorial judgment call (concrete nouns, idioms,
-    genuinely irregular verbs — yes; connectors, common verbs, cognates —
-    no). **That second model was also wrong** — user pushback ("MOST if
-    not all words at the A1 level should have glossary hover definitions")
-    surfaced that the site's real `ClickableSpanish`/`segmentSpanish`
-    mechanism already does exactly this mechanically, with zero curation:
-    every word with a real `vocabulary.js` entry gets a hover-define,
-    every word without one doesn't. **The shipped, standing rule**: don't
-    curate a glossary at all — pass passages through the real matcher
-    (`vocabOnly` mode, see Architecture below) and let real data decide
-    what's clickable. This makes rule 12 below load-bearing: the matcher
-    can only define what's actually in `vocabulary.js`, so any real gap
-    has to be closed as content, not designed around.
+    tag ships, not just a vocabulary-difficulty eyeball.** List every
+    grammar structure a draft actually uses (tenses, moods, pronoun
+    types, clause types — not just individual verbs), look up each one's
+    real tag in `concepts.js`, and flag/fix anything above the claimed
+    level rather than assuming short sentences and easy words are
+    sufficient — object pronouns, preterite, and relative clauses have
+    all snuck into "A1" drafts invisibly to a plain "does this sound
+    simple" read. If a structure above the claimed level is kept on
+    purpose (deliberate i+1 comprehensible-input exposure), say so
+    explicitly. Applies to any original prose that carries a CEFR label.
+    Full incident + narrative: `ES-HISTORY.md`'s "Reading-passages proof
+    of concept" section.
+11. **Vocabulary-gloss density is a different problem from grammar-level
+    QA (step 10) — the standing rule is data-driven, not hand-curated.**
+    Grammar is checkable/binary ("never exceed the claimed level" is
+    correct there); vocabulary isn't, so don't apply step 10's logic to
+    it. Don't curate a glossary at all — pass passages through the real
+    `ClickableSpanish`/`segmentSpanish` matcher (`vocabOnly` mode, see
+    Architecture below) and let real `vocabulary.js` data decide what's
+    clickable, full stop. This makes rule 12 below load-bearing: the
+    matcher can only define what's actually in `vocabulary.js`. Two
+    wrong models (over-glossing ~70 words including connectors a learner
+    should infer from repetition; then a smaller hand-curated list) were
+    tried and rejected before landing here — full story in
+    `ES-HISTORY.md`.
 12. **Any new word a reading passage introduces that isn't already in
-    `vocabulary.js` must be researched (cross-referenced, real CEFR level —
-    never guessed) and added to `vocabulary.js` before the passage ships,
-    every time, no exceptions.** User directive (07-10-2026): "any new
-    words introduced you have to add to the glossary and hover define —
-    this is a hard and fast rule." This is what makes rule 11's
-    non-curated, fully-mechanical glossing actually work at true-beginner
-    level: if a word a beginner wouldn't know is missing from
-    `vocabulary.js`, it silently renders with no hover-define, and the
-    passage isn't actually A1-accessible regardless of what CEFR label it
-    claims. Closing the gap is a general `vocabulary.js` improvement, not
-    reading-specific — it benefits `ClickableSpanish` everywhere else on
-    the site too, same as the 07-09-2026 49-word and 9-word fills.
+    `vocabulary.js` must be researched (cross-referenced, real CEFR
+    level — never guessed) and added before the passage ships, every
+    time, no exceptions.** This is what makes rule 11's non-curated
+    glossing actually work at true-beginner level — a word missing from
+    `vocabulary.js` silently renders with no hover-define. Closing the
+    gap is a general `vocabulary.js` improvement, not reading-specific —
+    it benefits `ClickableSpanish` everywhere on the site.
 13. **Every reading passage ships with its comprehension-question set
     (`questions` array) at the same time it's written — never deferred to
-    a later pass.** User directive (07-10-2026): "then we make
-    comprehension questions for every passage as they're written — also
-    needs to be a rule." Write the passage, close any vocabulary gaps
-    (rule 12), then write its comprehension questions before moving to the
-    next passage, rather than batching prose-writing and
-    question-writing as separate phases.
+    a later pass.** Write the passage, close any vocabulary gaps (rule
+    12), then write its comprehension questions before moving to the
+    next passage.
 
 ---
 
@@ -324,10 +297,10 @@ added specifically so a fresh coding session wouldn't either freeze on a
   session's vocab queue and Flashcards
 - Concept mastery tracking with fossilization detection and
   explanation-style rotation
-- Reference pages: grammar, verbs, vocabulary (1439 words, A1-C2 parity
+- Reference pages: grammar, verbs, vocabulary (1563 words, A1-C2 parity
   across all 6 levels, 27 domains), idioms, false friends, pronunciation,
-  regional differences, free resources — all with `ClickableSpanish`
-  word-popover support
+  regional differences, free resources, readings — all with
+  `ClickableSpanish` word-popover support
 - Dashboard, session history, profile
 - **Structured "Learn" curriculum — 41 taught units (0-37 plus 3 new B2
   units), A1 through C2, plus 9 cumulative review checkpoints (50 total).**
@@ -526,9 +499,11 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 1439 words, `{ es, en, cefr, domain, example,
-exampleEn, frequencyRank, register? }`. `DOMAINS`/`CEFR_LEVELS` are exported
-for `VocabBrowser.jsx`'s filter chips; `DOMAINS` is auto-derived
+`src/content/vocabulary.js` — 1563 words as of 07-10-2026 (grown from
+1439 via the reading-passages vocabulary-gap-closing work — see
+"Readings" below), `{ es, en, cefr, domain, example, exampleEn,
+frequencyRank, register? }`. `DOMAINS`/`CEFR_LEVELS` are exported for
+`VocabBrowser.jsx`'s filter chips; `DOMAINS` is auto-derived
 (`[...new Set(...)].sort()`), so a new domain string just works with no
 separate whitelist to update. A 07-08-2026 pass closed a real gap: C1 had
 only 80 words and C2 had zero, despite the C1/C2 curriculum (units 26-37)
@@ -536,9 +511,8 @@ existing — brought both to parity with A1/A2 (C1 → 280, C2 → 234) by
 promoting the curriculum units' own already-verified `vocab` arrays plus
 fresh WebSearch-verified research, and added 4 new domains (`business`,
 `academic`, `abstract_concepts`, `media_news`) the prior 22 concrete/
-everyday domains didn't cover. New entries (and only new entries — the
-original 1005 are untouched) carry a `register` field
-(`colloquial`/`informal`/`neutral`/`formal`), reusing `idioms.js`'s
+everyday domains didn't cover. Entries added since carry a `register`
+field (`colloquial`/`informal`/`neutral`/`formal`), reusing `idioms.js`'s
 existing 4-way scale rather than inventing a new one; `VocabBrowser.jsx`
 renders it as a badge (only when present) and as a filter chip row. One
 intentional duplicate spelling: `tío` appears twice (existing "uncle,"
@@ -562,109 +536,53 @@ B2:20, C1:4, C2:2`.
 
 ### Readings (`/readings`)
 
-9 original A1 passages as of 07-10-2026 (`src/content/readings.js`): the
-original standalone scene ("El pan de cada mañana") and Chapter 1 of a
-planned 18-chapter serialized story ("Las Aventuras de Blahaj"), 4 more
-added the same day covering the learner-facing spec's content-rotation
-categories one each — Chapter 2 of the Blahaj story (a continuing
-pen-pal shipment, this time to Buenos Aires), a second standalone scene
-("El domingo en el parque," a different setting from the bakery), an
-everyday-conversation dialogue ("Planes para el sábado," a phone call
-between friends), and a real-world-practical-task passage ("¿Cómo llego
-a la estación?," asking a stranger for directions — using `puede`/`tiene
-que` + infinitive rather than imperative, since imperative mood isn't A1
-in `concepts.js`) — and 3 more added later the same day: Chapter 3 of the
-Blahaj story ("El regreso," closing the sent→hosted→returned mini-arc as
-Blahaj comes home to Lucía), a third standalone scene ("La farmacia de la
-esquina"), and a second practical-task passage ("En el café," ordering at
-a café — deliberately given a different resolution beat from the pharmacy
-scene after a blind-review note flagged both as structurally
-similar "customer + shopkeeper" templates). The spec's fourth content
-category, media-based content, was deliberately skipped for this whole
-run: the spec itself says real media should wait until a learner has "a
-functional foundation," which doesn't describe true-beginner A1. `/readings`
-lists passages (`Readings.jsx`); `/readings/:passageId` renders one
-(`ReadingPassage.jsx` — singular, since it renders one specific passage)
-with a "Ver traducción" toggle for the English. Renamed from "Reading" to
-"Readings" (07-10-2026): page/nav label, route, `Readings.jsx`/
-`.module.css`, and the content file (`readings.js`) all updated;
-`ReadingPassage.jsx` kept its name since it's the per-passage detail page,
-not the list.
+9 original A1 passages (`src/content/readings.js`) as of 07-10-2026: a
+standalone bakery scene, 3 chapters of a serialized story ("Las
+Aventuras de Blahaj," a pen-pal plushie-travel premise — chapter 3
+closes the first sent→hosted→returned mini-arc), 2 more standalone
+scenes, an everyday-conversation dialogue, and 2 real-world-practical-
+task passages — covering the learner-facing spec's content-rotation
+categories (media-based content deliberately excluded: the spec says
+real media should wait for "a functional foundation," which doesn't
+describe true-beginner A1). `Readings.jsx` lists passages at
+`/readings`; `ReadingPassage.jsx` renders one at `/readings/:passageId`
+with a "Ver traducción" toggle for the English (page/route/nav renamed
+"Reading" → "Readings" 07-10-2026; `ReadingPassage.jsx` kept its name
+since it renders one passage, not the list).
 
 Every word gets a definition via the exact same `ClickableSpanish`
 component used everywhere else on the site — no separate reading-specific
-glossary logic, no curated word list, no invented data. The only change
-needed: `segmentSpanish`/`buildIndex` in `src/lib/dictionary.js` gained an
-optional `vocabOnly` param (plumbed through `ClickableSpanish`'s new
-`vocabOnly` prop) that excludes curriculum units' own vocab boxes from the
-match index. Those boxes intentionally list bare prepositions/pronouns
-(a, de, en, la...) as new grammar-lesson vocabulary for their specific
-unit — right for a lesson paragraph, wrong for a flowing story, which
-would otherwise get a popover on nearly every function word. Reading
-passages pass `vocabOnly`; every other existing call site is unaffected
-(defaults preserve the old behavior exactly).
+glossary logic, no curated word list, no invented data. `segmentSpanish`/
+`buildIndex` in `src/lib/dictionary.js` has a `vocabOnly` param (plumbed
+through `ClickableSpanish`'s `vocabOnly` prop) that excludes curriculum
+units' own vocab boxes from the match index — those intentionally list
+bare prepositions/pronouns as new grammar-lesson vocabulary, which would
+flood a flowing story with clicks on function words. Reading passages
+pass `vocabOnly`; every other call site is unaffected. **Any new word a
+passage needs that isn't already in `vocabulary.js` gets researched and
+added before the passage ships, every time** (a hard rule — see prose-
+writing process step 12 above); `vocabulary.js` has grown 1439 → 1563
+words this way across the reading-passages work. Full narrative of how
+this discipline was arrived at (three corrected passes on the original
+two passages, each vocabulary-gap batch since): `ES-HISTORY.md`'s
+reading-passages entries.
 
-Getting the passages themselves right took three corrected passes, all
-narrated in punch-list item 29 and `ES-HISTORY.md`'s dated entry: a
-grammar-level QA gap (object pronouns/preterite/relative clauses sneaking
-into an "A1" draft), then a vocabulary-glossing density overshoot (nearly
-70 words glossed, including connectors that repetition should teach, not
-a popover), corrected by switching to this same real-data-only matching
-approach instead of any hand-curated list. That correction surfaced 49
-ordinary words missing from `vocabulary.js` entirely (panadería, dejar,
-contestar, tiburón, intercambiar...), researched and added with real CEFR
-levels rather than invented ones — a general fix, not reading-specific,
-since any vocabulary.js gap was already invisible to `ClickableSpanish`
-sitewide.
+Each passage carries a `questions` array (comprehension checks, not
+grammar drills — mostly `multiple_choice` in Spanish, plus a couple of
+free-text `comprehension`-type questions with English answers) rendered
+behind a "Practicar comprensión →" button, one question at a time, via
+the same `ExerciseCard`/`Feedback` components curriculum practice uses.
+Grading is entirely client-side (`src/lib/answerMatching.js`, shared with
+`Lesson.jsx`'s curriculum practice — extracting it also added accent
+stripping to `normalizeAnswer`, closing the old "Por que" bug for both).
+`src/lib/readingProgress.js` marks a passage complete (same bar as
+Learn — reaching the end of the question set, not a perfect score) via a
+single `capi_readings_completed` localStorage key, no backend table;
+`Readings.jsx` shows a Learn-style ✓ badge + progress line from it.
 
-Each passage now also carries a `questions` array (comprehension checks,
-not grammar drills — mostly `multiple_choice` in Spanish, plus a couple of
-free-text `comprehension`-type questions with English answers) rendered on
-the passage page behind a "Practicar comprensión →" button, one at a time,
-via the same `ExerciseCard`/`Feedback` components curriculum practice
-uses. Grading is entirely client-side (no backend call, no concept-mastery
-tracking) — a simple running score shown at the end. Building this pulled
-`Lesson.jsx`'s local answer-grading logic (`normalizeAnswer`,
-`isAnswerCorrect`, contraction/pro-drop/parenthetical handling) out into
-shared `src/lib/answerMatching.js` so both curriculum practice and reading
-comprehension use the same matcher; the extraction also added accent
-stripping to `normalizeAnswer` (reusing `stripAccents` from
-`dictionary.js`, now exported), closing the long-flagged bug where "Por
-que" was marked wrong for "¿Por qué...?" throughout the A1 curriculum —
-strictly loosening, never tightens acceptance.
-
-The 07-10-2026 sessions closed 65 more `vocabulary.js` gaps the same way
-across both batches (caja, día, familia, hombre, mujer, música, nombre,
-camino, todo, preparar, llamar, explicar, medicina, camarero, pastel,
-descansar, entrar, hambre, esquina, and more) — most researched via a
-dedicated agent, cross-checked and topped up by directly running
-`segmentSpanish` against the new passages and manually verifying every
-unmatched token was a proper noun, a grammar/function word (articles,
-subject pronouns, demonstratives — consistent with `usted`/`yo`/`este`/
-`eso` already being absent from `vocabulary.js` by design, since those
-are taught via `concepts.js`, not this file), or a conjugated/inflected
-form of an already-present base word, never a genuinely missing content
-word. One homograph near-miss caught mid-batch: a first draft of a
-`detrás de` phrase entry wouldn't have matched the actual passage text
-("detrás **del** mostrador" — the *de + el → del* contraction breaks
-multi-word phrase matching), fixed by entering the bare adverb `detrás`
-instead, same pattern as `cerca`/`lejos`. This "run the real matcher and
-manually clear every remaining token" check is now the standard
-verification step for any new passage (ES.md process step 12).
-
-**Completion tracking** (`src/lib/readingProgress.js`, added 07-10-2026):
-a passage is marked complete once the learner reaches the end of its
-comprehension-question set (same completion bar as Learn units — not
-gated on a perfect score). Tracked client-side only, via a single
-`capi_readings_completed` localStorage key (`{ [passageId]: true }`) —
-no backend table, consistent with this feature's existing no-persistence
-design. `Readings.jsx` reads it to show a Learn-style ✓ badge and border
-tint on completed cards, plus a "N of M complete" progress line.
-
-Not yet built: additional passages/chapters beyond Blahaj Chapter 3
-(which closed the first sent→hosted→returned mini-arc — a second trip
-for Blahaj is a natural future chapter 4, not yet started), and letting a
-serialized story's own level climb chapter by chapter.
+Not yet built: additional passages/chapters beyond Blahaj Chapter 3 (a
+second trip is the natural chapter 4), and letting a serialized story's
+own level climb chapter by chapter.
 
 ### Flashcards (`/flashcards`)
 
@@ -894,6 +812,16 @@ D1 gotcha that has already caused two production outages.
   ancestor isn't behaving like it's positioned against the viewport,
   suspect the ancestor's `backdrop-filter`/`filter`/`transform` before
   suspecting the fixed element's own CSS.**
+- **`--font-serif` (`'DM Serif Display'`) is a display typeface for
+  headlines only — never use it for body copy.** It's drawn with thick
+  strokes for large-size headline use; set as full-paragraph reading text
+  it renders as visually bold even with no `font-weight: 700` anywhere in
+  the CSS. Body copy across the site uses `--font-sans` (Inter) at
+  `font-weight: 400` — `Lesson.module.css`'s `.paragraph`
+  (`font-size: 0.9375rem; line-height: 1.7;`) is the canonical reference
+  for prose sizing; match it exactly for any new page displaying
+  paragraph-length content (`ReadingPassage.module.css`'s `.body` does,
+  07-10-2026, after this exact bug shipped and was reported).
 - **Playwright's `waitUntil: 'networkidle'` is unreliable in this sandbox
   specifically because of the outbound proxy's handling of
   `fonts.googleapis.com`** — `index.html` loads Google Fonts via a
@@ -1062,218 +990,40 @@ measures):**
 26. Cloudflare R2 (bound, unused), a secondary/fallback LLM provider, and
     explicit exponential backoff around the Gemini call are all
     unstarted, low-risk, well-scoped if picked up.
-27. **CEFR-accuracy audit of `concepts.js`, phased (07-09-2026).**
-    Phase 1 (research) found ~36 of 109 concepts mistagged against
-    real-world CEFR (Instituto Cervantes PCIC + cross-referenced ELE
-    textbook sequencing) — see `ES-HISTORY.md` for the full findings.
-    **Phase A (data layer) is done**: 18 high-confidence, non-bundled
-    mismatches retagged in `concepts.js`/`grammar.js`/`_gemini.js`'s
-    whitelist, all consistent (zero backwards prereqs, all 109
-    `grammar.js` cards re-verified to match `concepts.js` exactly).
-    **Phase B (data layer) is done**: 8 new concepts split off from 6
-    bundled ones that mixed two real CEFR levels —
-    `irregular_present_core` (A1, ir/tener) out of `irregular_present`
-    (A2, narrowed to venir/hacer/poner/salir), `gustar_basico` (A1,
-    gustar itself) out of `gustar_type` (A2, narrowed to
-    encantar/doler/molestar/parecer), `prepositions_core` (A1, a/de/en)
-    out of `prepositions_basic` (A2, narrowed to con/sin/por/para/entre),
-    `modal_verbs_core` (A1, poder/querer) out of `modal_verbs` (A2,
-    narrowed to deber), `imperative_affirmative` (A2, tú affirmative) out
-    of `imperative` (B1, narrowed to negative/formal commands + clitic
-    placement), `relative_clauses_core` (A2, que/donde) out of
-    `relative_clauses` (B1, narrowed to quien + subjunctive-in-relative
-    nuance). Each original concept keeps its id at the higher/broader
-    level (so no existing curriculum-unit registration or exercise
-    `concept_id` reference breaks) and gains the new concept as a
-    prereq; the new concept itself has no curriculum unit yet (same
-    "pacing lag" pattern as Phase A — see below). The four `connectors_*`
-    concepts (C1) and `reformuladores`/`generos_discursivos_formales`
-    (C2) turned out **not** to need new split concepts on inspection:
-    `conectores_argumentativos_basicos` (B2) already explicitly covers
-    the "conversational-tier" pero/sin embargo/por eso/además subset
-    with a note that the fuller C1 families build on it, so those four
-    just gained it as an explicit prereq instead of a redundant new
-    concept. `reformuladores`/`generos_discursivos_formales` did get one
-    genuine new concept each — `reformuladores_basico` (B2, o
-    sea/es decir) and `genero_informe` (B2, the informe/report genre) —
-    since no B2 concept already covered that content. Total concept
-    count: 109 → 117, all prereqs verified consistent (zero backwards
-    deps), all 117 `grammar.js` cards synced 1:1 by cefr, `_gemini.js`
-    whitelist regenerated programmatically from `concepts.js`.
-    **Phase C is done**: `estilo_indirecto_basico` and
-    `expresiones_probabilidad_basica` retagged B2 → B1 (their real
-    level per the Phase 1 findings), moved to the B1 section of
-    `concepts.js`/`grammar.js`, `_gemini.js` whitelist regenerated. Their
-    two curriculum units (`reported-speech-basic`,
-    `certainty-doubt-probability`, from PR #55) moved from B2's order
-    range to B1's (order 21.1/21.2, right after `efficiency-emphasis`
-    and before `checkpoint-b1-full`, whose `checkpointUpTo` moved
-    21 → 21.2), files renamed `unit-b2-*` → `unit-b1-*` with their
-    internal level comments corrected too. `argumentation-workplace`
-    (the third PR #55 unit, teaching `conectores_argumentativos_basicos`
-    + `registro_formal_correspondencia`, both genuinely B2) stayed put
-    and was renumbered to order 25.1 to fill the gap; `checkpoint-b2`'s
-    `checkpointUpTo` moved 25.3 → 25.1. Net effect: B2 back to 5 units,
-    B1 to 8 — exactly undoing the B2-unit-count-parity math that
-    motivated building the 3 units in the first place, since 2 of the 3
-    were never really B2 content. Total concept count still 117
-    (no concepts added/removed, only moved); prereqs re-verified
-    consistent (`imperfect` and `present_subjunctive`, both B1, are
-    these two concepts' only prereqs, so the move only tightened the
-    prereq gap rather than creating a backwards one); `grammar.js`
-    still 117/117 synced; `npm run build` passes.
-    **Phase D is done**: dedicated WebSearch research (`cvc.cervantes.es`
-    still 403s directly, so this is secondary-source-synthesized, same
-    caveat as Phase 1) resolved all 5 flagged concepts. `near_future`
-    (ir a + infinitive) and `obligation_infinitive` (tener que/hay que)
-    both A2 → A1 — near-universally A1 content across major ELE course
-    sequencing (Aula Internacional, Nuevo Prisma, etc.); their prereqs
-    now point at Phase B's A1 core concepts (`irregular_present_core`,
-    `prepositions_core`, `hay`) instead of the A2 originals, which is
-    exactly the kind of retag Phase B's splits were meant to unblock.
-    `modal_verbs`' deber question turned out to already be correctly
-    resolved by Phase B + C: the obligation sense of deber is A2
-    (`modal_verbs`), the probability sense (deber de) is B1
-    (`expresiones_probabilidad_basica`, whose card already documents
-    exactly this split) — no change needed. `imperfect_subjunctive` and
-    `si_clauses` B2 → B1, matching the real-world pattern of type-2
-    hypothetical conditionals (si tuviera... iría...) at B1 with type-3
-    counterfactual-past (si hubiera... habría..., already
-    `pluperfect_subjunctive`, staying B2) a level above; `si_clauses`'
-    card narrowed to types 1-2 only, removing the type-3 content it
-    used to duplicate (that content requires a B2 prereq and is already
-    owned by `pluperfect_subjunctive`'s own card). `controladores_contacto`
-    C2 → B2, on direct PCIC evidence that this exact category of
-    discourse marker (¿no?/¿eh?/confirmation-seeking tags — the
-    concept's own listed ¿verdad?, fíjate, oye) is introduced at B1-B2,
-    not C2; dropped its now-backwards `registro_formal_informal` (C2)
-    prereq since nothing in the concept's actual content depends on
-    register-switching knowledge. Concept count unchanged at 117 (moves
-    only); prereq graph re-verified consistent; `grammar.js` re-synced
-    117/117; `_gemini.js` whitelist regenerated; `npm run build` passes.
-    **The 3 concepts pulled from Phase A are now resolved too**
-    (07-09-2026, dedicated WebSearch research, same `cvc.cervantes.es`-
-    403 caveat as every prior phase): `operadores_discursivos` (de
-    hecho, en realidad, por cierto) C2 → B2 — direct evidence these
-    exact connectors appear in B2 teaching materials, and "claro" (the
-    same PCIC discourse-operator subcategory) starts at B1; its prereq
-    repointed from `reformuladores` (C2) to `reformuladores_basico`
-    (B2). `estructuradores_informacion` (por una parte…por otra, en
-    primer lugar…en definitiva) C2 → C1, and `registro_formal_informal`
-    (register switching) C2 → C1 — PCIC evidence that "marcas de
-    registro... se inicia en B2 y es abundante en C1" (register marking
-    begins at B2, is abundant at C1) and that C1 can-do descriptors
-    explicitly include register adaptation, meaning C2 was overclaiming
-    for what's actually core C1 content. All three retags were
-    downward moves, which can't create backwards prereqs for anything
-    depending on them (`pares_registro_lexico` and
-    `generos_discursivos_formales`, both C2, only got a safer margin).
-    Concept count still 117; prereq graph, `grammar.js` (117/117), and
-    `_gemini.js` whitelist all re-verified; `npm run build` passes.
-    **Still open**:
-    - **A larger, newly-discovered systemic issue**: every one of the
-      18 Phase-A-retagged concepts is currently *taught* (in
-      `curriculum/index.js`'s unit sequence) 1-2 levels later than its
-      corrected CEFR level — e.g. `present_perfect` is now correctly
-      tagged A2, but Unit 22 (B2) is still the only place it's taught.
-      Not a "used before taught" bug like the original tener/ir case
-      (nothing contradicts it), but it does mean the structured Learn
-      path systematically lags real-world CEFR pacing. Fixing this
-      means moving/rewriting curriculum unit content, not just
-      retagging metadata — a genuinely large undertaking, scoped as
-      its own future phase rather than folded into this one.
-    Directly relevant to writing true-A1 reading-passage content, since
-    the story needs to know what a learner has actually been taught by
-    each level. See "Standing directives" above.
-28. **CEFR-accuracy audit of `vocabulary.js` and `verbs.js` (07-09-2026,
-    same session as item 27).** Different methodology than `concepts.js`
-    since these aren't sequenced by curriculum order — `vocabulary.js`
-    has a stored `frequencyRank` per word, so a mechanical
-    frequency-consistency scan (does a word's real-world frequency match
-    its assigned cefr band?) flagged candidates, which 3 parallel
-    research agents then verified/corrected; `verbs.js` has no stored
-    frequency data, so a 4th agent cross-referenced all 147 verbs
-    against real canonical Spanish-verb-frequency sources directly.
-    **Important methodology finding**: raw frequency alone produces
-    false positives for *thematic/functional* vocabulary (colors, food,
-    emotions, family, school items) — these are legitimately taught
-    early despite low corpus frequency, because they're taught for
-    communicative necessity, not frequency. Excluding those domains
-    from the "under-leveled" check left a much smaller, high-confidence
-    signal, entirely on the "over-leveled" side: common, everyday words
-    (mostly verbs, nouns, adjectives, connectors) tagged 2+ CEFR bands
-    higher than warranted — the same over-leveling pattern that started
-    the whole audit (the original `venir` bug).
-    **Result**: 167 of 1439 `vocabulary.js` words retagged (e.g.
-    `alcanzar`, `establecer`, `objetivo`, `equipo`, `dispositivo`,
-    `¿no?` — all were much more basic/common than their B2/C1/C2 tags
-    suggested), 11 of 147 `verbs.js` verbs retagged (most notably
-    `llover`/`nevar`, weather verbs mistagged C2 despite being taught in
-    the first A1 weather unit of every real course — flagged and
-    confirmed exactly as suspected before dispatching the research;
-    also `haber`, `correr`, `oír`, `seguir`, `despertarse`, `vestirse`,
-    `preferir`, `valer`, `impedir`). Item counts unchanged in both files
-    (retags only). ~100 additional flagged vocabulary candidates were
-    reviewed and kept as-is — either genuinely formal/legal/literary
-    register despite frequency (e.g. `esclarecer`, `vulnerar`,
-    `menoscabar`) or flagged "uncertain" by the research agents rather
-    than guessed. `idioms.js` and `false-friends.js` were explicitly
-    scoped OUT of this phase (user chose verbs+vocabulary only) and
-    remain unaudited against real-world standards. See `ES-HISTORY.md`
-    for full methodology and per-batch findings.
-29. **Curriculum-unit-content pacing-lag fix, both phases done (07-09-2026)**
-    — the systemic issue flagged in item 27 above. Full data pull found: 8
-    concepts (all from Phase B's splits) had **zero** teaching unit at
-    all, 8 units had a minor 1-concept lag (left as-is, documented only —
-    a learner isn't blocked, just reinforced slightly late), and 7 units
-    no longer cohered at their assigned level at all (`probability-aspect`
-    had **zero** C1 content left after its 3 concepts all moved to
-    B1/B2; `subjunctive-deep-dive` was 3/4 B1). **Phase 1**: wrote new
-    sections + practice for all 8 orphaned concepts, folded into 5
-    existing units — `irregular_present_core`/`modal_verbs_core`/
-    `gustar_basico` into `everyday-actions` (A1, placed here rather than
-    the A2 units that still teach the higher rest, since an A1 concept in
-    an A2-positioned unit wouldn't actually fix the pacing mismatch);
-    `prepositions_core` into `asking-questions` (A1); `imperative_
-    affirmative` into `obligations-requests` (A2); `relative_clauses_core`
-    into `comparing-describing` (A2); `reformuladores_basico`/
-    `genero_informe` into `argumentation-workplace` (B2, already the
-    natural home). **Phase 2**: restructured the 7 incoherent units by
-    content-coherence, not just whole-unit relabeling — classified each as
-    either a tightly-sequenced arc (don't split; `subjunctive-deep-dive`,
-    where si_clauses' practice literally depends on imperfect_subjunctive's
-    forms taught 2 sections earlier in the same file — relabeled B2→B1
-    wholesale instead, keeping `perfect_subjunctive` as a documented "taught
-    early" exception) or a loose grab-bag (safe to split; the other 6).
-    Result: `perfect-tenses` lost `present_perfect` to a new section in
-    `what-happened` (A2), which now teaches participle formation from
-    scratch since it's the first place a learner meets it — `perfect-tenses`
-    recaps rather than re-teaches. `probability-aspect`'s slot was
-    repurposed in place (id kept, for progress-tracking safety) into a new
-    B1 "Verb Nuance" unit (`futuro_probabilidad`, `perifraseis_avanzadas`,
-    plus `verbos_preposicionales`/`cuantificadores` moved in from the old
-    `fixed-expressions`); its `condicional_probabilidad` moved out to a
-    brand-new B2 unit, `subjunctive-counterfactuals-concession` (reusing
-    the order-24 slot vacated when `subjunctive-deep-dive` relabeled to
-    B1), alongside `pluperfect_subjunctive` and `subjunctive_adjective_
-    clauses` (both split off `subjunctive-limits`, which keeps its 2
-    still-correctly-C1 concepts) and `aunque_concessive` (split off
-    `fixed-expressions`) — all four share an unreal/hypothetical-reasoning
-    theme. `fixed-expressions` gained `estructuradores_informacion` and
-    `registro_formal_informal`, both split off C2 units `discourse-markers`
-    and `register-stance` (each now down to their one remaining
-    genuinely-C2 concept: `reformuladores`, `modalizacion_epistemica`);
-    the other two split-off concepts, `operadores_discursivos` and
-    `controladores_contacto`, folded into `argumentation-workplace`
-    (already the workplace/conversational-register home). Every relocated
-    section's prose, examples, and practice moved verbatim — the only
-    wholly new prose this phase is `what-happened`'s participle-formation
-    section. Verified: concept-lag script (0 duplicate ids, 0 untaught
-    concepts, 0 double-taught concepts, exactly 11 accepted minor/
-    documented lags — same list as before, now covering the *whole*
-    curriculum, not just the units left untouched); every touched unit's
-    practice `concept_id`s cross-checked against both `concepts.js` and its
-    own unit's `concepts` array; `npm run build` passes.
+27. ~~CEFR-accuracy audit of `concepts.js`~~ — **done** (07-09-2026, 4
+    phases: research, then data-layer fixes/splits/moves). ~36 of 109
+    concepts were mistagged against real-world CEFR (Instituto Cervantes
+    PCIC + cross-referenced ELE textbook sequencing); all retagged,
+    8 new concepts split off 6 overly-bundled ones, concept count
+    109 → 117, all prereqs/`grammar.js`/`_gemini.js` whitelist verified
+    consistent throughout. The systemic follow-on finding this phase
+    surfaced (18 retagged concepts taught later in `curriculum/index.js`
+    than their corrected level) was itself resolved by item 29's
+    pacing-lag fix below. Full phase-by-phase methodology and every
+    individual retag: `ES-HISTORY.md`.
+28. ~~CEFR-accuracy audit of `vocabulary.js` and `verbs.js`~~ — **done**
+    (07-09-2026). 167 of 1439 `vocabulary.js` words and 11 of 147
+    `verbs.js` verbs retagged, found via a frequency-consistency scan
+    (does a word's real-world frequency match its assigned CEFR band?)
+    plus per-batch research-agent verification — thematic/functional
+    vocabulary (colors, food, family, school items) was excluded from
+    the "under-leveled" check since those are legitimately taught early
+    for communicative necessity despite low corpus frequency, not
+    frequency itself. `idioms.js`/`false-friends.js` scoped out (verbs +
+    vocabulary only, by request) and remain unaudited. Full methodology
+    and every retag: `ES-HISTORY.md`.
+29. ~~Curriculum-unit-content pacing-lag fix~~ — **done** (07-09-2026, 2
+    phases) — resolves item 27's systemic finding. 8 concepts (all from
+    item 27's splits) had zero teaching unit at all — Phase 1 wrote new
+    sections/practice, folded into 5 existing units. 7 units no longer
+    cohered at their assigned level after the retags — Phase 2
+    restructured each by content-coherence (relabel a tightly-sequenced
+    arc wholesale; split a loose grab-bag apart), including one new
+    consolidated B2 unit for four concepts sharing an unreal/
+    hypothetical-reasoning theme. Verified via a concept-lag script: 0
+    untaught, 0 double-taught, 11 accepted/documented minor 1-concept
+    lags (a learner isn't blocked, just reinforced slightly late). Full
+    phase-by-phase methodology: `ES-HISTORY.md`.
 
 ## Session history index
 
@@ -1401,3 +1151,12 @@ full account of any of these.
   (client-side only, mirrors the Learn units' progress pattern) — full
   current state in "Architecture" above, full narrative in
   `ES-HISTORY.md`.
+- **07-10-2026** — Reading-passage body text fixed to match Learn's exact
+  paragraph styling (`--font-sans`/`0.9375rem`/`1.7`, not `--font-serif`,
+  which is headline-only) — see "Code/design gotchas" above.
+- **07-10-2026** — `ES.md` cleanup pass: trimmed inline session narrative
+  from the prose-writing process steps, the Readings architecture note,
+  and punch-list items 27-29 (all fully duplicated in `ES-HISTORY.md`
+  already) down to current-state facts + pointers; fixed a stale
+  cross-reference (Readings section pointed at the wrong punch-list
+  item); updated stale word counts. ~240 lines shorter net (1403 → 1162).
