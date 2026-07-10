@@ -342,6 +342,9 @@ export default {
       concept_id: 'inversion_literaria',
       difficulty: 3,
     },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Reescribe esta idea para dar énfasis: "Quiero paz y tranquilidad, no dinero." Usa una oración hendida (por ejemplo, "Lo que quiero es...") o una dislocación.', word: null, english: null, answer: 'Lo que de verdad quiero es paz y tranquilidad; el dinero, la verdad, me importa poco.', concept_id: 'oraciones_hendidas', difficulty: 3 },
   ],
 };
 

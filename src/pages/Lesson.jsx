@@ -12,7 +12,13 @@ import { buildCheckpointPractice } from '../lib/checkpoints.js';
 import { isAnswerCorrect } from '../lib/answerMatching.js';
 import styles from './Lesson.module.css';
 
-// phase: 'reading' | 'practice' | 'checking' | 'feedback' | 'complete'
+// phase: 'reading' | 'practice' | 'checking' | 'reveal' | 'feedback' | 'complete'
+// 'reveal' is writing_prompt-only: the unit's pre-written model answer is
+// shown and the learner self-assesses against it — entirely client-side
+// (no backend call), since a curriculum lesson's practice item already
+// carries its own model answer statically. Mirrors Session.jsx's
+// writingReveal pattern from the adaptive session, without the Gemini
+// round-trip that pattern needs there.
 
 // Checkpoint units have no static content — this builds their {sections,
 // vocab, practice} at lesson-load time instead, so it reflects the
@@ -45,6 +51,7 @@ export default function Lesson() {
   const [correctCount, setCorrectCount] = useState(0);
   const [feedback, setFeedback] = useState(null);
   const [marking, setMarking] = useState(false);
+  const [writingReveal, setWritingReveal] = useState(null); // { modelAnswer, learnerAnswer } | null
 
   // Checkpoints: fetch the learner's current weak spots and assemble a
   // fresh, personalized practice set every time this lesson mounts.
@@ -81,17 +88,33 @@ export default function Lesson() {
     setExerciseIndex(0);
     setCorrectCount(0);
     setFeedback(null);
+    setWritingReveal(null);
     setPhase('practice');
   }, []);
 
   const handleAnswer = useCallback((learnerAnswer) => {
-    setPhase('checking');
     const exercise = unit.practice[exerciseIndex];
+    // writing_prompt is open-ended — nothing to string-match. Reveal the
+    // unit's model answer and let the learner self-assess against it,
+    // the same reason the adaptive session never exact-grades free text.
+    if (exercise.type === 'writing_prompt') {
+      setWritingReveal({ modelAnswer: exercise.answer, learnerAnswer });
+      setPhase('reveal');
+      return;
+    }
+    setPhase('checking');
     const correct = isAnswerCorrect(exercise, learnerAnswer);
     if (correct) setCorrectCount(c => c + 1);
     setFeedback({ correct, correctAnswer: correct ? null : exercise.answer });
     setPhase('feedback');
   }, [unit, exerciseIndex]);
+
+  const handleSelfAssess = useCallback((correct) => {
+    if (correct) setCorrectCount(c => c + 1);
+    setFeedback({ correct, correctAnswer: null });
+    setWritingReveal(null);
+    setPhase('feedback');
+  }, []);
 
   const handleNext = useCallback(async () => {
     const nextIndex = exerciseIndex + 1;
@@ -106,6 +129,7 @@ export default function Lesson() {
     }
     setExerciseIndex(nextIndex);
     setFeedback(null);
+    setWritingReveal(null);
     setPhase('practice');
   }, [exerciseIndex, unit, token]);
 
@@ -221,7 +245,7 @@ export default function Lesson() {
             </>
           )}
 
-          {(phase === 'practice' || phase === 'checking' || phase === 'feedback') && (
+          {(phase === 'practice' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && (
             <div className={styles.practiceArea}>
               <div className={styles.progressWrap}>
                 <div className={styles.progressBar}>
@@ -236,8 +260,35 @@ export default function Lesson() {
               <ExerciseCard
                 exercise={unit.practice[exerciseIndex]}
                 onSubmit={handleAnswer}
-                disabled={phase === 'checking' || phase === 'feedback'}
+                disabled={phase !== 'practice'}
               />
+
+              {phase === 'reveal' && writingReveal && (
+                <div className={styles.writingReveal}>
+                  <p className={styles.writingRevealLabel}>One way to write this:</p>
+                  <p className={styles.writingRevealText}>{writingReveal.modelAnswer}</p>
+                  <p className={styles.writingRevealHint}>
+                    Compare it to what you wrote — there's no single correct answer here.
+                  </p>
+                  <div className={styles.writingRevealActions}>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => handleSelfAssess(false)}
+                    >
+                      Needs work
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => handleSelfAssess(true)}
+                      autoFocus
+                    >
+                      Got it
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {(phase === 'checking' || phase === 'feedback') && (
                 <Feedback

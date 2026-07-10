@@ -1425,6 +1425,53 @@ measures):**
     `UNIT_METADATA`, not generic marketing copy. Verified live via a real
     headless-browser run confirming all 6 blurbs render under their
     correct level sections.
+36. ~~Structured curriculum units never require producing original
+    language for their own discourse/register concepts~~ — **done**
+    (07-10-2026). Surfaced by the user's own follow-up question ("is
+    expressing complex ideas better suited to a different area of the
+    site?") — checked the actual practice pools rather than answering in
+    the abstract. Found real evidence: the three most discourse-heavy
+    units ("Argumentation & Workplace Correspondence," "Connectors &
+    Cohesion," "Register & Epistemic Stance") were 100%
+    `multiple_choice`/`fill_blank`/`translation`/`error_correction` —
+    zero production exercises, even in the unit literally about writing
+    formal correspondence. A learner could finish it without ever once
+    writing a piece of correspondence; the only chance to actually use
+    the concept was left to chance in the adaptive session later.
+
+    Technical finding that shaped the fix: `Lesson.jsx` (the static
+    curriculum page) grades everything with a plain client-side string
+    match and has no reveal/self-assessment flow at all — dropping a
+    `writing_prompt` item straight into a unit's practice array would
+    have compared the learner's free paragraph against one fixed example
+    sentence and marked it wrong almost every time. `conversation`-type
+    items were ruled out entirely for static units: a real back-and-forth
+    needs a live Gemini partner reacting to what the learner actually
+    says, which a pre-scripted curriculum unit can't do without becoming
+    fake — that stays adaptive-session-only (item 22), which is already
+    the right place for it.
+
+    Extended `Lesson.jsx` with the same reveal → self-assess pattern the
+    adaptive session uses for `writing_prompt` (item 21), but entirely
+    client-side — no backend call, since a curriculum practice item
+    already carries its own model answer statically. Added one
+    `writing_prompt` exercise to each of the 10 units whose core skill is
+    genuinely discourse/communication rather than mechanical grammar
+    form: both B1 units on reported speech and hedging probability, and
+    all 8 B2-C2 units built around argumentation, connectors, register,
+    reformulation, epistemic stance, discourse structure, word order for
+    effect, and formal written genres. Confirmed `ClickableSpanish`
+    glossing never applies to practice-exercise text (only to a unit's
+    reading section) before assuming rule 12's vocabulary-completeness
+    requirement applied here — it doesn't, so no vocabulary.js changes
+    were needed for this pass.
+
+    Verified live: `node --check` on all 10 modified unit files,
+    production build, and a real headless-browser run through the
+    shortest affected unit (Register & Epistemic Stance, 8 items)
+    confirming the full flow — write, reveal the model answer, self-assess
+    "Got it," see it counted in the final "X of Y correct" score, and
+    reach lesson completion — all working end to end.
 
 ## Session history index
 

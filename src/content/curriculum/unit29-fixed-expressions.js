@@ -263,6 +263,9 @@ export default {
       passageEn: 'You need the same urgent report from four different people, and each time you adjust the register to your relationship with them. To your boss: "Could you please send me the report before five?" To a client you\'ve barely spoken to: "Could you send me the report before five?" To a trusted coworker: "Can you send me the report before five?" To your best friend: "Hey, are you gonna send me that report before five or what?"',
     },
     { type: 'translation_to_spanish', prompt: "Translate, using formal register: 'I would be grateful if you could confirm the appointment.'", english: 'I would be grateful if you could confirm the appointment.', answer: 'Le agradecería que me confirmara la cita.', word: 'le agradecería que', concept_id: 'registro_formal_informal', difficulty: 3 },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Explica, en 3-4 frases, una ventaja y una desventaja de trabajar desde casa. Estructura tu respuesta con "por una parte... por otra... en definitiva".', word: null, english: null, answer: 'Por una parte, trabajar desde casa permite organizar mejor el tiempo y evitar el desplazamiento diario. Por otra, resulta más difícil separar la vida laboral de la personal. En definitiva, creo que las ventajas superan a los inconvenientes si uno mantiene una rutina clara.', concept_id: 'estructuradores_informacion', difficulty: 3 },
   ],
 };
 

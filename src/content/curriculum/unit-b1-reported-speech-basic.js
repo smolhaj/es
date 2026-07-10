@@ -119,6 +119,9 @@ export default {
     { type: 'error_correction', prompt: 'Find and correct the error: "Me preguntó ¿dónde vivía?"', word: 'dónde vivía', english: 'where I lived', answer: 'Me preguntó dónde vivía.', concept_id: 'estilo_indirecto_basico', difficulty: 3 },
     { type: 'error_correction', prompt: 'Find and correct the error: "Me preguntó que dónde trabajaba." (no que before the question word)', word: 'dónde trabajaba', english: 'where I worked', answer: 'Me preguntó dónde trabajaba.', concept_id: 'estilo_indirecto_basico', difficulty: 3 },
     { type: 'translation_to_english', prompt: 'Nos preguntó cómo se llamaba el perro.', word: 'cómo', english: 'what... was', answer: "She asked us what the dog's name was.", concept_id: 'estilo_indirecto_basico', difficulty: 3 },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Un amigo te contó algo ayer. Escribe 2-3 frases explicando qué te dijo, usando "dijo que" o "me preguntó si/dónde/cuándo".', word: null, english: null, answer: 'Mi amigo Pedro me dijo que estaba muy cansado. Me preguntó si quería ir al cine el sábado. Le dije que sí.', concept_id: 'estilo_indirecto_basico', difficulty: 2 },
   ],
 };
 

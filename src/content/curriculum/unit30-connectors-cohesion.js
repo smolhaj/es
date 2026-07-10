@@ -308,6 +308,9 @@ export default {
       passage: 'Sonia: Ya que ya tenemos los datos, podemos decidir hoy mismo.\nPablo: Dado que el riesgo financiero es bajo, yo estoy a favor de seguir adelante.\nSonia: Puesto que no hay más objeciones en la sala, propongo que votemos ahora.\nPablo: De acuerdo. No lo pospongamos más porque ya llevamos tres semanas de retraso.',
       passageEn: "Sonia: Now that we already have the data, we can decide today.\nPablo: Given that the financial risk is low, I'm in favor of moving forward.\nSonia: Since there are no more objections in the room, I propose we vote now.\nPablo: Agreed. Let's not postpone it any longer, because we're already three weeks behind.",
     },
+
+    // ── Production practice: writing_prompt (self-assessed, no exact-match grading) ──
+    { type: 'writing_prompt', prompt: 'Da tu opinión sobre si las redes sociales son buenas o malas para la sociedad, en 3-4 frases. Usa al menos dos conectores distintos (por ejemplo, sin embargo, por lo tanto, además, ya que).', word: null, english: null, answer: 'Las redes sociales nos permiten mantenernos en contacto con personas lejanas, ya que facilitan la comunicación instantánea. Sin embargo, también fomentan la comparación constante y la ansiedad. Por lo tanto, creo que su efecto depende mucho de cómo se usen.', concept_id: 'connectors_contrast', difficulty: 3 },
   ],
 };
 
