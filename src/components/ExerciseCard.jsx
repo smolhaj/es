@@ -8,6 +8,7 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
   const inputRef = useRef(null);
 
   const isMultipleType = t => t === 'multiple_choice' || t === 'register_identify';
+  const isWritingPrompt = exercise?.type === 'writing_prompt';
 
   // Reset state when exercise changes
   useEffect(() => {
@@ -104,18 +105,31 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
             <label className={styles.inputLabel} htmlFor="answer-input">
               Your answer
             </label>
-            <input
-              id="answer-input"
-              ref={inputRef}
-              type="text"
-              className={styles.input}
-              value={answer}
-              onChange={e => setAnswer(e.target.value)}
-              placeholder={inputPlaceholder(exercise.type)}
-              disabled={disabled}
-              autoComplete="off"
-              spellCheck="false"
-            />
+            {isWritingPrompt ? (
+              <textarea
+                id="answer-input"
+                ref={inputRef}
+                className={`${styles.input} ${styles.textarea}`}
+                value={answer}
+                onChange={e => setAnswer(e.target.value)}
+                placeholder={inputPlaceholder(exercise.type)}
+                disabled={disabled}
+                rows={4}
+              />
+            ) : (
+              <input
+                id="answer-input"
+                ref={inputRef}
+                type="text"
+                className={styles.input}
+                value={answer}
+                onChange={e => setAnswer(e.target.value)}
+                placeholder={inputPlaceholder(exercise.type)}
+                disabled={disabled}
+                autoComplete="off"
+                spellCheck="false"
+              />
+            )}
           </div>
         )}
 
@@ -125,7 +139,7 @@ export default function ExerciseCard({ exercise, onSubmit, disabled }) {
             className={`btn btn-primary ${styles.submitBtn}`}
             disabled={!canSubmit || disabled}
           >
-            Check answer
+            {isWritingPrompt ? 'Show model answer' : 'Check answer'}
           </button>
         )}
       </form>
@@ -142,6 +156,7 @@ function typeLabel(type) {
     case 'error_correction':       return 'Error correction';
     case 'register_identify':      return 'Identify the register';
     case 'comprehension':          return 'Comprehension check';
+    case 'writing_prompt':         return 'Writing prompt';
     default: return 'Exercise';
   }
 }
@@ -152,6 +167,7 @@ function inputPlaceholder(type) {
     case 'translation_to_spanish': return 'Type in Spanish…';
     case 'translation_to_english': return 'Type in English…';
     case 'error_correction':       return 'Type the corrected sentence…';
+    case 'writing_prompt':         return 'Write 2-4 sentences in Spanish…';
     default: return 'Your answer…';
   }
 }
