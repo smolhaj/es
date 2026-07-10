@@ -11,6 +11,9 @@ function ResourceCard({ item }) {
     <article
       className={`${styles.card} ${open ? styles.cardOpen : ''}`}
       onClick={() => setOpen(o => !o)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(o => !o); } }}
     >
       <div className={styles.cardTop}>
         <div className={styles.nameWrap}>

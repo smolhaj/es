@@ -6,7 +6,7 @@ import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import { isAnswerCorrect } from '../lib/answerMatching.js';
 import { markPassageComplete } from '../lib/readingProgress.js';
-import { getPassage } from '../content/readings.js';
+import { getPassage, getAdjacentChapter } from '../content/readings.js';
 import styles from './ReadingPassage.module.css';
 
 export default function ReadingPassage() {
@@ -20,6 +20,8 @@ export default function ReadingPassage() {
 
   if (!passage) return <Navigate to="/readings" replace />;
 
+  const prevChapter = getAdjacentChapter(passage, 'prev');
+  const nextChapter = getAdjacentChapter(passage, 'next');
   const questions = passage.questions ?? [];
   const currentQuestion = questions[qIndex];
   const finished = started && !currentQuestion;
@@ -81,6 +83,25 @@ export default function ReadingPassage() {
               {passage.paragraphs.map((p, i) => (
                 <p key={i} className={styles.translationParagraph}>{p.en}</p>
               ))}
+            </div>
+          )}
+
+          {(prevChapter || nextChapter) && (
+            <div className={styles.chapterNav}>
+              <div>
+                {prevChapter && (
+                  <Link to={`/readings/${prevChapter.id}`} className={styles.chapterNavLink}>
+                    ← Capítulo {prevChapter.chapter}
+                  </Link>
+                )}
+              </div>
+              <div>
+                {nextChapter && (
+                  <Link to={`/readings/${nextChapter.id}`} className={styles.chapterNavLink}>
+                    Capítulo {nextChapter.chapter} →
+                  </Link>
+                )}
+              </div>
             </div>
           )}
 

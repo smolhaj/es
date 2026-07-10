@@ -69,7 +69,7 @@ function SessionCard({ session }) {
         onClick={() => setOpen(o => !o)}
         role="button"
         tabIndex={0}
-        onKeyDown={e => e.key === 'Enter' && setOpen(o => !o)}
+        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(o => !o); } }}
       >
         <span className={styles.date}>{date} · {time}</span>
         <span className={styles.exercises}>{session.items_reviewed} exercises</span>

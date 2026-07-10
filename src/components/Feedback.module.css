@@ -58,7 +58,7 @@
 }
 
 .conceptNote {
-  background: var(--bg-card);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
   padding: var(--sp-3) var(--sp-4);

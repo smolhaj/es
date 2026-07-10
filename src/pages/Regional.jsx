@@ -58,7 +58,7 @@ function RegionalCard({ section }) {
         onClick={() => setOpen(o => !o)}
         role="button"
         tabIndex={0}
-        onKeyDown={e => e.key === 'Enter' && setOpen(o => !o)}
+        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(o => !o); } }}
       >
         <div className={styles.headerMeta}>
           <span className={styles.category}>{section.category}</span>

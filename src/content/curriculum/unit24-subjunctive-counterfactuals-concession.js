@@ -128,7 +128,7 @@ export default {
     { es: 'aunque + indicativo', en: 'although (known, real fact)', example: 'Aunque llueve, salgo a caminar.', exampleEn: "Although it's raining, I'm going out for a walk." },
     { es: 'aunque + subjuntivo', en: 'even if (hypothetical, dismissed)', example: 'Aunque llueva, saldré a caminar.', exampleEn: "Even if it rains, I'll go out for a walk." },
     { es: 'a pesar de que', en: 'despite the fact that (concessive, same mood logic as aunque)', example: 'A pesar de que es tarde, voy a terminar.', exampleEn: "Despite the fact that it's late, I'm going to finish." },
-    { es: 'el piso', en: 'the flat, the apartment', example: 'Alquilamos un piso en el centro.', exampleEn: 'We rented a flat downtown.' },
+    { es: 'el piso', en: 'the flat, the apartment (Spain; departamento in LatAm — piso means "floor" across most of Latin America)', example: 'Alquilamos un piso en el centro.', exampleEn: 'We rented a flat downtown.' },
     { es: 'el casero / la casera', en: 'the landlord / landlady', example: 'El casero subió el alquiler otra vez.', exampleEn: 'The landlord raised the rent again.' },
     { es: 'el alquiler', en: 'the rent', example: 'El alquiler sube cada año en esta ciudad.', exampleEn: 'The rent goes up every year in this city.' },
   ],

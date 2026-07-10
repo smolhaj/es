@@ -12,6 +12,9 @@ function GrammarCard({ card, expanded, onToggle }) {
     <article
       className={`${styles.card} ${expanded ? styles.cardExpanded : ''}`}
       onClick={onToggle}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); } }}
     >
       <header className={styles.cardHeader}>
         <div className={styles.cardMeta}>

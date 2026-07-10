@@ -72,7 +72,7 @@ function SampleCard({ sample }) {
         onClick={() => setOpen(o => !o)}
         role="button"
         tabIndex={0}
-        onKeyDown={e => e.key === 'Enter' && setOpen(o => !o)}
+        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(o => !o); } }}
       >
         <span className={styles.prompt}>{previewPrompt}</span>
         <div className={styles.meta}>
