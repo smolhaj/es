@@ -34,10 +34,10 @@ export const api = {
         body: JSON.stringify({ focusConcept }),
       }, token),
 
-    turn: (token, sessionId, exercise, learnerAnswer) =>
+    turn: (token, sessionId, learnerAnswer) =>
       req('/sessions/turn', {
         method: 'POST',
-        body: JSON.stringify({ sessionId, exercise, learnerAnswer })
+        body: JSON.stringify({ sessionId, learnerAnswer })
       }, token),
 
     end: (token, sessionId, abandoned = false) =>
