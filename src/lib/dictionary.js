@@ -1,7 +1,7 @@
 import { VOCABULARY } from '../content/vocabulary.js';
 import { UNIT_METADATA, getUnit } from '../content/curriculum/index.js';
 
-function stripAccents(s) {
+export function stripAccents(s) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
 

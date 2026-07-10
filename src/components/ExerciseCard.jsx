@@ -140,6 +140,7 @@ function typeLabel(type) {
     case 'translation_to_english': return 'Translate to English';
     case 'error_correction':       return 'Error correction';
     case 'register_identify':      return 'Identify the register';
+    case 'comprehension':          return 'Comprehension check';
     default: return 'Exercise';
   }
 }
