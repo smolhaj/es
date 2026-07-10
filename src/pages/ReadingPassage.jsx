@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import { isAnswerCorrect } from '../lib/answerMatching.js';
+import { markPassageComplete } from '../lib/readingProgress.js';
 import { getPassage } from '../content/readings.js';
 import styles from './ReadingPassage.module.css';
 
@@ -22,6 +23,10 @@ export default function ReadingPassage() {
   const questions = passage.questions ?? [];
   const currentQuestion = questions[qIndex];
   const finished = started && !currentQuestion;
+
+  useEffect(() => {
+    if (finished) markPassageComplete(passage.id);
+  }, [finished, passage.id]);
 
   function handleStart() {
     setStarted(true);

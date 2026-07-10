@@ -1,11 +1,21 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import { PASSAGES } from '../content/readings.js';
+import { isPassageComplete } from '../lib/readingProgress.js';
 import styles from './Readings.module.css';
 
 const FORMAT_LABELS = { standalone: 'Standalone scene', story: 'Story' };
 
 export default function Readings() {
+  const [completed, setCompleted] = useState({});
+
+  useEffect(() => {
+    setCompleted(Object.fromEntries(PASSAGES.map(p => [p.id, isPassageComplete(p.id)])));
+  }, []);
+
+  const doneCount = Object.values(completed).filter(Boolean).length;
+
   return (
     <div className={styles.page}>
       <NavBar />
@@ -18,14 +28,24 @@ export default function Readings() {
             <p className={styles.subtitle}>
               Short original passages to read for comprehension — click any underlined word for a definition.
             </p>
+            {doneCount > 0 && (
+              <p className={styles.progressLine}>
+                {doneCount} of {PASSAGES.length} complete
+              </p>
+            )}
           </header>
 
           <div className={styles.list}>
             {PASSAGES.map(p => (
-              <Link key={p.id} to={`/readings/${p.id}`} className={styles.card}>
+              <Link
+                key={p.id}
+                to={`/readings/${p.id}`}
+                className={`${styles.card} ${completed[p.id] ? styles.cardDone : ''}`}
+              >
                 <div className={styles.cardTop}>
                   <h2 className={styles.cardTitle}>{p.title}</h2>
                   <div className={styles.tags}>
+                    {completed[p.id] && <span className={styles.doneCheck} aria-label="Completed">✓</span>}
                     <span className={styles.level}>{p.level}</span>
                     <span className={styles.format}>{FORMAT_LABELS[p.format] ?? p.format}</span>
                   </div>

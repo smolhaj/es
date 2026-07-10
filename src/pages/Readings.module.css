@@ -40,6 +40,13 @@
   font-size: 0.9375rem;
 }
 
+.progressLine {
+  margin-top: var(--sp-2);
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
 .list {
   display: flex;
   flex-direction: column;
@@ -60,6 +67,15 @@
   transition: border-color 0.15s;
 }
 .card:hover { border-color: var(--accent); }
+
+.cardDone {
+  border-color: color-mix(in srgb, var(--correct) 35%, transparent);
+}
+
+.doneCheck {
+  color: var(--correct);
+  font-weight: 700;
+}
 
 .cardTop {
   display: flex;
