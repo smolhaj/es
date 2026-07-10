@@ -1133,9 +1133,16 @@ measures):**
     of load; this had nothing to do with actual usage volume or the app's
     own 300/day internal cap. Switched to `gemini-3.1-flash-lite`, the
     currently-quota'd free-tier model with real headroom (15 RPM / 500
-    RPD — enough for dozens of ~11-call sessions/day). Not yet confirmed
-    against the live API from this environment (no `GEMINI_API_KEY`
-    available in the sandbox) — needs a real-session check post-deploy.
+    RPD — enough for dozens of ~11-call sessions/day). **Verified live**
+    (07-10-2026): with a real `GEMINI_API_KEY`, a direct call to
+    `gemini-3.1-flash-lite:generateContent` returned 200 (a same-key call
+    to the old `gemini-2.0-flash` still 429s, corroborating the root
+    cause). Ran the full local stack (`wrangler pages dev` + local D1/KV,
+    schema + all `schema-vN.sql` migrations applied) end to end: registered
+    a user, started a session, and submitted a turn — both
+    `/api/sessions/start` and `/api/sessions/turn` returned
+    `"source":"gemini"` with real generated exercises/feedback, not the
+    static fallback pool.
 
 ## Session history index
 
