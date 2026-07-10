@@ -640,6 +640,15 @@ word, never a genuinely missing content word. This "run the real matcher
 and manually clear every remaining token" check is now the standard
 verification step for any new passage (ES.md process step 12).
 
+**Completion tracking** (`src/lib/readingProgress.js`, added 07-10-2026):
+a passage is marked complete once the learner reaches the end of its
+comprehension-question set (same completion bar as Learn units — not
+gated on a perfect score). Tracked client-side only, via a single
+`capi_readings_completed` localStorage key (`{ [passageId]: true }`) —
+no backend table, consistent with this feature's existing no-persistence
+design. `Readings.jsx` reads it to show a Learn-style ✓ badge and border
+tint on completed cards, plus a "N of M complete" progress line.
+
 Not yet built: additional passages/chapters beyond Blahaj Chapter 2, and
 letting a serialized story's own level climb chapter by chapter (the
 natural design for chapters 3+, discussed but not started).
