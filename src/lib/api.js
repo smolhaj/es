@@ -14,7 +14,16 @@ async function req(path, options = {}, token) {
     }
   });
   const data = await res.json();
-  if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
+  if (!res.ok) {
+    // Only an *authenticated* request going 401 means the token itself is
+    // invalid/expired — a public endpoint like login rejecting bad
+    // credentials is a normal 401 the caller already handles locally, not
+    // a session-expiry case. See ES.md punch-list item 7.
+    if (res.status === 401 && token) {
+      window.dispatchEvent(new Event('capi:unauthorized'));
+    }
+    throw new Error(data.error ?? `HTTP ${res.status}`);
+  }
   return data;
 }
 
