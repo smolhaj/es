@@ -1706,6 +1706,28 @@ export const VOCABULARY = [
   { es: 'exactamente', en: 'exactly', cefr: 'A2', domain: 'adverbs', frequencyRank: 230, example: 'Es exactamente lo que quería.', exampleEn: "It's exactly what I wanted." },
   { es: 'hombre', en: 'man', cefr: 'A1', domain: 'nouns', frequencyRank: 50, example: 'Ese hombre lee el periódico cada día.', exampleEn: 'That man reads the newspaper every day.' },
   { es: 'mujer', en: 'woman', cefr: 'A1', domain: 'nouns', frequencyRank: 48, example: 'Una mujer me explica el camino.', exampleEn: 'A woman explains the way to me.' },
+
+  // ── A1 READING VOCAB — pharmacy / café / Blahaj ch3 ──────────────────────
+  { es: 'terminar', en: 'to end / to finish', cefr: 'A1', domain: 'verbs', frequencyRank: 55, example: 'La clase termina a las tres.', exampleEn: 'The class ends at three.' },
+  { es: 'regalo', en: 'gift / present', cefr: 'A1', domain: 'nouns', frequencyRank: 160, example: 'Le compro un regalo a mi madre.', exampleEn: "I'm buying my mother a gift." },
+  { es: 'buzón', en: 'mailbox', cefr: 'A2', domain: 'house', frequencyRank: 350, example: 'Reviso el buzón todos los días.', exampleEn: 'I check the mailbox every day.' },
+  { es: 'historia', en: 'story / history', cefr: 'A1', domain: 'nouns', frequencyRank: 85, example: 'Me gusta esa historia.', exampleEn: 'I like that story.' },
+  { es: 'contar', en: 'to tell / to count', cefr: 'A2', domain: 'verbs', frequencyRank: 60, example: 'Voy a contarte una historia.', exampleEn: "I'm going to tell you a story." },
+  { es: 'medicina', en: 'medicine', cefr: 'A1', domain: 'health', frequencyRank: 245, example: 'Tomo la medicina cada mañana.', exampleEn: 'I take the medicine every morning.' },
+  { es: 'cada', en: 'each / every', cefr: 'A1', domain: 'adjectives', frequencyRank: 40, example: 'Cada persona tiene su opinión.', exampleEn: 'Each person has their own opinion.' },
+  { es: 'ya no', en: 'not anymore / no longer', cefr: 'A2', domain: 'connectors', frequencyRank: 135, example: 'Ya no vivo en esa ciudad.', exampleEn: "I don't live in that city anymore." },
+  { es: 'desear', en: 'to wish / to want (formal)', cefr: 'A2', domain: 'verbs', frequencyRank: 180, example: '¿Qué desea usted?', exampleEn: 'What would you like?' },
+  { es: 'camarero', en: 'waiter', cefr: 'A1', domain: 'professions', frequencyRank: 310, example: 'El camarero trae el menú.', exampleEn: 'The waiter brings the menu.' },
+  { es: 'señalar', en: 'to point (at) / to point out', cefr: 'A2', domain: 'verbs', frequencyRank: 240, example: 'Señala el mapa con el dedo.', exampleEn: 'She points at the map with her finger.' },
+  { es: 'pastel', en: 'cake / pastry', cefr: 'A1', domain: 'food', frequencyRank: 175, example: 'Comemos pastel en su cumpleaños.', exampleEn: 'We eat cake on his birthday.' },
+  { es: 'popular', en: 'popular', cefr: 'A2', domain: 'adjectives', frequencyRank: 260, example: 'Es un restaurante muy popular.', exampleEn: "It's a very popular restaurant." },
+  { es: 'probar', en: 'to try / to taste', cefr: 'A2', domain: 'verbs', frequencyRank: 130, example: '¿Quieres probar mi comida?', exampleEn: 'Do you want to try my food?' },
+  { es: 'pedazo', en: 'piece', cefr: 'A2', domain: 'nouns', frequencyRank: 250, example: 'Quiero un pedazo de pastel.', exampleEn: 'I want a piece of cake.' },
+  { es: 'esquina', en: 'corner', cefr: 'A1', domain: 'places', frequencyRank: 280, example: 'La farmacia está en la esquina.', exampleEn: 'The pharmacy is on the corner.' },
+  { es: 'descansar', en: 'to rest', cefr: 'A1', domain: 'verbs', frequencyRank: 145, example: 'Necesito descansar un poco.', exampleEn: 'I need to rest a little.' },
+  { es: 'detrás', en: 'behind', cefr: 'A2', domain: 'adverbs', frequencyRank: 205, example: 'El gato está detrás de la puerta.', exampleEn: 'The cat is behind the door.' },
+  { es: 'entrar', en: 'to enter / to go in', cefr: 'A1', domain: 'verbs', frequencyRank: 45, example: 'Entramos en la tienda.', exampleEn: 'We go into the store.' },
+  { es: 'hambre', en: 'hunger (as in "tener hambre")', cefr: 'A1', domain: 'body', frequencyRank: 155, example: 'Tengo mucha hambre.', exampleEn: "I'm very hungry." },
 ];
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();

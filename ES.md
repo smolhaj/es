@@ -562,21 +562,27 @@ B2:20, C1:4, C2:2`.
 
 ### Readings (`/readings`)
 
-6 original A1 passages as of 07-10-2026 (`src/content/readings.js`): the
+9 original A1 passages as of 07-10-2026 (`src/content/readings.js`): the
 original standalone scene ("El pan de cada mañana") and Chapter 1 of a
-planned 18-chapter serialized story ("Las Aventuras de Blahaj"), plus 4
-more added the same day covering the learner-facing spec's content-
-rotation categories one each — Chapter 2 of the Blahaj story (a
-continuing pen-pal shipment, this time to Buenos Aires), a second
-standalone scene ("El domingo en el parque," a different setting from the
-bakery), an everyday-conversation dialogue ("Planes para el sábado," a
-phone call between friends), and a real-world-practical-task passage
-("¿Cómo llego a la estación?," asking a stranger for directions — using
-`puede`/`tiene que` + infinitive rather than imperative, since imperative
-mood isn't A1 in `concepts.js`). The spec's fourth content category,
-media-based content, was deliberately skipped for this pass: the spec
-itself says real media should wait until a learner has "a functional
-foundation," which doesn't describe true-beginner A1. `/readings`
+planned 18-chapter serialized story ("Las Aventuras de Blahaj"), 4 more
+added the same day covering the learner-facing spec's content-rotation
+categories one each — Chapter 2 of the Blahaj story (a continuing
+pen-pal shipment, this time to Buenos Aires), a second standalone scene
+("El domingo en el parque," a different setting from the bakery), an
+everyday-conversation dialogue ("Planes para el sábado," a phone call
+between friends), and a real-world-practical-task passage ("¿Cómo llego
+a la estación?," asking a stranger for directions — using `puede`/`tiene
+que` + infinitive rather than imperative, since imperative mood isn't A1
+in `concepts.js`) — and 3 more added later the same day: Chapter 3 of the
+Blahaj story ("El regreso," closing the sent→hosted→returned mini-arc as
+Blahaj comes home to Lucía), a third standalone scene ("La farmacia de la
+esquina"), and a second practical-task passage ("En el café," ordering at
+a café — deliberately given a different resolution beat from the pharmacy
+scene after a blind-review note flagged both as structurally
+similar "customer + shopkeeper" templates). The spec's fourth content
+category, media-based content, was deliberately skipped for this whole
+run: the spec itself says real media should wait until a learner has "a
+functional foundation," which doesn't describe true-beginner A1. `/readings`
 lists passages (`Readings.jsx`); `/readings/:passageId` renders one
 (`ReadingPassage.jsx` — singular, since it renders one specific passage)
 with a "Ver traducción" toggle for the English. Renamed from "Reading" to
@@ -627,17 +633,23 @@ stripping to `normalizeAnswer` (reusing `stripAccents` from
 que" was marked wrong for "¿Por qué...?" throughout the A1 curriculum —
 strictly loosening, never tightens acceptance.
 
-The 07-10-2026 batch closed 45 more `vocabulary.js` gaps the same way
-(caja, día, familia, hombre, mujer, música, nombre, camino, todo,
-preparar, llamar, explicar, and 33 more) — most researched via a
+The 07-10-2026 sessions closed 65 more `vocabulary.js` gaps the same way
+across both batches (caja, día, familia, hombre, mujer, música, nombre,
+camino, todo, preparar, llamar, explicar, medicina, camarero, pastel,
+descansar, entrar, hambre, esquina, and more) — most researched via a
 dedicated agent, cross-checked and topped up by directly running
 `segmentSpanish` against the new passages and manually verifying every
 unmatched token was a proper noun, a grammar/function word (articles,
-subject pronouns — consistent with `usted`/`yo` already being absent from
-`vocabulary.js` by design, since those are taught via `concepts.js`, not
-this file), or a conjugated/inflected form of an already-present base
-word, never a genuinely missing content word. This "run the real matcher
-and manually clear every remaining token" check is now the standard
+subject pronouns, demonstratives — consistent with `usted`/`yo`/`este`/
+`eso` already being absent from `vocabulary.js` by design, since those
+are taught via `concepts.js`, not this file), or a conjugated/inflected
+form of an already-present base word, never a genuinely missing content
+word. One homograph near-miss caught mid-batch: a first draft of a
+`detrás de` phrase entry wouldn't have matched the actual passage text
+("detrás **del** mostrador" — the *de + el → del* contraction breaks
+multi-word phrase matching), fixed by entering the bare adverb `detrás`
+instead, same pattern as `cerca`/`lejos`. This "run the real matcher and
+manually clear every remaining token" check is now the standard
 verification step for any new passage (ES.md process step 12).
 
 **Completion tracking** (`src/lib/readingProgress.js`, added 07-10-2026):
@@ -649,9 +661,10 @@ no backend table, consistent with this feature's existing no-persistence
 design. `Readings.jsx` reads it to show a Learn-style ✓ badge and border
 tint on completed cards, plus a "N of M complete" progress line.
 
-Not yet built: additional passages/chapters beyond Blahaj Chapter 2, and
-letting a serialized story's own level climb chapter by chapter (the
-natural design for chapters 3+, discussed but not started).
+Not yet built: additional passages/chapters beyond Blahaj Chapter 3
+(which closed the first sent→hosted→returned mini-arc — a second trip
+for Blahaj is a natural future chapter 4, not yet started), and letting a
+serialized story's own level climb chapter by chapter.
 
 ### Flashcards (`/flashcards`)
 
@@ -1381,3 +1394,10 @@ full account of any of these.
   hard rules codified (vocab-gap-closing, comprehension-questions-with-
   every-passage) — full current state in "Architecture" above, full
   narrative in `ES-HISTORY.md`.
+- **07-10-2026** — 3 more reading passages shipped the same day: Blahaj
+  Chapter 3 (closes the first sent→hosted→returned mini-arc), a third
+  standalone scene, a second practical-task passage; 20 more
+  `vocabulary.js` gaps closed; completion checkmarks added to `/readings`
+  (client-side only, mirrors the Learn units' progress pattern) — full
+  current state in "Architecture" above, full narrative in
+  `ES-HISTORY.md`.
