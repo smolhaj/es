@@ -991,7 +991,12 @@ export async function callGemini(env, userMessage, exercise, learnerAnswer, isFi
     }
   }
 
-  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+  // gemini-2.0-flash was retired from this free-tier project's quota (0
+  // RPM/TPM/RPD per Google AI Studio's Rate Limit page — every call 429'd
+  // regardless of load, confirmed 07-10-2026). gemini-3.1-flash-lite is the
+  // current free-tier model with real headroom (15 RPM / 500 RPD), enough
+  // for dozens of ~11-call sessions/day. See ES.md punch-list item 31.
+  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${env.GEMINI_API_KEY}`;
 
   let systemPrompt = BASE_SYSTEM_PROMPT;
   if (briefing) {
