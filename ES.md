@@ -1412,6 +1412,19 @@ measures):**
     headless-browser run confirming all 5 titles list on `/readings` and
     that "El gato perdido" renders correctly with the new "gata" entry's
     hover-popover showing the right gloss and CEFR tag.
+35. ~~Learn page has no per-level "what you'll be able to do" framing~~ —
+    **done** (07-10-2026). Small idea surfaced while reviewing Duolingo's
+    published course structure for curriculum ideas (researched at the
+    user's request, not copied — see chat for the full comparison and
+    what was deliberately *not* taken from it: unit-count padding via
+    forced repetition, absurdist filler stories, video/mini-game content).
+    One honest, level-accurate line added under each CEFR heading on
+    `/learn` (e.g. B1: "Express opinions and hypotheticals, tell a clear
+    story in the past, and use the subjunctive for the first time"),
+    grounded in what that level's units actually teach per
+    `UNIT_METADATA`, not generic marketing copy. Verified live via a real
+    headless-browser run confirming all 6 blurbs render under their
+    correct level sections.
 
 ## Session history index
 

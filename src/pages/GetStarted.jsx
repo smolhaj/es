@@ -11,6 +11,17 @@ const LEVEL_LABEL = {
   A1: 'Absolute Basics', A2: 'Building Fluency', B1: 'Expressing Yourself', B2: 'Advanced Structures',
   C1: 'Near-Native Precision', C2: 'Native-Level Mastery',
 };
+// One honest "what you'll be able to do" line per level — grounded in what
+// this level's units actually teach (see UNIT_METADATA), not generic
+// marketing copy.
+const LEVEL_BLURB = {
+  A1: 'Greet people, describe yourself and your surroundings, and handle simple daily needs — all in the present tense.',
+  A2: 'Talk about your routine, your past, and your plans, and get through everyday situations like shopping, requests, and comparisons.',
+  B1: 'Express opinions and hypotheticals, tell a clear story in the past, and use the subjunctive for the first time.',
+  B2: 'Argue a point, write formal correspondence, and handle passive and compound tenses natively rather than translating them in your head.',
+  C1: 'Report what someone said, switch register on purpose, and structure a multi-part argument the way a fluent adult actually does.',
+  C2: "Catch what's implied but not said, read formal and literary Spanish natively, and use the subjunctive's rarest, most native-sounding forms.",
+};
 
 export default function GetStarted() {
   const { token } = useAuth();
@@ -54,6 +65,7 @@ export default function GetStarted() {
                   <span className={styles.levelBadge}>{level}</span>
                   {LEVEL_LABEL[level]}
                 </h2>
+                <p className={styles.levelBlurb}>{LEVEL_BLURB[level]}</p>
                 <div className={styles.unitGrid}>
                   {units.map(unit => (
                     <UnitCard key={unit.id} unit={unit} done={!!completed[unit.id]} />

@@ -59,6 +59,14 @@
   color: var(--text);
 }
 
+.levelBlurb {
+  margin-top: calc(var(--sp-4) * -1 + var(--sp-1));
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.5;
+}
+
 .levelBadge {
   display: inline-flex;
   align-items: center;
