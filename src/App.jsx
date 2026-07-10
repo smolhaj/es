@@ -22,7 +22,7 @@ import Regional from './pages/Regional.jsx';
 import Writing from './pages/Writing.jsx';
 import Concepts from './pages/Concepts.jsx';
 import Resources from './pages/Resources.jsx';
-import Reading from './pages/Reading.jsx';
+import Readings from './pages/Readings.jsx';
 import ReadingPassage from './pages/ReadingPassage.jsx';
 
 function Protected({ children }) {
@@ -63,8 +63,8 @@ export default function App() {
         <Route path="/writing" element={<Protected><Writing /></Protected>} />
         <Route path="/concepts" element={<Protected><Concepts /></Protected>} />
         <Route path="/resources" element={<Protected><Resources /></Protected>} />
-        <Route path="/reading" element={<Protected><Reading /></Protected>} />
-        <Route path="/reading/:passageId" element={<Protected><ReadingPassage /></Protected>} />
+        <Route path="/readings" element={<Protected><Readings /></Protected>} />
+        <Route path="/readings/:passageId" element={<Protected><ReadingPassage /></Protected>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AuthProvider>

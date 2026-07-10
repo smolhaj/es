@@ -11,7 +11,7 @@ const REFERENCE_LINKS = [
   { to: '/vocab', label: 'Vocabulary' },
   { to: '/vocab-review', label: 'Vocab review' },
   { to: '/idioms', label: 'Idioms' },
-  { to: '/reading', label: 'Reading' },
+  { to: '/readings', label: 'Readings' },
   { to: '/false-friends', label: 'False friends' },
   { to: '/pronunciation', label: 'Pronunciation' },
   { to: '/regional', label: 'Regional' },

@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
-import { PASSAGES } from '../content/reading.js';
-import styles from './Reading.module.css';
+import { PASSAGES } from '../content/readings.js';
+import styles from './Readings.module.css';
 
 const FORMAT_LABELS = { standalone: 'Standalone scene', story: 'Story' };
 
-export default function Reading() {
+export default function Readings() {
   return (
     <div className={styles.page}>
       <NavBar />
@@ -14,7 +14,7 @@ export default function Reading() {
         <div className={styles.inner}>
           <header className={styles.pageHeader}>
             <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
-            <h1 className={styles.title}>Reading</h1>
+            <h1 className={styles.title}>Readings</h1>
             <p className={styles.subtitle}>
               Short original passages to read for comprehension — click any underlined word for a definition.
             </p>
@@ -22,7 +22,7 @@ export default function Reading() {
 
           <div className={styles.list}>
             {PASSAGES.map(p => (
-              <Link key={p.id} to={`/reading/${p.id}`} className={styles.card}>
+              <Link key={p.id} to={`/readings/${p.id}`} className={styles.card}>
                 <div className={styles.cardTop}>
                   <h2 className={styles.cardTitle}>{p.title}</h2>
                   <div className={styles.tags}>

@@ -1,4 +1,4 @@
-// Reading passages — original short-story content for the Reading section.
+// Reading passages — original short-story content for the Readings section.
 // Each passage's Spanish paragraphs are rendered through ClickableSpanish
 // in vocab-only mode (see src/lib/dictionary.js's segmentSpanish), so every
 // word with a real vocabulary.js entry is clickable for a definition —

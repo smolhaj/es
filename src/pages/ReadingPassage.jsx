@@ -5,7 +5,7 @@ import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import { isAnswerCorrect } from '../lib/answerMatching.js';
-import { getPassage } from '../content/reading.js';
+import { getPassage } from '../content/readings.js';
 import styles from './ReadingPassage.module.css';
 
 export default function ReadingPassage() {
@@ -17,7 +17,7 @@ export default function ReadingPassage() {
   const [feedback, setFeedback] = useState(null);
   const passage = getPassage(passageId);
 
-  if (!passage) return <Navigate to="/reading" replace />;
+  if (!passage) return <Navigate to="/readings" replace />;
 
   const questions = passage.questions ?? [];
   const currentQuestion = questions[qIndex];
@@ -47,7 +47,7 @@ export default function ReadingPassage() {
 
       <main className={styles.main}>
         <div className={styles.inner}>
-          <Link to="/reading" className={styles.backLink}>← Reading</Link>
+          <Link to="/readings" className={styles.backLink}>← Readings</Link>
 
           <header className={styles.header}>
             <h1 className={styles.title}>{passage.title}</h1>

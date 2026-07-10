@@ -544,14 +544,19 @@ in question — most classic false friends (`embarazada`, `sensible`,
 tapers from A2/B1 rather than clustering high: `A1:13, A2:36, B1:35,
 B2:20, C1:4, C2:2`.
 
-### Reading (`/reading`)
+### Readings (`/readings`)
 
-2 original A1 passages as of 07-09-2026 (`src/content/reading.js`) — a
+2 original A1 passages as of 07-09-2026 (`src/content/readings.js`) — a
 standalone scene ("El pan de cada mañana") and Chapter 1 of a planned
 18-chapter serialized story ("Las Aventuras de Blahaj"), the first ship
-from the reading-passages feature scoped early in the project. `/reading`
-lists passages (`Reading.jsx`); `/reading/:passageId` renders one
-(`ReadingPassage.jsx`) with a "Ver traducción" toggle for the English.
+from the reading-passages feature scoped early in the project. `/readings`
+lists passages (`Readings.jsx`); `/readings/:passageId` renders one
+(`ReadingPassage.jsx` — singular, since it renders one specific passage)
+with a "Ver traducción" toggle for the English. Renamed from "Reading" to
+"Readings" (07-10-2026): page/nav label, route, `Readings.jsx`/
+`.module.css`, and the content file (`readings.js`) all updated;
+`ReadingPassage.jsx` kept its name since it's the per-passage detail page,
+not the list.
 
 Every word gets a definition via the exact same `ClickableSpanish`
 component used everywhere else on the site — no separate reading-specific
@@ -1317,3 +1322,6 @@ full account of any of these.
   components; extracting the grading logic into `src/lib/answerMatching.js`
   closed punch-list item 5 (accent-stripping) as a side effect — full
   current state in "Architecture" above.
+- **07-10-2026** — "Reading" renamed to "Readings" throughout (page/nav
+  label, `/readings` route, `Readings.jsx`/`.module.css`,
+  `src/content/readings.js`) — full current state in "Architecture" above.
