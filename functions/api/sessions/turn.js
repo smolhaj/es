@@ -2,6 +2,8 @@ import { callGemini } from './_gemini.js';
 import { scheduleReview } from '../../_lib/fsrs.js';
 import { getNextExplanationStyle } from '../../_lib/concepts.js';
 
+const MAX_UPSERT_ATTEMPTS = 3;
+
 export async function onRequestPost({ request, env, data }) {
   let body;
   try {
@@ -50,92 +52,111 @@ export async function onRequestPost({ request, env, data }) {
     ).run();
   }
 
-  // Upsert vocabulary + FSRS scheduling
+  // Upsert vocabulary + FSRS scheduling. Guarded on last_reviewed_at so a
+  // concurrent review of the same word (e.g. this word also came up in
+  // another open session) can't silently clobber this one's FSRS update
+  // with math computed from a stale read — see ES.md punch-list item 4.
   if (exercise.word && exercise.english) {
-    const existingVocab = await env.DB.prepare(
-      'SELECT stability, difficulty, retrievability, review_count, correct_count, last_reviewed_at FROM vocabulary_items WHERE user_id = ? AND word = ?'
-    ).bind(data.user.sub, exercise.word).first();
+    for (let attempt = 0; attempt < MAX_UPSERT_ATTEMPTS; attempt++) {
+      const existingVocab = await env.DB.prepare(
+        'SELECT stability, difficulty, retrievability, review_count, correct_count, last_reviewed_at FROM vocabulary_items WHERE user_id = ? AND word = ?'
+      ).bind(data.user.sub, exercise.word).first();
 
-    const grade = correct ? 3 : 1; // Good(3) if correct, Again(1) if wrong
-    const fsrs = scheduleReview(existingVocab ?? {}, grade);
+      const grade = correct ? 3 : 1; // Good(3) if correct, Again(1) if wrong
+      const fsrs = scheduleReview(existingVocab ?? {}, grade);
+      const previousLastReviewedAt = existingVocab?.last_reviewed_at ?? null;
 
-    await env.DB.prepare(`
-      INSERT INTO vocabulary_items
-        (id, user_id, word, translation, review_count, correct_count, created_at, last_reviewed_at,
-         stability, difficulty, retrievability, due_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      ON CONFLICT(user_id, word) DO UPDATE SET
-        review_count = ?,
-        correct_count = ?,
-        last_reviewed_at = ?,
-        stability = ?,
-        difficulty = ?,
-        retrievability = ?,
-        due_at = ?
-    `).bind(
-      crypto.randomUUID(), data.user.sub, exercise.word, exercise.english,
-      fsrs.review_count, fsrs.correct_count, now, now,
-      fsrs.stability, fsrs.difficulty, fsrs.retrievability, fsrs.due_at,
-      // ON CONFLICT updates
-      fsrs.review_count, fsrs.correct_count, now,
-      fsrs.stability, fsrs.difficulty, fsrs.retrievability, fsrs.due_at
-    ).run();
+      const result = await env.DB.prepare(`
+        INSERT INTO vocabulary_items
+          (id, user_id, word, translation, review_count, correct_count, created_at, last_reviewed_at,
+           stability, difficulty, retrievability, due_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(user_id, word) DO UPDATE SET
+          review_count = ?,
+          correct_count = ?,
+          last_reviewed_at = ?,
+          stability = ?,
+          difficulty = ?,
+          retrievability = ?,
+          due_at = ?
+        WHERE vocabulary_items.last_reviewed_at IS ?
+      `).bind(
+        crypto.randomUUID(), data.user.sub, exercise.word, exercise.english,
+        fsrs.review_count, fsrs.correct_count, now, now,
+        fsrs.stability, fsrs.difficulty, fsrs.retrievability, fsrs.due_at,
+        // ON CONFLICT updates
+        fsrs.review_count, fsrs.correct_count, now,
+        fsrs.stability, fsrs.difficulty, fsrs.retrievability, fsrs.due_at,
+        previousLastReviewedAt
+      ).run();
+
+      if (result.meta.changes > 0) break;
+    }
   }
 
-  // Update concept mastery
+  // Update concept mastery. Same optimistic-concurrency guard, keyed on
+  // last_seen (updated on every touch, playing the same role
+  // last_reviewed_at plays for vocabulary_items above).
   if (exercise.concept_id) {
-    const existing = await env.DB.prepare(
-      'SELECT mastery_score, error_count, session_error_count, sessions_seen, explanation_styles_tried, fossilization_flagged, last_session_id FROM concept_mastery WHERE user_id = ? AND concept_id = ?'
-    ).bind(data.user.sub, exercise.concept_id).first();
+    for (let attempt = 0; attempt < MAX_UPSERT_ATTEMPTS; attempt++) {
+      const existing = await env.DB.prepare(
+        'SELECT mastery_score, error_count, session_error_count, sessions_seen, explanation_styles_tried, fossilization_flagged, last_session_id, last_seen FROM concept_mastery WHERE user_id = ? AND concept_id = ?'
+      ).bind(data.user.sub, exercise.concept_id).first();
 
-    const errorDelta = correct ? 0 : 1;
-    const prevMastery = existing?.mastery_score ?? 0;
-    const newMastery = Math.min(1, Math.max(0, prevMastery + (correct ? 0.1 : -0.15)));
-    const newErrorCount = (existing?.error_count ?? 0) + errorDelta;
-    const newSessionErrors = (existing?.session_error_count ?? 0) + errorDelta;
+      const errorDelta = correct ? 0 : 1;
+      const prevMastery = existing?.mastery_score ?? 0;
+      const newMastery = Math.min(1, Math.max(0, prevMastery + (correct ? 0.1 : -0.15)));
+      const newErrorCount = (existing?.error_count ?? 0) + errorDelta;
+      const newSessionErrors = (existing?.session_error_count ?? 0) + errorDelta;
 
-    // sessions_seen as of THIS turn (not the pre-update DB value) so a 3rd-session
-    // error is actually counted as "seen in 3 sessions" instead of requiring a 4th.
-    const sessionsSeenDelta = existing && existing.last_session_id !== sessionId ? 1 : 0;
-    const sessionsSeen = existing ? existing.sessions_seen + sessionsSeenDelta : 1;
+      // sessions_seen as of THIS turn (not the pre-update DB value) so a 3rd-session
+      // error is actually counted as "seen in 3 sessions" instead of requiring a 4th.
+      const sessionsSeenDelta = existing && existing.last_session_id !== sessionId ? 1 : 0;
+      const sessionsSeen = existing ? existing.sessions_seen + sessionsSeenDelta : 1;
 
-    // Fossilization: error in 3+ distinct sessions. Clears once mastery recovers
-    // (>=0.6, the same "ready" bar used elsewhere) instead of staying stuck forever,
-    // so a concept can't sit permanently flagged "at risk" while also showing as
-    // mastered in the professor briefing.
-    const fossilized = newErrorCount >= 3 && sessionsSeen >= 3 && newMastery < 0.4
-      ? 1
-      : (newMastery >= 0.6 ? 0 : (existing?.fossilization_flagged ?? 0));
+      // Fossilization: error in 3+ distinct sessions. Clears once mastery recovers
+      // (>=0.6, the same "ready" bar used elsewhere) instead of staying stuck forever,
+      // so a concept can't sit permanently flagged "at risk" while also showing as
+      // mastered in the professor briefing.
+      const fossilized = newErrorCount >= 3 && sessionsSeen >= 3 && newMastery < 0.4
+        ? 1
+        : (newMastery >= 0.6 ? 0 : (existing?.fossilization_flagged ?? 0));
 
-    if (!existing) {
-      const firstStyle = getNextExplanationStyle(exercise.concept_id, []);
-      await env.DB.prepare(`
-        INSERT INTO concept_mastery
-          (user_id, concept_id, mastery_score, error_count, session_error_count, sessions_seen,
-           explanation_styles_tried, last_seen, first_seen, fossilization_flagged, last_session_id)
-        VALUES (?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?)
-      `).bind(
-        data.user.sub, exercise.concept_id, newMastery, newErrorCount, newSessionErrors,
-        JSON.stringify([firstStyle]), now, now, fossilized, sessionId
-      ).run();
-    } else {
-      // Record the explanation style used this session so the professor rotates next time
-      let triedStylesJson = existing.explanation_styles_tried ?? '[]';
-      if (sessionsSeenDelta === 1) {
-        let tried = [];
-        try { tried = JSON.parse(triedStylesJson); } catch {}
-        tried.push(getNextExplanationStyle(exercise.concept_id, tried));
-        triedStylesJson = JSON.stringify(tried);
+      if (!existing) {
+        const firstStyle = getNextExplanationStyle(exercise.concept_id, []);
+        const result = await env.DB.prepare(`
+          INSERT INTO concept_mastery
+            (user_id, concept_id, mastery_score, error_count, session_error_count, sessions_seen,
+             explanation_styles_tried, last_seen, first_seen, fossilization_flagged, last_session_id)
+          VALUES (?, ?, ?, ?, ?, 1, ?, ?, ?, ?, ?)
+          ON CONFLICT(user_id, concept_id) DO NOTHING
+        `).bind(
+          data.user.sub, exercise.concept_id, newMastery, newErrorCount, newSessionErrors,
+          JSON.stringify([firstStyle]), now, now, fossilized, sessionId
+        ).run();
+        if (result.meta.changes > 0) break;
+        // else: a concurrent request just created this row first — loop and
+        // re-read, which will now find `existing` and take the update branch.
+      } else {
+        // Record the explanation style used this session so the professor rotates next time
+        let triedStylesJson = existing.explanation_styles_tried ?? '[]';
+        if (sessionsSeenDelta === 1) {
+          let tried = [];
+          try { tried = JSON.parse(triedStylesJson); } catch {}
+          tried.push(getNextExplanationStyle(exercise.concept_id, tried));
+          triedStylesJson = JSON.stringify(tried);
+        }
+
+        const result = await env.DB.prepare(`
+          UPDATE concept_mastery SET
+            mastery_score = ?, error_count = ?, session_error_count = ?,
+            sessions_seen = sessions_seen + ?,
+            last_seen = ?, fossilization_flagged = ?, last_session_id = ?,
+            explanation_styles_tried = ?
+          WHERE user_id = ? AND concept_id = ? AND last_seen IS ?
+        `).bind(newMastery, newErrorCount, newSessionErrors, sessionsSeenDelta, now, fossilized, sessionId, triedStylesJson, data.user.sub, exercise.concept_id, existing.last_seen).run();
+        if (result.meta.changes > 0) break;
       }
-
-      await env.DB.prepare(`
-        UPDATE concept_mastery SET
-          mastery_score = ?, error_count = ?, session_error_count = ?,
-          sessions_seen = sessions_seen + ?,
-          last_seen = ?, fossilization_flagged = ?, last_session_id = ?,
-          explanation_styles_tried = ?
-        WHERE user_id = ? AND concept_id = ?
-      `).bind(newMastery, newErrorCount, newSessionErrors, sessionsSeenDelta, now, fossilized, sessionId, triedStylesJson, data.user.sub, exercise.concept_id).run();
     }
   }
 

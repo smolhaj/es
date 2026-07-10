@@ -918,10 +918,24 @@ measures):**
    registration from one IP within the window; an oversized answer gets
    a 400; pre-seeding the KV daily counter to 300 makes `start.js`
    immediately fall back with the expected reason.
-4. **Read-modify-write races on every FSRS/mastery upsert** (`sessions/
-   turn.js`, `vocabulary/review.js`, `flashcards/review.js`) — no
-   transaction/optimistic check. Also tighten `grade` validation to
-   `Number.isInteger(grade)` in both review endpoints.
+4. ~~Read-modify-write races on every FSRS/mastery upsert~~ — **done**
+   (07-10-2026): `sessions/turn.js` (vocabulary_items + concept_mastery
+   upserts), `vocabulary/review.js`, and `flashcards/review.js` now guard
+   their write with an optimistic-concurrency check against the column
+   already being touched on every review (`last_reviewed_at` for
+   vocabulary_items/flashcard_progress, `last_seen` for concept_mastery
+   — reused rather than adding a schema column), retrying up to 3 times
+   (re-reading fresh state each attempt) if `meta.changes` comes back 0,
+   meaning a concurrent request already changed the row. Returns `409`
+   if still conflicted after 3 attempts (not atomic — KV/D1 `get`+`put`
+   still has a race window — but no longer silently drops the loser's
+   update). `grade` validation tightened to `Number.isInteger(grade)` in
+   both review endpoints. Verified live with `wrangler pages dev` + local
+   D1: firing 6-8 genuinely concurrent requests against the same
+   vocabulary word / flashcard produces a final DB state that exactly
+   matches the count of successful HTTP responses (no lost updates, no
+   double-counting), with the rest correctly 409ing rather than
+   corrupting state.
 
 **Correctness bugs in shipped code:**
 5. ~~`Lesson.jsx`'s curriculum practice grading doesn't strip accents~~ —
