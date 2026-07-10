@@ -28,6 +28,8 @@ export default function Session() {
   const [stats, setStats] = useState({ count: 0, correct: 0 });
   const [summary, setSummary] = useState(null);
   const [error, setError] = useState('');
+  const [source, setSource] = useState(null);           // 'gemini' | 'fallback' | null
+  const [fallbackReason, setFallbackReason] = useState(null);
 
   // Start session on mount, and restart whenever focusConcept changes.
   // /session and /session?focus=X are the same route, so React Router does
@@ -44,12 +46,16 @@ export default function Session() {
     setStats({ count: 0, correct: 0 });
     setSummary(null);
     setError('');
+    setSource(null);
+    setFallbackReason(null);
 
     api.sessions.start(token, focusConcept)
-      .then(({ sessionId: sid, exercise: ex, greeting: gr }) => {
+      .then(({ sessionId: sid, exercise: ex, greeting: gr, source: src, fallbackReason: fr }) => {
         setSessionId(sid);
         setExercise(ex);
         setGreeting(gr);
+        setSource(src ?? null);
+        setFallbackReason(fr ?? null);
         setPhase('exercise');
       })
       .catch(err => {
@@ -69,6 +75,8 @@ export default function Session() {
         conceptNote: result.conceptNote ?? null,
       });
       setNextExercise(result.exercise);
+      setSource(result.source ?? null);
+      setFallbackReason(result.fallbackReason ?? null);
 
       setStats(prev => ({
         count: prev.count + 1,
@@ -133,6 +141,20 @@ export default function Session() {
               <span className={styles.progressText}>
                 {stats.count}/{SESSION_LENGTH}
               </span>
+              {source && (
+                <span
+                  className={styles.geminiStatus}
+                  title={source === 'gemini'
+                    ? 'Live Gemini session — exercises are generated and graded by the model.'
+                    : `Gemini unavailable — using local fallback exercises.${fallbackReason ? ` (${fallbackReason})` : ''}`}
+                >
+                  <span
+                    className={`${styles.geminiDot} ${source === 'gemini' ? styles.geminiDotOn : styles.geminiDotOff}`}
+                    aria-hidden="true"
+                  />
+                  {source === 'gemini' ? 'Gemini' : 'Offline'}
+                </span>
+              )}
             </div>
           )}
 

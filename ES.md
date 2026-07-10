@@ -653,7 +653,10 @@ static bank spanning every tracked concept) on any Gemini failure — the
 fallback path grades answers locally rather than marking everything wrong.
 Both `start.js`/`turn.js` return a `source` field (`'gemini'`/`'fallback'`)
 plus a `fallbackReason` when falling back, so it's possible to tell from the
-outside whether Gemini is actually being called in production. Focus mode
+outside whether Gemini is actually being called in production —
+`Session.jsx` now surfaces this as a small green/red dot + label next to
+the progress bar (green "Gemini" when live, red "Offline" with the
+fallback reason in a tooltip when not), added 07-10-2026. Focus mode
 (`/session?focus=<concept_id>`) persists `focus_concept` on the `sessions`
 row (`schema-v8.sql`) and re-reminds Gemini of it on every turn, since
 Gemini has no cross-request memory.

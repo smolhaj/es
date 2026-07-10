@@ -51,6 +51,35 @@
   text-align: right;
 }
 
+/* Gemini connection status */
+.geminiStatus {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  cursor: default;
+}
+
+.geminiDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.geminiDotOn {
+  background: var(--correct);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--correct) 25%, transparent);
+}
+
+.geminiDotOff {
+  background: var(--incorrect);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--incorrect) 25%, transparent);
+}
+
 /* Focus mode banner */
 .focusBanner {
   font-size: 0.875rem;
