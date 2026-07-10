@@ -56,8 +56,8 @@
   gap: var(--sp-4);
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  font-size: 0.9375rem;
+  line-height: 1.7;
   color: var(--text);
 }
 
