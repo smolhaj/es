@@ -223,33 +223,49 @@ same day after it caught a real gap in the reading-passages POC):
     check applies to any other leveled content type this project adds.
 11. **Vocabulary-gloss density for reading passages is a different problem
     from grammar-level QA (step 10) — don't apply the same binary logic to
-    both.** Grammar is checkable/binary: a structure either has or hasn't
-    been taught, so "never exceed the claimed level" is the right rule.
-    Vocabulary in a reading passage is supposed to work differently — some
-    exposure just past the reader's current level is the actual point of
-    reading practice, and it's supposed to be inferred from context and
-    repetition, not assisted every time a word appears. Real graded readers
-    target roughly 95-98% known-word coverage — only 2-5% of running words
-    should need a look-up at all. Caught by overshooting badly on the first
-    attempt (07-09-2026, same reading-passages POC): applied step 10's
-    "check everything against the real standard" instinct to vocabulary too
-    literally and ended up glossing ~70 words across two short passages —
-    connectors (todavía, entonces, antes, también), common core verbs
-    (decir, pensar, poner, llegar), and near-cognates (momento, página,
-    minuto) all got a popover, roughly one word in three. User feedback:
-    "a little heavy for true beginners." Corrected down to 24: **do**
-    gloss concrete nouns central to the scene (panadería, magdalena,
-    tiburón, peluche), idioms/phrases that can't be parsed word-by-word
-    ("invita la casa"), genuinely irregular/non-guessable verbs (oler),
-    and words load-bearing for the plot mechanic itself even if not
-    obviously rare (intercambiar, correo, where the story's premise
-    doesn't land without them); **don't** gloss connectors/discourse
-    markers, common high-frequency verbs, adjectives/adverbs, or obvious
-    cognates/loanwords — glossing those exact words undermines the skill
-    reading practice exists to build (inferring meaning from pattern and
-    repeated exposure) and reads as distrustful of the learner. Applies to
-    any future reading-passage or extended-prose content with a vocabulary
-    axis, not just grammar.
+    both, but the final answer is data-driven, not hand-curated.** Grammar
+    is checkable/binary: a structure either has or hasn't been taught, so
+    "never exceed the claimed level" is the right rule. Vocabulary glossing
+    went through two wrong models before landing on the right one
+    (07-09-2026, same reading-passages POC): first, over-applying step 10's
+    "check everything" instinct to vocabulary too literally and glossing
+    ~70 words including connectors/common verbs/near-cognates a learner
+    should infer from repetition, not get handed; user feedback "a little
+    heavy for true beginners." Second correction: hand-curating a smaller
+    ~24-word list by editorial judgment call (concrete nouns, idioms,
+    genuinely irregular verbs — yes; connectors, common verbs, cognates —
+    no). **That second model was also wrong** — user pushback ("MOST if
+    not all words at the A1 level should have glossary hover definitions")
+    surfaced that the site's real `ClickableSpanish`/`segmentSpanish`
+    mechanism already does exactly this mechanically, with zero curation:
+    every word with a real `vocabulary.js` entry gets a hover-define,
+    every word without one doesn't. **The shipped, standing rule**: don't
+    curate a glossary at all — pass passages through the real matcher
+    (`vocabOnly` mode, see Architecture below) and let real data decide
+    what's clickable. This makes rule 12 below load-bearing: the matcher
+    can only define what's actually in `vocabulary.js`, so any real gap
+    has to be closed as content, not designed around.
+12. **Any new word a reading passage introduces that isn't already in
+    `vocabulary.js` must be researched (cross-referenced, real CEFR level —
+    never guessed) and added to `vocabulary.js` before the passage ships,
+    every time, no exceptions.** User directive (07-10-2026): "any new
+    words introduced you have to add to the glossary and hover define —
+    this is a hard and fast rule." This is what makes rule 11's
+    non-curated, fully-mechanical glossing actually work at true-beginner
+    level: if a word a beginner wouldn't know is missing from
+    `vocabulary.js`, it silently renders with no hover-define, and the
+    passage isn't actually A1-accessible regardless of what CEFR label it
+    claims. Closing the gap is a general `vocabulary.js` improvement, not
+    reading-specific — it benefits `ClickableSpanish` everywhere else on
+    the site too, same as the 07-09-2026 49-word and 9-word fills.
+13. **Every reading passage ships with its comprehension-question set
+    (`questions` array) at the same time it's written — never deferred to
+    a later pass.** User directive (07-10-2026): "then we make
+    comprehension questions for every passage as they're written — also
+    needs to be a rule." Write the passage, close any vocabulary gaps
+    (rule 12), then write its comprehension questions before moving to the
+    next passage, rather than batching prose-writing and
+    question-writing as separate phases.
 
 ---
 
