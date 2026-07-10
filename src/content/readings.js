@@ -21,6 +21,13 @@
 // components on the passage page — multiple_choice questions in Spanish,
 // plus a couple of free-text `comprehension`-type questions with English
 // answers, self-graded client-side with no backend persistence.
+//
+// `summary` is the Spanish-language preview shown on the Readings list
+// page — hold it to the exact same CEFR discipline as the passage's own
+// `level` (an A1 passage's summary follows the same "no object pronouns,
+// no preterite, no relative clauses..." rules above, not just simplified
+// vocabulary; a B2 passage's summary should read like B2 prose). It's
+// still learner-facing Spanish, not an internal English note.
 
 export const PASSAGES = [
   {
@@ -28,7 +35,7 @@ export const PASSAGES = [
     title: 'El pan de cada mañana',
     level: 'A1',
     format: 'standalone',
-    summary: 'Un panadero no tiene pan listo para su clienta habitual — una breve escena de la vida cotidiana.',
+    summary: 'Un panadero no tiene pan para su clienta de siempre — una escena de la vida diaria.',
     paragraphs: [
     { es: "Mateo trabaja en una panadería pequeña, en la calle Aurora. Abre la puerta a las seis de la mañana. Afuera hace frío todavía.", en: "Mateo works at a small bakery, on Aurora Street. He opens the door at six in the morning. Outside, it's still cold." },
     { es: "A las siete, siempre llega la misma clienta: la señora Pilar. Vive sola, cerca de la plaza. Compra dos cosas, nunca más: un pan y un café con leche.", en: "At seven, the same customer always arrives: Mrs. Pilar. She lives alone, near the square. She buys two things, never more: a loaf of bread and a coffee with milk." },
@@ -82,7 +89,7 @@ export const PASSAGES = [
     format: 'story',
     story: 'blahaj',
     chapter: 1,
-    summary: 'Lucía decide enviar a su tiburón de peluche, Blahaj, a viajar por el mundo con un grupo de intercambio de peluches.',
+    summary: 'Lucía decide mandar a Blahaj, su tiburón de peluche, de viaje por el mundo.',
     paragraphs: [
     { es: "Lucía tiene un tiburón. No es un tiburón de verdad — es de peluche, gris y azul, con una sonrisa un poco tonta. Se llama Blahaj.", en: "Lucía has a shark. Not a real shark — a stuffed one, grey and blue, with a slightly goofy smile. His name is Blahaj." },
     { es: "Blahaj vive en la cama de Lucía, al lado de la almohada. Por la noche, Lucía lee un libro y Blahaj escucha. Por la mañana, Lucía se va a trabajar y Blahaj se queda solo, mirando la ventana.", en: "Blahaj lives on Lucía's bed, next to the pillow. At night, Lucía reads a book and Blahaj listens. In the morning, Lucía goes to work and Blahaj stays behind, looking out the window." },
@@ -279,7 +286,7 @@ export const PASSAGES = [
     title: '¿Cómo llego a la estación?',
     level: 'A1',
     format: 'standalone',
-    summary: 'Elena le pregunta a un desconocido cómo llegar a la estación de tren en una ciudad desconocida.',
+    summary: 'Elena pregunta cómo llegar a la estación de tren en una ciudad desconocida.',
     paragraphs: [
     { es: 'Elena está en una ciudad nueva. Busca la estación de tren, pero no sabe el camino. Ve a una mujer en la calle.', en: "Elena is in a new city. She's looking for the train station, but doesn't know the way. She sees a woman on the street." },
     { es: '—Perdón, señora. ¿Sabe dónde está la estación de tren? — pregunta Elena. —Sí, claro — contesta la mujer—. Está bastante cerca.', en: '"Excuse me, ma\'am. Do you know where the train station is?" asks Elena. "Yes, of course," answers the woman. "It\'s pretty close."' },
@@ -327,7 +334,7 @@ export const PASSAGES = [
     format: 'story',
     story: 'blahaj',
     chapter: 3,
-    summary: 'La estancia de Blahaj con Diego llega a su fin, y vuelve a casa con Lucía — así termina su primer viaje.',
+    summary: 'El viaje de Blahaj con Diego termina, y Blahaj vuelve a casa con Lucía.',
     paragraphs: [
     { es: 'Pasan tres semanas. Un día, Diego escribe: "Lucía, el viaje de Blahaj termina pronto. ¿Está lista tu casa para recibir a Blahaj otra vez?"', en: 'Three weeks pass. One day, Diego writes: "Lucía, Blahaj\'s trip is ending soon. Is your house ready to have Blahaj again?"' },
     { es: 'Lucía sonríe. Escribe: "¡Sí! Su cama está lista, al lado de la almohada, como siempre."', en: 'Lucía smiles. She writes: "Yes! His bed is ready, next to the pillow, like always."' },
@@ -376,7 +383,7 @@ export const PASSAGES = [
     title: 'La farmacia de la esquina',
     level: 'A1',
     format: 'standalone',
-    summary: 'A Marcos le duele la cabeza y va a la farmacia de la esquina a buscar algo para el dolor.',
+    summary: 'Marcos tiene dolor de cabeza y va a la farmacia de la esquina a buscar una solución.',
     paragraphs: [
     { es: 'Marcos vive cerca de la farmacia de la esquina. Hoy tiene dolor de cabeza y necesita medicina.', en: 'Marcos lives near the corner pharmacy. Today he has a headache and needs medicine.' },
     { es: 'Entra en la farmacia. Detrás del mostrador, hay una mujer amable.', en: "He goes into the pharmacy. Behind the counter, there's a kind woman." },
