@@ -54,9 +54,10 @@
   display: flex;
   flex-direction: column;
   gap: var(--sp-4);
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.7;
   color: var(--text);
 }
 
@@ -85,7 +86,8 @@
   padding: var(--sp-5);
   background: var(--bg-alt);
   border-radius: var(--r-md);
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
+  font-weight: 400;
   font-style: italic;
   font-size: 0.9375rem;
   line-height: 1.65;
