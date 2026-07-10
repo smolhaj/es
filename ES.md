@@ -881,11 +881,10 @@ measures):**
    `exercise.answer` matching a bogus `learnerAnswer` no longer forges a
    correct grade (server ignores it and grades against the stored copy);
    the legitimate path (no `exercise` field sent at all) still grades
-   correctly. **Requires a remote D1 migration before this is live in
-   production** — `schema-v10.sql` hasn't been run against the prod
-   database from this environment (no Cloudflare credentials here); run
-   `wrangler d1 execute es --remote --file=schema-v10.sql` before/at
-   merge, or writes to the new column will fail in production.
+   correctly. The `schema-v10.sql` remote D1 migration was run against
+   production via the Cloudflare dashboard's D1 console (07-10-2026) —
+   this environment has no Cloudflare credentials to run it directly,
+   so remote migrations need to be applied manually going forward too.
 2. ~~Saved profile context is prompt-injectable into Gemini's system
    prompt, persistently~~ — **done** (07-10-2026): `personal_context`
    free text (the only user-controlled free text in the briefing —
@@ -1098,6 +1097,20 @@ measures):**
     untaught, 0 double-taught, 11 accepted/documented minor 1-concept
     lags (a learner isn't blocked, just reinforced slightly late). Full
     phase-by-phase methodology: `ES-HISTORY.md`.
+30. ~~Landing page + onboarding copy undersell the product by 15-32%~~ —
+    **done** (07-10-2026). A full site QA pass found `Landing.jsx`'s
+    feature-grid stats and `unit00-why-spanish.js`'s "37 units" claim were
+    stale hand-typed numbers nobody had re-checked since content shipped
+    (actual: 117 grammar concepts vs. the claimed 79, 1563 vocab items
+    across 27 domains vs. 1056/23, 147 verbs vs. 125, 166 idioms vs. 167,
+    42 taught units vs. 37, curriculum runs to C2 not C1). Fixed
+    structurally, not just numerically: `Landing.jsx` now imports
+    `GRAMMAR_CARDS`/`VOCABULARY`/`DOMAINS`/`VERBS`/`IDIOMS`/`CEFR_LEVELS`
+    directly and interpolates their lengths/range into the copy, so this
+    exact class of drift can't recur. `unit00-why-spanish.js`'s unit count
+    is a static narrative string (imported *by* `curriculum/index.js`, so
+    it can't import `UNIT_METADATA` back without a cycle) and was hand-
+    corrected to 42 instead.
 
 ## Session history index
 
