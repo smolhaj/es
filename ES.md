@@ -1122,6 +1122,20 @@ measures):**
     is a static narrative string (imported *by* `curriculum/index.js`, so
     it can't import `UNIT_METADATA` back without a cycle) and was hand-
     corrected to 42 instead.
+31. ~~Every Gemini call fails with a real 429, session shows "Offline"~~ —
+    **done** (07-10-2026). User report — the Gemini status dot (see item
+    "Add a Gemini connection indicator" in session history) was red with
+    tooltip "Gemini 429" on every session. Root cause found via Google AI
+    Studio's own Usage/Rate Limit dashboards, not guesswork: `gemini-2.0-
+    flash` (the model `_gemini.js`'s `GEMINI_URL` was hardcoded to) has been
+    retired from this free-tier project's quota entirely — its Rate Limit
+    page shows 0 RPM / 0 TPM / 0 RPD, so *every* call to it 429s regardless
+    of load; this had nothing to do with actual usage volume or the app's
+    own 300/day internal cap. Switched to `gemini-3.1-flash-lite`, the
+    currently-quota'd free-tier model with real headroom (15 RPM / 500
+    RPD — enough for dozens of ~11-call sessions/day). Not yet confirmed
+    against the live API from this environment (no `GEMINI_API_KEY`
+    available in the sandbox) — needs a real-session check post-deploy.
 
 ## Session history index
 
