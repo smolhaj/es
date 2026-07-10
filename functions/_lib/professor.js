@@ -12,7 +12,7 @@ export async function compileBriefing(db, userId) {
       SELECT cm.concept_id, cm.mastery_score, cm.error_count, cm.session_error_count,
              cm.sessions_seen, cm.explanation_styles_tried, cm.fossilization_flagged
       FROM concept_mastery cm
-      WHERE cm.user_id = ? AND cm.sessions_seen >= 1
+      WHERE cm.user_id = ? AND cm.sessions_seen >= 1 AND cm.mastery_score < 0.6
       ORDER BY cm.mastery_score ASC, cm.error_count DESC LIMIT 8
     `).bind(userId).all(),
 
@@ -57,18 +57,36 @@ export async function compileBriefing(db, userId) {
     fullMasteryMap[row.concept_id] = { mastery_score: row.mastery_score };
   }
 
-  // Concepts whose prereqs are met (≥60% mastery) but haven't been introduced yet
-  const readyIds = getReadyConcepts(fullMasteryMap, 0.6)
-    .filter(id => !fullMasteryMap[id])  // not seen yet
-    .slice(0, 5);
-
   const lines = ['=== PROFESSOR BRIEFING ==='];
 
   // Derive overall CEFR level (minimum across skills)
   const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   const cefrIndices = Object.values(skillMap).map(s => CEFR_ORDER.indexOf(s.cefr_level)).filter(i => i >= 0);
   const overallCefr = cefrIndices.length > 0 ? CEFR_ORDER[Math.min(...cefrIndices)] : 'A1';
+  const overallCefrIndex = CEFR_ORDER.indexOf(overallCefr);
   lines.push(`LEARNER CEFR LEVEL: ${overallCefr}`);
+
+  // Concepts whose prereqs are met (≥60% mastery) but haven't been introduced yet.
+  // A concept with an empty prereqs array is vacuously "ready" for any learner at
+  // any level — without a CEFR gate, always-ready A1 concepts (and a few B2/C2
+  // concepts that also happen to have no prereqs) permanently crowd out concepts
+  // whose prereqs a learner genuinely just satisfied. Cap candidates to the
+  // learner's current level or one level above, and rank by closeness to their
+  // level first, then by how many real prereqs they required (deprioritizing the
+  // trivially-always-ready ones) — see ES.md punch list, BUG-1/BUG-1b.
+  const readyIds = getReadyConcepts(fullMasteryMap, 0.6)
+    .filter(id => !fullMasteryMap[id])  // not seen yet
+    .filter(id => {
+      const cefrIndex = CEFR_ORDER.indexOf(CONCEPTS[id]?.cefr);
+      return cefrIndex >= 0 && cefrIndex <= overallCefrIndex + 1;
+    })
+    .sort((a, b) => {
+      const distA = Math.abs(CEFR_ORDER.indexOf(CONCEPTS[a].cefr) - overallCefrIndex);
+      const distB = Math.abs(CEFR_ORDER.indexOf(CONCEPTS[b].cefr) - overallCefrIndex);
+      if (distA !== distB) return distA - distB;
+      return CONCEPTS[b].prereqs.length - CONCEPTS[a].prereqs.length;
+    })
+    .slice(0, 5);
 
   // Skill levels
   const skillStr = Object.entries(skillMap)

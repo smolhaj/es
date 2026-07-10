@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
@@ -119,6 +119,47 @@ export default function Session() {
     } catch {}
     navigate('/dashboard');
   }
+
+  // Best-effort close-out for a session the learner leaves without clicking
+  // "End session" or finishing it — a closed tab, a refresh, or clicking
+  // away to another page in the app. Without this, that session's ended_at
+  // stays NULL forever even though turn.js already wrote real
+  // concept_mastery/error_events data for it, which starves every future
+  // session of both its LAST SESSION SIGNALS and (via start.js's history
+  // check) its "personalized, not brand-new" framing. See ES.md punch
+  // list, BUG-2. `pagehide`/`beforeunload` cover the tab-close/refresh
+  // case; the effect cleanup covers in-app navigation to another route,
+  // which never fires either browser event. `fetch(..., {keepalive:true})`
+  // (not the api.js helper, which awaits a JSON response we'll never read)
+  // is the standard way to let a request outlive the page.
+  const stateRef = useRef({ sessionId: null, active: false });
+  useEffect(() => {
+    stateRef.current = {
+      sessionId,
+      active: sessionId != null && !['starting', 'summary', 'ending'].includes(phase),
+    };
+  }, [sessionId, phase]);
+
+  useEffect(() => {
+    function endOnLeave() {
+      const { sessionId: sid, active } = stateRef.current;
+      if (!active || !sid || !token) return;
+      stateRef.current = { sessionId: sid, active: false };
+      fetch('/api/sessions/end', {
+        method: 'POST',
+        keepalive: true,
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ sessionId: sid, abandoned: true })
+      }).catch(() => {});
+    }
+    window.addEventListener('pagehide', endOnLeave);
+    window.addEventListener('beforeunload', endOnLeave);
+    return () => {
+      window.removeEventListener('pagehide', endOnLeave);
+      window.removeEventListener('beforeunload', endOnLeave);
+      endOnLeave();
+    };
+  }, [token]);
 
   const progress = stats.count / SESSION_LENGTH;
 
