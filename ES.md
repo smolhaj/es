@@ -881,11 +881,10 @@ measures):**
    `exercise.answer` matching a bogus `learnerAnswer` no longer forges a
    correct grade (server ignores it and grades against the stored copy);
    the legitimate path (no `exercise` field sent at all) still grades
-   correctly. **Requires a remote D1 migration before this is live in
-   production** — `schema-v10.sql` hasn't been run against the prod
-   database from this environment (no Cloudflare credentials here); run
-   `wrangler d1 execute es --remote --file=schema-v10.sql` before/at
-   merge, or writes to the new column will fail in production.
+   correctly. The `schema-v10.sql` remote D1 migration was run against
+   production via the Cloudflare dashboard's D1 console (07-10-2026) —
+   this environment has no Cloudflare credentials to run it directly,
+   so remote migrations need to be applied manually going forward too.
 2. ~~Saved profile context is prompt-injectable into Gemini's system
    prompt, persistently~~ — **done** (07-10-2026): `personal_context`
    free text (the only user-controlled free text in the briefing —
