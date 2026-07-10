@@ -1047,22 +1047,68 @@ measures):**
     self-assessment), don't have Gemini grade free text on every submit.
 22. **Conversation/role-play exercise type** — no open-ended dialogue type
     exists.
-23. **The displayed CEFR level is a grammar-only accuracy gate, not a true
-    4-skill assessment.** `skill_profiles` seeds `reading`/`listening`/
-    `writing`/`grammar` rows at registration, but only `grammar` is ever
-    written to (`sessions/end.js`) — the other three sit frozen at their
-    A1/0% defaults forever, so the Dashboard's CEFR badge reflects
-    grammar/exercise-accuracy alone, not "all four skills equally" per the
-    original spec above. It's also a rolling-10-session accuracy-threshold
-    gate (`computeCefrLevel()`), not a proctored assessment against CEFR
-    can-do descriptors — high accuracy on review-heavy sessions can
-    advance the label without a real skills check across reading,
-    listening, writing, and speaking. User flagged this by inspection
-    (07-09-2026) after the level-tracking audit/fixes earlier that day;
-    deliberately deprioritized — fixing it properly means wiring real
-    listening/writing exercise types (items 20/21 above) into the skill
-    rows, not a quick patch, and the user wants to focus on written
-    content first.
+23. ~~The displayed CEFR level is a grammar-only accuracy gate, not a true
+    4-skill assessment~~ — **done** (07-10-2026). Scoped with the user:
+    wire up real reading + writing (both already had usable signal sitting
+    unused), leave listening out honestly rather than build a whole
+    audio/TTS feature to fill a display field — items 20/21 above are
+    still genuinely open and unaffected by this fix, this just stops
+    lying about the three skills in the meantime.
+
+    Investigation turned up something more severe than the original
+    description: `functions/_lib/professor.js`'s `LEARNER CEFR LEVEL` line
+    (the primary CEFR signal driving Gemini's whole content-scope
+    decision) took `Math.min()` across all four raw `skill_profiles` rows,
+    including the frozen reading/listening/writing ones. For any real user
+    whose grammar had advanced past A1, `Math.min(0, 0, 0, <real level>)`
+    is always 0 — meaning this line has likely been silently reporting A1
+    regardless of actual progress for every advancing learner in
+    production, undermining "default to A1 unless the briefing shows
+    higher CEFR" for exactly the users it matters most for.
+    `functions/api/learner/profile.js` had already hit this same root
+    cause and worked around it for the Dashboard's headline number (using
+    `grammar` directly instead of `Math.min`); `professor.js` never got
+    the equivalent fix until now. Both `LEARNER CEFR LEVEL` and the
+    briefing's `SKILLS` line now filter to skills with `session_count > 0`
+    instead of all four seeded-at-registration rows.
+
+    Reading: `ReadingPassage.jsx` already computed real per-passage
+    comprehension accuracy client-side but discarded it (only a binary
+    localStorage "completed" flag persisted, no backend write at all). New
+    `reading_attempts` table + `POST /api/learner/reading-result`
+    (`schema-v11.sql`) gives `skill_profiles`' `reading` row a genuine
+    rolling-window signal, same shape `grammar` already has.
+
+    Writing: `turn.js` already knew whether a captured translation sample
+    was correct at insert time but discarded it, writing
+    `writing_samples.estimated_cefr` as the exercise's *difficulty number*
+    relabeled as a CEFR level instead (1/2/3 → A1/B1/B2) — an actively
+    wrong signal, not just a missing one, regardless of whether the
+    translation was any good. Now stores the real correct/incorrect
+    result (new `writing_samples.correct` column) and leaves
+    `estimated_cefr` `NULL` until a genuine per-sample assessment exists;
+    `skill_profiles`' `writing` row levels off real translation-exercise
+    accuracy.
+
+    `computeCefrLevel()` — previously private and grammar-only inside
+    `end.js` — moved to `functions/_lib/cefr.js` so reading/writing reuse
+    the same thresholds instead of duplicating them.
+
+    `Profile.jsx`: the `skills` object was already fetched from the
+    profile API on every page load but never rendered anywhere in the
+    app — added a Skills section, with listening explicitly labeled "Not
+    yet assessed" rather than a silently-fake number.
+
+    Verified live: a B2-grammar test account with untouched
+    reading/listening/writing (the real production shape) now correctly
+    gets `LEARNER CEFR LEVEL: B2` and Gemini serves B2-appropriate content
+    instead of being silently pinned to A1. A real headless-browser run
+    through an actual reading passage (4/5 correct, one deliberately
+    wrong) produced a real `skill_profiles` `reading` row (80% accuracy, 1
+    session) that rendered correctly on the Profile page. A translation
+    exercise turn (one correct, one deliberately wrong) produced a real
+    `writing` row (50% accuracy) with the true correct/incorrect result
+    stored instead of the fake `estimated_cefr`.
 
 **Housekeeping:**
 24. **Confirm GitHub branch protection is actually enabled** on
