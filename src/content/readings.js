@@ -9,8 +9,12 @@
 // CEFR discipline for this content follows ES.md's punch-list items on
 // prose writing: every grammar structure used is checked against
 // concepts.js before a level is claimed (no object pronouns, no
-// preterite, no relative clauses in these two A1 passages), and every
-// glossed word is a real, sourced vocabulary.js entry, not an estimate.
+// preterite, no relative clauses, no present progressive, no comparatives,
+// no imperative, no nada/nadie/nunca/tampoco negation in any A1 passage
+// here), and every glossed word is a real, sourced vocabulary.js entry,
+// not an estimate — any word a passage needs that vocabulary.js doesn't
+// already have gets researched and added before the passage ships (ES.md
+// process step 12, a hard rule, not a suggestion).
 //
 // Each passage's optional `questions` array holds comprehension exercises
 // (not grammar drills) rendered via the shared ExerciseCard/Feedback
@@ -120,6 +124,199 @@ export const PASSAGES = [
         prompt: '¿Qué pregunta Lucía a Blahaj?',
         options: ['¿Quieres viajar?', '¿Tienes hambre?', '¿Estás bien?', '¿Quieres dormir?'],
         answer: '¿Quieres viajar?',
+      },
+    ],
+  },
+  {
+    id: 'blahaj-ch2',
+    title: 'Las Aventuras de Blahaj — Capítulo 2: El viaje a Buenos Aires',
+    level: 'A1',
+    format: 'story',
+    story: 'blahaj',
+    chapter: 2,
+    summary: 'Diego, de Argentina, se ofrece a recibir a Blahaj — y Lucía prepara su primer viaje.',
+    paragraphs: [
+    { es: 'Diego contesta primero. Vive en Buenos Aires, Argentina, con su familia. Escribe: "Hola, Lucía. Blahaj puede venir a mi casa. Aquí en julio hace mucho frío. Un tiburón de peluche necesita compañía."', en: 'Diego answers first. He lives in Buenos Aires, Argentina, with his family. He writes: "Hi, Lucía. Blahaj can come to my house. Here in July it\'s very cold. A stuffed shark needs company."' },
+    { es: 'Lucía y Diego escriben mensajes toda la semana. Hablan de la fecha, la dirección, y el paquete. Diego manda fotos de su casa y de su gato, Simón.', en: 'Lucía and Diego write messages all week. They talk about the date, the address, and the package. Diego sends photos of his house and his cat, Simón.' },
+    { es: 'El sábado, Lucía prepara todo: una caja pequeña, papel, y una nota para Diego. En la nota escribe: "Blahaj es tímido, pero es un buen amigo."', en: 'On Saturday, Lucía prepares everything: a small box, paper, and a note for Diego. In the note she writes: "Blahaj is shy, but he\'s a good friend."' },
+    { es: 'Pone a Blahaj en la caja, con la nota y una foto de su habitación. Cierra la caja y va al correo.', en: 'She puts Blahaj in the box, with the note and a photo of his room. She closes the box and goes to the post office.' },
+    { es: 'En el correo, una mujer pesa la caja y pregunta: "¿Qué hay adentro?" Lucía sonríe y contesta: "Un tiburón, pero de peluche."', en: 'At the post office, a woman weighs the box and asks: "What\'s inside?" Lucía smiles and answers: "A shark, but a stuffed one."' },
+    { es: 'Pasan diez días. Lucía no recibe noticias de Diego y está un poco nerviosa. Piensa mucho en Blahaj: "¿Está bien? ¿Llega pronto?"', en: 'Ten days pass. Lucía doesn\'t get any news from Diego and is a little nervous. She thinks about Blahaj a lot: "Is he OK? Will he arrive soon?"' },
+    { es: 'Por fin, llega un mensaje de Diego: "¡Blahaj está aquí! Todo bien. Ahora duerme en mi cama, al lado de Simón."', en: 'Finally, a message arrives from Diego: "Blahaj is here! Everything\'s fine. Now he sleeps in my bed, next to Simón."' },
+    { es: 'Diego manda una foto: Blahaj, con una bufanda pequeña, entre Simón y una ventana con lluvia.', en: 'Diego sends a photo: Blahaj, wearing a small scarf, between Simón and a window with rain.' },
+    { es: 'Lucía mira la foto muchas veces. Piensa: "¿Dónde va Blahaj en el próximo viaje?"', en: 'Lucía looks at the photo many times. She thinks: "Where will Blahaj go on his next trip?"' },
+    ],
+    questions: [
+      {
+        type: 'multiple_choice',
+        prompt: '¿De qué país es Diego?',
+        options: ['Argentina', 'México', 'Chile', 'España'],
+        answer: 'Argentina',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué hace la mujer en el correo?',
+        options: ['Pesa la caja', 'Abre la caja', 'Pierde la caja', 'Rompe la caja'],
+        answer: 'Pesa la caja',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Dónde duerme Blahaj en la casa de Diego?',
+        options: ['En la cama, al lado de Simón', 'En una caja', 'En la cocina', 'Afuera'],
+        answer: 'En la cama, al lado de Simón',
+      },
+      {
+        type: 'comprehension',
+        prompt: "How does Lucía feel while she's waiting for news from Diego?",
+        answer: 'a little nervous',
+        altAnswers: ['nervous', 'a bit nervous', 'she is nervous', 'she feels nervous'],
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué lleva Blahaj en la foto que manda Diego?',
+        options: ['Una bufanda', 'Un sombrero', 'Gafas de sol', 'Una camiseta'],
+        answer: 'Una bufanda',
+      },
+    ],
+  },
+  {
+    id: 'domingo-en-el-parque',
+    title: 'El domingo en el parque',
+    level: 'A1',
+    format: 'standalone',
+    summary: 'Sara and her dog meet the same stranger every Sunday at the park lake.',
+    paragraphs: [
+    { es: 'Sara vive cerca de un parque grande, con muchos árboles y un lago pequeño. Los domingos, camina al parque con su perro, Tobi.', en: 'Sara lives near a big park, with lots of trees and a small lake. On Sundays, she walks to the park with her dog, Tobi.' },
+    { es: 'Siempre se sienta en el mismo lugar, cerca del lago. Allí, casi siempre, hay un hombre mayor. Lee el periódico y toma café.', en: "She always sits in the same spot, near the lake. There, almost always, there's an older man. He reads the newspaper and drinks coffee." },
+    { es: '—Buenos días — dice Sara. El hombre sonríe y contesta: —Buenos días, señorita. ¿Y Tobi? ¿Bien?', en: '"Good morning," says Sara. The man smiles and answers: "Good morning, miss. And Tobi? Doing well?"' },
+    { es: 'Tobi corre hacia el lago y ladra a los patos. Los patos nadan rápido, lejos del perro.', en: 'Tobi runs toward the lake and barks at the ducks. The ducks swim fast, away from the dog.' },
+    { es: 'El hombre mira y se ríe un poco. —Tu perro quiere un amigo pato — dice.', en: 'The man watches and laughs a little. "Your dog wants a duck friend," he says.' },
+    { es: 'Sara llama a Tobi. El perro vuelve, cansado y feliz. Los tres, Sara, Tobi y el hombre, miran el lago juntos, en silencio.', en: 'Sara calls Tobi. The dog comes back, tired and happy. The three of them, Sara, Tobi, and the man, look at the lake together, in silence.' },
+    { es: 'Antes de irse, Sara pregunta el nombre del hombre. —Me llamo Andrés — contesta él. —Hasta el domingo, Andrés — dice ella, y camina a casa con Tobi.', en: 'Before leaving, Sara asks the man\'s name. "My name is Andrés," he answers. "See you Sunday, Andrés," she says, and walks home with Tobi.' },
+    ],
+    questions: [
+      {
+        type: 'multiple_choice',
+        prompt: '¿Con quién camina Sara al parque?',
+        options: ['Con su perro', 'Con su hermano', 'Con una amiga', 'Sola'],
+        answer: 'Con su perro',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué hace el hombre en el parque?',
+        options: ['Lee el periódico y toma café', 'Corre con su perro', 'Nada en el lago', 'Duerme'],
+        answer: 'Lee el periódico y toma café',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué hace Tobi cuando ve los patos?',
+        options: ['Ladra y corre hacia ellos', 'Duerme', 'Nada con ellos', 'Los mira en silencio'],
+        answer: 'Ladra y corre hacia ellos',
+      },
+      {
+        type: 'comprehension',
+        prompt: 'What does Sara ask the man before she leaves?',
+        answer: 'his name',
+        altAnswers: ['his name', 'what his name is', 'for his name', 'she asks his name'],
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Cómo se llama el hombre del parque?',
+        options: ['Andrés', 'Diego', 'Javier', 'Mateo'],
+        answer: 'Andrés',
+      },
+    ],
+  },
+  {
+    id: 'planes-para-el-sabado',
+    title: 'Planes para el sábado',
+    level: 'A1',
+    format: 'standalone',
+    summary: 'Marta calls her friend Javier to make plans for a party — a phone-call dialogue.',
+    paragraphs: [
+    { es: 'Marta llama a su amigo Javier por teléfono. Quiere hacer planes para el sábado.', en: 'Marta calls her friend Javier on the phone. She wants to make plans for Saturday.' },
+    { es: '—¿Sí? — contesta Javier. —Hola, Javier, soy Marta. ¿Qué haces el sábado? — pregunta ella.', en: '"Hello?" answers Javier. "Hi Javier, it\'s Marta. What are you doing Saturday?" she asks.' },
+    { es: '—No sé todavía. ¿Por qué? — dice Javier. —Hay una fiesta en casa de Carla. ¿Quieres ir? — contesta Marta.', en: '"I don\'t know yet. Why?" says Javier. "There\'s a party at Carla\'s house. Do you want to go?" answers Marta.' },
+    { es: '—¡Claro que sí! ¿A qué hora empieza? — pregunta Javier, contento.', en: '"Of course! What time does it start?" asks Javier, happy.' },
+    { es: '—A las ocho. Yo llego a las siete y media, para ayudar con la comida — contesta Marta. —Perfecto. Puedo llevar música — dice Javier.', en: '"At eight. I\'m arriving at seven thirty, to help with the food," answers Marta. "Perfect. I can bring music," says Javier.' },
+    { es: '—Buena idea. Nos vemos el sábado, entonces — dice Marta. —Nos vemos. ¡Gracias, Marta! — contesta Javier, y cuelga el teléfono.', en: '"Good idea. See you Saturday, then," says Marta. "See you. Thanks, Marta!" answers Javier, and hangs up the phone.' },
+    ],
+    questions: [
+      {
+        type: 'multiple_choice',
+        prompt: '¿Por qué llama Marta a Javier?',
+        options: ['Para hacer planes para el sábado', 'Para pedir dinero', 'Para cancelar una cita', 'Para invitarlo a cenar hoy'],
+        answer: 'Para hacer planes para el sábado',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Dónde es la fiesta?',
+        options: ['En casa de Carla', 'En casa de Marta', 'En un restaurante', 'En el parque'],
+        answer: 'En casa de Carla',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿A qué hora llega Marta a la fiesta?',
+        options: ['A las siete y media', 'A las ocho', 'A las nueve', 'A las seis'],
+        answer: 'A las siete y media',
+      },
+      {
+        type: 'comprehension',
+        prompt: 'What does Javier offer to bring to the party?',
+        answer: 'music',
+        altAnswers: ['music', 'some music', 'he offers music'],
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Cómo contesta Javier al final?',
+        options: ['Nos vemos. ¡Gracias, Marta!', 'No puedo ir', 'Voy a llegar tarde', 'No sé todavía'],
+        answer: 'Nos vemos. ¡Gracias, Marta!',
+      },
+    ],
+  },
+  {
+    id: 'como-llego-a-la-estacion',
+    title: '¿Cómo llego a la estación?',
+    level: 'A1',
+    format: 'standalone',
+    summary: 'Elena asks a stranger for directions to the train station in an unfamiliar city.',
+    paragraphs: [
+    { es: 'Elena está en una ciudad nueva. Busca la estación de tren, pero no sabe el camino. Ve a una mujer en la calle.', en: "Elena is in a new city. She's looking for the train station, but doesn't know the way. She sees a woman on the street." },
+    { es: '—Perdón, señora. ¿Sabe dónde está la estación de tren? — pregunta Elena. —Sí, claro — contesta la mujer—. Está bastante cerca.', en: '"Excuse me, ma\'am. Do you know where the train station is?" asks Elena. "Yes, of course," answers the woman. "It\'s pretty close."' },
+    { es: '—Puede seguir todo derecho por esta calle, hasta el semáforo — explica la mujer—. Después, tiene que doblar a la derecha. La estación está enfrente de un banco grande.', en: '"You can keep going straight down this street, to the traffic light," the woman explains. "After that, you have to turn right. The station is in front of a big bank."' },
+    { es: '—Muchas gracias, señora. Es usted muy amable — dice Elena. —De nada. ¡Buen viaje! — contesta la mujer, y camina de nuevo por la calle.', en: '"Thank you very much, ma\'am. You\'re very kind," says Elena. "You\'re welcome. Have a good trip!" answers the woman, and walks on down the street again.' },
+    { es: 'Elena camina por la calle, hasta el semáforo. Dobla a la derecha. Allí está la estación, enfrente del banco, exactamente como dice la mujer.', en: "Elena walks down the street, to the traffic light. She turns right. There's the station, in front of the bank, exactly as the woman said." },
+    ],
+    questions: [
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué busca Elena?',
+        options: ['La estación de tren', 'Un banco', 'Un restaurante', 'Su casa'],
+        answer: 'La estación de tren',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Hacia dónde tiene que doblar Elena?',
+        options: ['A la derecha', 'A la izquierda', 'Todo derecho solamente', 'Hacia atrás'],
+        answer: 'A la derecha',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué hay enfrente de la estación?',
+        options: ['Un banco grande', 'Un parque', 'Una panadería', 'Un semáforo'],
+        answer: 'Un banco grande',
+      },
+      {
+        type: 'comprehension',
+        prompt: 'What does Elena say to thank the woman?',
+        answer: 'thank you very much',
+        altAnswers: ['thank you', 'thanks a lot', 'many thanks', "thank you very much, ma'am"],
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué dice la mujer para despedirse?',
+        options: ['¡Buen viaje!', '¡Hasta mañana!', '¡Buena suerte!', '¡Nos vemos!'],
+        answer: '¡Buen viaje!',
       },
     ],
   },

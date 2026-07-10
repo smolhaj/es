@@ -3093,3 +3093,140 @@ question (typed "He looks out the window." — matched against the
 `looks out the window` / `looking out the window` variants and graded
 correct), and confirmed the final tally read "4 of 5 correct." Scratch
 Playwright scripts deleted afterward.
+
+## "Reading" renamed to "Readings," then 4 more passages shipped
+
+**The rename.** User request: rename the page, route, and every file/
+reference from "Reading" to "Readings." Renamed `Reading.jsx` →
+`Readings.jsx`, `Reading.module.css` → `Readings.module.css`,
+`src/content/reading.js` → `readings.js`, the `/reading` route → `/readings`,
+and the nav label. `ReadingPassage.jsx` (the per-passage detail page)
+deliberately kept its name — it renders one specific passage, not the
+list, so "Passage" already disambiguates it from the plural list page.
+Left unrelated uses of the bare word "reading" alone: the Free Resources
+page's "Reading" category, and `Lesson.module.css`'s "Reading sections"
+CSS comment (the lesson-reading phase, a different concept entirely).
+Verified live via Playwright: the old `/reading` route falls through to
+the catch-all redirect, `/readings` renders correctly, nav shows
+"Readings" only. Shipped as PR #65.
+
+While that PR was still open, a small follow-up commit landed on the same
+branch codifying two rules the user gave as explicit standing directives
+but that didn't exist anywhere in `ES.md` yet: (1) any new word a reading
+passage introduces that isn't already in `vocabulary.js` must be
+researched and added before the passage ships, every time, no exceptions;
+(2) every reading passage ships with its comprehension-question set at
+the same time it's written, never deferred. Writing these down also
+surfaced that process step 11 (vocabulary-gloss density) still described
+the *intermediate*, since-abandoned hand-curated-24-word model rather
+than the final data-driven approach actually shipped — corrected in the
+same pass.
+
+**Scoping the next batch.** User request: continue the Blahaj story, add
+more standalone scenes, and cover "the various other types of writings/
+passages we outlined," one of each, staying at true-beginner A1. The
+exact menu from the original scoping conversation wasn't recoverable from
+context at this point in the session, so rather than guess, the four
+candidate categories were pulled from `ES.md`'s own original learner-facing
+spec ("Content & Culture": everyday conversations, short stories with
+recurring characters, real-world practical tasks, media-based content)
+and confirmed with the user before writing anything. One adjustment made
+unprompted: the spec's own text says real media should wait until a
+learner has "a functional foundation — not from day one," which
+doesn't describe true-beginner A1, so that slot was swapped for the
+already-spec'd "real-world practical tasks" category instead of forcing
+media content in prematurely.
+
+**Four new passages, one per category**: Blahaj Chapter 2 ("El viaje a
+Buenos Aires" — Diego, a pen pal in Argentina, agrees to host Blahaj;
+continues the serialized story), a second standalone scene ("El domingo
+en el parque" — deliberately a different setting/plot shape from the
+bakery scene), an everyday-conversation dialogue ("Planes para el
+sábado" — a phone call between friends making party plans), and a
+real-world-practical-task passage ("¿Cómo llego a la estación?" — asking
+a stranger for directions).
+
+**Grammar-structure discipline held to the same bar as before, worked out
+in more detail this round.** Cross-referencing `concepts.js`'s real A1/A2
+boundary surfaced a subtlety not resolved during the original two
+passages: `concepts.js` splits "core" irregular-present verbs (A1: ser,
+tener, ir, poder, querer) from a broader "irregular_present" catch-all
+(A2: hacer, decir, salir, venir, etc.), but per ES.md's own process step
+10, the grammar check is about *structures* (tenses, moods, pronoun
+types, clause types) — not an audit of every individual irregular verb
+against a curriculum-sequencing split. Common irregular verbs like decir/
+hacer conjugated in the present tense aren't a structural violation the
+same way a whole extra tense or an object pronoun would be; this matches
+what the already-shipped, already-QA'd passages did (both used "dice,"
+"piensa," and other non-core irregulars without issue). What *did* get
+held to a hard line, treated the same as object pronouns/preterite/
+relative clauses from the first pass: no present progressive
+(estar + gerund, A2), no comparatives, no imperative, and no
+`nada`/`nadie`/`nunca`/`tampoco` negative-word constructions (the
+`negation` concept is explicitly A2 and gated on exactly those words —
+simple `no + verb` negation isn't gated by any concept and stayed fine).
+This last point double-checked the *already-shipped* bakery passage and
+found it uses "No dice nada, solo espera" — a real, pre-existing gap the
+first QA pass missed, logged here rather than fixed retroactively (out of
+scope for this pass, but worth knowing about).
+
+The practical-task passage hit a genuine tension: giving directions
+naturally uses imperative mood in real Spanish ("gire a la derecha,"
+"siga derecho") but imperative is A2/B1, not A1. Resolved by having the
+stranger use `puede + infinitive` and `tiene que + infinitive` instead
+("Puede seguir todo derecho... tiene que doblar a la derecha") — both
+already-A1 modal/obligation structures, and a genuinely natural way a
+Spanish speaker gives directions in a polite/formal register to a
+stranger, not a forced workaround.
+
+**Vocabulary-gap-closing, done properly this time.** Manually drafting
+surfaced roughly 28 candidate new words on a first pass; dispatched a
+background research agent (same pattern as the original 49-word fill) to
+cross-reference real CEFR levels/frequency and write proper entries,
+then independently verified the result (parse check, duplicate-key scan,
+`npm run build`) rather than trusting the agent's self-report — one
+example sentence needed a fix (`sentarse`'s example used "banco" to mean
+"bench," which collides with the site's *existing* "banco" = "bank"
+entry; reworded to avoid the word entirely rather than create a second,
+unreachable sense). Two more genuinely missing words (`camino`, `todo`)
+were caught and added by hand while finalizing wording.
+
+**The real discipline came from running the actual matcher, not
+eyeballing the prose.** Rather than manually guess which remaining words
+needed glossing, ran `segmentSpanish` (the live `vocabOnly` matcher)
+against all four new passages directly and inspected every single
+unmatched token. Most were expected non-gaps: proper nouns, and
+grammar/function words already known to be intentionally absent from
+`vocabulary.js` (articles, prepositions, subject pronouns like `yo`/
+`usted` — those live in `concepts.js`/`grammar.js` instead, the same
+precedent already established). But this pass caught two more real,
+plainly A1-level nouns missing entirely — `hombre` and `mujer` — plus
+`preparar`, `llamar`, `explicar`, `caja`, `día`, `familia`, `media`,
+`música`, `nombre`, `perfecto`, `plan`, `señorita`, and `exactamente`,
+all genuinely used in the new prose and genuinely absent. Running the
+real matcher and clearing every remaining token by hand (rather than
+trusting a pre-writing mental checklist) is now the standard verification
+step going forward, written into `ES.md` as process step 12's companion
+practice. `vocabulary.js`: 1498 → 1543 across the whole batch.
+
+**Blind second-reader pass** (a genuinely separate agent, no authoring
+context, per process step 3) caught four real issues, all fixed: snow in
+a Buenos Aires window in July doesn't happen (Argentina's winter is cold
+but not snowy in the capital) — reworded to rain; an em-dash used as an
+English-style clause connector inside a quoted message — split into two
+sentences; an em-dash parenthetical wrapping a plain three-item list — 
+switched to commas; and "¡Gracias por invitar!" was missing its object
+and no real speaker would say it that way — simplified to "¡Gracias,
+Marta!" (also sidesteps needing an A2 object pronoun to fix it properly).
+One line the reviewer flagged as merely "a touch stiff" (bare "caminar
+derecho" for giving directions) was tightened to "seguir todo derecho,"
+reusing the site's own existing dictionary example phrasing for `seguir`.
+
+**Verified live**, same pattern as every previous ship: `npm run build`
+passed throughout, then a `vite` dev server + Playwright — passage list
+shows all 6 cards, new vocabulary (`compañía`, `pesa`, `periódico`,
+`ladra`, `fiesta`, `comida`, `semáforo`, `amable`) renders clickable on
+the new passages, and a full comprehension-question run-through on
+Blahaj Chapter 2 (5 questions, one deliberately via multiple-choice, one
+free-text) produced the correct "You got 5 of 5 correct" summary. Scratch
+scripts deleted afterward.

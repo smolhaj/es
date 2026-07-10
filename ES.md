@@ -562,10 +562,21 @@ B2:20, C1:4, C2:2`.
 
 ### Readings (`/readings`)
 
-2 original A1 passages as of 07-09-2026 (`src/content/readings.js`) — a
-standalone scene ("El pan de cada mañana") and Chapter 1 of a planned
-18-chapter serialized story ("Las Aventuras de Blahaj"), the first ship
-from the reading-passages feature scoped early in the project. `/readings`
+6 original A1 passages as of 07-10-2026 (`src/content/readings.js`): the
+original standalone scene ("El pan de cada mañana") and Chapter 1 of a
+planned 18-chapter serialized story ("Las Aventuras de Blahaj"), plus 4
+more added the same day covering the learner-facing spec's content-
+rotation categories one each — Chapter 2 of the Blahaj story (a
+continuing pen-pal shipment, this time to Buenos Aires), a second
+standalone scene ("El domingo en el parque," a different setting from the
+bakery), an everyday-conversation dialogue ("Planes para el sábado," a
+phone call between friends), and a real-world-practical-task passage
+("¿Cómo llego a la estación?," asking a stranger for directions — using
+`puede`/`tiene que` + infinitive rather than imperative, since imperative
+mood isn't A1 in `concepts.js`). The spec's fourth content category,
+media-based content, was deliberately skipped for this pass: the spec
+itself says real media should wait until a learner has "a functional
+foundation," which doesn't describe true-beginner A1. `/readings`
 lists passages (`Readings.jsx`); `/readings/:passageId` renders one
 (`ReadingPassage.jsx` — singular, since it renders one specific passage)
 with a "Ver traducción" toggle for the English. Renamed from "Reading" to
@@ -616,9 +627,22 @@ stripping to `normalizeAnswer` (reusing `stripAccents` from
 que" was marked wrong for "¿Por qué...?" throughout the A1 curriculum —
 strictly loosening, never tightens acceptance.
 
-Not yet built: additional passages/chapters, and letting a serialized
-story's own level climb chapter by chapter (the natural design for
-chapters 2+, discussed but not started).
+The 07-10-2026 batch closed 45 more `vocabulary.js` gaps the same way
+(caja, día, familia, hombre, mujer, música, nombre, camino, todo,
+preparar, llamar, explicar, and 33 more) — most researched via a
+dedicated agent, cross-checked and topped up by directly running
+`segmentSpanish` against the new passages and manually verifying every
+unmatched token was a proper noun, a grammar/function word (articles,
+subject pronouns — consistent with `usted`/`yo` already being absent from
+`vocabulary.js` by design, since those are taught via `concepts.js`, not
+this file), or a conjugated/inflected form of an already-present base
+word, never a genuinely missing content word. This "run the real matcher
+and manually clear every remaining token" check is now the standard
+verification step for any new passage (ES.md process step 12).
+
+Not yet built: additional passages/chapters beyond Blahaj Chapter 2, and
+letting a serialized story's own level climb chapter by chapter (the
+natural design for chapters 3+, discussed but not started).
 
 ### Flashcards (`/flashcards`)
 
@@ -1341,3 +1365,10 @@ full account of any of these.
 - **07-10-2026** — "Reading" renamed to "Readings" throughout (page/nav
   label, `/readings` route, `Readings.jsx`/`.module.css`,
   `src/content/readings.js`) — full current state in "Architecture" above.
+- **07-10-2026** — 4 more reading passages shipped (Blahaj Chapter 2, a
+  second standalone scene, an everyday-conversation dialogue, a
+  real-world-practical-task passage), one per spec content-rotation
+  category; 45 more `vocabulary.js` gaps closed the same day; two new
+  hard rules codified (vocab-gap-closing, comprehension-questions-with-
+  every-passage) — full current state in "Architecture" above, full
+  narrative in `ES-HISTORY.md`.
