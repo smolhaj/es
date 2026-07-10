@@ -63,6 +63,12 @@ export const api = {
 
     writing: (token) => req('/learner/writing', {}, token),
 
+    reportReadingResult: (token, passageId, correctCount, totalQuestions) =>
+      req('/learner/reading-result', {
+        method: 'POST',
+        body: JSON.stringify({ passageId, correctCount, totalQuestions })
+      }, token),
+
     concepts: (token) => req('/learner/concepts', {}, token),
 
     context: (token) => req('/learner/context', {}, token),

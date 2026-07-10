@@ -5,6 +5,8 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import styles from './Profile.module.css';
 
+const SKILL_ORDER = ['grammar', 'reading', 'writing', 'listening'];
+
 const SUGGESTIONS = [
   { key: 'native_language', label: 'Native language', placeholder: 'e.g. English' },
   { key: 'learning_goal', label: 'Learning goal', placeholder: 'e.g. Travel to Mexico' },
@@ -18,6 +20,7 @@ export default function Profile() {
   const { token, user } = useAuth();
   const [context, setContext] = useState([]);
   const [cefrHistory, setCefrHistory] = useState([]);
+  const [skills, setSkills] = useState({});
   const [loading, setLoading] = useState(true);
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
@@ -32,6 +35,7 @@ export default function Profile() {
     ]).then(([ctx, prof]) => {
       setContext(ctx.context ?? []);
       setCefrHistory(prof.cefrHistory ?? []);
+      setSkills(prof.skills ?? {});
     }).catch(err => setError(err.message))
       .finally(() => setLoading(false));
   }, [token]);
@@ -162,6 +166,27 @@ export default function Profile() {
             )}
           </section>
 
+          {/* Skills */}
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Skills</h2>
+            <div className={styles.contextList}>
+              {SKILL_ORDER.map(skill => {
+                const s = skills[skill];
+                const assessed = (s?.sessions ?? 0) > 0;
+                return (
+                  <div key={skill} className={styles.contextItem}>
+                    <span className={styles.contextKey}>{skill}</span>
+                    <span className={styles.contextValue}>
+                      {assessed
+                        ? `${s.level} · ${Math.round((s.accuracy ?? 0) * 100)}% accuracy · ${s.sessions} session${s.sessions !== 1 ? 's' : ''}`
+                        : <span className={styles.skillUnassessed}>Not yet assessed</span>}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
           {/* CEFR history */}
           {cefrHistory.length > 0 && (
             <section className={styles.section}>
@@ -170,6 +195,7 @@ export default function Profile() {
                 {cefrHistory.map((h, i) => (
                   <div key={i} className={styles.cefrEvent}>
                     <span className={styles.cefrArrow}>
+                      {h.skill && <span className={styles.cefrSkill}>{h.skill}</span>}
                       <span className={styles.cefrFrom}>{h.from_level}</span>
                       {' → '}
                       <span className={styles.cefrTo}>{h.to_level}</span>
