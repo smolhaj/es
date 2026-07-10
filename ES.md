@@ -1074,8 +1074,80 @@ measures):**
     (textarea entry → "Show model answer" → "Got it") captured the exact
     two-request shape designed: first `POST /sessions/turn` with no
     `selfGrade`, second with `selfGrade:true`.
-22. **Conversation/role-play exercise type** — no open-ended dialogue type
-    exists.
+22. ~~Conversation/role-play exercise type~~ — **done** (07-10-2026). New
+    `conversation` exercise type: Gemini plays an in-character NPC
+    (waiter, shopkeeper, stranger, etc.), the learner replies in Spanish,
+    and the exchange runs 3-4 turns before resolving through the same
+    self-assessment reveal pattern item 21 built (no exact-match grading
+    of free dialogue). Offered roughly 1-in-10-12 exercises for B1+
+    learners not currently under the frustration/fatigue override, never
+    A1/A2, never back-to-back with another conversation or a
+    writing_prompt (both are self-assessed multi-call exercises).
+
+    Flexibility was the explicit requirement here (multiple learner
+    responses should be valid, no railroading toward one expected line,
+    room for creative answers) — implemented directly in the prompts, not
+    left implicit: `_gemini.js`'s `CONVERSATION_NPC_PROMPT` instructs
+    Gemini to "react to whatever reasonable thing they actually said,
+    don't steer them toward one expected line," and a dedicated
+    `CONVERSATION RULES` block in `BASE_SYSTEM_PROMPT` reinforces the same
+    when the full pipeline resolves the final turn.
+
+    Gemini-call-budget-conscious design: mid-conversation NPC replies and
+    the final "one way to say this" model line each use small dedicated
+    system prompts (`getConversationReply`/`getConversationModelReply` in
+    `_gemini.js`, ~150 max output tokens) rather than the full
+    `BASE_SYSTEM_PROMPT`, keeping per-turn cost low; only the final
+    "what's the next real exercise" call after self-assessment goes
+    through the full grading pipeline, via a synthesized exercise object
+    carrying the whole transcript as context. `callGemini`'s existing
+    `selfGrade` parameter (built for writing_prompt) is reused unchanged
+    for conversation's confirm phase — no new grading path needed.
+
+    `turn.js` branches on `exercise.type === 'conversation'` before the
+    normal grading flow: turns before the last call `getConversationReply`
+    and write the updated transcript back to `pending_exercise`
+    (`phase: 'conversation'`); the final turn calls
+    `getConversationModelReply` instead and returns `phase: 'reveal'`,
+    reusing writing_prompt's self-assessment UI. If Gemini becomes
+    unavailable mid-conversation (daily cap reached, retries exhausted),
+    the conversation is abandoned cleanly — a normal fallback exercise is
+    swapped in (`phase: 'abandoned'`) rather than leaving the learner
+    stuck or faking dialogue, and it isn't counted as a completed item.
+    Conversation transcripts are captured into `writing_samples` alongside
+    translation/writing_prompt data (written role-play dialogue is the
+    same kind of free production, just multi-turn).
+
+    Frontend: new `ConversationCard` component (chat bubbles, NPC left /
+    learner right, turn counter, typing indicator while awaiting a reply)
+    replaces `ExerciseCard` for this exercise type; `Session.jsx` gained a
+    `conversation` phase distinct from `exercise` so the chat thread stays
+    mounted across turns instead of being torn down between requests.
+
+    Verified live: a real headless-browser run through the full UI (mocked
+    turn responses) confirmed the exact three-request shape designed —
+    continue, reveal, confirm — with chat bubbles, the turn counter, and
+    the reveal panel all rendering correctly at each step. Separately, a
+    real end-to-end run against the actual local backend (no mocking) with
+    an intentionally invalid Gemini key confirmed the abandonment path:
+    `getConversationReply` failed, `turn.js` caught it, wrote a fresh
+    fallback exercise to `pending_exercise`, and returned `phase:
+    'abandoned'` with no stuck state and no corrupted session. Live
+    Live multi-turn Gemini conversational quality was then verified
+    directly against the real API (café-ordering scenario, real key, no
+    mocking): a learner who asked the NPC a question back ("¿qué me
+    recomienda usted?") instead of ordering got a genuine in-character
+    recommendation, not a generic prompt for an order; a learner who
+    accepted and added an unrequested detail ("también un jugo de
+    naranja, tengo mucha sed") got a natural in-character follow-up
+    question about it ("¿recién exprimido o prefiere otra bebida?"); and
+    the final reveal's model-reply example correctly reflected the actual
+    conversation path taken, not a generic script. A second run of the
+    same scenario with a completely different, unscripted learner opening
+    ("¿Tienen algo sin gluten? Soy alérgico al trigo") got an appropriate,
+    distinct in-character response about gluten-free options — confirming
+    it reacts to what the learner actually says rather than railroading
+    toward one expected line.
 23. ~~The displayed CEFR level is a grammar-only accuracy gate, not a true
     4-skill assessment~~ — **done** (07-10-2026). Scoped with the user:
     wire up real reading + writing (both already had usable signal sitting

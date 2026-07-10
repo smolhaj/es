@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
+import ConversationCard from '../components/ConversationCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import styles from './Session.module.css';
 import { CONCEPT_LABELS } from '../content/conceptLabels.js';
@@ -11,8 +12,9 @@ import { CONCEPT_LABELS } from '../content/conceptLabels.js';
 
 const SESSION_LENGTH = 10;
 
-// phase: 'starting' | 'exercise' | 'checking' | 'reveal' | 'feedback' | 'ending' | 'summary' | 'error'
-// 'reveal' is writing_prompt-only: model answer shown, awaiting self-assessment.
+// phase: 'starting' | 'exercise' | 'conversation' | 'checking' | 'reveal' | 'feedback' | 'ending' | 'summary' | 'error'
+// 'conversation' is the in-progress multi-turn role-play phase (chat bubbles, not ExerciseCard).
+// 'reveal' is shared by writing_prompt and conversation: model answer/line shown, awaiting self-assessment.
 
 export default function Session() {
   const { token } = useAuth();
@@ -32,6 +34,9 @@ export default function Session() {
   const [source, setSource] = useState(null);           // 'gemini' | 'fallback' | null
   const [fallbackReason, setFallbackReason] = useState(null);
   const [writingReveal, setWritingReveal] = useState(null); // { modelAnswer, learnerAnswer } | null
+  const [chatHistory, setChatHistory] = useState([]);   // conversation exercise transcript
+  const [convTurn, setConvTurn] = useState(null);
+  const [convSending, setConvSending] = useState(false);
 
   // Start session on mount, and restart whenever focusConcept changes.
   // /session and /session?focus=X are the same route, so React Router does
@@ -51,6 +56,9 @@ export default function Session() {
     setSource(null);
     setFallbackReason(null);
     setWritingReveal(null);
+    setChatHistory([]);
+    setConvTurn(null);
+    setConvSending(false);
 
     api.sessions.start(token, focusConcept)
       .then(({ sessionId: sid, exercise: ex, greeting: gr, source: src, fallbackReason: fr }) => {
@@ -59,7 +67,13 @@ export default function Session() {
         setGreeting(gr);
         setSource(src ?? null);
         setFallbackReason(fr ?? null);
-        setPhase('exercise');
+        if (ex.type === 'conversation') {
+          setChatHistory([{ speaker: 'npc', text: ex.prompt }]);
+          setConvTurn(ex.turn ?? 1);
+          setPhase('conversation');
+        } else {
+          setPhase('exercise');
+        }
       })
       .catch(err => {
         setError(err.message);
@@ -68,6 +82,46 @@ export default function Session() {
   }, [token, focusConcept]);
 
   const handleAnswer = useCallback(async (learnerAnswer) => {
+    // conversation is a multi-turn role-play — each reply either continues
+    // the exchange (another Gemini-voiced NPC line) or, on the final turn,
+    // moves to the same self-assessment reveal writing_prompt uses. Phase
+    // stays 'conversation' throughout so the chat thread never unmounts;
+    // convSending drives the typing indicator instead.
+    if (exercise.type === 'conversation') {
+      setChatHistory(prev => [...prev, { speaker: 'learner', text: learnerAnswer }]);
+      setConvSending(true);
+      try {
+        const result = await api.sessions.turn(token, sessionId, learnerAnswer);
+        setSource(result.source ?? null);
+        setFallbackReason(result.fallbackReason ?? null);
+
+        if (result.phase === 'conversation') {
+          setChatHistory(prev => [...prev, { speaker: 'npc', text: result.npcReply }]);
+          setConvTurn(result.turn);
+          setConvSending(false);
+          return;
+        }
+        if (result.phase === 'reveal') {
+          setWritingReveal({ modelAnswer: result.modelAnswer, learnerAnswer });
+          setConvSending(false);
+          setPhase('reveal');
+          return;
+        }
+        // 'abandoned' — Gemini became unavailable mid-conversation; swap in
+        // a normal fallback exercise rather than leaving the learner stuck.
+        setChatHistory([]);
+        setConvTurn(null);
+        setConvSending(false);
+        setExercise(result.exercise);
+        setPhase('exercise');
+      } catch (err) {
+        setConvSending(false);
+        setError(err.message);
+        setPhase('error');
+      }
+      return;
+    }
+
     setPhase('checking');
     try {
       // writing_prompt is open-ended — nothing to auto-grade. The first
@@ -150,7 +204,15 @@ export default function Session() {
     setExercise(nextExercise);
     setNextExercise(null);
     setFeedback(null);
-    setPhase('exercise');
+    if (nextExercise?.type === 'conversation') {
+      setChatHistory([{ speaker: 'npc', text: nextExercise.prompt }]);
+      setConvTurn(nextExercise.turn ?? 1);
+      setPhase('conversation');
+    } else {
+      setChatHistory([]);
+      setConvTurn(null);
+      setPhase('exercise');
+    }
   }, [stats.count, nextExercise, token, sessionId]);
 
   async function handleEndEarly() {
@@ -212,7 +274,7 @@ export default function Session() {
         <div className={styles.inner}>
 
           {/* Progress bar */}
-          {(phase === 'exercise' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && (
+          {(phase === 'exercise' || phase === 'conversation' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && (
             <div className={styles.progressWrap} aria-label={`Exercise ${stats.count + 1} of ${SESSION_LENGTH}`}>
               <div className={styles.progressBar}>
                 <div
@@ -241,14 +303,14 @@ export default function Session() {
           )}
 
           {/* Focus mode banner */}
-          {focusConcept && (phase === 'exercise' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && (
+          {focusConcept && (phase === 'exercise' || phase === 'conversation' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && (
             <p className={styles.focusBanner}>
               Drilling: <strong>{CONCEPT_LABELS[focusConcept] ?? focusConcept}</strong>
             </p>
           )}
 
           {/* Greeting */}
-          {greeting && phase === 'exercise' && stats.count === 0 && !focusConcept && (
+          {greeting && (phase === 'exercise' || phase === 'conversation') && stats.count === 0 && !focusConcept && (
             <p className={styles.greeting}>{greeting}</p>
           )}
 
@@ -261,20 +323,36 @@ export default function Session() {
           )}
 
           {/* Exercise + Feedback */}
-          {(phase === 'exercise' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && exercise && (
+          {(phase === 'exercise' || phase === 'conversation' || phase === 'checking' || phase === 'reveal' || phase === 'feedback') && exercise && (
             <div className={styles.exerciseArea}>
-              <ExerciseCard
-                exercise={exercise}
-                onSubmit={handleAnswer}
-                disabled={phase !== 'exercise'}
-              />
+              {exercise.type === 'conversation' ? (
+                <ConversationCard
+                  scenario={exercise.scenario}
+                  history={chatHistory}
+                  turn={convTurn}
+                  maxTurns={exercise.maxTurns}
+                  onSend={handleAnswer}
+                  disabled={phase !== 'conversation' || convSending}
+                  sending={convSending}
+                />
+              ) : (
+                <ExerciseCard
+                  exercise={exercise}
+                  onSubmit={handleAnswer}
+                  disabled={phase !== 'exercise'}
+                />
+              )}
 
               {phase === 'reveal' && writingReveal && (
                 <div className={styles.writingReveal}>
-                  <p className={styles.writingRevealLabel}>One way to write this:</p>
+                  <p className={styles.writingRevealLabel}>
+                    {exercise.type === 'conversation' ? 'One way to reply:' : 'One way to write this:'}
+                  </p>
                   <p className={styles.writingRevealText}>{writingReveal.modelAnswer}</p>
                   <p className={styles.writingRevealHint}>
-                    Compare it to what you wrote — there's no single correct answer here.
+                    {exercise.type === 'conversation'
+                      ? "Compare it to what you said — there's no single correct answer here."
+                      : "Compare it to what you wrote — there's no single correct answer here."}
                   </p>
                   <div className={styles.writingRevealActions}>
                     <button
@@ -416,7 +494,7 @@ export default function Session() {
           )}
 
           {/* End early button */}
-          {(phase === 'exercise' || phase === 'reveal' || phase === 'feedback') && (
+          {(phase === 'exercise' || phase === 'conversation' || phase === 'reveal' || phase === 'feedback') && (
             <button
               className={`btn btn-ghost ${styles.endBtn}`}
               onClick={handleEndEarly}

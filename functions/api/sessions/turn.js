@@ -1,4 +1,4 @@
-import { callGemini } from './_gemini.js';
+import { callGemini, getConversationReply, getConversationModelReply, fallback } from './_gemini.js';
 import { scheduleReview } from '../../_lib/fsrs.js';
 import { getNextExplanationStyle } from '../../_lib/concepts.js';
 import { computeCefrLevel } from '../../_lib/cefr.js';
@@ -53,9 +53,91 @@ export async function onRequestPost({ request, env, data }) {
     return Response.json({ phase: 'reveal', modelAnswer: exercise.answer });
   }
 
+  // conversation is multi-turn — unlike every other type, most calls to this
+  // endpoint for one don't resolve into a graded result at all. `turn` /
+  // `maxTurns` and the growing `history` array all live inside the
+  // pending_exercise JSON blob itself (same trust model as everything else,
+  // no schema change needed). Only the FINAL learner turn, after
+  // self-assessment, falls through to the normal grading/bookkeeping code
+  // below — every earlier turn returns early.
+  if (exercise.type === 'conversation' && selfGrade === undefined) {
+    if (typeof learnerAnswer !== 'string' || !learnerAnswer.trim()) {
+      return Response.json({ error: 'learnerAnswer required' }, { status: 400 });
+    }
+    const history = [
+      ...(exercise.history ?? []),
+      { speaker: 'npc', text: exercise.prompt },
+      { speaker: 'learner', text: learnerAnswer },
+    ];
+    const nowTs = new Date().toISOString();
+
+    if (exercise.turn < exercise.maxTurns) {
+      // Mid-conversation: get the NPC's next in-character line. No grading,
+      // no stats increment — the whole role-play counts as one exercise
+      // toward the session, not one per exchange.
+      const { npcReply, source: convSource, fallbackReason: convFallbackReason } =
+        await getConversationReply(env, exercise.scenario, history, data.user.sub);
+
+      if (!npcReply) {
+        // Gemini unavailable mid-conversation — there's no sensible static
+        // fallback NPC line, so end the role-play gracefully with a normal
+        // fallback exercise rather than leaving the learner stuck. Doesn't
+        // count as a completed item since it was never actually resolved.
+        const fallbackExercise = fallback(session.focus_concept);
+        await env.DB.prepare('UPDATE sessions SET pending_exercise = ? WHERE id = ?')
+          .bind(JSON.stringify(fallbackExercise), sessionId).run();
+        return Response.json({
+          phase: 'abandoned', exercise: fallbackExercise,
+          source: 'fallback', fallbackReason: convFallbackReason ?? 'conversation_unavailable',
+        });
+      }
+
+      const updatedExercise = { ...exercise, prompt: npcReply, turn: exercise.turn + 1, history };
+      await env.DB.prepare('UPDATE sessions SET pending_exercise = ? WHERE id = ?')
+        .bind(JSON.stringify(updatedExercise), sessionId).run();
+      return Response.json({ phase: 'conversation', npcReply, turn: updatedExercise.turn, maxTurns: exercise.maxTurns, source: convSource });
+    }
+
+    // Final learner turn: reveal a contextual example reply (generated fresh
+    // against the real transcript, not pre-written — see _gemini.js) for
+    // self-assessment, the conversation equivalent of writing_prompt's
+    // reveal phase.
+    const { modelReply, source: convSource, fallbackReason: convFallbackReason } =
+      await getConversationModelReply(env, exercise.scenario, history, data.user.sub);
+
+    if (!modelReply) {
+      const fallbackExercise = fallback(session.focus_concept);
+      await env.DB.prepare('UPDATE sessions SET pending_exercise = ? WHERE id = ?')
+        .bind(JSON.stringify(fallbackExercise), sessionId).run();
+      return Response.json({
+        phase: 'abandoned', exercise: fallbackExercise,
+        source: 'fallback', fallbackReason: convFallbackReason ?? 'conversation_unavailable',
+      });
+    }
+
+    await env.DB.prepare('UPDATE sessions SET pending_exercise = ? WHERE id = ?')
+      .bind(JSON.stringify({ ...exercise, history, modelReply }), sessionId).run();
+    return Response.json({ phase: 'reveal', modelAnswer: modelReply, source: convSource });
+  }
+
+  // Confirm phase for a conversation: the reveal step above already stored
+  // the real transcript + a context-grounded model reply on pending_exercise
+  // — surface both to callGemini's selfGrade path (see _gemini.js) so the
+  // next-exercise call has the full scenario for context, not just the
+  // NPC's last line. `exercise.answer` also gets set here (from null) so
+  // the error_events/writing_samples logging below has something real to
+  // log instead of null.
+  let callExercise = exercise;
+  if (exercise.type === 'conversation') {
+    exercise.answer = exercise.modelReply ?? null;
+    const transcript = (exercise.history ?? [])
+      .map(h => `${h.speaker === 'npc' ? 'NPC' : 'Learner'}: ${h.text}`).join('\n');
+    callExercise = { ...exercise, prompt: `Role-play scenario: ${exercise.scenario}\n\nFull conversation:\n${transcript}` };
+  }
+
   const { correct, feedback, exercise: nextExercise, conceptNote, source, fallbackReason } = await callGemini(
-    env, '', exercise, learnerAnswer ?? '', false, session.briefing_text ?? null, session.focus_concept ?? null, data.user.sub,
-    exercise.type === 'writing_prompt' ? selfGrade : null
+    env, '', callExercise, learnerAnswer ?? '', false, session.briefing_text ?? null, session.focus_concept ?? null, data.user.sub,
+    (exercise.type === 'writing_prompt' || exercise.type === 'conversation') ? selfGrade : null
   );
 
   const now = new Date().toISOString();
@@ -191,17 +273,19 @@ export async function onRequestPost({ request, env, data }) {
     WHERE id = ?
   `).bind(correct ? 1 : 0, JSON.stringify(nextExercise), sessionId).run();
 
-  // Capture writing samples for translation-to-spanish and writing_prompt
-  // exercises (the latter self-assessed above, not exact-match graded), and
+  // Capture writing samples for translation-to-spanish, writing_prompt, and
+  // conversation exercises (the latter two self-assessed above, not
+  // exact-match graded — conversation is written role-play dialogue, the
+  // same kind of free production as writing_prompt, just multi-turn), and
   // use them to keep skill_profiles' 'writing' row real. `estimated_cefr`
   // used to be the exercise's difficulty number relabeled as a CEFR level
   // (1/2/3 -> A1/B1/B2) regardless of whether the translation was any good
   // — an actively wrong signal, not just a missing one. Left NULL until a
   // real per-sample assessment exists; `correct` (which this handler
-  // already knows, self-reported for writing_prompt) is what actually
-  // drives leveling now, the same way grammar's right/wrong exercise
-  // history drives its level in sessions/end.js.
-  if ((exercise.type === 'translation_to_spanish' || exercise.type === 'writing_prompt') && learnerAnswer?.trim().length > 3) {
+  // already knows, self-reported for writing_prompt/conversation) is what
+  // actually drives leveling now, the same way grammar's right/wrong
+  // exercise history drives its level in sessions/end.js.
+  if ((exercise.type === 'translation_to_spanish' || exercise.type === 'writing_prompt' || exercise.type === 'conversation') && learnerAnswer?.trim().length > 3) {
     await env.DB.prepare(`
       INSERT INTO writing_samples
         (id, user_id, session_id, created_at, prompt, content, word_count, correct, professor_notes)
