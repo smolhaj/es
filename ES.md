@@ -902,12 +902,22 @@ measures):**
    Verified with a mock DB feeding in a deliberately malicious
    `personal_context` entry containing fake delimiters and embedded
    "NEW SYSTEM INSTRUCTIONS" — confirmed they get neutralized.
-3. **No rate limiting anywhere** — auth endpoints have no lockout/throttle,
-3. **No rate limiting anywhere** — auth endpoints have no lockout/throttle,
-   `/api/sessions/turn` has no per-user/day cap on real Gemini calls or
-   length bound on submitted text. Directly threatens the project's "$0
-   forever" cost architecture. The `KV` binding is already provisioned and
-   unused — the natural place for a token-bucket/day-counter.
+3. ~~No rate limiting anywhere~~ — **done** (07-10-2026):
+   `functions/_lib/rateLimit.js` (new, KV-backed). Login now locks out
+   after 5 failed attempts for 15 minutes (tracks failures only, so
+   normal successful logins never count against it); register throttles
+   to 5 accounts/hour per IP; `/api/sessions/turn`/`start.js`'s Gemini
+   calls (via `callGemini()`) are capped at 300/user/day (loose —
+   intentionally a backstop against a leaked token or runaway loop, not
+   a real usage limit for solo/small-scale use), falling back to the
+   static exercise bank with `fallbackReason: 'daily_gemini_cap_reached'`
+   once hit; `learnerAnswer` is capped at 2000 chars. Verified live with
+   `wrangler pages dev` + local D1/KV: 5 wrong-password attempts lock
+   out the 6th even with the *correct* password; a fresh never-failed
+   account logs in normally; the register throttle blocks the 6th
+   registration from one IP within the window; an oversized answer gets
+   a 400; pre-seeding the KV daily counter to 300 makes `start.js`
+   immediately fall back with the expected reason.
 4. **Read-modify-write races on every FSRS/mastery upsert** (`sessions/
    turn.js`, `vocabulary/review.js`, `flashcards/review.js`) — no
    transaction/optimistic check. Also tighten `grade` validation to

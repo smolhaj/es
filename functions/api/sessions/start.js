@@ -49,7 +49,7 @@ export async function onRequestPost({ request, env, data }) {
     ).bind(briefing, sessionId).run().catch(() => {});
   }
 
-  const { exercise, greeting, source, fallbackReason } = await callGemini(env, userMessage, null, null, true, briefing, focusConcept);
+  const { exercise, greeting, source, fallbackReason } = await callGemini(env, userMessage, null, null, true, briefing, focusConcept, data.user.sub);
 
   // Persist the exercise actually issued so turn.js can grade against this
   // trusted server-side copy instead of whatever the client echoes back.

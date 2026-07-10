@@ -1,3 +1,5 @@
+import { allowAndRecord } from '../../_lib/rateLimit.js';
+
 export const BASE_SYSTEM_PROMPT = `You are Capi, an expert Spanish tutor adapting to each learner's exact profile.
 
 EVERY response must follow this exact format — no exceptions:
@@ -970,7 +972,25 @@ function gradeLocally(exercise, learnerAnswer) {
   return acceptableAnswers(exercise).has(normalizeAnswer(learnerAnswer));
 }
 
-export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false, briefing = null, focusConcept = null) {
+// Loose per-day backstop on real Gemini calls (start+turn combined) — not a
+// meaningful cost concern on the free tier for a single/small user base, but
+// bounds worst-case abuse from a leaked token or a runaway client loop.
+const GEMINI_DAILY_CAP = 300;
+
+export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false, briefing = null, focusConcept = null, userId = null) {
+  if (env.KV && userId) {
+    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
+    const capKey = `gemini_calls:${userId}:${today}`;
+    const allowed = await allowAndRecord(env.KV, capKey, GEMINI_DAILY_CAP, 26 * 60 * 60);
+    if (!allowed) {
+      console.error(`Gemini daily cap (${GEMINI_DAILY_CAP}) reached for user ${userId}, using fallback exercise`);
+      return {
+        correct: gradeLocally(exercise, learnerAnswer), feedback: '', exercise: fallback(focusConcept),
+        greeting: null, conceptNote: null, source: 'fallback', fallbackReason: 'daily_gemini_cap_reached',
+      };
+    }
+  }
+
   const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`;
 
   let systemPrompt = BASE_SYSTEM_PROMPT;

@@ -12,6 +12,9 @@ export async function onRequestPost({ request, env, data }) {
 
   const { sessionId, learnerAnswer } = body;
   if (!sessionId) return Response.json({ error: 'sessionId required' }, { status: 400 });
+  if (typeof learnerAnswer === 'string' && learnerAnswer.length > 2000) {
+    return Response.json({ error: 'Answer too long' }, { status: 400 });
+  }
 
   const session = await env.DB.prepare(
     'SELECT id, briefing_text, focus_concept, pending_exercise FROM sessions WHERE id = ? AND user_id = ? AND ended_at IS NULL'
@@ -29,7 +32,7 @@ export async function onRequestPost({ request, env, data }) {
   if (!exercise) return Response.json({ error: 'No exercise pending for this session' }, { status: 400 });
 
   const { correct, feedback, exercise: nextExercise, conceptNote, source, fallbackReason } = await callGemini(
-    env, '', exercise, learnerAnswer ?? '', false, session.briefing_text ?? null, session.focus_concept ?? null
+    env, '', exercise, learnerAnswer ?? '', false, session.briefing_text ?? null, session.focus_concept ?? null, data.user.sub
   );
 
   const now = new Date().toISOString();

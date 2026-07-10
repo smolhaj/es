@@ -1,8 +1,20 @@
 import { hashPassword, signJWT } from '../../_lib/jwt.js';
+import { allowAndRecord } from '../../_lib/rateLimit.js';
+
+const REGISTER_MAX_PER_IP = 5;
+const REGISTER_WINDOW_SECONDS = 60 * 60;
 
 export async function onRequestPost({ request, env }) {
   if (!env.JWT_SECRET) {
     return Response.json({ error: 'Server misconfigured: JWT_SECRET secret is not set in Cloudflare' }, { status: 500 });
+  }
+
+  if (env.KV) {
+    const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown';
+    const allowed = await allowAndRecord(env.KV, `register_ip:${ip}`, REGISTER_MAX_PER_IP, REGISTER_WINDOW_SECONDS);
+    if (!allowed) {
+      return Response.json({ error: 'Too many accounts created from this network. Try again later.' }, { status: 429 });
+    }
   }
 
   let body;
