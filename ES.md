@@ -972,19 +972,38 @@ measures):**
     — **done** (07-10-2026): Unit 26's "el piso" entry now notes
     "the flat, the apartment (Spain; departamento in LatAm — piso means
     'floor' across most of Latin America)".
-12. **`frequency-5000.js` (flashcard deck) has homograph gloss/example
-    mismatches** on a small fraction of cards (e.g. `corte` glossed
-    masculine "a cut" but exampled with feminine "court"); ~5.6% also have
-    no example at all. Worth a pipeline pass flagging gender/article
-    mismatches between gloss and example. (Separately: a "nested-gloss
-    category header leaking through as a definition" bug in the same
-    pipeline was found and fixed 07-09-2026 — see Session history index —
-    but only the 12 confirmed-improved cards from that pass were patched
-    into the shipped deck; `build-flashcards.mjs` no longer produces this
-    bug on future regenerations, but a full regeneration wasn't done
-    because it also pulls in unrelated upstream dictionary-data drift that
-    reshuffles rank-based card IDs. A word-content-derived ID scheme would
-    remove that risk if a full regen is ever wanted.)
+12. ~~`frequency-5000.js` (flashcard deck) has homograph gloss/example
+    mismatches~~ — **done** (07-10-2026): `build-flashcards.mjs`'s
+    `es-en.data` parser now captures Wiktionary's own `g: m`/`g: f`
+    gender tag per pos-block (previously discarded), so two distinct
+    homograph senses sharing the same `pos:` code (e.g. `corte` — g:m
+    "cut" vs g:f "court") no longer get their glosses combined
+    (`buildTranslation` now groups by pos+gender, not pos alone) or their
+    example sentences cross-matched (`sentenceGenderConflict` nulls an
+    example whose leading article contradicts the picked sense's gender).
+    Correctly excludes Spanish's "el/un before a stressed-a feminine
+    noun" exception (el agua, un arma, el alma, el área, un ave, el
+    águila, el/al alba...) — an earlier draft of this check flagged 6 of
+    these as false positives before that exception was added; verified
+    each of the remaining flags by hand against real Spanish grammar
+    before accepting it as a genuine bug. Did **not** do a full deck
+    regeneration — confirmed empirically that even the *pristine,
+    unmodified* pipeline against the exact same cached source data
+    reshuffles ~93/5000 words and nearly every rank/ID (the shipped deck
+    predates this pipeline+cache combination and was never a byte-exact
+    output of either, exactly the drift risk this item's own text
+    already warned about). Instead, cross-referenced a fresh
+    fixed-pipeline run against the shipped deck by word (not rank), kept
+    only cases where the translation was unchanged (so it's really the
+    same sense) and the example flipped from present to null, verified
+    all 4 by hand, and hand-patched just those 4 cards' `example`/
+    `exampleEn` to `null` directly in the shipped file — confirmed via
+    diff that exactly 8 fields across 4 cards changed and nothing else
+    (all 5000 IDs/ranks/translations byte-identical otherwise). The
+    pipeline fix itself is real and will apply automatically whenever a
+    full regen eventually happens under a stable (non-rank-based) ID
+    scheme. The separate "nested-gloss category header" bug (fixed
+    07-09-2026, same 12-cards-patched precedent) remains as before.
 13. ~~No cumulative/interleaved cross-unit review layer~~ — **done**, see
     "Review checkpoints" in Architecture above (07-08-2026).
 14. ~~Minor content duplication, flagged but not fixed~~ — **checked

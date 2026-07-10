@@ -104,11 +104,22 @@ function loadDictionary() {
     if (!word || /^[*\-]/.test(word)) continue;
 
     let currentPos = null;
+    let currentGender = null;
     const entries = [];
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i];
       const posMatch = line.match(/^pos:\s*(\S+)/);
-      if (posMatch) { currentPos = posMatch[1]; continue; }
+      if (posMatch) { currentPos = posMatch[1]; currentGender = null; continue; }
+      // "  g: m"/"  g: f" declares this pos-block's grammatical gender —
+      // two blocks can share the same `pos:` code (both "n") while being
+      // entirely distinct homograph senses distinguished only by gender,
+      // e.g. "corte" (el corte, "cut" — g: m) vs "corte" (la corte,
+      // "court" — g: f). Tracked so buildTranslation() and the example-
+      // sentence picker below can tell these senses apart instead of
+      // treating a same-pos different-gender block as more of the same
+      // word sense.
+      const genderMatch = line.match(/^\s{2}g:\s*(\S+)/);
+      if (genderMatch) { currentGender = genderMatch[1]; continue; }
       // "  gloss: ..." (2-space indent) is a normal top-level sense; a
       // nested "    _gloss: ..." (4-space indent, underscore-prefixed) is
       // a specific definition living under a parent gloss/category line —
@@ -129,7 +140,7 @@ function loadDictionary() {
         // "_gloss:" definitions nested underneath it (parsed above, and
         // already queued right after this line in `entries`).
         if (glossMatch && CATEGORY_HEADER_RE.test(gloss)) continue;
-        entries.push({ pos: currentPos, gloss });
+        entries.push({ pos: currentPos, gloss, gender: currentGender });
       }
     }
     if (entries.length) {
@@ -185,9 +196,13 @@ function pickEntry(entries, wantedPos) {
 }
 
 // Combine up to 2 short glosses from the SAME pos block for a fuller sense
-// without the flashcard becoming a run-on dictionary entry.
-function buildTranslation(entries, pos) {
-  const sameBlock = entries.filter(e => e.pos === pos);
+// without the flashcard becoming a run-on dictionary entry. When two
+// distinct pos-blocks share the same pos code but declare different
+// genders (the "corte"/g:m "cut" vs "corte"/g:f "court" case), only combine
+// glosses from the SAME gender-block — otherwise an unrelated homograph
+// sense can bleed into the same translation string.
+function buildTranslation(entries, pos, gender) {
+  const sameBlock = entries.filter(e => e.pos === pos && e.gender === gender);
   // Individual gloss lines can themselves already be "; "-joined lists of
   // near-synonyms for the same sense (e.g. "que"'s gloss is literally
   // "who; that"), so flatten every gloss line to its comma-parts first and
@@ -249,6 +264,46 @@ function containsLiteralWord(sentence, word) {
 }
 
 const STRICT_LITERAL_POS = new Set(['article', 'preposition', 'adverb', 'conjunction', 'interjection']);
+
+const MASCULINE_ARTICLES = new Set(['el', 'un', 'los', 'unos', 'al', 'del']);
+const FEMININE_ARTICLES = new Set(['la', 'una', 'las', 'unas']);
+
+// Feminine nouns that begin with a stressed /a/ sound take el/un instead of
+// la/una in the singular for euphony (el agua, un arma, el alma, el área,
+// un ave, el águila, el/al alba, un hacha, el hambre...) while remaining
+// grammatically feminine — proven by plural ("las armas") and adjective
+// agreement ("un ave nocturna", feminine "-a" ending) elsewhere in the same
+// sentence. Without this exception, every one of these ordinary, correct
+// sentences looks identical to a genuine gender mismatch to a naive
+// article-adjacency check. Approximated as "starts with a/á/ha/há" — not a
+// full phonetic stress analyzer, but conservative in the safe direction:
+// it only suppresses a flag (never invents one), so at worst it misses a
+// genuine mismatch on some other a-initial feminine word, never nulls out
+// a correct example.
+const STRESSED_A_RE = /^(a|á|ha|há)/i;
+
+// True if `sentence` has `word` immediately preceded by an article whose
+// gender contradicts `expectedGender` ('m'/'f', from the dictionary's own
+// "g:" tag — see loadDictionary). Only fires for the two unambiguous
+// single-gender cases; common-gender nouns (g: mf or similar) and words
+// with no gender info at all are left alone. This is the check that
+// catches the "corte" bug: the gloss picked is the g:m "cut" sense, but
+// the only cached example sentence for the bare lemma "corte" happens to
+// be from the entirely separate g:f "court" sense ("la corte") — same
+// spelling, different word. A plural example ("los cortes") won't match
+// this regex at all, which is a conservative miss, not a false positive.
+function sentenceGenderConflict(sentence, word, expectedGender) {
+  if (expectedGender !== 'm' && expectedGender !== 'f') return false;
+  if (expectedGender === 'f' && STRESSED_A_RE.test(word)) return false;
+  const re = new RegExp(`(\\p{L}+)\\s+${escapeRegExp(word)}(?![\\p{L}\\p{N}])`, 'giu');
+  let m;
+  while ((m = re.exec(sentence))) {
+    const prev = m[1].toLowerCase();
+    if (expectedGender === 'f' && MASCULINE_ARTICLES.has(prev)) return true;
+    if (expectedGender === 'm' && FEMININE_ARTICLES.has(prev)) return true;
+  }
+  return false;
+}
 
 // True if every verbatim occurrence of `word` in `sentence` is capitalized
 // AND not at the start of the sentence — the signature of a mistagged
@@ -363,7 +418,7 @@ async function main() {
     if (!entries || !entries.length) continue;
     const best = pickEntry(entries, row.pos);
     if (!best) continue;
-    const translation = buildTranslation(entries, best.pos);
+    const translation = buildTranslation(entries, best.pos, best.gender);
     if (!translation) continue;
     const posLabel = POS_LABEL[best.pos] ?? best.pos ?? '';
     // If every candidate sentence for this word is "risky" (its spelling
@@ -375,6 +430,14 @@ async function main() {
     const rawSent = sentIndex.get(row.spanish);
     let sent = rawSent && !rawSent.risky ? rawSent : null;
     if (sent && STRICT_LITERAL_POS.has(posLabel) && !containsLiteralWord(sent.es, row.spanish)) {
+      sent = null;
+    }
+    // Homograph guard: the sentence index is keyed purely by lemma spelling
+    // with no gender awareness, so a single-gender noun like "corte" (g:m,
+    // "cut") can get handed the one cached example for the entirely
+    // different g:f "court" sense. Discard rather than show a misleading
+    // pairing — see sentenceGenderConflict's comment.
+    if (sent && posLabel === 'noun' && sentenceGenderConflict(sent.es, row.spanish, best.gender)) {
       sent = null;
     }
     if (sent) sentenceHits++;
