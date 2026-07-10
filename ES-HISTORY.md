@@ -3027,3 +3027,69 @@ afterward.
 the "story climbs in level chapter by chapter" design floated during
 scoping — all deliberately out of scope for this first ship, per the
 project's "one sample, get a reaction, then scale" rule.
+
+## Reading comprehension exercises, and closing the accent-stripping bug along the way
+
+Follow-up request: build comprehension-question exercises for the two
+shipped reading passages — the item explicitly deferred at the end of
+the previous section.
+
+**Reused, not reinvented.** The curriculum practice system already had
+everything needed: `ExerciseCard.jsx` (presentational, renders
+`multiple_choice`/free-text exercise types) and `Feedback.jsx`
+(presentational, correct/incorrect + correct-answer display + "Next
+exercise" button), both already used by `Lesson.jsx`. The only real gap
+was that `Lesson.jsx`'s answer-grading logic (`normalizeAnswer`,
+`acceptableAnswers`, `isAnswerCorrect`, contraction expansion, pro-drop
+subject-pronoun handling, parenthetical-aside stripping) lived as local,
+unexported functions in that one file — not reusable by a second page.
+
+**Extraction surfaced a known bug, fixed as a byproduct.** Moving that
+logic into a new shared `src/lib/answerMatching.js` was the natural point
+to also close punch-list item 5, flagged earlier in the project:
+`normalizeAnswer()` never stripped accents, so a beginner typing "Por que"
+for "¿Por qué...?" was marked wrong throughout the A1 curriculum, even
+though the fix (`stripAccents()`) already existed in `src/lib/
+dictionary.js` — just never exported or reused. Exported it, and added a
+`stripAccents()` call into the shared `normalizeAnswer()`. This only ever
+loosens acceptance (a stored answer with an accent still matches a
+learner's accented input; it just now *also* matches the unaccented
+variant), so it's backward-compatible by construction — no existing
+correct answer can become incorrect. `Lesson.jsx` now imports
+`isAnswerCorrect` from the shared module instead of keeping its own copy;
+its behavior is unchanged except for now accepting unaccented input.
+
+**Comprehension questions, not grammar drills.** Each passage in
+`src/content/reading.js` got a `questions` array — mostly `multiple_choice`
+questions in Spanish testing whether the reader followed the story (e.g.
+"¿Dónde trabaja Mateo?", "¿De dónde es la chica que escribe sobre su
+tiburón viajero?"), plus one free-text question per passage (a new
+`comprehension` exercise type, added to `ExerciseCard.jsx`'s `typeLabel`
+switch) asking something in English with a short, easily-typed answer
+("What does Blahaj do all day while Lucía is at work?" → "looks out the
+window", with a few `altAnswers` variants for tense/phrasing). Free-text
+comprehension questions were kept deliberately narrow-answer rather than
+open-ended, since the grading is still exact-variant matching, not a
+language model — an open "what did you think of the story?" prompt would
+produce mostly false negatives.
+
+**UI**: `ReadingPassage.jsx` gained a "Practicar comprensión →" button
+below the translation toggle (hidden by default so it doesn't clutter the
+reading experience) that reveals one question at a time via `ExerciseCard`
++ `Feedback`, tracks a simple running score in local component state, and
+shows a "you got N of M correct" summary with a "Volver a intentar" reset
+at the end. No backend call, no concept-mastery tracking — same $0-
+compatible pattern the rest of this feature already followed.
+
+**Verified live.** `npm run build` passed; also ran a plain `vite` dev
+server (no D1/wrangler needed here, since reading pages don't touch the
+backend — `useAuth` reads its token from `localStorage`) and drove both
+passages through Playwright: seeding a fake `capi_token` into
+`localStorage` to get past the `Protected` route, confirming
+`ClickableSpanish` still glosses words correctly, stepping through all
+five Blahaj questions including one deliberately-wrong multiple-choice
+answer (showed "Incorrect" + the correct answer text) and the free-text
+question (typed "He looks out the window." — matched against the
+`looks out the window` / `looking out the window` variants and graded
+correct), and confirmed the final tally read "4 of 5 correct." Scratch
+Playwright scripts deleted afterward.

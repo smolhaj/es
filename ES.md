@@ -579,9 +579,25 @@ levels rather than invented ones — a general fix, not reading-specific,
 since any vocabulary.js gap was already invisible to `ClickableSpanish`
 sitewide.
 
-Not yet built: comprehension-question exercises, additional passages/
-chapters, and letting a serialized story's own level climb chapter by
-chapter (the natural design for chapters 2+, discussed but not started).
+Each passage now also carries a `questions` array (comprehension checks,
+not grammar drills — mostly `multiple_choice` in Spanish, plus a couple of
+free-text `comprehension`-type questions with English answers) rendered on
+the passage page behind a "Practicar comprensión →" button, one at a time,
+via the same `ExerciseCard`/`Feedback` components curriculum practice
+uses. Grading is entirely client-side (no backend call, no concept-mastery
+tracking) — a simple running score shown at the end. Building this pulled
+`Lesson.jsx`'s local answer-grading logic (`normalizeAnswer`,
+`isAnswerCorrect`, contraction/pro-drop/parenthetical handling) out into
+shared `src/lib/answerMatching.js` so both curriculum practice and reading
+comprehension use the same matcher; the extraction also added accent
+stripping to `normalizeAnswer` (reusing `stripAccents` from
+`dictionary.js`, now exported), closing the long-flagged bug where "Por
+que" was marked wrong for "¿Por qué...?" throughout the A1 curriculum —
+strictly loosening, never tightens acceptance.
+
+Not yet built: additional passages/chapters, and letting a serialized
+story's own level climb chapter by chapter (the natural design for
+chapters 2+, discussed but not started).
 
 ### Flashcards (`/flashcards`)
 
@@ -880,11 +896,12 @@ measures):**
    `Number.isInteger(grade)` in both review endpoints.
 
 **Correctness bugs in shipped code:**
-5. **`Lesson.jsx`'s curriculum practice grading doesn't strip accents.**
-   `normalizeAnswer()` never strips accents and only trims trailing
-   punctuation. A beginner typing "Por que" for "¿Por qué...?" is marked
-   wrong throughout the A1 curriculum. The fix exists and isn't reused:
-   `stripAccents()` in `src/lib/dictionary.js`.
+5. ~~`Lesson.jsx`'s curriculum practice grading doesn't strip accents~~ —
+   **done** (07-10-2026): grading logic moved to shared
+   `src/lib/answerMatching.js` (used by both curriculum practice and the
+   new reading-comprehension exercises), and `normalizeAnswer()` now
+   strips accents via `stripAccents()` (now exported from
+   `dictionary.js`) before comparing.
 6. **`Feedback.module.css`'s `.conceptNote` references an undefined CSS
    token** (`var(--bg-card)` — should be `--surface`) — every "Professor's
    note" callout renders with no background.
@@ -1295,3 +1312,8 @@ full account of any of these.
   reusing `ClickableSpanish` sitewide) surfacing and fixing 49 real
   `vocabulary.js` gaps along the way — full current state in
   "Architecture" above, full narrative in `ES-HISTORY.md`.
+- **07-10-2026** — Reading comprehension exercises: both passages got a
+  `questions` array graded via the shared `ExerciseCard`/`Feedback`
+  components; extracting the grading logic into `src/lib/answerMatching.js`
+  closed punch-list item 5 (accent-stripping) as a side effect — full
+  current state in "Architecture" above.

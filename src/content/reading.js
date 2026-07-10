@@ -11,6 +11,12 @@
 // concepts.js before a level is claimed (no object pronouns, no
 // preterite, no relative clauses in these two A1 passages), and every
 // glossed word is a real, sourced vocabulary.js entry, not an estimate.
+//
+// Each passage's optional `questions` array holds comprehension exercises
+// (not grammar drills) rendered via the shared ExerciseCard/Feedback
+// components on the passage page — multiple_choice questions in Spanish,
+// plus a couple of free-text `comprehension`-type questions with English
+// answers, self-graded client-side with no backend persistence.
 
 export const PASSAGES = [
   {
@@ -32,6 +38,38 @@ export const PASSAGES = [
     { es: "—Mañana el pan, entonces — contesta, y se va con su café.", en: "\"Tomorrow the bread, then,\" she answers, and leaves with her coffee." },
     { es: "Mateo mira el horno roto. Después mira la calle, vacía todavía. Y piensa: mañana necesita el pan listo antes de las siete.", en: "Mateo looks at the broken oven. Then he looks at the street, still empty. And he thinks: tomorrow he needs the bread ready before seven." },
     ],
+    questions: [
+      {
+        type: 'multiple_choice',
+        prompt: '¿Dónde trabaja Mateo?',
+        options: ['En una panadería', 'En un banco', 'En un café', 'En una escuela'],
+        answer: 'En una panadería',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué compra siempre la señora Pilar?',
+        options: ['Un pan y un café con leche', 'Una magdalena y un té', 'Dos cafés', 'Un pastel'],
+        answer: 'Un pan y un café con leche',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué le pasa al horno hoy?',
+        options: ['Está roto', 'Está limpio', 'Está nuevo', 'Está abierto'],
+        answer: 'Está roto',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué le da Mateo a la señora Pilar en vez de pan?',
+        options: ['Una magdalena', 'Un café', 'Un pastel', 'Nada'],
+        answer: 'Una magdalena',
+      },
+      {
+        type: 'comprehension',
+        prompt: 'How does Mrs. Pilar react when Mateo gives her the muffin instead of bread?',
+        answer: 'she smiles',
+        altAnswers: ['she smiled', 'smiles', 'smiled', 'she smiles too'],
+      },
+    ],
   },
   {
     id: 'blahaj-ch1',
@@ -51,6 +89,38 @@ export const PASSAGES = [
     { es: "Blahaj no contesta, claro. Pero Lucía ya sabe la respuesta.", en: "Blahaj doesn't answer, obviously. But Lucía already knows the answer." },
     { es: "Esa noche, escribe su primer mensaje en el grupo: \"Hola. Me llamo Lucía. Tengo un tiburón. Se llama Blahaj. Es su primer viaje. ¿Alguien quiere recibir a Blahaj?\"", en: "That night, she writes her first message in the group: \"Hi. My name's Lucía. I have a shark. His name is Blahaj. It's his first trip. Does anyone want to host Blahaj?\"" },
     { es: "Contesta alguien en cinco minutos.", en: "Someone replies in five minutes." },
+    ],
+    questions: [
+      {
+        type: 'multiple_choice',
+        prompt: '¿Cómo se llama el tiburón de peluche de Lucía?',
+        options: ['Blahaj', 'Tiburón', 'Pilar', 'Mateo'],
+        answer: 'Blahaj',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué busca Lucía en internet?',
+        options: ['Grupos para intercambiar peluches', 'Recetas de pan', 'Un trabajo nuevo', 'Un libro'],
+        answer: 'Grupos para intercambiar peluches',
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿De dónde es la chica que escribe sobre su tiburón viajero?',
+        options: ['Chile', 'México', 'Japón', 'España'],
+        answer: 'Chile',
+      },
+      {
+        type: 'comprehension',
+        prompt: 'What does Blahaj do all day while Lucía is at work?',
+        answer: 'looks out the window',
+        altAnswers: ['look out the window', 'watches the window', 'looking out the window', 'he looks out the window'],
+      },
+      {
+        type: 'multiple_choice',
+        prompt: '¿Qué pregunta Lucía a Blahaj?',
+        options: ['¿Quieres viajar?', '¿Tienes hambre?', '¿Estás bien?', '¿Quieres dormir?'],
+        answer: '¿Quieres viajar?',
+      },
     ],
   },
 ];
