@@ -1336,6 +1336,38 @@ measures):**
     exact two-payload live test first.** That's the point this stops being
     a self-inflicted curiosity and becomes a real cross-user
     content-injection vector.
+33. ~~`vocabulary.js` had a real local dip at B2~~ — **done** (07-10-2026).
+    A content-thinness audit (prompted by "add more content — suss out
+    where's thinnest") initially misreported vocabulary as fine at every
+    level due to a grep bug (a batch of C1/C2 entries used double quotes,
+    which a single-quote-only pattern silently missed) — corrected
+    on the spot before any work started once it didn't match a second,
+    more careful look. The real count: B2 sat at 161 words against 254 at
+    B1 and 206 at C1 on either side, and two whole domains —
+    `business` and `academic` — had **zero** B2 entries, jumping straight
+    from B1/A2 to C1. That's a real gap: those are exactly the domains
+    the B2 curriculum units ("Argumentation & Workplace Correspondence,"
+    "Fine Details") actually teach into.
+
+    Added 63 new B2 entries (16 business, 8 academic, 10 abstract_concepts,
+    10 media_news, 8 technology, 6 professions, 5 general adjectives/
+    abstract nouns), each checked against the full file first to avoid
+    duplicating an existing word at a different level, in the same
+    `{ es, en, cefr, domain, frequencyRank, example, exampleEn, register }`
+    shape the file's more recent entries already use. B2 → 224 words,
+    landing between its neighbors as intended; `business` and `academic`
+    both now have a real B2 rung instead of a hole.
+
+    Verified live: `node --check` passed, a full-file duplicate-`es`-value
+    scan came back clean (the one hit, "tío," is a pre-existing intentional
+    homograph at A1 vs. C2, not something this pass introduced), production
+    build succeeded, and a real headless-browser run through `/vocab` with
+    the B2 filter applied confirmed exactly 224 words and spot-checked five
+    of the new entries (gestión, entrevistador, suposición, consultor,
+    currículum) actually rendering.
+
+    Readings content (still 9 passages, 100% A1, 0% A2-C2 — the other,
+    more acute finding from the same audit) is scoped separately next.
 
 ## Session history index
 
