@@ -21,25 +21,37 @@ export async function onRequestPost({ request, env, data }) {
     'UPDATE concept_mastery SET session_error_count = 0 WHERE user_id = ?'
   ).bind(data.user.sub).run().catch(() => {});
 
-  const [sessionsResult, briefing] = await Promise.all([
+  const [sessionsResult, masteryResult, briefing] = await Promise.all([
     env.DB.prepare(
       'SELECT COUNT(*) as cnt FROM sessions WHERE user_id = ? AND ended_at IS NOT NULL'
+    ).bind(data.user.sub).first(),
+
+    // A session a learner closed the tab on (no "End session" click, no
+    // beforeunload — see Session.jsx) never gets ended_at set, but turn.js
+    // still wrote real concept_mastery data for it. Without this check, a
+    // learner in that state gets treated as brand-new forever, and the
+    // "very first session" framing below overrides the actual weak-spot
+    // data compileBriefing() already computed for them. See ES.md punch
+    // list, BUG-2.
+    env.DB.prepare(
+      'SELECT COUNT(*) as cnt FROM concept_mastery WHERE user_id = ?'
     ).bind(data.user.sub).first(),
 
     compileBriefing(env.DB, data.user.sub).catch(() => null),
   ]);
 
   const sessionCount = sessionsResult?.cnt ?? 0;
+  const hasHistory = sessionCount > 0 || (masteryResult?.cnt ?? 0) > 0;
   let userMessage;
   if (focusConcept) {
     const conceptLabel = CONCEPTS[focusConcept]?.label ?? focusConcept;
     userMessage = `Focus this entire session on drilling the concept: "${conceptLabel}" (concept_id: ${focusConcept}). ` +
       `Use varied exercise types (multiple_choice, fill_blank, translation) all targeting that concept. ` +
-      (sessionCount === 0 ? 'Start with an easy exercise.' : `I've done ${sessionCount} session(s) overall.`);
+      (hasHistory ? `I've done ${sessionCount} session(s) overall.` : 'Start with an easy exercise.');
   } else {
-    userMessage = sessionCount === 0
-      ? 'This is my very first Spanish session. Start me with the absolute basics.'
-      : `I've completed ${sessionCount} session(s). Give me a personalized first exercise based on my profile.`;
+    userMessage = hasHistory
+      ? `I've completed ${sessionCount} session(s). Give me a personalized first exercise based on my profile.`
+      : 'This is my very first Spanish session. Start me with the absolute basics.';
   }
 
   // Store briefing so subsequent turns can use it (Gemini has no cross-request memory)
