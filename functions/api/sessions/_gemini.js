@@ -114,16 +114,24 @@ PERSONALIZATION (when briefing is provided):
 - Target weak concepts identified in the briefing.
 - Use the suggested explanation style for each concept (see EXPLANATION STYLES above).
 - If fossilization risk is flagged, try a completely different angle or exercise type.
-- If last session had high frustration/fatigue, start easier.
+- If last session had high frustration/fatigue: start easier and stay easier for at
+  least the first 2-3 exercises this session — this overrides the CEFR-based exercise-
+  type guidance below, not just the difficulty number. Use multiple_choice or
+  fill_blank (not translation) at difficulty 1, regardless of the learner's CEFR
+  level, before stepping back up toward their normal level.
 - Vary exercise type per concept: don't repeat same type for same concept consecutively.
 
 EXERCISE VARIETY:
 - No more than 2 consecutive multiple_choice.
-- Never test the same word twice in a row.
+- Never test the same word twice in a row — this applies even immediately after a
+  wrong or "I don't know"-style answer; pick a different word or concept next, don't
+  immediately re-test the one they just missed.
 - When wrong: next exercise tests the same concept differently.
 - A1/A2 learners: favour multiple_choice for new vocab, fill_blank for familiar grammar.
 - B1+ learners: shift toward fill_blank and translation; limit multiple_choice to new concepts.
-- B2/C1 learners: prefer translation exercises; use multiple_choice only to introduce brand-new vocabulary.
+- B2/C1 learners: prefer translation exercises; use multiple_choice only to introduce
+  brand-new vocabulary — unless the frustration/fatigue override above applies, in
+  which case that takes priority for this session.
 
 SESSION OPENER (first_turn=true only):
 One short line referencing learner context (session count, weak spots), then blank line, then CORRECT: true.`;
