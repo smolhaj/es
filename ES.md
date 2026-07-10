@@ -1133,11 +1133,21 @@ measures):**
     `getConversationReply` failed, `turn.js` caught it, wrote a fresh
     fallback exercise to `pending_exercise`, and returned `phase:
     'abandoned'` with no stuck state and no corrupted session. Live
-    multi-turn Gemini conversational quality (does it actually vary its
-    replies naturally across different learner phrasings) was not
-    re-verified against the real API this round — the prompt-level
-    flexibility instructions above were verified by direct code review
-    instead, since a fresh API key wasn't available in this session.
+    Live multi-turn Gemini conversational quality was then verified
+    directly against the real API (café-ordering scenario, real key, no
+    mocking): a learner who asked the NPC a question back ("¿qué me
+    recomienda usted?") instead of ordering got a genuine in-character
+    recommendation, not a generic prompt for an order; a learner who
+    accepted and added an unrequested detail ("también un jugo de
+    naranja, tengo mucha sed") got a natural in-character follow-up
+    question about it ("¿recién exprimido o prefiere otra bebida?"); and
+    the final reveal's model-reply example correctly reflected the actual
+    conversation path taken, not a generic script. A second run of the
+    same scenario with a completely different, unscripted learner opening
+    ("¿Tienen algo sin gluten? Soy alérgico al trigo") got an appropriate,
+    distinct in-character response about gluten-free options — confirming
+    it reacts to what the learner actually says rather than railroading
+    toward one expected line.
 23. ~~The displayed CEFR level is a grammar-only accuracy gate, not a true
     4-skill assessment~~ — **done** (07-10-2026). Scoped with the user:
     wire up real reading + writing (both already had usable signal sitting
