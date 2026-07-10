@@ -99,6 +99,7 @@
 
 .unitCardDone {
   border-color: color-mix(in srgb, var(--correct) 35%, transparent);
+  background: color-mix(in srgb, var(--correct) 6%, var(--surface));
 }
 
 .unitCardDisabled {
