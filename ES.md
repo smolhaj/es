@@ -223,33 +223,49 @@ same day after it caught a real gap in the reading-passages POC):
     check applies to any other leveled content type this project adds.
 11. **Vocabulary-gloss density for reading passages is a different problem
     from grammar-level QA (step 10) — don't apply the same binary logic to
-    both.** Grammar is checkable/binary: a structure either has or hasn't
-    been taught, so "never exceed the claimed level" is the right rule.
-    Vocabulary in a reading passage is supposed to work differently — some
-    exposure just past the reader's current level is the actual point of
-    reading practice, and it's supposed to be inferred from context and
-    repetition, not assisted every time a word appears. Real graded readers
-    target roughly 95-98% known-word coverage — only 2-5% of running words
-    should need a look-up at all. Caught by overshooting badly on the first
-    attempt (07-09-2026, same reading-passages POC): applied step 10's
-    "check everything against the real standard" instinct to vocabulary too
-    literally and ended up glossing ~70 words across two short passages —
-    connectors (todavía, entonces, antes, también), common core verbs
-    (decir, pensar, poner, llegar), and near-cognates (momento, página,
-    minuto) all got a popover, roughly one word in three. User feedback:
-    "a little heavy for true beginners." Corrected down to 24: **do**
-    gloss concrete nouns central to the scene (panadería, magdalena,
-    tiburón, peluche), idioms/phrases that can't be parsed word-by-word
-    ("invita la casa"), genuinely irregular/non-guessable verbs (oler),
-    and words load-bearing for the plot mechanic itself even if not
-    obviously rare (intercambiar, correo, where the story's premise
-    doesn't land without them); **don't** gloss connectors/discourse
-    markers, common high-frequency verbs, adjectives/adverbs, or obvious
-    cognates/loanwords — glossing those exact words undermines the skill
-    reading practice exists to build (inferring meaning from pattern and
-    repeated exposure) and reads as distrustful of the learner. Applies to
-    any future reading-passage or extended-prose content with a vocabulary
-    axis, not just grammar.
+    both, but the final answer is data-driven, not hand-curated.** Grammar
+    is checkable/binary: a structure either has or hasn't been taught, so
+    "never exceed the claimed level" is the right rule. Vocabulary glossing
+    went through two wrong models before landing on the right one
+    (07-09-2026, same reading-passages POC): first, over-applying step 10's
+    "check everything" instinct to vocabulary too literally and glossing
+    ~70 words including connectors/common verbs/near-cognates a learner
+    should infer from repetition, not get handed; user feedback "a little
+    heavy for true beginners." Second correction: hand-curating a smaller
+    ~24-word list by editorial judgment call (concrete nouns, idioms,
+    genuinely irregular verbs — yes; connectors, common verbs, cognates —
+    no). **That second model was also wrong** — user pushback ("MOST if
+    not all words at the A1 level should have glossary hover definitions")
+    surfaced that the site's real `ClickableSpanish`/`segmentSpanish`
+    mechanism already does exactly this mechanically, with zero curation:
+    every word with a real `vocabulary.js` entry gets a hover-define,
+    every word without one doesn't. **The shipped, standing rule**: don't
+    curate a glossary at all — pass passages through the real matcher
+    (`vocabOnly` mode, see Architecture below) and let real data decide
+    what's clickable. This makes rule 12 below load-bearing: the matcher
+    can only define what's actually in `vocabulary.js`, so any real gap
+    has to be closed as content, not designed around.
+12. **Any new word a reading passage introduces that isn't already in
+    `vocabulary.js` must be researched (cross-referenced, real CEFR level —
+    never guessed) and added to `vocabulary.js` before the passage ships,
+    every time, no exceptions.** User directive (07-10-2026): "any new
+    words introduced you have to add to the glossary and hover define —
+    this is a hard and fast rule." This is what makes rule 11's
+    non-curated, fully-mechanical glossing actually work at true-beginner
+    level: if a word a beginner wouldn't know is missing from
+    `vocabulary.js`, it silently renders with no hover-define, and the
+    passage isn't actually A1-accessible regardless of what CEFR label it
+    claims. Closing the gap is a general `vocabulary.js` improvement, not
+    reading-specific — it benefits `ClickableSpanish` everywhere else on
+    the site too, same as the 07-09-2026 49-word and 9-word fills.
+13. **Every reading passage ships with its comprehension-question set
+    (`questions` array) at the same time it's written — never deferred to
+    a later pass.** User directive (07-10-2026): "then we make
+    comprehension questions for every passage as they're written — also
+    needs to be a rule." Write the passage, close any vocabulary gaps
+    (rule 12), then write its comprehension questions before moving to the
+    next passage, rather than batching prose-writing and
+    question-writing as separate phases.
 
 ---
 
@@ -544,14 +560,30 @@ in question — most classic false friends (`embarazada`, `sensible`,
 tapers from A2/B1 rather than clustering high: `A1:13, A2:36, B1:35,
 B2:20, C1:4, C2:2`.
 
-### Reading (`/reading`)
+### Readings (`/readings`)
 
-2 original A1 passages as of 07-09-2026 (`src/content/reading.js`) — a
-standalone scene ("El pan de cada mañana") and Chapter 1 of a planned
-18-chapter serialized story ("Las Aventuras de Blahaj"), the first ship
-from the reading-passages feature scoped early in the project. `/reading`
-lists passages (`Reading.jsx`); `/reading/:passageId` renders one
-(`ReadingPassage.jsx`) with a "Ver traducción" toggle for the English.
+6 original A1 passages as of 07-10-2026 (`src/content/readings.js`): the
+original standalone scene ("El pan de cada mañana") and Chapter 1 of a
+planned 18-chapter serialized story ("Las Aventuras de Blahaj"), plus 4
+more added the same day covering the learner-facing spec's content-
+rotation categories one each — Chapter 2 of the Blahaj story (a
+continuing pen-pal shipment, this time to Buenos Aires), a second
+standalone scene ("El domingo en el parque," a different setting from the
+bakery), an everyday-conversation dialogue ("Planes para el sábado," a
+phone call between friends), and a real-world-practical-task passage
+("¿Cómo llego a la estación?," asking a stranger for directions — using
+`puede`/`tiene que` + infinitive rather than imperative, since imperative
+mood isn't A1 in `concepts.js`). The spec's fourth content category,
+media-based content, was deliberately skipped for this pass: the spec
+itself says real media should wait until a learner has "a functional
+foundation," which doesn't describe true-beginner A1. `/readings`
+lists passages (`Readings.jsx`); `/readings/:passageId` renders one
+(`ReadingPassage.jsx` — singular, since it renders one specific passage)
+with a "Ver traducción" toggle for the English. Renamed from "Reading" to
+"Readings" (07-10-2026): page/nav label, route, `Readings.jsx`/
+`.module.css`, and the content file (`readings.js`) all updated;
+`ReadingPassage.jsx` kept its name since it's the per-passage detail page,
+not the list.
 
 Every word gets a definition via the exact same `ClickableSpanish`
 component used everywhere else on the site — no separate reading-specific
@@ -595,9 +627,22 @@ stripping to `normalizeAnswer` (reusing `stripAccents` from
 que" was marked wrong for "¿Por qué...?" throughout the A1 curriculum —
 strictly loosening, never tightens acceptance.
 
-Not yet built: additional passages/chapters, and letting a serialized
-story's own level climb chapter by chapter (the natural design for
-chapters 2+, discussed but not started).
+The 07-10-2026 batch closed 45 more `vocabulary.js` gaps the same way
+(caja, día, familia, hombre, mujer, música, nombre, camino, todo,
+preparar, llamar, explicar, and 33 more) — most researched via a
+dedicated agent, cross-checked and topped up by directly running
+`segmentSpanish` against the new passages and manually verifying every
+unmatched token was a proper noun, a grammar/function word (articles,
+subject pronouns — consistent with `usted`/`yo` already being absent from
+`vocabulary.js` by design, since those are taught via `concepts.js`, not
+this file), or a conjugated/inflected form of an already-present base
+word, never a genuinely missing content word. This "run the real matcher
+and manually clear every remaining token" check is now the standard
+verification step for any new passage (ES.md process step 12).
+
+Not yet built: additional passages/chapters beyond Blahaj Chapter 2, and
+letting a serialized story's own level climb chapter by chapter (the
+natural design for chapters 3+, discussed but not started).
 
 ### Flashcards (`/flashcards`)
 
@@ -1317,3 +1362,13 @@ full account of any of these.
   components; extracting the grading logic into `src/lib/answerMatching.js`
   closed punch-list item 5 (accent-stripping) as a side effect — full
   current state in "Architecture" above.
+- **07-10-2026** — "Reading" renamed to "Readings" throughout (page/nav
+  label, `/readings` route, `Readings.jsx`/`.module.css`,
+  `src/content/readings.js`) — full current state in "Architecture" above.
+- **07-10-2026** — 4 more reading passages shipped (Blahaj Chapter 2, a
+  second standalone scene, an everyday-conversation dialogue, a
+  real-world-practical-task passage), one per spec content-rotation
+  category; 45 more `vocabulary.js` gaps closed the same day; two new
+  hard rules codified (vocab-gap-closing, comprehension-questions-with-
+  every-passage) — full current state in "Architecture" above, full
+  narrative in `ES-HISTORY.md`.
