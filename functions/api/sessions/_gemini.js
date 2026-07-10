@@ -40,6 +40,9 @@ register_identify — only for C2 register-switching content. Include "sentence"
 writing_prompt — open-ended; ask the learner to write 2-4 original sentences (not a translation of a given English sentence). "answer" is ONE strong example response the learner will compare their own writing to, not the only correct answer — the learner self-assesses, this is never graded as a strict match:
 {"type":"writing_prompt","prompt":"Describe tu rutina diaria en 2-3 frases.","word":null,"english":null,"answer":"Me levanto a las siete, desayuno café con tostadas, y voy al trabajo en autobús.","concept_id":"present_ar","difficulty":2}
 
+conversation — a multi-turn role-play. You play an NPC (waiter, stranger, shopkeeper, etc.) in character; "scenario" is a one-line English description of the situation, "prompt" is the NPC's opening line in Spanish. "answer" is always null here — there's no single right answer for a conversation, it resolves through self-assessment later, not exact grading. Start "turn" at 1 and set "maxTurns" to 3 or 4:
+{"type":"conversation","scenario":"Ordering breakfast at a café","prompt":"¡Buenos días! ¿Qué le gustaría pedir?","word":null,"english":null,"answer":null,"concept_id":"present_ar","difficulty":2,"maxTurns":4,"turn":1}
+
 concept_id must be one of:
 A1: greeting_basics, numbers_1_20, subject_pronouns, noun_gender,
     definite_articles, indefinite_articles, ser_basics, estar_basics,
@@ -139,6 +142,23 @@ EXERCISE VARIETY:
   learners who are not currently under the frustration/fatigue override — never for
   A1/A2, never two writing_prompts in a row. Skip it entirely if the learner's very
   next turn after one is self-assessed rather than graded by you (see below).
+- conversation: occasionally offer one (roughly 1 in every 10-12 exercises) for B1+
+  learners who are not currently under the frustration/fatigue override — never for
+  A1/A2, never back-to-back with another conversation or a writing_prompt (both are
+  self-assessed, multi-call exercises — don't stack them).
+
+CONVERSATION RULES (only when continuing an in-progress conversation exercise — you
+will be told explicitly when this applies, it is not the normal grade-and-give-next-
+exercise flow):
+- Multiple responses are valid. Stay in character and react naturally to whatever
+  reasonable thing the learner says, the way a real person in that role would — don't
+  railroad them toward one expected line or steer the conversation back to a script.
+- Never correct, grade, or nudge them toward different phrasing here — that happens
+  separately, later, through self-assessment, not through you mid-conversation.
+- If the learner takes the exchange somewhere unexpected but reasonable within the
+  scenario (asks a follow-up, adds detail, jokes around), follow their lead.
+- Keep in-character replies short (1-2 sentences) — a real spoken exchange, not a
+  paragraph.
 
 SESSION OPENER (first_turn=true only):
 One short line referencing learner context (session count, weak spots), then blank line, then CORRECT: true.`;
@@ -903,7 +923,7 @@ export const FALLBACK_EXERCISES = [
   { type: 'translation_to_english', prompt: '¿A qué se refiere alguien que dice "eso es muy quijotesco"?', word: 'quijotesco', english: 'idealistic/impractical, like Don Quixote', answer: 'Something idealistic or impractically noble, like Don Quixote.', concept_id: 'referencias_culturales_avanzadas', difficulty: 2 },
 ];
 
-function fallback(focusConcept = null) {
+export function fallback(focusConcept = null) {
   if (focusConcept) {
     const matches = FALLBACK_EXERCISES.filter(e => e.concept_id === focusConcept);
     if (matches.length) return matches[Math.floor(Math.random() * matches.length)];
@@ -992,6 +1012,86 @@ function gradeLocally(exercise, learnerAnswer) {
 // bounds worst-case abuse from a leaked token or a runaway client loop.
 const GEMINI_DAILY_CAP = 300;
 
+// gemini-2.0-flash was retired from this free-tier project's quota (0
+// RPM/TPM/RPD per Google AI Studio's Rate Limit page — every call 429'd
+// regardless of load, confirmed 07-10-2026). gemini-3.1-flash-lite is the
+// current free-tier model with real headroom (15 RPM / 500 RPD), enough
+// for dozens of ~11-call sessions/day. See ES.md punch-list item 31.
+function geminiUrl(env) {
+  return `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${env.GEMINI_API_KEY}`;
+}
+
+// True if this user is still under the daily cap (and records this call
+// against it); false if they've hit it. Shared by callGemini and the
+// lighter-weight conversation-turn calls below — a real API call counts
+// against the same budget no matter which path makes it.
+export async function underDailyCap(env, userId) {
+  if (!env.KV || !userId) return true;
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
+  const capKey = `gemini_calls:${userId}:${today}`;
+  return allowAndRecord(env.KV, capKey, GEMINI_DAILY_CAP, 26 * 60 * 60);
+}
+
+// Raw call-with-retry primitive, shared by callGemini's full exercise-
+// generation/grading contract and the lighter conversation-turn calls
+// (which don't need the CORRECT:/EXERCISE response format at all). Returns
+// the raw text on success; throws the last error after retries are
+// exhausted so each caller can decide its own fallback shape.
+async function fetchGeminiText(env, systemPrompt, prompt, { maxOutputTokens = 700 } = {}) {
+  const body = JSON.stringify({
+    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    systemInstruction: { parts: [{ text: systemPrompt }] },
+    generationConfig: { temperature: 0.85, maxOutputTokens }
+  });
+
+  // Retry transient failures (network errors, 429 rate-limit, 5xx) before
+  // giving up — a single rate-limit blip used to fall straight to the
+  // static fallback bank even though the very next attempt would likely
+  // succeed. Non-transient failures (4xx other than 429) are not retried,
+  // since retrying an auth/bad-request error just wastes the backoff delay
+  // on something that will never succeed. Backoff is short (300ms, 900ms)
+  // because a real user is waiting synchronously on this response.
+  const MAX_ATTEMPTS = 3;
+  const BACKOFF_MS = [300, 900];
+  let lastErr;
+
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
+    try {
+      const res = await fetch(geminiUrl(env), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body
+      });
+
+      if (!res.ok) {
+        const retryable = res.status === 429 || res.status >= 500;
+        if (retryable && attempt < MAX_ATTEMPTS - 1) {
+          console.error(`Gemini ${res.status} (attempt ${attempt + 1}/${MAX_ATTEMPTS}), retrying...`);
+          await new Promise(r => setTimeout(r, BACKOFF_MS[attempt]));
+          continue;
+        }
+        throw new Error(`Gemini ${res.status}`);
+      }
+
+      const data = await res.json();
+      return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+    } catch (err) {
+      lastErr = err;
+      // A thrown non-ok-status Error (from just above) already had its
+      // retry decision made; a genuine network/fetch-level exception is
+      // always worth retrying since it's inherently transient.
+      const isStatusError = err instanceof Error && /^Gemini \d+$/.test(err.message);
+      if (!isStatusError && attempt < MAX_ATTEMPTS - 1) {
+        console.error(`Gemini call failed (attempt ${attempt + 1}/${MAX_ATTEMPTS}), retrying:`, err);
+        await new Promise(r => setTimeout(r, BACKOFF_MS[attempt]));
+        continue;
+      }
+      break;
+    }
+  }
+  throw lastErr;
+}
+
 export async function callGemini(env, userMessage, exercise, learnerAnswer, isFirstTurn = false, briefing = null, focusConcept = null, userId = null, selfGrade = null) {
   // selfGrade is non-null only for a writing_prompt's confirm phase, where
   // the learner already judged their own answer against the model answer
@@ -1000,25 +1100,13 @@ export async function callGemini(env, userMessage, exercise, learnerAnswer, isFi
   // instead in every fallback path below.
   const localCorrect = () => selfGrade !== null ? selfGrade : gradeLocally(exercise, learnerAnswer);
 
-  if (env.KV && userId) {
-    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
-    const capKey = `gemini_calls:${userId}:${today}`;
-    const allowed = await allowAndRecord(env.KV, capKey, GEMINI_DAILY_CAP, 26 * 60 * 60);
-    if (!allowed) {
-      console.error(`Gemini daily cap (${GEMINI_DAILY_CAP}) reached for user ${userId}, using fallback exercise`);
-      return {
-        correct: localCorrect(), feedback: '', exercise: fallback(focusConcept),
-        greeting: null, conceptNote: null, source: 'fallback', fallbackReason: 'daily_gemini_cap_reached',
-      };
-    }
+  if (!(await underDailyCap(env, userId))) {
+    console.error(`Gemini daily cap (${GEMINI_DAILY_CAP}) reached for user ${userId}, using fallback exercise`);
+    return {
+      correct: localCorrect(), feedback: '', exercise: fallback(focusConcept),
+      greeting: null, conceptNote: null, source: 'fallback', fallbackReason: 'daily_gemini_cap_reached',
+    };
   }
-
-  // gemini-2.0-flash was retired from this free-tier project's quota (0
-  // RPM/TPM/RPD per Google AI Studio's Rate Limit page — every call 429'd
-  // regardless of load, confirmed 07-10-2026). gemini-3.1-flash-lite is the
-  // current free-tier model with real headroom (15 RPM / 500 RPD), enough
-  // for dozens of ~11-call sessions/day. See ES.md punch-list item 31.
-  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${env.GEMINI_API_KEY}`;
 
   let systemPrompt = BASE_SYSTEM_PROMPT;
   if (briefing) {
@@ -1066,65 +1154,79 @@ Evaluate and give the next exercise.`;
     prompt += '\n\n(first_turn=true)';
   }
 
-  const body = JSON.stringify({
-    contents: [{ role: 'user', parts: [{ text: prompt }] }],
-    systemInstruction: { parts: [{ text: systemPrompt }] },
-    generationConfig: { temperature: 0.85, maxOutputTokens: 700 }
-  });
-
-  // Retry transient failures (network errors, 429 rate-limit, 5xx) before
-  // giving up — a single rate-limit blip used to fall straight to the
-  // static fallback bank even though the very next attempt would likely
-  // succeed. Non-transient failures (4xx other than 429) are not retried,
-  // since retrying an auth/bad-request error just wastes the backoff delay
-  // on something that will never succeed. Backoff is short (300ms, 900ms)
-  // because a real user is waiting synchronously on this response.
-  const MAX_ATTEMPTS = 3;
-  const BACKOFF_MS = [300, 900];
-  let lastErr;
-
-  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
-    try {
-      const res = await fetch(GEMINI_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body
-      });
-
-      if (!res.ok) {
-        const retryable = res.status === 429 || res.status >= 500;
-        if (retryable && attempt < MAX_ATTEMPTS - 1) {
-          console.error(`Gemini ${res.status} (attempt ${attempt + 1}/${MAX_ATTEMPTS}), retrying...`);
-          await new Promise(r => setTimeout(r, BACKOFF_MS[attempt]));
-          continue;
-        }
-        throw new Error(`Gemini ${res.status}`);
-      }
-
-      const data = await res.json();
-      const raw = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
-
-      return parseGeminiResponse(raw, isFirstTurn, focusConcept);
-    } catch (err) {
-      lastErr = err;
-      // A thrown non-ok-status Error (from just above) already had its
-      // retry decision made; a genuine network/fetch-level exception is
-      // always worth retrying since it's inherently transient.
-      const isStatusError = err instanceof Error && /^Gemini \d+$/.test(err.message);
-      if (!isStatusError && attempt < MAX_ATTEMPTS - 1) {
-        console.error(`Gemini call failed (attempt ${attempt + 1}/${MAX_ATTEMPTS}), retrying:`, err);
-        await new Promise(r => setTimeout(r, BACKOFF_MS[attempt]));
-        continue;
-      }
-      break;
-    }
+  try {
+    const raw = await fetchGeminiText(env, systemPrompt, prompt);
+    return parseGeminiResponse(raw, isFirstTurn, focusConcept);
+  } catch (err) {
+    console.error('Gemini call failed after retries, using fallback exercise:', err);
+    return {
+      correct: localCorrect(), feedback: '', exercise: fallback(focusConcept),
+      greeting: null, conceptNote: null, source: 'fallback', fallbackReason: err?.message ?? 'unknown',
+    };
   }
+}
 
-  console.error('Gemini call failed after retries, using fallback exercise:', lastErr);
-  return {
-    correct: localCorrect(), feedback: '', exercise: fallback(focusConcept),
-    greeting: null, conceptNote: null, source: 'fallback', fallbackReason: lastErr?.message ?? 'unknown',
-  };
+// Deliberately its own small system prompt, not BASE_SYSTEM_PROMPT — this
+// call has nothing to do with generating/grading a graded exercise, it's
+// one line of in-character dialogue, so it doesn't need the exercise-type
+// catalogue, CEFR concept list, or output-format contract at all. Smaller
+// prompt, cheaper/faster call.
+const CONVERSATION_NPC_PROMPT = `You are playing an NPC character (waiter, shopkeeper, stranger, etc.) in a Spanish role-play exercise for a language learner, staying fully in character for the scenario given.
+
+Respond naturally and briefly (1-2 sentences) in Spanish, the way a real person in that role would. Multiple learner responses can be valid — react to whatever reasonable thing they actually said, don't steer them toward one expected line, and don't grade or correct their Spanish here (that happens separately, later, not through you). If their Spanish has a genuine comprehension-blocking error, you may naturally ask for clarification in character, the way a real confused person would — don't lecture them about grammar.
+
+Output ONLY your in-character reply. No formatting, no labels, no stage directions, no explanation.`;
+
+// Also deliberately separate from CONVERSATION_NPC_PROMPT — this call isn't
+// playing the NPC, it's stepping outside the role-play for a moment to show
+// the learner one illustrative way their own last line could have gone,
+// grounded in the actual conversation that happened, not a generic answer
+// picked before the exchange started.
+const CONVERSATION_MODEL_REPLY_PROMPT = `You are helping a Spanish learner see one strong example of how their final line in a role-play could have been said, immediately after they wrote it.
+
+Given the scenario, the conversation so far, and the learner's actual final reply, write ONE natural, fluent example of a good response at that exact point in the conversation — not a correction of what they wrote, just an illustrative alternative. This is not the only correct answer; the learner will compare it to their own line themselves, it is not exact-match graded. Keep it to 1-2 sentences, in Spanish.
+
+Output ONLY the example line. No formatting, no labels, no explanation.`;
+
+function conversationTranscript(history, npcLabel) {
+  return history.map(h => `${h.speaker === 'npc' ? npcLabel : 'Learner'}: ${h.text}`).join('\n');
+}
+
+// Mid-conversation turn: get the NPC's next in-character line. No grading,
+// no exercise-format parsing — just plain text back. See turn.js's
+// 'continue' phase for a conversation exercise.
+export async function getConversationReply(env, scenario, history, userId) {
+  if (!(await underDailyCap(env, userId))) {
+    return { npcReply: null, source: 'fallback', fallbackReason: 'daily_gemini_cap_reached' };
+  }
+  const prompt = `Scenario: ${scenario}\n\nConversation so far:\n${conversationTranscript(history, 'You (NPC)')}\n\nGive your next in-character reply.`;
+  try {
+    const raw = await fetchGeminiText(env, CONVERSATION_NPC_PROMPT, prompt, { maxOutputTokens: 150 });
+    return { npcReply: raw.trim(), source: 'gemini' };
+  } catch (err) {
+    console.error('Conversation continue call failed:', err);
+    return { npcReply: null, source: 'fallback', fallbackReason: err?.message ?? 'unknown' };
+  }
+}
+
+// Final learner turn: generate a fresh, context-grounded example reply for
+// self-assessment (the conversation equivalent of writing_prompt's reveal
+// phase — except a writing_prompt's model answer can be pre-generated
+// upfront since the prompt is static, while a good reply here depends on
+// however the conversation actually unfolded, so it has to be generated
+// now, against the real transcript).
+export async function getConversationModelReply(env, scenario, history, userId) {
+  if (!(await underDailyCap(env, userId))) {
+    return { modelReply: null, source: 'fallback', fallbackReason: 'daily_gemini_cap_reached' };
+  }
+  const prompt = `Scenario: ${scenario}\n\nConversation:\n${conversationTranscript(history, 'NPC')}\n\nShow one good example of how the learner's final line could have been said.`;
+  try {
+    const raw = await fetchGeminiText(env, CONVERSATION_MODEL_REPLY_PROMPT, prompt, { maxOutputTokens: 150 });
+    return { modelReply: raw.trim(), source: 'gemini' };
+  } catch (err) {
+    console.error('Conversation model-reply call failed:', err);
+    return { modelReply: null, source: 'fallback', fallbackReason: err?.message ?? 'unknown' };
+  }
 }
 
 function parseGeminiResponse(raw, isFirstTurn, focusConcept = null) {
