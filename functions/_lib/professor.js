@@ -59,9 +59,26 @@ export async function compileBriefing(db, userId) {
 
   const lines = ['=== PROFESSOR BRIEFING ==='];
 
-  // Derive overall CEFR level (minimum across skills)
+  // Only skills that have actually been assessed at least once
+  // (session_count > 0). `register.js` seeds all four skill rows
+  // (reading/listening/writing/grammar) at A1/0%/0-sessions for every new
+  // user, but until something actually writes real attempts for a skill,
+  // that seeded row is indistinguishable from genuine data.
+  const assessedSkills = Object.entries(skillMap).filter(([, v]) => (v.session_count ?? 0) > 0);
+
+  // Derive overall CEFR level (minimum across *assessed* skills only).
+  // Taking the minimum across all four raw skill_profiles rows — including
+  // the frozen, never-updated reading/listening/writing ones — pinned this
+  // at A1 for every real user past their first few sessions, regardless of
+  // actual grammar progress, since Math.min(0, 0, 0, <real level>) is
+  // always 0. `functions/api/learner/profile.js` already hit this same
+  // root cause and worked around it by using `grammar` directly for the
+  // dashboard's headline level; filtering to assessed skills here fixes it
+  // the same way but stays forward-compatible — once reading/writing get
+  // real tracking, they'll naturally start contributing to this instead of
+  // needing a second hardcoded fix.
   const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  const cefrIndices = Object.values(skillMap).map(s => CEFR_ORDER.indexOf(s.cefr_level)).filter(i => i >= 0);
+  const cefrIndices = assessedSkills.map(([, v]) => CEFR_ORDER.indexOf(v.cefr_level)).filter(i => i >= 0);
   const overallCefr = cefrIndices.length > 0 ? CEFR_ORDER[Math.min(...cefrIndices)] : 'A1';
   const overallCefrIndex = CEFR_ORDER.indexOf(overallCefr);
   lines.push(`LEARNER CEFR LEVEL: ${overallCefr}`);
@@ -88,8 +105,11 @@ export async function compileBriefing(db, userId) {
     })
     .slice(0, 5);
 
-  // Skill levels
-  const skillStr = Object.entries(skillMap)
+  // Skill levels — same assessedSkills filter as above. Showing an unseeded
+  // reading/listening/writing row here would tell Gemini a learner is a
+  // struggling A1 reader/listener they've simply never been tested on;
+  // this list grows on its own as real tracking comes online per skill.
+  const skillStr = assessedSkills
     .map(([k, v]) => `${k}: ${v.cefr_level} (acc ${Math.round((v.accuracy ?? 0) * 100)}%, ${v.session_count} sessions)`)
     .join(' | ');
   lines.push(`SKILLS: ${skillStr || 'No data yet — treat as fresh A1 learner.'}`);

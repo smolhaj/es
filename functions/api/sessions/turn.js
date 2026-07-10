@@ -1,6 +1,9 @@
 import { callGemini } from './_gemini.js';
 import { scheduleReview } from '../../_lib/fsrs.js';
 import { getNextExplanationStyle } from '../../_lib/concepts.js';
+import { computeCefrLevel } from '../../_lib/cefr.js';
+
+const WRITING_RECENT_WINDOW = 10;
 
 const MAX_UPSERT_ATTEMPTS = 3;
 
@@ -170,21 +173,62 @@ export async function onRequestPost({ request, env, data }) {
     WHERE id = ?
   `).bind(correct ? 1 : 0, JSON.stringify(nextExercise), sessionId).run();
 
-  // Capture writing samples for translation-to-spanish exercises
+  // Capture writing samples for translation-to-spanish exercises, and use
+  // them to keep skill_profiles' 'writing' row real. `estimated_cefr` used
+  // to be the exercise's difficulty number relabeled as a CEFR level (1/2/3
+  // -> A1/B1/B2) regardless of whether the translation was any good — an
+  // actively wrong signal, not just a missing one. Left NULL until a real
+  // per-sample assessment exists; `correct` (which this handler already
+  // knows) is what actually drives leveling now, the same way grammar's
+  // right/wrong exercise history drives its level in sessions/end.js.
   if (exercise.type === 'translation_to_spanish' && learnerAnswer?.trim().length > 3) {
-    const diffToCefr = { 1: 'A1', 2: 'B1', 3: 'B2' };
     await env.DB.prepare(`
       INSERT INTO writing_samples
-        (id, user_id, session_id, created_at, prompt, content, word_count, estimated_cefr, professor_notes)
+        (id, user_id, session_id, created_at, prompt, content, word_count, correct, professor_notes)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).bind(
       crypto.randomUUID(), data.user.sub, sessionId, now,
       exercise.prompt ?? null,
       learnerAnswer.trim(),
       learnerAnswer.trim().split(/\s+/).filter(Boolean).length,
-      diffToCefr[exercise.difficulty] ?? null,
+      correct ? 1 : 0,
       correct ? null : (feedback ?? null)
     ).run().catch(() => {});
+
+    const prevSkill = await env.DB.prepare(
+      'SELECT cefr_level, session_count FROM skill_profiles WHERE user_id = ? AND skill = ?'
+    ).bind(data.user.sub, 'writing').first();
+    const prevCefr = prevSkill?.cefr_level ?? 'A1';
+    const newSessionCount = (prevSkill?.session_count ?? 0) + 1;
+
+    const recent = await env.DB.prepare(`
+      SELECT correct FROM writing_samples
+      WHERE user_id = ? AND correct IS NOT NULL
+      ORDER BY created_at DESC LIMIT ?
+    `).bind(data.user.sub, WRITING_RECENT_WINDOW).all();
+    const recentRows = recent.results ?? [];
+    const writingAccuracy = recentRows.length > 0
+      ? recentRows.reduce((s, r) => s + r.correct, 0) / recentRows.length
+      : (correct ? 1 : 0);
+
+    const newCefr = computeCefrLevel(writingAccuracy, newSessionCount, prevCefr);
+
+    await env.DB.prepare(`
+      INSERT INTO skill_profiles (user_id, skill, accuracy, cefr_level, session_count, updated_at)
+      VALUES (?, 'writing', ?, ?, 1, ?)
+      ON CONFLICT(user_id, skill) DO UPDATE SET
+        accuracy = ?,
+        cefr_level = ?,
+        session_count = session_count + 1,
+        updated_at = excluded.updated_at
+    `).bind(data.user.sub, writingAccuracy, newCefr, now, writingAccuracy, newCefr).run().catch(() => {});
+
+    if (prevCefr !== newCefr) {
+      await env.DB.prepare(`
+        INSERT INTO cefr_history (id, user_id, skill, from_level, to_level, transitioned_at, session_id)
+        VALUES (?, ?, 'writing', ?, ?, ?, ?)
+      `).bind(crypto.randomUUID(), data.user.sub, prevCefr, newCefr, now, sessionId).run().catch(() => {});
+    }
   }
 
   return Response.json({ correct, feedback, exercise: nextExercise, conceptNote, source, fallbackReason });

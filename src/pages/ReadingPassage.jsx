@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth.jsx';
+import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
@@ -11,11 +13,13 @@ import styles from './ReadingPassage.module.css';
 
 export default function ReadingPassage() {
   const { passageId } = useParams();
+  const { token } = useAuth();
   const [showTranslation, setShowTranslation] = useState(false);
   const [started, setStarted] = useState(false);
   const [qIndex, setQIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [feedback, setFeedback] = useState(null);
+  const reported = useRef(false);
   const passage = getPassage(passageId);
 
   if (!passage) return <Navigate to="/readings" replace />;
@@ -27,8 +31,12 @@ export default function ReadingPassage() {
   const finished = started && !currentQuestion;
 
   useEffect(() => {
-    if (finished) markPassageComplete(passage.id);
-  }, [finished, passage.id]);
+    if (!finished) return;
+    markPassageComplete(passage.id);
+    if (reported.current) return;
+    reported.current = true;
+    api.learner.reportReadingResult(token, passage.id, correctCount, questions.length).catch(() => {});
+  }, [finished, passage.id, token, correctCount, questions.length]);
 
   function handleStart() {
     setStarted(true);

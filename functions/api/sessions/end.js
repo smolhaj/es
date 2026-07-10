@@ -1,4 +1,5 @@
 import { CONCEPT_LABELS } from '../../../src/content/conceptLabels.js';
+import { computeCefrLevel } from '../../_lib/cefr.js';
 
 function buildSessionNotes({ itemsReviewed, accuracy, abandoned, errors, cefrChanged }) {
   if (itemsReviewed < 3) return null;
@@ -23,32 +24,6 @@ function buildSessionNotes({ itemsReviewed, accuracy, abandoned, errors, cefrCha
   }
 
   return parts.join(' ');
-}
-
-function computeCefrLevel(accuracy, sessionCount, current) {
-  const order = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  const thresholds = {
-    A1: { acc: 0.70, sessions: 3 },
-    A2: { acc: 0.75, sessions: 5 },
-    B1: { acc: 0.80, sessions: 8 },
-    B2: { acc: 0.82, sessions: 10 },
-    C1: { acc: 0.85, sessions: 12 },
-  };
-  const idx = order.indexOf(current);
-  if (idx === -1) return current;
-  // No threshold exists for C2 (nothing above it to advance to), so this is
-  // naturally a no-op there — but the downgrade check below must still run at
-  // C2, otherwise a learner who reaches the top level can never be brought
-  // back down even if their performance craters afterward.
-  const t = thresholds[current];
-  if (t && accuracy >= t.acc && sessionCount >= t.sessions) {
-    return order[idx + 1];
-  }
-  // Downgrade if consistently weak (only after enough data)
-  if (idx > 0 && sessionCount >= 4 && accuracy < 0.45) {
-    return order[idx - 1];
-  }
-  return current;
 }
 
 export async function onRequestPost({ request, env, data }) {
