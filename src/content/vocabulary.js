@@ -1871,6 +1871,70 @@ export const VOCABULARY = [
   { es: 'añadir', en: 'to add (to a statement)', cefr: 'A2', domain: 'verbs', frequencyRank: 220, example: 'La vamos a llamar la próxima semana, añadió él.', exampleEn: '"We\'ll call you next week," he added.' },
   { es: 'mediodía', en: 'noon / midday', cefr: 'A2', domain: 'time', frequencyRank: 180, example: 'A mediodía, comen juntos.', exampleEn: 'At noon, they eat together.' },
   { es: 'dar la mano', en: 'to shake hands', cefr: 'A2', domain: 'body', frequencyRank: 260, example: 'Se acercó y le dio la mano.', exampleEn: 'He came over and shook her hand.' },
+
+  // ── COGNATE VOCABULARY — high-frequency Spanish-English cognates closing
+  // real gaps surfaced while building the /cognates reference page (see
+  // src/content/cognate-patterns.js and src/lib/cognates.js): extremely
+  // common words like "información," "normal," and "social" turned out to
+  // simply be missing, alongside academic/abstract-concept words that
+  // happen to be both thin domains and dense with reliable cognates.
+  // nouns / general
+  { es: 'nación', en: 'nation', cefr: 'B1', domain: 'nouns', frequencyRank: 260, example: 'La nación celebra su día de independencia.', exampleEn: 'The nation is celebrating its independence day.' },
+  { es: 'información', en: 'information', cefr: 'A2', domain: 'nouns', frequencyRank: 60, example: 'Necesito más información antes de decidir.', exampleEn: 'I need more information before I decide.' },
+  { es: 'situación', en: 'situation', cefr: 'A2', domain: 'nouns', frequencyRank: 90, example: 'La situación en la oficina es un poco tensa.', exampleEn: 'The situation at the office is a bit tense.' },
+  { es: 'sociedad', en: 'society', cefr: 'B1', domain: 'abstract_concepts', frequencyRank: 220, example: 'La sociedad cambia más rápido cada año.', exampleEn: 'Society changes faster every year.' },
+  { es: 'estado', en: 'state / condition', cefr: 'B1', domain: 'abstract_concepts', frequencyRank: 150, example: 'El paciente está en buen estado.', exampleEn: 'The patient is in good condition.' },
+  // abstract concepts
+  { es: 'curiosidad', en: 'curiosity', cefr: 'B1', domain: 'abstract_concepts', frequencyRank: 240, example: 'Lo preguntó solo por curiosidad.', exampleEn: 'She only asked out of curiosity.' },
+  { es: 'posibilidad', en: 'possibility', cefr: 'B1', domain: 'abstract_concepts', frequencyRank: 160, example: 'Existe la posibilidad de que llueva mañana.', exampleEn: "There's a possibility it'll rain tomorrow." },
+  { es: 'libertad', en: 'freedom / liberty', cefr: 'B1', domain: 'abstract_concepts', frequencyRank: 200, example: 'Valoran mucho su libertad.', exampleEn: 'They value their freedom a lot.' },
+  { es: 'importancia', en: 'importance', cefr: 'B1', domain: 'abstract_concepts', frequencyRank: 210, example: 'No entendía la importancia del proyecto.', exampleEn: "He didn't understand the project's importance." },
+  { es: 'paciencia', en: 'patience', cefr: 'B1', domain: 'abstract_concepts', frequencyRank: 190, example: 'Hay que tener paciencia con los niños pequeños.', exampleEn: 'You have to have patience with small children.' },
+  { es: 'presencia', en: 'presence', cefr: 'B2', domain: 'abstract_concepts', frequencyRank: 310, example: 'Su presencia se notaba en toda la sala.', exampleEn: 'Her presence was noticeable throughout the room.' },
+  { es: 'diferencia', en: 'difference', cefr: 'A2', domain: 'abstract_concepts', frequencyRank: 130, example: '¿Cuál es la diferencia entre estas dos palabras?', exampleEn: "What's the difference between these two words?" },
+  { es: 'espíritu', en: 'spirit', cefr: 'B1', domain: 'abstract_concepts', frequencyRank: 280, example: 'Lo hizo con muy buen espíritu.', exampleEn: 'She did it in very good spirit.' },
+  // academic
+  { es: 'biología', en: 'biology', cefr: 'B1', domain: 'academic', frequencyRank: 250, example: 'Tenemos examen de biología el viernes.', exampleEn: 'We have a biology exam on Friday.' },
+  { es: 'geografía', en: 'geography', cefr: 'B1', domain: 'academic', frequencyRank: 260, example: 'La geografía nunca fue mi materia favorita.', exampleEn: 'Geography was never my favorite subject.' },
+  { es: 'filosofía', en: 'philosophy', cefr: 'B2', domain: 'academic', frequencyRank: 340, example: 'Estudió filosofía en la universidad.', exampleEn: 'She studied philosophy at university.' },
+  { es: 'tecnología', en: 'technology', cefr: 'A2', domain: 'technology', frequencyRank: 100, example: 'La tecnología cambia muy rápido.', exampleEn: 'Technology changes very fast.' },
+  // professions
+  { es: 'artista', en: 'artist', cefr: 'A2', domain: 'professions', frequencyRank: 150, example: 'Su hermano es artista.', exampleEn: 'Her brother is an artist.' },
+  { es: 'dentista', en: 'dentist', cefr: 'A2', domain: 'professions', frequencyRank: 160, example: 'Tengo cita con el dentista mañana.', exampleEn: 'I have a dentist appointment tomorrow.' },
+  { es: 'pianista', en: 'pianist', cefr: 'B1', domain: 'professions', frequencyRank: 320, example: 'Ella quiere ser pianista profesional.', exampleEn: 'She wants to be a professional pianist.' },
+  { es: 'presidente', en: 'president', cefr: 'A2', domain: 'professions', frequencyRank: 140, example: 'El presidente habló anoche en la televisión.', exampleEn: 'The president spoke on television last night.' },
+  { es: 'voluntario', en: 'volunteer / voluntary', cefr: 'B1', domain: 'professions', frequencyRank: 230, example: 'Trabaja como voluntario en el hospital.', exampleEn: 'He works as a volunteer at the hospital.' },
+  // adjectives
+  { es: 'famoso', en: 'famous', cefr: 'A2', domain: 'adjectives', frequencyRank: 110, example: 'Es un cantante muy famoso.', exampleEn: "He's a very famous singer." },
+  { es: 'generoso', en: 'generous', cefr: 'B1', domain: 'adjectives', frequencyRank: 180, example: 'Fue muy generoso con nosotros.', exampleEn: 'He was very generous with us.' },
+  { es: 'misterioso', en: 'mysterious', cefr: 'B1', domain: 'adjectives', frequencyRank: 210, example: 'Recibió un mensaje misterioso.', exampleEn: 'She received a mysterious message.' },
+  { es: 'básico', en: 'basic', cefr: 'A2', domain: 'adjectives', frequencyRank: 100, example: 'Solo necesitas un vocabulario básico para empezar.', exampleEn: 'You only need basic vocabulary to get started.' },
+  { es: 'específico', en: 'specific', cefr: 'B1', domain: 'adjectives', frequencyRank: 220, example: '¿Buscas algo específico?', exampleEn: 'Are you looking for something specific?' },
+  { es: 'histórico', en: 'historic / historical', cefr: 'B1', domain: 'adjectives', frequencyRank: 240, example: 'Visitamos el centro histórico de la ciudad.', exampleEn: "We visited the city's historic center." },
+  { es: 'romántico', en: 'romantic', cefr: 'A2', domain: 'adjectives', frequencyRank: 150, example: 'Cenaron en un restaurante muy romántico.', exampleEn: 'They had dinner at a very romantic restaurant.' },
+  { es: 'práctico', en: 'practical', cefr: 'A2', domain: 'adjectives', frequencyRank: 130, example: 'Es un regalo práctico y útil.', exampleEn: "It's a practical, useful gift." },
+  { es: 'elegante', en: 'elegant', cefr: 'A2', domain: 'adjectives', frequencyRank: 160, example: 'Llevaba un vestido muy elegante.', exampleEn: 'She was wearing a very elegant dress.' },
+  { es: 'activo', en: 'active', cefr: 'B1', domain: 'adjectives', frequencyRank: 170, example: 'Sigue muy activo a sus ochenta años.', exampleEn: "He's still very active at eighty." },
+  { es: 'positivo', en: 'positive', cefr: 'A2', domain: 'adjectives', frequencyRank: 90, example: 'Intenta mantener una actitud positiva.', exampleEn: 'She tries to keep a positive attitude.' },
+  { es: 'creativo', en: 'creative', cefr: 'B1', domain: 'adjectives', frequencyRank: 200, example: 'Necesitamos una solución más creativa.', exampleEn: 'We need a more creative solution.' },
+  { es: 'ordinario', en: 'ordinary', cefr: 'B2', domain: 'adjectives', frequencyRank: 330, example: 'Fue un día bastante ordinario, sin sorpresas.', exampleEn: 'It was a fairly ordinary day, no surprises.' },
+  { es: 'terrible', en: 'terrible', cefr: 'A2', domain: 'adjectives', frequencyRank: 100, example: 'Tuvimos un viaje terrible.', exampleEn: 'We had a terrible trip.' },
+  { es: 'responsable', en: 'responsible / person in charge', cefr: 'B1', domain: 'adjectives', frequencyRank: 190, example: 'Es la responsable del proyecto.', exampleEn: "She's the person in charge of the project." },
+  { es: 'probable', en: 'probable / likely', cefr: 'B1', domain: 'adjectives', frequencyRank: 210, example: 'Es probable que llegue tarde.', exampleEn: "It's likely he'll arrive late." },
+  { es: 'sensible', en: 'sensitive (NOT "sensible" — see False Friends)', cefr: 'B1', domain: 'adjectives', frequencyRank: 200, example: 'Es un tema muy sensible para ella.', exampleEn: "It's a very sensitive subject for her." },
+  { es: 'normal', en: 'normal', cefr: 'A2', domain: 'adjectives', frequencyRank: 50, example: 'Todo parece normal hoy.', exampleEn: 'Everything seems normal today.' },
+  { es: 'natural', en: 'natural', cefr: 'A2', domain: 'adjectives', frequencyRank: 110, example: 'Prefiere los productos naturales.', exampleEn: 'She prefers natural products.' },
+  { es: 'social', en: 'social', cefr: 'A2', domain: 'adjectives', frequencyRank: 120, example: 'Tiene mucha vida social.', exampleEn: 'He has a very active social life.' },
+  { es: 'general', en: 'general', cefr: 'A2', domain: 'adjectives', frequencyRank: 100, example: 'Por lo general, llega puntual.', exampleEn: 'Generally, he arrives on time.' },
+  { es: 'contrario', en: 'contrary / opposite', cefr: 'B1', domain: 'connectors', frequencyRank: 240, example: 'Al contrario, me pareció muy interesante.', exampleEn: 'On the contrary, I found it very interesting.' },
+  // food
+  { es: 'delicioso', en: 'delicious', cefr: 'A2', domain: 'food', frequencyRank: 90, example: 'La cena estuvo deliciosa.', exampleEn: 'Dinner was delicious.' },
+  // health
+  { es: 'paciente', en: 'patient (noun/adj)', cefr: 'B1', domain: 'health', frequencyRank: 150, example: 'El doctor examinó al paciente con cuidado.', exampleEn: 'The doctor examined the patient carefully.' },
+  // time
+  { es: 'aniversario', en: 'anniversary', cefr: 'B1', domain: 'time', frequencyRank: 220, example: 'Celebraron su décimo aniversario de boda.', exampleEn: 'They celebrated their tenth wedding anniversary.' },
+  // travel
+  { es: 'distancia', en: 'distance', cefr: 'A2', domain: 'travel', frequencyRank: 130, example: '¿Qué distancia hay entre las dos ciudades?', exampleEn: 'What is the distance between the two cities?' },
 ];
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();

@@ -105,12 +105,28 @@
   text-align: center;
 }
 
+.posRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
 .pos {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+.cognateBadge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 99px;
+  white-space: nowrap;
+  background: rgba(80, 90, 160, 0.1);
+  color: #4a56a6;
 }
 
 .wordRow {
