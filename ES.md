@@ -499,10 +499,11 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 1741 words as of 07-11-2026 (grown from
-1439 via the reading-passages vocabulary-gap-closing work and, most
-recently, a cognate-focused batch — see "Readings" and "Cognates" below),
-`{ es, en, cefr, domain, example, exampleEn, frequencyRank, register? }`.
+`src/content/vocabulary.js` — 1805 words as of 07-11-2026 (grown from
+1439 via the reading-passages vocabulary-gap-closing work, a cognate-
+focused batch, and most recently a 6-passage topic-variety A1 batch — see
+"Readings" and "Cognates" below), `{ es, en, cefr, domain, example,
+exampleEn, frequencyRank, register? }`.
 `DOMAINS`/`CEFR_LEVELS` are exported for `VocabBrowser.jsx`'s filter
 chips; `DOMAINS` is auto-derived (`[...new Set(...)].sort()`), so a new
 domain string just works with no separate whitelist to update. A
@@ -602,12 +603,27 @@ consistent with this project's standing quality-over-volume rule (see
 
 ### Readings (`/readings`)
 
-19 passages as of 07-11-2026 (`src/content/readings.js`): 14 A1 (a
+25 passages as of 07-11-2026 (`src/content/readings.js`): 20 A1 (a
 standalone bakery scene, 3 chapters of a serialized story — "Las
 Aventuras de Blahaj," a pen-pal plushie-travel premise, chapter 3 closes
-the first sent→hosted→returned mini-arc — plus 10 more standalone
+the first sent→hosted→returned mini-arc — plus 16 more standalone
 scenes/dialogues) and 5 A2 (workplace/travel/city situational scenes).
-B1-C2 are still empty — the next natural slice of this gap. `Readings.jsx`
+The 6 newest A1 passages, at the user's request for topic variety, cover
+sports (`el-partido-importante`), small business
+(`la-tienda-de-flores`), technology (`el-telefono-nuevo`), a neutral
+civic/politics scene (`las-elecciones-del-barrio`), pop culture
+(`el-concierto-de-luna-rios`), and a community/recent-events scene
+(`el-parque-nuevo-del-barrio`). The politics one is deliberately scoped as
+a fictional *neighborhood-association* election (invented candidates, two
+neutral platform planks — "wants new parks" vs. "wants a new library,"
+never a real-world ideology or party) rather than national politics —
+satisfies the "keep it neutral" instruction outright rather than trying
+to write neutrally about something inherently contentious, and sidesteps
+the spec's real-media-excluded-from-A1 rule (see below) at the same time,
+since it's original fiction, not reporting on an actual event. Same
+approach for "recent events": an invented, evergreen local happening (a
+new park opening), not real current events. B1-C2 are still empty — the
+next natural slice of this gap. `Readings.jsx`
 lists passages at `/readings`; `ReadingPassage.jsx` renders one at
 `/readings/:passageId` with a "Ver traducción" toggle for the English
 (page/route/nav renamed "Reading" → "Readings" 07-10-2026;
@@ -1952,3 +1968,24 @@ full account of any of these.
   site-wide CSS bug along the way: hovering an already-active filter chip
   made its own label text invisible (specificity bug) on 10 reference
   pages — see "Readings" above for the root cause and fix.
+- **07-11-2026** — 6 more A1 reading passages shipped (14 → 20), one per
+  requested topic: sports, small business, technology, a neutral
+  neighborhood-election civics scene standing in for "politics," pop
+  culture, and a community/new-park scene standing in for "recent
+  events" — see "Readings" above for why politics/recent-events were
+  scoped as invented, evergreen scenes rather than real reporting. 64 new
+  `vocabulary.js` words (1741 → 1805), including some surprisingly basic
+  gaps the process turned up (`niño`, `papá`, `barrio`, `favorito`,
+  `guardar` were all missing before this batch). Blind AI-tell review
+  (fresh agent, zero authoring context) caught real, substantial issues
+  on the first draft — all 6 passages converged on the same "explicit
+  positive-emotion-word" ending, two used the identical closing phrase
+  verbatim, 3 opened with the same "Hoy, por fin..." template, dialogue
+  tags were 100% mechanical with no exceptions, and one passage read like
+  a device setup tutorial rather than a scene — every finding was fixed
+  (varied, concrete, show-don't-tell endings; broken-up dialogue tag
+  rhythm; restructured tech passage around a sibling conversation instead
+  of a step list) before shipping, comprehension questions updated to
+  match the rewritten content, and vocabulary re-verified against the
+  final text (not just the first draft, since the fixes themselves
+  introduced a couple more new words).
