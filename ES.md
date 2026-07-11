@@ -1472,6 +1472,49 @@ measures):**
     confirming the full flow — write, reveal the model answer, self-assess
     "Got it," see it counted in the final "X of Y correct" score, and
     reach lesson completion — all working end to end.
+37. ~~5 new A2 reading passages~~ — **done** (07-10-2026). Second slice of
+    the readings gap: "El primer día de trabajo," "Una sorpresa de
+    cumpleaños," "El vuelo cancelado," "La entrevista," and "Perdidos en
+    la ciudad" — A2 goes from 0 to 5 passages. B1-C2 (still 0 each)
+    remain for a future pass.
+
+    Grammar was deliberately built around real A2-tagged structures per
+    `concepts.js` rather than just harder vocabulary on A1-simple
+    sentences — preterite (regular and irregular), direct/indirect object
+    pronouns, reflexive verbs, negation words (nada/nadie/nunca),
+    comparatives, relative clauses with que/donde, present perfect, and
+    ser-vs-estar contrast, each anchored to a specific passage. Concretely
+    ruled out imperfect, conditional, subjunctive, and formal/negative
+    imperative throughout (all B1+) — caught and fixed two real slips
+    during drafting (an accidental "me encantaría" conditional and a
+    "que Marta no conocía" imperfect) via the same red-flag/grammar-scan
+    pass used for the A1 batch.
+
+    The blind cold-read review (a separate agent, no authoring context)
+    caught real, specific problems again, including a repeat of the exact
+    issue flagged in the A1 batch: all 5 endings independently converged
+    on the same physical-beat-plus-summarizing-moral template ("mejor de
+    lo que..." appeared near-verbatim in two separate passages), three of
+    the five passages used mechanical "— dijo/dice + name" tags on every
+    line of dialogue with a single character, one used a
+    morning/lunch/afternoon itinerary structure that read as a checklist
+    rather than a lived day, and one passage doubled the same reflective
+    beat across two consecutive sentences. Fixed all of it: rewrote every
+    ending to a distinct concrete closing image instead of a stated moral,
+    thinned mechanical dialogue tags by dropping them where the speaker is
+    already unambiguous, and replaced the itinerary structure with a
+    "spent the morning doing X" construction.
+
+    40 new vocabulary words were researched and added across both
+    passes (the initial draft's gaps, plus a handful more introduced by
+    the AI-tell fixes themselves) — including basics that had never come
+    up before, like "izquierda"/"derecha," "vacaciones," and "voz."
+
+    Verified live: `node --check`, a full-file duplicate-vocabulary scan
+    (clean), production build, and a real headless-browser run confirming
+    all 5 titles list on `/readings` and that "La entrevista" renders
+    correctly with new vocabulary ("director," "recepción") glossing
+    properly.
 
 ## Session history index
 
