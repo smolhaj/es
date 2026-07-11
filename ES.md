@@ -499,10 +499,13 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 1805 words as of 07-11-2026 (grown from
+`src/content/vocabulary.js` — 1874 words as of 07-11-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
-focused batch, and most recently a 6-passage topic-variety A1 batch — see
-"Readings" and "Cognates" below), `{ es, en, cefr, domain, example,
+focused batch, and most recently the 6-passage topic-variety A1 batch and
+a 6-passage topic-variety A2 batch (69 words: marathon/sports,
+restaurant business, video-call tech, student-council civics, movie
+premiere, library reopening) — see "Readings" and "Cognates" below),
+`{ es, en, cefr, domain, example,
 exampleEn, frequencyRank, register? }`.
 `DOMAINS`/`CEFR_LEVELS` are exported for `VocabBrowser.jsx`'s filter
 chips; `DOMAINS` is auto-derived (`[...new Set(...)].sort()`), so a new
@@ -603,27 +606,50 @@ consistent with this project's standing quality-over-volume rule (see
 
 ### Readings (`/readings`)
 
-25 passages as of 07-11-2026 (`src/content/readings.js`): 20 A1 (a
+31 passages as of 07-11-2026 (`src/content/readings.js`): 20 A1 (a
 standalone bakery scene, 3 chapters of a serialized story — "Las
 Aventuras de Blahaj," a pen-pal plushie-travel premise, chapter 3 closes
 the first sent→hosted→returned mini-arc — plus 16 more standalone
-scenes/dialogues) and 5 A2 (workplace/travel/city situational scenes).
-The 6 newest A1 passages, at the user's request for topic variety, cover
-sports (`el-partido-importante`), small business
-(`la-tienda-de-flores`), technology (`el-telefono-nuevo`), a neutral
-civic/politics scene (`las-elecciones-del-barrio`), pop culture
-(`el-concierto-de-luna-rios`), and a community/recent-events scene
-(`el-parque-nuevo-del-barrio`). The politics one is deliberately scoped as
-a fictional *neighborhood-association* election (invented candidates, two
-neutral platform planks — "wants new parks" vs. "wants a new library,"
-never a real-world ideology or party) rather than national politics —
-satisfies the "keep it neutral" instruction outright rather than trying
-to write neutrally about something inherently contentious, and sidesteps
-the spec's real-media-excluded-from-A1 rule (see below) at the same time,
+scenes/dialogues) and 11 A2 (5 workplace/travel/city situational scenes
+plus 6 newer topic-variety passages). The 6 newest A1 passages, at the
+user's request for topic variety, cover sports
+(`el-partido-importante`), small business (`la-tienda-de-flores`),
+technology (`el-telefono-nuevo`), a neutral civic/politics scene
+(`las-elecciones-del-barrio`), pop culture (`el-concierto-de-luna-rios`),
+and a community/recent-events scene (`el-parque-nuevo-del-barrio`). The
+politics one is deliberately scoped as a fictional
+*neighborhood-association* election (invented candidates, two neutral
+platform planks — "wants new parks" vs. "wants a new library," never a
+real-world ideology or party) rather than national politics — satisfies
+the "keep it neutral" instruction outright rather than trying to write
+neutrally about something inherently contentious, and sidesteps the
+spec's real-media-excluded-from-A1 rule (see below) at the same time,
 since it's original fiction, not reporting on an actual event. Same
 approach for "recent events": an invented, evergreen local happening (a
-new park opening), not real current events. B1-C2 are still empty — the
-next natural slice of this gap. `Readings.jsx`
+new park opening), not real current events.
+
+The 6 newest A2 passages, same "various topics" request applied at A2,
+cover sports (`la-primera-maraton-de-laura`, a marathon), business
+(`la-inauguracion-del-restaurante`, a restaurant opening night with an
+oven breakdown), technology (`la-videollamada-con-la-abuela`, a
+multi-generational video call with connection trouble), neutral
+politics/civics (`las-elecciones-del-consejo-estudiantil`, a student
+council election — same invented-fiction approach as the A1 batch, just
+school-level instead of neighborhood-level), pop culture
+(`el-estreno-de-la-pelicula`, a movie premiere), and community/recent
+events (`la-biblioteca-reabre-sus-puertas`, a library reopening after
+renovation). Grammar discipline at A2 (see "Writing natural,
+human-sounding Spanish prose" above) allows full preterite narration,
+free object pronouns, comparatives, relative clauses, and affirmative
+imperative, but still bans imperfect/conditional/subjunctive/negative
+imperative — while drafting, the imperfect crept in 4 times regardless
+(`iba`, `dolían`, `quería` × 2), caught by an incidental vocab-gap-script
+side effect rather than an upfront grammar grep, and fixed before the
+blind review (each rewritten into preterite or restructured to avoid a
+conjugated verb in that slot entirely; one pre-existing idiom, "mejor de
+lo que esperaba(n)," was confirmed legal via `el-vuelo-cancelado`
+precedent and kept as-is). B1-C2 are still empty — the next natural slice
+of this gap. `Readings.jsx`
 lists passages at `/readings`; `ReadingPassage.jsx` renders one at
 `/readings/:passageId` with a "Ver traducción" toggle for the English
 (page/route/nav renamed "Reading" → "Readings" 07-10-2026;
@@ -1989,3 +2015,34 @@ full account of any of these.
   match the rewritten content, and vocabulary re-verified against the
   final text (not just the first draft, since the fixes themselves
   introduced a couple more new words).
+- **07-11-2026** — 6 new A2 reading passages shipped (25 → 31), the same
+  "various topics" request applied one level up: sports (marathon),
+  business (restaurant opening), technology (video call), a neutral
+  student-council election standing in for "politics," pop culture (movie
+  premiere), and a library-reopening community/recent-events scene. 69
+  new `vocabulary.js` words (1805 → 1874). While drafting, the imperfect
+  tense crept in 4 times (`iba`, `dolían`, `quería` × 2), a real A2
+  grammar-rule violation caught only as a side effect of the vocab-gap
+  scan rather than an upfront grammar check — a process gap now flagged
+  for future batches (run an explicit imperfect/subjunctive/conditional/
+  negative-imperative grep on the draft *before* the vocab scan, not
+  after). All 4 instances fixed via preterite or a rewrite that avoids a
+  conjugated verb in that slot; one legal idiom ("mejor de lo que
+  esperaba(n)") was kept, confirmed against `el-vuelo-cancelado`
+  precedent. Blind AI-tell review (fresh agent, zero authoring context)
+  again caught real issues: 8+ near-identical "— dijo X, [emotion
+  adjective]" dialogue tags; verbatim-repeated phrases across unrelated
+  passages (`respiró profundo`, `con una sonrisa enorme`, `por fin` in
+  4/6 passages, a redundant "Al final... con el final" in one sentence);
+  and 5/6 passages closing on an explicitly named emotion rather than a
+  concrete image. Fixed by de-duplicating repeated phrases, varying
+  dialogue-tag rhythm (some tags now use a gesture/action instead of a
+  stated emotion), rewriting two endings to close on a concrete image
+  instead of a named feeling (one required a matching comprehension-
+  question rewrite), and reducing "por fin" to 3 varied instances.
+  Re-verified zero remaining grammar violations and zero vocabulary gaps
+  against the final post-fix text, then verified live end-to-end
+  (`wrangler pages dev` + a registered test user): all 6 titles and
+  dates render on `/readings`, sort/search/hide-completed controls work,
+  a full multiple-choice comprehension question graded correctly against
+  the corrected answer text, and the manual mark-as-read toggle worked.
