@@ -5,6 +5,7 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { VOCABULARY, DOMAINS, CEFR_LEVELS } from '../content/vocabulary.js';
+import { detectCognate } from '../lib/cognates.js';
 import styles from './VocabBrowser.module.css';
 
 const DOMAIN_LABELS = {
@@ -198,6 +199,7 @@ export default function VocabBrowser() {
 
 function WordCard({ item, status }) {
   const [open, setOpen] = useState(false);
+  const cognatePattern = useMemo(() => detectCognate(item.es, item.en), [item.es, item.en]);
   return (
     <div
       className={`${styles.card} ${open ? styles.cardOpen : ''}`}
@@ -214,6 +216,11 @@ function WordCard({ item, status }) {
             <span className={`${styles.seenDot} ${status.reviewCount >= 3 ? styles.seenDotStrong : ''}`}
               title={`${status.reviewCount} review${status.reviewCount !== 1 ? 's' : ''}`}
             />
+          )}
+          {cognatePattern && (
+            <span className={styles.cognateBadge} title={`Cognate pattern: ${cognatePattern}`}>
+              🔗 cognate
+            </span>
           )}
           {item.register && (
             <span className={`${styles.regBadge} ${styles[REGISTER_COLORS[item.register]]}`}>

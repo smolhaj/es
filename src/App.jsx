@@ -14,6 +14,7 @@ import VocabReview from './pages/VocabReview.jsx';
 import VocabBrowser from './pages/VocabBrowser.jsx';
 import VerbsRef from './pages/VerbsRef.jsx';
 import FalseFriends from './pages/FalseFriends.jsx';
+import CognatePatterns from './pages/CognatePatterns.jsx';
 import Idioms from './pages/Idioms.jsx';
 import Pronunciation from './pages/Pronunciation.jsx';
 import Profile from './pages/Profile.jsx';
@@ -54,6 +55,7 @@ export default function App() {
         <Route path="/vocab" element={<Protected><VocabBrowser /></Protected>} />
         <Route path="/grammar" element={<Protected><GrammarRef /></Protected>} />
         <Route path="/false-friends" element={<Protected><FalseFriends /></Protected>} />
+        <Route path="/cognates" element={<Protected><CognatePatterns /></Protected>} />
         <Route path="/idioms" element={<Protected><Idioms /></Protected>} />
         <Route path="/pronunciation" element={<Protected><Pronunciation /></Protected>} />
         <Route path="/verbs" element={<Protected><VerbsRef /></Protected>} />

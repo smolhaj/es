@@ -5,6 +5,7 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import SpeakButton from '../components/SpeakButton.jsx';
 import { scheduleFlashcard, formatInterval } from '../../functions/_lib/flashcardScheduler.js';
+import { detectCognate } from '../lib/cognates.js';
 import styles from './Flashcards.module.css';
 
 const SESSION_SIZE = 20;
@@ -83,6 +84,10 @@ export default function Flashcards() {
   }, [token]);
 
   const current = queue[index];
+  const cognatePattern = useMemo(
+    () => current ? detectCognate(current.es, current.en) : null,
+    [current]
+  );
 
   const handleFlip = useCallback(() => setFlipped(true), []);
 
@@ -264,7 +269,14 @@ export default function Flashcards() {
 
               <div className={styles.card} onClick={!flipped ? handleFlip : undefined}>
                 <div className={styles.cardFront}>
-                  <span className={styles.pos}>{current.pos}</span>
+                  <div className={styles.posRow}>
+                    <span className={styles.pos}>{current.pos}</span>
+                    {cognatePattern && (
+                      <span className={styles.cognateBadge} title={`Cognate pattern: ${cognatePattern}`}>
+                        🔗 cognate
+                      </span>
+                    )}
+                  </div>
                   <div className={styles.wordRow}>
                     <SpeakButton text={current.es} />
                     <span className={styles.word}>{current.es}</span>

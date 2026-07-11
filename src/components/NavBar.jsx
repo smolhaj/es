@@ -13,6 +13,7 @@ const REFERENCE_LINKS = [
   { to: '/idioms', label: 'Idioms' },
   { to: '/readings', label: 'Readings' },
   { to: '/false-friends', label: 'False friends' },
+  { to: '/cognates', label: 'Cognates' },
   { to: '/pronunciation', label: 'Pronunciation' },
   { to: '/regional', label: 'Regional' },
   { to: '/resources', label: 'Free resources' },

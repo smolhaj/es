@@ -499,20 +499,21 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 1563 words as of 07-10-2026 (grown from
-1439 via the reading-passages vocabulary-gap-closing work — see
-"Readings" below), `{ es, en, cefr, domain, example, exampleEn,
-frequencyRank, register? }`. `DOMAINS`/`CEFR_LEVELS` are exported for
-`VocabBrowser.jsx`'s filter chips; `DOMAINS` is auto-derived
-(`[...new Set(...)].sort()`), so a new domain string just works with no
-separate whitelist to update. A 07-08-2026 pass closed a real gap: C1 had
-only 80 words and C2 had zero, despite the C1/C2 curriculum (units 26-37)
-existing — brought both to parity with A1/A2 (C1 → 280, C2 → 234) by
-promoting the curriculum units' own already-verified `vocab` arrays plus
-fresh WebSearch-verified research, and added 4 new domains (`business`,
-`academic`, `abstract_concepts`, `media_news`) the prior 22 concrete/
-everyday domains didn't cover. Entries added since carry a `register`
-field (`colloquial`/`informal`/`neutral`/`formal`), reusing `idioms.js`'s
+`src/content/vocabulary.js` — 1741 words as of 07-11-2026 (grown from
+1439 via the reading-passages vocabulary-gap-closing work and, most
+recently, a cognate-focused batch — see "Readings" and "Cognates" below),
+`{ es, en, cefr, domain, example, exampleEn, frequencyRank, register? }`.
+`DOMAINS`/`CEFR_LEVELS` are exported for `VocabBrowser.jsx`'s filter
+chips; `DOMAINS` is auto-derived (`[...new Set(...)].sort()`), so a new
+domain string just works with no separate whitelist to update. A
+07-08-2026 pass closed a real gap: C1 had only 80 words and C2 had zero,
+despite the C1/C2 curriculum (units 26-37) existing — brought both to
+parity with A1/A2 (C1 → 280, C2 → 234) by promoting the curriculum units'
+own already-verified `vocab` arrays plus fresh WebSearch-verified
+research, and added 4 new domains (`business`, `academic`,
+`abstract_concepts`, `media_news`) the prior 22 concrete/everyday domains
+didn't cover. Entries added since carry a `register` field
+(`colloquial`/`informal`/`neutral`/`formal`), reusing `idioms.js`'s
 existing 4-way scale rather than inventing a new one; `VocabBrowser.jsx`
 renders it as a badge (only when present) and as a filter chip row. One
 intentional duplicate spelling: `tío` appears twice (existing "uncle,"
@@ -533,6 +534,71 @@ in question — most classic false friends (`embarazada`, `sensible`,
 `actualmente`) trip up early/intermediate learners, so the distribution
 tapers from A2/B1 rather than clustering high: `A1:13, A2:36, B1:35,
 B2:20, C1:4, C2:2`.
+
+### Cognates (`/cognates`)
+
+Added 07-11-2026, at the user's request to lean into Spanish-English
+cognates as a vocabulary-acceleration lever, worked in "organically"
+rather than as a bulk word dump — the user explicitly ruled out padding
+`vocabulary.js` with cognate words just because they're valid Spanish,
+consistent with this project's standing quality-over-volume rule (see
+"Pedagogical principles" above). Two pieces, deliberately kept separate:
+
+- **`src/content/cognate-patterns.js`** — 14 hand-curated suffix-
+  transformation patterns (`-ción → -tion`, `-mente → -ly`, `es- +
+  consonant → s- + consonant`, etc.), each with a plain-English
+  explanation, a reliability tier (`high`/`medium` — a few patterns like
+  `-oso → -ous` and `-ble → -ble` have real, common exceptions and are
+  tagged accordingly rather than oversold), and 4-6 real example word
+  pairs. Every example is a genuine `vocabulary.js` entry (verified by
+  script, not hand-trusted) rather than an invented pair, so the page
+  stays honest and every word it teaches is independently searchable
+  elsewhere in the app. `CognatePatterns.jsx` clones `FalseFriends.jsx`'s
+  exact card-grid/search/filter pattern (same component shape, same CSS
+  variables) rather than inventing new UI. Several patterns cross-
+  reference a real `false-friends.js` entry as a "Watch out" box
+  (`actualmente`≠actually, `simpático`≠sympathetic, `actual`≠actual,
+  `sensible`≠sensible, `ingenuidad`≠ingenuity, `dependiente`≠dependent,
+  `complexión`≠complexion, `eventual(mente)`≠eventual(ly)) — a word is
+  never taught as "safe" on one page and "a trap" on the other; both
+  cross-refs are verified against the real `false-friends.js` data by the
+  same script.
+- **`src/lib/cognates.js`** — `detectCognate(es, en)`, a separate,
+  intentionally more conservative algorithmic matcher (14 suffix patterns
+  + the es-/s- prefix pattern) used to badge existing `VocabBrowser.jsx`
+  and `Flashcards.jsx` cards with a small "🔗 cognate" tag — zero new
+  data, applies automatically to every word already in `vocabulary.js`
+  and the 5,000-word Flashcards deck. A naive "does the Spanish word end
+  in this suffix" check also flags plenty of non-cognates that happen to
+  share an ending (`cosa`→thing, `mal`→badly, `gente`→people,
+  `esposa`→wife, `mariposa`→butterfly — none look like English at all),
+  so the real gate is: suffix-swap the Spanish word into its candidate
+  English form, then only flag it if that candidate literally appears in
+  the word's own English gloss. This structurally rejects all of the
+  above (their glosses share no overlap with the swapped candidate) while
+  correctly catching real cognates (`nación`→`nation`, `curioso`→
+  `curious`) — verified by running it over the full `vocabulary.js`
+  (1741 words → 80 flagged, zero false positives on manual review) and
+  the Flashcards deck (5,000 words → 453 flagged) before wiring it into
+  any UI. Deliberately biased toward false negatives over false
+  positives: some real cognates whose common gloss uses a non-cognate
+  synonym (`ciudad`→"city," not "civity") won't get flagged — a "spot
+  some cognates" badge, not an exhaustive linguistic claim, matching the
+  reference page's own `-dad/-tad` reliability note.
+- **Vocabulary additions**: 47 new `vocabulary.js` words, chosen at the
+  intersection of "genuinely missing, high-frequency word" and "good
+  cognate teaching example" — closing the `academic`/`abstract_concepts`
+  domains (already flagged thin in the 07-08-2026 pass) further with
+  words like `filosofía`, `biología`, `posibilidad`, `importancia`, but
+  also picking up extremely common general words that turned out to
+  simply be absent (`información`, `situación`, `normal`, `social`,
+  `general`, `positivo`) — surfaced by this exact pattern-research
+  process, not padding.
+- **Not yet done**: weaving cognate-rich vocabulary into future reading
+  passages naturally (the user's third ask) — no dedicated "cognate
+  showcase" passage was built this pass; the intent is to lean into it as
+  upcoming B1+ passages get written (academic/formal topics cluster
+  Latinate cognates naturally), not a standalone task.
 
 ### Readings (`/readings`)
 
@@ -1815,3 +1881,9 @@ full account of any of these.
   homograph tagging bug; regenerated the deck (140/5,000 words replaced,
   ~320 more cleaned up), verified via full-deck automated scan + manual
   spot-checks — see "Flashcards" above.
+- **07-11-2026** — Cognates feature shipped: `/cognates` reference page
+  (14 curated suffix patterns, cross-referenced against real
+  `false-friends.js` entries), an algorithmic cognate-detection badge on
+  `VocabBrowser.jsx`/`Flashcards.jsx` (`src/lib/cognates.js`, zero new
+  data), and 47 new `vocabulary.js` words closing real gaps surfaced by
+  the pattern research — see "Cognates" above.
