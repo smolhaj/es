@@ -28,10 +28,20 @@
 // no preterite, no relative clauses..." rules above, not just simplified
 // vocabulary; a B2 passage's summary should read like B2 prose). It's
 // still learner-facing Spanish, not an internal English note.
+//
+// `written` is the real date the passage was authored/shipped (ISO
+// 'YYYY-MM-DD'), shown on the passage's own page and used to sort the
+// Readings list. A hard rule, not a suggestion, same as the vocab-gap
+// rule above: every new passage gets a real `written` date at the moment
+// it ships — use today's actual date, never a placeholder or a guess.
+// The 19 passages present as of 07-11-2026 were dated retroactively from
+// git history (`git log --follow -S"id: 'the-passage-id'"`), not
+// estimated by eye.
 
 export const PASSAGES = [
   {
     id: 'pan-de-cada-manana',
+    written: '2026-07-09',
     title: 'El pan de cada mañana',
     level: 'A1',
     format: 'standalone',
@@ -84,6 +94,7 @@ export const PASSAGES = [
   },
   {
     id: 'blahaj-ch1',
+    written: '2026-07-09',
     title: 'Las Aventuras de Blahaj — Capítulo 1: El tiburón de peluche',
     level: 'A1',
     format: 'story',
@@ -136,6 +147,7 @@ export const PASSAGES = [
   },
   {
     id: 'blahaj-ch2',
+    written: '2026-07-10',
     title: 'Las Aventuras de Blahaj — Capítulo 2: El viaje a Buenos Aires',
     level: 'A1',
     format: 'story',
@@ -188,6 +200,7 @@ export const PASSAGES = [
   },
   {
     id: 'domingo-en-el-parque',
+    written: '2026-07-10',
     title: 'El domingo en el parque',
     level: 'A1',
     format: 'standalone',
@@ -236,6 +249,7 @@ export const PASSAGES = [
   },
   {
     id: 'planes-para-el-sabado',
+    written: '2026-07-10',
     title: 'Planes para el sábado',
     level: 'A1',
     format: 'standalone',
@@ -283,6 +297,7 @@ export const PASSAGES = [
   },
   {
     id: 'como-llego-a-la-estacion',
+    written: '2026-07-10',
     title: '¿Cómo llego a la estación?',
     level: 'A1',
     format: 'standalone',
@@ -329,6 +344,7 @@ export const PASSAGES = [
   },
   {
     id: 'blahaj-ch3',
+    written: '2026-07-10',
     title: 'Las Aventuras de Blahaj — Capítulo 3: El regreso',
     level: 'A1',
     format: 'story',
@@ -380,6 +396,7 @@ export const PASSAGES = [
   },
   {
     id: 'la-farmacia-de-la-esquina',
+    written: '2026-07-10',
     title: 'La farmacia de la esquina',
     level: 'A1',
     format: 'standalone',
@@ -427,6 +444,7 @@ export const PASSAGES = [
   },
   {
     id: 'en-el-cafe',
+    written: '2026-07-10',
     title: 'En el café',
     level: 'A1',
     format: 'standalone',
@@ -475,6 +493,7 @@ export const PASSAGES = [
   },
   {
     id: 'el-gato-perdido',
+    written: '2026-07-10',
     title: 'El gato perdido',
     level: 'A1',
     format: 'standalone',
@@ -532,6 +551,7 @@ export const PASSAGES = [
   },
   {
     id: 'el-regalo-de-cumpleanos',
+    written: '2026-07-10',
     title: 'El regalo de cumpleaños',
     level: 'A1',
     format: 'standalone',
@@ -587,6 +607,7 @@ export const PASSAGES = [
   },
   {
     id: 'un-dia-de-lluvia',
+    written: '2026-07-10',
     title: 'Un día de lluvia',
     level: 'A1',
     format: 'standalone',
@@ -640,6 +661,7 @@ export const PASSAGES = [
   },
   {
     id: 'la-parada-del-autobus',
+    written: '2026-07-10',
     title: 'La parada del autobús',
     level: 'A1',
     format: 'standalone',
@@ -694,6 +716,7 @@ export const PASSAGES = [
   },
   {
     id: 'la-pizza-del-viernes',
+    written: '2026-07-10',
     title: 'La pizza del viernes',
     level: 'A1',
     format: 'standalone',
@@ -747,6 +770,7 @@ export const PASSAGES = [
   },
   {
     id: 'el-primer-dia-de-trabajo',
+    written: '2026-07-11',
     title: 'El primer día de trabajo',
     level: 'A2',
     format: 'standalone',
@@ -800,6 +824,7 @@ export const PASSAGES = [
   },
   {
     id: 'una-sorpresa-de-cumpleanos',
+    written: '2026-07-11',
     title: 'Una sorpresa de cumpleaños',
     level: 'A2',
     format: 'standalone',
@@ -853,6 +878,7 @@ export const PASSAGES = [
   },
   {
     id: 'el-vuelo-cancelado',
+    written: '2026-07-11',
     title: 'El vuelo cancelado',
     level: 'A2',
     format: 'standalone',
@@ -907,6 +933,7 @@ export const PASSAGES = [
   },
   {
     id: 'la-entrevista',
+    written: '2026-07-11',
     title: 'La entrevista',
     level: 'A2',
     format: 'standalone',
@@ -960,6 +987,7 @@ export const PASSAGES = [
   },
   {
     id: 'perdidos-en-la-ciudad',
+    written: '2026-07-11',
     title: 'Perdidos en la ciudad',
     level: 'A2',
     format: 'standalone',
@@ -1014,6 +1042,22 @@ export const PASSAGES = [
 
 export function getPassage(id) {
   return PASSAGES.find(p => p.id === id) ?? null;
+}
+
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+// Formats a `written` ISO date ('YYYY-MM-DD') for display. Parses the
+// string directly rather than going through `new Date(iso)` +
+// toLocaleDateString — the latter parses as UTC midnight and can render as
+// the *previous* day in negative-UTC-offset timezones once the browser
+// converts it back to local time.
+export function formatWrittenDate(iso) {
+  if (!iso) return null;
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${MONTH_NAMES[m - 1]} ${d}, ${y}`;
 }
 
 // For a story-format passage, finds the immediately adjacent chapter (by

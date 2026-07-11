@@ -47,6 +47,59 @@
   font-weight: 600;
 }
 
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9375rem;
+  outline: none;
+  font-family: inherit;
+}
+.searchInput:focus { border-color: var(--accent); }
+
+.filterRow {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  padding: var(--sp-1) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.filterBtn:hover { border-color: var(--accent); color: var(--accent); }
+.filterActive {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.filterActive:hover { color: #fff; }
+
+.empty {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  padding: var(--sp-8) 0;
+  text-align: center;
+}
+
 .list {
   display: flex;
   flex-direction: column;
@@ -73,9 +126,26 @@
   background: color-mix(in srgb, var(--correct) 6%, var(--surface));
 }
 
-.doneCheck {
-  color: var(--correct);
+.doneToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  color: transparent;
+  font-size: 0.7rem;
   font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.doneToggle:hover { border-color: var(--correct); }
+.doneToggleActive {
+  background: var(--correct);
+  border-color: var(--correct);
+  color: #fff;
 }
 
 .cardTop {
@@ -108,8 +178,14 @@
   border-radius: 99px;
   white-space: nowrap;
 }
-.level { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
 .format { background: var(--bg-alt); color: var(--text-muted); }
+
+.levelA1 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
+.levelA2 { background: rgba(196, 81, 26, 0.1); color: var(--accent); }
+.levelB1 { background: rgba(200, 134, 10, 0.1); color: var(--accent-gold); }
+.levelB2 { background: rgba(90, 130, 80, 0.12); color: #3d7a42; }
+.levelC1 { background: rgba(80, 90, 160, 0.1); color: #4a56a6; }
+.levelC2 { background: rgba(140, 70, 150, 0.1); color: #8c4696; }
 
 .cardSummary {
   font-size: 0.9375rem;
@@ -117,11 +193,20 @@
   line-height: 1.5;
 }
 
-.chapterNote {
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.chapterNote,
+.readTime,
+.writtenDate {
   font-size: 0.8125rem;
   color: var(--text-muted);
-  font-style: italic;
 }
+.chapterNote { font-style: italic; }
 
 @media (max-width: 640px) {
   .main { padding: var(--sp-5); }

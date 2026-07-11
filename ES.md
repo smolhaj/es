@@ -602,19 +602,17 @@ consistent with this project's standing quality-over-volume rule (see
 
 ### Readings (`/readings`)
 
-9 original A1 passages (`src/content/readings.js`) as of 07-10-2026: a
-standalone bakery scene, 3 chapters of a serialized story ("Las
-Aventuras de Blahaj," a pen-pal plushie-travel premise — chapter 3
-closes the first sent→hosted→returned mini-arc), 2 more standalone
-scenes, an everyday-conversation dialogue, and 2 real-world-practical-
-task passages — covering the learner-facing spec's content-rotation
-categories (media-based content deliberately excluded: the spec says
-real media should wait for "a functional foundation," which doesn't
-describe true-beginner A1). `Readings.jsx` lists passages at
-`/readings`; `ReadingPassage.jsx` renders one at `/readings/:passageId`
-with a "Ver traducción" toggle for the English (page/route/nav renamed
-"Reading" → "Readings" 07-10-2026; `ReadingPassage.jsx` kept its name
-since it renders one passage, not the list).
+19 passages as of 07-11-2026 (`src/content/readings.js`): 14 A1 (a
+standalone bakery scene, 3 chapters of a serialized story — "Las
+Aventuras de Blahaj," a pen-pal plushie-travel premise, chapter 3 closes
+the first sent→hosted→returned mini-arc — plus 10 more standalone
+scenes/dialogues) and 5 A2 (workplace/travel/city situational scenes).
+B1-C2 are still empty — the next natural slice of this gap. `Readings.jsx`
+lists passages at `/readings`; `ReadingPassage.jsx` renders one at
+`/readings/:passageId` with a "Ver traducción" toggle for the English
+(page/route/nav renamed "Reading" → "Readings" 07-10-2026;
+`ReadingPassage.jsx` kept its name since it renders one passage, not the
+list).
 
 Every word gets a definition via the exact same `ClickableSpanish`
 component used everywhere else on the site — no separate reading-specific
@@ -627,11 +625,11 @@ flood a flowing story with clicks on function words. Reading passages
 pass `vocabOnly`; every other call site is unaffected. **Any new word a
 passage needs that isn't already in `vocabulary.js` gets researched and
 added before the passage ships, every time** (a hard rule — see prose-
-writing process step 12 above); `vocabulary.js` has grown 1439 → 1563
-words this way across the reading-passages work. Full narrative of how
-this discipline was arrived at (three corrected passes on the original
-two passages, each vocabulary-gap batch since): `ES-HISTORY.md`'s
-reading-passages entries.
+writing process step 12 above); `vocabulary.js` has grown 1439 → 1741
+words this way across the reading-passages and cognates work combined.
+Full narrative of how this discipline was arrived at (three corrected
+passes on the original two passages, each vocabulary-gap batch since):
+`ES-HISTORY.md`'s reading-passages entries.
 
 Each passage carries a `questions` array (comprehension checks, not
 grammar drills — mostly `multiple_choice` in Spanish, plus a couple of
@@ -641,14 +639,72 @@ the same `ExerciseCard`/`Feedback` components curriculum practice uses.
 Grading is entirely client-side (`src/lib/answerMatching.js`, shared with
 `Lesson.jsx`'s curriculum practice — extracting it also added accent
 stripping to `normalizeAnswer`, closing the old "Por que" bug for both).
-`src/lib/readingProgress.js` marks a passage complete (same bar as
+
+**`written` date (added 07-11-2026)**: every passage now carries a real
+ISO `written: 'YYYY-MM-DD'` date, shown on its own page
+(`formatWrittenDate()`, exported from `readings.js` alongside
+`getPassage`/`getAdjacentChapter` — parses the ISO string manually rather
+than going through `new Date(iso)`+`toLocaleDateString`, which parses as
+UTC midnight and can render as the *previous* day once a negative-UTC-
+offset browser converts it back to local time) and used to power the
+list's "Newest first" sort. The 19 existing passages were dated
+retroactively from real git history (`git log --follow -S"id: '<id>'"`
+against `src/content/readings.js`, not eyeballed) — **a hard rule for
+every future passage**: set `written` to the real date at the moment it
+ships, never a placeholder (see the rule spelled out in `readings.js`'s
+own header comment, next to the existing vocab-gap rule).
+
+**`src/lib/readingProgress.js`** marks a passage complete (same bar as
 Learn — reaching the end of the question set, not a perfect score) via a
-single `capi_readings_completed` localStorage key, no backend table;
-`Readings.jsx` shows a Learn-style ✓ badge + progress line from it.
+single `capi_readings_completed` localStorage key, no backend table. As
+of 07-11-2026 it also supports a manual override
+(`unmarkPassageComplete`/`togglePassageComplete`, same storage shape, so
+a manually-marked passage is indistinguishable from a quiz-completed
+one everywhere) — a "Mark as read"/"✓ Marked as read" toggle button on
+the passage page, and a small circular ✓ toggle on each list card. The
+list-card toggle is a `<span role="button">`, not a nested `<button>` —
+the card itself is a react-router `<Link>` (renders `<a>`), and nesting a
+real `<button>` inside an `<a>` is invalid HTML5 content-model-wise
+(screen readers can misannounce it, some mobile browsers mishandle the
+nested tap target); the toggle's click handler calls
+`e.preventDefault()` so `Link`'s own navigation (which checks
+`event.defaultPrevented`) is correctly suppressed.
+
+**`Readings.jsx` list controls (added 07-11-2026)**: a search box
+(title/summary substring match — the one reference-style page in the app
+that didn't already have one), a sort toggle ("Sort by level" — CEFR
+order, `[A1,A2,B1,B2,C1,C2]` — vs. "Newest first" — by `written` date
+descending), a "Hide completed" toggle, a per-level color-coded badge
+(`.levelA1`...`.levelC2`, matching the CEFR badge palette already used on
+`VocabBrowser`/`FalseFriends`/`CognatePatterns`), and a `~N min read`
+estimate per card (`paragraphs` word count ÷ 130 wpm — deliberately
+slower than native reading speed, since a learner is stopping to click
+glossed words). An empty state distinguishes "hid every remaining
+passage" from "search matched nothing."
+
+**Site-wide bug found and fixed while building this**: every
+`filterActive`/`filterBtn:hover` reference-page filter-chip pattern in
+the app (11 files: `VocabBrowser`, `FalseFriends`, `CognatePatterns`,
+`Readings`, `Idioms`, `GrammarRef`, `VerbsRef`, `Pronunciation`,
+`Regional`, `Resources` — `Concepts.module.css` alone already had the
+fix) had a real, live, reproducible bug: hovering an *already-active*
+filter chip made its label invisible. `.filterBtn:hover { color:
+var(--accent); }` has specificity (0,2,0) — a class + a pseudo-class —
+which beats `.filterActive { color: #fff; }`'s (0,1,0) regardless of
+source order, so hovering an active chip (background `var(--accent)`,
+now also text `var(--accent)`) makes the text exactly match its own
+background. Caught via a live screenshot during this session's own
+Readings verification, confirmed as a genuine CSS bug (not a screenshot
+timing artifact) by reading `getComputedStyle` on the live element, then
+fixed everywhere with one added rule per file: `.filterActive:hover {
+color: #fff; }` (same specificity as `.filterBtn:hover`, wins on source
+order).
 
 Not yet built: additional passages/chapters beyond Blahaj Chapter 3 (a
-second trip is the natural chapter 4), and letting a serialized story's
-own level climb chapter by chapter.
+second trip is the natural chapter 4), letting a serialized story's own
+level climb chapter by chapter, and B1-C2 passages (see "What still needs
+to be built" and the Cognates section above for the related "weave
+cognates into future readings" intent).
 
 ### Flashcards (`/flashcards`)
 
@@ -1887,3 +1943,12 @@ full account of any of these.
   `VocabBrowser.jsx`/`Flashcards.jsx` (`src/lib/cognates.js`, zero new
   data), and 47 new `vocabulary.js` words closing real gaps surfaced by
   the pattern research — see "Cognates" above.
+- **07-11-2026** — Readings UX pass: retroactive real `written` dates on
+  all 19 passages (git-history-derived, not guessed) shown on the passage
+  page and powering a new "Newest first" sort; `Readings.jsx` gained
+  search, sort-by-level, hide-completed, per-level color badges, and a
+  read-time estimate; `readingProgress.js` gained a manual mark-as-read/
+  unread toggle (list card + passage page). Also found and fixed a real,
+  site-wide CSS bug along the way: hovering an already-active filter chip
+  made its own label text invisible (specificity bug) on 10 reference
+  pages — see "Readings" above for the root cause and fix.

@@ -86,6 +86,7 @@
   border-color: var(--accent);
   color: #fff;
 }
+.filterActive:hover { color: #fff; }
 
 .empty {
   color: var(--text-muted);

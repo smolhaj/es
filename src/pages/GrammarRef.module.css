@@ -86,6 +86,7 @@
   border-color: var(--accent);
   color: #fff;
 }
+.filterActive:hover { color: #fff; }
 
 .filterDivider {
   width: 1px;

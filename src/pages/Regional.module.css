@@ -58,6 +58,7 @@
 }
 .filterBtn:hover { border-color: var(--accent); color: var(--accent); }
 .filterActive { background: var(--accent); border-color: var(--accent); color: #fff; }
+.filterActive:hover { color: #fff; }
 
 /* Card list */
 .cardList {
