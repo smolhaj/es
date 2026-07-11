@@ -7,20 +7,25 @@ import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import { isAnswerCorrect } from '../lib/answerMatching.js';
-import { markPassageComplete } from '../lib/readingProgress.js';
-import { getPassage, getAdjacentChapter } from '../content/readings.js';
+import { markPassageComplete, isPassageComplete, togglePassageComplete } from '../lib/readingProgress.js';
+import { getPassage, getAdjacentChapter, formatWrittenDate } from '../content/readings.js';
 import styles from './ReadingPassage.module.css';
 
 export default function ReadingPassage() {
   const { passageId } = useParams();
   const { token } = useAuth();
+  const passage = getPassage(passageId);
   const [showTranslation, setShowTranslation] = useState(false);
   const [started, setStarted] = useState(false);
   const [qIndex, setQIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [feedback, setFeedback] = useState(null);
+  const [isComplete, setIsComplete] = useState(false);
   const reported = useRef(false);
-  const passage = getPassage(passageId);
+
+  useEffect(() => {
+    setIsComplete(passage ? isPassageComplete(passage.id) : false);
+  }, [passage]);
 
   if (!passage) return <Navigate to="/readings" replace />;
 
@@ -33,10 +38,16 @@ export default function ReadingPassage() {
   useEffect(() => {
     if (!finished) return;
     markPassageComplete(passage.id);
+    setIsComplete(true);
     if (reported.current) return;
     reported.current = true;
     api.learner.reportReadingResult(token, passage.id, correctCount, questions.length).catch(() => {});
   }, [finished, passage.id, token, correctCount, questions.length]);
+
+  function handleToggleComplete() {
+    togglePassageComplete(passage.id);
+    setIsComplete(c => !c);
+  }
 
   function handleStart() {
     setStarted(true);
@@ -67,7 +78,18 @@ export default function ReadingPassage() {
           <header className={styles.header}>
             <h1 className={styles.title}>{passage.title}</h1>
             <span className={styles.level}>{passage.level}</span>
+            {passage.written && (
+              <span className={styles.written}>Written {formatWrittenDate(passage.written)}</span>
+            )}
           </header>
+
+          <button
+            type="button"
+            className={`${styles.toggle} ${isComplete ? styles.toggleActive : ''}`}
+            onClick={handleToggleComplete}
+          >
+            {isComplete ? '✓ Marked as read' : 'Mark as read'}
+          </button>
 
           <div className={styles.body}>
             {passage.paragraphs.map((p, i) => (

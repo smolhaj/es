@@ -50,6 +50,13 @@
   white-space: nowrap;
 }
 
+.written {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
 .body {
   display: flex;
   flex-direction: column;
@@ -78,6 +85,13 @@
   transition: all 0.15s;
 }
 .toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+.toggleActive {
+  border-color: color-mix(in srgb, var(--correct) 45%, transparent);
+  color: var(--correct);
+  background: color-mix(in srgb, var(--correct) 8%, transparent);
+}
+.toggleActive:hover { border-color: var(--correct); color: var(--correct); }
 
 .translation {
   display: flex;

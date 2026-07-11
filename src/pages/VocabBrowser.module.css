@@ -79,6 +79,7 @@
 .filterBtn:hover { border-color: var(--accent); color: var(--accent); }
 .filterSmall { font-size: 0.75rem; }
 .filterActive { background: var(--accent); border-color: var(--accent); color: #fff; }
+.filterActive:hover { color: #fff; }
 
 .count {
   font-size: 0.875rem;
