@@ -644,6 +644,65 @@ from curriculum vocab and the adaptive session's `vocabulary_items` queue.
   undo/suspend — scoped to Flashcards only since it's the one page
   explicitly styled as an Anki-like card deck; `vocabulary_items` serves a
   different UI (a due-list, not a card-by-card session).
+- **Data-quality audit (07-11-2026)**: a user-reported bad card ("te"
+  shown as noun "letter: t" instead of the pronoun) traced to real
+  root-cause bugs in `build-flashcards.mjs`'s parsing/selection logic, not
+  one-off bad data. Fixed classes of bug, all in the pipeline (never
+  hand-edit the generated file):
+  - `pickEntry()` chose a dictionary sense purely by matching frequency.csv's
+    reported part-of-speech, with no fallback — if that one block's gloss
+    turned out to be junk (a letter name, an obsolete-spelling template), the
+    word either shipped broken or, once the junk gloss got filtered, vanished
+    from the deck entirely with no retry. Replaced with `resolveTranslation()`,
+    which tries every usable block in priority order (exact pos match → other
+    non-proper-noun senses → proper-noun senses last) until one produces real
+    content.
+  - `USELESS_GLOSS`/`BAD_GLOSS_PREFIXES` only matched exact known phrasings
+    ("^the letter", "archaic spelling of") and missed sibling phrasings
+    ("letter: t", "archaic **form** of", "nonstandard form of") — widened to a
+    shape-matching regex instead of a literal-string list, since enumerating
+    every {obsolete/archaic/dated/rare/...} × {form/spelling} combination one
+    at a time keeps under-counting.
+  - Unrendered Wiktionary template markup (`{{es-superseded spelling of|fue|
+    1952}}`) and bare grammar cross-references ("second-person singular
+    voseo imperative of ir") were shipping verbatim — neither is a
+    translation. Both now filtered; "inflection of "X": meaning" and
+    "(see usage notes) meaning" now get their scaffolding stripped instead of
+    shown raw (fixed "con" shipping as "with, Dependent preposition following
+    certain verbs").
+  - Corpus tagging bug: a capitalized proper-noun lemma sometimes absorbs the
+    vast majority of an unrelated common lowercase word's occurrences (the
+    "Estado" lemma's own usage breakdown attributed all 392,772 of its counts
+    to lowercase surface-form "estado", yet the lemma itself was tagged
+    'prop') — "Liga"/"Cordero"/"Vega"/"Franco" all showed the same pattern,
+    shipping as narrow proper-noun trivia ("Vega" → "the star in the
+    constellation of Lyra") instead of the common word ("vega" → "meadow").
+    Fixed: prefer the lowercase headword's ordinary senses when one exists;
+    skip the capitalized row outright if the lowercase word is already its
+    own separate frequency-list entry (avoids a near-duplicate card).
+  - `frequency.csv`'s own `NOUSAGE` flag (present on ~5,500 rows) was never
+    checked — that's what "fué"/"dió"/"vió" (pre-1952-reform accented
+    spellings) were tagged, and it's exactly the "don't teach this" signal
+    the pipeline needed; now filtered at load time.
+  - Net effect after regenerating: 140 of 5,000 words replaced outright (junk
+    entries dropped, room freed for the next real word at that frequency
+    rank), ~320 more had their translation text cleaned up in place, verified
+    via a full-deck automated scan (zero remaining markup/letter-name/bare
+    cross-reference/duplicate hits) plus manual spot-checks of the top-30 and
+    a random 25-word sample. Some fraction of the diff is incidental upstream
+    source-data drift (doozan/spanish_data is live on GitHub and can change
+    between regenerations) rather than these fixes specifically — expected
+    and accepted for a from-live-source pipeline, not a new problem.
+  - **Known, deliberately-not-fixed residual**: "re" ships as noun "re" (a
+    musical note name) instead of its far more common Argentine-slang
+    adverb sense ("really/super") — a single low-frequency-rank (3285)
+    word where the safe fix would require qualifier-aware gloss selection
+    the parser doesn't currently track; not worth the added complexity for
+    one entry. Proper nouns (95 remaining, mostly country/city names plus a
+    handful of low-value administrative trivia like "Baker" → "A department
+    of Chile") are kept as a category — some (place names) are genuinely
+    useful vocabulary, so a wholesale exclusion wasn't attempted; revisit if
+    it becomes a recurring complaint.
 
 ### Adaptive session (`/session`)
 
@@ -1745,3 +1804,14 @@ full account of any of these.
   previously-flagged content duplications were already resolved; and
   added full keyboard accessibility (Enter + Space) to 10 reference-page
   card components. See punch-list items 6, 8, 9, 11, 14 above.
+- **07-11-2026** — Researched and scoped $0-budget speaking-practice
+  feasibility (ASR via Cloudflare Workers AI Whisper is viable; true
+  phoneme-level pronunciation scoring is not, at $0) — see punch-list item
+  19 above.
+- **07-11-2026** — Flashcards data-quality audit: user-reported bad card
+  ("te" shown as "letter: t") traced to real `build-flashcards.mjs` bugs,
+  not isolated bad data — fixed pos-block fallback, letter-name/markup/
+  grammar-cross-reference gloss filtering, and a proper-noun-vs-lowercase-
+  homograph tagging bug; regenerated the deck (140/5,000 words replaced,
+  ~320 more cleaned up), verified via full-deck automated scan + manual
+  spot-checks — see "Flashcards" above.
