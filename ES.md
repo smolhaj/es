@@ -1033,11 +1033,96 @@ measures):**
     pitched at a classroom rather than a solo learner — not a bug).
 
 **Backburnered features (deprioritized by the user, not forgotten):**
-19. **Speaking** — no mic input, no pronunciation scoring. Cheapest
-    starting point: the Web Speech API's `SpeechRecognition` counterpart
-    to the TTS already in use — no new backend needed, just a new
-    exercise type + client-side recording flow. A scoring rubric needs
-    real design thought (recognition confidence ≠ pronunciation quality).
+19. **Speaking** — no mic input, no pronunciation scoring. Backburnered
+    by the user, but researched (07-11-2026, web search, not recalled
+    from training data) to scope what's actually buildable at $0 before
+    committing to it. Two genuinely different problems get conflated
+    under "speaking practice" and need to be scoped separately:
+
+    - **Problem A — ASR ("did you say roughly the right words")**:
+      transcribe speech, compare against the expected answer. Solvable
+      at $0.
+    - **Problem B — true pronunciation scoring ("was your rolled R
+      actually trilled, was your vowel quality off")**: phoneme-level
+      acoustic scoring against a reference pronunciation, the thing
+      Duolingo/ELSA/Azure Pronunciation Assessment actually sell. **Not
+      realistically buildable at $0** — see below.
+
+    **Problem A options:**
+    - Web Speech API's `SpeechRecognition` (counterpart to the TTS
+      already in use via `speechSynthesis`) — free, no key, but it's a
+      wrapper around a vendor cloud backend (Chrome/Safari silently
+      stream audio to Google's/Apple's servers to do the recognition),
+      not something we control. Firefox ships it disabled by default.
+      No documented accuracy numbers for accented L2 Spanish because
+      it's an undocumented black box.
+    - **Cloudflare Workers AI — Whisper** (`@cf/openai/whisper` /
+      `whisper-large-v3-turbo`) — the strong option. Genuinely
+      free-tier-native: 10,000 neurons/day at no cost, no credit card
+      required to create the account or use the free allocation, and it
+      binds into Pages Functions the same way D1/KV already do in
+      `wrangler.toml`. Whisper is multilingual with solid Spanish
+      support, and is specifically decent at accented/non-native speech
+      (trained on noisy multilingual audio). This is the defensible $0
+      option and it reuses infra already trusted in this project.
+    - whisper.cpp compiled to WASM, running client-side — works, but
+      means shipping a 30–150MB model download to the learner's
+      browser, slow inference on average hardware, and browser
+      quantization that specifically degrades on accented audio (the
+      case that matters most here). No upside over calling the
+      Workers AI binding server-side for free, only added download
+      size and latency.
+    - **Catch that limits any ASR approach as a grading signal**:
+      Whisper (and ASR generally) has a strong language-model prior —
+      it tends to "autocorrect" toward the most plausible sentence even
+      when the actual audio pronunciation was off. A learner who
+      mispronounces a word but says something close enough often gets
+      transcribed as if they'd said it correctly. So ASR reliably
+      catches wrong-word/missing-word/wrong-conjugation errors, but
+      will systematically mask real pronunciation problems — it cannot
+      do Problem B's job even approximately.
+
+    **Problem B options, and why none clear the $0 bar:**
+    - Commercial APIs (Azure Speech Pronunciation Assessment, SpeechAce,
+      ELSA, Speechsuper) are the only mature, production-quality
+      options, and none of them are free-tier-native by this project's
+      rule. Azure's free F0 tier exists but requires a credit card on
+      file to create the account — the exact bar the cost-architecture
+      rule is written to reject. The others are paid-only for this
+      feature.
+    - Open-source academic approaches are real, not vaporware: Kaldi's
+      GOP (Goodness of Pronunciation) recipes, and newer wav2vec2-based
+      forced-alignment + GOP scoring. But they need a trained
+      acoustic/phone model for Spanish, a forced-alignment pipeline, and
+      non-trivial per-request compute — this is standing up an ML
+      inference pipeline, not wiring up an API. None of that runs
+      inside Cloudflare Pages Functions (no GPU, tight time/memory
+      limits, no persistent process), so it would mean self-hosting a
+      separate inference server — real hosting cost, contradicting the
+      $0 rule outright.
+    - One promising client-side OSS precedent exists (a wav2vec2-based
+      phonetic forced-aligner ported to WASM), but it only supports
+      English and Mandarin today — getting Spanish working means
+      training/porting a phone model, a standalone ML project, not a
+      feature to bolt on.
+    - Whisper's per-segment confidence/log-prob is technically
+      available and loosely correlates with how clearly something was
+      said, but it's a noisy proxy easily thrown off by mic quality and
+      background noise, not a validated pronunciation metric. Should
+      never be labeled "pronunciation score" to a learner if used.
+
+    **What we'd actually build, when this gets unbackburnered**: a
+    speaking-practice exercise type using Cloudflare Workers AI Whisper
+    for transcription, graded by fuzzy-matching the transcript against
+    the expected answer — architecturally identical to the existing
+    reveal/self-assess pattern (`writing_prompt`, `conversation`). This
+    genuinely tells a learner "you said the wrong word" or "you dropped
+    a word." It must **not** be marketed or UI-labeled as pronunciation
+    scoring or an accuracy percentage — copy should say something like
+    "we'll check what we heard," not claim to grade how well it was
+    said. True phoneme-level pronunciation scoring stays off the
+    roadmap under the $0 constraint; there's no free-tier-native path to
+    it today, not a research gap on our end.
 20. **Dedicated listening-comprehension exercises** — the existing
     `SpeakButton` only replays visible text, it's not an assessed skill.
     Needs a new exercise type where audio is the only information given.
