@@ -3,14 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Auth.module.css';
 
 export default function Auth({ mode }) {
+  useDocumentTitle(mode === 'login' ? 'Sign in' : 'Create account');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [sessionExpired, setSessionExpired] = useState(false);
+  const [showResetHelp, setShowResetHelp] = useState(false);
   // Guards against StrictMode's dev-only double effect invocation, which
   // would otherwise consume+clear the sessionStorage flag on the first
   // (discarded) run and leave the real run seeing nothing.
@@ -92,6 +95,24 @@ export default function Auth({ mode }) {
                 autoComplete={isLogin ? 'current-password' : 'new-password'}
                 minLength={8}
               />
+              {isLogin && (
+                <button
+                  type="button"
+                  className={styles.forgotLink}
+                  onClick={() => setShowResetHelp(v => !v)}
+                >
+                  Forgot password?
+                </button>
+              )}
+              {isLogin && showResetHelp && (
+                <p className={styles.forgotHelp}>
+                  There's no self-service reset yet — open an{' '}
+                  <a href="https://github.com/smolhaj/es/issues" target="_blank" rel="noreferrer">
+                    issue on GitHub
+                  </a>{' '}
+                  and the account can be reset manually.
+                </p>
+              )}
             </div>
 
             {error && (

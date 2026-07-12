@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import { UNITS } from '../content/curriculum/index.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './GetStarted.module.css';
 
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
@@ -24,6 +25,7 @@ const LEVEL_BLURB = {
 };
 
 export default function GetStarted() {
+  useDocumentTitle('Learn');
   const { token } = useAuth();
   const [completed, setCompleted] = useState({});
   const [loading, setLoading] = useState(true);

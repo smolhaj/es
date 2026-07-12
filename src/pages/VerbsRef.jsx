@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { VERBS, CEFR_LEVELS, TYPES, TENSES, TENSE_LABELS, FORMS, FORM_KEYS } from '../content/verbs.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './VerbsRef.module.css';
 
 export default function VerbsRef() {
+  useDocumentTitle('Verb Conjugations');
   const [search, setSearch] = useState('');
   const [filterCefr, setFilterCefr] = useState('');
   const [filterType, setFilterType] = useState('');

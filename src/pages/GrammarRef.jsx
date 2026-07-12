@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { GRAMMAR_CARDS, CATEGORIES, CEFR_LEVELS } from '../content/grammar.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './GrammarRef.module.css';
 
 const CARD_TITLES = Object.fromEntries(GRAMMAR_CARDS.map(c => [c.id, c.title]));
@@ -94,6 +95,7 @@ function GrammarCard({ card, expanded, onToggle }) {
 }
 
 export default function GrammarRef() {
+  useDocumentTitle('Grammar Reference');
   const [search, setSearch] = useState('');
   const [filterCefr, setFilterCefr] = useState('');
   const [filterCat, setFilterCat] = useState('');

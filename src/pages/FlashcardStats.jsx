@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './FlashcardStats.module.css';
 
 const DAY_LABELS = ['Today', 'Tomorrow', '+2d', '+3d', '+4d', '+5d', '+6d'];
 
 export default function FlashcardStats() {
+  useDocumentTitle('Flashcard Stats');
   const { token } = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

@@ -8,6 +8,7 @@ import ConversationCard from '../components/ConversationCard.jsx';
 import Feedback from '../components/Feedback.jsx';
 import styles from './Session.module.css';
 import { CONCEPT_LABELS } from '../content/conceptLabels.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 
 
 const SESSION_LENGTH = 10;
@@ -17,6 +18,7 @@ const SESSION_LENGTH = 10;
 // 'reveal' is shared by writing_prompt and conversation: model answer/line shown, awaiting self-assessment.
 
 export default function Session() {
+  useDocumentTitle('Session');
   const { token } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

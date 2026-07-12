@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { REGIONAL_SECTIONS, CATEGORIES } from '../content/regional.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Regional.module.css';
 
 export default function Regional() {
+  useDocumentTitle('Regional Spanish');
   const [filterCategory, setFilterCategory] = useState('');
 
   const filtered = filterCategory

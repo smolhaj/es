@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { VOCABULARY, DOMAINS, CEFR_LEVELS } from '../content/vocabulary.js';
 import { detectCognate } from '../lib/cognates.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './VocabBrowser.module.css';
 
 const DOMAIN_LABELS = {
@@ -26,6 +27,7 @@ const REGISTER_COLORS = {
 };
 
 export default function VocabBrowser() {
+  useDocumentTitle('Vocabulary');
   const { token } = useAuth();
   const [search, setSearch] = useState('');
   const [filterCefr, setFilterCefr] = useState('');

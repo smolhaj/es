@@ -9,12 +9,14 @@ import Feedback from '../components/Feedback.jsx';
 import { isAnswerCorrect } from '../lib/answerMatching.js';
 import { markPassageComplete, isPassageComplete, togglePassageComplete } from '../lib/readingProgress.js';
 import { getPassage, getAdjacentChapter, formatWrittenDate } from '../content/readings.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './ReadingPassage.module.css';
 
 export default function ReadingPassage() {
   const { passageId } = useParams();
   const { token } = useAuth();
   const passage = getPassage(passageId);
+  useDocumentTitle(passage?.title ?? 'Readings');
   const [showTranslation, setShowTranslation] = useState(false);
   const [started, setStarted] = useState(false);
   const [qIndex, setQIndex] = useState(0);

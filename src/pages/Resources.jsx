@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import { RESOURCES, CATEGORIES } from '../content/resources.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Resources.module.css';
 
 function ResourceCard({ item }) {
@@ -53,6 +54,7 @@ function ResourceCard({ item }) {
 }
 
 export default function Resources() {
+  useDocumentTitle('Resources');
   const [search, setSearch] = useState('');
   const [filterCat, setFilterCat] = useState('');
 

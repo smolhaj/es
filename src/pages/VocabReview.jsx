@@ -5,6 +5,7 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import CefrBadge from '../components/CefrBadge.jsx';
 import { VOCABULARY } from '../content/vocabulary.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './VocabReview.module.css';
 
 const GRADE_LABELS = [
@@ -15,6 +16,7 @@ const GRADE_LABELS = [
 ];
 
 export default function VocabReview() {
+  useDocumentTitle('Vocabulary Review');
   const { token } = useAuth();
   const navigate = useNavigate();
 

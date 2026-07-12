@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Concepts.module.css';
 
 const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
@@ -93,6 +94,7 @@ function LevelSection({ level, concepts }) {
 }
 
 export default function Concepts() {
+  useDocumentTitle('Concept Mastery');
   const { token } = useAuth();
   const [concepts, setConcepts] = useState([]);
   const [loading, setLoading] = useState(true);

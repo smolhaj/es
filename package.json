@@ -9,8 +9,9 @@
     "preview": "vite preview",
     "cf:dev": "wrangler pages dev dist --d1 DB --kv KV --port 8788",
     "cf:deploy": "npm run build && wrangler pages deploy dist",
-    "db:migrate": "wrangler d1 execute DB --file=schema.sql",
-    "db:migrate:local": "wrangler d1 execute DB --local --file=schema.sql"
+    "db:migrate": "wrangler d1 migrations apply DB --remote",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate:create": "wrangler d1 migrations create DB"
   },
   "dependencies": {
     "react": "^18.3.1",
