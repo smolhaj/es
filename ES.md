@@ -499,13 +499,12 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 1874 words as of 07-11-2026 (grown from
+`src/content/vocabulary.js` — 1985 words as of 07-12-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
-focused batch, and most recently the 6-passage topic-variety A1 batch and
-a 6-passage topic-variety A2 batch (69 words: marathon/sports,
-restaurant business, video-call tech, student-council civics, movie
-premiere, library reopening) — see "Readings" and "Cognates" below),
-`{ es, en, cefr, domain, example,
+focused batch, the 6-passage topic-variety A1 batch, a 6-passage
+topic-variety A2 batch, and most recently a 111-word batch (5 A1 + 5 A2
+passages spanning sports, nature, history/geography, biography, and
+fiction — see "Readings" below), `{ es, en, cefr, domain, example,
 exampleEn, frequencyRank, register? }`.
 `DOMAINS`/`CEFR_LEVELS` are exported for `VocabBrowser.jsx`'s filter
 chips; `DOMAINS` is auto-derived (`[...new Set(...)].sort()`), so a new
@@ -606,12 +605,13 @@ consistent with this project's standing quality-over-volume rule (see
 
 ### Readings (`/readings`)
 
-31 passages as of 07-11-2026 (`src/content/readings.js`): 20 A1 (a
+41 passages as of 07-12-2026 (`src/content/readings.js`): 25 A1 (a
 standalone bakery scene, 3 chapters of a serialized story — "Las
 Aventuras de Blahaj," a pen-pal plushie-travel premise, chapter 3 closes
-the first sent→hosted→returned mini-arc — plus 16 more standalone
-scenes/dialogues) and 11 A2 (5 workplace/travel/city situational scenes
-plus 6 newer topic-variety passages). The 6 newest A1 passages, at the
+the first sent→hosted→returned mini-arc — plus 21 more standalone
+scenes/dialogues) and 16 A2 (5 workplace/travel/city situational scenes
+plus 11 newer topic-variety passages). The 6 A1 passages from the second
+batch, at the
 user's request for topic variety, cover sports
 (`el-partido-importante`), small business (`la-tienda-de-flores`),
 technology (`el-telefono-nuevo`), a neutral civic/politics scene
@@ -628,10 +628,10 @@ since it's original fiction, not reporting on an actual event. Same
 approach for "recent events": an invented, evergreen local happening (a
 new park opening), not real current events.
 
-The 6 newest A2 passages, same "various topics" request applied at A2,
-cover sports (`la-primera-maraton-de-laura`, a marathon), business
-(`la-inauguracion-del-restaurante`, a restaurant opening night with an
-oven breakdown), technology (`la-videollamada-con-la-abuela`, a
+The 6 A2 passages from the second batch, same "various topics" request
+applied at A2, cover sports (`la-primera-maraton-de-laura`, a marathon),
+business (`la-inauguracion-del-restaurante`, a restaurant opening night
+with an oven breakdown), technology (`la-videollamada-con-la-abuela`, a
 multi-generational video call with connection trouble), neutral
 politics/civics (`las-elecciones-del-consejo-estudiantil`, a student
 council election — same invented-fiction approach as the A1 batch, just
@@ -648,8 +648,52 @@ side effect rather than an upfront grammar grep, and fixed before the
 blind review (each rewritten into preterite or restructured to avoid a
 conjugated verb in that slot entirely; one pre-existing idiom, "mejor de
 lo que esperaba(n)," was confirmed legal via `el-vuelo-cancelado`
-precedent and kept as-is). B1-C2 are still empty — the next natural slice
-of this gap. `Readings.jsx`
+precedent and kept as-is).
+
+A third batch (5 A1 + 5 A2, 07-12-2026) took a different angle at the
+user's request: "some can be non-fiction/real-world news/history/
+biography... take liberties." The project's original spec says real
+media is for learners "once they have a functional foundation — not
+from day one," so nonfiction content was split by level rather than
+avoided outright: the 3 A1 nonfiction pieces (`rafael-nadal-el-tenista`,
+`machu-picchu-la-ciudad-antigua`, `como-hacen-miel-las-abejas`) are
+told in present-tense "profile/description" style — no narrated past
+events, matching A1's no-preterite rule — while the 3 A2 nonfiction
+pieces (`la-llegada-a-la-luna`, the Apollo 11 moon landing;
+`frida-kahlo-la-pintora-mexicana`; `la-construccion-de-la-torre-eiffel`)
+narrate real historical events/biography in preterite, the same way the
+fiction passages already do. All factual claims were kept to
+extremely well-established, safely-recalled history (moon-landing date
+and crew, Eiffel Tower's construction years and purpose, Frida Kahlo's
+birth/accident/marriage/death years) rather than anything time-sensitive
+or contested; the remaining 2 A1 and 2 A2 passages are ordinary
+invented-fiction slice-of-life scenes for topic variety
+(`la-primera-clase-de-natacion-de-sofia`, `la-mascota-nueva-de-los-ruiz`,
+`la-mudanza-de-los-herrera`, `el-examen-de-conducir-de-valentina`). 111
+new `vocabulary.js` words. A blind AI-tell review (fresh agent, zero
+authoring context) found real cross-passage templating despite each
+passage being independently plausible on its own: two passages closed
+with a near-identical "Por eso, [subject] es/son [adjective]..."
+formula, three closed with a sentence opening "Hoy, ...", a
+"miles de/millones de + noun" quantity-opener was reused 5 times, 4 of
+5 dialogue tags followed the exact same "— [verb] [subject], con una
+sonrisa [adjective]" shape, and two of the four fiction pieces
+(the swimming-lesson and driving-test passages) were built on an
+identical "nervous student meets a smiling instructor" skeleton right
+down to the tag structure. The nonfiction pieces also had real
+biography-specific problems: bare evaluative filler sentences that
+padded length without adding information (Nadal: "Tiene catorce
+títulos... Es un número muy alto"; Eiffel: "La torre... pesa mucho"),
+three consecutive sentences in the Machu Picchu passage restating the
+same idea without new content, and one direct self-contradiction
+("Machu Picchu está vacío. Solo llegan turistas."). Every finding was
+fixed: de-duplicated closing formulas, varied dialogue-tag structure
+(some now end on a concrete action instead of a smile), replaced filler
+sentences with concrete real details (a trophy room, the tower's actual
+approximate weight, artists criticizing the design), fixed the
+contradiction, and diversified the emotion vocabulary beyond
+sonreír/feliz (aliviado, contento, orgulloso). B1-C2 are still empty —
+the next natural slice of this gap. `Readings.jsx`
 lists passages at `/readings`; `ReadingPassage.jsx` renders one at
 `/readings/:passageId` with a "Ver traducción" toggle for the English
 (page/route/nav renamed "Reading" → "Readings" 07-10-2026;
@@ -2108,3 +2152,36 @@ full account of any of these.
   password-reset path at all — added a "Forgot password?" toggle that
   reveals an honest inline note (no self-service reset exists yet, open
   a GitHub issue) rather than a fake email address or a dead-end button.
+- **07-12-2026** — Third reading-passages batch (5 A1 + 5 A2, 25 → 41
+  total), the first to include nonfiction: real biography/history
+  content (Rafael Nadal, Machu Picchu, how bees make honey at A1; the
+  Apollo 11 moon landing, Frida Kahlo, the Eiffel Tower's construction
+  at A2, all narrated in preterite like the fiction passages) alongside
+  4 ordinary fiction slice-of-life scenes. Split nonfiction content by
+  level per the project's original spec ("real media... not from day
+  one") rather than avoiding it outright — A1 nonfiction stays
+  present-tense/no-preterite, A2 nonfiction narrates real past events
+  the same way A2 fiction already does — and kept every factual claim
+  to safely-recalled, uncontested history rather than anything
+  time-sensitive. 111 new `vocabulary.js` words (1874 → 1985). A blind
+  AI-tell review caught real cross-passage templating invisible within
+  any single passage: two near-identical "Por eso, X es/son..." closers,
+  three "Hoy, ..." closers, a "miles/millones de" quantity-opener reused
+  5 times, 4 of 5 dialogue tags following an identical "— [verb]
+  [subject], con una sonrisa [adjective]" shape, two fiction passages
+  (swimming lesson, driving test) built on an identical
+  nervous-student-meets-smiling-instructor skeleton, plus
+  nonfiction-specific problems — bare evaluative filler sentences
+  padding length with no new information, three consecutive Machu
+  Picchu sentences restating one idea, and a real self-contradiction
+  ("está vacío. Solo llegan turistas."). Every finding was fixed
+  (de-duplicated closers, varied dialogue-tag structure toward concrete
+  actions instead of smiles, replaced filler with concrete real details,
+  fixed the contradiction, diversified emotion vocabulary beyond
+  sonreír/feliz) — see "Readings" above for the full list. Re-verified
+  zero grammar violations and zero vocabulary gaps against the final
+  post-fix text, then verified live end-to-end (`wrangler pages dev` +
+  a registered test user): all 10 titles and dates render on
+  `/readings`, a nonfiction passage (Apollo 11) renders correctly with
+  every new word clickable, and the comprehension-question flow works
+  on a biography passage (Frida Kahlo).
