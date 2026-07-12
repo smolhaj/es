@@ -5,6 +5,7 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import styles from './Dashboard.module.css';
 import { CONCEPT_LABELS } from '../content/conceptLabels.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 
 
 function StatCard({ label, value, sub }) {
@@ -37,6 +38,7 @@ function SessionRow({ session }) {
 }
 
 export default function Dashboard() {
+  useDocumentTitle('Dashboard');
   const { token, user } = useAuth();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);

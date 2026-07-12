@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Profile.module.css';
 
 const SKILL_ORDER = ['grammar', 'reading', 'writing', 'listening'];
@@ -17,6 +18,7 @@ const SUGGESTIONS = [
 ];
 
 export default function Profile() {
+  useDocumentTitle('Profile');
   const { token, user } = useAuth();
   const [context, setContext] = useState([]);
   const [cefrHistory, setCefrHistory] = useState([]);

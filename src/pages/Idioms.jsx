@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { IDIOMS, CATEGORIES, CEFR_LEVELS } from '../content/idioms.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Idioms.module.css';
 
 const categoryCounts = IDIOMS.reduce((acc, i) => {
@@ -65,6 +66,7 @@ function IdiomCard({ item }) {
 }
 
 export default function Idioms() {
+  useDocumentTitle('Idioms');
   const [search, setSearch] = useState('');
   const [filterCat, setFilterCat] = useState('');
   const [filterReg, setFilterReg] = useState('');

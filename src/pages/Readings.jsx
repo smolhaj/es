@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import { PASSAGES, formatWrittenDate } from '../content/readings.js';
 import { isPassageComplete, togglePassageComplete } from '../lib/readingProgress.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Readings.module.css';
 
 const FORMAT_LABELS = { standalone: 'Standalone scene', story: 'Story' };
@@ -18,6 +19,7 @@ function estimateReadMinutes(passage) {
 }
 
 export default function Readings() {
+  useDocumentTitle('Readings');
   const [completed, setCompleted] = useState({});
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState('level'); // 'level' | 'newest'

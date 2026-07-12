@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import SpeakButton from '../components/SpeakButton.jsx';
 import { COGNATE_PATTERNS } from '../content/cognate-patterns.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './CognatePatterns.module.css';
 
 const RELIABILITY_LABELS = { high: 'Reliable', medium: 'Usually works' };
@@ -71,6 +72,7 @@ function PatternCard({ item }) {
 }
 
 export default function CognatePatterns() {
+  useDocumentTitle('Cognates');
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
 

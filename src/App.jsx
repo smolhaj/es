@@ -25,6 +25,7 @@ import Concepts from './pages/Concepts.jsx';
 import Resources from './pages/Resources.jsx';
 import Readings from './pages/Readings.jsx';
 import ReadingPassage from './pages/ReadingPassage.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 function Protected({ children }) {
   const { isLoggedIn } = useAuth();
@@ -67,7 +68,7 @@ export default function App() {
         <Route path="/resources" element={<Protected><Resources /></Protected>} />
         <Route path="/readings" element={<Protected><Readings /></Protected>} />
         <Route path="/readings/:passageId" element={<Protected><ReadingPassage /></Protected>} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthProvider>
   );

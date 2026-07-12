@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { PRONUNCIATION_RULES, CATEGORIES } from '../content/pronunciation.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Pronunciation.module.css';
 
 function RuleCard({ rule, expanded, onToggle }) {
@@ -78,6 +79,7 @@ function RuleCard({ rule, expanded, onToggle }) {
 }
 
 export default function Pronunciation() {
+  useDocumentTitle('Pronunciation');
   const [filterCat, setFilterCat] = useState('');
   const [expandedId, setExpandedId] = useState(null);
 

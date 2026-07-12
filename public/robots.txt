@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /learn
+Disallow: /session
+Disallow: /dashboard
+Disallow: /flashcards
+Disallow: /account
+
+Sitemap: https://es-cpo.pages.dev/sitemap.xml

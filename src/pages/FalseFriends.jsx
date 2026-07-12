@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { FALSE_FRIENDS, CEFR_LEVELS } from '../content/false-friends.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './FalseFriends.module.css';
 
 const DANGER_COLORS = { high: 'dangerHigh', medium: 'dangerMed', low: 'dangerLow' };
@@ -59,6 +60,7 @@ function FriendCard({ item }) {
 }
 
 export default function FalseFriends() {
+  useDocumentTitle('False Friends');
   const [filter, setFilter] = useState('');
   const [filterCefr, setFilterCefr] = useState('');
   const [search, setSearch] = useState('');

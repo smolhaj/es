@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Writing.module.css';
 
 export default function Writing() {
+  useDocumentTitle('Writing Portfolio');
   const { token } = useAuth();
   const [samples, setSamples] = useState([]);
   const [loading, setLoading] = useState(true);

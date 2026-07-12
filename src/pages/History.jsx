@@ -5,9 +5,11 @@ import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
 import styles from './History.module.css';
 import { CONCEPT_LABELS } from '../content/conceptLabels.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 
 
 export default function History() {
+  useDocumentTitle('Session History');
   const { token } = useAuth();
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);

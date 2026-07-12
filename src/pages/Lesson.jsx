@@ -10,6 +10,7 @@ import Feedback from '../components/Feedback.jsx';
 import { getUnit } from '../content/curriculum/index.js';
 import { buildCheckpointPractice } from '../lib/checkpoints.js';
 import { isAnswerCorrect } from '../lib/answerMatching.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Lesson.module.css';
 
 // phase: 'reading' | 'practice' | 'checking' | 'reveal' | 'feedback' | 'complete'
@@ -74,6 +75,8 @@ export default function Lesson() {
   const unit = baseUnit?.isCheckpoint
     ? (checkpointContent ? { ...baseUnit, ...checkpointContent } : null)
     : baseUnit;
+
+  useDocumentTitle(unit?.title ?? 'Lesson');
 
   // Seed lesson vocab into the FSRS-scheduled review queue (best-effort;
   // ignore "already exists" conflicts for words the learner has already met).

@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar.jsx';
 import SpeakButton from '../components/SpeakButton.jsx';
 import { scheduleFlashcard, formatInterval } from '../../functions/_lib/flashcardScheduler.js';
 import { detectCognate } from '../lib/cognates.js';
+import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Flashcards.module.css';
 
 const SESSION_SIZE = 20;
@@ -50,6 +51,7 @@ function toSchedulerItem(p) {
 }
 
 export default function Flashcards() {
+  useDocumentTitle('Flashcards');
   const { token } = useAuth();
   const [phase, setPhase] = useState('loading'); // loading | session | empty | complete
   const [queue, setQueue] = useState([]);
