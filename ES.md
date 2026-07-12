@@ -886,11 +886,35 @@ Gemini has no cross-request memory.
 
 ### Database schema
 
-`schema.sql` + incremental `schema-vN.sql` files, applied in order.
-**SQLite's `ALTER TABLE ADD COLUMN` isn't idempotent** — always check a
-column doesn't already exist earlier in the chain before adding a new
-migration. See "Deployment & ops conventions" below for the local-vs-remote
-D1 gotcha that has already caused two production outages.
+**Restructured 07-11-2026** into wrangler's real migrations system:
+`migrations/0001_initial_schema.sql` through `migrations/0011_reading_
+attempts_and_writing_correct.sql` (renamed 1:1 from the old loose
+`schema.sql`/`schema-v2.sql`...`schema-v11.sql` root-level files, content
+unchanged — `0003` is still the documented no-op). `npm run db:migrate:local`
+/ `npm run db:migrate` now run `wrangler d1 migrations apply DB
+--local`/`--remote` instead of a single `d1 execute --file=`, and
+`npm run db:migrate:create` scaffolds the next numbered file
+(`wrangler d1 migrations create DB <message>`). Wrangler tracks applied
+migrations in its own `d1_migrations` bookkeeping table (auto-created,
+`name`/`applied_at` columns) so `apply` only ever runs migrations it hasn't
+seen before — this is what the old ad hoc `d1 execute --file=schema.sql`
+approach never had, and it's exactly what caused both outages below.
+Production already had migrations 1-11 applied (by hand, over many
+sessions) before this restructuring, so it needed a one-time baseline
+rather than a real re-run: `scripts/baseline-migrations.sql` creates the
+`d1_migrations` table and marks 0001-0011 as already-applied (inserts
+only, no DDL re-executed) — run once via `wrangler d1 execute DB --remote
+--file=scripts/baseline-migrations.sql` before the first `npm run
+db:migrate`. Local dev DBs don't need this — `db:migrate:local` on an
+unmigrated local D1 just runs 0001-0011 for real, verified working from a
+clean `.wrangler/state` wipe. **SQLite's `ALTER TABLE ADD COLUMN` isn't
+idempotent** — always check a column doesn't already exist earlier in the
+chain before adding a new migration; this no longer causes lost migrations
+the way it did before (see the schema-v3 lesson below), since wrangler's
+bookkeeping means a failed migration just fails loudly and doesn't get
+marked applied, rather than silently being skippable. See "Deployment &
+ops conventions" below for the local-vs-remote D1 gotcha that caused two
+production outages under the old system.
 
 ## Deployment & ops conventions
 
@@ -2046,3 +2070,41 @@ full account of any of these.
   dates render on `/readings`, sort/search/hide-completed controls work,
   a full multiple-choice comprehension question graded correctly against
   the corrected answer text, and the manual mark-as-read toggle worked.
+- **07-11-2026** — Repo-structure audit (organization/scalability) + a
+  small-wins audit (SEO/UX/a11y), both done via independent read-only
+  investigation before any changes. Acted on the highest-priority finding
+  first: the ad hoc migration setup (loose `schema.sql`/`schema-vN.sql`
+  files at repo root, applied by hand) that had already caused two real
+  production incidents was restructured into wrangler's real
+  `migrations/` system — see "Database schema" above for the mechanics
+  and the one-time production baseline step this requires
+  (`scripts/baseline-migrations.sql`). Verified end-to-end against a
+  fully-wiped local D1: fresh `wrangler d1 migrations apply DB --local`
+  applied all 11 migrations cleanly, and register/login/flashcards-
+  progress/learner-profile all worked against the resulting schema.
+  Other audit findings (reference-page CSS duplication across 10 pages,
+  2.4MB unsplit main JS bundle, `src/content/*.js` growth) were
+  deliberately left for a future pass — real but lower-urgency than a
+  finding with actual outage history, and each is a bigger unit of work
+  than "quick win" scope.
+- **07-12-2026** — Small-wins batch from the same audit, all verified
+  live via `wrangler pages dev` + Playwright: (1) every page now sets
+  its own document title via a new `useDocumentTitle(title)` hook
+  (`src/hooks/useDocumentTitle.js`) instead of the single static
+  `index.html` title everywhere — dynamic where it matters
+  (`ReadingPassage.jsx` shows the passage title, `Lesson.jsx` shows the
+  unit title, `Auth.jsx` shows "Sign in"/"Create account"); (2) added
+  Open Graph/Twitter meta tags and a canonical link to `index.html`;
+  (3) added `public/robots.txt` and `public/sitemap.xml` (only the 3
+  public routes — everything else is behind `Protected`, so excluded);
+  (4) `App.jsx`'s catch-all route silently redirected unknown URLs to
+  `/`, discarding the fact that something was actually wrong (e.g. a
+  stale bookmark or typo'd link) — replaced with a real
+  `src/pages/NotFound.jsx` 404 page that's still auth-aware (links back
+  to `/dashboard` vs `/` depending on login state); (5) added PNG
+  favicon fallbacks (16/32px + a 180px apple-touch-icon, generated from
+  the existing `favicon.svg` via `sharp`) alongside the SVG one Safari/
+  iOS don't reliably pick up; (6) `Auth.jsx`'s login form had no
+  password-reset path at all — added a "Forgot password?" toggle that
+  reveals an honest inline note (no self-service reset exists yet, open
+  a GitHub issue) rather than a fake email address or a dead-end button.
