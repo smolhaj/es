@@ -21,14 +21,18 @@ import peopleAroundYou from './unit10-people-around-you.js';
 import whatHappened from './unit11-what-happened.js';
 import obligationsRequests from './unit12-obligations-requests.js';
 import rightNowSoon from './unit13-right-now-soon.js';
+import phonePlans from './unit-a2-phone-plans.js';
 import comparingDescribing from './unit14-comparing-describing.js';
 import shopping from './unit-a2-shopping.js';
 import irregularPresent from './unit15-irregular-present.js';
 import recentOngoing from './unit16-recent-ongoing.js';
 import pastInDetail from './unit17-past-in-detail.js';
+import hotelTravel from './unit-b1-hotel-travel.js';
 import futureHypotheticals from './unit18-future-hypotheticals.js';
 import opinionsCommands from './unit19-opinions-commands.js';
 import directionsTransport from './unit-b1-directions-transport.js';
+import doctorPharmacy from './unit-b1-doctor-pharmacy.js';
+import emergencies from './unit-b1-emergencies.js';
 import nuanceConnection from './unit20-nuance-connection.js';
 import efficiencyEmphasis from './unit21-efficiency-emphasis.js';
 import perfectTenses from './unit22-perfect-tenses.js';
@@ -70,14 +74,18 @@ const CONTENT = {
   'what-happened': whatHappened,
   'obligations-requests': obligationsRequests,
   'right-now-soon': rightNowSoon,
+  'phone-plans': phonePlans,
   'comparing-describing': comparingDescribing,
   'shopping': shopping,
   'irregular-present': irregularPresent,
   'recent-ongoing': recentOngoing,
   'past-in-detail': pastInDetail,
+  'hotel-travel': hotelTravel,
   'future-hypotheticals': futureHypotheticals,
   'opinions-commands': opinionsCommands,
   'directions-transport': directionsTransport,
+  'doctor-pharmacy': doctorPharmacy,
+  'emergencies': emergencies,
   'nuance-connection': nuanceConnection,
   'efficiency-emphasis': efficiencyEmphasis,
   'perfect-tenses': perfectTenses,
@@ -165,6 +173,9 @@ export const UNIT_METADATA = [
   { id: 'right-now-soon', order: 13, level: 'A2', title: 'Right Now & Soon',
     concepts: ['present_progressive', 'near_future', 'time_expressions'],
     summary: 'What\'s happening right now, what\'s about to happen, and since when.' },
+  { id: 'phone-plans', order: 13.5, level: 'A2', title: 'Phone Calls & Making Plans',
+    concepts: ['phone_plans'],
+    summary: 'Answer the phone, take a message, and arrange to meet up.' },
   { id: 'comparing-describing', order: 14, level: 'A2', title: 'Comparing & Describing',
     concepts: ['ser_vs_estar', 'adverbs_formation', 'comparatives_basic', 'prepositions_basic', 'relative_clauses_core'],
     summary: 'The famous ser-vs-estar contrast, comparing things with más/tan, adverbs, prepositions, and describing with que/donde.' },
@@ -185,6 +196,9 @@ export const UNIT_METADATA = [
   { id: 'past-in-detail', order: 17, level: 'B1', title: 'The Past in Detail',
     concepts: ['preterite_irregular', 'imperfect', 'preterite_vs_imperfect'],
     summary: 'Two past tenses, one clear rule for choosing between them.' },
+  { id: 'hotel-travel', order: 17.5, level: 'B1', title: 'Hotel & Travel Logistics',
+    concepts: ['hotel_travel'],
+    summary: 'Check in, ask about your room, and handle a booking problem.' },
   { id: 'future-hypotheticals', order: 18, level: 'B1', title: 'Future & Hypotheticals',
     concepts: ['future_simple', 'conditional'],
     summary: 'What will happen, and what would happen.' },
@@ -194,8 +208,14 @@ export const UNIT_METADATA = [
   { id: 'directions-transport', order: 19.1, level: 'B1', title: 'Directions & Getting Around',
     concepts: ['directions_transport'],
     summary: 'Ask for and give directions, and navigate buses and trains.' },
+  { id: 'doctor-pharmacy', order: 19.2, level: 'B1', title: 'At the Doctor & Pharmacy',
+    concepts: ['doctor_pharmacy'],
+    summary: 'Describe symptoms, get advice, and ask about medication.' },
+  { id: 'emergencies', order: 19.3, level: 'B1', title: 'Emergencies',
+    concepts: ['emergencies'],
+    summary: 'Get help fast — report a theft, an accident, or a medical emergency.' },
   { id: 'checkpoint-b1', order: 19.5, level: 'B1', title: 'Checkpoint: Units 1-19', isCheckpoint: true,
-    checkpointUpTo: 19.1, coversUnits: 'Units 1-19', concepts: [],
+    checkpointUpTo: 19.3, coversUnits: 'Units 1-19', concepts: [],
     summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'nuance-connection', order: 20, level: 'B1', title: 'Nuance & Connection',
     concepts: ['por_vs_para', 'relative_clauses', 'saber_vs_conocer', 'lo_neutro'],

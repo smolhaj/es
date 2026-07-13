@@ -2268,6 +2268,24 @@ export const VOCABULARY = [
   { es: 'conductor', en: 'driver', cefr: 'A2', domain: 'professions', frequencyRank: 290, example: 'Le preguntó al conductor si iba al centro.', exampleEn: 'She asked the driver if it went downtown.' },
   { es: 'bajarse', en: 'to get off (a vehicle)', cefr: 'A2', domain: 'verbs', frequencyRank: 330, example: 'Me bajo en la próxima parada.', exampleEn: "I'm getting off at the next stop." },
   { es: 'ida y vuelta', en: 'round trip', cefr: 'B1', domain: 'travel', frequencyRank: 340, example: 'Quisiera un billete de ida y vuelta.', exampleEn: 'I would like a round-trip ticket.' },
+
+  // Situational: phone calls, hotel, doctor/pharmacy, emergencies
+  { es: 'aló', en: 'hello (answering the phone, Latin America)', cefr: 'A2', domain: 'greetings', frequencyRank: 210, example: '¿Aló? ¿Quién habla?', exampleEn: 'Hello? Who is this?' },
+  { es: 'dígame', en: 'hello (answering the phone, Spain)', cefr: 'A2', domain: 'greetings', frequencyRank: 215, example: '¿Dígame? Soy Marta.', exampleEn: "Hello? It's Marta." },
+  { es: '¿de parte de quién?', en: "who's calling?", cefr: 'A2', domain: 'greetings', frequencyRank: 220, example: '¿De parte de quién, por favor?', exampleEn: "Who's calling, please?" },
+  { es: 'dejar un mensaje', en: 'to leave a message', cefr: 'A2', domain: 'greetings', frequencyRank: 230, example: '¿Puedo dejar un mensaje?', exampleEn: 'Can I leave a message?' },
+  { es: 'doble', en: 'double', cefr: 'A2', domain: 'adjectives', frequencyRank: 260, example: 'Quisiera una habitación doble.', exampleEn: 'I would like a double room.' },
+  { es: 'sencillo', en: 'simple / single (room)', cefr: 'A2', domain: 'adjectives', frequencyRank: 265, example: 'Prefiero una habitación sencilla.', exampleEn: 'I prefer a single room.' },
+  { es: 'registrarse', en: 'to check in (hotel)', cefr: 'B1', domain: 'verbs', frequencyRank: 350, example: 'Quisiera registrarme, por favor.', exampleEn: 'I would like to check in, please.' },
+  { es: 'verificar', en: 'to verify / to check', cefr: 'B1', domain: 'verbs', frequencyRank: 320, example: '¿Podría verificar mi reserva?', exampleEn: 'Could you verify my reservation?' },
+  { es: 'coincidir', en: 'to match / to coincide', cefr: 'B1', domain: 'verbs', frequencyRank: 330, example: 'Mi habitación no coincide con lo que reservé.', exampleEn: "My room doesn't match what I reserved." },
+  { es: 'náusea', en: 'nausea', cefr: 'A2', domain: 'health', frequencyRank: 340, example: 'Tengo náuseas desde esta mañana.', exampleEn: "I've had nausea since this morning." },
+  { es: 'jarabe', en: 'syrup (medicine)', cefr: 'A2', domain: 'health', frequencyRank: 350, example: '¿Tiene jarabe para la tos?', exampleEn: 'Do you have cough syrup?' },
+  { es: 'socorro', en: 'help! (emergency)', cefr: 'A2', domain: 'greetings', frequencyRank: 400, example: '¡Socorro! ¡Necesito ayuda!', exampleEn: 'Help! I need help!' },
+  { es: 'auxilio', en: 'help! (formal/emergency)', cefr: 'B1', domain: 'greetings', frequencyRank: 410, example: '¡Auxilio! ¡Llamen a la policía!', exampleEn: 'Help! Call the police!' },
+  { es: 'emergencia', en: 'emergency', cefr: 'A2', domain: 'nouns', frequencyRank: 320, example: 'Es una emergencia, necesito un médico.', exampleEn: 'It is an emergency, I need a doctor.' },
+  { es: 'ambulancia', en: 'ambulance', cefr: 'A2', domain: 'nouns', frequencyRank: 330, example: 'Llame a una ambulancia, por favor.', exampleEn: 'Call an ambulance, please.' },
+  { es: 'herido', en: 'injured / wounded', cefr: 'B1', domain: 'adjectives', frequencyRank: 360, example: 'Hay una persona herida en la calle.', exampleEn: "There's an injured person on the street." },
 ];
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();

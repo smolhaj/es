@@ -180,6 +180,11 @@ export const CONCEPTS = {
     category: 'vocabulary', prereqs: ['preterite_regular'],
     explanationStyles: ['example_first', 'rule_first', 'contrastive'],
   },
+  phone_plans: {
+    id: 'phone_plans', label: 'Phone calls & making plans', cefr: 'A2',
+    category: 'vocabulary', prereqs: ['near_future', 'time_expressions'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
   present_progressive: {
     id: 'present_progressive', label: 'Present progressive (estar + gerund)', cefr: 'A2',
     category: 'verb', prereqs: ['estar_basics', 'present_ar', 'present_er_ir'],
@@ -252,6 +257,11 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['preterite_irregular', 'imperfect'],
     explanationStyles: ['contrastive', 'story', 'rule_first', 'example_first'],
   },
+  hotel_travel: {
+    id: 'hotel_travel', label: 'Hotel check-in & travel logistics', cefr: 'B1',
+    category: 'vocabulary', prereqs: ['preterite_vs_imperfect'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
   future_simple: {
     id: 'future_simple', label: 'Simple future (-é/-ás/-á)', cefr: 'B1',
     category: 'verb', prereqs: ['modal_verbs'],
@@ -275,6 +285,16 @@ export const CONCEPTS = {
   directions_transport: {
     id: 'directions_transport', label: 'Asking for directions & public transport', cefr: 'B1',
     category: 'vocabulary', prereqs: ['imperative', 'estar_basics'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
+  doctor_pharmacy: {
+    id: 'doctor_pharmacy', label: 'At the doctor & pharmacy', cefr: 'B1',
+    category: 'vocabulary', prereqs: ['gustar_type', 'present_subjunctive'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
+  emergencies: {
+    id: 'emergencies', label: 'Emergencies & getting help', cefr: 'B1',
+    category: 'vocabulary', prereqs: ['imperative'],
     explanationStyles: ['example_first', 'rule_first', 'story'],
   },
   por_vs_para: {
