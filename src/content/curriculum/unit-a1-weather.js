@@ -15,7 +15,7 @@ export default {
       heading: 'What\'s the Weather Like? Hace + Noun',
       paragraphs: [
         "Talking about weather in Spanish works differently than in English, and the good news is that once you learn the pattern, it barely changes. English says \"it is hot/cold/windy,\" treating weather as a state of being — Spanish instead says the weather \"makes\" heat, cold, or wind, using the verb hacer (\"to make/do\"): hace calor (\"it's hot,\" literally \"it makes heat\"), hace frío (\"it's cold\"), hace sol (\"it's sunny\"), hace viento (\"it's windy\"). You'll also hear the more general hace buen tiempo (\"the weather is nice\") and hace mal tiempo (\"the weather is bad\") for an overall verdict rather than a specific condition.",
-        "One detail makes this genuinely easy: every one of these phrases uses the exact same verb form, hace, and nothing else. Weather hacer is impersonal — it has no subject (not \"the weather,\" not \"it,\" nothing) and is used only in this one fixed third-person-singular form. You will never see hago calor or haces frío; hace is the only form weather-hacer ever takes, no matter who's asking or what day it is.",
+        "One detail makes this genuinely easy: weather hacer never changes for person. It's impersonal — it has no subject (not \"the weather,\" not \"it,\" nothing) and only ever appears in its third-person-singular form. You will never see hago calor or haces frío. It can still shift for when you're talking about — hace calor (now), hizo calor (yesterday, past) — but there's never a hago/haces/hacemos version; weather hacer simply doesn't conjugate for who's asking, only for when.",
         'To ask about the weather, use ¿Qué tiempo hace? ("What\'s the weather like?" — literally "what weather does it make"). The answer just plugs one of the hace phrases back in: ¿Qué tiempo hace hoy? — Hace mucho calor ("What\'s the weather like today? — It\'s very hot"). Notice mucho, not muy, stacks onto these noun-based phrases for "very/a lot" — hace mucho calor, not hace muy calor — because calor, frío, sol, and viento are nouns here, not adjectives, and mucho is what pairs with a noun.',
       ],
       examples: [
@@ -27,7 +27,7 @@ export default {
       ],
       commonMistakes: [
         'Don\'t say "muy calor" or "muy frío" — calor and frío are nouns in these weather phrases, so they pair with mucho (mucho calor, mucho frío), the same way mucho pairs with any other noun. Muy is reserved for adjectives, which is a different pattern you\'ll meet soon.',
-        'Weather hacer only exists as hace — there is no "yo hago calor" or any other person; if you catch yourself conjugating it for a subject, stop and use the fixed form hace instead.',
+        'Weather hacer never conjugates for a person — there is no "yo hago calor" or "tú haces frío"; if you catch yourself conjugating it for a subject, stop and use the third-person form (hace, hizo, hacía...) instead.',
         '"Ser" and "estar" don\'t work for these particular phrases — you cannot say "es calor" or "está calor." Hace calor is the only correct way to say "it\'s hot" (weather).',
       ],
     },
@@ -36,7 +36,7 @@ export default {
       paragraphs: [
         "Hace covers heat, cold, sun, and wind, but three more common weather situations each use a different pattern. Rain and snow get their own dedicated impersonal verbs: llover (\"to rain\") and nevar (\"to snow\"), and just like weather-hacer, each one is only ever used in a single fixed form — llueve (\"it's raining/it rains\") and nieva (\"it's snowing/it snows\"). No subject, no other conjugated forms: not \"yo lluevo,\" not \"ellos nievan.\" Llueve mucho en abril (\"It rains a lot in April\") and No nieva aquí en diciembre (\"It doesn't snow here in December\") are as far as these two verbs ever go.",
         'Cloudy and clear skies use estar, the verb you already know for temporary states, paired with an adjective: está nublado ("it\'s cloudy") and está despejado ("it\'s clear," "the sky is clear") — the same pattern as estoy cansado, just describing the sky instead of a person. And for weather phenomena that are more like "things that are present" — fog, a storm — Spanish reaches for hay, the same word you already use to say something exists: hay niebla ("there\'s fog"), hay tormenta ("there\'s a storm").',
-        "So three tools, three different jobs: hace for heat/cold/sun/wind, llueve/nieva as their own fixed one-word answers for rain and snow, está for describing the sky as cloudy or clear, and hay for announcing that fog or a storm is present. All of them stay in this same fixed present-tense form regardless of who's asking or talking — that consistency is what makes weather talk one of the easier corners of Spanish once the pattern clicks.",
+        "So three tools, three different jobs: hace for heat/cold/sun/wind, llueve/nieva as their own fixed one-word answers for rain and snow, está for describing the sky as cloudy or clear, and hay for announcing that fog or a storm is present. None of them ever changes for person — there's no \"yo\" or \"tú\" version of any of them — though, like any verb, they can still shift tense to talk about yesterday or tomorrow's weather (mañana estará despejado, \"tomorrow it will be clear\"). That person-invariance is what makes weather talk one of the easier corners of Spanish once the pattern clicks.",
       ],
       examples: [
         { es: 'Llueve mucho en esta ciudad.', en: 'It rains a lot in this city.' },
@@ -47,7 +47,7 @@ export default {
         { es: 'Dicen que hay tormenta esta noche.', en: "They say there's a storm tonight." },
       ],
       commonMistakes: [
-        'Don\'t invent other forms of llover/nevar — "yo lluevo" and "tú nievas" are not real Spanish; these two verbs only ever appear as llueve and nieva.',
+        'Don\'t invent a personal form of llover/nevar — "yo lluevo" and "tú nievas" are not real Spanish; these two verbs only ever conjugate in the third-person singular (llueve, nieva, llovía, nevará...) and, like any verb, keep their plain infinitive form after another verb (va a llover).',
         'Don\'t reach for hay when describing the sky itself — "hay nublado" is incorrect. Nublado and despejado are adjectives describing a state, so they pair with estar (está nublado), not hay, which is reserved for announcing something\'s presence (hay niebla, hay tormenta).',
         "Fog and storms use hay, not hace — you can't say \"hace niebla\" or \"hace tormenta\"; only calor, frío, sol, viento, and buen/mal tiempo pair with hace.",
       ],

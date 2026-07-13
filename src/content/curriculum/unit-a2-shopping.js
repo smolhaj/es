@@ -27,7 +27,7 @@ export default {
         { es: '¿Tiene esto en otro color, por favor?', en: 'Do you have this in another color, please?' },
         { es: '¿Tiene algo más barato?', en: 'Do you have something cheaper?' },
         { es: 'Necesito una talla más grande.', en: 'I need a bigger size.' },
-        { es: 'Prefiero el rojo al azul.', en: 'I prefer the red one to the blue one.' },
+        { es: 'Esta bufanda es más barata que esa.', en: 'This scarf is cheaper than that one.' },
       ],
       commonMistakes: [
         "Don't forget cuesta/cuestan agreement from Unit 2 — ¿Cuánto cuesta estos zapatos? is wrong because zapatos is plural; it must be ¿Cuánto cuestan estos zapatos?",

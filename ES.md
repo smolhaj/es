@@ -386,7 +386,7 @@ along the way — see the relevant dated section in `ES-HISTORY.md`.
 
 ### Structured "Learn" curriculum
 
-47 taught units plus 9 review checkpoints (56 total), A1 through C2, at
+51 taught units plus 9 review checkpoints (60 total), A1 through C2, at
 `/learn`. Alongside the adaptive Gemini session and reference pages —
 doesn't replace either. B2 got 3 units added (fractional order 25.1-25.3,
 between "Fine Details" and the B2 checkpoint) closing a real gap: B2 had
@@ -514,7 +514,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2067 words as of 07-13-2026 (grown from
+`src/content/vocabulary.js` — 2083 words as of 07-13-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2346,3 +2346,46 @@ full account of any of these.
   logistics, doctor/pharmacy, emergencies) was identified during scoping
   but deliberately not built — the user is choosing which of these to
   pick up next turn-by-turn rather than all at once.
+- **07-13-2026** — Second functional/situational batch: "Phone Calls &
+  Making Plans" (A2, order 13.5, after Right Now & Soon — reuses
+  near_future/time_expressions), "Hotel & Travel Logistics" (B1, order
+  17.5, deliberately placed right after The Past in Detail so a booking-
+  gone-wrong example could put the freshly-taught preterite-vs-imperfect
+  contrast to real use), "At the Doctor & Pharmacy" (B1, order 19.2,
+  reuses doler/gustar_type and puts present_subjunctive to work for
+  medical advice — le recomiendo que descanse), and "Emergencies" (B1,
+  order 19.3, introduces the accidental/involuntary se construction — se
+  me perdió — as a new fixed functional phrase, since nothing in the
+  curriculum teaches it yet). 4 new concepts (124 → 128), 47 → 51 taught
+  units. 16 new `vocabulary.js` words (2067 → 2083); no accidental
+  duplicates. Verified live end-to-end (`wrangler pages dev` + local D1,
+  a registered test user, clearing the local rate-limit KV entry again):
+  all four lessons render correctly on `/learn` in their intended
+  sections with working practice sets.
+- **07-13-2026** — Proofread pass across all 11 files touched in both
+  situational batches plus the two modified existing units (numbers-time
+  ordinals section, who-you-are muy/mucho section), per user request.
+  Automated structural checks first (multiple-choice `answer`-vs-
+  `options` exact match, duplicate options, `concept_id`-vs-unit
+  consistency, in-unit vocab duplicates) came back clean across all 11
+  files — zero wrong-answer-key defects, the worst-case failure mode.
+  A fresh-eyes subagent with no session context then read every file in
+  full and found 2 real defects: (1) `unit-a1-weather.js` made an
+  unqualified absolute claim twice — "hace is the only form weather-
+  hacer ever takes" and "[hace/está/hay] stay in this same fixed
+  present-tense form" — that its own examples immediately contradicted
+  (`hizo` preterite, `estará` future in the very next block). Fixed by
+  correcting the claim to what's actually true: these verbs never
+  conjugate for *person* (no yo/tú form), not that they never conjugate
+  for *tense* — a real, substantive teaching-content bug, not a nitpick,
+  since a careful learner would have hit the contradiction directly.
+  (2) `unit04-who-you-are.js` had "français" (the French spelling, with
+  a letter — ç — that doesn't exist in Spanish) in a Spanish nationality-
+  adjectives list; should be "francés". This one predates today's work
+  (confirmed via `git diff origin/main`, not something introduced in
+  this session) but was fixed anyway since it's in a file touched today
+  and is a clear-cut error. Also fixed one minor low-severity note: an
+  `unit-a2-shopping.js` example used the untaught "preferir X a Y"
+  construction; replaced with a comparative already taught in the same
+  unit. Re-verified live after fixes (`wrangler pages dev`): all three
+  affected lessons still render correctly with the corrected prose.
