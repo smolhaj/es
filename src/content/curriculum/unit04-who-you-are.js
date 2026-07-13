@@ -1,5 +1,5 @@
 // Unit 04 — Who You Are (A1)
-// Covers: ser_basics, adjective_agreement
+// Covers: ser_basics, adjective_agreement, muy_vs_mucho
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -59,7 +59,7 @@ export default {
         "Now that you have ser, you need words to put after it — adjectives, the describing words. In Spanish, adjectives normally follow the noun they describe (una chica alta, \"a tall girl\") or follow ser directly (Ella es alta, \"She is tall\"), and — this is the new rule for this unit — an adjective has to agree in gender with whatever it's describing. That means many adjectives actually change their ending depending on whether you're describing something masculine or feminine.",
         'The most common pattern is the one you\'ve probably already guessed: an adjective ending in -o in its base (masculine) form swaps that -o for -a to describe something feminine. Alto becomes alta, guapo becomes guapa, delgado becomes delgada — one clean swap, and it applies to a large share of Spanish adjectives.',
         "Plenty of adjectives don't follow that pattern at all, though, because they don't end in -o to begin with. Adjectives ending in -e (inteligente, amable) and most adjectives ending in a consonant (feliz, joven) are invariant for gender — the exact same word describes a man or a woman, no change needed: Él es inteligente and Ella es inteligente use the identical word. There is a real exception to watch for, though: adjectives ending in -dor, -tor, -ón, or -ín do add -a for the feminine even though they end in a consonant — trabajador (hardworking) becomes trabajadora, not \"trabajador\" for both.",
-        'Nationality adjectives deserve their own note because they\'re a common source of mistakes. Nationalities ending in -o behave like any other -o/-a adjective (italiano → italiana). But the many nationalities that end in a consonant — français, inglés, alemán, and others — add -a for the feminine and, at the same time, drop the written accent mark: francés → francesa, inglés → inglesa, alemán → alemana. The stress stays on the same syllable either way; the accent mark is simply no longer needed to show it once the word gains that extra -a.',
+        'Nationality adjectives deserve their own note because they\'re a common source of mistakes. Nationalities ending in -o behave like any other -o/-a adjective (italiano → italiana). But the many nationalities that end in a consonant — francés, inglés, alemán, and others — add -a for the feminine and, at the same time, drop the written accent mark: francés → francesa, inglés → inglesa, alemán → alemana. The stress stays on the same syllable either way; the accent mark is simply no longer needed to show it once the word gains that extra -a.',
       ],
       examples: [
         { es: 'un chico alto / una chica alta', en: 'a tall boy / a tall girl' },
@@ -95,6 +95,27 @@ export default {
         'Don\'t add a plain -s to a consonant-ending adjective — feliz needs -es (felices), not "felizs" or "felices" spelled with a z, neither of which is correct Spanish spelling.',
         'Watch accent marks when a word gains a syllable in the plural — joven has no written accent, but jóvenes does, because of where the stress falls once the word is three syllables long.',
         'Adjectives must match both the gender AND the number of the noun at the same time — a group of tall girls is altas, combining the feminine -a with the plural -s, not just one or the other.',
+      ],
+    },
+    {
+      heading: '"Very" or "A Lot"? Muy vs. Mucho',
+      paragraphs: [
+        "You've already seen muy sprinkled through this unit's examples — Tú eres muy amable, Mi abuelo es muy simpático — without a formal explanation, so here it is. Muy means \"very,\" and it has exactly one job: it intensifies an adjective or another adverb. Muy alto (\"very tall\"), muy bien (\"very well\"). And muy has a feature that makes it refreshingly simple after all those agreement rules you just learned: it never changes. Not for gender, not for number — muy alto, muy alta, muy altos, muy altas all use the identical word muy, because muy itself isn't being described by anything; it's just sitting in front of an adjective, doing its one job.",
+        "Mucho, by contrast, means \"a lot of\" or \"many,\" and it behaves completely differently: it's not an intensifier, it's a quantity word that describes a noun, so it agrees in gender and number exactly like any adjective you've just practiced — mucho dinero (\"a lot of money,\" masculine singular), mucha gente (\"a lot of people,\" feminine singular), muchos libros (\"many books,\" masculine plural), muchas personas (\"many people,\" feminine plural).",
+        "The rule that separates them cleanly: muy goes directly before an adjective or adverb; mucho goes directly before a noun (and agrees with it). Tengo mucho hambre is a very common beginner slip — hambre (\"hunger\") is a noun, so it needs mucha, not muy: Tengo mucha hambre. Going the other direction, mucho alto is equally wrong — alto is an adjective, so it needs muy: muy alto. One more wrinkle worth knowing: mucho can also stand after a verb, with no noun at all, meaning \"a lot\" as a plain adverb — Estudio mucho (\"I study a lot\"), Duerme mucho (\"He sleeps a lot\"). In that adverbial job, mucho freezes in its base form and doesn't agree with anything, the same way muy never does.",
+      ],
+      examples: [
+        { es: 'Es muy alto.', en: 'He is very tall.' },
+        { es: 'Habla muy bien español.', en: 'She speaks Spanish very well.' },
+        { es: 'Tengo mucho trabajo hoy.', en: 'I have a lot of work today.' },
+        { es: 'Hay muchas personas en la fiesta.', en: 'There are many people at the party.' },
+        { es: 'Tengo mucha hambre, no mucho hambre.', en: "I'm very hungry (literally \"a lot of hunger\") — hambre is a noun, so it takes mucha, not muy." },
+        { es: 'Mi hermano estudia mucho.', en: 'My brother studies a lot. (adverbial mucho, invariable, after the verb)' },
+      ],
+      commonMistakes: [
+        'Don\'t say "muy hambre," "muy sed," or "muy tiempo" — hambre, sed, and tiempo are nouns, so they pair with mucha/mucho (mucha hambre, mucha sed, mucho tiempo), never with muy.',
+        'Don\'t say "mucho alto" or "mucho bien" — alto and bien are an adjective and an adverb, so they take muy (muy alto, muy bien), never mucho.',
+        'Mucho agreeing with a noun (mucha gente, muchos libros) is a completely different job from mucho standing alone after a verb (Trabaja mucho) — in the second case it never changes form, even though the first case does.',
       ],
     },
   ],
@@ -138,6 +159,14 @@ export default {
     { type: 'fill_blank', prompt: 'Complete: "Los niños son feliz___." (happy, plural)', word: 'feliz', english: 'happy', answer: 'felices', concept_id: 'adjective_agreement', difficulty: 2 },
     { type: 'error_correction', prompt: 'Fix the mistake: "Ella es alto."', word: 'alto', english: 'tall', answer: 'Ella es alta.', concept_id: 'adjective_agreement', difficulty: 1 },
     { type: 'translation_to_english', prompt: '¿Qué significa "Somos trabajadores"?', word: 'trabajadores', english: 'hardworking', answer: 'We are hardworking.', concept_id: 'adjective_agreement', difficulty: 2 },
+
+    // ── muy_vs_mucho block (kept separate; blocked before mixed review) ──
+    { type: 'multiple_choice', prompt: 'Complete: "Es ___ alto." (very)', word: 'muy', english: 'very', answer: 'muy', options: ['muy', 'mucho', 'mucha', 'muchos'], concept_id: 'muy_vs_mucho', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "Tengo ___ trabajo." (a lot of, masculine)', word: 'mucho', english: 'a lot of', answer: 'mucho', concept_id: 'muy_vs_mucho', difficulty: 1 },
+    { type: 'error_correction', prompt: 'Fix the mistake: "Tengo muy hambre."', word: 'mucha', english: 'a lot of (hunger)', answer: 'Tengo mucha hambre.', concept_id: 'muy_vs_mucho', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'There are many people here.'", english: 'There are many people here.', answer: 'Hay muchas personas aquí.', word: 'muchas', concept_id: 'muy_vs_mucho', difficulty: 2 },
+    { type: 'multiple_choice', prompt: 'Which is correct?', word: 'muy bien', english: 'very well', answer: 'Habla muy bien.', options: ['Habla mucho bien.', 'Habla muy bien.', 'Habla muchos bien.', 'Habla mucha bien.'], concept_id: 'muy_vs_mucho', difficulty: 2 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Mi hermano estudia mucho"?', word: 'mucho', english: 'a lot', answer: 'My brother studies a lot.', concept_id: 'muy_vs_mucho', difficulty: 2 },
   ],
 };
 
@@ -170,6 +199,14 @@ export default {
 //   -z-ending adjectives change z → c before -es (feliz → felices); words
 //   that gain a syllable in the plural may need an added accent to preserve
 //   original stress (joven → jóvenes)
+// - muy vs. mucho: muy is an invariable adverb intensifying only adjectives/
+//   adverbs (muy alto, muy bien); mucho is a quantifier that agrees in
+//   gender/number when modifying a noun (mucho dinero, muchas personas),
+//   but freezes in its base form when used adverbially after a verb with no
+//   noun present (Estudio mucho) — confirmed via SpanishDict, Kwiziq, and
+//   Lawless Spanish's dedicated muy-vs-mucho comparisons
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // ser_basics and adjective_agreement in src/content/grammar.js (same facts,
 // fuller beginner-paced walkthrough) and does not contradict them.
+// muy_vs_mucho is a new concept (see functions/_lib/concepts.js) with no
+// prior GRAMMAR_CARDS entry.

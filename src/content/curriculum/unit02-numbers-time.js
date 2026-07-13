@@ -1,5 +1,5 @@
 // Unit 02 — Numbers & Time (A1)
-// Covers: numbers_1_20, numbers_21_100
+// Covers: numbers_1_20, numbers_21_100, ordinal_numbers
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -94,6 +94,26 @@ export default {
         "Mixing up cuesta (costar) with cuenta (contar, \"to count\"/the check at a restaurant) — they look and sound similar but mean very different things.",
       ],
     },
+    {
+      heading: 'First, Second, Third: Ordinal Numbers',
+      paragraphs: [
+        "Counting (uno, dos, tres) tells you how many; ordinal numbers tell you where something falls in a sequence — first, second, third. Spanish has ten dedicated ordinal words worth learning by heart, primero through décimo: primero (1st), segundo (2nd), tercero (3rd), cuarto (4th), quinto (5th), sexto (6th), séptimo (7th), octavo (8th), noveno (9th), décimo (10th). Like adjectives, ordinals agree in gender and number with the noun they describe: el primer piso (\"the first floor,\" masculine) but la primera clase (\"the first class,\" feminine), los primeros días (\"the first days,\" masculine plural).",
+        "That el primer piso example already shows the trickiest rule: primero and tercero shorten to primer and tercer the moment they sit directly before a masculine singular noun — the exact same kind of shortening (apocope) you already saw with uno → un. El primer día (\"the first day\"), el tercer intento (\"the third attempt\"). The shortening only happens before a masculine singular noun sitting right after it: la primera vez (feminine, stays full), los primeros días (plural, stays full), el año primero (after the noun instead of before, also stays full) all keep the complete word.",
+        'Here\'s a fact that will save you from overbuilding: past décimo, ordinals get long and clunky (undécimo, duodécimo, vigésimo...), and in everyday speech Spanish speakers mostly just skip them and use a cardinal number instead, placed after the noun rather than before it. Nobody says "el vigésimo quinto piso" for "the 25th floor" — they say el piso veinticinco. Compare that to el primer piso, where the true ordinal goes before the noun: ordinal-before-the-noun for 1st–10th, cardinal-after-the-noun for anything higher. You\'ll still see the higher ordinals in formal writing (kings\' names like Alfonso XIII, read aloud as Alfonso trece in speech, or centuries) — but for everyday speech, 1st–10th is what actually gets used.',
+      ],
+      examples: [
+        { es: 'Vivo en el primer piso.', en: 'I live on the first floor.' },
+        { es: 'Es la tercera vez que llamo.', en: "It's the third time I've called." },
+        { es: 'Llegó en quinto lugar.', en: 'She finished in fifth place.' },
+        { es: 'Es mi segundo año en la universidad.', en: "It's my second year at university." },
+        { es: 'El examen está en el piso veinticinco.', en: 'The exam is on the twenty-fifth floor.' },
+      ],
+      commonMistakes: [
+        'Don\'t say "el tercero piso" or "el primero día" — before a masculine singular noun, primero and tercero must shorten to primer and tercer: el primer día, el tercer piso.',
+        'Don\'t force a fancy ordinal past décimo in everyday speech — el piso veintiuno (cardinal, after the noun) sounds natural; el vigésimo primer piso sounds like a legal document.',
+        'Ordinals agree just like any other adjective — la primera clase, not "la primero clase"; los primeros días, not "los primero días."',
+      ],
+    },
   ],
 
   vocab: [
@@ -119,6 +139,16 @@ export default {
     { es: 'de la mañana', en: 'in the morning (AM)', example: 'Me levanto a las siete de la mañana.', exampleEn: 'I get up at 7 AM.' },
     { es: '¿Cuánto cuesta?', en: 'how much does it cost?', example: '¿Cuánto cuesta el café?', exampleEn: 'How much does the coffee cost?' },
     { es: 'número de teléfono', en: 'phone number', example: '¿Cuál es tu número de teléfono?', exampleEn: "What's your phone number?" },
+    { es: 'primero', en: 'first', example: 'Vivo en el primer piso.', exampleEn: 'I live on the first floor.' },
+    { es: 'segundo', en: 'second', example: 'Es mi segundo año aquí.', exampleEn: "It's my second year here." },
+    { es: 'tercero', en: 'third', example: 'Es el tercer intento.', exampleEn: "It's the third attempt." },
+    { es: 'cuarto', en: 'fourth', example: 'Llegó en cuarto lugar.', exampleEn: 'She finished in fourth place.' },
+    { es: 'quinto', en: 'fifth', example: 'Vivimos en el quinto piso.', exampleEn: 'We live on the fifth floor.' },
+    { es: 'sexto', en: 'sixth', example: 'Es la sexta vez que lo intento.', exampleEn: "It's the sixth time I've tried." },
+    { es: 'séptimo', en: 'seventh', example: 'Hoy es mi séptimo día aquí.', exampleEn: "Today is my seventh day here." },
+    { es: 'octavo', en: 'eighth', example: 'Está en el octavo capítulo.', exampleEn: "It's in the eighth chapter." },
+    { es: 'noveno', en: 'ninth', example: 'Es la novena canción del álbum.', exampleEn: "It's the ninth song on the album." },
+    { es: 'décimo', en: 'tenth', example: 'Vivo en el décimo piso.', exampleEn: 'I live on the tenth floor.' },
   ],
 
   practice: [
@@ -139,6 +169,14 @@ export default {
     { type: 'multiple_choice', prompt: 'How do you say 101 in Spanish?', word: 'ciento uno', english: '101', answer: 'ciento uno', options: ['cien uno', 'ciento uno', 'cien y uno', 'cientouno'], concept_id: 'numbers_21_100', difficulty: 2 },
     { type: 'translation_to_spanish', prompt: "Translate: 'It costs thirty euros.'", english: 'It costs thirty euros.', answer: 'Cuesta treinta euros.', word: 'cuesta', concept_id: 'numbers_21_100', difficulty: 2 },
     { type: 'fill_blank', prompt: 'Complete: "¿Cuánto ___ estos zapatos?" (plural form of costar, for multiple items)', word: 'cuestan', english: 'do they cost', answer: 'cuestan', concept_id: 'numbers_21_100', difficulty: 2 },
+
+    // ── ordinal_numbers block (kept separate; primero–décimo, primer/tercer apocope, cardinal-after-noun past 10th) ──
+    { type: 'translation_to_spanish', prompt: "Translate: 'the first day' (masculine, apocopated)", english: 'the first day', answer: 'el primer día', word: 'primer', concept_id: 'ordinal_numbers', difficulty: 2 },
+    { type: 'fill_blank', prompt: 'Complete: "Es la ___ vez que llamo." (third, feminine, no apocope)', word: 'tercera', english: 'third', answer: 'tercera', concept_id: 'ordinal_numbers', difficulty: 2 },
+    { type: 'multiple_choice', prompt: 'Which is correct for "the third attempt"?', word: 'tercer intento', english: 'the third attempt', answer: 'el tercer intento', options: ['el tercero intento', 'el tercer intento', 'el tercera intento', 'el tercero de intento'], concept_id: 'ordinal_numbers', difficulty: 2 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "el piso veinticinco"?', word: 'piso veinticinco', english: 'the 25th floor', answer: 'the twenty-fifth floor (floor 25)', concept_id: 'ordinal_numbers', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Fix the mistake: "Vivo en el tercero piso."', word: 'tercer', english: 'third', answer: 'Vivo en el tercer piso.', concept_id: 'ordinal_numbers', difficulty: 3 },
+    { type: 'multiple_choice', prompt: 'How would a Spanish speaker naturally say "the 25th floor" in everyday speech?', word: 'piso veinticinco', english: 'the 25th floor', answer: 'el piso veinticinco', options: ['el vigésimo quinto piso', 'el piso veinticinco', 'el veinticinco piso', 'el piso vigésimo cinco'], concept_id: 'ordinal_numbers', difficulty: 3 },
   ],
 };
 
@@ -169,7 +207,18 @@ export default {
 // - ¿Cuánto cuesta?/¿Cuánto vale? (costar/valer) with plural agreement for
 //   multiple items, and the common pairs-based convention for reading
 //   phone numbers aloud
+// - ordinal numbers primero–décimo (1st–10th), confirmed as the set in
+//   everyday active use; gender/number agreement like any adjective
+// - primero/tercero apocope to primer/tercer directly before a masculine
+//   singular noun only (not before feminine, not before plural, not when
+//   standing after the noun) — confirmed via SpanishDict and Spanish.Academy
+// - beyond décimo, cardinal numbers placed after the noun (el piso
+//   veinticinco) are confirmed as the everyday-speech norm over the
+//   grammatically-possible-but-rarely-used higher ordinal forms
+//   (vigésimo quinto), which are mentioned only as a forward pointer for
+//   formal/literary contexts (regnal names, centuries)
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // numbers_1_20 and numbers_21_100 in src/content/grammar.js (same facts,
 // fuller beginner-paced walkthrough with added time/phone/price coverage)
-// and does not contradict them.
+// and does not contradict them. ordinal_numbers is a new concept (see
+// functions/_lib/concepts.js) with no prior GRAMMAR_CARDS entry.

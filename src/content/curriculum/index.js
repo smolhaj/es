@@ -11,20 +11,28 @@ import numbersTime from './unit02-numbers-time.js';
 import peopleThings from './unit03-people-things.js';
 import whoYouAre from './unit04-who-you-are.js';
 import whereYouAre from './unit05-where-you-are.js';
+import weather from './unit-a1-weather.js';
 import everydayActions from './unit06-everyday-actions.js';
 import askingQuestions from './unit07-asking-questions.js';
 import dailyRoutine from './unit08-daily-routine.js';
 import likesDislikes from './unit09-likes-dislikes.js';
+import restaurant from './unit-a2-restaurant.js';
 import peopleAroundYou from './unit10-people-around-you.js';
 import whatHappened from './unit11-what-happened.js';
 import obligationsRequests from './unit12-obligations-requests.js';
 import rightNowSoon from './unit13-right-now-soon.js';
+import phonePlans from './unit-a2-phone-plans.js';
 import comparingDescribing from './unit14-comparing-describing.js';
+import shopping from './unit-a2-shopping.js';
 import irregularPresent from './unit15-irregular-present.js';
 import recentOngoing from './unit16-recent-ongoing.js';
 import pastInDetail from './unit17-past-in-detail.js';
+import hotelTravel from './unit-b1-hotel-travel.js';
 import futureHypotheticals from './unit18-future-hypotheticals.js';
 import opinionsCommands from './unit19-opinions-commands.js';
+import directionsTransport from './unit-b1-directions-transport.js';
+import doctorPharmacy from './unit-b1-doctor-pharmacy.js';
+import emergencies from './unit-b1-emergencies.js';
 import nuanceConnection from './unit20-nuance-connection.js';
 import efficiencyEmphasis from './unit21-efficiency-emphasis.js';
 import perfectTenses from './unit22-perfect-tenses.js';
@@ -34,6 +42,7 @@ import subjunctiveCounterfactualsConcession from './unit24-subjunctive-counterfa
 import fineDetails from './unit25-fine-details.js';
 import reportedSpeechBasic from './unit-b1-reported-speech-basic.js';
 import certaintyDoubtProbability from './unit-b1-certainty-doubt-probability.js';
+import absoluteSuperlative from './unit-b1-absolute-superlative.js';
 import argumentationWorkplace from './unit-b2-argumentation-workplace.js';
 import subjunctiveLimits from './unit26-subjunctive-limits.js';
 import reportedSpeech from './unit27-reported-speech.js';
@@ -55,20 +64,28 @@ const CONTENT = {
   'people-things': peopleThings,
   'who-you-are': whoYouAre,
   'where-you-are': whereYouAre,
+  'weather': weather,
   'everyday-actions': everydayActions,
   'asking-questions': askingQuestions,
   'daily-routine': dailyRoutine,
   'likes-dislikes': likesDislikes,
+  'restaurant': restaurant,
   'people-around-you': peopleAroundYou,
   'what-happened': whatHappened,
   'obligations-requests': obligationsRequests,
   'right-now-soon': rightNowSoon,
+  'phone-plans': phonePlans,
   'comparing-describing': comparingDescribing,
+  'shopping': shopping,
   'irregular-present': irregularPresent,
   'recent-ongoing': recentOngoing,
   'past-in-detail': pastInDetail,
+  'hotel-travel': hotelTravel,
   'future-hypotheticals': futureHypotheticals,
   'opinions-commands': opinionsCommands,
+  'directions-transport': directionsTransport,
+  'doctor-pharmacy': doctorPharmacy,
+  'emergencies': emergencies,
   'nuance-connection': nuanceConnection,
   'efficiency-emphasis': efficiencyEmphasis,
   'perfect-tenses': perfectTenses,
@@ -78,6 +95,7 @@ const CONTENT = {
   'fine-details': fineDetails,
   'reported-speech-basic': reportedSpeechBasic,
   'certainty-doubt-probability': certaintyDoubtProbability,
+  'absolute-superlative': absoluteSuperlative,
   'argumentation-workplace': argumentationWorkplace,
   'subjunctive-limits': subjunctiveLimits,
   'reported-speech': reportedSpeech,
@@ -103,20 +121,23 @@ export const UNIT_METADATA = [
     concepts: ['greeting_basics', 'subject_pronouns'],
     summary: 'Greet people, say goodbye, and use the right word for "you" and "I".' },
   { id: 'numbers-time', order: 2, level: 'A1', title: 'Numbers & Time',
-    concepts: ['numbers_1_20', 'numbers_21_100'],
-    summary: 'Count, tell time, and exchange phone numbers or prices.' },
+    concepts: ['numbers_1_20', 'numbers_21_100', 'ordinal_numbers'],
+    summary: 'Count, tell time, exchange phone numbers or prices, and say first, second, third.' },
   { id: 'people-things', order: 3, level: 'A1', title: 'People & Things',
     concepts: ['noun_gender', 'plural_nouns', 'definite_articles', 'indefinite_articles'],
     summary: 'Every Spanish noun has a gender — learn to spot it, make it plural, and use the right article.' },
   { id: 'who-you-are', order: 4, level: 'A1', title: 'Who You Are',
-    concepts: ['ser_basics', 'adjective_agreement'],
-    summary: 'Describe yourself and others with ser, and make adjectives agree.' },
+    concepts: ['ser_basics', 'adjective_agreement', 'muy_vs_mucho'],
+    summary: 'Describe yourself and others with ser, make adjectives agree, and tell muy apart from mucho.' },
   { id: 'checkpoint-a1', order: 4.5, level: 'A1', title: 'Checkpoint: Units 1-4', isCheckpoint: true,
     checkpointUpTo: 4, coversUnits: 'Units 1-4', concepts: [],
     summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'where-you-are', order: 5, level: 'A1', title: 'Where You Are',
     concepts: ['estar_basics', 'hay'],
     summary: 'Talk about location with estar, and say what there is with hay.' },
+  { id: 'weather', order: 5.5, level: 'A1', title: 'Weather',
+    concepts: ['weather_expressions'],
+    summary: 'Hace calor, llueve, está nublado — say what the weather is doing.' },
   { id: 'everyday-actions', order: 6, level: 'A1', title: 'Everyday Actions',
     concepts: ['present_ar', 'present_er_ir', 'irregular_present_core', 'modal_verbs_core', 'gustar_basico'],
     summary: 'Conjugate regular -ar, -er, and -ir verbs, plus your first irregulars: tener, ir, poder, querer, and gustar.' },
@@ -134,6 +155,9 @@ export const UNIT_METADATA = [
   { id: 'likes-dislikes', order: 9, level: 'A2', title: 'Likes & Dislikes',
     concepts: ['gustar_type', 'demonstratives'],
     summary: 'Gustar works backwards from English — learn to say what you like.' },
+  { id: 'restaurant', order: 9.5, level: 'A2', title: 'At the Café & Restaurant',
+    concepts: ['restaurant_ordering'],
+    summary: 'Get a table, order politely, and ask for the bill.' },
   { id: 'people-around-you', order: 10, level: 'A2', title: 'People & Things Around You',
     concepts: ['direct_object_pronouns', 'indirect_object_pronouns'],
     summary: 'Replace nouns with pronouns so you stop repeating yourself.' },
@@ -149,9 +173,15 @@ export const UNIT_METADATA = [
   { id: 'right-now-soon', order: 13, level: 'A2', title: 'Right Now & Soon',
     concepts: ['present_progressive', 'near_future', 'time_expressions'],
     summary: 'What\'s happening right now, what\'s about to happen, and since when.' },
+  { id: 'phone-plans', order: 13.5, level: 'A2', title: 'Phone Calls & Making Plans',
+    concepts: ['phone_plans'],
+    summary: 'Answer the phone, take a message, and arrange to meet up.' },
   { id: 'comparing-describing', order: 14, level: 'A2', title: 'Comparing & Describing',
     concepts: ['ser_vs_estar', 'adverbs_formation', 'comparatives_basic', 'prepositions_basic', 'relative_clauses_core'],
     summary: 'The famous ser-vs-estar contrast, comparing things with más/tan, adverbs, prepositions, and describing with que/donde.' },
+  { id: 'shopping', order: 14.5, level: 'A2', title: 'Shopping',
+    concepts: ['shopping_language'],
+    summary: 'Ask prices, sizes, and colors, try things on, and pay.' },
   { id: 'irregular-present', order: 15, level: 'A2', title: 'Irregular Verbs in the Present',
     concepts: ['irregular_present'],
     summary: 'The high-frequency irregular verbs every conversation needs.' },
@@ -166,14 +196,26 @@ export const UNIT_METADATA = [
   { id: 'past-in-detail', order: 17, level: 'B1', title: 'The Past in Detail',
     concepts: ['preterite_irregular', 'imperfect', 'preterite_vs_imperfect'],
     summary: 'Two past tenses, one clear rule for choosing between them.' },
+  { id: 'hotel-travel', order: 17.5, level: 'B1', title: 'Hotel & Travel Logistics',
+    concepts: ['hotel_travel'],
+    summary: 'Check in, ask about your room, and handle a booking problem.' },
   { id: 'future-hypotheticals', order: 18, level: 'B1', title: 'Future & Hypotheticals',
     concepts: ['future_simple', 'conditional'],
     summary: 'What will happen, and what would happen.' },
   { id: 'opinions-commands', order: 19, level: 'B1', title: 'Opinions & Commands',
     concepts: ['present_subjunctive', 'imperative'],
     summary: 'The subjunctive mood and giving direct commands.' },
+  { id: 'directions-transport', order: 19.1, level: 'B1', title: 'Directions & Getting Around',
+    concepts: ['directions_transport'],
+    summary: 'Ask for and give directions, and navigate buses and trains.' },
+  { id: 'doctor-pharmacy', order: 19.2, level: 'B1', title: 'At the Doctor & Pharmacy',
+    concepts: ['doctor_pharmacy'],
+    summary: 'Describe symptoms, get advice, and ask about medication.' },
+  { id: 'emergencies', order: 19.3, level: 'B1', title: 'Emergencies',
+    concepts: ['emergencies'],
+    summary: 'Get help fast — report a theft, an accident, or a medical emergency.' },
   { id: 'checkpoint-b1', order: 19.5, level: 'B1', title: 'Checkpoint: Units 1-19', isCheckpoint: true,
-    checkpointUpTo: 19, coversUnits: 'Units 1-19', concepts: [],
+    checkpointUpTo: 19.3, coversUnits: 'Units 1-19', concepts: [],
     summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'nuance-connection', order: 20, level: 'B1', title: 'Nuance & Connection',
     concepts: ['por_vs_para', 'relative_clauses', 'saber_vs_conocer', 'lo_neutro'],
@@ -193,8 +235,11 @@ export const UNIT_METADATA = [
   { id: 'probability-aspect', order: 21.4, level: 'B1', title: 'Verb Nuance: Periphrases, Prepositions & Quantifiers',
     concepts: ['futuro_probabilidad', 'perifraseis_avanzadas', 'verbos_preposicionales', 'cuantificadores'],
     summary: 'Guess about now with the future tense, then polish your verbs, prepositions, and quantifiers.' },
+  { id: 'absolute-superlative', order: 21.45, level: 'B1', title: 'The Absolute Superlative: -ísimo',
+    concepts: ['superlative_absolute'],
+    summary: 'Say "super" or "really" by attaching -ísimo directly to an adjective.' },
   { id: 'checkpoint-b1-full', order: 21.5, level: 'B1', title: 'Checkpoint: All of B1', isCheckpoint: true,
-    checkpointUpTo: 21.4, coversUnits: 'Units 1-21.4 (all of B1)', concepts: [],
+    checkpointUpTo: 21.45, coversUnits: 'Units 1-21.4 (all of B1)', concepts: [],
     summary: 'B1 complete — a personalized review of the whole level before moving on.' },
 
   // B2 — Advanced Structures

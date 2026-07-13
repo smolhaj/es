@@ -386,12 +386,27 @@ along the way — see the relevant dated section in `ES-HISTORY.md`.
 
 ### Structured "Learn" curriculum
 
-41 taught units plus 9 review checkpoints (50 total), A1 through C2, at
+51 taught units plus 9 review checkpoints (60 total), A1 through C2, at
 `/learn`. Alongside the adaptive Gemini session and reference pages —
 doesn't replace either. B2 got 3 units added (fractional order 25.1-25.3,
 between "Fine Details" and the B2 checkpoint) closing a real gap: B2 had
 only 4 taught units against 6-8 at every neighboring level — see the
 Session history index for the full build note.
+
+Units are overwhelmingly grammar-structure lessons (CEFR's "Gramática"
+pillar), but a second unit type exists as of 07-13-2026: **functional/
+situational units** (CEFR's "Funciones" pillar — restaurant ordering,
+shopping, asking for directions) that teach fixed real-world phrases
+built from grammar already taught, rather than a new grammar structure.
+They live inline in the same `UNIT_METADATA`/fractional-order system, not
+a separate track — see the Session history index for the placement
+rationale. When writing one: reuse existing prerequisite grammar rather
+than introducing new structure, treat any not-yet-taught grammar
+underlying a fixed phrase (e.g. `quisiera`, from the imperfect
+subjunctive) as a memorized chunk with an explicit forward-pointer to
+where it's properly taught, and give it its own `category: 'vocabulary'`
+concept in `concepts.js` even though it isn't really vocabulary-only —
+there's no dedicated `category` for functional language yet.
 
 - `src/content/curriculum/index.js` — `UNIT_METADATA` (id, order, level,
   title, concepts, summary) for every unit. `CONTENT` maps unit id → the
@@ -499,7 +514,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2040 words as of 07-13-2026 (grown from
+`src/content/vocabulary.js` — 2083 words as of 07-13-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2256,3 +2271,121 @@ full account of any of these.
   and dates render on `/readings`, the B2 mystery passage shows the
   corrected pluperfect-passive text with every word clickable, and the
   comprehension-question flow works on the B1 chocolate-history passage.
+- **07-13-2026** — Curriculum content-gap audit + fix: asked "any missing
+  concepts at A1-B2, or well covered?" (distinct from items 27-29, which
+  fixed *mistagged*/*mispaced* existing concepts — this was about topics
+  missing entirely). Cross-referenced the 89 A1-B2 concepts in
+  `concepts.js` against the Instituto Cervantes PCIC inventory (same
+  standard as item 27) and grepped every curriculum unit for coverage.
+  Found the audit process itself well-executed (telling time, negation/
+  indefinites with the double-negative rule, desde vs. desde hace, qué
+  vs. cuál all confirmed present and thorough) but 4 genuine standard-
+  curriculum gaps: weather expressions (zero coverage — not even
+  vocabulary), the ordinal-number *rule* (vocab existed but no lesson
+  ever taught agreement/apocope), muy vs. mucho (used constantly in 24
+  files, never explicitly contrasted), and the absolute superlative
+  -ísimo (zero coverage). Also resolved a 116-vs-117 concept-count
+  discrepancy from the initial extraction — a regex miss on one C2
+  concept (`implicatura_pragmatica`), not a real gap. Scoped fixes with
+  the user, then shipped all 4 in one batch (117 → 121 concepts):
+  new A1 "Weather" unit (order 5.5, after estar_basics/hay are taught,
+  not 2.5 as first discussed, since hace/está/hay constructions need
+  those prerequisites) with 14 new vocabulary words (verbs llover/nevar
+  and fixed phrases — the individual weather nouns like lluvia/sol/
+  viento already existed); an ordinal-numbers section folded into the
+  existing Unit 2 (Numbers & Time), retagging 6 existing vocab words
+  A2/B1 → A1 for consistency; a muy-vs-mucho section folded into Unit 4
+  (Who You Are), right after adjective agreement; and a new B1
+  "Absolute Superlative: -ísimo" unit (order 21.45, after the B1
+  quantifiers unit) covering the c→qu/g→gu/z→c spelling changes, the
+  -ble → -bilísimo exception, and the formal Latinate alternates
+  (óptimo/pésimo/máximo/mínimo) as recognize-only vocabulary. All facts
+  WebSearch-verified before writing, each new unit carries its own
+  accuracy-audit footer. `vocabulary.js` word count: 2040 → 2050 (one
+  legitimate new homograph confirmed: "grado" = temperature degree vs.
+  the pre-existing academic degree sense, alongside `tío`/`banco`).
+  Verified live end-to-end (`wrangler pages dev` + local D1, a
+  registered test user): all four lessons render correctly with working
+  practice sets, and the weather unit's first exercise was answered and
+  graded correctly in the browser.
+- **07-13-2026** — First functional/situational curriculum units, closing
+  a gap the user spotted directly: the entire curriculum was organized by
+  grammar structure (CEFR's "Gramática" pillar) with zero coverage of
+  CEFR's other pillar, "Funciones" — real-world scenarios like ordering
+  food, shopping, or asking directions. Vocabulary existed in silos (38
+  travel words, 58 food words, direction words like *esquina*/*semáforo*)
+  but nothing wove them into an actual exchange. Scoped with the user
+  before building: agreed to fold these into the existing `Learn` unit
+  list at fractional orders (not a new parallel track — avoids new nav/
+  progress-tracking surface for what's really "more units"), full unit
+  format for consistency, and a first batch of 3 (not all ~9 identified
+  scenarios) covering the two most universally useful pairs. Shipped:
+  "At the Café & Restaurant" (A2, order 9.5, after Likes & Dislikes),
+  "Shopping" (A2, order 14.5, after Comparing & Describing), and
+  "Directions & Getting Around" (B1, order 19.1, placed deliberately
+  right after Opinions & Commands to put the freshly-taught tú/usted
+  imperative to immediate real use rather than re-teaching a weaker
+  construction). 3 new concepts (121 → 124), 44 → 47 taught units. These
+  units deliberately reuse grammar already taught rather than
+  introducing new structure — `quisiera`/`me gustaría` for ordering are
+  treated as fixed polite chunks with an explicit forward-pointer to
+  where the imperfect subjunctive/conditional are properly taught later,
+  the same pattern already used for `hay` and the weather unit's
+  `llueve`/`nieva`. Also fixed a real pre-existing mistagging bug found
+  along the way: `quisiera` was tagged C2 in `vocabulary.js` despite
+  being an everyday A2 phrase — retagged to A2. 20 new vocabulary words
+  net after removing 2 accidental duplicates caught by the usual
+  post-batch dedup scan (`la carta`, `subirse` — both already existed
+  from earlier batches; 2067 total). Verified live end-to-end
+  (`wrangler pages dev` + local D1, a registered test user, after
+  clearing a local rate-limit KV entry hit from repeated test
+  registrations): all three lessons render correctly on `/learn` in
+  their intended CEFR sections, and a restaurant-unit translation
+  exercise was answered and graded correctly in the browser. A second,
+  larger batch of scenarios (phone calls/making plans, hotel/travel
+  logistics, doctor/pharmacy, emergencies) was identified during scoping
+  but deliberately not built — the user is choosing which of these to
+  pick up next turn-by-turn rather than all at once.
+- **07-13-2026** — Second functional/situational batch: "Phone Calls &
+  Making Plans" (A2, order 13.5, after Right Now & Soon — reuses
+  near_future/time_expressions), "Hotel & Travel Logistics" (B1, order
+  17.5, deliberately placed right after The Past in Detail so a booking-
+  gone-wrong example could put the freshly-taught preterite-vs-imperfect
+  contrast to real use), "At the Doctor & Pharmacy" (B1, order 19.2,
+  reuses doler/gustar_type and puts present_subjunctive to work for
+  medical advice — le recomiendo que descanse), and "Emergencies" (B1,
+  order 19.3, introduces the accidental/involuntary se construction — se
+  me perdió — as a new fixed functional phrase, since nothing in the
+  curriculum teaches it yet). 4 new concepts (124 → 128), 47 → 51 taught
+  units. 16 new `vocabulary.js` words (2067 → 2083); no accidental
+  duplicates. Verified live end-to-end (`wrangler pages dev` + local D1,
+  a registered test user, clearing the local rate-limit KV entry again):
+  all four lessons render correctly on `/learn` in their intended
+  sections with working practice sets.
+- **07-13-2026** — Proofread pass across all 11 files touched in both
+  situational batches plus the two modified existing units (numbers-time
+  ordinals section, who-you-are muy/mucho section), per user request.
+  Automated structural checks first (multiple-choice `answer`-vs-
+  `options` exact match, duplicate options, `concept_id`-vs-unit
+  consistency, in-unit vocab duplicates) came back clean across all 11
+  files — zero wrong-answer-key defects, the worst-case failure mode.
+  A fresh-eyes subagent with no session context then read every file in
+  full and found 2 real defects: (1) `unit-a1-weather.js` made an
+  unqualified absolute claim twice — "hace is the only form weather-
+  hacer ever takes" and "[hace/está/hay] stay in this same fixed
+  present-tense form" — that its own examples immediately contradicted
+  (`hizo` preterite, `estará` future in the very next block). Fixed by
+  correcting the claim to what's actually true: these verbs never
+  conjugate for *person* (no yo/tú form), not that they never conjugate
+  for *tense* — a real, substantive teaching-content bug, not a nitpick,
+  since a careful learner would have hit the contradiction directly.
+  (2) `unit04-who-you-are.js` had "français" (the French spelling, with
+  a letter — ç — that doesn't exist in Spanish) in a Spanish nationality-
+  adjectives list; should be "francés". This one predates today's work
+  (confirmed via `git diff origin/main`, not something introduced in
+  this session) but was fixed anyway since it's in a file touched today
+  and is a clear-cut error. Also fixed one minor low-severity note: an
+  `unit-a2-shopping.js` example used the untaught "preferir X a Y"
+  construction; replaced with a comparative already taught in the same
+  unit. Re-verified live after fixes (`wrangler pages dev`): all three
+  affected lessons still render correctly with the corrected prose.
