@@ -11,6 +11,7 @@ import numbersTime from './unit02-numbers-time.js';
 import peopleThings from './unit03-people-things.js';
 import whoYouAre from './unit04-who-you-are.js';
 import whereYouAre from './unit05-where-you-are.js';
+import weather from './unit-a1-weather.js';
 import everydayActions from './unit06-everyday-actions.js';
 import askingQuestions from './unit07-asking-questions.js';
 import dailyRoutine from './unit08-daily-routine.js';
@@ -34,6 +35,7 @@ import subjunctiveCounterfactualsConcession from './unit24-subjunctive-counterfa
 import fineDetails from './unit25-fine-details.js';
 import reportedSpeechBasic from './unit-b1-reported-speech-basic.js';
 import certaintyDoubtProbability from './unit-b1-certainty-doubt-probability.js';
+import absoluteSuperlative from './unit-b1-absolute-superlative.js';
 import argumentationWorkplace from './unit-b2-argumentation-workplace.js';
 import subjunctiveLimits from './unit26-subjunctive-limits.js';
 import reportedSpeech from './unit27-reported-speech.js';
@@ -55,6 +57,7 @@ const CONTENT = {
   'people-things': peopleThings,
   'who-you-are': whoYouAre,
   'where-you-are': whereYouAre,
+  'weather': weather,
   'everyday-actions': everydayActions,
   'asking-questions': askingQuestions,
   'daily-routine': dailyRoutine,
@@ -78,6 +81,7 @@ const CONTENT = {
   'fine-details': fineDetails,
   'reported-speech-basic': reportedSpeechBasic,
   'certainty-doubt-probability': certaintyDoubtProbability,
+  'absolute-superlative': absoluteSuperlative,
   'argumentation-workplace': argumentationWorkplace,
   'subjunctive-limits': subjunctiveLimits,
   'reported-speech': reportedSpeech,
@@ -103,20 +107,23 @@ export const UNIT_METADATA = [
     concepts: ['greeting_basics', 'subject_pronouns'],
     summary: 'Greet people, say goodbye, and use the right word for "you" and "I".' },
   { id: 'numbers-time', order: 2, level: 'A1', title: 'Numbers & Time',
-    concepts: ['numbers_1_20', 'numbers_21_100'],
-    summary: 'Count, tell time, and exchange phone numbers or prices.' },
+    concepts: ['numbers_1_20', 'numbers_21_100', 'ordinal_numbers'],
+    summary: 'Count, tell time, exchange phone numbers or prices, and say first, second, third.' },
   { id: 'people-things', order: 3, level: 'A1', title: 'People & Things',
     concepts: ['noun_gender', 'plural_nouns', 'definite_articles', 'indefinite_articles'],
     summary: 'Every Spanish noun has a gender — learn to spot it, make it plural, and use the right article.' },
   { id: 'who-you-are', order: 4, level: 'A1', title: 'Who You Are',
-    concepts: ['ser_basics', 'adjective_agreement'],
-    summary: 'Describe yourself and others with ser, and make adjectives agree.' },
+    concepts: ['ser_basics', 'adjective_agreement', 'muy_vs_mucho'],
+    summary: 'Describe yourself and others with ser, make adjectives agree, and tell muy apart from mucho.' },
   { id: 'checkpoint-a1', order: 4.5, level: 'A1', title: 'Checkpoint: Units 1-4', isCheckpoint: true,
     checkpointUpTo: 4, coversUnits: 'Units 1-4', concepts: [],
     summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'where-you-are', order: 5, level: 'A1', title: 'Where You Are',
     concepts: ['estar_basics', 'hay'],
     summary: 'Talk about location with estar, and say what there is with hay.' },
+  { id: 'weather', order: 5.5, level: 'A1', title: 'Weather',
+    concepts: ['weather_expressions'],
+    summary: 'Hace calor, llueve, está nublado — say what the weather is doing.' },
   { id: 'everyday-actions', order: 6, level: 'A1', title: 'Everyday Actions',
     concepts: ['present_ar', 'present_er_ir', 'irregular_present_core', 'modal_verbs_core', 'gustar_basico'],
     summary: 'Conjugate regular -ar, -er, and -ir verbs, plus your first irregulars: tener, ir, poder, querer, and gustar.' },
@@ -193,8 +200,11 @@ export const UNIT_METADATA = [
   { id: 'probability-aspect', order: 21.4, level: 'B1', title: 'Verb Nuance: Periphrases, Prepositions & Quantifiers',
     concepts: ['futuro_probabilidad', 'perifraseis_avanzadas', 'verbos_preposicionales', 'cuantificadores'],
     summary: 'Guess about now with the future tense, then polish your verbs, prepositions, and quantifiers.' },
+  { id: 'absolute-superlative', order: 21.45, level: 'B1', title: 'The Absolute Superlative: -ísimo',
+    concepts: ['superlative_absolute'],
+    summary: 'Say "super" or "really" by attaching -ísimo directly to an adjective.' },
   { id: 'checkpoint-b1-full', order: 21.5, level: 'B1', title: 'Checkpoint: All of B1', isCheckpoint: true,
-    checkpointUpTo: 21.4, coversUnits: 'Units 1-21.4 (all of B1)', concepts: [],
+    checkpointUpTo: 21.45, coversUnits: 'Units 1-21.4 (all of B1)', concepts: [],
     summary: 'B1 complete — a personalized review of the whole level before moving on.' },
 
   // B2 — Advanced Structures

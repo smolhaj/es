@@ -386,7 +386,7 @@ along the way — see the relevant dated section in `ES-HISTORY.md`.
 
 ### Structured "Learn" curriculum
 
-41 taught units plus 9 review checkpoints (50 total), A1 through C2, at
+44 taught units plus 9 review checkpoints (53 total), A1 through C2, at
 `/learn`. Alongside the adaptive Gemini session and reference pages —
 doesn't replace either. B2 got 3 units added (fractional order 25.1-25.3,
 between "Fine Details" and the B2 checkpoint) closing a real gap: B2 had
@@ -499,7 +499,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2040 words as of 07-13-2026 (grown from
+`src/content/vocabulary.js` — 2050 words as of 07-13-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2256,3 +2256,40 @@ full account of any of these.
   and dates render on `/readings`, the B2 mystery passage shows the
   corrected pluperfect-passive text with every word clickable, and the
   comprehension-question flow works on the B1 chocolate-history passage.
+- **07-13-2026** — Curriculum content-gap audit + fix: asked "any missing
+  concepts at A1-B2, or well covered?" (distinct from items 27-29, which
+  fixed *mistagged*/*mispaced* existing concepts — this was about topics
+  missing entirely). Cross-referenced the 89 A1-B2 concepts in
+  `concepts.js` against the Instituto Cervantes PCIC inventory (same
+  standard as item 27) and grepped every curriculum unit for coverage.
+  Found the audit process itself well-executed (telling time, negation/
+  indefinites with the double-negative rule, desde vs. desde hace, qué
+  vs. cuál all confirmed present and thorough) but 4 genuine standard-
+  curriculum gaps: weather expressions (zero coverage — not even
+  vocabulary), the ordinal-number *rule* (vocab existed but no lesson
+  ever taught agreement/apocope), muy vs. mucho (used constantly in 24
+  files, never explicitly contrasted), and the absolute superlative
+  -ísimo (zero coverage). Also resolved a 116-vs-117 concept-count
+  discrepancy from the initial extraction — a regex miss on one C2
+  concept (`implicatura_pragmatica`), not a real gap. Scoped fixes with
+  the user, then shipped all 4 in one batch (117 → 121 concepts):
+  new A1 "Weather" unit (order 5.5, after estar_basics/hay are taught,
+  not 2.5 as first discussed, since hace/está/hay constructions need
+  those prerequisites) with 14 new vocabulary words (verbs llover/nevar
+  and fixed phrases — the individual weather nouns like lluvia/sol/
+  viento already existed); an ordinal-numbers section folded into the
+  existing Unit 2 (Numbers & Time), retagging 6 existing vocab words
+  A2/B1 → A1 for consistency; a muy-vs-mucho section folded into Unit 4
+  (Who You Are), right after adjective agreement; and a new B1
+  "Absolute Superlative: -ísimo" unit (order 21.45, after the B1
+  quantifiers unit) covering the c→qu/g→gu/z→c spelling changes, the
+  -ble → -bilísimo exception, and the formal Latinate alternates
+  (óptimo/pésimo/máximo/mínimo) as recognize-only vocabulary. All facts
+  WebSearch-verified before writing, each new unit carries its own
+  accuracy-audit footer. `vocabulary.js` word count: 2040 → 2050 (one
+  legitimate new homograph confirmed: "grado" = temperature degree vs.
+  the pre-existing academic degree sense, alongside `tío`/`banco`).
+  Verified live end-to-end (`wrangler pages dev` + local D1, a
+  registered test user): all four lessons render correctly with working
+  practice sets, and the weather unit's first exercise was answered and
+  graded correctly in the browser.

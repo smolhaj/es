@@ -58,6 +58,11 @@ export const CONCEPTS = {
     category: 'morphology', prereqs: ['noun_gender', 'definite_articles'],
     explanationStyles: ['rule_first', 'pattern', 'example_first'],
   },
+  muy_vs_mucho: {
+    id: 'muy_vs_mucho', label: 'Muy vs. mucho', cefr: 'A1',
+    category: 'morphology', prereqs: ['adjective_agreement'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
   question_words: {
     id: 'question_words', label: 'Question words (qué, cómo, dónde…)', cefr: 'A1',
     category: 'syntax', prereqs: ['ser_basics'],
@@ -68,10 +73,20 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['indefinite_articles'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  weather_expressions: {
+    id: 'weather_expressions', label: 'Weather expressions (hace calor, llueve, está nublado)', cefr: 'A1',
+    category: 'vocabulary', prereqs: ['estar_basics', 'hay'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
   numbers_21_100: {
     id: 'numbers_21_100', label: 'Numbers 21–100', cefr: 'A1',
     category: 'vocabulary', prereqs: ['numbers_1_20'],
     explanationStyles: ['pattern', 'example_first', 'story'],
+  },
+  ordinal_numbers: {
+    id: 'ordinal_numbers', label: 'Ordinal numbers (primero–décimo)', cefr: 'A1',
+    category: 'morphology', prereqs: ['numbers_1_20'],
+    explanationStyles: ['rule_first', 'pattern', 'example_first'],
   },
   plural_nouns: {
     id: 'plural_nouns', label: 'Forming plural nouns (-s/-es/-ces)', cefr: 'A1',
@@ -455,6 +470,11 @@ export const CONCEPTS = {
     id: 'cuantificadores', label: 'Quantifiers (bastante, demasiado, cada)', cefr: 'B1',
     category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
     explanationStyles: ['rule_first', 'example_first', 'table'],
+  },
+  superlative_absolute: {
+    id: 'superlative_absolute', label: 'Absolute superlative (-ísimo)', cefr: 'B1',
+    category: 'morphology', prereqs: ['adjective_agreement', 'comparatives_basic'],
+    explanationStyles: ['rule_first', 'pattern', 'example_first'],
   },
   futuro_probabilidad: {
     id: 'futuro_probabilidad', label: 'Future for probability (Serán las diez)', cefr: 'B1',
