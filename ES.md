@@ -499,12 +499,13 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 1985 words as of 07-12-2026 (grown from
+`src/content/vocabulary.js` — 2040 words as of 07-13-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
-topic-variety A2 batch, and most recently a 111-word batch (5 A1 + 5 A2
-passages spanning sports, nature, history/geography, biography, and
-fiction — see "Readings" below), `{ es, en, cefr, domain, example,
+topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
+sports, nature, history/geography, biography, and fiction), and most
+recently a 55-word batch for the first-ever B1/B2 reading passages
+(see "Readings" below), `{ es, en, cefr, domain, example,
 exampleEn, frequencyRank, register? }`.
 `DOMAINS`/`CEFR_LEVELS` are exported for `VocabBrowser.jsx`'s filter
 chips; `DOMAINS` is auto-derived (`[...new Set(...)].sort()`), so a new
@@ -605,7 +606,7 @@ consistent with this project's standing quality-over-volume rule (see
 
 ### Readings (`/readings`)
 
-41 passages as of 07-12-2026 (`src/content/readings.js`): 25 A1 (a
+47 passages as of 07-13-2026 (`src/content/readings.js`): 25 A1 (a
 standalone bakery scene, 3 chapters of a serialized story — "Las
 Aventuras de Blahaj," a pen-pal plushie-travel premise, chapter 3 closes
 the first sent→hosted→returned mini-arc — plus 21 more standalone
@@ -692,8 +693,47 @@ fixed: de-duplicated closing formulas, varied dialogue-tag structure
 sentences with concrete real details (a trophy room, the tower's actual
 approximate weight, artists criticizing the design), fixed the
 contradiction, and diversified the emotion vocabulary beyond
-sonreír/feliz (aliviado, contento, orgulloso). B1-C2 are still empty —
-the next natural slice of this gap. `Readings.jsx`
+sonreír/feliz (aliviado, contento, orgulloso).
+
+**B1 and B2 got their first-ever passages in a fourth batch (3 + 3,
+07-13-2026)**, the next natural slice of the B1-C2 gap (C1/C2 left for a
+separate future batch — each level needs its own grammar calibration,
+and there was no existing B1+ passage to calibrate against the way A1/A2
+passages calibrated each other). With no precedent to read, grammar
+discipline was derived directly from the curriculum's actual teaching
+sequence in `curriculum/index.js` (units 16-21.4 = B1, 22-25.1 = B2)
+rather than `grammar.js`'s own card-level CEFR tags, which have some
+known drift from the real unit-teaching order (e.g. "Pluperfect" and
+"Imperfect Subjunctive" are card-tagged B1 but aren't actually taught
+until the B2-tagged "Perfect Tenses"/"Subjunctive Counterfactuals" units)
+— the curriculum sequence is what a learner actually has been taught by
+that point, so it's the real source of truth for what a passage at that
+level can assume. **B1** (`un-cambio-de-planes`, a canceled-trip story;
+`el-consejo-antes-de-la-entrevista`, job-interview advice;
+`la-historia-del-chocolate`, nonfiction) unlocks full preterite/imperfect
+contrast, simple future/conditional, present subjunctive (noun and
+adjective clauses), full imperative, and relative clauses — still bans
+all perfect tenses beyond present perfect, imperfect subjunctive, and
+formal passive voice, which the curriculum doesn't teach until B2.
+**B2** (`el-cuadro-robado`, an art-theft mystery;
+`si-hubiera-aceptado-el-trabajo`, a regret/hypothetical reflection;
+`como-el-telefono-cambio-nuestras-vidas`, nonfiction) adds pluperfect,
+future/conditional perfect, passive voice, imperfect/pluperfect
+subjunctive for past hypotheticals ("si hubiera... habría..."), and
+concessive "aunque" clauses. An automated regex scan confirmed zero of
+the B2-only constructs leaked into the B1 passages before shipping. 55
+new `vocabulary.js` words. The blind AI-tell review caught real issues
+again, including a genuine logic bug (not just a style tell): the art
+mystery had `los guardias llegaron... ya habían notado que algo estaba
+mal` — pluperfect placed the noticing *before* the arrival, which
+doesn't track; fixed to preterite (`notaron enseguida`). Also found and
+fixed: duplicate "Hace X años"/"Al final"/"Aunque X, Y" openers and
+closers reused verbatim across unrelated passages, a mechanical "le
+dice + [person]" dialogue-tag formula, both nonfiction passages sharing
+an identical doubt-then-adoption rhetorical arc, a word ("aparato")
+repeated twice in the same passage where a synonym read more naturally,
+and endings that over-explained their own moral instead of landing on a
+concrete image. `Readings.jsx`
 lists passages at `/readings`; `ReadingPassage.jsx` renders one at
 `/readings/:passageId` with a "Ver traducción" toggle for the English
 (page/route/nav renamed "Reading" → "Readings" 07-10-2026;
@@ -2185,3 +2225,34 @@ full account of any of these.
   `/readings`, a nonfiction passage (Apollo 11) renders correctly with
   every new word clickable, and the comprehension-question flow works
   on a biography passage (Frida Kahlo).
+- **07-13-2026** — First-ever B1 and B2 reading passages (3 + 3, 41 → 47
+  total), the next slice of the B1-C2 gap; C1/C2 left for a separate
+  future batch. With no existing B1+ passage to calibrate against,
+  grammar discipline was derived from the curriculum's real teaching
+  sequence (`curriculum/index.js` unit levels) rather than
+  `grammar.js`'s own card-level CEFR tags, which have some known drift
+  from what's actually taught by that point (e.g. pluperfect and
+  imperfect subjunctive are card-tagged B1 but not taught until the
+  B2-tagged perfect-tenses/subjunctive-counterfactuals units). B1
+  (`un-cambio-de-planes`, `el-consejo-antes-de-la-entrevista`,
+  `la-historia-del-chocolate`) unlocks preterite/imperfect contrast,
+  future/conditional, present subjunctive, and full imperative — still
+  bans perfect tenses beyond present perfect, imperfect subjunctive, and
+  formal passive. B2 (`el-cuadro-robado`, `si-hubiera-aceptado-el-trabajo`,
+  `como-el-telefono-cambio-nuestras-vidas`) adds all of those: pluperfect,
+  passive voice, and "si hubiera... habría..." past hypotheticals. An
+  automated regex scan confirmed zero B2-only constructs leaked into the
+  B1 passages. 55 new `vocabulary.js` words (1985 → 2040). The blind
+  AI-tell review caught a genuine logic bug this time, not just style:
+  the art-theft mystery had guards "already having noticed" something
+  was wrong *before* they arrived at work (pluperfect misused for
+  sequencing) — fixed to preterite. Also fixed: duplicate
+  "Hace X años"/"Al final"/"Aunque X, Y" openers and closers reused
+  verbatim across unrelated passages, a mechanical "le dice + [person]"
+  dialogue tag, both nonfiction passages sharing an identical
+  doubt-then-adoption rhetorical arc, a word repeated twice in one
+  passage, and endings that over-explained their own moral instead of
+  landing on a concrete image. Verified live end-to-end: all 6 titles
+  and dates render on `/readings`, the B2 mystery passage shows the
+  corrected pluperfect-passive text with every word clickable, and the
+  comprehension-question flow works on the B1 chocolate-history passage.
