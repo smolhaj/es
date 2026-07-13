@@ -16,16 +16,19 @@ import everydayActions from './unit06-everyday-actions.js';
 import askingQuestions from './unit07-asking-questions.js';
 import dailyRoutine from './unit08-daily-routine.js';
 import likesDislikes from './unit09-likes-dislikes.js';
+import restaurant from './unit-a2-restaurant.js';
 import peopleAroundYou from './unit10-people-around-you.js';
 import whatHappened from './unit11-what-happened.js';
 import obligationsRequests from './unit12-obligations-requests.js';
 import rightNowSoon from './unit13-right-now-soon.js';
 import comparingDescribing from './unit14-comparing-describing.js';
+import shopping from './unit-a2-shopping.js';
 import irregularPresent from './unit15-irregular-present.js';
 import recentOngoing from './unit16-recent-ongoing.js';
 import pastInDetail from './unit17-past-in-detail.js';
 import futureHypotheticals from './unit18-future-hypotheticals.js';
 import opinionsCommands from './unit19-opinions-commands.js';
+import directionsTransport from './unit-b1-directions-transport.js';
 import nuanceConnection from './unit20-nuance-connection.js';
 import efficiencyEmphasis from './unit21-efficiency-emphasis.js';
 import perfectTenses from './unit22-perfect-tenses.js';
@@ -62,16 +65,19 @@ const CONTENT = {
   'asking-questions': askingQuestions,
   'daily-routine': dailyRoutine,
   'likes-dislikes': likesDislikes,
+  'restaurant': restaurant,
   'people-around-you': peopleAroundYou,
   'what-happened': whatHappened,
   'obligations-requests': obligationsRequests,
   'right-now-soon': rightNowSoon,
   'comparing-describing': comparingDescribing,
+  'shopping': shopping,
   'irregular-present': irregularPresent,
   'recent-ongoing': recentOngoing,
   'past-in-detail': pastInDetail,
   'future-hypotheticals': futureHypotheticals,
   'opinions-commands': opinionsCommands,
+  'directions-transport': directionsTransport,
   'nuance-connection': nuanceConnection,
   'efficiency-emphasis': efficiencyEmphasis,
   'perfect-tenses': perfectTenses,
@@ -141,6 +147,9 @@ export const UNIT_METADATA = [
   { id: 'likes-dislikes', order: 9, level: 'A2', title: 'Likes & Dislikes',
     concepts: ['gustar_type', 'demonstratives'],
     summary: 'Gustar works backwards from English — learn to say what you like.' },
+  { id: 'restaurant', order: 9.5, level: 'A2', title: 'At the Café & Restaurant',
+    concepts: ['restaurant_ordering'],
+    summary: 'Get a table, order politely, and ask for the bill.' },
   { id: 'people-around-you', order: 10, level: 'A2', title: 'People & Things Around You',
     concepts: ['direct_object_pronouns', 'indirect_object_pronouns'],
     summary: 'Replace nouns with pronouns so you stop repeating yourself.' },
@@ -159,6 +168,9 @@ export const UNIT_METADATA = [
   { id: 'comparing-describing', order: 14, level: 'A2', title: 'Comparing & Describing',
     concepts: ['ser_vs_estar', 'adverbs_formation', 'comparatives_basic', 'prepositions_basic', 'relative_clauses_core'],
     summary: 'The famous ser-vs-estar contrast, comparing things with más/tan, adverbs, prepositions, and describing with que/donde.' },
+  { id: 'shopping', order: 14.5, level: 'A2', title: 'Shopping',
+    concepts: ['shopping_language'],
+    summary: 'Ask prices, sizes, and colors, try things on, and pay.' },
   { id: 'irregular-present', order: 15, level: 'A2', title: 'Irregular Verbs in the Present',
     concepts: ['irregular_present'],
     summary: 'The high-frequency irregular verbs every conversation needs.' },
@@ -179,8 +191,11 @@ export const UNIT_METADATA = [
   { id: 'opinions-commands', order: 19, level: 'B1', title: 'Opinions & Commands',
     concepts: ['present_subjunctive', 'imperative'],
     summary: 'The subjunctive mood and giving direct commands.' },
+  { id: 'directions-transport', order: 19.1, level: 'B1', title: 'Directions & Getting Around',
+    concepts: ['directions_transport'],
+    summary: 'Ask for and give directions, and navigate buses and trains.' },
   { id: 'checkpoint-b1', order: 19.5, level: 'B1', title: 'Checkpoint: Units 1-19', isCheckpoint: true,
-    checkpointUpTo: 19, coversUnits: 'Units 1-19', concepts: [],
+    checkpointUpTo: 19.1, coversUnits: 'Units 1-19', concepts: [],
     summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'nuance-connection', order: 20, level: 'B1', title: 'Nuance & Connection',
     concepts: ['por_vs_para', 'relative_clauses', 'saber_vs_conocer', 'lo_neutro'],

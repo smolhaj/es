@@ -1364,7 +1364,7 @@ export const VOCABULARY = [
   { es: 'saludo', en: 'greeting', cefr: 'A2', domain: 'greetings', frequencyRank: 630, example: 'Le mandó un saludo cariñoso a su abuela.', exampleEn: 'She sent her grandmother a warm greeting.' },
   { es: 'un abrazo', en: 'a hug (warm sign-off)', cefr: 'B1', domain: 'greetings', frequencyRank: 640, example: 'Termina la carta con un abrazo.', exampleEn: 'She ends the letter with a hug (a warm sign-off).' },
   { es: "un cordial saludo", en: "kind regards / best regards (formal letter or email closing)", cefr: "C1", domain: "greetings", frequencyRank: 500, example: "Quedo a la espera de su respuesta. Un cordial saludo.", exampleEn: "I look forward to your reply. Kind regards.", register: "formal" },
-  { es: "quisiera", en: "I would like (formal, softened with the conditional)", cefr: "C2", domain: "greetings", frequencyRank: 500, example: "Quisiera hacerle una pregunta, si no le importa.", exampleEn: "I would like to ask you a question, if you don't mind.", register: "formal" },
+  { es: "quisiera", en: "I would like (polite, softened)", cefr: "A2", domain: "greetings", frequencyRank: 500, example: "Quisiera una mesa para dos, por favor.", exampleEn: "I would like a table for two, please.", register: "formal" },
   { es: "le agradecería que", en: "I would be grateful if... (formal)", cefr: "C2", domain: "greetings", frequencyRank: 1100, example: "Le agradecería que me confirmara la cita.", exampleEn: "I would be grateful if you could confirm the appointment.", register: "formal" },
   { es: "¿te importaría?", en: "would you mind? (neutral-informal, polite)", cefr: "C2", domain: "greetings", frequencyRank: 950, example: "¿Te importaría cerrar la ventana?", exampleEn: "Would you mind closing the window?", register: "informal" },
   { es: "¿me haces un favor?", en: "can you do me a favor? (informal)", cefr: "C2", domain: "greetings", frequencyRank: 850, example: "¿Me haces un favor y me pasas el móvil?", exampleEn: "Can you do me a favor and hand me my phone?", register: "informal" },
@@ -2249,6 +2249,25 @@ export const VOCABULARY = [
   { es: 'incluso', en: 'even / including', cefr: 'B1', domain: 'connectors', frequencyRank: 220, example: 'Incluso hoy, algunas comunidades siguen esta tradición.', exampleEn: 'Even today, some communities still follow this tradition.' },
   { es: 'resultar', en: 'to turn out / to result', cefr: 'B1', domain: 'verbs', frequencyRank: 280, example: 'El chocolate resultaba amargo sin azúcar.', exampleEn: 'The chocolate turned out bitter without sugar.' },
   { es: 'completo', en: 'complete', cefr: 'A2', domain: 'adjectives', frequencyRank: 220, example: 'Olvidó por completo la espera.', exampleEn: 'She completely forgot the wait.' },
+
+  // Situational: restaurant, shopping, directions & public transport
+  { es: 'me gustaría', en: 'I would like', cefr: 'A2', domain: 'greetings', frequencyRank: 90, example: 'Me gustaría un café, por favor.', exampleEn: "I would like a coffee, please." },
+  { es: 'bebida', en: 'drink / beverage', cefr: 'A2', domain: 'food', frequencyRank: 240, example: '¿Qué bebida quieres?', exampleEn: 'What drink would you like?' },
+  { es: 'mesero', en: 'waiter (Latin America)', cefr: 'A2', domain: 'professions', frequencyRank: 260, example: 'El mesero trajo la carta.', exampleEn: 'The waiter brought the menu.' },
+  { es: 'propina', en: 'tip', cefr: 'A2', domain: 'food', frequencyRank: 350, example: '¿Está incluida la propina?', exampleEn: 'Is the tip included?' },
+  { es: 'probarse', en: 'to try on', cefr: 'A2', domain: 'verbs', frequencyRank: 340, example: '¿Puedo probarme esta camisa?', exampleEn: 'Can I try on this shirt?' },
+  { es: 'probador', en: 'fitting room', cefr: 'A2', domain: 'places', frequencyRank: 400, example: 'Los probadores están al fondo.', exampleEn: 'The fitting rooms are in the back.' },
+  { es: 'me lo llevo', en: "I'll take it", cefr: 'A2', domain: 'greetings', frequencyRank: 200, example: 'Me gusta, me lo llevo.', exampleEn: "I like it, I'll take it." },
+  { es: 'efectivo', en: 'cash', cefr: 'A2', domain: 'nouns', frequencyRank: 300, example: '¿Aceptan efectivo o solo tarjeta?', exampleEn: 'Do you accept cash or only card?' },
+  { es: 'rebaja', en: 'discount / sale', cefr: 'B1', domain: 'nouns', frequencyRank: 380, example: 'Todo está de rebaja esta semana.', exampleEn: 'Everything is on sale this week.' },
+  { es: 'gratis', en: 'free (no cost)', cefr: 'A2', domain: 'adjectives', frequencyRank: 260, example: 'La entrada es gratis los domingos.', exampleEn: 'Admission is free on Sundays.' },
+  { es: 'girar', en: 'to turn (direction)', cefr: 'B1', domain: 'verbs', frequencyRank: 310, example: 'Gire a la derecha en la esquina.', exampleEn: 'Turn right at the corner.' },
+  { es: 'recto', en: 'straight (ahead)', cefr: 'A2', domain: 'adverbs', frequencyRank: 250, example: 'Siga todo recto hasta la plaza.', exampleEn: 'Keep going straight until the square.' },
+  { es: 'cuadra', en: 'city block (Latin America)', cefr: 'A2', domain: 'places', frequencyRank: 320, example: 'Está a dos cuadras de aquí.', exampleEn: "It's two blocks from here." },
+  { es: 'parada', en: 'stop (bus/train)', cefr: 'A2', domain: 'travel', frequencyRank: 280, example: '¿Dónde está la parada de autobús?', exampleEn: "Where's the bus stop?" },
+  { es: 'conductor', en: 'driver', cefr: 'A2', domain: 'professions', frequencyRank: 290, example: 'Le preguntó al conductor si iba al centro.', exampleEn: 'She asked the driver if it went downtown.' },
+  { es: 'bajarse', en: 'to get off (a vehicle)', cefr: 'A2', domain: 'verbs', frequencyRank: 330, example: 'Me bajo en la próxima parada.', exampleEn: "I'm getting off at the next stop." },
+  { es: 'ida y vuelta', en: 'round trip', cefr: 'B1', domain: 'travel', frequencyRank: 340, example: 'Quisiera un billete de ida y vuelta.', exampleEn: 'I would like a round-trip ticket.' },
 ];
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();

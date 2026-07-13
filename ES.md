@@ -386,12 +386,27 @@ along the way — see the relevant dated section in `ES-HISTORY.md`.
 
 ### Structured "Learn" curriculum
 
-44 taught units plus 9 review checkpoints (53 total), A1 through C2, at
+47 taught units plus 9 review checkpoints (56 total), A1 through C2, at
 `/learn`. Alongside the adaptive Gemini session and reference pages —
 doesn't replace either. B2 got 3 units added (fractional order 25.1-25.3,
 between "Fine Details" and the B2 checkpoint) closing a real gap: B2 had
 only 4 taught units against 6-8 at every neighboring level — see the
 Session history index for the full build note.
+
+Units are overwhelmingly grammar-structure lessons (CEFR's "Gramática"
+pillar), but a second unit type exists as of 07-13-2026: **functional/
+situational units** (CEFR's "Funciones" pillar — restaurant ordering,
+shopping, asking for directions) that teach fixed real-world phrases
+built from grammar already taught, rather than a new grammar structure.
+They live inline in the same `UNIT_METADATA`/fractional-order system, not
+a separate track — see the Session history index for the placement
+rationale. When writing one: reuse existing prerequisite grammar rather
+than introducing new structure, treat any not-yet-taught grammar
+underlying a fixed phrase (e.g. `quisiera`, from the imperfect
+subjunctive) as a memorized chunk with an explicit forward-pointer to
+where it's properly taught, and give it its own `category: 'vocabulary'`
+concept in `concepts.js` even though it isn't really vocabulary-only —
+there's no dedicated `category` for functional language yet.
 
 - `src/content/curriculum/index.js` — `UNIT_METADATA` (id, order, level,
   title, concepts, summary) for every unit. `CONTENT` maps unit id → the
@@ -499,7 +514,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2050 words as of 07-13-2026 (grown from
+`src/content/vocabulary.js` — 2067 words as of 07-13-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2293,3 +2308,41 @@ full account of any of these.
   registered test user): all four lessons render correctly with working
   practice sets, and the weather unit's first exercise was answered and
   graded correctly in the browser.
+- **07-13-2026** — First functional/situational curriculum units, closing
+  a gap the user spotted directly: the entire curriculum was organized by
+  grammar structure (CEFR's "Gramática" pillar) with zero coverage of
+  CEFR's other pillar, "Funciones" — real-world scenarios like ordering
+  food, shopping, or asking directions. Vocabulary existed in silos (38
+  travel words, 58 food words, direction words like *esquina*/*semáforo*)
+  but nothing wove them into an actual exchange. Scoped with the user
+  before building: agreed to fold these into the existing `Learn` unit
+  list at fractional orders (not a new parallel track — avoids new nav/
+  progress-tracking surface for what's really "more units"), full unit
+  format for consistency, and a first batch of 3 (not all ~9 identified
+  scenarios) covering the two most universally useful pairs. Shipped:
+  "At the Café & Restaurant" (A2, order 9.5, after Likes & Dislikes),
+  "Shopping" (A2, order 14.5, after Comparing & Describing), and
+  "Directions & Getting Around" (B1, order 19.1, placed deliberately
+  right after Opinions & Commands to put the freshly-taught tú/usted
+  imperative to immediate real use rather than re-teaching a weaker
+  construction). 3 new concepts (121 → 124), 44 → 47 taught units. These
+  units deliberately reuse grammar already taught rather than
+  introducing new structure — `quisiera`/`me gustaría` for ordering are
+  treated as fixed polite chunks with an explicit forward-pointer to
+  where the imperfect subjunctive/conditional are properly taught later,
+  the same pattern already used for `hay` and the weather unit's
+  `llueve`/`nieva`. Also fixed a real pre-existing mistagging bug found
+  along the way: `quisiera` was tagged C2 in `vocabulary.js` despite
+  being an everyday A2 phrase — retagged to A2. 20 new vocabulary words
+  net after removing 2 accidental duplicates caught by the usual
+  post-batch dedup scan (`la carta`, `subirse` — both already existed
+  from earlier batches; 2067 total). Verified live end-to-end
+  (`wrangler pages dev` + local D1, a registered test user, after
+  clearing a local rate-limit KV entry hit from repeated test
+  registrations): all three lessons render correctly on `/learn` in
+  their intended CEFR sections, and a restaurant-unit translation
+  exercise was answered and graded correctly in the browser. A second,
+  larger batch of scenarios (phone calls/making plans, hotel/travel
+  logistics, doctor/pharmacy, emergencies) was identified during scoping
+  but deliberately not built — the user is choosing which of these to
+  pick up next turn-by-turn rather than all at once.

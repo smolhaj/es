@@ -140,6 +140,11 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['indirect_object_pronouns', 'gustar_basico'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
+  restaurant_ordering: {
+    id: 'restaurant_ordering', label: 'Ordering at a café/restaurant (quisiera, la cuenta)', cefr: 'A2',
+    category: 'vocabulary', prereqs: ['gustar_basico', 'numbers_1_20'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
   direct_object_pronouns: {
     id: 'direct_object_pronouns', label: 'Direct object pronouns (lo/la)', cefr: 'A2',
     category: 'pronouns', prereqs: ['present_ar', 'present_er_ir'],
@@ -205,6 +210,11 @@ export const CONCEPTS = {
     category: 'morphology', prereqs: ['adjective_agreement'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
+  shopping_language: {
+    id: 'shopping_language', label: 'Shopping: prices, sizes, colors, trying things on', cefr: 'A2',
+    category: 'vocabulary', prereqs: ['direct_object_pronouns', 'comparatives_basic'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
   imperative_affirmative: {
     id: 'imperative_affirmative', label: 'Affirmative informal commands (tú)', cefr: 'A2',
     category: 'verb', prereqs: ['present_ar', 'present_er_ir'],
@@ -261,6 +271,11 @@ export const CONCEPTS = {
     id: 'imperative', label: 'Imperative — negative & formal commands, clitic placement', cefr: 'B1',
     category: 'verb', prereqs: ['present_ar', 'present_er_ir', 'reflexive_verbs', 'imperative_affirmative'],
     explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
+  directions_transport: {
+    id: 'directions_transport', label: 'Asking for directions & public transport', cefr: 'B1',
+    category: 'vocabulary', prereqs: ['imperative', 'estar_basics'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
   },
   por_vs_para: {
     id: 'por_vs_para', label: 'Por vs. para', cefr: 'B1',
