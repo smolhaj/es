@@ -2286,6 +2286,26 @@ export const VOCABULARY = [
   { es: 'emergencia', en: 'emergency', cefr: 'A2', domain: 'nouns', frequencyRank: 320, example: 'Es una emergencia, necesito un médico.', exampleEn: 'It is an emergency, I need a doctor.' },
   { es: 'ambulancia', en: 'ambulance', cefr: 'A2', domain: 'nouns', frequencyRank: 330, example: 'Llame a una ambulancia, por favor.', exampleEn: 'Call an ambulance, please.' },
   { es: 'herido', en: 'injured / wounded', cefr: 'B1', domain: 'adjectives', frequencyRank: 360, example: 'Hay una persona herida en la calle.', exampleEn: "There's an injured person on the street." },
+
+  // Situational: bank, post office, small talk
+  { es: 'abrir una cuenta', en: 'to open an account', cefr: 'B1', domain: 'business', frequencyRank: 330, example: 'Quisiera abrir una cuenta de ahorros.', exampleEn: 'I would like to open a savings account.' },
+  { es: 'retirar', en: 'to withdraw (money)', cefr: 'B1', domain: 'verbs', frequencyRank: 340, example: 'Necesito retirar dinero.', exampleEn: 'I need to withdraw money.' },
+  { es: 'depositar', en: 'to deposit', cefr: 'B1', domain: 'verbs', frequencyRank: 345, example: 'Quiero depositar un cheque.', exampleEn: 'I want to deposit a check.' },
+  { es: 'cajero automático', en: 'ATM', cefr: 'B1', domain: 'business', frequencyRank: 350, example: '¿Dónde hay un cajero automático?', exampleEn: "Where's an ATM?" },
+  { es: 'saldo', en: 'balance (account)', cefr: 'B1', domain: 'business', frequencyRank: 355, example: '¿Cuál es mi saldo actual?', exampleEn: "What's my current balance?" },
+  { es: 'transferencia', en: 'transfer (money)', cefr: 'B1', domain: 'business', frequencyRank: 360, example: 'Quisiera hacer una transferencia.', exampleEn: 'I would like to make a transfer.' },
+  { es: 'oficina de correos', en: 'post office', cefr: 'A2', domain: 'places', frequencyRank: 330, example: '¿Dónde está la oficina de correos?', exampleEn: "Where's the post office?" },
+  { es: 'sello', en: 'stamp', cefr: 'A2', domain: 'nouns', frequencyRank: 340, example: '¿Venden sellos aquí?', exampleEn: 'Do you sell stamps here?' },
+  { es: 'carta', en: 'letter (mail)', cefr: 'A2', domain: 'nouns', frequencyRank: 345, example: 'Quisiera enviar esta carta.', exampleEn: 'I would like to send this letter.' },
+  { es: 'correo certificado', en: 'certified mail', cefr: 'B1', domain: 'nouns', frequencyRank: 380, example: 'Envié el documento por correo certificado.', exampleEn: 'I sent the document by certified mail.' },
+  { es: 'remitente', en: 'sender', cefr: 'B1', domain: 'nouns', frequencyRank: 385, example: 'Escriba el nombre del remitente aquí.', exampleEn: "Write the sender's name here." },
+  { es: 'destinatario', en: 'recipient / addressee', cefr: 'B1', domain: 'nouns', frequencyRank: 390, example: 'El destinatario vive en Bogotá.', exampleEn: 'The recipient lives in Bogotá.' },
+  { es: 'tanto tiempo', en: 'long time no see', cefr: 'A2', domain: 'greetings', frequencyRank: 240, example: '¡Tanto tiempo! ¿Cómo has estado?', exampleEn: "Long time no see! How have you been?" },
+  { es: '¿qué tal todo?', en: "how's everything going?", cefr: 'A2', domain: 'greetings', frequencyRank: 245, example: '¿Qué tal todo por casa?', exampleEn: "How's everything at home?" },
+  { es: 'cuéntame', en: 'tell me', cefr: 'A2', domain: 'greetings', frequencyRank: 250, example: 'Cuéntame, ¿qué has hecho?', exampleEn: 'Tell me, what have you been up to?' },
+  { es: '¿qué has hecho?', en: "what have you been up to?", cefr: 'A2', domain: 'greetings', frequencyRank: 255, example: '¿Qué has hecho este último año?', exampleEn: 'What have you been up to this past year?' },
+  { es: 'en serio', en: 'really / seriously', cefr: 'A2', domain: 'adverbs', frequencyRank: 260, example: '¿En serio? ¡No lo sabía!', exampleEn: "Really? I didn't know!" },
+  { es: 'tengo prisa', en: "I'm in a hurry", cefr: 'A2', domain: 'greetings', frequencyRank: 265, example: 'Lo siento, tengo prisa.', exampleEn: "Sorry, I'm in a hurry." },
 ];
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();

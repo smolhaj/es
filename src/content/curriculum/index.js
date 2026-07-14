@@ -19,6 +19,7 @@ import likesDislikes from './unit09-likes-dislikes.js';
 import restaurant from './unit-a2-restaurant.js';
 import peopleAroundYou from './unit10-people-around-you.js';
 import whatHappened from './unit11-what-happened.js';
+import smallTalk from './unit-a2-small-talk.js';
 import obligationsRequests from './unit12-obligations-requests.js';
 import rightNowSoon from './unit13-right-now-soon.js';
 import phonePlans from './unit-a2-phone-plans.js';
@@ -33,6 +34,7 @@ import opinionsCommands from './unit19-opinions-commands.js';
 import directionsTransport from './unit-b1-directions-transport.js';
 import doctorPharmacy from './unit-b1-doctor-pharmacy.js';
 import emergencies from './unit-b1-emergencies.js';
+import bankPostOffice from './unit-b1-bank-post-office.js';
 import nuanceConnection from './unit20-nuance-connection.js';
 import efficiencyEmphasis from './unit21-efficiency-emphasis.js';
 import perfectTenses from './unit22-perfect-tenses.js';
@@ -72,6 +74,7 @@ const CONTENT = {
   'restaurant': restaurant,
   'people-around-you': peopleAroundYou,
   'what-happened': whatHappened,
+  'small-talk': smallTalk,
   'obligations-requests': obligationsRequests,
   'right-now-soon': rightNowSoon,
   'phone-plans': phonePlans,
@@ -86,6 +89,7 @@ const CONTENT = {
   'directions-transport': directionsTransport,
   'doctor-pharmacy': doctorPharmacy,
   'emergencies': emergencies,
+  'bank-post-office': bankPostOffice,
   'nuance-connection': nuanceConnection,
   'efficiency-emphasis': efficiencyEmphasis,
   'perfect-tenses': perfectTenses,
@@ -164,8 +168,11 @@ export const UNIT_METADATA = [
   { id: 'what-happened', order: 11, level: 'A2', title: 'What Happened',
     concepts: ['preterite_regular', 'negation', 'present_perfect'],
     summary: 'Talk about completed past events, say what did NOT happen, and say what you have done.' },
+  { id: 'small-talk', order: 11.2, level: 'A2', title: 'Small Talk & Catching Up',
+    concepts: ['small_talk'],
+    summary: 'Greet an old friend, ask what they\'ve been up to, and keep a conversation going.' },
   { id: 'checkpoint-a2', order: 11.5, level: 'A2', title: 'Checkpoint: Units 1-11', isCheckpoint: true,
-    checkpointUpTo: 11, coversUnits: 'Units 1-11', concepts: [],
+    checkpointUpTo: 11.2, coversUnits: 'Units 1-11', concepts: [],
     summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'obligations-requests', order: 12, level: 'A2', title: 'Obligations & Requests',
     concepts: ['modal_verbs', 'obligation_infinitive', 'imperative_affirmative'],
@@ -214,8 +221,11 @@ export const UNIT_METADATA = [
   { id: 'emergencies', order: 19.3, level: 'B1', title: 'Emergencies',
     concepts: ['emergencies'],
     summary: 'Get help fast — report a theft, an accident, or a medical emergency.' },
+  { id: 'bank-post-office', order: 19.4, level: 'B1', title: 'At the Bank & Post Office',
+    concepts: ['bank_post_office'],
+    summary: 'Open an account, withdraw money, and send a package or letter.' },
   { id: 'checkpoint-b1', order: 19.5, level: 'B1', title: 'Checkpoint: Units 1-19', isCheckpoint: true,
-    checkpointUpTo: 19.3, coversUnits: 'Units 1-19', concepts: [],
+    checkpointUpTo: 19.4, coversUnits: 'Units 1-19', concepts: [],
     summary: 'A quick, personalized review of what you\'ve covered so far — weighted toward your weak spots.' },
   { id: 'nuance-connection', order: 20, level: 'B1', title: 'Nuance & Connection',
     concepts: ['por_vs_para', 'relative_clauses', 'saber_vs_conocer', 'lo_neutro'],
