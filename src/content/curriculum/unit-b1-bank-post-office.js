@@ -9,7 +9,7 @@
 // note at the bottom of this file for the specific claims checked.
 //
 // Functional/situational unit (CEFR's "Funciones" pillar): reuses
-// quisiera (Unit 9.5's restaurant unit) and present_perfect (Unit 11)
+// quisiera (introduced in the Restaurant unit) and present_perfect (Unit 11)
 // rather than introducing new grammar. The last of the B1 situational
 // cluster (directions, doctor, emergencies, bank/post office) before the
 // B1 checkpoint.
@@ -20,7 +20,7 @@ export default {
       heading: 'At the Bank',
       paragraphs: [
         "Bank errands run on a small, predictable set of verbs. Quisiera abrir una cuenta (\"I would like to open an account\") is the standard opener if you're a new customer — specify cuenta de ahorros (\"savings account\") or cuenta corriente (\"checking account\") if asked which kind. Once you have an account, retirar (\"to withdraw\") and depositar (\"to deposit\") cover the two basic transactions: Necesito retirar dinero (\"I need to withdraw money\"), Quiero depositar un cheque (\"I want to deposit a check\").",
-        'Regional habit varies here worth knowing: in Spain, sacar dinero ("to take out money") is just as common as retirar; in Latin America, retirar tends to dominate. Both are understood everywhere. For everyday cash needs outside banking hours, el cajero automático ("the ATM") is the word you\'ll reach for constantly: ¿Dónde hay un cajero automático cerca? ("Where\'s a nearby ATM?").',
+        'A regional habit is worth knowing here: in Spain, sacar dinero ("to take out money") is just as common as retirar; in Latin America, retirar tends to dominate. Both are understood everywhere. For everyday cash needs outside banking hours, el cajero automático ("the ATM") is the word you\'ll reach for constantly: ¿Dónde hay un cajero automático cerca? ("Where\'s a nearby ATM?").',
         '¿Cuál es mi saldo? ("What\'s my balance?") is the standard balance inquiry. If you need to send money to someone else: Quisiera hacer una transferencia ("I would like to make a transfer"). And if something\'s gone wrong — a lost card, an unrecognized charge — He perdido mi tarjeta ("I\'ve lost my card," present perfect from Unit 11) is exactly the kind of situation that tense was built for: a recent event whose effect still matters right now.',
       ],
       examples: [
@@ -39,7 +39,7 @@ export default {
     {
       heading: 'At the Post Office',
       paragraphs: [
-        "The post office runs through an equally short list of essentials. Quisiera enviar esta carta/este paquete (\"I would like to send this letter/this package\") gets any transaction started. ¿Venden sellos? (\"Do you sell stamps?\") is the standard question if you just need postage — sello is \"stamp,\" and you'll often be asked how many and for where.",
+        "The post office runs through an equally short list of essentials. Quisiera enviar esta carta/este paquete (\"I would like to send this letter/this package\") gets any transaction started. ¿Venden sellos? (\"Do you sell stamps?\") is the standard question if you just need postage — sello is \"stamp,\" and you'll often be asked how many you need and where they're going.",
         'For anything valuable or important, correo certificado ("certified mail") provides proof of delivery: Quisiera enviarlo por correo certificado ("I would like to send it by certified mail"). Two more words fill out a shipping label: el remitente ("the sender") and el destinatario ("the recipient") — both come up on any package or certified letter form you\'ll need to fill out.',
         '¿Cuánto tarda en llegar? ("How long does it take to arrive?") reuses the tarda construction from the Hotel & Travel unit, now applied to mail instead of a trip. And if you\'re shipping internationally: ¿Cuánto cuesta enviarlo a...? ("How much does it cost to send it to...?") plugs a country or city straight into the price question you already know from Unit 2.',
       ],

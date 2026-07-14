@@ -386,7 +386,7 @@ along the way — see the relevant dated section in `ES-HISTORY.md`.
 
 ### Structured "Learn" curriculum
 
-51 taught units plus 9 review checkpoints (60 total), A1 through C2, at
+53 taught units plus 9 review checkpoints (62 total), A1 through C2, at
 `/learn`. Alongside the adaptive Gemini session and reference pages —
 doesn't replace either. B2 got 3 units added (fractional order 25.1-25.3,
 between "Fine Details" and the B2 checkpoint) closing a real gap: B2 had
@@ -514,7 +514,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2083 words as of 07-13-2026 (grown from
+`src/content/vocabulary.js` — 2101 words as of 07-13-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2389,3 +2389,32 @@ full account of any of these.
   construction; replaced with a comparative already taught in the same
   unit. Re-verified live after fixes (`wrangler pages dev`): all three
   affected lessons still render correctly with the corrected prose.
+- **07-13-2026** — Fourth situational batch, closing out the remaining
+  scenarios from the original scoping: "At the Bank & Post Office" (B1,
+  order 19.4, last of the B1 situational cluster before its checkpoint —
+  reuses quisiera and present_perfect for account/mail errands and a
+  lost-card report) and "Small Talk & Catching Up" (A2, order 11.2,
+  placed right after What Happened so present-perfect "how have you
+  been" questions and preterite storytelling get real conversational
+  use — the first unit past true-beginner Unit 1 to teach a sustained
+  social exchange rather than one-off greetings). 2 new concepts (128 →
+  130), 51 → 53 taught units. 18 new `vocabulary.js` words (2083 →
+  2101); no accidental duplicates (one intentional new homograph:
+  bare `carta`, "letter," alongside the pre-existing `la carta`,
+  "menu"). Verified live end-to-end (`wrangler pages dev` + local D1,
+  clearing the rate-limit KV entry again): both lessons render correctly
+  on `/learn` in their intended sections, and a small-talk translation
+  exercise was answered and graded correctly. The same fresh-eyes
+  subagent proofread pass caught 2 more real defects, both fixed: the
+  small-talk unit's own accuracy-audit footer overclaimed that all four
+  of its "catching-up opener" phrases used present perfect, when the
+  unit's own body text correctly treats two of them (¡tanto tiempo!,
+  ¿qué tal todo?) as a verbless exclamation and present tense
+  respectively — footer corrected to match the body text instead of
+  contradicting it. Separately, two closing phrases used in examples
+  (cuídate, un abrazo) were never actually taught in the vocab list —
+  added both. Also fixed a malformed English sentence and a stray
+  decimal unit-number reference in the bank/post-office unit. This
+  closes the situational-language initiative as originally scoped —
+  7 units from the first two batches plus these final 2, all 9 reusing
+  grammar already taught rather than introducing new structure.

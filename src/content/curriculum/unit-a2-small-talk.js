@@ -68,6 +68,8 @@ export default {
     { es: 'qué interesante', en: 'how interesting', example: '¡Qué interesante! Cuéntame más.', exampleEn: 'How interesting! Tell me more.' },
     { es: 'tengo prisa', en: "I'm in a hurry", example: 'Lo siento, tengo prisa.', exampleEn: "Sorry, I'm in a hurry." },
     { es: 'nos vemos pronto', en: 'see you soon', example: '¡Nos vemos pronto!', exampleEn: 'See you soon!' },
+    { es: 'cuídate', en: 'take care', example: '¡Hablamos pronto! Cuídate.', exampleEn: "We'll talk soon! Take care." },
+    { es: 'un abrazo', en: 'a hug (warm sign-off)', example: '¡Nos vemos pronto! Un abrazo.', exampleEn: 'See you soon! Take care (a hug).' },
   ],
 
   practice: [
@@ -75,7 +77,7 @@ export default {
     { type: 'translation_to_spanish', prompt: "Translate: 'Long time no see! How have you been?'", english: 'Long time no see! How have you been?', answer: '¡Tanto tiempo! ¿Cómo has estado?', word: 'tanto tiempo', concept_id: 'small_talk', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which tense does ¿Cómo has estado? use, and why?', word: 'has estado', english: 'have you been', answer: 'present perfect — covers a stretch of time up to now', options: ['preterite — one completed event', 'present perfect — covers a stretch of time up to now', 'imperfect — an ongoing past state', 'future — something not yet true'], concept_id: 'small_talk', difficulty: 2 },
     { type: 'fill_blank', prompt: 'Complete with the preterite: "___ un trabajo nuevo el mes pasado." (empezar)', word: 'empecé', english: 'I started', answer: 'Empecé', concept_id: 'small_talk', difficulty: 2 },
-    { type: 'translation_to_english', prompt: '¿Qué significa "Cuéntame, ¿qué has hecho?"?', word: 'cuéntame', english: 'tell me', answer: 'Tell me, what have you been up to?', concept_id: 'small_talk', difficulty: 1 },
+    { type: 'translation_to_english', prompt: 'What does this mean: "Cuéntame, ¿qué has hecho?"', word: 'cuéntame', english: 'tell me', answer: 'Tell me, what have you been up to?', concept_id: 'small_talk', difficulty: 1 },
     { type: 'multiple_choice', prompt: 'Someone tells you surprising news. What is the most natural reaction?', word: '¿en serio?', english: 'really?', answer: '¿En serio? ¡No lo sabía!', options: ['Tengo prisa.', '¿En serio? ¡No lo sabía!', 'Nos vemos pronto.', '¿Qué tal todo?'], concept_id: 'small_talk', difficulty: 1 },
     { type: 'translation_to_spanish', prompt: "Translate: 'Sorry, I'm in a hurry, but it was great to see you.'", english: "Sorry, I'm in a hurry, but it was great to see you.", answer: 'Lo siento, tengo prisa, pero me encantó verte.', word: 'tengo prisa', concept_id: 'small_talk', difficulty: 3 },
     { type: 'error_correction', prompt: 'Fix the mistake: "¿Cómo estuviste?" (asking generally how someone has been, not about one finished moment)', word: 'has estado', english: 'have you been', answer: '¿Cómo has estado?', concept_id: 'small_talk', difficulty: 3 },
@@ -87,10 +89,13 @@ export default {
 // other pedagogical small-talk/catching-up phrase guides before writing
 // (July 2026):
 // - ¡tanto tiempo!, ¿cómo has estado?, ¿qué tal todo?/¿cómo va todo?,
-//   ¿qué has hecho? confirmed as the standard catching-up openers, all
-//   using present perfect for the broad "up to now" question — correctly
-//   distinguished from preterite, which is reserved for the specific
-//   completed events that follow once someone starts telling their story
+//   ¿qué has hecho? confirmed as the standard catching-up openers. Of
+//   these, ¿cómo has estado? and ¿qué has hecho? use present perfect for
+//   the broad "up to now" question; ¡tanto tiempo! is a verbless
+//   exclamation and ¿qué tal todo?/¿cómo va todo? use present tense — all
+//   four are still correctly distinguished from preterite, which is
+//   reserved for the specific completed events that follow once someone
+//   starts telling their story
 // - cuéntame / cuéntame más confirmed as standard conversation-continuing
 //   phrases; ¿en serio?/¡qué interesante! confirmed as the standard
 //   interest-showing reactions
