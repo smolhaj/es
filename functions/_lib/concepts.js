@@ -297,6 +297,11 @@ export const CONCEPTS = {
     category: 'vocabulary', prereqs: ['imperative'],
     explanationStyles: ['example_first', 'rule_first', 'story'],
   },
+  bank_post_office: {
+    id: 'bank_post_office', label: 'At the bank & post office', cefr: 'B1',
+    category: 'vocabulary', prereqs: ['present_perfect'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
   por_vs_para: {
     id: 'por_vs_para', label: 'Por vs. para', cefr: 'B1',
     category: 'prepositions', prereqs: ['preterite_regular'],
@@ -363,6 +368,11 @@ export const CONCEPTS = {
     id: 'present_perfect', label: 'Present perfect (he/has/ha)', cefr: 'A2',
     category: 'verb', prereqs: ['preterite_regular'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  small_talk: {
+    id: 'small_talk', label: 'Small talk & catching up', cefr: 'A2',
+    category: 'vocabulary', prereqs: ['preterite_regular', 'present_perfect'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
   },
   pluperfect: {
     id: 'pluperfect', label: 'Pluperfect (había + participio)', cefr: 'B1',
