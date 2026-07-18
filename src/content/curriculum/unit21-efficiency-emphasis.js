@@ -1,5 +1,5 @@
 // Unit 21 — Efficiency & Emphasis (B1)
-// Covers: object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, exclamativas
+// Covers: object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, para_que, exclamativas
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -93,6 +93,26 @@ export default {
       ],
     },
     {
+      heading: 'Purpose with a Twist: Para Que',
+      paragraphs: [
+        "Back in Unit 20, you met para + infinitive for purpose: Estudio para aprender (\"I study in order to learn\") — the same subject (yo) does both the studying and the learning. The same-subject/different-subject test you just built applies here too, and it has a name of its own worth knowing: when a different person is the one benefiting from or carrying out the purpose, para switches to para que + subjunctive. Estudio para que mis hijos aprendan (\"I study so that my children learn\") — yo study, but ellos are the ones learning, so the second verb becomes subjunctive (aprendan), triggered by que.",
+        'The pattern is identical to querer/esperar from the last section, just applied to purpose instead of desire: Trabajo para ganar dinero (\"I work to earn money\" — same subject, infinitive) versus Trabajo para que mi familia tenga una vida mejor (\"I work so that my family has a better life\" — different subject, subjunctive). A few other purpose conjunctions follow para que\'s lead — a fin de que and con el fin de que both mean roughly the same thing and work identically, though para que is by far the most common in everyday speech.',
+        'One more nuance: para que always takes the subjunctive, in every tense, with no indicative option — unlike cuando and its family from a later unit, there\'s no habitual/anticipated split to worry about here. Purpose is inherently about an intention, not a settled fact, so the subjunctive is automatic every time que appears after para.',
+      ],
+      examples: [
+        { es: 'Estudio para que mis hijos aprendan.', en: 'I study so that my children learn.' },
+        { es: 'Te llamo para que sepas la verdad.', en: 'I\'m calling you so that you know the truth.' },
+        { es: 'Trabajo para que mi familia tenga una vida mejor.', en: 'I work so that my family has a better life.' },
+        { es: 'Abrió la ventana para que entrara aire fresco.', en: 'He opened the window so that fresh air would come in.' },
+        { es: 'Te lo explico otra vez para que lo entiendas bien.', en: 'I\'ll explain it to you again so you understand it well.' },
+      ],
+      commonMistakes: [
+        'Don\'t use para + infinitive when the subject changes — Estudio para mis hijos aprender is wrong; the moment a different person enters the picture, que + subjunctive is required: Estudio para que mis hijos aprendan.',
+        'Don\'t drop que and leave a conjugated verb after bare para — Para mis hijos aprendan is missing que; it must be para que mis hijos aprendan.',
+        "Past-tense purpose still takes the subjunctive, just shifted to imperfect subjunctive — Abrió la ventana para que entrara aire (not entró) — following the same past-shifting pattern you'll see formalized with other triggers later.",
+      ],
+    },
+    {
       heading: 'How Beautiful! Qué + Adjective and Adverb',
       paragraphs: [
         'You learned qué as a question word back in Unit 7 (¿Qué es esto?, "What is this?"). It has a second life as an exclamation word, and this use is everywhere in spoken Spanish — arguably more common than the textbook attention it usually gets. The simplest pattern: ¡Qué + adjective/adverb! for a pure reaction, with no verb needed at all. ¡Qué bonito! ("How beautiful!"), ¡Qué interesante! ("How interesting!"), ¡Qué bien! ("How great! / Well done!"). Just like question words, qué in this exclamatory use always carries its accent mark.',
@@ -145,6 +165,8 @@ export default {
     { es: 'es importante', en: "it's important", example: 'Es importante que estudies.', exampleEn: "It's important that you study." },
     { es: 'es necesario', en: "it's necessary", example: 'Es necesario descansar.', exampleEn: "It's necessary to rest." },
     { es: 'dormir', en: 'to sleep', example: 'Quiero que duermas bien.', exampleEn: 'I want you to sleep well.' },
+    { es: 'para que', en: 'so that / in order that', example: 'Te lo explico para que lo entiendas.', exampleEn: 'I explain it to you so that you understand it.' },
+    { es: 'a fin de que', en: 'so that / in order that (formal)', example: 'Llegamos temprano a fin de que todo esté listo.', exampleEn: 'We arrive early so that everything is ready.' },
     { es: '¡qué bonito!', en: 'how beautiful!', example: '¡Qué bonito es este pueblo!', exampleEn: 'How beautiful this town is!' },
     { es: '¡qué bien!', en: 'how great! / well done!', example: '¡Qué bien hablas español!', exampleEn: 'How well you speak Spanish!' },
     { es: 'más / tan', en: 'so / such (in exclamations)', example: '¡Qué casa más bonita!', exampleEn: 'What a beautiful house!' },
@@ -172,6 +194,13 @@ export default {
     { type: 'translation_to_spanish', prompt: "Translate: 'It's important that you (tú) work hard.' (specific subject)", english: "It's important that you work hard.", answer: 'Es importante que trabajes duro.', word: 'trabajes', concept_id: 'infinitive_vs_subjunctive', difficulty: 2 },
     { type: 'error_correction', prompt: 'Find and correct the error: "Quiero que estudiar." (same subject, no que needed)', word: 'estudiar', english: 'to study', answer: 'Quiero estudiar.', concept_id: 'infinitive_vs_subjunctive', difficulty: 2 },
     { type: 'translation_to_english', prompt: '¿Qué significa "Espero aprobar" frente a "Espero que apruebes"?', word: 'esperar', english: 'to hope', answer: 'I hope to pass (I am the one passing) vs. I hope you pass (someone else is passing).', concept_id: 'infinitive_vs_subjunctive', difficulty: 2 },
+
+    // ── para_que block (kept separate; blocked before mixed review) ──
+    { type: 'multiple_choice', prompt: 'Same subject or different? "Estudio ___." (I study in order to learn — I am the one learning)', word: 'aprender', english: 'to learn', answer: 'para aprender', options: ['para aprender', 'para que aprenda', 'para que aprendo', 'para que aprenda yo'], concept_id: 'para_que', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "Estudio para que mis hijos ___ (aprender)." (different subject — they learn)', word: 'aprender', english: 'to learn', answer: 'aprendan', concept_id: 'para_que', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'I'm calling you so that you know the truth.'", english: "I'm calling you so that you know the truth.", answer: 'Te llamo para que sepas la verdad.', word: 'para que', concept_id: 'para_que', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Find and correct the error: "Estudio para mis hijos aprender." (different subject needs que + subjunctive)', word: 'para que', english: 'so that', answer: 'Estudio para que mis hijos aprendan.', concept_id: 'para_que', difficulty: 3 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Abrió la ventana para que entrara aire fresco"?', word: 'para que', english: 'so that', answer: 'He opened the window so that fresh air would come in.', concept_id: 'para_que', difficulty: 3 },
 
     // ── exclamativas block (kept separate; blocked before mixed review) ──
     { type: 'multiple_choice', prompt: 'Which is the correct pure exclamation for "How beautiful!"?', word: '¡qué bonito!', english: 'how beautiful!', answer: '¡Qué bonito!', options: ['¡Qué bonito!', '¡Cuánto bonito!', '¡Qué es bonito!', '¡Bonito qué!'], concept_id: 'exclamativas', difficulty: 1 },
@@ -209,9 +238,20 @@ export default {
 // - Cuánto/a/os/as agreement with the following noun, but invariant
 //   masculine singular when modifying a verb (¡Cuánto has cambiado!),
 //   confirmed against SpanishDict's exclamatory words guide.
+// - Para + infinitive (same subject) vs. para que + subjunctive (different
+//   subject) confirmed against SpanishDict's and Kwiziq's "para que"
+//   pages, applying the identical same-subject/different-subject test as
+//   querer/esperar; a fin de que and con el fin de que confirmed as
+//   near-synonymous, less-common formal alternatives to para que; para que
+//   confirmed to always require the subjunctive in every tense (including
+//   imperfect subjunctive for past-tense purpose, e.g. entrara), with no
+//   indicative option, unlike the habitual/anticipated split that applies
+//   to cuando and other adverbial time triggers.
 // This content agrees with and does not contradict the existing
 // GRAMMAR_CARDS entries for object_pronoun_order, se_impersonal,
 // infinitive_vs_subjunctive, and exclamativas in src/content/grammar.js,
 // and builds directly on direct_object_pronouns/indirect_object_pronouns
-// (Unit 10) and present_subjunctive/modal_verbs (Unit 12, Unit 19) without
-// re-teaching their basics from scratch.
+// (Unit 10), present_subjunctive/modal_verbs (Unit 12, Unit 19), and
+// por_vs_para's para + infinitive purpose use (Unit 20) without
+// re-teaching their basics from scratch. para_que is a new concept (see
+// functions/_lib/concepts.js) with no prior GRAMMAR_CARDS entry.
