@@ -1,5 +1,5 @@
 // Unit 21 — Efficiency & Emphasis (B1)
-// Covers: object_pronoun_order, se_impersonal, infinitive_vs_subjunctive, para_que, exclamativas
+// Covers: object_pronoun_order, se_impersonal, reciprocal_reflexives, infinitive_vs_subjunctive, para_que, exclamativas
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -69,6 +69,26 @@ export default {
         "Don't confuse impersonal se with reflexive se just because they look identical — ask whether there's a specific subject doing the action to themselves (reflexive) or no one in particular (impersonal).",
         'Impersonal se keeps the verb in the singular even when the rest of the sentence sounds plural to an English ear — Se vive bien, not *Se viven bien*, because there\'s no plural subject, just a generic "one."',
         'Don\'t translate this se word-for-word as "itself" — in this use it has no reflexive meaning at all; it corresponds to English "people," "one," "you" (general), or a passive construction.',
+      ],
+    },
+    {
+      heading: 'Each Other: Reciprocal Reflexives',
+      paragraphs: [
+        'You already know reflexive verbs from Unit 8 — Me lavo ("I wash myself"), Se levanta ("he gets up") — where the subject does something to or for itself. But when the subject is plural (nosotros, vosotros, ellos/ellas/ustedes), those same reflexive pronouns — nos, os, se — can mean something completely different: not "themselves," but "each other." Se quieren mucho can mean "They love themselves a lot" (reflexive, each person loving their own self) or, far more naturally in most contexts, "They love each other a lot" (reciprocal, mutual love between them). Spanish uses the exact same pronoun and verb form for both meanings — only the plural forms of nos, os, se can carry this reciprocal sense, since "each other" requires at least two people acting on one another.',
+        'In fact, you\'ve been using this construction since Unit 1 without realizing its full grammar: ¡Nos vemos pronto! doesn\'t literally mean "we\'ll see ourselves soon" — it means "we\'ll see each other soon," a reciprocal action between you and the person you\'re talking to. The same pattern extends to countless everyday verbs once two or more people are involved: Mis padres se conocieron en la universidad ("My parents met each other at university" — met, reciprocal, not "knew themselves"), Los hermanos se abrazaron al despedirse ("The siblings hugged each other when saying goodbye"), Nos escribimos todas las semanas ("We write to each other every week").',
+        'Context almost always makes the meaning clear — Se quieren mucho, said about a couple, is obviously reciprocal, not reflexive. But when a sentence really could go either way, Spanish adds a clarifying phrase: el uno al otro (adjusting for gender and number: la una a la otra, los unos a los otros, las unas a las otras), or the simpler mutuamente ("mutually"). Se miraron el uno al otro sin decir nada ("They looked at each other without saying anything") leaves zero doubt that this is reciprocal, not each person looking at themselves in a mirror.',
+      ],
+      examples: [
+        { es: 'Mis padres se conocieron en la universidad.', en: 'My parents met each other at university.' },
+        { es: 'Los hermanos se abrazaron al despedirse.', en: 'The siblings hugged each other when saying goodbye.' },
+        { es: 'Nos escribimos todas las semanas.', en: 'We write to each other every week.' },
+        { es: 'Se miraron el uno al otro sin decir nada.', en: 'They looked at each other without saying anything.' },
+        { es: '¡Nos vemos pronto!', en: "See you soon! (literally: we'll see each other soon)" },
+      ],
+      commonMistakes: [
+        'Reciprocal meaning only works with plural subjects (nosotros, vosotros, ellos/ellas/ustedes) — a singular subject like Ella se mira can only be reflexive ("she looks at herself"), never reciprocal, since "each other" needs at least two people.',
+        "Don't assume every plural reflexive verb is automatically reciprocal — Se lavan las manos usually just means \"they wash their hands\" (each person washing their own), not \"they wash each other's hands.\" Context, not grammar alone, usually settles which meaning is meant.",
+        'El uno al otro agrees with the people involved (la una a la otra for two women, los unos a los otros for a mixed or male group) — it\'s optional clarification, not a required part of every reciprocal sentence.',
       ],
     },
     {
@@ -161,6 +181,10 @@ export default {
     { es: 'se vende', en: 'is for sale / is sold', example: 'Se vende piso.', exampleEn: 'Flat for sale.' },
     { es: 'se permite', en: 'is allowed / permitted', example: 'No se permite fumar aquí.', exampleEn: 'Smoking is not permitted here.' },
     { es: 'se dice que', en: 'they say that / it is said that', example: 'Se dice que va a llover.', exampleEn: "It's said that it's going to rain." },
+    { es: 'conocerse', en: 'to meet (each other) / get to know each other', example: 'Se conocieron en la universidad.', exampleEn: 'They met each other at university.' },
+    { es: 'abrazarse', en: 'to hug (each other)', example: 'Se abrazaron al despedirse.', exampleEn: 'They hugged each other when saying goodbye.' },
+    { es: 'el uno al otro', en: 'each other', example: 'Se miraron el uno al otro.', exampleEn: 'They looked at each other.' },
+    { es: 'mutuamente', en: 'mutually', example: 'Se ayudan mutuamente.', exampleEn: 'They help each other.' },
     { es: 'esperar', en: 'to hope / expect', example: 'Espero que apruebes.', exampleEn: 'I hope you pass.' },
     { es: 'es importante', en: "it's important", example: 'Es importante que estudies.', exampleEn: "It's important that you study." },
     { es: 'es necesario', en: "it's necessary", example: 'Es necesario descansar.', exampleEn: "It's necessary to rest." },
@@ -187,6 +211,13 @@ export default {
     { type: 'fill_blank', prompt: 'Complete: "No ___ fumar aquí." (impersonal: smoking is not permitted)', word: 'se permite', english: "isn't permitted", answer: 'se permite', concept_id: 'se_impersonal', difficulty: 2 },
     { type: 'translation_to_spanish', prompt: "Translate using impersonal se: 'They say it's going to rain.'", english: "They say it's going to rain.", answer: 'Se dice que va a llover.', word: 'se dice que', concept_id: 'se_impersonal', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which sentence uses the reflexive se, not the impersonal se?', word: 'se lava', english: 'washes herself', answer: 'Ella se lava por la mañana.', options: ['Ella se lava por la mañana.', 'Se habla inglés aquí.', 'Se vende esta casa.', 'Se come tarde en España.'], concept_id: 'se_impersonal', difficulty: 2 },
+
+    // ── reciprocal_reflexives block (kept separate; blocked before mixed review) ──
+    { type: 'multiple_choice', prompt: 'Which is the correct reciprocal meaning of "Se quieren mucho" about a couple?', word: 'se quieren', english: 'they love each other', answer: 'They love each other a lot.', options: ['They love each other a lot.', 'They love themselves a lot.', 'She loves them a lot.', 'They want a lot of things.'], concept_id: 'reciprocal_reflexives', difficulty: 2 },
+    { type: 'fill_blank', prompt: 'Complete: "Mis padres ___ (conocer) en la universidad." (reciprocal: met each other)', word: 'se conocieron', english: 'met each other', answer: 'se conocieron', concept_id: 'reciprocal_reflexives', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'We write to each other every week.'", english: 'We write to each other every week.', answer: 'Nos escribimos todas las semanas.', word: 'nos escribimos', concept_id: 'reciprocal_reflexives', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Make the reciprocal meaning explicit: "Se miraron sin decir nada." (add the clarifying phrase so it can\'t be read as each person looking at a mirror)', word: 'el uno al otro', english: 'each other', answer: 'Se miraron el uno al otro sin decir nada.', concept_id: 'reciprocal_reflexives', difficulty: 3 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Los hermanos se abrazaron al despedirse"?', word: 'se abrazaron', english: 'hugged each other', answer: 'The siblings hugged each other when saying goodbye.', concept_id: 'reciprocal_reflexives', difficulty: 2 },
 
     // ── infinitive_vs_subjunctive block (kept separate; blocked before mixed review) ──
     { type: 'multiple_choice', prompt: 'Same subject or different? "Quiero ___." (I want to sleep — I am the one sleeping)', word: 'dormir', english: 'to sleep', answer: 'dormir', options: ['dormir', 'que duermas', 'que duermo', 'duerma'], concept_id: 'infinitive_vs_subjunctive', difficulty: 1 },
@@ -225,6 +256,16 @@ export default {
 //   e.g. se vende/se venden) — three-way distinction confirmed against
 //   Kwiziq's "impersonal se vs. passive reflexive se" and SpanishDict's
 //   impersonal-vs-reflexive se answer thread.
+// - Reciprocal reflexives (nos, os, se with a plural subject meaning "each
+//   other" rather than reflexive "themselves") confirmed as B1-level per
+//   Instituto Cervantes PCIC, and confirmed only possible with plural
+//   subjects (nosotros/vosotros/ellos-ellas-ustedes) — a singular subject
+//   can only be reflexive, never reciprocal. Clarifying phrases (el uno
+//   al otro / la una a la otra / los unos a los otros / mutuamente),
+//   used when context alone doesn't disambiguate reflexive from
+//   reciprocal (e.g. se miraron could mean "they looked at themselves"
+//   or "they looked at each other"), confirmed against Lawless Spanish
+//   Grammar's and SpanishDict's reciprocal-verbs guides.
 // - Infinitive vs. subjunctive same-subject/different-subject rule for
 //   querer/esperar/es importante-type triggers confirmed against Kwiziq's
 //   "quiero que + subjunctive" page and Spanish Linguist's "single subject
@@ -253,5 +294,9 @@ export default {
 // and builds directly on direct_object_pronouns/indirect_object_pronouns
 // (Unit 10), present_subjunctive/modal_verbs (Unit 12, Unit 19), and
 // por_vs_para's para + infinitive purpose use (Unit 20) without
-// re-teaching their basics from scratch. para_que is a new concept (see
-// functions/_lib/concepts.js) with no prior GRAMMAR_CARDS entry.
+// re-teaching their basics from scratch. reciprocal_reflexives and
+// para_que are both new concepts (see functions/_lib/concepts.js) with
+// no prior GRAMMAR_CARDS entry; reciprocal_reflexives builds directly on
+// reflexive_verbs (Unit 8) and explicitly reuses ¡Nos vemos pronto!, the
+// fixed goodbye phrase from Unit 1 and the small-talk unit, as its first
+// example of reciprocal se already in everyday use.

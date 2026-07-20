@@ -514,7 +514,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2101 words as of 07-13-2026 (grown from
+`src/content/vocabulary.js` — 2139 words as of 07-20-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2476,3 +2476,48 @@ full account of any of these.
   ordinary same-subject rule — fixed by keeping ojalá as the one genuine
   exception (no infinitive fallback exists for it) and clarifying that
   es necesario/es importante are NOT exceptions.
+- **07-20-2026** — Closed the two remaining items from the "be thorough"
+  A1-B2 audit: B1/B2 reading-passage volume (B1 and B2 had only 3
+  passages each against 25 for A1 and 16 for A2) and reciprocal
+  reflexives, a lower-confidence grammar gap flagged but deprioritized
+  at the time. Added 4 new B1 passages ("El error del banco," reusing
+  the bank unit's vocabulary; "El intercambio de casas," a house-swap
+  vacation story; "Gabriel García Márquez, el mago de las palabras," a
+  biography; "El desierto de Atacama, el lugar más seco del mundo," a
+  geography/science piece) and 4 new B2 passages ("Una decisión difícil:
+  mudarse al extranjero," a dilemma narrative using subjunctive of doubt
+  — dudo que, no cree que valga la pena; "La disputa en la oficina," a
+  workplace-conflict dialogue reusing the B2 argumentation-workplace
+  unit's register; "El auge del trabajo remoto," an analytical piece on
+  remote work; "Cómo el fútbol se convirtió en el deporte más popular
+  del mundo," a cultural-history piece on football's global spread) —
+  B1 now 3 → 7 passages, B2 now 3 → 7. 38 new `vocabulary.js` words
+  (2101 → 2139) for topic-specific terms (banking-error vocabulary,
+  house-swap/hosting vocabulary, literary/geographic vocabulary,
+  workplace-dispute vocabulary, remote-work vocabulary, football-history
+  vocabulary); confirmed all genuinely missing via a vocab-gap check
+  before drafting, no accidental duplicates introduced. Separately,
+  confirmed reciprocal reflexives (nos, os, se meaning "each other" with
+  a plural subject, e.g. Se quieren mucho, Nos vemos pronto) as a
+  genuine B1 gap per Instituto Cervantes PCIC — the curriculum had
+  taught reflexive verbs since Unit 8 and used ¡Nos vemos pronto! as a
+  fixed goodbye phrase since Unit 1, but never explained the reciprocal
+  "each other" reading or the el uno al otro/mutuamente disambiguating
+  phrases used when a sentence could be read either way. Added a new
+  "Each Other: Reciprocal Reflexives" section to Unit 21
+  (Efficiency & Emphasis), placed right after the existing "Nobody in
+  Particular: Impersonal Se" section — both sections are about
+  disambiguating different jobs of the same se/nos pronouns, and the
+  new section explicitly reuses ¡Nos vemos pronto! as its opening
+  example of reciprocal se already in everyday use. 1 new concept (133
+  total, up from 132). Structural checks (multiple_choice answer-in-
+  options, no duplicate options/vocab, concept_id consistency) came back
+  clean across all 8 passages and the new grammar section. Verified live
+  end-to-end (`wrangler pages dev` + local D1, clearing the rate-limit
+  KV entry): the new section renders in the correct position on
+  `/learn`, its practice page shows the correct expanded count (23 → 28
+  items), the readings list shows all 8 new passages with correct
+  summaries, and two of the new passages (one B1, one B2) were opened
+  and confirmed to render correctly. A fresh-eyes subagent proofread
+  pass was launched against all of this batch's new content; any
+  defects it surfaces will land as a follow-up commit on this PR.

@@ -231,7 +231,7 @@ export const UNIT_METADATA = [
     concepts: ['por_vs_para', 'relative_clauses', 'saber_vs_conocer', 'lo_neutro', 'possessive_pronouns_stressed'],
     summary: 'The trickiest small words in Spanish, finally explained clearly.' },
   { id: 'efficiency-emphasis', order: 21, level: 'B1', title: 'Efficiency & Emphasis',
-    concepts: ['object_pronoun_order', 'se_impersonal', 'infinitive_vs_subjunctive', 'para_que', 'exclamativas'],
+    concepts: ['object_pronoun_order', 'se_impersonal', 'reciprocal_reflexives', 'infinitive_vs_subjunctive', 'para_que', 'exclamativas'],
     summary: 'Stack your pronouns, drop the subject Spanish already knows, and say things with real feeling.' },
   { id: 'reported-speech-basic', order: 21.1, level: 'B1', title: 'Reported Speech, the Everyday Version',
     concepts: ['estilo_indirecto_basico'],
