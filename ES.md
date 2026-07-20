@@ -2457,6 +2457,22 @@ full account of any of these.
   new sections correctly on `/learn` in the right position, and the
   practice page for each unit shows the correct expanded exercise count
   (18 → 23 for efficiency-emphasis, 26 → 31 for nuance-connection). A
-  fresh-eyes subagent proofread pass was kicked off against both
-  modified files; any defects it surfaces will land as a follow-up
-  commit on this same PR.
+  fresh-eyes subagent proofread pass on both modified files caught 3
+  real defects, all fixed: (1) a `possessive_pronouns_stressed` practice
+  item's parenthetical clarifier said "just stating it's yours" for a
+  sentence whose whole point was "mine" — wording corrected; (2) the
+  stressed-possessives section's own examples contradicted its
+  ser+article rule (taught "contrast brings the article back," then
+  immediately used a contrastive example, Este libro es mío, no es
+  tuyo, without one) — the rule was refined to the more accurate
+  distinction (a quick contrast still drops the article; only
+  specifically singling out one option among several, as in answering
+  "which one," brings it back), consistent with all of the section's
+  existing examples; (3) a pre-existing self-contradiction one section
+  earlier in Unit 21 (the "One Subject or Two?" section the new
+  para_que content explicitly builds on) claimed es necesario que was a
+  memorized subjunctive exception alongside ojalá, directly contradicted
+  by the same section's own es necesario vocab example following the
+  ordinary same-subject rule — fixed by keeping ojalá as the one genuine
+  exception (no infinitive fallback exists for it) and clarifying that
+  es necesario/es importante are NOT exceptions.

@@ -157,7 +157,7 @@ export default {
         "Every stressed possessive has four forms, agreeing in both gender and number with the thing possessed — never with the possessor. Mío/mía/míos/mías, tuyo/tuya/tuyos/tuyas, suyo/suya/suyos/suyas, nuestro/nuestra/nuestros/nuestras, vuestro/vuestra/vuestros/vuestras, and suyo/suya/suyos/suyas again (for de usted/ustedes/él/ella/ellos/ellas, same as the short su). Notice nuestro and vuestro look identical whether stressed or unstressed — only mi/tu/su change shape (gaining an extra syllable and full gender/number agreement) when they stress.",
         'The first job is standing in for the noun entirely, always paired with a definite article: Mi coche es azul; el tuyo es rojo ("My car is blue; yours is red") — el tuyo replaces tu coche completely, and it agrees with coche (masculine), not with whoever "you" happens to be. ¿Tienes las llaves? Las mías están aquí ("Do you have the keys? Mine are here") — las mías is feminine plural because llaves is, regardless of the speaker\'s own gender.',
         'The second job is an adjective placed after the noun instead of before it, usually with un/una rather than a definite article, for emphasis or to mean "a ___ of mine" rather than a specific, already-identified one: Un amigo mío trabaja aquí ("A friend of mine works here") sounds a little different from Mi amigo trabaja aquí ("My friend works here") — the stressed version implies one among several friends, while the unstressed version simply names the specific friend you mean. This pattern is more common in writing and slightly formal speech than in fast casual conversation, where mi amigo still does most of the everyday work.',
-        "One more wrinkle, specifically with ser: when you're just stating plain ownership, drop the article — Este libro es mío (\"This book is mine\"), not Este libro es el mío. But if you're contrasting or being specific about which one, the article comes back: ¿Este es tu dinero? No, ¡es el mío! (\"Is this your money? No, it's mine!\") — here el mío answers \"which one,\" so the article returns for that emphasis.",
+        "One more wrinkle, specifically with ser: when you're just stating plain ownership, drop the article — Este libro es mío (\"This book is mine\"), not Este libro es el mío. A quick contrastive aside like Este libro es mío, no tuyo (\"This book is mine, not yours\") still drops the article too — it's still just naming whose something is, not singling one out from a group. The article comes back specifically when you're answering \"which one\" out of several options: ¿Este es tu dinero? No, ¡es el mío! (\"Is this your money? No, it's mine!\") — here el mío is picking out one particular thing from the options on the table, which is a different job than a plain mío/tuyo contrast.",
       ],
       examples: [
         { es: 'Mi coche es azul; el tuyo es rojo.', en: 'My car is blue; yours is red.' },
@@ -169,7 +169,7 @@ export default {
       commonMistakes: [
         'Stressed possessives agree with the thing possessed, not the possessor — a man and a woman both say el mío for a masculine noun like trabajo, and both say la mía for a feminine noun like casa; don\'t let the speaker\'s own gender leak into the ending.',
         'Don\'t place a stressed possessive before the noun the way you would mi/tu/su — un mío amigo is wrong; the stressed form goes after the noun: un amigo mío.',
-        'With ser, plain ownership statements usually drop the article (Es mío, not Es el mío) — only add el/la/los/las back when you\'re contrasting or specifying which one out of several.',
+        'With ser, plain ownership statements usually drop the article (Es mío, not Es el mío) — even a quick contrast (Es mío, no tuyo) still drops it; only add el/la/los/las back when you\'re specifically singling out one option out of several (¿Cuál es tuyo? Ese es el mío).',
       ],
     },
   ],
@@ -238,7 +238,7 @@ export default {
     { type: 'fill_blank', prompt: 'Complete: "Mi coche es azul; ___ es rojo." (yours)', word: 'el tuyo', english: 'yours', answer: 'el tuyo', concept_id: 'possessive_pronouns_stressed', difficulty: 1 },
     { type: 'translation_to_spanish', prompt: "Translate: 'Do you have the keys? Mine are here.' (llaves is feminine)", english: 'Do you have the keys? Mine are here.', answer: '¿Tienes las llaves? Las mías están aquí.', word: 'las mías', concept_id: 'possessive_pronouns_stressed', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which sentence correctly places the stressed possessive after the noun?', word: 'un amigo mío', english: 'a friend of mine', answer: 'Un amigo mío trabaja aquí.', options: ['Un amigo mío trabaja aquí.', 'Un mío amigo trabaja aquí.', 'Mi amigo mío trabaja aquí.', 'Un amigo el mío trabaja aquí.'], concept_id: 'possessive_pronouns_stressed', difficulty: 2 },
-    { type: 'error_correction', prompt: 'Fix the plain-ownership statement: "Este libro es el mío." (no contrast intended, just stating it\'s yours)', word: 'mío', english: 'mine', answer: 'Este libro es mío.', concept_id: 'possessive_pronouns_stressed', difficulty: 3 },
+    { type: 'error_correction', prompt: 'Fix the plain-ownership statement: "Este libro es el mío." (no contrast intended, just stating it\'s mine)', word: 'mío', english: 'mine', answer: 'Este libro es mío.', concept_id: 'possessive_pronouns_stressed', difficulty: 3 },
     { type: 'translation_to_english', prompt: '¿Qué significa "¿Esta maleta es suya? No, ¡es la nuestra!"?', word: 'la nuestra', english: 'ours', answer: 'Is this suitcase yours (formal)? No, it\'s ours!', concept_id: 'possessive_pronouns_stressed', difficulty: 2 },
   ],
 };
@@ -298,9 +298,11 @@ export default {
 //   sounding somewhat more formal/literary than the unstressed mi amigo,
 //   which still dominates casual speech.
 // - Article omission with ser confirmed: plain ownership drops the article
-//   (Es mío), but the article returns for contrast/specificity (¿Es tuyo?
-//   No, ¡es el mío!) — confirmed against SpanishDict's Possessive Pronouns
-//   guide and Elon.io's Spanish possessive-pronoun reference.
+//   (Es mío), including a quick contrastive aside (Es mío, no tuyo); the
+//   article returns specifically when singling out one option among
+//   several (¿Es tuyo? No, ¡es el mío!) — confirmed against SpanishDict's
+//   Possessive Pronouns guide and Elon.io's Spanish possessive-pronoun
+//   reference.
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // por_vs_para, relative_clauses, saber_vs_conocer, and lo_neutro in
 // src/content/grammar.js (same facts, fuller B1-paced walkthrough with

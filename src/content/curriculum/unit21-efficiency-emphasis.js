@@ -89,7 +89,7 @@ export default {
       commonMistakes: [
         'The classic error is copying English word-for-word: "I want that you study" becomes the tempting but wrong *Quiero que tú estudiar* — once you commit to que, the verb that follows must be conjugated in the subjunctive (estudies), never left as an infinitive.',
         "The reverse error is just as common: adding que when the subject hasn't actually changed — Quiero que estudiar is wrong; if you (the speaker) are the one studying, drop que entirely and just say Quiero estudiar.",
-        'A few expressions like es necesario que or ojalá always take que + subjunctive even when you might expect an infinitive shortcut — these are memorized exceptions rather than following the same-subject test.',
+        'Ojalá is a genuine exception: it always takes que + subjunctive (Ojalá que apruebes, "I hope you pass"), even for your own actions, because it has no infinitive form to fall back on — it\'s not following the same-subject test at all. Es necesario/es importante and similar impersonal expressions, by contrast, are NOT exceptions — they follow the same-subject test exactly like querer and esperar.',
       ],
     },
     {
