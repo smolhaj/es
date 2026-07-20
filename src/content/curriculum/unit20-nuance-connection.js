@@ -1,5 +1,5 @@
 // Unit 20 — Nuance & Connection (B1, final unit of the "Get Started" course)
-// Covers: relative_clauses, por_vs_para, saber_vs_conocer, lo_neutro
+// Covers: relative_clauses, por_vs_para, saber_vs_conocer, lo_neutro, possessive_pronouns_stressed
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -150,6 +150,28 @@ export default {
         "Don't confuse this lo with the direct object pronoun lo (\"him/it,\" as in Lo veo, \"I see him/it\") — same word, but a completely different job: one replaces a specific noun already mentioned, the other builds an abstract idea from scratch.",
       ],
     },
+    {
+      heading: 'Mine, Yours, and Whose: Stressed Possessives',
+      paragraphs: [
+        "Unit 8 taught you mi, tu, su, and nuestro/vuestro — the possessives that sit right before a noun (mi coche, tu casa). Those are called unstressed possessives, and they're by far the most common way to show possession. But Spanish has a second, less frequent set — mío, tuyo, suyo, nuestro, vuestro, suyo — called stressed possessives, and they do two jobs the short forms can't: they let you drop the noun entirely and say \"mine/yours/his,\" and they let you place possession after the noun for emphasis or contrast.",
+        "Every stressed possessive has four forms, agreeing in both gender and number with the thing possessed — never with the possessor. Mío/mía/míos/mías, tuyo/tuya/tuyos/tuyas, suyo/suya/suyos/suyas, nuestro/nuestra/nuestros/nuestras, vuestro/vuestra/vuestros/vuestras, and suyo/suya/suyos/suyas again (for de usted/ustedes/él/ella/ellos/ellas, same as the short su). Notice nuestro and vuestro look identical whether stressed or unstressed — only mi/tu/su change shape (gaining an extra syllable and full gender/number agreement) when they stress.",
+        'The first job is standing in for the noun entirely, always paired with a definite article: Mi coche es azul; el tuyo es rojo ("My car is blue; yours is red") — el tuyo replaces tu coche completely, and it agrees with coche (masculine), not with whoever "you" happens to be. ¿Tienes las llaves? Las mías están aquí ("Do you have the keys? Mine are here") — las mías is feminine plural because llaves is, regardless of the speaker\'s own gender.',
+        'The second job is an adjective placed after the noun instead of before it, usually with un/una rather than a definite article, for emphasis or to mean "a ___ of mine" rather than a specific, already-identified one: Un amigo mío trabaja aquí ("A friend of mine works here") sounds a little different from Mi amigo trabaja aquí ("My friend works here") — the stressed version implies one among several friends, while the unstressed version simply names the specific friend you mean. This pattern is more common in writing and slightly formal speech than in fast casual conversation, where mi amigo still does most of the everyday work.',
+        "One more wrinkle, specifically with ser: when you're just stating plain ownership, drop the article — Este libro es mío (\"This book is mine\"), not Este libro es el mío. A quick contrastive aside like Este libro es mío, no tuyo (\"This book is mine, not yours\") still drops the article too — it's still just naming whose something is, not singling one out from a group. The article comes back specifically when you're answering \"which one\" out of several options: ¿Este es tu dinero? No, ¡es el mío! (\"Is this your money? No, it's mine!\") — here el mío is picking out one particular thing from the options on the table, which is a different job than a plain mío/tuyo contrast.",
+      ],
+      examples: [
+        { es: 'Mi coche es azul; el tuyo es rojo.', en: 'My car is blue; yours is red.' },
+        { es: '¿Tienes las llaves? Las mías están aquí.', en: 'Do you have the keys? Mine are here.' },
+        { es: 'Un amigo mío trabaja en ese restaurante.', en: 'A friend of mine works at that restaurant.' },
+        { es: 'Este libro es mío, no es tuyo.', en: "This book is mine, it's not yours." },
+        { es: '¿Esta maleta es suya? No, ¡es la nuestra!', en: 'Is this suitcase yours (formal)? No, it\'s ours!' },
+      ],
+      commonMistakes: [
+        'Stressed possessives agree with the thing possessed, not the possessor — a man and a woman both say el mío for a masculine noun like trabajo, and both say la mía for a feminine noun like casa; don\'t let the speaker\'s own gender leak into the ending.',
+        'Don\'t place a stressed possessive before the noun the way you would mi/tu/su — un mío amigo is wrong; the stressed form goes after the noun: un amigo mío.',
+        'With ser, plain ownership statements usually drop the article (Es mío, not Es el mío) — even a quick contrast (Es mío, no tuyo) still drops it; only add el/la/los/las back when you\'re specifically singling out one option out of several (¿Cuál es tuyo? Ese es el mío).',
+      ],
+    },
   ],
 
   vocab: [
@@ -171,6 +193,10 @@ export default {
     { es: 'lo bueno', en: 'the good thing/part', example: 'Lo bueno es que tenemos tiempo.', exampleEn: 'The good thing is that we have time.' },
     { es: 'lo malo', en: 'the bad thing/part', example: 'Lo malo es el tráfico.', exampleEn: 'The bad thing is the traffic.' },
     { es: 'lo mejor', en: 'the best part/thing', example: 'Lo mejor del viaje fue la comida.', exampleEn: 'The best part of the trip was the food.' },
+    { es: 'el mío / la mía', en: 'mine', example: 'Mi coche es azul; el tuyo es rojo.', exampleEn: 'My car is blue; yours is red.' },
+    { es: 'el tuyo / la tuya', en: 'yours (informal)', example: '¿Tienes las llaves? Las mías están aquí.', exampleEn: 'Do you have the keys? Mine are here.' },
+    { es: 'el suyo / la suya', en: 'his / hers / yours (formal) / theirs', example: '¿Esta maleta es suya?', exampleEn: 'Is this suitcase yours (formal)?' },
+    { es: 'un amigo mío', en: 'a friend of mine', example: 'Un amigo mío trabaja en ese restaurante.', exampleEn: 'A friend of mine works at that restaurant.' },
   ],
 
   practice: [
@@ -207,6 +233,13 @@ export default {
     { type: 'translation_to_english', prompt: 'Translate: "Eso es exactamente lo que necesito."', word: 'lo que', english: "That's exactly what I need.", answer: "That's exactly what I need.", concept_id: 'lo_neutro', difficulty: 2 },
     { type: 'error_correction', prompt: 'Fix the error: "La buena es que tenemos tiempo."', word: 'lo', english: 'the good thing', answer: 'Lo bueno es que tenemos tiempo.', concept_id: 'lo_neutro', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which phrase means "the hardest part"?', word: 'lo más difícil', english: 'the hardest part', answer: 'lo más difícil', options: ['la más difícil', 'lo más difícil', 'el más difícil', 'los más difícil'], concept_id: 'lo_neutro', difficulty: 2 },
+
+    // ── possessive_pronouns_stressed block ──
+    { type: 'fill_blank', prompt: 'Complete: "Mi coche es azul; ___ es rojo." (yours)', word: 'el tuyo', english: 'yours', answer: 'el tuyo', concept_id: 'possessive_pronouns_stressed', difficulty: 1 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'Do you have the keys? Mine are here.' (llaves is feminine)", english: 'Do you have the keys? Mine are here.', answer: '¿Tienes las llaves? Las mías están aquí.', word: 'las mías', concept_id: 'possessive_pronouns_stressed', difficulty: 2 },
+    { type: 'multiple_choice', prompt: 'Which sentence correctly places the stressed possessive after the noun?', word: 'un amigo mío', english: 'a friend of mine', answer: 'Un amigo mío trabaja aquí.', options: ['Un amigo mío trabaja aquí.', 'Un mío amigo trabaja aquí.', 'Mi amigo mío trabaja aquí.', 'Un amigo el mío trabaja aquí.'], concept_id: 'possessive_pronouns_stressed', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Fix the plain-ownership statement: "Este libro es el mío." (no contrast intended, just stating it\'s mine)', word: 'mío', english: 'mine', answer: 'Este libro es mío.', concept_id: 'possessive_pronouns_stressed', difficulty: 3 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "¿Esta maleta es suya? No, ¡es la nuestra!"?', word: 'la nuestra', english: 'ours', answer: 'Is this suitcase yours (formal)? No, it\'s ours!', concept_id: 'possessive_pronouns_stressed', difficulty: 2 },
   ],
 };
 
@@ -252,9 +285,30 @@ export default {
 // - lo que as a headless relative clause ("what/that which"), used where
 //   there is no specific noun antecedent, contrasted with que + explicit
 //   antecedent (SpanishDict neuter lo and relative-pronoun guides)
+// - Stressed possessives (mío, tuyo, suyo, nuestro, vuestro, suyo) agree in
+//   gender AND number with the thing possessed, never the possessor,
+//   confirmed against SpanishDict's Possessive Pronouns guide and Lawless
+//   Spanish Grammar; nuestro/vuestro confirmed identical in stressed and
+//   unstressed form, unlike mi/tu/su which gain a syllable and full
+//   agreement when stressed.
+// - Two uses confirmed: (1) pronoun replacing the noun, almost always with
+//   a definite article (el tuyo, las mías), per SpanishDict/Lawless; (2)
+//   post-noun adjective (un amigo mío), confirmed against SpanishStep's
+//   "un amigo mío vs. mi amigo" analysis as implying "one of several" and
+//   sounding somewhat more formal/literary than the unstressed mi amigo,
+//   which still dominates casual speech.
+// - Article omission with ser confirmed: plain ownership drops the article
+//   (Es mío), including a quick contrastive aside (Es mío, no tuyo); the
+//   article returns specifically when singling out one option among
+//   several (¿Es tuyo? No, ¡es el mío!) — confirmed against SpanishDict's
+//   Possessive Pronouns guide and Elon.io's Spanish possessive-pronoun
+//   reference.
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // por_vs_para, relative_clauses, saber_vs_conocer, and lo_neutro in
 // src/content/grammar.js (same facts, fuller B1-paced walkthrough with
 // worked contrasts) and does not contradict them. Concept prerequisite
 // order (relative_clauses before lo_neutro) matches functions/_lib/
 // concepts.js, where lo_neutro lists relative_clauses as a prereq.
+// possessive_pronouns_stressed is a new concept (see functions/_lib/
+// concepts.js) with no prior GRAMMAR_CARDS entry, building directly on
+// the unstressed possessives (mi/tu/su/nuestro) taught in Unit 8.

@@ -2418,3 +2418,61 @@ full account of any of these.
   closes the situational-language initiative as originally scoped —
   7 units from the first two batches plus these final 2, all 9 reusing
   grammar already taught rather than introducing new structure.
+- **07-18-2026** — "Let's get some more content - anything missing from
+  A1-B2 right now? Be thorough" prompted a comprehensive gap audit, this
+  time across units, reading-passage volume, vocabulary, verbs, idioms,
+  and false-friends by level, not just grammar concepts (distinct from
+  item 33's audit). Confirmed two genuine, previously-undiscovered B1
+  grammar gaps: `para que` + subjunctive purpose clauses (the existing
+  `subjunctive_adverbial` concept only covers time conjunctions —
+  cuando, en cuanto, hasta que — never purpose; zero occurrences of
+  `para que` anywhere in the curriculum) and stressed possessive
+  pronouns (el mío, la tuya, el suyo — distinct from the unstressed
+  mi/tu/su possessives taught at A1 in Unit 8; zero occurrences
+  anywhere). Ruled out several other candidates after direct
+  verification: `tener` + noun idioms (already thoroughly taught in
+  Unit 15) and Type-1 real/simple conditionals (already covered in the
+  B1 subjunctive-deep-dive unit's si-clauses section). Rather than new
+  standalone units, both gaps were added as new sections inside
+  existing units, maximizing reuse of already-taught grammar: `para_que`
+  went into Unit 21 (Efficiency & Emphasis) immediately after its
+  existing "One Subject or Two? Infinitive vs. Subjunctive" section,
+  since para_que is a direct application of that same same-subject/
+  different-subject test to a new trigger (purpose), and explicitly
+  calls back to Unit 20's para + infinitive purpose use.
+  `possessive_pronouns_stressed` went into Unit 20 (Nuance & Connection)
+  as a new final section, fitting its existing "tricky small words"
+  grouping (por/para, saber/conocer, lo neutro) and referencing back to
+  Unit 8's unstressed mi/tu/su. 2 new concepts (130 → 132); 53 taught
+  units unchanged, since both gaps extended existing units rather than
+  adding new ones. No `vocabulary.js` additions — a vocab-gap check
+  confirmed these are grammar/pronoun connectives (para que, a fin de
+  que, el mío, el tuyo, el suyo) analogous to already-unlisted words
+  like que, donde, quien, and lo que, which the global vocabulary list
+  has never mirrored; both stayed in their unit's local `vocab` array
+  only. Structural checks (multiple_choice answer-in-options, no
+  duplicate options, concept_id consistency, in-unit vocab duplicates)
+  came back clean. Verified live end-to-end (`wrangler pages dev` +
+  local D1, clearing the rate-limit KV entry): both units render their
+  new sections correctly on `/learn` in the right position, and the
+  practice page for each unit shows the correct expanded exercise count
+  (18 → 23 for efficiency-emphasis, 26 → 31 for nuance-connection). A
+  fresh-eyes subagent proofread pass on both modified files caught 3
+  real defects, all fixed: (1) a `possessive_pronouns_stressed` practice
+  item's parenthetical clarifier said "just stating it's yours" for a
+  sentence whose whole point was "mine" — wording corrected; (2) the
+  stressed-possessives section's own examples contradicted its
+  ser+article rule (taught "contrast brings the article back," then
+  immediately used a contrastive example, Este libro es mío, no es
+  tuyo, without one) — the rule was refined to the more accurate
+  distinction (a quick contrast still drops the article; only
+  specifically singling out one option among several, as in answering
+  "which one," brings it back), consistent with all of the section's
+  existing examples; (3) a pre-existing self-contradiction one section
+  earlier in Unit 21 (the "One Subject or Two?" section the new
+  para_que content explicitly builds on) claimed es necesario que was a
+  memorized subjunctive exception alongside ojalá, directly contradicted
+  by the same section's own es necesario vocab example following the
+  ordinary same-subject rule — fixed by keeping ojalá as the one genuine
+  exception (no infinitive fallback exists for it) and clarifying that
+  es necesario/es importante are NOT exceptions.

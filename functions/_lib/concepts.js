@@ -327,6 +327,11 @@ export const CONCEPTS = {
     category: 'verb', prereqs: ['present_subjunctive', 'modal_verbs'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
+  para_que: {
+    id: 'para_que', label: 'Purpose clauses (para que + subjunctive)', cefr: 'B1',
+    category: 'syntax', prereqs: ['infinitive_vs_subjunctive', 'por_vs_para'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
   exclamativas: {
     id: 'exclamativas', label: 'Exclamatory sentences (¡Qué!, ¡Cuánto!)', cefr: 'B1',
     category: 'syntax', prereqs: ['adjective_agreement', 'question_words'],
@@ -341,6 +346,11 @@ export const CONCEPTS = {
     id: 'lo_neutro', label: 'Neuter lo (lo + adjective, lo que)', cefr: 'B1',
     category: 'syntax', prereqs: ['adjective_agreement', 'relative_clauses'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
+  possessive_pronouns_stressed: {
+    id: 'possessive_pronouns_stressed', label: 'Stressed possessive pronouns (el mío, la tuya)', cefr: 'B1',
+    category: 'pronouns', prereqs: ['possessives', 'adjective_agreement'],
+    explanationStyles: ['rule_first', 'table', 'contrastive'],
   },
   estilo_indirecto_basico: {
     id: 'estilo_indirecto_basico', label: 'Basic reported speech (dijo que...)', cefr: 'B1',
