@@ -2532,7 +2532,7 @@ export const PASSAGES = [
     { es: 'Diego le explicó todo con calma y le envió una captura de pantalla como prueba.', en: 'Diego explained everything calmly and sent a screenshot as proof.' },
     { es: 'El empleado revisó el sistema y encontró el error rápidamente.', en: 'The employee checked the system and found the error quickly.' },
     { es: 'Se disculpó por las molestias y le prometió un reembolso en un plazo de tres días.', en: 'He apologized for the inconvenience and promised a refund within three days.' },
-    { es: 'Diego colgó el teléfono aliviado, contento de que el problema se hubiera resuelto tan rápido.', en: 'Diego hung up the phone relieved, happy that the problem had been resolved so quickly.' },
+    { es: 'Diego colgó el teléfono aliviado, contento de que el problema se resolviera tan rápido.', en: 'Diego hung up the phone relieved, happy that the problem was resolved so quickly.' },
     { es: 'Tres días después, revisó su cuenta otra vez: el dinero ya estaba de vuelta.', en: 'Three days later, he checked his account again: the money was already back.' },
     ],
     questions: [
@@ -2899,7 +2899,7 @@ export const PASSAGES = [
     { es: 'El juego moderno nació en Inglaterra a mediados del siglo diecinueve, cuando se establecieron las primeras reglas oficiales.', en: 'The modern game was born in England in the mid-nineteenth century, when the first official rules were established.' },
     { es: 'Al principio, era practicado principalmente por estudiantes y trabajadores de las ciudades industriales.', en: 'At first, it was played mainly by students and workers in industrial cities.' },
     { es: 'Los marineros y comerciantes británicos llevaron el fútbol a otros países mientras viajaban por el mundo.', en: 'British sailors and merchants brought football to other countries as they traveled the world.' },
-    { es: 'En América Latina y Europa, el deporte se adaptó rápidamente y ganó millones de nuevos hinchas.', en: 'In Latin America and Europe, the sport was quickly adopted and gained millions of new fans.' },
+    { es: 'En América Latina y Europa, el deporte se adaptó rápidamente y ganó millones de nuevos hinchas.', en: 'In Latin America and continental Europe, the sport was quickly adapted and gained millions of new fans.' },
     { es: 'La creación de campeonatos nacionales e internacionales, como la Copa Mundial en 1930, ayudó a convertirlo en un fenómeno global.', en: 'The creation of national and international championships, like the World Cup in 1930, helped turn it into a global phenomenon.' },
     { es: 'Con la llegada de la radio, y más tarde de la televisión, millones de personas pudieron seguir los partidos sin necesidad de asistir al estadio.', en: 'With the arrival of radio, and later television, millions of people could follow matches without needing to attend the stadium.' },
     { es: 'Esto atrajo a grandes patrocinadores, que vieron en el fútbol una oportunidad única de llegar a audiencias enormes.', en: 'This attracted major sponsors, who saw in football a unique opportunity to reach enormous audiences.' },

@@ -2519,5 +2519,13 @@ full account of any of these.
   items), the readings list shows all 8 new passages with correct
   summaries, and two of the new passages (one B1, one B2) were opened
   and confirmed to render correctly. A fresh-eyes subagent proofread
-  pass was launched against all of this batch's new content; any
-  defects it surfaces will land as a follow-up commit on this PR.
+  pass found no must-fix errors (all 40 answer keys across the 8
+  passages and the 5 new practice items correct; both nonfiction
+  passages' factual claims about García Márquez and the Atacama desert
+  checked out) but caught 2 minor issues, both fixed: the football
+  passage's English translation said "was quickly adopted" for se
+  adaptó, which actually means "was adapted" (different verb, different
+  meaning); and the bank-error passage used pluperfect subjunctive (se
+  hubiera resuelto) — grammar beyond this curriculum's B1 scope —
+  simplified to present subjunctive (se resolviera), which the B1
+  subjunctive-deep-dive unit does cover.
