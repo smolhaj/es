@@ -322,6 +322,11 @@ export const CONCEPTS = {
     category: 'pronouns', prereqs: ['reflexive_verbs', 'obligation_infinitive'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
+  reciprocal_reflexives: {
+    id: 'reciprocal_reflexives', label: 'Reciprocal reflexives (nos vemos, se quieren)', cefr: 'B1',
+    category: 'pronouns', prereqs: ['reflexive_verbs'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
   infinitive_vs_subjunctive: {
     id: 'infinitive_vs_subjunctive', label: 'Infinitive vs. subjunctive (same/different subject)', cefr: 'B1',
     category: 'verb', prereqs: ['present_subjunctive', 'modal_verbs'],
