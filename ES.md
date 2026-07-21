@@ -514,7 +514,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2139 words as of 07-20-2026 (grown from
+`src/content/vocabulary.js` — 2174 words as of 07-21-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2585,3 +2585,41 @@ full account of any of these.
     fails with "Invalid credentials" — proof the full 13-table cascade
     actually ran. Also confirmed both Privacy and Terms render correctly
     while logged out.
+- **07-21-2026** — "More content" prompted another gap check, this time
+  turning up a stark one: `readings.js` had zero C1 or C2 passages,
+  despite the structured curriculum going all the way up to C2 — every
+  reader above B2 had nothing to read. Shipped the first-ever C1/C2
+  reading batch, 4 passages each, deliberately written at a much higher
+  register than the existing A1-B2 set (nominalization, passive
+  constructions, sophisticated discourse connectors like no obstante/
+  cabría suponer/en definitiva, literary tenses, denser vocabulary):
+  C1 — "El auge del turismo sostenible" (nonfiction, sustainable
+  tourism), "La despedida" (literary fiction, a train-platform
+  farewell), "La gentrificación de los barrios históricos" (nonfiction),
+  "¿Deben las redes sociales regular el contenido?" (argumentative
+  essay on content moderation). C2 — "El último tren" (literary fiction
+  with an ambiguous, magical-realist ending), "La paradoja de la
+  elección" (essay on choice overload, references psychologist Barry
+  Schwartz's real coinage of the term), "La inteligencia artificial y
+  la creatividad humana" (argumentative essay), "El idioma como espejo
+  de la cultura" (essay on untranslatable words and linguistic
+  relativity — Japanese komorebi, Portuguese saudade, Inuit snow
+  vocabulary — presented as a genuinely unresolved academic debate, not
+  settled fact). Readings now cover every level: A1:25, A2:16, B1:7,
+  B2:7, C1:4, C2:4. 35 new `vocabulary.js` words (2139 → 2174); a
+  vocab-gap check confirmed all were genuinely missing beforehand, and
+  a post-draft check confirmed every planned word actually made it into
+  the vocabulary file with no accidental duplicates introduced.
+  Structural checks (multiple_choice answer-in-options, no duplicate
+  options, no duplicate passage ids) came back clean across all 8.
+  Verified live end-to-end (`wrangler pages dev` + local D1): the
+  readings list shows both new levels, and two passages (one C1, one
+  C2) were opened and confirmed to render correctly, including the
+  correct C1/C2 level badge. A fresh-eyes subagent proofread pass was
+  launched against all 8 passages, explicitly briefed not to flag the
+  higher register itself (that's the intended difference from the
+  existing A1-B2 set) but to catch genuine errors, unnatural phrasing,
+  inconsistent register within a passage, or overstated factual claims
+  about the real-world references (Schwartz, komorebi/saudade/Inuit
+  vocabulary, linguistic relativity); any defects it surfaces will land
+  as a follow-up commit on this PR.
