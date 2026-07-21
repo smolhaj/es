@@ -514,7 +514,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2139 words as of 07-20-2026 (grown from
+`src/content/vocabulary.js` — 2174 words as of 07-21-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2585,3 +2585,59 @@ full account of any of these.
     fails with "Invalid credentials" — proof the full 13-table cascade
     actually ran. Also confirmed both Privacy and Terms render correctly
     while logged out.
+- **07-21-2026** — "More content" prompted another gap check, this time
+  turning up a stark one: `readings.js` had zero C1 or C2 passages,
+  despite the structured curriculum going all the way up to C2 — every
+  reader above B2 had nothing to read. Shipped the first-ever C1/C2
+  reading batch, 4 passages each, deliberately written at a much higher
+  register than the existing A1-B2 set (nominalization, passive
+  constructions, sophisticated discourse connectors like no obstante/
+  cabría suponer/en definitiva, literary tenses, denser vocabulary):
+  C1 — "El auge del turismo sostenible" (nonfiction, sustainable
+  tourism), "La despedida" (literary fiction, a train-platform
+  farewell), "La gentrificación de los barrios históricos" (nonfiction),
+  "¿Deben las redes sociales regular el contenido?" (argumentative
+  essay on content moderation). C2 — "El último tren" (literary fiction
+  with an ambiguous, magical-realist ending), "La paradoja de la
+  elección" (essay on choice overload, references psychologist Barry
+  Schwartz's real coinage of the term), "La inteligencia artificial y
+  la creatividad humana" (argumentative essay), "El idioma como espejo
+  de la cultura" (essay on untranslatable words and linguistic
+  relativity — Japanese komorebi, Portuguese saudade, Inuit snow
+  vocabulary — presented as a genuinely unresolved academic debate, not
+  settled fact). Readings now cover every level: A1:25, A2:16, B1:7,
+  B2:7, C1:4, C2:4. 35 new `vocabulary.js` words (2139 → 2174); a
+  vocab-gap check confirmed all were genuinely missing beforehand, and
+  a post-draft check confirmed every planned word actually made it into
+  the vocabulary file with no accidental duplicates introduced.
+  Structural checks (multiple_choice answer-in-options, no duplicate
+  options, no duplicate passage ids) came back clean across all 8.
+  Verified live end-to-end (`wrangler pages dev` + local D1): the
+  readings list shows both new levels, and two passages (one C1, one
+  C2) were opened and confirmed to render correctly, including the
+  correct C1/C2 level badge. A fresh-eyes subagent proofread pass on
+  all 8 passages found no answer-key errors but caught a real tense
+  slip and one under-hedged factual claim, both fixed: (1) "la-
+  paradoja-de-la-eleccion" briefly dropped from present into imperfect
+  tense mid-sentence ("cuantas más opciones existían") while the rest
+  of the essay's generic claims stayed present tense — corrected to
+  "existen"; (2) the Inuit-snow-vocabulary sentence in "el-idioma-como-
+  espejo-de-la-cultura" stated the popular "many words for snow" claim
+  as flat fact, inconsistent with the same passage's careful hedging
+  around linguistic relativity a few lines later — this is actually the
+  "Great Eskimo Vocabulary Hoax," a genuinely contested pop-linguistics
+  claim per linguist Geoffrey Pullum, so the sentence and its
+  comprehension question were rewritten to correctly frame the "hundred
+  words" figure as a widely-debunked exaggeration, while keeping the
+  real point (Inuit languages' polysynthetic structure does allow many
+  descriptive compound terms). Also fixed several minor nitpicks:
+  "penumbra" (gloom/half-darkness) had been translated as "dim light"
+  in two passages, producing an odd "light...erased him" image where
+  "gloom erased him" was intended; a redundant "through which...peeks
+  through"; two English answer-key phrasings that didn't match their
+  own passage's wording ("without regret" vs. the passage's "without
+  remorse," "the line separating" vs. the passage's "threshold
+  separating"); a literal-feeling "repeats itself" calque smoothed to
+  "plays out repeatedly"; and "el-ultimo-tren"'s summary softened
+  slightly so it no longer pre-spoils the story's ambiguous ending
+  before the reader reaches it.
