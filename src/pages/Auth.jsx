@@ -126,6 +126,14 @@ export default function Auth({ mode }) {
             >
               {loading ? 'Just a moment…' : isLogin ? 'Sign in' : 'Create account'}
             </button>
+
+            {!isLogin && (
+              <p className={styles.legalNote}>
+                By creating an account, you agree to the{' '}
+                <Link to="/terms">Terms of Service</Link> and{' '}
+                <Link to="/privacy">Privacy Policy</Link>.
+              </p>
+            )}
           </form>
 
           <p className={styles.toggle}>
