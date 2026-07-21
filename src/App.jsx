@@ -25,6 +25,8 @@ import Concepts from './pages/Concepts.jsx';
 import Resources from './pages/Resources.jsx';
 import Readings from './pages/Readings.jsx';
 import ReadingPassage from './pages/ReadingPassage.jsx';
+import Privacy from './pages/Privacy.jsx';
+import Terms from './pages/Terms.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 function Protected({ children }) {
@@ -68,6 +70,8 @@ export default function App() {
         <Route path="/resources" element={<Protected><Resources /></Protected>} />
         <Route path="/readings" element={<Protected><Readings /></Protected>} />
         <Route path="/readings/:passageId" element={<Protected><ReadingPassage /></Protected>} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthProvider>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { api } from '../lib/api.js';
 import NavBar from '../components/NavBar.jsx';
@@ -19,7 +19,8 @@ const SUGGESTIONS = [
 
 export default function Profile() {
   useDocumentTitle('Profile');
-  const { token, user } = useAuth();
+  const { token, user, logout } = useAuth();
+  const navigate = useNavigate();
   const [context, setContext] = useState([]);
   const [cefrHistory, setCefrHistory] = useState([]);
   const [skills, setSkills] = useState({});
@@ -29,6 +30,14 @@ export default function Profile() {
   const [valuePlaceholder, setValuePlaceholder] = useState('Value');
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
+
+  const [exportStatus, setExportStatus] = useState('');
+  const [exportError, setExportError] = useState('');
+  const [showDeleteForm, setShowDeleteForm] = useState(false);
+  const [deletePassword, setDeletePassword] = useState('');
+  const [deleteConfirmText, setDeleteConfirmText] = useState('');
+  const [deleteError, setDeleteError] = useState('');
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -78,6 +87,49 @@ export default function Profile() {
     setKey(sug.key);
     setValue('');
     setValuePlaceholder(sug.placeholder || 'Value');
+  }
+
+  async function handleExport() {
+    setExportStatus('');
+    setExportError('');
+    try {
+      const data = await api.learner.export(token);
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `capi-data-export-${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setExportStatus('Downloaded.');
+      setTimeout(() => setExportStatus(''), 2500);
+    } catch (err) {
+      setExportError(err.message);
+    }
+  }
+
+  async function handleDeleteAccount(e) {
+    e.preventDefault();
+    setDeleteError('');
+    if (deleteConfirmText.trim().toUpperCase() !== 'DELETE') {
+      setDeleteError('Type DELETE to confirm.');
+      return;
+    }
+    if (!deletePassword) {
+      setDeleteError('Enter your password to confirm.');
+      return;
+    }
+    setDeleting(true);
+    try {
+      await api.auth.deleteAccount(token, deletePassword);
+      logout();
+      navigate('/');
+    } catch (err) {
+      setDeleteError(err.message);
+      setDeleting(false);
+    }
   }
 
   const existingKeys = new Set(context.map(c => c.key));
@@ -221,6 +273,87 @@ export default function Profile() {
               <span className={styles.contextValue}>{user?.email}</span>
             </div>
           </section>
+
+          {/* Your data */}
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Your data</h2>
+            <p className={styles.hint}>
+              Download everything Capi has stored about your account and learning history as a
+              single JSON file.
+            </p>
+            <div className={styles.formRow}>
+              <button type="button" className="btn btn-secondary" onClick={handleExport}>
+                Download my data
+              </button>
+            </div>
+            {exportStatus && <p className={styles.statusMsg}>{exportStatus}</p>}
+            {exportError && <p className={styles.errorMsg}>{exportError}</p>}
+          </section>
+
+          {/* Danger zone */}
+          <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>Danger zone</h2>
+            <div className={styles.dangerZone}>
+              {!showDeleteForm ? (
+                <>
+                  <p className={styles.hint}>
+                    Permanently delete your account and everything associated with it — sessions,
+                    vocabulary progress, flashcards, writing samples, and reading history. This
+                    can't be undone.
+                  </p>
+                  <button
+                    type="button"
+                    className={styles.dangerBtn}
+                    onClick={() => setShowDeleteForm(true)}
+                  >
+                    Delete my account
+                  </button>
+                </>
+              ) : (
+                <form className={styles.addForm} onSubmit={handleDeleteAccount}>
+                  <p className={styles.hint}>
+                    This permanently deletes your account and all data. Enter your password and
+                    type DELETE to confirm.
+                  </p>
+                  <input
+                    className={styles.input}
+                    type="password"
+                    placeholder="Your password"
+                    value={deletePassword}
+                    onChange={e => setDeletePassword(e.target.value)}
+                    autoComplete="current-password"
+                  />
+                  <input
+                    className={styles.input}
+                    type="text"
+                    placeholder="Type DELETE to confirm"
+                    value={deleteConfirmText}
+                    onChange={e => setDeleteConfirmText(e.target.value)}
+                  />
+                  <div className={styles.formRow}>
+                    <button type="submit" className={styles.dangerBtn} disabled={deleting}>
+                      {deleting ? 'Deleting…' : 'Permanently delete my account'}
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => { setShowDeleteForm(false); setDeleteError(''); setDeletePassword(''); setDeleteConfirmText(''); }}
+                      disabled={deleting}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  {deleteError && <p className={styles.errorMsg}>{deleteError}</p>}
+                </form>
+              )}
+            </div>
+          </section>
+
+          <footer className={styles.footerLinks}>
+            <Link to="/privacy">Privacy Policy</Link>
+            <span aria-hidden="true"> · </span>
+            <Link to="/terms">Terms of Service</Link>
+          </footer>
         </div>
       </main>
     </div>

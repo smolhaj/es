@@ -108,6 +108,18 @@
   margin-top: var(--sp-2);
 }
 
+.legalNote {
+  margin-top: var(--sp-3);
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+.legalNote a {
+  color: var(--text-muted);
+  text-decoration: underline;
+}
+.legalNote a:hover { color: var(--accent); }
+
 .toggle {
   margin-top: var(--sp-6);
   text-align: center;

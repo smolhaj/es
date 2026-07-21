@@ -1372,9 +1372,14 @@ measures):**
 
 **Product/account gaps:**
 15. No password reset flow — a forgotten password is unrecoverable.
-16. No account deletion or personal-data export in Profile.
-17. No privacy policy or terms of service page, despite storing email,
-    password hashes, and free-text personal-context data indefinitely.
+    Blocked on an email-sending service (Resend, SendGrid, etc.), which
+    would need the user to sign up and hand over an API key — deferred
+    rather than built without it.
+16. ~~No account deletion or personal-data export in Profile~~ — **done**
+    (07-20-2026). See Session history index for the build note.
+17. ~~No privacy policy or terms of service page, despite storing email,
+    password hashes, and free-text personal-context data indefinitely~~
+    — **done** (07-20-2026). See Session history index.
 18. No instructor/cohort-facing view (relevant only if this is ever
     pitched at a classroom rather than a solo learner — not a bug).
 
@@ -2529,3 +2534,54 @@ full account of any of these.
   hubiera resuelto) — grammar beyond this curriculum's B1 scope —
   simplified to present subjunctive (se resolviera), which the B1
   subjunctive-deep-dive unit does cover.
+- **07-20-2026** — "Build more on the site" prompted picking up punch-list
+  items 15-17 (account/privacy gaps). Item 15 (password reset) needs an
+  email-sending service, which would require the user to sign up and
+  hand over an API key — deferred rather than built partway, and flagged
+  in the punch list as blocked on that. Built items 16 and 17 instead,
+  neither of which needs any external service:
+  - `DELETE /api/auth/account` — password-confirmed account deletion.
+    Verifies the password via the existing `verifyPassword` (same PBKDF2
+    hash check as login), then `env.DB.batch()`-deletes the user's rows
+    from all 12 user-scoped tables (error_events and sessions first,
+    since error_events references sessions(id), even though D1 doesn't
+    enforce FK constraints by default) followed by the users row itself,
+    all in one atomic batch. Returns 403 (not 401) for a wrong password —
+    a real bug caught during live verification: `api.js`'s global
+    401-handler treats *any* authenticated-request 401 as an
+    expired/invalid token and force-logs the user out, which fired on
+    every mistyped delete-confirmation password until switched to 403.
+  - `GET /api/learner/export` — returns every row the account owns
+    across all 12 tables plus basic account info (email, created_at,
+    preferences), explicitly excluding password_hash, as one JSON
+    document.
+  - Profile.jsx: a new "Your data" section with a one-click
+    "Download my data" button (client-side Blob → download, no server
+    round-trip beyond the fetch itself), and a "Danger zone" section
+    requiring both the account password and a typed "DELETE" before the
+    delete button submits — deletion immediately logs the user out and
+    redirects to the landing page.
+  - New `/privacy` and `/terms` routes (public, not gated by `Protected`
+    or `Guest`, so they're reachable both logged in and logged out).
+    Privacy Policy accurately describes what's actually collected (the
+    12 user-scoped tables, in plain language) and used for, is explicit
+    that practice answers/writing samples/personal-context are sent to
+    Google's Gemini API to run the adaptive engine, states there's no
+    analytics/tracking (grepped the codebase to confirm), and covers the
+    new export/delete controls. Terms of Service covers acceptable use,
+    the AI-generated-content disclaimer, and a no-warranty clause,
+    written in plain language with an explicit note that it isn't a
+    substitute for professional legal review — this is a small
+    independent project, not a company with a legal team. Both pages
+    linked from Profile's footer; the register form also links both
+    with a "by creating an account, you agree to..." note.
+  - Verified live end-to-end (`wrangler pages dev` + local D1 +
+    Playwright): registered a test user, added a personal-context entry,
+    downloaded the data export and confirmed it contains the account
+    email and the context entry while excluding password_hash, confirmed
+    a wrong deletion password shows an error without logging the user
+    out (this is what caught the 401-vs-403 bug above), then deleted the
+    account with the correct password and confirmed login afterward
+    fails with "Invalid credentials" — proof the full 13-table cascade
+    actually ran. Also confirmed both Privacy and Terms render correctly
+    while logged out.

@@ -33,7 +33,10 @@ export const api = {
       req('/auth/register', { method: 'POST', body: JSON.stringify({ email, password }) }),
 
     login: (email, password) =>
-      req('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) })
+      req('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) }),
+
+    deleteAccount: (token, password) =>
+      req('/auth/account', { method: 'DELETE', body: JSON.stringify({ password }) }, token),
   },
 
   sessions: {
@@ -88,6 +91,8 @@ export const api = {
         method: 'DELETE',
         body: JSON.stringify({ key })
       }, token),
+
+    export: (token) => req('/learner/export', {}, token),
   },
 
   curriculum: {
