@@ -2615,11 +2615,29 @@ full account of any of these.
   Verified live end-to-end (`wrangler pages dev` + local D1): the
   readings list shows both new levels, and two passages (one C1, one
   C2) were opened and confirmed to render correctly, including the
-  correct C1/C2 level badge. A fresh-eyes subagent proofread pass was
-  launched against all 8 passages, explicitly briefed not to flag the
-  higher register itself (that's the intended difference from the
-  existing A1-B2 set) but to catch genuine errors, unnatural phrasing,
-  inconsistent register within a passage, or overstated factual claims
-  about the real-world references (Schwartz, komorebi/saudade/Inuit
-  vocabulary, linguistic relativity); any defects it surfaces will land
-  as a follow-up commit on this PR.
+  correct C1/C2 level badge. A fresh-eyes subagent proofread pass on
+  all 8 passages found no answer-key errors but caught a real tense
+  slip and one under-hedged factual claim, both fixed: (1) "la-
+  paradoja-de-la-eleccion" briefly dropped from present into imperfect
+  tense mid-sentence ("cuantas más opciones existían") while the rest
+  of the essay's generic claims stayed present tense — corrected to
+  "existen"; (2) the Inuit-snow-vocabulary sentence in "el-idioma-como-
+  espejo-de-la-cultura" stated the popular "many words for snow" claim
+  as flat fact, inconsistent with the same passage's careful hedging
+  around linguistic relativity a few lines later — this is actually the
+  "Great Eskimo Vocabulary Hoax," a genuinely contested pop-linguistics
+  claim per linguist Geoffrey Pullum, so the sentence and its
+  comprehension question were rewritten to correctly frame the "hundred
+  words" figure as a widely-debunked exaggeration, while keeping the
+  real point (Inuit languages' polysynthetic structure does allow many
+  descriptive compound terms). Also fixed several minor nitpicks:
+  "penumbra" (gloom/half-darkness) had been translated as "dim light"
+  in two passages, producing an odd "light...erased him" image where
+  "gloom erased him" was intended; a redundant "through which...peeks
+  through"; two English answer-key phrasings that didn't match their
+  own passage's wording ("without regret" vs. the passage's "without
+  remorse," "the line separating" vs. the passage's "threshold
+  separating"); a literal-feeling "repeats itself" calque smoothed to
+  "plays out repeatedly"; and "el-ultimo-tren"'s summary softened
+  slightly so it no longer pre-spoils the story's ambiguous ending
+  before the reader reaches it.
