@@ -2672,10 +2672,21 @@ full account of any of these.
   end-to-end (`wrangler pages dev` + local D1 + Playwright): the
   readings list shows passages from all three new-batch levels, and
   three passages (one B1, one C1, one C2) were opened and confirmed to
-  render correctly. A fresh-eyes subagent proofread pass was launched
-  against all 12 passages, explicitly briefed to check for
-  level-appropriate register consistency, plot/detail consistency in
-  the five fiction pieces, no summary-field spoilers (the previous
-  batch's proofread had flagged one), and light factual sanity-checks
-  on the olive-oil and EV/technology claims; any defects it surfaces
-  will land as a follow-up commit on this PR.
+  render correctly. A fresh-eyes subagent proofread pass on all 12
+  passages found no answer-key errors but caught 2 moderate issues,
+  both fixed: (1) exactly the spoiler pattern flagged in the prior
+  batch recurred — "el-retrato"'s summary near-verbatim quoted the
+  story's final-paragraph epiphany, giving away both that the old
+  woman's guarded look hides nothing and the painter's exact insight
+  before the reader got there; softened to describe the setup without
+  the reveal; (2) "como-se-hace-el-aceite-de-oliva" had the olive-oil
+  production steps out of order — the passage credited pressing with
+  producing the paste, when olives are actually ground/crushed into
+  the paste first and pressed (or centrifuged) afterward to extract
+  the oil, confirmed against multiple olive-oil-production references;
+  fixed the paragraph and its matching comprehension question, adding
+  one more genuinely-missing word ("moler," to grind) to
+  `vocabulary.js` in the process. Also fixed 2 minor nitpicks: a
+  Spanish comma splice in "la-videollamada-que-cambio-todo" (needed a
+  colon, matching the English translation's em dash) and an awkward
+  "that that" in "el-retrato"'s English translation.

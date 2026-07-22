@@ -3477,7 +3477,7 @@ export const PASSAGES = [
     { es: 'Recogen las aceitunas de los olivos, algunos a mano y otros con la ayuda de máquinas modernas.', en: 'They pick the olives from the trees, some by hand and others with the help of modern machines.' },
     { es: 'Una vez recogidas, las aceitunas se llevan rápidamente al molino, porque cuanto menos tiempo pase, mejor será la calidad del aceite.', en: 'Once picked, the olives are quickly taken to the mill, because the less time that passes, the better the quality of the oil.' },
     { es: 'En el molino, primero se lavan las aceitunas para quitarles la tierra y las hojas.', en: 'At the mill, the olives are first washed to remove dirt and leaves.' },
-    { es: 'Después, se prensan hasta convertirse en una pasta espesa de la que se extrae el líquido dorado que todos conocemos.', en: 'Afterward, they are pressed into a thick paste, from which the golden liquid we all know is extracted.' },
+    { es: 'Después, se muelen hasta convertirse en una pasta espesa que luego se prensa para extraer el líquido dorado que todos conocemos.', en: 'Afterward, they are ground into a thick paste, which is then pressed to extract the golden liquid we all know.' },
     { es: 'Ese líquido pasa por un proceso de decantación, donde el aceite se separa naturalmente del agua.', en: 'That liquid goes through a settling process, where the oil naturally separates from the water.' },
     { es: 'El resultado, si el proceso se hizo bien, es un aceite de oliva virgen extra: el de mejor calidad y sabor más intenso.', en: 'The result, if the process was done well, is an extra virgin olive oil: the highest quality and most intense in flavor.' },
     { es: 'Cada región tiene su propia variedad de aceituna, lo que explica por qué el sabor del aceite cambia tanto de un lugar a otro.', en: "Each region has its own variety of olive, which explains why the oil's flavor changes so much from place to place." },
@@ -3498,9 +3498,9 @@ export const PASSAGES = [
       },
       {
         type: 'multiple_choice',
-        prompt: '¿Qué se obtiene al prensar las aceitunas?',
-        options: ['Una pasta espesa de la que se extrae el aceite', 'Agua pura', 'Aceitunas más pequeñas', 'Vinagre'],
-        answer: 'Una pasta espesa de la que se extrae el aceite',
+        prompt: '¿Qué se obtiene al moler las aceitunas?',
+        options: ['Una pasta espesa que luego se prensa para extraer el aceite', 'Agua pura', 'Aceitunas más pequeñas', 'Vinagre'],
+        answer: 'Una pasta espesa que luego se prensa para extraer el aceite',
       },
       {
         type: 'multiple_choice',
@@ -3525,7 +3525,7 @@ export const PASSAGES = [
     summary: 'Diana comete un error vergonzoso justo antes de la videollamada más importante de su carrera, pero su reacción termina jugando a su favor.',
     paragraphs: [
     { es: 'Diana llevaba meses preparando la presentación más importante de su carrera: una videollamada con inversores extranjeros que podía definir el futuro de su empresa.', en: "Diana had spent months preparing the most important presentation of her career: a video call with foreign investors that could define her company's future." },
-    { es: 'Se conectó diez minutos antes, revisó la cámara, el micrófono y hasta el fondo virtual, todo parecía perfecto.', en: 'She logged on ten minutes early, checked the camera, the microphone, and even the virtual background — everything seemed perfect.' },
+    { es: 'Se conectó diez minutos antes, revisó la cámara, el micrófono y hasta el fondo virtual: todo parecía perfecto.', en: 'She logged on ten minutes early, checked the camera, the microphone, and even the virtual background — everything seemed perfect.' },
     { es: 'Cuando empezó a hablar, notó que algo no encajaba: los inversores la miraban con una expresión extraña, casi conteniendo la risa.', en: "When she started speaking, she noticed something was off: the investors were looking at her with a strange expression, almost holding back laughter." },
     { es: 'No fue hasta la mitad de la presentación que se dio cuenta de que había olvidado silenciar el micrófono durante la llamada anterior, donde había comentado, en voz muy poco profesional, lo nerviosa que estaba.', en: "It wasn't until halfway through the presentation that she realized she had forgotten to mute the microphone during the previous call, where she had commented, in a very unprofessional tone, how nervous she was." },
     { es: 'El error ya estaba hecho, y no había forma de deshacerlo; solo le quedaba decidir cómo reaccionar.', en: 'The mistake was already made, and there was no way to undo it; all that was left was to decide how to react.' },
@@ -3730,7 +3730,7 @@ export const PASSAGES = [
     title: 'El retrato',
     level: 'C1',
     format: 'standalone',
-    summary: 'Un pintor lleva semanas sin terminar el retrato de una anciana, hasta que descubre que lo que debe capturar en el lienzo es, precisamente, su silencio.',
+    summary: 'Un pintor lleva semanas bloqueado ante el retrato de una anciana cuya mirada parece esconder algo que el rostro se niega a revelar.',
     paragraphs: [
     { es: 'El pintor llevaba tres semanas frente al mismo lienzo, incapaz de terminar el retrato que le habían encargado.', en: 'The painter had spent three weeks in front of the same canvas, unable to finish the portrait he had been commissioned to paint.' },
     { es: 'No era la técnica lo que le fallaba —llevaba treinta años pintando retratos— sino algo más difícil de nombrar.', en: "It wasn't his technique that was failing him — he'd been painting portraits for thirty years — but something harder to name." },
@@ -3739,7 +3739,7 @@ export const PASSAGES = [
     { es: 'Una tarde, mientras la anciana descansaba entre sesiones, el pintor se atrevió a preguntarle directamente qué escondía esa mirada.', en: 'One afternoon, while the old woman rested between sessions, the painter dared to ask her directly what that gaze was hiding.' },
     { es: 'Ella sonrió, sin sorprenderse por la pregunta, como si llevara toda la vida esperando que alguien se la hiciera.', en: "She smiled, not at all surprised by the question, as if she'd spent her whole life waiting for someone to ask it." },
     { es: '—No escondo nada —respondió—. Simplemente he vivido lo suficiente como para saber que no todo merece ser contado.', en: '"I\'m not hiding anything," she replied. "I\'ve simply lived long enough to know that not everything deserves to be told."' },
-    { es: 'El pintor, lejos de sentirse frustrado, comprendió entonces que ese silencio era, precisamente, lo que debía capturar en el lienzo.', en: 'The painter, far from feeling frustrated, understood then that that silence was precisely what he needed to capture on the canvas.' },
+    { es: 'El pintor, lejos de sentirse frustrado, comprendió entonces que ese silencio era, precisamente, lo que debía capturar en el lienzo.', en: 'The painter, far from feeling frustrated, understood then that this silence was precisely what he needed to capture on the canvas.' },
     { es: 'Terminó el retrato esa misma semana, y quienes lo vieron después coincidieron en algo curioso: no lograban explicar por qué, pero sentían que el cuadro sabía más de lo que mostraba.', en: 'He finished the portrait that same week, and those who saw it afterward agreed on something curious: they couldn\'t explain why, but they felt the painting knew more than it showed.' },
     { es: 'El pintor nunca reveló la conversación con la anciana; simplemente dejó que el retrato hiciera, silenciosamente, su propio trabajo.', en: 'The painter never revealed his conversation with the old woman; he simply let the portrait do its own work, silently.' },
     ],

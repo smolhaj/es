@@ -2425,6 +2425,7 @@ export const VOCABULARY = [
   { es: 'artesanía', en: 'craftsmanship / handicraft', cefr: 'B1', domain: 'business', frequencyRank: 465, example: 'La artesanía local atrae a muchos turistas.', exampleEn: 'Local craftsmanship attracts many tourists.' },
   { es: 'oficio', en: 'trade / craft (profession)', cefr: 'B1', domain: 'professions', frequencyRank: 220, example: 'Aprendió el oficio de su abuelo.', exampleEn: "He learned his grandfather's trade." },
   { es: 'manual', en: 'manual / by hand', cefr: 'A2', domain: 'adjectives', frequencyRank: 350, example: 'Prefiere el trabajo manual al digital.', exampleEn: 'He prefers manual work to digital work.' },
+  { es: 'moler', en: 'to grind', cefr: 'B1', domain: 'verbs', frequencyRank: 405, example: 'Muelen las aceitunas antes de prensarlas.', exampleEn: 'They grind the olives before pressing them.' },
 ];
 
 export const DOMAINS = [...new Set(VOCABULARY.map(v => v.domain))].sort();
