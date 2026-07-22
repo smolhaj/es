@@ -514,7 +514,7 @@ would not touch these, only the original 125.
 
 ### Vocabulary reference (`/vocab`)
 
-`src/content/vocabulary.js` — 2174 words as of 07-21-2026 (grown from
+`src/content/vocabulary.js` — 2209 words as of 07-22-2026 (grown from
 1439 via the reading-passages vocabulary-gap-closing work, a cognate-
 focused batch, the 6-passage topic-variety A1 batch, a 6-passage
 topic-variety A2 batch, a 111-word batch (5 A1 + 5 A2 passages spanning
@@ -2641,3 +2641,52 @@ full account of any of these.
   "plays out repeatedly"; and "el-ultimo-tren"'s summary softened
   slightly so it no longer pre-spoils the story's ambiguous ending
   before the reader reaches it.
+- **07-22-2026** — "Keep pumping out content, whatever level you see fit"
+  prompted another reading-passage volume batch, this time spread
+  across all four levels still thinner than A1/A2: 3 B1, 3 B2, 3 C1, 3
+  C2 (12 total), continuing to close the gap opened by the two prior
+  volume batches. New topics, all checked against the 63 existing
+  passages for overlap: B1 — "La receta de la abuela" (a grandmother's
+  recipe found after her death), "El día que se fue la luz" (a
+  building-wide blackout that brings neighbors together), "Cómo se
+  hace el aceite de oliva" (olive-oil production, nonfiction). B2 —
+  "La videollamada que cambió todo" (an open-microphone mishap before
+  an important call), "El poder de los influencers" (the influencer
+  economy, nonfiction), "La revolución de los coches eléctricos"
+  (electric vehicles, nonfiction). C1 — "La inteligencia emocional en
+  el trabajo" (emotional intelligence at work, nonfiction), "El
+  retrato" (literary fiction, a painter and a guarded elderly sitter),
+  "El silencio como forma de comunicación" (cross-cultural attitudes
+  toward silence — Japanese "ma," Finnish communication norms,
+  nonfiction). C2 — "El arquitecto ciego" (literary fiction, a blind
+  architect who redesigns his craft around non-visual senses), "La
+  ilusión del multitasking" (the neuroscience of task-switching costs,
+  nonfiction), "El renacer de los oficios artesanales en la era
+  digital" (the revival of traditional crafts among young tech-sector
+  professionals, nonfiction). Readings now: A1:25, A2:16, B1:10,
+  B2:10, C1:7, C2:7 (75 total, up from 63). 35 new `vocabulary.js`
+  words (2174 → 2209), confirmed genuinely missing beforehand and
+  fully present afterward with no accidental duplicates. Structural
+  checks (multiple_choice answer-in-options, no duplicate options, no
+  duplicate passage ids) came back clean across all 12. Verified live
+  end-to-end (`wrangler pages dev` + local D1 + Playwright): the
+  readings list shows passages from all three new-batch levels, and
+  three passages (one B1, one C1, one C2) were opened and confirmed to
+  render correctly. A fresh-eyes subagent proofread pass on all 12
+  passages found no answer-key errors but caught 2 moderate issues,
+  both fixed: (1) exactly the spoiler pattern flagged in the prior
+  batch recurred — "el-retrato"'s summary near-verbatim quoted the
+  story's final-paragraph epiphany, giving away both that the old
+  woman's guarded look hides nothing and the painter's exact insight
+  before the reader got there; softened to describe the setup without
+  the reveal; (2) "como-se-hace-el-aceite-de-oliva" had the olive-oil
+  production steps out of order — the passage credited pressing with
+  producing the paste, when olives are actually ground/crushed into
+  the paste first and pressed (or centrifuged) afterward to extract
+  the oil, confirmed against multiple olive-oil-production references;
+  fixed the paragraph and its matching comprehension question, adding
+  one more genuinely-missing word ("moler," to grind) to
+  `vocabulary.js` in the process. Also fixed 2 minor nitpicks: a
+  Spanish comma splice in "la-videollamada-que-cambio-todo" (needed a
+  colon, matching the English translation's em dash) and an awkward
+  "that that" in "el-retrato"'s English translation.
