@@ -1,6 +1,7 @@
 // Unit 24 — Fine Details (B2, FINAL unit of the "Get Started" course)
-// Covers: comparatives, diminutives_augmentatives, relative_pronouns_advanced,
-// adjectives_ser_estar, adjective_position, verbos_cambio
+// Covers: comparatives, correlative_comparatives, diminutives_augmentatives,
+// relative_pronouns_advanced, adjectives_ser_estar, adjective_position,
+// verbos_cambio
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -45,6 +46,26 @@ export default {
         'Don\'t say *más bueno or *más malo — bueno and malo have their own irregular comparatives, mejor and peor, the same way English says "better," never "more good."',
         'De, not en, introduces the group in a superlative: el más alto de la clase, not *el más alto en la clase.',
         "Tan (invariable) goes with adjectives and adverbs; tanto (which agrees in gender/number) goes with nouns — mixing these up is a very common slip: tan inteligente como (adjective) but tantos amigos como (noun).",
+      ],
+    },
+    {
+      heading: 'The More... The More: Cuanto Más..., Más...',
+      paragraphs: [
+        "One more comparative pattern builds directly on what you just learned, and it's one of the most useful proportional structures in the language: cuanto más..., más... (\"the more..., the more...\"). English pairs two \"the\"-clauses this way — \"the more you practice, the better you get\" — and Spanish does the same job with cuanto in the first half and más (or menos, mejor, peor) in the second: Cuanto más practiques, mejor hablarás (\"The more you practice, the better you'll speak\").",
+        "The pattern is symmetrical and flexible: either half can use más or menos depending on the direction of the relationship. Cuanto más comes (more you eat), más engordas (more you gain weight) — both sides increasing together. Cuanto menos duermes, peor te sientes (\"The less you sleep, the worse you feel\") — one side decreasing while the other worsens. What matters is that the two halves track the same proportional idea, whichever direction each one moves in.",
+        "One nuance worth knowing: in careful writing, cuanto is the standard choice, but in everyday spoken Spanish — especially in Latin America — mientras más or entre más are extremely common, natural substitutes with the identical meaning: Mientras más hablas, menos escuchas (\"The more you talk, the less you listen\") is just as correct and just as widely understood as the cuanto version. Recognize all three; cuanto is the safest one to produce yourself in writing.",
+      ],
+      examples: [
+        { es: 'Cuanto más practiques, mejor hablarás.', en: "The more you practice, the better you'll speak." },
+        { es: 'Cuanto más comes, más engordas.', en: 'The more you eat, the more weight you gain.' },
+        { es: 'Cuanto menos duermes, peor te sientes.', en: 'The less you sleep, the worse you feel.' },
+        { es: 'Mientras más hablas, menos escuchas.', en: 'The more you talk, the less you listen.' },
+        { es: 'Cuanto antes salgamos, antes llegaremos.', en: 'The sooner we leave, the sooner we\'ll arrive.' },
+      ],
+      commonMistakes: [
+        'Don\'t drop cuanto (or its substitutes mientras/entre) from the first half — *más practiques, mejor hablarás is missing the piece that signals "the more," not just "more."',
+        'Both halves don\'t have to move in the same direction (más...más) — cuanto menos...peor and similar mixed pairings are just as valid, as long as the proportional logic holds.',
+        'Cuanto here is invariable in this fixed expression — it does not agree in gender/number the way cuánto/cuánta can elsewhere; don\'t write *cuanta más.',
       ],
     },
     {
@@ -208,13 +229,16 @@ export default {
     { es: 'mayor / menor', en: 'older / younger', example: 'Mi hermano es mayor que yo.', exampleEn: 'My brother is older than me.' },
     { es: 'tan... como', en: 'as... as', example: 'Es tan inteligente como su hermana.', exampleEn: "He's as smart as his sister." },
     { es: 'tanto/a(s)... como', en: 'as much/many... as', example: 'Tengo tantos amigos como tú.', exampleEn: 'I have as many friends as you.' },
+    { es: 'cuanto más..., más...', en: 'the more..., the more...', example: 'Cuanto más practiques, mejor hablarás.', exampleEn: "The more you practice, the better you'll speak." },
+    { es: 'cuanto menos..., peor...', en: 'the less..., the worse...', example: 'Cuanto menos duermes, peor te sientes.', exampleEn: 'The less you sleep, the worse you feel.' },
+    { es: 'mientras más / entre más', en: 'the more... (spoken alternative to cuanto más)', example: 'Mientras más hablas, menos escuchas.', exampleEn: 'The more you talk, the less you listen.' },
     { es: '-ito / -ita', en: 'diminutive suffix (small, affectionate)', example: 'Vivimos en una casita.', exampleEn: 'We live in a little house.' },
     { es: 'cochecito', en: 'little car (irregular diminutive)', example: 'Le regalé un cochecito de juguete.', exampleEn: 'I gave him a little toy car.' },
     { es: '-ón / -ona', en: 'augmentative suffix (big, intense)', example: 'Su tío es un hombrón.', exampleEn: "Her uncle is a big, hulking man." },
     { es: '-ote / -ota', en: 'augmentative suffix (huge, impressive)', example: 'Tienen un perro grandote.', exampleEn: 'They have a really big dog.' },
     { es: 'cuyo/a/os/as', en: 'whose (agrees with thing possessed)', example: 'El hombre cuya hija vive en Madrid.', exampleEn: "The man whose daughter lives in Madrid." },
     { es: 'el cual / la cual', en: 'which/who (formal, after prepositions)', example: 'La empresa para la cual trabajo.', exampleEn: 'The company for which I work.' },
-    { es: 'lo cual', en: 'which (refers to a whole idea)', en2: undefined, example: 'No vino, lo cual me sorprendió.', exampleEn: "She didn't come, which surprised me." },
+    { es: 'lo cual', en: 'which (refers to a whole idea)', example: 'No vino, lo cual me sorprendió.', exampleEn: "She didn't come, which surprised me." },
     { es: 'ser interesado', en: 'to be selfish/self-interested (trait)', example: 'Es un interesado.', exampleEn: "He's self-interested." },
     { es: 'estar interesado', en: 'to be interested (in something)', example: 'Estoy interesado en el puesto.', exampleEn: "I'm interested in the position." },
     { es: 'ser atento', en: 'to be considerate/attentive (personality)', example: 'Juan es muy atento con todos.', exampleEn: 'Juan is very considerate with everyone.' },
@@ -238,6 +262,13 @@ export default {
     { type: 'error_correction', prompt: 'Fix the error: "Este plan es más bueno que el anterior."', word: 'mejor', english: 'better', answer: 'Este plan es mejor que el anterior.', concept_id: 'comparatives', difficulty: 2 },
     { type: 'translation_to_english', prompt: 'Translate: "Es el más inteligente de la clase."', word: 'el más', english: "He's the most intelligent in the class.", answer: "He's the most intelligent in the class.", concept_id: 'comparatives', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which word correctly introduces the comparison group in a superlative: "Es la más alta ___ la familia"?', word: 'de', english: 'of/in', answer: 'de', options: ['en', 'de', 'que', 'con'], concept_id: 'comparatives', difficulty: 2 },
+
+    // ── correlative_comparatives block (kept separate; blocked before mixed review) ──
+    { type: 'fill_blank', prompt: 'Complete: "___ más practiques, mejor hablarás." (the more...)', word: 'Cuanto', english: 'the more', answer: 'Cuanto', concept_id: 'correlative_comparatives', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'The less you sleep, the worse you feel.'", english: 'The less you sleep, the worse you feel.', answer: 'Cuanto menos duermes, peor te sientes.', word: 'cuanto menos... peor', concept_id: 'correlative_comparatives', difficulty: 3 },
+    { type: 'multiple_choice', prompt: 'Which spoken alternative to "cuanto más" is especially common in Latin America?', word: 'mientras más', english: 'the more (spoken alternative)', answer: 'mientras más', options: ['mientras más', 'tan más', 'lo más', 'más que más'], concept_id: 'correlative_comparatives', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Fix the error: "Más practiques, mejor hablarás." (missing the word that signals "the more")', word: 'cuanto', english: 'the more', answer: 'Cuanto más practiques, mejor hablarás.', concept_id: 'correlative_comparatives', difficulty: 3 },
+    { type: 'translation_to_english', prompt: 'Translate: "Cuanto más comes, más engordas."', word: 'cuanto más... más', english: 'The more you eat, the more weight you gain.', answer: 'The more you eat, the more weight you gain.', concept_id: 'correlative_comparatives', difficulty: 2 },
 
     // ── diminutives_augmentatives block ──
     { type: 'fill_blank', prompt: 'Complete the diminutive: "coche" → "coche___" (little car)', word: 'cochecito', english: 'little car', answer: 'cochecito', concept_id: 'diminutives_augmentatives', difficulty: 2 },
@@ -298,6 +329,13 @@ export default {
 // - tan + adjective/adverb + como vs. tanto/a(s) + noun + como for equality
 //   comparisons, tan invariable/tanto agreeing in gender-number (Study.com
 //   "Comparisons of Equality"; SpanishLearningLab "Tan + Adjective + Como")
+// - correlative_comparatives: cuanto más..., más... (and cuanto menos, and
+//   mixed más/menos/mejor/peor pairings) for proportional "the more...,
+//   the more..." relationships; cuanto is invariable in this construction;
+//   mientras más/entre más confirmed as natural, equally correct spoken
+//   alternatives, especially common in Latin America (Lawless Spanish
+//   Grammar and Kwiziq Spanish, both "Cuanto/Mientras más/menos for the
+//   more/the less")
 // - diminutive -ito/-ita spelling patterns: vowel-drop (casa→casita),
 //   -ecito/-ecita after words ending in -e/-n/-r (coche→cochecito,
 //   pan→panecito), c→qu before -ito (chico→chiquito), z→c (taza→tacita)
@@ -362,3 +400,11 @@ export default {
 // avoids repeating unit14's classic ser/estar adjective set (aburrido,
 // listo, rico, malo, verde, vivo) and unit20's basic relative pronouns
 // (que, quien, donde), building on both instead.
+//
+// B2 curriculum-volume fix (07-25-2026): added correlative_comparatives
+// (cuanto más..., más...) section/vocab/practice, inserted directly after
+// the base comparatives section since it's a natural proportional extension
+// of más/menos... que rather than a standalone topic. This unit's B2 tier
+// had noticeably fewer units/concepts than B1's, so this fills part of that
+// gap by extending an existing unit rather than adding a new standalone one,
+// matching this session's established placement pattern.
