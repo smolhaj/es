@@ -46,6 +46,8 @@ import reportedSpeechBasic from './unit-b1-reported-speech-basic.js';
 import certaintyDoubtProbability from './unit-b1-certainty-doubt-probability.js';
 import absoluteSuperlative from './unit-b1-absolute-superlative.js';
 import argumentationWorkplace from './unit-b2-argumentation-workplace.js';
+import technologyDigitalLife from './unit-b2-technology-digital-life.js';
+import environmentSustainability from './unit-b2-environment-sustainability.js';
 import subjunctiveLimits from './unit26-subjunctive-limits.js';
 import reportedSpeech from './unit27-reported-speech.js';
 import probabilityAspect from './unit28-probability-aspect.js';
@@ -101,6 +103,8 @@ const CONTENT = {
   'certainty-doubt-probability': certaintyDoubtProbability,
   'absolute-superlative': absoluteSuperlative,
   'argumentation-workplace': argumentationWorkplace,
+  'technology-digital-life': technologyDigitalLife,
+  'environment-sustainability': environmentSustainability,
   'subjunctive-limits': subjunctiveLimits,
   'reported-speech': reportedSpeech,
   'probability-aspect': probabilityAspect,
@@ -263,13 +267,19 @@ export const UNIT_METADATA = [
     concepts: ['pluperfect_subjunctive', 'condicional_probabilidad', 'aunque_concessive', 'subjunctive_adjective_clauses'],
     summary: 'Unreal pasts, guessing about the past, aunque\'s mood switch, and subjunctive in adjective clauses.' },
   { id: 'fine-details', order: 25, level: 'B2', title: 'Fine Details',
-    concepts: ['comparatives', 'diminutives_augmentatives', 'relative_pronouns_advanced', 'adjectives_ser_estar', 'adjective_position', 'verbos_cambio'],
+    concepts: ['comparatives', 'correlative_comparatives', 'diminutives_augmentatives', 'relative_pronouns_advanced', 'adjectives_ser_estar', 'adjective_position', 'verbos_cambio'],
     summary: 'The polish that separates advanced learners from natives.' },
   { id: 'argumentation-workplace', order: 25.1, level: 'B2', title: 'Argumentation & Workplace Correspondence',
-    concepts: ['conectores_argumentativos_basicos', 'registro_formal_correspondencia', 'reformuladores_basico', 'genero_informe', 'operadores_discursivos', 'controladores_contacto'],
+    concepts: ['conectores_argumentativos_basicos', 'topic_shift_connectors', 'registro_formal_correspondencia', 'reformuladores_basico', 'genero_informe', 'operadores_discursivos', 'controladores_contacto'],
     summary: 'Build a case with pero and sin embargo, reinforce it with de hecho, write it up formally, and stay conversationally connected with ¿verdad?' },
+  { id: 'technology-digital-life', order: 25.2, level: 'B2', title: 'Technology & Digital Life',
+    concepts: ['technology_digital_life'],
+    summary: 'Talk about your devices, apps, and the cloud, and stay safe online with passwords and cybersecurity vocabulary.' },
+  { id: 'environment-sustainability', order: 25.3, level: 'B2', title: 'Environment & Sustainability',
+    concepts: ['environment_sustainability'],
+    summary: 'Discuss climate change and pollution, and talk about everyday sustainability — recycling, renewable energy, and reducing waste.' },
   { id: 'checkpoint-b2', order: 25.5, level: 'B2', title: 'Checkpoint: All of B2', isCheckpoint: true,
-    checkpointUpTo: 25.1, coversUnits: 'Units 1-25.1 (all of B2)', concepts: [],
+    checkpointUpTo: 25.3, coversUnits: 'Units 1-25.3 (all of B2)', concepts: [],
     summary: 'B2 complete — a personalized review of the whole level before moving on.' },
 
   // C1 — Near-Native Precision

@@ -469,6 +469,11 @@ export const CONCEPTS = {
     category: 'morphology', prereqs: ['adjective_agreement', 'comparatives'],
     explanationStyles: ['contrastive', 'rule_first', 'example_first'],
   },
+  correlative_comparatives: {
+    id: 'correlative_comparatives', label: 'Correlative comparatives (cuanto más..., más...)', cefr: 'B2',
+    category: 'morphology', prereqs: ['comparatives'],
+    explanationStyles: ['rule_first', 'example_first', 'contrastive'],
+  },
   conectores_argumentativos_basicos: {
     id: 'conectores_argumentativos_basicos', label: 'Basic argumentative connectors (pero, sin embargo, por eso)', cefr: 'B2',
     category: 'discourse', prereqs: ['comparatives'],
@@ -494,10 +499,25 @@ export const CONCEPTS = {
     category: 'discourse', prereqs: ['reformuladores_basico'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
+  topic_shift_connectors: {
+    id: 'topic_shift_connectors', label: 'Topic-shift connectors (en cuanto a, con respecto a)', cefr: 'B2',
+    category: 'discourse', prereqs: ['conectores_argumentativos_basicos'],
+    explanationStyles: ['rule_first', 'example_first', 'table'],
+  },
   genero_informe: {
     id: 'genero_informe', label: 'Formal genre: the informe (report)', cefr: 'B2',
     category: 'discourse', prereqs: ['registro_formal_correspondencia'],
     explanationStyles: ['rule_first', 'table', 'example_first'],
+  },
+  technology_digital_life: {
+    id: 'technology_digital_life', label: 'Technology & digital life', cefr: 'B2',
+    category: 'vocabulary', prereqs: ['passive_se', 'present_perfect'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
+  },
+  environment_sustainability: {
+    id: 'environment_sustainability', label: 'Environment & sustainability', cefr: 'B2',
+    category: 'vocabulary', prereqs: ['present_subjunctive', 'passive_voice'],
+    explanationStyles: ['example_first', 'rule_first', 'story'],
   },
 
   // ── C1 ──────────────────────────────────────────────────────────────────

@@ -1,7 +1,7 @@
 // Unit — Argumentation & Workplace Correspondence (B2)
-// Covers: conectores_argumentativos_basicos, registro_formal_correspondencia,
-// reformuladores_basico, genero_informe, operadores_discursivos,
-// controladores_contacto
+// Covers: conectores_argumentativos_basicos, topic_shift_connectors,
+// registro_formal_correspondencia, reformuladores_basico, genero_informe,
+// operadores_discursivos, controladores_contacto
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -61,6 +61,26 @@ export default {
         "Reaching for por lo tanto in casual chat about small everyday things — it's not wrong, but it can sound oddly formal for \"that's why I was late,\" where por eso fits the moment better.",
         "Using además to mean \"but\" or to introduce a contrast — it only adds a point in the same direction as what came before; for a contrast you still need pero or sin embargo.",
         "Confusing por eso (consequence: \"that's why\") with porque (reason: \"because\") — porque introduces the cause, por eso introduces the effect that follows from it. No fui porque no tenía dinero and No tenía dinero, por eso no fui say the same thing in reverse order.",
+      ],
+    },
+    {
+      heading: 'Changing Topic on Purpose: En Cuanto A, Con Respecto A',
+      paragraphs: [
+        "One more everyday move an argument or a piece of writing needs: signaling on purpose that you're shifting to a new topic or sub-point, rather than letting the reader guess. Three phrases do this job — en cuanto a, en lo que se refiere a, and con respecto a — and all three translate roughly as \"as for,\" \"regarding,\" or \"with respect to.\"",
+        "En cuanto a is the shortest and most common of the three, equally natural in speech and writing: En cuanto a tu propuesta, me parece bien (\"As for your proposal, it seems fine to me\"). It works well at the start of a sentence or paragraph to announce you're now addressing a specific piece of a larger topic — a natural move right after you've made a general point and want to zoom in on one part of it.",
+        "Con respecto a (\"regarding,\" \"with respect to\") does the identical job with a slightly more formal, businesslike feel — you'll see it constantly in reports, official letters, and workplace emails: Con respecto a lo que hablamos antes, no tengo más que añadir (\"Regarding what we talked about before, I have nothing else to add\"). En lo que se refiere a is the longest and most formal of the three, favored in careful writing and formal speech when you want the topic shift to sound especially deliberate: En lo que se refiere a los plazos, todavía no hay fecha confirmada (\"As for the deadlines, there's still no confirmed date\").",
+        "All three sit in the same slot and are largely interchangeable in meaning — the real differences are length and register, from en cuanto a (shortest, most neutral) to en lo que se refiere a (longest, most formal). Pick based on how formal the rest of your sentence already is, the same instinct you're already using for pero vs. sin embargo and por eso vs. por lo tanto.",
+      ],
+      examples: [
+        { es: 'En cuanto a tu propuesta, me parece bien.', en: 'As for your proposal, it seems fine to me.' },
+        { es: 'Con respecto a lo que hablamos antes, no tengo más que añadir.', en: "Regarding what we talked about before, I have nothing else to add." },
+        { es: 'En lo que se refiere a los plazos, todavía no hay fecha confirmada.', en: 'As for the deadlines, there is still no confirmed date.' },
+        { es: 'En cuanto a mí, prefiero esperar hasta mañana.', en: 'As for me, I\'d rather wait until tomorrow.' },
+      ],
+      commonMistakes: [
+        'These phrases introduce a topic shift, not a contrast or a consequence — don\'t reach for en cuanto a where pero or por eso is really what the sentence needs.',
+        'En lo que se refiere a is noticeably more formal than en cuanto a — using it in casual chat about small everyday things can sound stiff, the same overshoot as reaching for por lo tanto instead of por eso in a text to a friend.',
+        'These all take a noun phrase right after them (en cuanto a tu propuesta), not a full clause with a conjugated verb — for a clause, you\'d restructure the sentence rather than force one of these directly onto it.',
       ],
     },
     {
@@ -204,6 +224,9 @@ export default {
     { es: 'por eso', en: "that's why / so", example: 'No tenía dinero, por eso no fui.', exampleEn: "I didn't have money, so I didn't go." },
     { es: 'por lo tanto', en: 'therefore', example: 'Llegamos tarde. Por lo tanto, perdimos el tren.', exampleEn: 'We arrived late. Therefore, we missed the train.' },
     { es: 'además', en: "furthermore / what's more", example: 'El plan es caro. Además, tardaría meses.', exampleEn: "The plan is expensive. What's more, it would take months." },
+    { es: 'en cuanto a', en: 'as for / regarding (short, neutral)', example: 'En cuanto a tu propuesta, me parece bien.', exampleEn: 'As for your proposal, it seems fine to me.' },
+    { es: 'con respecto a', en: 'regarding / with respect to (businesslike)', example: 'Con respecto a lo que hablamos antes, no tengo más que añadir.', exampleEn: 'Regarding what we talked about before, I have nothing else to add.' },
+    { es: 'en lo que se refiere a', en: 'as for / with regard to (longest, most formal)', example: 'En lo que se refiere a los plazos, todavía no hay fecha confirmada.', exampleEn: 'As for the deadlines, there is still no confirmed date.' },
     { es: 'estar de acuerdo', en: 'to agree', example: 'No estoy de acuerdo con esa idea.', exampleEn: "I don't agree with that idea." },
     { es: 'el argumento', en: 'the argument', example: 'Su argumento no me convence.', exampleEn: "Their argument doesn't convince me." },
     { es: 'convencer', en: 'to convince', example: 'Sus razones no me convencen.', exampleEn: "Their reasons don't convince me." },
@@ -247,6 +270,14 @@ export default {
     { type: 'error_correction', prompt: 'Find and correct the error: "El precio es alto. Además, no me convence la calidad, pero no puedo pagarlo." (the "pero" should be a consequence word, since this isn\'t a contrast)', word: 'por eso', english: "that's why", answer: 'El precio es alto. Además, no me convence la calidad, por eso no puedo pagarlo.', concept_id: 'conectores_argumentativos_basicos', difficulty: 3 },
     { type: 'translation_to_english', prompt: 'Translate: "Llegamos tarde. Por lo tanto, perdimos el tren."', word: 'por lo tanto', english: 'therefore', answer: 'We arrived late. Therefore, we missed the train.', concept_id: 'conectores_argumentativos_basicos', difficulty: 2 },
     { type: 'multiple_choice', prompt: 'Which sentence correctly uses además to add a point (not contrast)?', word: 'además', english: 'furthermore', answer: 'No me convence el precio; además, la calidad es dudosa.', options: ['No me convence el precio; además, la calidad es dudosa.', 'No me convence el precio; además, la calidad es buena, pero lo compraré.', 'Me convence el precio, además no lo compraré.', 'El precio es alto, además es barato.'], concept_id: 'conectores_argumentativos_basicos', difficulty: 3 },
+
+    // ── topic_shift_connectors block (kept separate; blocked before mixed review) ──
+    { type: 'multiple_choice', prompt: 'Which is the shortest, most neutral way to say "as for..." / "regarding..."?', word: 'en cuanto a', english: 'as for / regarding', answer: 'en cuanto a', options: ['en cuanto a', 'en lo que se refiere a', 'por lo tanto', 'de hecho'], concept_id: 'topic_shift_connectors', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "___ lo que hablamos antes, no tengo más que añadir." (regarding, businesslike)', word: 'Con respecto a', english: 'regarding', answer: 'Con respecto a', concept_id: 'topic_shift_connectors', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'As for your proposal, it seems fine to me.'", english: 'As for your proposal, it seems fine to me.', answer: 'En cuanto a tu propuesta, me parece bien.', word: 'en cuanto a', concept_id: 'topic_shift_connectors', difficulty: 2 },
+    { type: 'multiple_choice', prompt: 'Which of the three topic-shift phrases is the longest and most formal?', word: 'en lo que se refiere a', english: 'as for / with regard to', answer: 'en lo que se refiere a', options: ['en cuanto a', 'con respecto a', 'en lo que se refiere a', 'por eso'], concept_id: 'topic_shift_connectors', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Fix the misuse: the speaker wants to shift topic, not show contrast: "Sin embargo tu propuesta, me parece bien."', word: 'en cuanto a', english: 'as for', answer: 'En cuanto a tu propuesta, me parece bien.', concept_id: 'topic_shift_connectors', difficulty: 3 },
+    { type: 'translation_to_english', prompt: 'Translate: "En lo que se refiere a los plazos, todavía no hay fecha confirmada."', word: 'en lo que se refiere a', english: 'As for the deadlines, there is still no confirmed date.', answer: 'As for the deadlines, there is still no confirmed date.', concept_id: 'topic_shift_connectors', difficulty: 2 },
 
     // ── registro_formal_correspondencia block (kept separate; blocked before mixed review) ──
     { type: 'multiple_choice', prompt: 'Which greeting is correct for a formal letter to Sra. García?', word: 'estimada', english: 'dear', answer: 'Estimada señora García:', options: ['Estimada señora García:', 'Hola María,', '¡Estimada señora García!', 'Querida señora García,'], concept_id: 'registro_formal_correspondencia', difficulty: 1 },
@@ -490,3 +521,15 @@ export default {
 // item 29 for the full pacing-lag writeup. Content agrees with and does not
 // contradict the existing GRAMMAR_CARDS entries for operadores_discursivos
 // and controladores_contacto.
+//
+// B2 curriculum-volume fix (07-25-2026): added topic_shift_connectors (en
+// cuanto a, con respecto a, en lo que se refiere a) section/vocab/practice,
+// inserted right after the por eso/por lo tanto/además section since it's
+// another connector family in the same argumentative-writing toolkit this
+// unit already teaches. B2's unit/concept count was noticeably thinner than
+// B1's, so this fills part of that gap by extending an existing unit rather
+// than adding a new standalone one. Claims verified via WebSearch against
+// Kwiziq Spanish's "groups of words" connector glossary and multiple
+// Spanish-connector guides confirming register (en cuanto a shortest/most
+// neutral, con respecto a businesslike, en lo que se refiere a longest/most
+// formal) and that all three take a noun phrase rather than a full clause.
