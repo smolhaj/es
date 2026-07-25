@@ -106,7 +106,7 @@ export default {
         { es: '¿Tienes algo que decirme?', en: 'Do you have something to tell me?' },
         { es: '¿Conoces a alguien aquí?', en: 'Do you know anyone here?' },
         { es: '¿Hay algún problema?', en: 'Is there any problem?' },
-        { es: '—¿Tienes alguna pregunta? —Tengo algunas.', en: '"Do you have any questions?" "I have some."' },
+        { es: '—¿Tienes alguna pregunta? —Tengo algunas.', en: '"Do you have a question?" "I have a few."' },
         { es: '¿Viene alguien a la fiesta? — No, no viene nadie.', en: '"Is anyone coming to the party?" "No, nobody\'s coming."' },
       ],
       commonMistakes: [

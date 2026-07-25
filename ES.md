@@ -2690,3 +2690,42 @@ full account of any of these.
   Spanish comma splice in "la-videollamada-que-cambio-todo" (needed a
   colon, matching the English translation's em dash) and an awkward
   "that that" in "el-retrato"'s English translation.
+- **07-25-2026** — "Shore up grammar and vocabulary and lessons if
+  needed" prompted a data-driven scan (concept/unit/vocab counts by
+  CEFR level, cross-referenced against idioms/false-friends, plus a
+  targeted grep across every curriculum file) rather than another
+  content-volume batch. Found two genuine grammar gaps — confirmed by
+  grep, not just concept-count comparison, so two near-miss false
+  positives (the unrelated indefinite article un/una, and an
+  unrelated "involuntari-" hit in unit25's ponerse/volverse/hacerse
+  prose) were ruled out first: accidental/unplanned `se` (se me
+  olvidó, se le rompió) was never taught anywhere, and indefinite
+  pronouns (algo, alguien, alguno) — the positive counterparts of the
+  already-taught nada/nadie/ninguno — were also missing. Both were
+  extended into existing units rather than built as new standalone
+  ones, continuing this session's established reuse-first placement
+  pattern: `se_accidental` became the 4th "job of se" in unit21
+  (efficiency-emphasis), alongside its existing phonetic le/les→se,
+  impersonal se, and reciprocal se sections; `indefinite_pronouns` was
+  added to unit11 (what-happened) immediately after its existing
+  negation section, deliberately reusing the double-negative rule just
+  taught for its own example sentences. Concept count 133 → 135. Both
+  units got 1 new section, 3 new local vocab entries, and 5 new
+  practice items each (no global `vocabulary.js` additions needed —
+  algo/alguien/alguno already existed as core words, matching the
+  established pattern that fixed grammar-construction phrases stay
+  unit-local). Structural checks (node --check, MC answer-in-options,
+  no duplicate vocab) came back clean on both files. Verified live
+  (`wrangler pages dev` + local D1 + Playwright): registered a test
+  user, opened both `/lessons/what-happened` and
+  `/lessons/efficiency-emphasis`, and confirmed both new section
+  headings and their Spanish examples render with zero page errors. A
+  fresh-eyes subagent proofread pass on both files found no
+  grammatical errors and no answer-key errors in any of the 10 new
+  practice items; it caught 2 minor wording nitpicks, both fixed: an
+  accidental-se commonMistakes line read confusingly ("se + a
+  me/te/le/nos/os/les pronoun," with a stray "a"), reworded to "se +
+  one of me/te/le/nos/os/les"; and one indefinite_pronouns example's
+  English gloss was plural ("Do you have any questions?") while its
+  Spanish stayed singular (alguna pregunta), reworded to "Do you have
+  a question?" / "I have a few."

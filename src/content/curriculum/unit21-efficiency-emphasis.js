@@ -109,7 +109,7 @@ export default {
       commonMistakes: [
         "Don't conjugate the verb to agree with the person — it agrees with the thing affected: Se me rompieron los vasos (plural vasos → plural rompieron), never *Se me rompí los vasos.",
         "Don't drop the indirect object pronoun — without it, you lose the whole point of the construction (framing it as something that happened TO someone). Se rompió el vaso just says \"the glass broke\" with no one implicated at all; Se me rompió el vaso specifically says it happened to me.",
-        "Don't confuse this se with reflexive, impersonal, or reciprocal se — check for the telltale combination: se + a me/te/le/nos/os/les pronoun + a verb agreeing with a noun that follows, not with a person.",
+        "Don't confuse this se with reflexive, impersonal, or reciprocal se — check for the telltale combination: se + one of me/te/le/nos/os/les + a verb agreeing with a noun that follows, not with a person.",
       ],
     },
     {
