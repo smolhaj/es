@@ -200,6 +200,11 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['present_ar', 'present_er_ir'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
+  indefinite_pronouns: {
+    id: 'indefinite_pronouns', label: 'Indefinite pronouns (algo, alguien, alguno)', cefr: 'A2',
+    category: 'pronouns', prereqs: ['negation'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
   prepositions_basic: {
     id: 'prepositions_basic', label: 'Extended prepositions (con, sin, por, para, entre…)', cefr: 'A2',
     category: 'syntax', prereqs: ['definite_articles', 'present_ar', 'prepositions_core'],
@@ -325,6 +330,11 @@ export const CONCEPTS = {
   reciprocal_reflexives: {
     id: 'reciprocal_reflexives', label: 'Reciprocal reflexives (nos vemos, se quieren)', cefr: 'B1',
     category: 'pronouns', prereqs: ['reflexive_verbs'],
+    explanationStyles: ['rule_first', 'contrastive', 'example_first'],
+  },
+  se_accidental: {
+    id: 'se_accidental', label: 'Accidental se (se me olvidó, se le rompió)', cefr: 'B1',
+    category: 'pronouns', prereqs: ['reflexive_verbs', 'indirect_object_pronouns'],
     explanationStyles: ['rule_first', 'contrastive', 'example_first'],
   },
   infinitive_vs_subjunctive: {
