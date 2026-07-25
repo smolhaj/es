@@ -2729,3 +2729,41 @@ full account of any of these.
   English gloss was plural ("Do you have any questions?") while its
   Spanish stayed singular (alguna pregunta), reworded to "Do you have
   a question?" / "I have a few."
+- **07-25-2026** — Second half of the "bang out all 3" scan findings:
+  15 new C2 idioms (8 → 23, now matching C1) and 20 new C1/C2 false
+  friends (10 each, bringing C1 4 → 14 and C2 2 → 12), closing the two
+  content-volume gaps the same scan flagged alongside the grammar
+  gaps. Every idiom's literal gloss, real-world meaning, and register
+  was checked against multiple Spanish-language sources via WebSearch
+  before writing, not guessed from familiarity — several near-miss
+  candidates were caught and swapped this way, including "coser y
+  cantar" (dropped after a source tagged it B1-level, too easy for
+  this C2 batch) and "estar en boca de todos" (dropped as too
+  transparent an idiom for the advanced tier). New C2 idioms: quien
+  fue a Sevilla perdió su silla, cría cuervos y te sacarán los ojos,
+  el que no llora no mama, estar en la cuerda floja, hacer de la
+  necesidad virtud, írsele el santo al cielo, no dar su brazo a
+  torcer, tirar de la manta, dar la campanada, montar un pollo,
+  írsele la olla, no tener dos dedos de frente, hilar fino, dorar la
+  píldora, quedarse en agua de borrajas. New false friends (C1):
+  consistente, sanidad, notorio, trasladar, particular, fastidioso,
+  asumir, letra, conferencia, aplicado. New false friends (C2):
+  vulgar, moroso, recluso, audiencia, ostentar, billón, prevaricar,
+  letrado, confidencia, consecuente. Structural checks (no duplicate
+  idiom text, no new duplicate false-friend headwords, CEFR-count
+  verification) came back clean. Verified live (`wrangler pages dev`
+  + local D1 + Playwright): registered a test user, opened both
+  `/idioms` and `/false-friends`, confirmed new entries from the batch
+  render with zero page errors. A fresh-eyes subagent proofread pass
+  found no duplicate or fabricated entries but caught 4 real issues,
+  all fixed: "dar la campanada"'s English example invented a detail
+  ("writer") absent from the Spanish; "írsele la olla"'s meaning
+  overreached into "space out," a distinct concept already covered by
+  existing entries, and nearly duplicated "perder la cabeza" without
+  differentiating register — narrowed to "to lose control and say or
+  do something reckless"; "tirar de la manta"'s English translation
+  used an awkward bare "splash," changed to "implicate"; "ostentar"'s
+  false-friend entry overstated that the word is categorically free
+  of the English "show off" connotation, when Spanish does use it
+  that way with objects like riqueza — narrowed the neutral claim to
+  specifically the title/position sense used in its example.
