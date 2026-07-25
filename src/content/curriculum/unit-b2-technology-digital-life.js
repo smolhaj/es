@@ -63,25 +63,18 @@ export default {
 
   vocab: [
     { es: 'el dispositivo', en: 'the device', example: 'Necesito comprar un dispositivo nuevo.', exampleEn: 'I need to buy a new device.' },
-    { es: 'la aplicación', en: 'the app / application', example: 'Descargué una aplicación nueva.', exampleEn: 'I downloaded a new app.' },
-    { es: 'la pantalla', en: 'the screen', example: 'Se me rompió la pantalla del móvil.', exampleEn: 'My phone screen broke.' },
     { es: 'actualizar', en: 'to update', example: 'Tengo que actualizar la aplicación.', exampleEn: 'I have to update the app.' },
     { es: 'desinstalar', en: 'to uninstall', example: 'Voy a desinstalar esta aplicación.', exampleEn: "I'm going to uninstall this app." },
     { es: 'borrar', en: 'to delete', example: 'Borré el archivo por error.', exampleEn: 'I deleted the file by mistake.' },
-    { es: 'el archivo', en: 'the file', example: 'Guardé el archivo en la nube.', exampleEn: 'I saved the file in the cloud.' },
     { es: 'la nube', en: 'the cloud (online storage)', example: 'Tengo todas mis fotos en la nube.', exampleEn: 'I have all my photos in the cloud.' },
-    { es: 'el navegador', en: 'the (web) browser', example: 'Cierra el navegador y vuelve a abrirlo.', exampleEn: 'Close the browser and reopen it.' },
     { es: 'el buscador', en: 'the search engine', example: 'Prefiero ese buscador porque es más rápido.', exampleEn: 'I prefer that search engine because it\'s faster.' },
     { es: 'el enlace', en: 'the link', example: 'Haz clic en este enlace.', exampleEn: 'Click this link.' },
-    { es: 'la contraseña', en: 'the password', example: 'Se me olvidó la contraseña otra vez.', exampleEn: 'I forgot my password again.' },
     { es: 'el usuario / la usuaria', en: 'the username / the user', example: '¿Cuál es tu nombre de usuario?', exampleEn: "What's your username?" },
     { es: 'el virus', en: 'the virus', example: 'El dispositivo tiene un virus.', exampleEn: 'The device has a virus.' },
     { es: 'hackear', en: 'to hack', example: 'Le hackearon la cuenta de correo.', exampleEn: 'Their email account got hacked.' },
     { es: 'la ciberseguridad', en: 'cybersecurity', example: 'La empresa invierte mucho en ciberseguridad.', exampleEn: 'The company invests a lot in cybersecurity.' },
     { es: 'la huella digital', en: 'the digital footprint', example: 'Todo lo que publicas queda en tu huella digital.', exampleEn: 'Everything you post stays as part of your digital footprint.' },
     { es: 'proteger', en: 'to protect', example: 'Es importante proteger tus datos personales.', exampleEn: "It's important to protect your personal data." },
-    { es: 'la red social', en: 'the social network / social media platform', example: 'Pasa demasiado tiempo en las redes sociales.', exampleEn: 'He spends too much time on social media.' },
-    { es: 'el wifi', en: 'wifi', example: '¿Tienen wifi gratis aquí?', exampleEn: 'Do you have free wifi here?' },
   ],
 
   practice: [
@@ -127,12 +120,14 @@ export default {
 // - actualizar (update software/info) vs. the narrower/different scope of
 //   English "actualize" — confirmed these are false-friend-adjacent but
 //   not identical in the update/software sense actually needed here.
-// This content does not duplicate any existing GRAMMAR_CARDS or vocabulary
-// entry; the handful of words already taught elsewhere (descargar, subir,
-// conectar/desconectar, compartir, publicar, instalar, guardar, buscar) are
-// referenced in prose as known background rather than re-taught from
-// scratch, consistent with this unit's "reuses existing grammar, adds new
-// vocabulary" functional-unit design.
+// This unit's local vocab array is limited to words genuinely absent from
+// vocabulary.js. A wider set of already-known words is used in this unit's
+// prose and examples as background context rather than re-taught as new
+// vocab — some already in vocabulary.js (descargar, subir, conectar/
+// desconectar, compartir, publicar, instalar, guardar, buscar, aplicación,
+// pantalla, archivo, navegador, contraseña, red social, wifi), consistent
+// with this unit's "reuses existing grammar/vocab, adds new vocabulary"
+// functional-unit design.
 //
 // B2 curriculum-volume fix (07-25-2026): built as a new standalone unit
 // (rather than folded into an existing one) because everyday technology

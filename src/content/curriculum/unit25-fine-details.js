@@ -238,7 +238,7 @@ export default {
     { es: '-ote / -ota', en: 'augmentative suffix (huge, impressive)', example: 'Tienen un perro grandote.', exampleEn: 'They have a really big dog.' },
     { es: 'cuyo/a/os/as', en: 'whose (agrees with thing possessed)', example: 'El hombre cuya hija vive en Madrid.', exampleEn: "The man whose daughter lives in Madrid." },
     { es: 'el cual / la cual', en: 'which/who (formal, after prepositions)', example: 'La empresa para la cual trabajo.', exampleEn: 'The company for which I work.' },
-    { es: 'lo cual', en: 'which (refers to a whole idea)', en2: undefined, example: 'No vino, lo cual me sorprendió.', exampleEn: "She didn't come, which surprised me." },
+    { es: 'lo cual', en: 'which (refers to a whole idea)', example: 'No vino, lo cual me sorprendió.', exampleEn: "She didn't come, which surprised me." },
     { es: 'ser interesado', en: 'to be selfish/self-interested (trait)', example: 'Es un interesado.', exampleEn: "He's self-interested." },
     { es: 'estar interesado', en: 'to be interested (in something)', example: 'Estoy interesado en el puesto.', exampleEn: "I'm interested in the position." },
     { es: 'ser atento', en: 'to be considerate/attentive (personality)', example: 'Juan es muy atento con todos.', exampleEn: 'Juan is very considerate with everyone.' },

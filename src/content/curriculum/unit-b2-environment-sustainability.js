@@ -66,11 +66,8 @@ export default {
   vocab: [
     { es: 'el cambio climático', en: 'climate change', example: 'El cambio climático afecta a todo el planeta.', exampleEn: 'Climate change affects the whole planet.' },
     { es: 'el calentamiento global', en: 'global warming', example: 'El calentamiento global está provocando sequías.', exampleEn: 'Global warming is causing droughts.' },
-    { es: 'la contaminación', en: 'pollution', example: 'La contaminación del aire es un problema grave.', exampleEn: 'Air pollution is a serious problem.' },
     { es: 'contaminar', en: 'to pollute', example: 'Las fábricas contaminan el río.', exampleEn: 'The factories pollute the river.' },
-    { es: 'la sequía', en: 'the drought', example: 'La región sufre una sequía terrible.', exampleEn: 'The region is suffering a terrible drought.' },
     { es: 'la deforestación', en: 'deforestation', example: 'La deforestación destruye hábitats.', exampleEn: 'Deforestation destroys habitats.' },
-    { es: 'el ecosistema', en: 'the ecosystem', example: 'Este ecosistema es único en el mundo.', exampleEn: 'This ecosystem is unique in the world.' },
     { es: 'la extinción', en: 'extinction', example: 'Está en peligro de extinción.', exampleEn: "It's in danger of extinction." },
     { es: 'reciclar', en: 'to recycle', example: 'Es importante que reciclemos más.', exampleEn: "It's important that we recycle more." },
     { es: 'reutilizar', en: 'to reuse', example: 'Prefiero reutilizar las bolsas antes de tirarlas.', exampleEn: 'I prefer to reuse the bags before throwing them away.' },
@@ -126,9 +123,12 @@ export default {
 // - envase (container/packaging for a product) as distinct from basura
 //   (trash in general) until discarded — a nuance worth flagging since
 //   English "container" and "trash" don't share this same overlap.
-// This content is consistent with and does not duplicate the existing
-// vocabulary.js entries for sostenible and reducir, which are referenced
-// in prose as known background rather than re-taught from scratch.
+// This unit's local vocab array is limited to words genuinely absent from
+// vocabulary.js. A wider set of already-known words is used in this unit's
+// prose and examples as background context rather than re-taught as new
+// vocab — some already in vocabulary.js (sostenible, reducir, contaminación,
+// sequía, ecosistema), consistent with this unit's "reuses existing
+// grammar/vocab, adds new vocabulary" functional-unit design.
 //
 // B2 curriculum-volume fix (07-25-2026): built as a new standalone unit
 // (rather than folded into an existing one) because everyday environment

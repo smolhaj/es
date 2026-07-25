@@ -2767,3 +2767,39 @@ full account of any of these.
   of the English "show off" connotation, when Spanish does use it
   that way with objects like riqueza — narrowed the neutral claim to
   specifically the title/position sense used in its example.
+- **07-25-2026** — Third and final piece of the "bang out all 3" scan
+  findings: closed the B2 unit/concept/vocab-volume gap (5 → 7 units,
+  20 → 24 concepts; B1 by comparison had 16 units/37 concepts). Two
+  new concepts extended existing units rather than becoming
+  standalone ones: correlative_comparatives (cuanto más..., más...)
+  was added to the existing "Fine Details" unit right after its base
+  comparatives section, and topic_shift_connectors (en cuanto a, con
+  respecto a, en lo que se refiere a) was added to the existing
+  "Argumentation & Workplace Correspondence" unit right after its
+  por eso/por lo tanto/además section. Two new standalone vocab units
+  were built for domains that were genuinely uncovered anywhere in
+  the curriculum: Technology & Digital Life (dispositivo, actualizar,
+  la nube, hackear, la ciberseguridad, la huella digital, and more)
+  and Environment & Sustainability (el cambio climático, la
+  contaminación, reciclar, la energía renovable, and more) — both
+  reuse grammar already taught (impersonal/passive se, present
+  perfect, present subjunctive) rather than introducing new grammar.
+  Structural checks (node --check, MC answer-in-options, no duplicate
+  vocab/options) came back clean on all four files. Verified live
+  (`wrangler pages dev` + local D1 + Playwright): registered a test
+  user, opened all four modified/new units, confirmed new section
+  headings and vocabulary render with zero page errors. A fresh-eyes
+  subagent proofread pass found the new grammar sections and all
+  practice-item answer keys correct, but caught a real issue in both
+  new vocab units: their local vocab arrays had quietly re-added
+  words that already exist in `vocabulary.js` (aplicación, pantalla,
+  archivo, navegador, contraseña, red social, and wifi in the tech
+  unit; contaminación, sequía, and ecosistema — two of them already
+  tagged B2 — in the environment unit), while each unit's own audit
+  note claimed no duplication. Fixed by removing all ten duplicate
+  entries from the local vocab arrays (the words still appear
+  naturally in prose/examples as known background, just not
+  re-taught as flashcards) and correcting both audit notes to
+  accurately list what's reused vs. genuinely new. Also cleaned up an
+  unrelated pre-existing stray `en2: undefined` field the proofread
+  incidentally caught in "Fine Details"'s vocab array.
