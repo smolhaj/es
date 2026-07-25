@@ -1,5 +1,5 @@
 // Unit 21 — Efficiency & Emphasis (B1)
-// Covers: object_pronoun_order, se_impersonal, reciprocal_reflexives, infinitive_vs_subjunctive, para_que, exclamativas
+// Covers: object_pronoun_order, se_impersonal, reciprocal_reflexives, se_accidental, infinitive_vs_subjunctive, para_que, exclamativas
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -89,6 +89,27 @@ export default {
         'Reciprocal meaning only works with plural subjects (nosotros, vosotros, ellos/ellas/ustedes) — a singular subject like Ella se mira can only be reflexive ("she looks at herself"), never reciprocal, since "each other" needs at least two people.',
         "Don't assume every plural reflexive verb is automatically reciprocal — Se lavan las manos usually just means \"they wash their hands\" (each person washing their own), not \"they wash each other's hands.\" Context, not grammar alone, usually settles which meaning is meant.",
         'El uno al otro agrees with the people involved (la una a la otra for two women, los unos a los otros for a mixed or male group) — it\'s optional clarification, not a required part of every reciprocal sentence.',
+      ],
+    },
+    {
+      heading: 'Not My Fault: The Accidental Se',
+      paragraphs: [
+        'One last job for se, and it\'s a genuinely useful one: framing something as an accident rather than something you did on purpose. Compare Rompí el vaso ("I broke the glass" — plain, direct, you\'re the one who did it) with Se me rompió el vaso ("The glass broke on me" / "I accidentally broke the glass") — same event, but the second version frames it as something that happened to you, not something you deliberately caused. This is exactly the kind of soft, face-saving distinction native speakers reach for constantly, and it has its own fixed pattern.',
+        'The formula: se + indirect object pronoun (me, te, le, nos, os, les) + verb in the third person + the thing affected. The verb agrees with the thing, not with the person — because grammatically, the thing (el vaso) is the subject, and the person (me, te, le...) is just the indirect object caught up in it. Se me rompió el vaso (singular thing, singular verb) but Se me rompieron los platos ("The plates broke on me," plural thing, plural verb) — the person affected never changes the verb\'s form, only which indirect object pronoun shows up.',
+        'A small set of verbs does almost all the work here: olvidar (to forget — Se me olvidó la contraseña, "I forgot the password," literally "the password forgot itself on me"), caer (to drop — Se le cayó el teléfono, "He dropped his phone"), romper (to break — Se nos rompió la impresora, "Our printer broke"), perder (to lose — Se te perdieron las llaves, "You lost your keys"), quedar (to leave behind — Se me quedó el paraguas en casa, "I left my umbrella at home"), and acabar (to run out — Se nos acabó el café, "We ran out of coffee"). Notice English often needs a completely different verb or structure for each of these — Spanish reuses the same se + pronoun + verb pattern every time.',
+        "This se has nothing to do with the reflexive, impersonal, or reciprocal se you've just seen in this unit — don't confuse them. Reflexive se needs the subject acting on itself (se lava, she washes herself); impersonal se has no indirect object pronoun and no specific person involved at all (se habla español); reciprocal se needs a plural subject doing something to each other (se abrazaron). Accidental se, by contrast, always has an indirect object pronoun standing in for whoever the accident happened to, and the thing that broke/was lost/was forgotten is the grammatical subject the whole time.",
+      ],
+      examples: [
+        { es: 'Se me olvidó la contraseña otra vez.', en: 'I forgot the password again.' },
+        { es: 'Se le cayó el teléfono al suelo.', en: 'He/She dropped the phone on the floor.' },
+        { es: 'Se nos rompió la impresora justo antes del examen.', en: 'Our printer broke right before the exam.' },
+        { es: '¿Se te perdieron las llaves otra vez?', en: 'Did you lose your keys again?' },
+        { es: 'Se nos acabó el café esta mañana.', en: 'We ran out of coffee this morning.' },
+      ],
+      commonMistakes: [
+        "Don't conjugate the verb to agree with the person — it agrees with the thing affected: Se me rompieron los vasos (plural vasos → plural rompieron), never *Se me rompí los vasos.",
+        "Don't drop the indirect object pronoun — without it, you lose the whole point of the construction (framing it as something that happened TO someone). Se rompió el vaso just says \"the glass broke\" with no one implicated at all; Se me rompió el vaso specifically says it happened to me.",
+        "Don't confuse this se with reflexive, impersonal, or reciprocal se — check for the telltale combination: se + one of me/te/le/nos/os/les + a verb agreeing with a noun that follows, not with a person.",
       ],
     },
     {
@@ -185,6 +206,9 @@ export default {
     { es: 'abrazarse', en: 'to hug (each other)', example: 'Se abrazaron al despedirse.', exampleEn: 'They hugged each other when saying goodbye.' },
     { es: 'el uno al otro', en: 'each other', example: 'Se miraron el uno al otro.', exampleEn: 'They looked at each other.' },
     { es: 'mutuamente', en: 'mutually', example: 'Se ayudan mutuamente.', exampleEn: 'They help each other.' },
+    { es: 'se me olvidó', en: 'I forgot (accidentally)', example: 'Se me olvidó la contraseña.', exampleEn: 'I forgot the password.' },
+    { es: 'se le cayó', en: 'he/she dropped (accidentally)', example: 'Se le cayó el teléfono.', exampleEn: 'He dropped his phone.' },
+    { es: 'se nos acabó', en: 'we ran out of', example: 'Se nos acabó el café.', exampleEn: 'We ran out of coffee.' },
     { es: 'esperar', en: 'to hope / expect', example: 'Espero que apruebes.', exampleEn: 'I hope you pass.' },
     { es: 'es importante', en: "it's important", example: 'Es importante que estudies.', exampleEn: "It's important that you study." },
     { es: 'es necesario', en: "it's necessary", example: 'Es necesario descansar.', exampleEn: "It's necessary to rest." },
@@ -218,6 +242,13 @@ export default {
     { type: 'translation_to_spanish', prompt: "Translate: 'We write to each other every week.'", english: 'We write to each other every week.', answer: 'Nos escribimos todas las semanas.', word: 'nos escribimos', concept_id: 'reciprocal_reflexives', difficulty: 2 },
     { type: 'error_correction', prompt: 'Make the reciprocal meaning explicit: "Se miraron sin decir nada." (add the clarifying phrase so it can\'t be read as each person looking at a mirror)', word: 'el uno al otro', english: 'each other', answer: 'Se miraron el uno al otro sin decir nada.', concept_id: 'reciprocal_reflexives', difficulty: 3 },
     { type: 'translation_to_english', prompt: '¿Qué significa "Los hermanos se abrazaron al despedirse"?', word: 'se abrazaron', english: 'hugged each other', answer: 'The siblings hugged each other when saying goodbye.', concept_id: 'reciprocal_reflexives', difficulty: 2 },
+
+    // ── se_accidental block (kept separate; blocked before mixed review) ──
+    { type: 'multiple_choice', prompt: 'Which correctly says "I forgot the password" using the accidental se?', word: 'se me olvidó', english: 'I forgot', answer: 'Se me olvidó la contraseña.', options: ['Se me olvidó la contraseña.', 'Me olvidé la contraseña se.', 'Olvidó se me la contraseña.', 'Se olvidó me la contraseña.'], concept_id: 'se_accidental', difficulty: 2 },
+    { type: 'fill_blank', prompt: 'Complete so the verb agrees with "los platos": "Se me ___ (romper) los platos."', word: 'rompieron', english: 'broke', answer: 'rompieron', concept_id: 'se_accidental', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate using the accidental se: 'We ran out of coffee this morning.'", english: 'We ran out of coffee this morning.', answer: 'Se nos acabó el café esta mañana.', word: 'se nos acabó', concept_id: 'se_accidental', difficulty: 3 },
+    { type: 'error_correction', prompt: 'Fix the verb agreement: "Se me rompí los vasos." (los vasos is plural, the verb must agree with it, not with "me")', word: 'se me rompieron', english: 'the glasses broke on me', answer: 'Se me rompieron los vasos.', concept_id: 'se_accidental', difficulty: 3 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "Se le cayó el teléfono al suelo"?', word: 'se le cayó', english: 'he/she dropped', answer: 'He/She dropped the phone on the floor.', concept_id: 'se_accidental', difficulty: 2 },
 
     // ── infinitive_vs_subjunctive block (kept separate; blocked before mixed review) ──
     { type: 'multiple_choice', prompt: 'Same subject or different? "Quiero ___." (I want to sleep — I am the one sleeping)', word: 'dormir', english: 'to sleep', answer: 'dormir', options: ['dormir', 'que duermas', 'que duermo', 'duerma'], concept_id: 'infinitive_vs_subjunctive', difficulty: 1 },
@@ -266,6 +297,15 @@ export default {
 //   reciprocal (e.g. se miraron could mean "they looked at themselves"
 //   or "they looked at each other"), confirmed against Lawless Spanish
 //   Grammar's and SpanishDict's reciprocal-verbs guides.
+// - Accidental/unplanned se (se + indirect object pronoun + 3rd-person
+//   verb agreeing with the affected thing, not the person) confirmed
+//   against Lawless Spanish Grammar's "Accidental Reflexive," Kwiziq's
+//   "accidental reflexive se with an indirect object pronoun," and
+//   SpanishStep's guide — formula, verb-agrees-with-the-thing rule, and
+//   the six core verbs used this way (olvidar, caer, romper, perder,
+//   quedar, acabar) all confirmed consistent across sources; confirmed
+//   distinct from reflexive, impersonal, and reciprocal se, all taught
+//   earlier in this same unit.
 // - Infinitive vs. subjunctive same-subject/different-subject rule for
 //   querer/esperar/es importante-type triggers confirmed against Kwiziq's
 //   "quiero que + subjunctive" page and Spanish Linguist's "single subject
@@ -294,9 +334,12 @@ export default {
 // and builds directly on direct_object_pronouns/indirect_object_pronouns
 // (Unit 10), present_subjunctive/modal_verbs (Unit 12, Unit 19), and
 // por_vs_para's para + infinitive purpose use (Unit 20) without
-// re-teaching their basics from scratch. reciprocal_reflexives and
-// para_que are both new concepts (see functions/_lib/concepts.js) with
-// no prior GRAMMAR_CARDS entry; reciprocal_reflexives builds directly on
-// reflexive_verbs (Unit 8) and explicitly reuses ¡Nos vemos pronto!, the
+// re-teaching their basics from scratch. reciprocal_reflexives, para_que,
+// and se_accidental are all new concepts (see functions/_lib/concepts.js)
+// with no prior GRAMMAR_CARDS entry; reciprocal_reflexives builds directly
+// on reflexive_verbs (Unit 8) and explicitly reuses ¡Nos vemos pronto!, the
 // fixed goodbye phrase from Unit 1 and the small-talk unit, as its first
-// example of reciprocal se already in everyday use.
+// example of reciprocal se already in everyday use. se_accidental builds
+// on reflexive_verbs (Unit 8) and indirect_object_pronouns (Unit 10),
+// completing the unit's survey of se's four distinct jobs — phonetic
+// (le/les→se), impersonal, reciprocal, and now accidental.

@@ -1,5 +1,5 @@
 // Unit 11 — What Happened (A2)
-// Covers: preterite_regular, negation, present_perfect
+// Covers: preterite_regular, negation, indefinite_pronouns, present_perfect
 // See ES.md's "Pedagogical principles" for the rules this content follows:
 // comprehensible input, explicit instruction, retrieval practice, blocked
 // practice before interleaving, multiple modalities, immediate corrective
@@ -95,6 +95,27 @@ export default {
       ],
     },
     {
+      heading: 'Now You Know No — Meet Sí: Algo, Alguien, Alguno',
+      paragraphs: [
+        'You just learned nada, nadie, and ninguno for the negative side of things — "nothing," "nobody," "none." Each one has a positive twin, for when the answer might be yes or you simply don\'t know yet: algo ("something/anything") pairs with nada, alguien ("someone/anyone") pairs with nadie, and alguno/alguna/algunos/algunas ("some/any") pairs with ninguno. You\'ve actually already met one of these — ¿Comiste algo? from the negation section a moment ago — just without a name for it yet.',
+        "Algo and alguien never change form — no gender, no number — because they don't stand in for one specific noun, just a fuzzy idea of \"some thing\" or \"some person.\" ¿Tienes algo que decirme? (\"Do you have something to tell me?\"), ¿Conoces a alguien aquí? (\"Do you know anyone here?\") — and notice that personal a before alguien: it's the exact same rule you just learned for nadie, since alguien always refers to a person.",
+        'Alguno, by contrast, does change to match the noun it goes with, exactly like its negative twin ninguno: algún problema (masculine singular — shortens to algún right before the noun, the same apocope pattern as ningún, un, and buen), alguna vez ("ever," literally "some time"), algunos amigos, algunas ideas. Alguno can also stand alone, without a noun right after it, the way ninguno does: —¿Tienes preguntas? —Tengo algunas ("Do you have questions?" "I have some").',
+        "These words show up constantly in yes/no-shaped exchanges. ¿Hay algo de comer? — Sí, hay algo. / No, no hay nada. ¿Viene alguien a la fiesta? — Sí, viene alguien. / No, no viene nadie. Notice the negative answer still follows the double-negative rule from the last section — sí or no just sets the direction, but the full sentence plays by the same no + negative-word pattern either way.",
+      ],
+      examples: [
+        { es: '¿Tienes algo que decirme?', en: 'Do you have something to tell me?' },
+        { es: '¿Conoces a alguien aquí?', en: 'Do you know anyone here?' },
+        { es: '¿Hay algún problema?', en: 'Is there any problem?' },
+        { es: '—¿Tienes alguna pregunta? —Tengo algunas.', en: '"Do you have a question?" "I have a few."' },
+        { es: '¿Viene alguien a la fiesta? — No, no viene nadie.', en: '"Is anyone coming to the party?" "No, nobody\'s coming."' },
+      ],
+      commonMistakes: [
+        "Don't add gender or number to algo or alguien — they never change form, unlike alguno, which must agree with whatever it's replacing or modifying (algunas ideas, not algo ideas).",
+        "Don't forget the personal a before alguien when it's a direct object referring to a person: ¿Conoces a alguien? is correct; ¿Conoces alguien? is missing the required a.",
+        "It's algún problema, not alguno problema, right before a masculine singular noun — the exact same shortening pattern you just learned for ningún, and for un/buen elsewhere.",
+      ],
+    },
+    {
       heading: 'A Second Way to Talk About the Past: He Comido',
       paragraphs: [
         'The preterite isn\'t the only way to talk about the past — Spanish has a second past tense, the present perfect (he comido, "I have eaten"), built from a completely different pattern: a conjugated form of haber ("to have," here just a helper verb, not possession) — he, has, ha, hemos, habéis, han — plus a past participle that never changes. To form a regular participle, drop the infinitive ending and add -ado for -ar verbs, or -ido for -er and -ir verbs: hablar → hablado, comer → comido, vivir → vivido.',
@@ -132,6 +153,9 @@ export default {
     { es: 'nunca', en: 'never', example: 'Nunca llego tarde.', exampleEn: "I'm never late." },
     { es: 'ninguno / ningún', en: 'none / not any', example: 'No tengo ningún interés en eso.', exampleEn: "I don't have any interest in that." },
     { es: 'tampoco', en: 'neither / not either', example: 'Yo no fui, y ella tampoco.', exampleEn: "I didn't go, and neither did she." },
+    { es: 'algo', en: 'something / anything', example: '¿Tienes algo que decirme?', exampleEn: 'Do you have something to tell me?' },
+    { es: 'alguien', en: 'someone / anyone', example: '¿Conoces a alguien aquí?', exampleEn: 'Do you know anyone here?' },
+    { es: 'alguno / algún', en: 'some / any', example: '¿Hay algún problema?', exampleEn: 'Is there any problem?' },
     { es: 'todavía no', en: 'not yet', example: 'Todavía no comí.', exampleEn: "I haven't eaten yet." },
     { es: 'he', en: 'I have (present of haber, auxiliary)', example: 'He comido ya.', exampleEn: 'I have already eaten.' },
     { es: 'hecho', en: 'done / made (irregular participle of hacer)', example: 'Todavía no he hecho la tarea.', exampleEn: "I haven't done the homework yet." },
@@ -157,6 +181,13 @@ export default {
     { type: 'translation_to_english', prompt: '¿Qué significa "No vi a nadie en la calle"?', word: 'nadie', english: 'nobody / anyone', answer: "I didn't see anyone on the street.", concept_id: 'negation', difficulty: 2 },
     { type: 'error_correction', prompt: 'Find and fix the error: "Tengo nada en la mochila."', word: 'no...nada', english: "I don't have anything", answer: 'No tengo nada en la mochila.', concept_id: 'negation', difficulty: 2 },
     { type: 'error_correction', prompt: 'Find and fix the error: "No vi nadie en la fiesta."', word: 'a nadie', english: 'anyone (personal a)', answer: 'No vi a nadie en la fiesta.', concept_id: 'negation', difficulty: 3 },
+
+    // ── indefinite_pronouns block (kept separate from negation; blocked before mixed review) ──
+    { type: 'multiple_choice', prompt: 'Which word correctly completes: "¿Tienes ___ que decirme?" (something)', word: 'algo', english: 'something', answer: 'algo', options: ['algo', 'alguien', 'alguno', 'nada'], concept_id: 'indefinite_pronouns', difficulty: 1 },
+    { type: 'fill_blank', prompt: 'Complete: "¿Conoces ___ alguien aquí?" (personal a before alguien)', word: 'a', english: 'to/at (personal a)', answer: 'a', concept_id: 'indefinite_pronouns', difficulty: 2 },
+    { type: 'translation_to_spanish', prompt: "Translate: 'Is there any problem?' (using the shortened form before a masculine singular noun)", english: 'Is there any problem?', answer: '¿Hay algún problema?', word: 'algún', concept_id: 'indefinite_pronouns', difficulty: 2 },
+    { type: 'error_correction', prompt: 'Fix the agreement error: "Tengo algo preguntas." (algo never changes form; the sentence needs the form that agrees with "preguntas")', word: 'algunas', english: 'some', answer: 'Tengo algunas preguntas.', concept_id: 'indefinite_pronouns', difficulty: 3 },
+    { type: 'translation_to_english', prompt: '¿Qué significa "—¿Viene alguien a la fiesta? —No, no viene nadie."?', word: 'alguien', english: 'someone/anyone', answer: '"Is anyone coming to the party?" "No, nobody\'s coming."', concept_id: 'indefinite_pronouns', difficulty: 2 },
 
     // ── present_perfect block: he + participio ──
     { type: 'fill_blank', prompt: 'Complete: "___ comido ya." (yo, present perfect of comer)', word: 'he', english: 'have (I have)', answer: 'He', concept_id: 'present_perfect', difficulty: 1 },
@@ -192,9 +223,29 @@ export default {
 // - Ninguno shortens to ningún immediately before a masculine singular
 //   noun, paralleling uno→un and bueno→buen; ninguna keeps its full form
 //   before feminine nouns and when used without a following noun.
+// - Algo and alguien are invariable (no gender/number agreement) and are
+//   the positive counterparts of nada and nadie; personal a is required
+//   before alguien when it is a direct object referring to a person
+//   (¿Conoces a alguien aquí?), mirroring the personal a rule already
+//   verified above for nadie.
+// - Alguno agrees in gender/number (alguno/alguna/algunos/algunas) and is
+//   the positive counterpart of ninguno; it shortens to algún immediately
+//   before a masculine singular noun, the same apocope pattern already
+//   verified above for ninguno→ningún and uno→un/bueno→buen. Alguno can
+//   stand alone (without a following noun) just like ninguno can.
+// Sources cross-checked for indefinite_pronouns: Lawless Spanish Grammar's
+// indefinite-pronouns guide, FluentU, Study.com, and SpanishStep.
 // This content is complementary to the existing GRAMMAR_CARDS entries for
 // preterite_regular and negation in src/content/grammar.js (same facts,
 // fuller beginner-paced walkthrough) and does not contradict them.
+//
+// Grammar-gap fix (07-25-2026): added indefinite_pronouns (algo, alguien,
+// alguno) section/vocab/practice — a genuine gap found by a full-content
+// scan: negation (nada, nadie, ninguno) was already taught here, but its
+// positive counterparts were never explicitly taught anywhere in the
+// curriculum. Placed immediately after the negation section so its
+// examples can directly reuse the double-negative rule just taught,
+// rather than as a new standalone unit.
 //
 // Curriculum-pacing-lag fix (07-09-2026): added present_perfect (he
 // comido) section/vocab/practice — the CEFR audit found this concept's
