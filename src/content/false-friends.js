@@ -1120,8 +1120,8 @@ export const FALSE_FRIENDS = [
   {
     spanish: 'ostentar',
     looksLike: 'to be ostentatious (to show off pretentiously)',
-    actualMeaning: 'to hold / to bear (a title, position, or honor) — neutral, no negative connotation',
-    correctUsage: 'Ostentar un cargo simply means to hold a position, with no implication of showing off. For the English sense of showing off, use presumir de or alardear de.',
+    actualMeaning: 'to hold / to bear (a title, position, or honor) — neutral in this specific sense',
+    correctUsage: 'With a title or position, ostentar un cargo simply means to hold it, with no implication of showing off (Spanish does also use ostentar for genuine flaunting, e.g. ostentar su riqueza = to flaunt one\'s wealth — but with cargo, título, or honor it is always the neutral "hold" sense).',
     example: 'Ostenta el cargo de directora desde hace diez años. — She has held the position of director for ten years.',
     dangerLevel: 'medium',
     cefr: 'C2',
