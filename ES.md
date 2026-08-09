@@ -2803,3 +2803,47 @@ full account of any of these.
   accurately list what's reused vs. genuinely new. Also cleaned up an
   unrelated pre-existing stray `en2: undefined` field the proofread
   incidentally caught in "Fine Details"'s vocab array.
+- **07-25-2026** — "Do a sweep of the whole site/curriculum, then fill in
+  gaps." The sweep tallied every content dimension by CEFR level and found
+  C1 the thinnest tier (12 concepts / 4 units vs. B1's 37 / 16) and
+  lopsided (6 of 12 concepts were discourse connectors; zero verb-morphology
+  and zero pronoun concepts). Two shipped fixes:
+  (1) **New C1 unit, "Tense Agreement & Mood Control"** (order 26.5), adding
+  sequence_of_tenses, subjunctive_independent_clauses and
+  verbos_pronominales — C1 12 → 15 concepts, 4 → 5 units.
+  **Methodology lesson worth recording:** the sweep counted concept IDs, not
+  taught content, and therefore overstated the gap. The fresh-eyes proofread
+  caught that unit24-subjunctive-deep-dive.js (B1) already teaches the core
+  sequence-of-tenses rule *and* como si, and that
+  unit-b1-certainty-doubt-probability.js (B1) already teaches quizá/tal vez
+  dual mood *and* the a-lo-mejor restriction. Both claims were verified
+  directly against those files and confirmed. The unit was then rewritten to
+  drop the B1 re-teach and carry only genuinely new C1 material: anteriority
+  via the compound subjunctives (the four-cell tier grid), the syntactic
+  position rule (quizá/tal vez license the subjunctive only preverbally, so
+  postverbal placement forces the indicative), and the pronominal-verb pairs.
+  Sections now explicitly refer back to the B1 units as known background.
+  Future sweeps should grep unit prose, not just concept IDs.
+  The same proofread also caught three factual overreaches, all corrected: an
+  "ingressive/inceptive" analysis presented as an established RAE label (it
+  is not — RAE treats this se as aspectual, and "ingressive" is wrong for
+  irse, which marks egress), a "get it wrong and it is ungrammatical" claim
+  that contradicted the file's own audit note about pending-action variation,
+  and a caer/caerse contrast resting on "Las hojas caen" as if the pronominal
+  form were unavailable there (it is equally natural).
+  (2) **`verbs.js` 147 → 186 verbs**, closing a reference gap where verbs the
+  curriculum explicitly teaches had no conjugation table — most glaringly
+  **gustar**, which has its own A1 unit and concept, plus deber (A2
+  modal_verbs), parecer (A2 gustar_type) and acabar (B1 acabar_de). Rather
+  than hand-write 39 verbs × 17 tenses × 6 persons (~4,000 forms), a
+  generator was written and **validated by regenerating every verb already in
+  the file and diffing**: it reproduces all 41 existing regular verbs and all
+  9 existing -ecer/-ocer verbs exactly, form for form. That validation loop
+  caught three real generator bugs before any output was used — irregular
+  participles (escrito/abierto), orthographic changes (buscar → busqué), and
+  vowel-stem i→y (creer → creyó/creído) — plus a -zc- ordering error
+  (conoczo vs. conozco). True stem-changers (comenzar e→ie, convertir
+  e→ie/i) were deliberately excluded for a later hand-verified pass.
+  Both verified live (wrangler + local D1 + Playwright) with zero page errors.
+  Still open from this sweep: 10 taught grammar concepts have no card on the
+  /grammar reference page (117 cards vs. 142 concepts).

@@ -49,6 +49,7 @@ import argumentationWorkplace from './unit-b2-argumentation-workplace.js';
 import technologyDigitalLife from './unit-b2-technology-digital-life.js';
 import environmentSustainability from './unit-b2-environment-sustainability.js';
 import subjunctiveLimits from './unit26-subjunctive-limits.js';
+import tenseAgreementMood from './unit-c1-tense-agreement-mood.js';
 import reportedSpeech from './unit27-reported-speech.js';
 import probabilityAspect from './unit28-probability-aspect.js';
 import fixedExpressions from './unit29-fixed-expressions.js';
@@ -106,6 +107,7 @@ const CONTENT = {
   'technology-digital-life': technologyDigitalLife,
   'environment-sustainability': environmentSustainability,
   'subjunctive-limits': subjunctiveLimits,
+  'tense-agreement-mood': tenseAgreementMood,
   'reported-speech': reportedSpeech,
   'probability-aspect': probabilityAspect,
   'fixed-expressions': fixedExpressions,
@@ -286,6 +288,9 @@ export const UNIT_METADATA = [
   { id: 'subjunctive-limits', order: 26, level: 'C1', title: 'Subjunctive at Its Limits',
     concepts: ['subjunctive_noun_clauses', 'subjunctive_concessive_intensifiers'],
     summary: 'Doubt, denial, and concessive intensifiers — the subjunctive\'s reach beyond basic triggers.' },
+  { id: 'tense-agreement-mood', order: 26.5, level: 'C1', title: 'Tense Agreement & Mood Control',
+    concepts: ['sequence_of_tenses', 'subjunctive_independent_clauses', 'verbos_pronominales'],
+    summary: 'Which subjunctive a past main verb demands, mood without a trigger (ojalá, quizá), and the pronoun that quietly changes what you said.' },
   { id: 'reported-speech', order: 27, level: 'C1', title: 'Reported Speech & Nominalisation',
     concepts: ['estilo_indirecto', 'nominalisation', 'gerund_advanced'],
     summary: 'Report what someone said with the right tense shift, and turn whole ideas into noun phrases.' },

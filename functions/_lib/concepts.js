@@ -526,6 +526,21 @@ export const CONCEPTS = {
     category: 'syntax', prereqs: ['present_subjunctive', 'imperfect_subjunctive'],
     explanationStyles: ['rule_first', 'example_first', 'contrastive'],
   },
+  sequence_of_tenses: {
+    id: 'sequence_of_tenses', label: 'Sequence of tenses (concordancia de tiempos)', cefr: 'C1',
+    category: 'verb', prereqs: ['subjunctive_noun_clauses', 'imperfect_subjunctive', 'perfect_subjunctive'],
+    explanationStyles: ['rule_first', 'table', 'contrastive'],
+  },
+  subjunctive_independent_clauses: {
+    id: 'subjunctive_independent_clauses', label: 'Subjunctive in independent clauses (ojalá, quizá, tal vez)', cefr: 'C1',
+    category: 'syntax', prereqs: ['present_subjunctive', 'imperfect_subjunctive'],
+    explanationStyles: ['contrastive', 'rule_first', 'example_first'],
+  },
+  verbos_pronominales: {
+    id: 'verbos_pronominales', label: 'Pronominal verb nuance (caer/caerse, ir/irse, quedar/quedarse)', cefr: 'C1',
+    category: 'pronouns', prereqs: ['reflexive_verbs', 'se_accidental'],
+    explanationStyles: ['contrastive', 'example_first', 'rule_first'],
+  },
   subjunctive_adjective_clauses: {
     id: 'subjunctive_adjective_clauses', label: 'Subjunctive in adjective clauses', cefr: 'B2',
     category: 'syntax', prereqs: ['present_subjunctive', 'relative_clauses'],
