@@ -2847,3 +2847,42 @@ full account of any of these.
   Both verified live (wrangler + local D1 + Playwright) with zero page errors.
   Still open from this sweep: 10 taught grammar concepts have no card on the
   /grammar reference page (117 cards vs. 142 concepts).
+- **07-25-2026** — Closed the last gap from the same sweep: 13 concepts were
+  taught in curriculum units but had **no card on the `/grammar` reference
+  page**, so a learner could drill e.g. `se_accidental` or `para_que` in a
+  lesson and then fail to look it up. `GRAMMAR_CARDS` 117 → 130; every
+  non-vocabulary concept in `concepts.js` now has a card (verified
+  programmatically, not by eye). Cards added: muy_vs_mucho, ordinal_numbers,
+  indefinite_pronouns, reciprocal_reflexives, se_accidental, para_que,
+  possessive_pronouns_stressed, superlative_absolute,
+  correlative_comparatives, topic_shift_connectors, and the three C1
+  concepts added earlier the same day (sequence_of_tenses,
+  subjunctive_independent_clauses, verbos_pronominales).
+  Integrity checks: no duplicate ids, all 9 required keys present on all 130
+  cards, every `related` id resolves to a real concept, card `cefr` matches
+  the concept graph, no new categories introduced.
+  A fresh-eyes proofread caught **four substantive errors** in the new cards,
+  all fixed — worth recording because reference cards teach errors directly:
+  (1) `correlative_comparatives` asserted "cuanto is invariable… do not write
+  *cuanta más*", which is simply **wrong** — cuanto is invariable before a
+  verb/adjective/adverb but AGREES with a following noun (Cuanta más agua
+  bebes…); (2) `sequence_of_tenses` overstated the tier rule — a present-tier
+  main verb still takes the imperfect subjunctive when the subordinate event
+  is past (Siento que no pudieras venir), now scoped explicitly; (3)
+  `superlative_absolute` claimed consonant-final adjectives "simply add the
+  suffix" while giving jovencísimo, which actually takes the interfix -c-;
+  (4) `possessive_pronouns_stressed`'s rule ("replace a noun") contradicted
+  its own examples, which were stressed possessive *adjectives* — rule
+  rewritten. Five weaker issues also fixed (entre más is regionally
+  restricted, not general Latin American; the *en cuanto a* vs bare *en
+  cuanto* trap; compound-ordinal apocope; a confusing invented form *algas;
+  a singular/plural gloss mismatch).
+  **Environment note for future sessions:** partway through this batch the
+  container lost `node_modules`, `.dev.vars` and the local D1 schema. Symptoms
+  were a silent `vite: not found` (hidden by a too-narrow grep on build
+  output), then `/register` returning 500 with "JWT_SECRET secret is not set".
+  Recovery: `npm install`, `npx wrangler d1 migrations apply es --local`, and
+  recreate `.dev.vars` from `.dev.vars.example` (it is gitignored, so it does
+  not survive a wipe). Playwright is NOT a package.json dependency — it was
+  installed ad-hoc for verification and the resulting package.json/lock
+  changes were reverted before committing.
