@@ -1368,6 +1368,17 @@ rather than rolling another one.
 
 ## Testing/verification approach used
 
+**`npm run check:styles`** (added 09-09-2026) catches a `styles.someName`
+reference with no matching rule in that component's CSS module — 8 existed
+when it was written. React renders `className={undefined}` as no class
+attribute at all, so a typo there doesn't throw and doesn't look wrong in a
+diff; the element just silently loses its styling. Same shape as the
+`--sp-7` bug in the gotchas above: invisible until you measure what
+actually rendered. **Convention it enforces**: a semantic hook with no
+styling yet still gets an empty rule (`.weakSection {}` in
+`Dashboard.module.css` was already doing this), so "no rule" always means a
+mistake rather than "probably fine".
+
 **`npm run check:content` is the first thing to run after any content
 change** (added 09-09-2026). It replaces the ad-hoc grep passes this
 section used to describe with one script that fails on real drift:
@@ -2236,7 +2247,11 @@ measures):**
   (6) **Search boxes for Pronunciation and Regional**, the two reference
   pages that had none, so every search result can now deep-link to its own
   row rather than just its page.
-  (7) **`npm run check:content`** — the cross-file consistency checks this
+  (7) **`npm run check:styles`** — 8 `styles.*` references across
+  Dashboard, Pronunciation and VocabBrowser resolved to `undefined`, so
+  those elements silently rendered unstyled; declared as empty hooks per
+  the file's own existing convention.
+  (8) **`npm run check:content`** — the cross-file consistency checks this
   file's "Testing/verification approach" section used to describe as manual
   grep passes, made into one script. It found real drift immediately: 25
   concepts in `concepts.js` that `_gemini.js`'s prompt whitelist never
