@@ -1,5 +1,33 @@
 # ES.md — Project Directives & Build Guide
 
+> ## ⚠️ OPEN — PRODUCTION IS DEGRADED, READ THIS FIRST
+>
+> **Production D1 is missing migration `0011`.** `d1_migrations` claims all
+> 11 migrations are applied, but `reading_attempts` and
+> `writing_samples.correct` don't exist — the migration was recorded
+> without its body ever running, so
+> `wrangler d1 migrations apply --remote` **will not fix it** (it skips
+> 0011 as done).
+>
+> **Broken in production right now:** every completed reading passage
+> (`POST /api/learner/reading-result`), every writing-sample capture
+> (`POST /api/sessions/turn`), the personal-data export
+> (`GET /api/learner/export`), and account deletion
+> (`DELETE /api/auth/account`) — the last two being punch-list item 16's
+> whole point.
+>
+> **Fix (one command, needs Cloudflare credentials this environment
+> doesn't have):**
+> ```
+> npx wrangler d1 execute DB --remote --file=scripts/repair-0011-production.sql
+> npm run health
+> ```
+> Then delete `scripts/repair-0011-production.sql`, close
+> [issue #118](https://github.com/smolhaj/es/issues/118), and remove this
+> banner. Found 09-09-2026 by `/api/health`'s first run against a real
+> deployment; details in "Deployment & ops conventions" and punch-list
+> item 38.
+
 This file is the lean, current-state reference for this project: the spec,
 standing principles, current architecture, standing conventions, and the
 active punch list. Read it before making non-trivial changes — it's the
@@ -1431,6 +1459,17 @@ Prioritized, currently-open punch list — merged from the four-lens site
 review (07-05-2026) and prior rounds, with everything already fixed
 removed. If you're picking this project up, start here. Full narrative for
 any item below (where one exists) is in `ES-HISTORY.md`.
+
+**⚠️ Do this first (open, blocks four endpoints in production):**
+38. **Replay migration 0011 against production D1.** See the banner at the
+    top of this file, [issue #118](https://github.com/smolhaj/es/issues/118),
+    and the PRODUCTION IS CURRENTLY BEHIND entry under "Deployment & ops
+    conventions". One command:
+    `npx wrangler d1 execute DB --remote --file=scripts/repair-0011-production.sql`,
+    then `npm run health` to confirm, then delete the repair script, close
+    the issue and drop the banner. Not doable from a Claude Code session —
+    this environment has no Cloudflare credentials, and it's a write to
+    live user data either way.
 
 **Security/integrity (highest priority — these undermine what the product
 measures):**
