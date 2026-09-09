@@ -1368,6 +1368,32 @@ rather than rolling another one.
 
 ## Testing/verification approach used
 
+**`npm run check:content` is the first thing to run after any content
+change** (added 09-09-2026). It replaces the ad-hoc grep passes this
+section used to describe with one script that fails on real drift:
+
+- every concept in `concepts.js` appears in `_gemini.js`'s prompt
+  whitelist and vice versa (the whitelist is prose inside a system prompt
+  and can't import anything, so nothing else keeps it honest);
+- every `FALLBACK_EXERCISES` and `GRAMMAR_CARDS` `concept_id` exists, and
+  each grammar card's CEFR matches its concept's;
+- every concept has a `CONCEPT_LABELS` entry (warning — a missing one
+  shows the raw id on the dashboard);
+- prereqs exist and never sit at a *higher* CEFR level than the concept
+  that requires them;
+- every concept is taught by exactly one curriculum unit — none untaught,
+  none double-taught;
+- CEFR tags are one of A1-C2 everywhere;
+- duplicate entries across `vocabulary.js`, `idioms.js`,
+  `false-friends.js`, `verbs.js`, `grammar.js` — same level *and* same
+  gloss is an error, same word at two levels is a warning (a real
+  homograph like `tío` A1/C2 or `banco` bank/bench).
+
+It found real drift the first time it ran: 25 concepts missing from the
+Gemini whitelist (so the tutor could never once choose them), 13 duplicate
+`false-friends.js` entries, and 37 concepts with no display label. See the
+09-09-2026 session entry.
+
 No test suite exists in this repo. Verification for changes so far has been:
 `npm run build` (catches syntax/bundling errors), `node --check <file>` for
 Cloudflare Functions files (ES modules, not bundled by Vite), `node -e
@@ -2183,6 +2209,18 @@ measures):**
   (6) **Search boxes for Pronunciation and Regional**, the two reference
   pages that had none, so every search result can now deep-link to its own
   row rather than just its page.
+  (7) **`npm run check:content`** — the cross-file consistency checks this
+  file's "Testing/verification approach" section used to describe as manual
+  grep passes, made into one script. It found real drift immediately: 25
+  concepts in `concepts.js` that `_gemini.js`'s prompt whitelist never
+  listed (so the adaptive tutor could never choose them — all the
+  functional/situational concepts plus `se_accidental`,
+  `sequence_of_tenses`, `correlative_comparatives` and others added in
+  recent sessions), 13 genuinely duplicated `false-friends.js` entries
+  (130 → 117; the fuller of each pair kept), and 37 concepts with no
+  `CONCEPT_LABELS` entry, which rendered as raw ids on the dashboard. All
+  three fixed; the whitelist is now regenerated from `concepts.js` rather
+  than hand-edited.
   The health check found real production drift on its first live run
   against a deployment — see the PRODUCTION IS CURRENTLY BEHIND entry under
   "Deployment & ops conventions", which is open and needs a hand-run repair.
