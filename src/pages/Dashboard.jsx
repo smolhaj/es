@@ -68,7 +68,7 @@ export default function Dashboard() {
     <div className={styles.page}>
       <NavBar cefrLevel={cefr} />
 
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           {/* Header */}
           <header className={styles.header}>

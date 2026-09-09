@@ -59,7 +59,7 @@ export default function Landing() {
     <div className={styles.page}>
       <NavBar />
 
-      <main>
+      <main id="main-content">
         <section className={styles.hero}>
           <div className={styles.heroInner}>
             <div className={styles.eyebrow}>Spanish · {LEVEL_RANGE_ARROW}</div>

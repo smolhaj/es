@@ -154,7 +154,7 @@ export default function Lesson() {
     return (
       <div className={styles.page}>
         <NavBar />
-        <main className={styles.main}>
+        <main id="main-content" className={styles.main}>
           <div className={styles.inner}>
             <p>Lesson not found.</p>
             <Link to="/learn" className="btn btn-secondary">← Back to Learn</Link>
@@ -168,7 +168,7 @@ export default function Lesson() {
     return (
       <div className={styles.page}>
         <NavBar />
-        <main className={styles.main}>
+        <main id="main-content" className={styles.main}>
           <div className={styles.inner}>
             <h1 className={styles.title}>{meta.title}</h1>
             <p className={styles.summary}>This lesson didn't load. Check your connection and try again.</p>
@@ -188,7 +188,7 @@ export default function Lesson() {
     return (
       <div className={styles.page}>
         <NavBar />
-        <main className={styles.main}>
+        <main id="main-content" className={styles.main}>
           <div className={styles.inner}>
             <h1 className={styles.title}>{meta.title}</h1>
             <p className={styles.summary}>Loading the lesson…</p>
@@ -202,7 +202,7 @@ export default function Lesson() {
     return (
       <div className={styles.page}>
         <NavBar />
-        <main className={styles.main}>
+        <main id="main-content" className={styles.main}>
           <div className={styles.inner}>
             <h1 className={styles.title}>{baseUnit.title}</h1>
             <p className={styles.summary}>Building your personalized review…</p>
@@ -216,7 +216,7 @@ export default function Lesson() {
     return (
       <div className={styles.page}>
         <NavBar />
-        <main className={styles.main}>
+        <main id="main-content" className={styles.main}>
           <div className={styles.inner}>
             <h1 className={styles.title}>{unit.title}</h1>
             <p className={styles.comingSoonText}>This lesson is being written and isn't ready yet.</p>
@@ -230,7 +230,7 @@ export default function Lesson() {
   return (
     <div className={styles.page}>
       <NavBar />
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           <Link to="/learn" className={styles.backLink}>← Learn</Link>
 

@@ -13,7 +13,7 @@ export default function Privacy() {
   return (
     <div className={styles.page}>
       <NavBar />
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           <h1 className={styles.title}>Privacy Policy</h1>
           <p className={styles.updated}>Last updated: {LAST_UPDATED}</p>

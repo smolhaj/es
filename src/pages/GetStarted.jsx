@@ -43,7 +43,7 @@ export default function GetStarted() {
   return (
     <div className={styles.page}>
       <NavBar />
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           <header className={styles.header}>
             <h1 className={styles.title}>Learn.</h1>

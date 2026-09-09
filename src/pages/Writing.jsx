@@ -25,7 +25,7 @@ export default function Writing() {
   return (
     <div className={styles.page}>
       <NavBar />
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           <header>
             <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>

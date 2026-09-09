@@ -73,7 +73,7 @@ export default function ReadingPassage() {
     <div className={styles.page}>
       <NavBar />
 
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           <Link to="/readings" className={styles.backLink}>← Readings</Link>
 

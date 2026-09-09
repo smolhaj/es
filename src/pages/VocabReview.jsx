@@ -112,7 +112,7 @@ export default function VocabReview() {
     return (
       <div className={styles.page}>
         <NavBar />
-        <main className={styles.center}>
+        <main id="main-content" className={styles.center}>
           <div className={styles.spinner} aria-label="Loading…" />
           <p className={styles.hint}>Loading your review queue…</p>
         </main>
@@ -124,7 +124,7 @@ export default function VocabReview() {
     return (
       <div className={styles.page}>
         <NavBar />
-        <main className={styles.center}>
+        <main id="main-content" className={styles.center}>
           <p className={styles.errorMsg}>{error}</p>
           <button className="btn btn-secondary" onClick={() => navigate('/dashboard')}>Back</button>
         </main>
@@ -137,7 +137,7 @@ export default function VocabReview() {
     return (
       <div className={styles.page}>
         <NavBar />
-        <main className={styles.center}>
+        <main id="main-content" className={styles.center}>
           <div className={styles.doneBox}>
             <h1 className={styles.doneTitle}>
               {neverSeeded ? 'No words queued yet.' : 'All caught up.'}
@@ -175,7 +175,7 @@ export default function VocabReview() {
     <div className={styles.page}>
       <NavBar />
 
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           {/* Header */}
           <div className={styles.topRow}>

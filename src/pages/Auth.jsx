@@ -51,7 +51,7 @@ export default function Auth({ mode }) {
   return (
     <div className={styles.page}>
       <NavBar />
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.card}>
           <h1 className={styles.title}>
             {isLogin ? 'Welcome back.' : 'Start learning.'}
