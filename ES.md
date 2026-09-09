@@ -1124,6 +1124,24 @@ pages it lived on.
   what the database actually contains. A table dropped or altered outside the
   migration chain leaves it perfectly happy. `/api/health` reads the real
   schema, which is the point of it existing separately.
+- **PRODUCTION IS CURRENTLY BEHIND (found 09-09-2026, open).** `/api/health`'s
+  first run against a real deployment came back `schema: 'behind'`.
+  Production D1's `d1_migrations` lists all 11 migrations as applied,
+  including `0011_reading_attempts_and_writing_correct.sql`, but neither
+  `reading_attempts` nor `writing_samples.correct` exists there — the
+  migration was **recorded without its body ever running**. So
+  `migrations apply --remote` will not fix it; it skips 0011 as done. Four
+  endpoints are broken in production until the SQL is replayed by hand:
+  `POST /api/learner/reading-result` (every completed reading passage),
+  `POST /api/sessions/turn`'s writing-sample capture (every translation /
+  writing_prompt / conversation sample), `GET /api/learner/export` and
+  `DELETE /api/auth/account` (both of which touch `reading_attempts`, so
+  personal-data export and account deletion — punch-list item 16 — fail
+  outright). Fix: run `scripts/repair-0011-production.sql` in the D1
+  console, then `npm run health`. Delete that file once it's clean. This is
+  the third instance of the "applied locally, never remotely" failure
+  (`schema-v7`, `schema-v8`, now 0011) and the first one caught by a check
+  rather than by a user hitting it.
 
 ## Git/PR conventions
 

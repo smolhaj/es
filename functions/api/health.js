@@ -59,7 +59,13 @@ async function respond(request, env, checks, missing, status) {
 
   if (missing.length && await isSignedIn(request, env)) {
     body.missing = missing;
-    body.hint = 'Run `npx wrangler d1 migrations apply DB --remote`, or apply the pending migrations in the Cloudflare D1 console.';
+    // Deliberately not just "run the migrations": D1's own d1_migrations
+    // table records which migration *files* ran, not what the database
+    // ended up containing, and it has already been observed listing a
+    // migration whose body never executed (see
+    // scripts/repair-0011-production.sql). When that happens `migrations
+    // apply` skips the migration as done and the drift persists.
+    body.hint = 'Try `npx wrangler d1 migrations apply DB --remote` first. If it reports nothing to apply, d1_migrations recorded a migration whose body never ran — replay that migration\'s SQL by hand in the D1 console.';
   }
 
   return Response.json(body, { status });
