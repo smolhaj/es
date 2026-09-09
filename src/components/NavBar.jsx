@@ -61,6 +61,22 @@ export default function NavBar({ cefrLevel }) {
     return () => { document.body.style.overflow = prevOverflow; };
   }, [open]);
 
+  // "/" jumps to search from anywhere, the way it does in most reference
+  // sites — but never while the learner is typing into an exercise.
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    function onKeyDown(e) {
+      if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+      const el = document.activeElement;
+      const tag = el?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || el?.isContentEditable) return;
+      e.preventDefault();
+      navigate('/search');
+    }
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isLoggedIn, navigate]);
+
   function handleLogout() {
     logout();
     navigate('/');
@@ -88,6 +104,9 @@ export default function NavBar({ cefrLevel }) {
 
           {isLoggedIn ? (
             <>
+              <Link to="/search" className={`btn btn-ghost ${styles.navLink} ${styles.searchLink}`} aria-label="Search (press /)">
+                <span aria-hidden="true">⌕</span> Search
+              </Link>
               <Link to="/learn" className={`btn btn-ghost ${styles.navLink}`}>Learn</Link>
               <Link to="/session" className={`btn btn-ghost ${styles.navLink}`}>Practice</Link>
               <Link to="/flashcards" className={`btn btn-ghost ${styles.navLink}`}>Flashcards</Link>
@@ -160,6 +179,7 @@ export default function NavBar({ cefrLevel }) {
         <div className={styles.mobileMenu} role="menu">
           {isLoggedIn ? (
             <>
+              <Link to="/search"     className={styles.mobileLink} role="menuitem">Search</Link>
               <Link to="/learn"      className={styles.mobileLink} role="menuitem">Learn</Link>
               <Link to="/session"    className={styles.mobileLink} role="menuitem">Practice</Link>
               <Link to="/flashcards" className={styles.mobileLink} role="menuitem">Flashcards</Link>

@@ -188,3 +188,8 @@
   .right .navLink { display: none; }
   .hamburger { display: flex; }
 }
+
+/* The search entry point reads as an action, not another section link. */
+.searchLink {
+  gap: var(--sp-1);
+}

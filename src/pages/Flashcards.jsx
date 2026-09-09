@@ -10,7 +10,13 @@ import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Flashcards.module.css';
 
 const SESSION_SIZE = 20;
-const NEW_PER_SESSION = 10;
+// New cards are capped per calendar day, not per visit — the whole point of
+// a daily introduction limit is that tomorrow's reviews stay manageable, and
+// a per-visit cap just means reloading the page hands out ten more. The
+// count of cards already introduced today comes from the server (see
+// functions/api/flashcards/progress.js) so it survives reloads and follows
+// the learner across devices.
+const NEW_PER_DAY = 10;
 // How many cards ahead a just-missed (still learning/relearning) card gets
 // re-inserted, so it reappears within the same sitting instead of only on
 // a future visit -- matching Anki's same-session requeue behavior.
@@ -23,7 +29,7 @@ const GRADES = [
   { grade: 4, label: 'Easy', key: '4', className: 'easy' },
 ];
 
-function buildQueue(allCards, progress) {
+function buildQueue(allCards, progress, newToday) {
   const now = Date.now();
   const due = [];
   const fresh = [];
@@ -36,7 +42,8 @@ function buildQueue(allCards, progress) {
   due.sort((a, b) => new Date(a.dueAt) - new Date(b.dueAt));
   const queue = due.slice(0, SESSION_SIZE).map(d => d.card);
   const remaining = SESSION_SIZE - queue.length;
-  if (remaining > 0) queue.push(...fresh.slice(0, Math.min(remaining, NEW_PER_SESSION)));
+  const newAllowance = Math.max(0, NEW_PER_DAY - newToday);
+  if (remaining > 0) queue.push(...fresh.slice(0, Math.min(remaining, newAllowance)));
   return queue;
 }
 
@@ -78,7 +85,7 @@ export default function Flashcards() {
       setDeckSize(allCards.length);
       const p = progressResult?.progress ?? {};
       setProgress(p);
-      const built = buildQueue(allCards, p);
+      const built = buildQueue(allCards, p, progressResult?.newToday ?? 0);
       setQueue(built);
       setPhase(built.length === 0 ? 'empty' : 'session');
     })();

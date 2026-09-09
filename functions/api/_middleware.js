@@ -1,6 +1,10 @@
 import { verifyJWT } from '../_lib/jwt.js';
 
-const PUBLIC_PATHS = ['/api/auth/login', '/api/auth/register'];
+// /api/health is public on purpose: an uptime monitor has to be able to
+// reach it, and it only ever reports pass/fail to an unauthenticated
+// caller (health.js decides what detail a signed-in caller additionally
+// gets, verifying the token itself).
+const PUBLIC_PATHS = ['/api/auth/login', '/api/auth/register', '/api/health'];
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',

@@ -8,6 +8,7 @@ import { VOCABULARY, DOMAINS, CEFR_LEVELS } from '../content/vocabulary.js';
 import { detectCognate } from '../lib/cognates.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './VocabBrowser.module.css';
+import { initialQueryParam } from '../lib/queryParam.js';
 
 const DOMAIN_LABELS = {
   greetings: 'Greetings', numbers: 'Numbers', time: 'Time', colors: 'Colors',
@@ -29,7 +30,7 @@ const REGISTER_COLORS = {
 export default function VocabBrowser() {
   useDocumentTitle('Vocabulary');
   const { token } = useAuth();
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
   const [filterCefr, setFilterCefr] = useState('');
   const [filterDomain, setFilterDomain] = useState('');
   const [filterStatus, setFilterStatus] = useState('');

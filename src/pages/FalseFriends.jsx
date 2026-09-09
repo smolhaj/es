@@ -5,6 +5,7 @@ import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { FALSE_FRIENDS, CEFR_LEVELS } from '../content/false-friends.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './FalseFriends.module.css';
+import { initialQueryParam } from '../lib/queryParam.js';
 
 const DANGER_COLORS = { high: 'dangerHigh', medium: 'dangerMed', low: 'dangerLow' };
 const DANGER_LABELS = { high: 'High risk', medium: 'Medium', low: 'Low' };
@@ -63,7 +64,7 @@ export default function FalseFriends() {
   useDocumentTitle('False Friends');
   const [filter, setFilter] = useState('');
   const [filterCefr, setFilterCefr] = useState('');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();

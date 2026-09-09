@@ -5,6 +5,7 @@ import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { IDIOMS, CATEGORIES, CEFR_LEVELS } from '../content/idioms.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Idioms.module.css';
+import { initialQueryParam } from '../lib/queryParam.js';
 
 const categoryCounts = IDIOMS.reduce((acc, i) => {
   acc[i.category] = (acc[i.category] || 0) + 1;
@@ -67,7 +68,7 @@ function IdiomCard({ item }) {
 
 export default function Idioms() {
   useDocumentTitle('Idioms');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
   const [filterCat, setFilterCat] = useState('');
   const [filterReg, setFilterReg] = useState('');
   const [filterCefr, setFilterCefr] = useState('');

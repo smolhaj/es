@@ -1,16 +1,23 @@
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import styles from './Landing.module.css';
-import { GRAMMAR_CARDS, CEFR_LEVELS } from '../content/grammar.js';
-import { VOCABULARY, DOMAINS } from '../content/vocabulary.js';
-import { VERBS } from '../content/verbs.js';
-import { IDIOMS } from '../content/idioms.js';
+import {
+  grammarConcepts,
+  cefrLevels,
+  vocabularyItems,
+  vocabularyDomains,
+  verbs,
+  idioms
+} from 'virtual:content-stats';
 
 // Stats below are derived from the actual content arrays, not hand-typed,
 // so this copy can't go stale the way it did before (see ES.md punch-list
-// item 15) — it just tracks whatever ships in src/content/*.
-const LOWEST_LEVEL = CEFR_LEVELS[0];
-const HIGHEST_LEVEL = CEFR_LEVELS[CEFR_LEVELS.length - 1];
+// item 15) — it just tracks whatever ships in src/content/*. They come
+// through the `virtual:content-stats` build-time module (see vite.config.js)
+// rather than a direct import, so the landing page reads the same source of
+// truth without shipping ~1.2MB of content data to render four numbers.
+const LOWEST_LEVEL = cefrLevels[0];
+const HIGHEST_LEVEL = cefrLevels[cefrLevels.length - 1];
 const LEVEL_RANGE = `${LOWEST_LEVEL} to ${HIGHEST_LEVEL}`;
 const LEVEL_RANGE_ARROW = `${LOWEST_LEVEL} → ${HIGHEST_LEVEL}`;
 
@@ -38,11 +45,11 @@ const FEATURE_COLUMNS = [
   [
     {
       label: LEVEL_RANGE,
-      body: `A full curriculum built to CEFR standards — ${GRAMMAR_CARDS.length} tracked grammar concepts, ${VOCABULARY.length} vocabulary items across ${DOMAINS.length} domains, ${VERBS.length} conjugated verbs, idioms, regional differences.`
+      body: `A full curriculum built to CEFR standards — ${grammarConcepts} tracked grammar concepts, ${vocabularyItems} vocabulary items across ${vocabularyDomains} domains, ${verbs} conjugated verbs, idioms, regional differences.`
     },
     {
       label: 'Built-in references',
-      body: `Grammar rules, verb conjugations, ${IDIOMS.length} idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.`
+      body: `Grammar rules, verb conjugations, ${idioms} idioms, false friends, pronunciation guide, and regional dialect differences — all searchable, no extra apps needed.`
     }
   ]
 ];

@@ -5,6 +5,7 @@ import SpeakButton from '../components/SpeakButton.jsx';
 import { COGNATE_PATTERNS } from '../content/cognate-patterns.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './CognatePatterns.module.css';
+import { initialQueryParam } from '../lib/queryParam.js';
 
 const RELIABILITY_LABELS = { high: 'Reliable', medium: 'Usually works' };
 
@@ -74,7 +75,7 @@ function PatternCard({ item }) {
 export default function CognatePatterns() {
   useDocumentTitle('Cognates');
   const [filter, setFilter] = useState('');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();

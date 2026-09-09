@@ -5,10 +5,11 @@ import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { VERBS, CEFR_LEVELS, TYPES, TENSES, TENSE_LABELS, FORMS, FORM_KEYS } from '../content/verbs.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './VerbsRef.module.css';
+import { initialQueryParam } from '../lib/queryParam.js';
 
 export default function VerbsRef() {
   useDocumentTitle('Verb Conjugations');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
   const [filterCefr, setFilterCefr] = useState('');
   const [filterType, setFilterType] = useState('');
 

@@ -1,124 +1,74 @@
 // Structured "Get Started" curriculum — thematic units mapped onto the 109
 // tracked grammar concepts (see functions/_lib/concepts.js), CEFR-ordered.
 // Each unit with written content lives in its own file (unitNN-slug.js) and
-// is registered in CONTENT below; units without a file yet render as
+// is registered in CONTENT_LOADERS below; units without a file yet render as
 // "coming soon" using only their metadata. See ES.md's "Pedagogical
 // principles" section for the rules unit content must follow.
 
-import whySpanish from './unit00-why-spanish.js';
-import sayingHello from './unit01-saying-hello.js';
-import numbersTime from './unit02-numbers-time.js';
-import peopleThings from './unit03-people-things.js';
-import whoYouAre from './unit04-who-you-are.js';
-import whereYouAre from './unit05-where-you-are.js';
-import weather from './unit-a1-weather.js';
-import everydayActions from './unit06-everyday-actions.js';
-import askingQuestions from './unit07-asking-questions.js';
-import dailyRoutine from './unit08-daily-routine.js';
-import likesDislikes from './unit09-likes-dislikes.js';
-import restaurant from './unit-a2-restaurant.js';
-import peopleAroundYou from './unit10-people-around-you.js';
-import whatHappened from './unit11-what-happened.js';
-import smallTalk from './unit-a2-small-talk.js';
-import obligationsRequests from './unit12-obligations-requests.js';
-import rightNowSoon from './unit13-right-now-soon.js';
-import phonePlans from './unit-a2-phone-plans.js';
-import comparingDescribing from './unit14-comparing-describing.js';
-import shopping from './unit-a2-shopping.js';
-import irregularPresent from './unit15-irregular-present.js';
-import recentOngoing from './unit16-recent-ongoing.js';
-import pastInDetail from './unit17-past-in-detail.js';
-import hotelTravel from './unit-b1-hotel-travel.js';
-import futureHypotheticals from './unit18-future-hypotheticals.js';
-import opinionsCommands from './unit19-opinions-commands.js';
-import directionsTransport from './unit-b1-directions-transport.js';
-import doctorPharmacy from './unit-b1-doctor-pharmacy.js';
-import emergencies from './unit-b1-emergencies.js';
-import bankPostOffice from './unit-b1-bank-post-office.js';
-import nuanceConnection from './unit20-nuance-connection.js';
-import efficiencyEmphasis from './unit21-efficiency-emphasis.js';
-import perfectTenses from './unit22-perfect-tenses.js';
-import passiveImpersonal from './unit23-passive-impersonal.js';
-import subjunctiveDeepDive from './unit24-subjunctive-deep-dive.js';
-import subjunctiveCounterfactualsConcession from './unit24-subjunctive-counterfactuals-concession.js';
-import fineDetails from './unit25-fine-details.js';
-import reportedSpeechBasic from './unit-b1-reported-speech-basic.js';
-import certaintyDoubtProbability from './unit-b1-certainty-doubt-probability.js';
-import absoluteSuperlative from './unit-b1-absolute-superlative.js';
-import argumentationWorkplace from './unit-b2-argumentation-workplace.js';
-import technologyDigitalLife from './unit-b2-technology-digital-life.js';
-import environmentSustainability from './unit-b2-environment-sustainability.js';
-import subjunctiveLimits from './unit26-subjunctive-limits.js';
-import tenseAgreementMood from './unit-c1-tense-agreement-mood.js';
-import reportedSpeech from './unit27-reported-speech.js';
-import probabilityAspect from './unit28-probability-aspect.js';
-import fixedExpressions from './unit29-fixed-expressions.js';
-import connectorsCohesion from './unit30-connectors-cohesion.js';
-import discourseMarkers from './unit31-discourse-markers.js';
-import registerStance from './unit32-register-stance.js';
-import subjunctiveFinalReaches from './unit33-subjunctive-final-reaches.js';
-import literaryFormalTenses from './unit34-literary-formal-tenses.js';
-import wordOrderEffect from './unit35-word-order-effect.js';
-import idiomConnotationWordplay from './unit36-idiom-connotation-wordplay.js';
-import readingBetweenLines from './unit37-reading-between-lines.js';
 
-const CONTENT = {
-  'why-spanish': whySpanish,
-  'saying-hello': sayingHello,
-  'numbers-time': numbersTime,
-  'people-things': peopleThings,
-  'who-you-are': whoYouAre,
-  'where-you-are': whereYouAre,
-  'weather': weather,
-  'everyday-actions': everydayActions,
-  'asking-questions': askingQuestions,
-  'daily-routine': dailyRoutine,
-  'likes-dislikes': likesDislikes,
-  'restaurant': restaurant,
-  'people-around-you': peopleAroundYou,
-  'what-happened': whatHappened,
-  'small-talk': smallTalk,
-  'obligations-requests': obligationsRequests,
-  'right-now-soon': rightNowSoon,
-  'phone-plans': phonePlans,
-  'comparing-describing': comparingDescribing,
-  'shopping': shopping,
-  'irregular-present': irregularPresent,
-  'recent-ongoing': recentOngoing,
-  'past-in-detail': pastInDetail,
-  'hotel-travel': hotelTravel,
-  'future-hypotheticals': futureHypotheticals,
-  'opinions-commands': opinionsCommands,
-  'directions-transport': directionsTransport,
-  'doctor-pharmacy': doctorPharmacy,
-  'emergencies': emergencies,
-  'bank-post-office': bankPostOffice,
-  'nuance-connection': nuanceConnection,
-  'efficiency-emphasis': efficiencyEmphasis,
-  'perfect-tenses': perfectTenses,
-  'passive-impersonal': passiveImpersonal,
-  'subjunctive-deep-dive': subjunctiveDeepDive,
-  'subjunctive-counterfactuals-concession': subjunctiveCounterfactualsConcession,
-  'fine-details': fineDetails,
-  'reported-speech-basic': reportedSpeechBasic,
-  'certainty-doubt-probability': certaintyDoubtProbability,
-  'absolute-superlative': absoluteSuperlative,
-  'argumentation-workplace': argumentationWorkplace,
-  'technology-digital-life': technologyDigitalLife,
-  'environment-sustainability': environmentSustainability,
-  'subjunctive-limits': subjunctiveLimits,
-  'tense-agreement-mood': tenseAgreementMood,
-  'reported-speech': reportedSpeech,
-  'probability-aspect': probabilityAspect,
-  'fixed-expressions': fixedExpressions,
-  'connectors-cohesion': connectorsCohesion,
-  'discourse-markers': discourseMarkers,
-  'register-stance': registerStance,
-  'subjunctive-final-reaches': subjunctiveFinalReaches,
-  'literary-formal-tenses': literaryFormalTenses,
-  'word-order-effect': wordOrderEffect,
-  'idiom-connotation-wordplay': idiomConnotationWordplay,
-  'reading-between-lines': readingBetweenLines,
+// Unit content is loaded on demand, one chunk per unit, rather than imported
+// statically: all 56 written units together are ~1.6MB of lesson prose and
+// practice sets, and a static map meant the Learn index — which shows nothing
+// but titles and summaries — paid for every one of them. These keys are the
+// source of truth for "does this unit have content yet", and reading them
+// costs nothing since the loader bodies stay unevaluated until called.
+const CONTENT_LOADERS = {
+  'why-spanish': () => import('./unit00-why-spanish.js'),
+  'saying-hello': () => import('./unit01-saying-hello.js'),
+  'numbers-time': () => import('./unit02-numbers-time.js'),
+  'people-things': () => import('./unit03-people-things.js'),
+  'who-you-are': () => import('./unit04-who-you-are.js'),
+  'where-you-are': () => import('./unit05-where-you-are.js'),
+  'weather': () => import('./unit-a1-weather.js'),
+  'everyday-actions': () => import('./unit06-everyday-actions.js'),
+  'asking-questions': () => import('./unit07-asking-questions.js'),
+  'daily-routine': () => import('./unit08-daily-routine.js'),
+  'likes-dislikes': () => import('./unit09-likes-dislikes.js'),
+  'restaurant': () => import('./unit-a2-restaurant.js'),
+  'people-around-you': () => import('./unit10-people-around-you.js'),
+  'what-happened': () => import('./unit11-what-happened.js'),
+  'small-talk': () => import('./unit-a2-small-talk.js'),
+  'obligations-requests': () => import('./unit12-obligations-requests.js'),
+  'right-now-soon': () => import('./unit13-right-now-soon.js'),
+  'phone-plans': () => import('./unit-a2-phone-plans.js'),
+  'comparing-describing': () => import('./unit14-comparing-describing.js'),
+  'shopping': () => import('./unit-a2-shopping.js'),
+  'irregular-present': () => import('./unit15-irregular-present.js'),
+  'recent-ongoing': () => import('./unit16-recent-ongoing.js'),
+  'past-in-detail': () => import('./unit17-past-in-detail.js'),
+  'hotel-travel': () => import('./unit-b1-hotel-travel.js'),
+  'future-hypotheticals': () => import('./unit18-future-hypotheticals.js'),
+  'opinions-commands': () => import('./unit19-opinions-commands.js'),
+  'directions-transport': () => import('./unit-b1-directions-transport.js'),
+  'doctor-pharmacy': () => import('./unit-b1-doctor-pharmacy.js'),
+  'emergencies': () => import('./unit-b1-emergencies.js'),
+  'bank-post-office': () => import('./unit-b1-bank-post-office.js'),
+  'nuance-connection': () => import('./unit20-nuance-connection.js'),
+  'efficiency-emphasis': () => import('./unit21-efficiency-emphasis.js'),
+  'perfect-tenses': () => import('./unit22-perfect-tenses.js'),
+  'passive-impersonal': () => import('./unit23-passive-impersonal.js'),
+  'subjunctive-deep-dive': () => import('./unit24-subjunctive-deep-dive.js'),
+  'subjunctive-counterfactuals-concession': () => import('./unit24-subjunctive-counterfactuals-concession.js'),
+  'fine-details': () => import('./unit25-fine-details.js'),
+  'reported-speech-basic': () => import('./unit-b1-reported-speech-basic.js'),
+  'certainty-doubt-probability': () => import('./unit-b1-certainty-doubt-probability.js'),
+  'absolute-superlative': () => import('./unit-b1-absolute-superlative.js'),
+  'argumentation-workplace': () => import('./unit-b2-argumentation-workplace.js'),
+  'technology-digital-life': () => import('./unit-b2-technology-digital-life.js'),
+  'environment-sustainability': () => import('./unit-b2-environment-sustainability.js'),
+  'subjunctive-limits': () => import('./unit26-subjunctive-limits.js'),
+  'tense-agreement-mood': () => import('./unit-c1-tense-agreement-mood.js'),
+  'reported-speech': () => import('./unit27-reported-speech.js'),
+  'probability-aspect': () => import('./unit28-probability-aspect.js'),
+  'fixed-expressions': () => import('./unit29-fixed-expressions.js'),
+  'connectors-cohesion': () => import('./unit30-connectors-cohesion.js'),
+  'discourse-markers': () => import('./unit31-discourse-markers.js'),
+  'register-stance': () => import('./unit32-register-stance.js'),
+  'subjunctive-final-reaches': () => import('./unit33-subjunctive-final-reaches.js'),
+  'literary-formal-tenses': () => import('./unit34-literary-formal-tenses.js'),
+  'word-order-effect': () => import('./unit35-word-order-effect.js'),
+  'idiom-connotation-wordplay': () => import('./unit36-idiom-connotation-wordplay.js'),
+  'reading-between-lines': () => import('./unit37-reading-between-lines.js'),
 };
 
 export const UNIT_METADATA = [
@@ -331,33 +281,29 @@ export const UNIT_METADATA = [
     summary: 'The full A1-C2 path, reviewed — a personalized capstone weighted toward whatever still needs work.' },
 ];
 
-export function getUnit(id) {
-  const meta = UNIT_METADATA.find(u => u.id === id);
+// Metadata only — always synchronous, never touches a unit's content chunk.
+export function getUnitMeta(id) {
+  return UNIT_METADATA.find(u => u.id === id) ?? null;
+}
+
+// Resolves a unit's full content, fetching its chunk on first use. Returns
+// null for an unknown id, and metadata with comingSoon: true for a unit that
+// has no content file yet.
+//
+// Checkpoints have no content file at all — their practice set is assembled
+// at lesson-load time (see src/lib/checkpoints.js), personalized per learner
+// and rebuilt fresh every visit rather than frozen at first completion.
+export async function loadUnit(id) {
+  const meta = getUnitMeta(id);
   if (!meta) return null;
-  // Checkpoints have no static CONTENT entry — their practice set is
-  // assembled dynamically at lesson-load time (see src/lib/checkpoints.js)
-  // from getPracticePoolUpTo() below, personalized per learner and rebuilt
-  // fresh every visit rather than frozen at first completion.
   if (meta.isCheckpoint) return { ...meta, comingSoon: false };
-  const content = CONTENT[id];
-  return content ? { ...meta, ...content, comingSoon: false } : { ...meta, comingSoon: true };
+  const loader = CONTENT_LOADERS[id];
+  if (!loader) return { ...meta, comingSoon: true };
+  const mod = await loader();
+  return { ...meta, ...mod.default, comingSoon: false };
 }
 
-export const UNITS = UNIT_METADATA.map(m => ({ ...m, comingSoon: !m.isCheckpoint && !CONTENT[m.id] }));
-
-// Exercise pool for checkpoint units, grouped by concept_id, pooled from
-// every real (non-checkpoint) unit's practice array at or before the given
-// order. Consumed by src/lib/checkpoints.js's weak-spot-weighted selection.
-export function getPracticePoolUpTo(order) {
-  const pool = {};
-  for (const meta of UNIT_METADATA) {
-    if (meta.isCheckpoint || meta.order > order) continue;
-    const content = CONTENT[meta.id];
-    if (!content) continue;
-    for (const exercise of content.practice) {
-      if (!exercise.concept_id) continue;
-      (pool[exercise.concept_id] ??= []).push(exercise);
-    }
-  }
-  return pool;
-}
+export const UNITS = UNIT_METADATA.map(m => ({
+  ...m,
+  comingSoon: !m.isCheckpoint && !CONTENT_LOADERS[m.id],
+}));

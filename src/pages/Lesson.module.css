@@ -277,3 +277,10 @@
   .main { padding: var(--sp-5); }
   .vocabList { grid-template-columns: 1fr; }
 }
+
+.errorActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+}

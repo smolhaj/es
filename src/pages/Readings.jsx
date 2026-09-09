@@ -5,6 +5,7 @@ import { PASSAGES, formatWrittenDate } from '../content/readings.js';
 import { isPassageComplete, togglePassageComplete } from '../lib/readingProgress.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Readings.module.css';
+import { initialQueryParam } from '../lib/queryParam.js';
 
 const FORMAT_LABELS = { standalone: 'Standalone scene', story: 'Story' };
 const CEFR_ORDER = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
@@ -21,7 +22,7 @@ function estimateReadMinutes(passage) {
 export default function Readings() {
   useDocumentTitle('Readings');
   const [completed, setCompleted] = useState({});
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
   const [sortBy, setSortBy] = useState('level'); // 'level' | 'newest'
   const [hideCompleted, setHideCompleted] = useState(false);
 

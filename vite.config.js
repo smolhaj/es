@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import derivedContent from './scripts/vite-plugin-derived-content.js';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), derivedContent()],
   server: {
     proxy: {
       '/api': {

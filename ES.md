@@ -308,6 +308,14 @@ added specifically so a fresh coding session wouldn't either freeze on a
 - Audio/TTS via the Web Speech API (no per-character billing, unlike the
   original spec's proposed Google Cloud TTS)
 - Anki-style Flashcards (top 5,000 words by frequency)
+- **Site-wide search** (`/search`) across all ~3,000 reference items —
+  vocabulary, verbs, grammar cards, idioms, false friends, readings,
+  curriculum units, pronunciation, regional, cognates, resources — with
+  results carrying the answer inline and deep-linking back into the page
+  they came from. `/` opens it from anywhere. See "Architecture" below.
+- **Route-level code splitting**, with the content library kept out of the
+  entry chunk: the landing page ships ~61kB gzipped of JS instead of 827kB.
+  See "Architecture" below.
 - **Multi-source cross-referencing for accuracy** — fully operationalized.
   All 6 core content files (verbs, grammar, false friends, pronunciation,
   regional, vocabulary, idioms) plus the adaptive session's fallback bank
@@ -324,7 +332,8 @@ see "What still needs to be built" below for the live punch list):
 - Real media integration *hosted directly in the app* (the Free Resources
   page links out to existing free content instead — deliberate, cheaper)
 - Cloudflare R2 (bound in `wrangler.toml`, unused — no feature needs it yet)
-- Secondary/fallback LLM provider, explicit Gemini retry/backoff
+- Secondary/fallback LLM provider (Gemini retry/backoff *is* built — see
+  punch-list item 26, which listed it as unstarted until 09-09-2026)
 
 ## Pedagogical principles (research-grounded, established for the structured curriculum)
 
@@ -1015,6 +1024,72 @@ marked applied, rather than silently being skippable. See "Deployment &
 ops conventions" below for the local-vs-remote D1 gotcha that caused two
 production outages under the old system.
 
+### Bundle architecture — code splitting and build-time derived content
+
+Every route is lazily loaded (`lazyRoute()` in `src/lib/lazyRoute.js`, a
+`React.lazy` wrapper that reloads once on a failed chunk import — the
+stale-deploy case, where a long-open tab still points at hashed chunk
+filenames Cloudflare Pages no longer serves). Landing and Auth stay in the
+entry chunk; they're what a logged-out visitor hits.
+
+The harder half was that several pages needed a *few fields* out of a very
+large content file, and importing the file for them dragged the whole thing
+into that page's bundle. `scripts/vite-plugin-derived-content.js` exposes
+build-time-computed virtual modules for exactly those cases:
+
+- `virtual:content-stats` — the landing page's headline counts. Still
+  derived from the content arrays (so the copy can't go stale, which is
+  punch-list item 30's whole point), but without shipping 1.2MB of
+  vocabulary/verb/grammar data to render four integers.
+- `virtual:unit-vocab` — every curriculum unit's vocab-box entries,
+  flattened, for `src/lib/dictionary.js`'s word-popover index. Importing
+  `curriculum/index.js` for these pulled all 56 written units' lesson prose
+  into every reference page.
+- `virtual:practice-pool` — each unit's practice exercises plus the order it
+  sits at, for review checkpoints. Loaded only when a checkpoint opens.
+- `virtual:search-index` — one compact record per searchable item (see
+  below).
+
+Curriculum units themselves are one chunk each (`CONTENT_LOADERS` + async
+`loadUnit()` in `src/content/curriculum/index.js`); the Learn index shows
+titles and summaries and no longer downloads 56 units' content to do it.
+
+**Anything added to that plugin must stay a pure function of the content
+files** — the point is that a content edit remains the only place a fact
+lives. `entry()` in the search-index builder type-checks every field for
+the same reason: eleven independently-shaped content files feed it, and a
+field that turns out to be an object should fail the build, not the page.
+
+Measured per route, JS bytes, before → after: landing 2950kB → 187kB
+(827kB → ~61kB gzipped), `/learn` 2950 → 206kB, a lesson 2950 → 766kB,
+`/readings` 2950 → 460kB, `/profile` 2950 → 196kB.
+
+### Site search
+
+`/search` (`src/pages/Search.jsx` + `src/lib/search.js`) searches every
+reference item on the site at once — ~3,000 records spanning eleven content
+files. Before it, finding something meant already knowing which of eleven
+pages it lived on.
+
+- **Index**: built at build time into `virtual:search-index`, dynamically
+  imported, so its ~125kB gzipped is paid only by someone who actually
+  searches. Records use one-letter keys (`t` type, `a` primary/Spanish,
+  `b` secondary/English, `c` supporting detail, `l` CEFR, `u` explicit URL)
+  because there are 3,000 of them; `u` is carried only for readings and
+  lessons, whose links need an id — every other type's URL is derived from
+  the type plus `a`.
+- **Ranking**: exact > prefix > word-start > substring, scored across the
+  Spanish field, then English, then detail, with a small per-type nudge and
+  shorter entries winning ties. A multi-word query matching nothing as a
+  phrase falls back to "every term appears somewhere" — that's what makes
+  "past subjunctive" find the card titled "Imperfect Subjunctive".
+- **Results carry the answer inline** (gloss, rule, example) so the common
+  lookup needs no second click, and link back to the source page. The eight
+  reference pages with their own search box seed it from `?q=`
+  (`src/lib/queryParam.js`), so a result lands on its own row.
+- `/` opens search from anywhere (handled in `NavBar`, which is on every
+  signed-in page); ↑↓ moves, Enter opens.
+
 ## Deployment & ops conventions
 
 - **Cloudflare Pages is Git-integrated via the dashboard**, not CLI-deployed.
@@ -1035,6 +1110,38 @@ production outages under the old system.
 - Placeholder IDs in `wrangler.toml` (`database_id`, KV `id`) must be
   replaced with real resource IDs from the dashboard before any deploy will
   succeed — a placeholder produces `Error 8000022: Invalid KV namespace ID`.
+- **Run `npm run health` after any deploy that shipped a migration.** It hits
+  `/api/health`, which compares the live D1 schema against what the build
+  expects (`functions/_lib/schemaManifest.generated.js`, generated from
+  `migrations/*.sql`) and exits non-zero on drift. Remote migrations are
+  applied by hand from the Cloudflare D1 console — this environment has no
+  Cloudflare credentials — so "applied locally, verified locally" has twice
+  shipped a migration that never reached production (see punch-list item 10).
+  `npm run health -- <url> <jwt>` names the exact missing tables/columns;
+  without a token the endpoint only answers pass/fail, deliberately.
+- **`wrangler d1 migrations apply` reporting "No migrations to apply!" is not
+  evidence the schema is right** — it tracks which migration *files* ran, not
+  what the database actually contains. A table dropped or altered outside the
+  migration chain leaves it perfectly happy. `/api/health` reads the real
+  schema, which is the point of it existing separately.
+- **PRODUCTION IS CURRENTLY BEHIND (found 09-09-2026, open).** `/api/health`'s
+  first run against a real deployment came back `schema: 'behind'`.
+  Production D1's `d1_migrations` lists all 11 migrations as applied,
+  including `0011_reading_attempts_and_writing_correct.sql`, but neither
+  `reading_attempts` nor `writing_samples.correct` exists there — the
+  migration was **recorded without its body ever running**. So
+  `migrations apply --remote` will not fix it; it skips 0011 as done. Four
+  endpoints are broken in production until the SQL is replayed by hand:
+  `POST /api/learner/reading-result` (every completed reading passage),
+  `POST /api/sessions/turn`'s writing-sample capture (every translation /
+  writing_prompt / conversation sample), `GET /api/learner/export` and
+  `DELETE /api/auth/account` (both of which touch `reading_attempts`, so
+  personal-data export and account deletion — punch-list item 16 — fail
+  outright). Fix: run `scripts/repair-0011-production.sql` in the D1
+  console, then `npm run health`. Delete that file once it's clean. This is
+  the third instance of the "applied locally, never remotely" failure
+  (`schema-v7`, `schema-v8`, now 0011) and the first one caught by a check
+  rather than by a user hitting it.
 
 ## Git/PR conventions
 
@@ -1171,6 +1278,34 @@ production outages under the old system.
   for prose sizing; match it exactly for any new page displaying
   paragraph-length content (`ReadingPassage.module.css`'s `.body` does,
   07-10-2026, after this exact bug shipped and was reported).
+- **A content file's shape is not always what the page rendering it
+  implies.** `cognate-patterns.js`'s `watchOut` field is a structured
+  false-friend object (`{spanish, looksLike, actualMeaning}`), or an array
+  of them — not the prose string every sibling field on that record is.
+  Feeding it into the search index as text threw inside the index loader,
+  which failed the whole `loadSearchIndex()` promise and left search
+  returning zero results for *every* query, not just cognates. The lesson
+  isn't about that one field: any code that walks several content files
+  generically should assert the type of what it reads, at build time where
+  possible, so one odd shape fails loudly in a build instead of silently
+  disabling a feature. `entry()` in
+  `scripts/vite-plugin-derived-content.js` now does exactly that.
+- **`vite preview` inherits `server.proxy` when `preview.proxy` isn't set**,
+  so `/api/*` from a preview build is proxied to `localhost:8788` — the same
+  target `vite dev` uses. That's convenient when `wrangler pages dev` is
+  running and confusing when it is: a *fake* localStorage token that fails
+  soft against no backend (the API call just 404s to index.html) instead
+  gets a real 401 from wrangler, which trips the global `capi:unauthorized`
+  handler and bounces the tab to `/login` mid-test. Local browser QA of
+  authenticated routes needs a real token from the local backend, not a
+  placeholder, whenever wrangler is up on 8788.
+- **Chromium's own background requests hang behind this sandbox's egress
+  proxy**, not just Google Fonts (`accounts.google.com`,
+  `content-autofill.googleapis.com`, `android.clients.google.com`), which
+  makes headless runs crawl or time out for reasons that have nothing to do
+  with the page. Block everything off-localhost at the context
+  (`ctx.route('**/*', …)`) and launch with `--disable-background-networking
+  --disable-component-update --disable-sync --no-first-run`.
 - **Playwright's `waitUntil: 'networkidle'` is unreliable in this sandbox
   specifically because of the outbound proxy's handling of
   `fonts.googleapis.com`** — `index.html` loads Google Fonts via a
@@ -1317,11 +1452,26 @@ measures):**
    (`Flashcards.jsx`'s flip-card was checked and already has full
    keyboard parity via a separate global keydown listener, so it was
    left as-is.)
-10. **No deploy-time/startup check that the schema a build expects
-    actually exists in production D1** — this has already caused two
-    outages (`schema-v7.sql`/`schema-v8.sql`, see `ES-HISTORY.md`,
-    07-04-2026). "Tested locally" has twice failed to catch a missing
-    remote migration.
+10. ~~No deploy-time/startup check that the schema a build expects
+    actually exists in production D1~~ — **done** (09-09-2026).
+    `scripts/build-schema-manifest.mjs` parses `migrations/*.sql` into the
+    tables and columns the build expects and writes
+    `functions/_lib/schemaManifest.generated.js`; `npm run build`
+    regenerates it, so it can't drift from the migrations the way a
+    hand-maintained list would. `GET /api/health` compares that manifest
+    against the live database (`PRAGMA table_info` per table) and returns
+    503 with `schema: 'behind'` on any mismatch; `npm run health` hits it
+    and exits non-zero. Public so an uptime monitor can reach it, but an
+    unauthenticated caller gets pass/fail only — the specific missing
+    tables/columns go to signed-in callers, so it can't enumerate the
+    schema of a database the caller has no account on. See "Deployment &
+    ops conventions" for when to run it. Verified against local
+    `wrangler pages dev` + D1: healthy on a fully migrated database;
+    dropping a table and removing a column from another produced exactly
+    those two entries with a 503; restoring them returned it to ok. Worth
+    noting what the test also showed — `wrangler d1 migrations apply`
+    still said "No migrations to apply!" throughout the drift, which is
+    precisely the failure mode.
 
 **Curriculum content:**
 11. ~~C1 vocab breaks the "neutral, universally understood Spanish" spec~~
@@ -1651,12 +1801,33 @@ measures):**
 24. **Confirm GitHub branch protection is actually enabled** on
     `smolhaj/es` — shown to the user but never verified done; no API this
     session type has access to for checking directly.
-25. **Flashcards' daily new-card cap is per page-load, not per calendar
-    day** — `NEW_PER_SESSION = 10` caps per visit, but reloading
-    immediately offers 10 more. Low priority for solo/small-group use.
-26. Cloudflare R2 (bound, unused), a secondary/fallback LLM provider, and
-    explicit exponential backoff around the Gemini call are all
-    unstarted, low-risk, well-scoped if picked up.
+25. ~~Flashcards' daily new-card cap is per page-load, not per calendar
+    day~~ — **done** (09-09-2026). `/api/flashcards/progress` now also
+    returns `newToday`: how many cards had their first-ever review today.
+    `flashcard_progress` can't answer that (it stores `last_reviewed_at`,
+    never a first-introduced timestamp), so it comes from the append-only
+    `flashcard_review_log` — a card reviewed today with no earlier log row
+    is a card introduced today. No schema change, so no manual production
+    D1 migration. Day boundary is UTC midnight, matching
+    `flashcards/stats.js`'s "reviews today" so the cap and the stats page
+    can't disagree about what day it is. Notably the empty state already
+    *claimed* "you've already introduced today's new cards" — the copy was
+    right and the scheduler wasn't. Verified against local
+    `wrangler pages dev` + D1: a fresh account gets exactly 1/10 new
+    cards; after 10 distinct reviews `newToday` reads 10 and re-reviewing
+    those same cards keeps it there; a card whose first log row is two
+    days old doesn't count when reviewed again today; and a real browser
+    run against the capped account gets "All caught up." instead of
+    another ten.
+26. Cloudflare R2 (bound, unused) and a secondary/fallback LLM provider
+    are unstarted, low-risk, well-scoped if picked up. **Correction
+    (09-09-2026): the "explicit exponential backoff around the Gemini
+    call" part of this item was already built and this entry was stale.**
+    `fetchGeminiText()` in `functions/api/sessions/_gemini.js` retries up
+    to 3 attempts with 300ms/900ms backoff, retrying only 429/5xx and
+    genuine network exceptions — a non-429 4xx is not retried, since an
+    auth/bad-request error will never succeed. Backoff is deliberately
+    short because a learner is waiting synchronously on the response.
 27. ~~CEFR-accuracy audit of `concepts.js`~~ — **done** (07-09-2026, 4
     phases: research, then data-layer fixes/splits/moves). ~36 of 109
     concepts were mistagged against real-world CEFR (Instituto Cervantes
@@ -1953,6 +2124,24 @@ measures):**
     properly.
 
 ## Session history index
+
+- **09-09-2026** — Open-ended "improve the site" session, four batches.
+  (1) **Code splitting**: every route was imported eagerly, so one 2.95MB
+  bundle (827kB gzipped) had to parse before anything rendered — all 56
+  units, the whole reference dataset, every reading passage, whichever
+  page you asked for. Lazy routes + build-time derived-content virtual
+  modules + per-unit curriculum chunks took the landing page to ~61kB
+  gzipped. Full current state in "Bundle architecture" above.
+  (2) **Flashcards' daily new-card cap** (punch-list item 25) — was per
+  page-load, so a reload handed out ten more.
+  (3) **Schema-drift health check** (punch-list item 10, the
+  highest-priority open reliability item) — a generated schema manifest
+  plus `/api/health` and `npm run health`, so the failure that caused two
+  past outages is one deterministic check after a deploy.
+  (4) **Site-wide search** at `/search` — ~3,000 reference items across
+  eleven content files in one box; full current state in "Site search"
+  above. Also corrected punch-list item 26, which listed Gemini
+  retry/backoff as unstarted when it was already built.
 
 - **07-09-2026** — 22 new verbs added to `/verbs` (9 C1, 14 C2 — one
   C1 candidate dropped as a duplicate of an existing B2 entry), closing

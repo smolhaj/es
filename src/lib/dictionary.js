@@ -1,5 +1,9 @@
 import { VOCABULARY } from '../content/vocabulary.js';
-import { UNIT_METADATA, getUnit } from '../content/curriculum/index.js';
+// Curriculum units' vocab boxes arrive pre-flattened from the build (see
+// scripts/vite-plugin-derived-content.js) rather than by importing
+// curriculum/index.js — that import pulled all 65 units' lesson prose and
+// practice sets into every reference page's bundle for ~880 glosses.
+import { UNIT_VOCAB } from 'virtual:unit-vocab';
 
 export function stripAccents(s) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -37,12 +41,8 @@ function buildIndex(includeUnitVocab) {
   }
 
   if (includeUnitVocab) {
-    for (const meta of UNIT_METADATA) {
-      if (meta.comingSoon) continue;
-      const unit = getUnit(meta.id);
-      for (const v of unit.vocab ?? []) {
-        add(v.es, { en: v.en, example: v.example, exampleEn: v.exampleEn, cefr: meta.level });
-      }
+    for (const v of UNIT_VOCAB) {
+      add(v.es, { en: v.en, example: v.example, exampleEn: v.exampleEn, cefr: v.cefr });
     }
   }
 
