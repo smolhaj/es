@@ -7,7 +7,7 @@ import SpeakButton from '../components/SpeakButton.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import ExerciseCard from '../components/ExerciseCard.jsx';
 import Feedback from '../components/Feedback.jsx';
-import { getUnit } from '../content/curriculum/index.js';
+import { getUnitMeta, loadUnit } from '../content/curriculum/index.js';
 import { buildCheckpointPractice } from '../lib/checkpoints.js';
 import { isAnswerCorrect } from '../lib/answerMatching.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
@@ -25,7 +25,7 @@ import styles from './Lesson.module.css';
 // vocab, practice} at lesson-load time instead, so it reflects the
 // learner's CURRENT weak spots every time they open it (checkpoints are
 // redoable, deliberately not frozen at first-completion state).
-function buildCheckpointContent(unit, weakConcepts) {
+async function buildCheckpointContent(unit, weakConcepts) {
   return {
     sections: [{
       heading: 'Review Checkpoint',
@@ -36,7 +36,7 @@ function buildCheckpointContent(unit, weakConcepts) {
       commonMistakes: [],
     }],
     vocab: [],
-    practice: buildCheckpointPractice(unit.checkpointUpTo, weakConcepts),
+    practice: await buildCheckpointPractice(unit.checkpointUpTo, weakConcepts),
   };
 }
 
@@ -44,7 +44,12 @@ export default function Lesson() {
   const { unitId } = useParams();
   const { token } = useAuth();
   const navigate = useNavigate();
-  const baseUnit = useMemo(() => getUnit(unitId), [unitId]);
+  // Metadata is synchronous; the unit's written content is a separate chunk
+  // fetched on demand (see curriculum/index.js), so the page can render its
+  // title and "not found" state without waiting on the download.
+  const meta = useMemo(() => getUnitMeta(unitId), [unitId]);
+  const [baseUnit, setBaseUnit] = useState(null);
+  const [loadError, setLoadError] = useState(false);
 
   const [checkpointContent, setCheckpointContent] = useState(null);
   const [phase, setPhase] = useState('reading');
@@ -54,21 +59,30 @@ export default function Lesson() {
   const [marking, setMarking] = useState(false);
   const [writingReveal, setWritingReveal] = useState(null); // { modelAnswer, learnerAnswer } | null
 
+  useEffect(() => {
+    let cancelled = false;
+    setBaseUnit(null);
+    setLoadError(false);
+    if (!meta) return;
+    loadUnit(meta.id)
+      .then(u => { if (!cancelled) setBaseUnit(u); })
+      .catch(() => { if (!cancelled) setLoadError(true); });
+    return () => { cancelled = true; };
+  }, [meta]);
+
   // Checkpoints: fetch the learner's current weak spots and assemble a
   // fresh, personalized practice set every time this lesson mounts.
   useEffect(() => {
     setCheckpointContent(null);
     if (!baseUnit?.isCheckpoint || !token) return;
     let cancelled = false;
-    api.learner.profile(token)
-      .then(res => {
-        if (cancelled) return;
-        setCheckpointContent(buildCheckpointContent(baseUnit, res.weakConcepts ?? []));
-      })
-      .catch(() => {
-        if (cancelled) return;
-        setCheckpointContent(buildCheckpointContent(baseUnit, []));
-      });
+    const weakSpots = api.learner.profile(token)
+      .then(res => res.weakConcepts ?? [])
+      .catch(() => []); // no profile signal yet — even sampling still works
+    weakSpots
+      .then(weak => buildCheckpointContent(baseUnit, weak))
+      .then(content => { if (!cancelled) setCheckpointContent(content); })
+      .catch(() => { if (!cancelled) setLoadError(true); });
     return () => { cancelled = true; };
   }, [baseUnit, token]);
 
@@ -76,7 +90,7 @@ export default function Lesson() {
     ? (checkpointContent ? { ...baseUnit, ...checkpointContent } : null)
     : baseUnit;
 
-  useDocumentTitle(unit?.title ?? 'Lesson');
+  useDocumentTitle(meta?.title ?? 'Lesson');
 
   // Seed lesson vocab into the FSRS-scheduled review queue (best-effort;
   // ignore "already exists" conflicts for words the learner has already met).
@@ -136,7 +150,7 @@ export default function Lesson() {
     setPhase('practice');
   }, [exerciseIndex, unit, token]);
 
-  if (!baseUnit) {
+  if (!meta) {
     return (
       <div className={styles.page}>
         <NavBar />
@@ -144,6 +158,40 @@ export default function Lesson() {
           <div className={styles.inner}>
             <p>Lesson not found.</p>
             <Link to="/learn" className="btn btn-secondary">← Back to Learn</Link>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <div className={styles.page}>
+        <NavBar />
+        <main className={styles.main}>
+          <div className={styles.inner}>
+            <h1 className={styles.title}>{meta.title}</h1>
+            <p className={styles.summary}>This lesson didn't load. Check your connection and try again.</p>
+            <div className={styles.errorActions}>
+              <button type="button" className="btn btn-primary" onClick={() => window.location.reload()}>
+                Try again
+              </button>
+              <Link to="/learn" className="btn btn-secondary">← Back to Learn</Link>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  if (!baseUnit) {
+    return (
+      <div className={styles.page}>
+        <NavBar />
+        <main className={styles.main}>
+          <div className={styles.inner}>
+            <h1 className={styles.title}>{meta.title}</h1>
+            <p className={styles.summary}>Loading the lesson…</p>
           </div>
         </main>
       </div>

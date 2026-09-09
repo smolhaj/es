@@ -1,4 +1,6 @@
-import { getPracticePoolUpTo } from '../content/curriculum/index.js';
+// The pooled practice set arrives from the build (see
+// scripts/vite-plugin-derived-content.js) and is imported dynamically, so
+// only a learner who actually opens a checkpoint downloads it.
 
 const CHECKPOINT_SIZE = 20;
 const MAX_PER_CONCEPT = 2;
@@ -22,8 +24,19 @@ function shuffle(arr) {
 // weakConcepts query) fall back to even sampling across whatever's left in
 // the pool, so a checkpoint never breaks or feels empty for a learner who
 // jumped ahead without full data.
-export function buildCheckpointPractice(checkpointUpTo, weakConcepts) {
-  const pool = getPracticePoolUpTo(checkpointUpTo);
+export async function buildCheckpointPractice(checkpointUpTo, weakConcepts) {
+  const { UNIT_PRACTICE } = await import('virtual:practice-pool');
+
+  // Exercises grouped by concept_id, pooled from every non-checkpoint unit
+  // at or before this checkpoint's position in the curriculum.
+  const pool = {};
+  for (const unit of UNIT_PRACTICE) {
+    if (unit.order > checkpointUpTo) continue;
+    for (const exercise of unit.practice) {
+      (pool[exercise.concept_id] ??= []).push(exercise);
+    }
+  }
+
   const allConceptIds = Object.keys(pool);
   if (allConceptIds.length === 0) return [];
 
