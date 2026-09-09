@@ -1860,6 +1860,25 @@ measures):**
     stored instead of the fake `estimated_cefr`.
 
 **Housekeeping:**
+23b. **`_gemini.js`'s CONTENT SCOPE prose contradicts its own concept
+    whitelist** (found 09-09-2026 by `npm run check:content`, open). The
+    system prompt carries two CEFR-grouped lists: the `concept_id must be
+    one of:` whitelist (now regenerated from `concepts.js`) and, ~40 lines
+    later, a human-readable `CONTENT SCOPE:` topic list that predates the
+    07-09-2026 CEFR audit (item 27) and never got updated. Seven confirmed
+    contradictions inside the one prompt: present perfect (scope B2 vs.
+    concepts.js A2), pluperfect (B2/C1 vs. B1), saber vs. conocer (B1 vs.
+    A2), imperfect subjunctive (B2 vs. B1), si-clauses (B2 vs. B1),
+    comparatives (A2/B2 vs. B1), quantifiers (C1 vs. B1). Effect: for an
+    A2 learner the whitelist offers `present_perfect` while CONTENT SCOPE
+    tells the model that topic is B2 material, so it likely holds it back —
+    against the binding rule that this site's levels mirror real CEFR and
+    that the real standard wins. Left open deliberately rather than
+    hand-edited at the end of a session: the fix is a prose rewrite of
+    those scope lines with pedagogical judgment in it, not a mechanical
+    substitution. `npm run check:content` warns on all seven (best-effort
+    phrase probes — it reports a probe as absent rather than passing
+    silently if the prose gets reworded).
 24. **Confirm GitHub branch protection is actually enabled** on
     `smolhaj/es` — shown to the user but never verified done; no API this
     session type has access to for checking directly.

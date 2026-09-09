@@ -76,6 +76,50 @@ const conceptIds = new Set(Object.keys(CONCEPTS));
   }
 }
 
+// ── 1b. The Gemini prompt's CONTENT SCOPE prose ───────────────────────────
+// A second, human-readable topic list further down the same system prompt,
+// grouped by CEFR. It predates the 07-09-2026 CEFR audit that retagged ~36
+// concepts and never got updated, so it can contradict the whitelist above
+// inside one prompt. It's prose, not ids, so this is a best-effort spot
+// check over phrases that appear verbatim and map to exactly one concept —
+// a phrase that has since been reworded reports as absent rather than
+// silently passing. Warnings, not errors: the fix is a prose rewrite with
+// real pedagogical judgment in it, not a mechanical substitution.
+{
+  const src = read('functions/api/sessions/_gemini.js');
+  const start = src.indexOf('CONTENT SCOPE:');
+  if (start === -1) {
+    warn('content-scope', 'could not find the CONTENT SCOPE block');
+  } else {
+    const block = src.slice(start).split('\n\n')[0];
+    const scope = {};
+    for (const line of block.split('\n')) {
+      const m = /^([A-C][12]): (.*)$/.exec(line);
+      if (m) scope[m[1]] = m[2].toLowerCase();
+    }
+    const PROBES = {
+      'present perfect': 'present_perfect',
+      'pluperfect': 'pluperfect',
+      'saber vs. conocer': 'saber_vs_conocer',
+      'imperfect subjunctive': 'imperfect_subjunctive',
+      'si-clauses': 'si_clauses',
+      'comparatives': 'comparatives',
+      'quantifiers': 'cuantificadores',
+      'passive constructions': 'passive_voice',
+    };
+    for (const [phrase, id] of Object.entries(PROBES)) {
+      const concept = CONCEPTS[id];
+      if (!concept) { warn('content-scope', `probe "${phrase}" points at missing concept "${id}"`); continue; }
+      const listedAt = Object.entries(scope).filter(([, text]) => text.includes(phrase)).map(([lvl]) => lvl);
+      if (listedAt.length === 0) {
+        warn('content-scope', `probe "${phrase}" no longer appears in CONTENT SCOPE — reword the probe or drop it`);
+      } else if (!listedAt.includes(concept.cefr)) {
+        warn('content-scope', `CONTENT SCOPE puts "${phrase}" at ${listedAt.join('/')} but concepts.js says ${id} is ${concept.cefr} — the same prompt contradicts itself`);
+      }
+    }
+  }
+}
+
 // ── 2. FALLBACK_EXERCISES concept ids ─────────────────────────────────────
 {
   const { FALLBACK_EXERCISES } = await import(new URL('functions/api/sessions/_gemini.js', ROOT).href);
