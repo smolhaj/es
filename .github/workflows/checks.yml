@@ -1,0 +1,55 @@
+# The repo's only CI. Until now the sole check on a PR was the Cloudflare
+# Pages deploy, which proves the build compiles and nothing else — every
+# consistency check this project relies on was something you had to
+# remember to run.
+#
+# Deliberately small: one job, no matrix, ~1 minute. This is a solo/
+# small-group project (see ES.md's cost architecture rule) and CI that
+# takes longer than the change it's checking gets ignored.
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      # Also regenerates functions/_lib/schemaManifest.generated.js.
+      - name: Build
+        run: npm run build
+
+      # A migration added without rebuilding leaves the manifest stale, so
+      # /api/health would compare production against the wrong expectations
+      # — the one thing it exists to get right.
+      - name: Schema manifest is up to date
+        run: git diff --exit-code functions/_lib/schemaManifest.generated.js
+
+      # Concept ids agreeing across concepts.js, the Gemini prompt's
+      # whitelist and CONTENT SCOPE, grammar cards, curriculum coverage,
+      # CEFR tags and duplicates.
+      - name: Content consistency
+        run: npm run check:content
+
+      # styles.* references that resolve to undefined.
+      - name: Style hooks resolve
+        run: npm run check:styles
+
+      # Cloudflare Functions aren't bundled by Vite, so a syntax error in
+      # one only shows up at deploy time otherwise.
+      - name: Functions parse
+        run: |
+          set -e
+          find functions -name '*.js' -print0 | xargs -0 -n1 node --check
+          echo "all functions parse"
