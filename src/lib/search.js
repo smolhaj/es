@@ -7,10 +7,10 @@
 // ~125kB it compresses to is only ever downloaded by someone who actually
 // searches — importing the eleven content files whole would be ~1.5MB.
 
-// Where a result of each type lives. Reference pages seed their own search
-// box from ?q=, so a result lands on the row it came from rather than just
-// the right page; the two types with real per-item routes (readings,
-// lessons) carry an explicit `u` in the index instead.
+// Where a result of each type lives. Every page listed here has its own
+// search box, seeded from ?q=, so a result lands on the row it came from
+// rather than just the right page; the two types with real per-item routes
+// (readings, lessons) carry an explicit `u` in the index instead.
 const PAGE_FOR_TYPE = {
   word: '/vocab',
   verb: '/verbs',
@@ -23,14 +23,11 @@ const PAGE_FOR_TYPE = {
   regional: '/regional',
 };
 
-// Types where the deep-linked page has no search box to seed.
-const NO_QUERY = new Set(['pronunciation', 'regional']);
-
 export function resultHref(entry) {
   if (entry.u) return entry.u;
   const page = PAGE_FOR_TYPE[entry.t];
   if (!page) return '/dashboard';
-  return NO_QUERY.has(entry.t) ? page : `${page}?q=${encodeURIComponent(entry.a)}`;
+  return `${page}?q=${encodeURIComponent(entry.a)}`;
 }
 
 export function normalize(s) {
@@ -99,6 +96,21 @@ export function search(entries, rawQuery, limit = 60) {
 
   scored.sort((a, b) => b.score - a.score || a.entry.a.localeCompare(b.entry.a));
   return scored.slice(0, limit).map(s => s.entry);
+}
+
+// Every string in a record, keys excluded, flattened — for the reference
+// pages that filter their own list by a free-text box. Walking the value
+// rather than naming fields means a filter can't quietly stop matching
+// half a record because the content file nests something differently than
+// the page's author assumed (which is exactly how the cognate `watchOut`
+// bug got in).
+export function textOf(value) {
+  if (value == null) return '';
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  if (Array.isArray(value)) return value.map(textOf).join(' ');
+  if (typeof value === 'object') return Object.values(value).map(textOf).join(' ');
+  return '';
 }
 
 let cached = null;

@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { PRONUNCIATION_RULES, CATEGORIES } from '../content/pronunciation.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
+import { initialQueryParam } from '../lib/queryParam.js';
+import { textOf } from '../lib/search.js';
 import styles from './Pronunciation.module.css';
 
 function RuleCard({ rule, expanded, onToggle }) {
@@ -80,12 +82,18 @@ function RuleCard({ rule, expanded, onToggle }) {
 
 export default function Pronunciation() {
   useDocumentTitle('Pronunciation');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
   const [filterCat, setFilterCat] = useState('');
   const [expandedId, setExpandedId] = useState(null);
 
-  const filtered = filterCat
-    ? PRONUNCIATION_RULES.filter(r => r.category === filterCat)
-    : PRONUNCIATION_RULES;
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return PRONUNCIATION_RULES.filter(r => {
+      if (filterCat && r.category !== filterCat) return false;
+      if (!q) return true;
+      return textOf(r).toLowerCase().includes(q);
+    });
+  }, [search, filterCat]);
 
   function toggle(id) {
     setExpandedId(prev => prev === id ? null : id);
@@ -105,6 +113,15 @@ export default function Pronunciation() {
             </p>
           </header>
 
+          <input
+            type="search"
+            className={styles.searchInput}
+            placeholder="Search rules…"
+            aria-label="Search pronunciation rules"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+
           <div className={styles.filterRow}>
             {CATEGORIES.map(c => (
               <button
@@ -116,6 +133,10 @@ export default function Pronunciation() {
               </button>
             ))}
           </div>
+
+          {filtered.length === 0 && (
+            <p className={styles.noResults}>No rules match that search.</p>
+          )}
 
           <div className={styles.cardList}>
             {filtered.map(rule => (
