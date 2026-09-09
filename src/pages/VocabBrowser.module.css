@@ -252,3 +252,6 @@
   .cardMain { grid-template-columns: 1fr auto; }
   .en { display: none; }
 }
+
+/* Semantic hook with no styling of its own — see Dashboard.module.css. */
+.pageHeader {}

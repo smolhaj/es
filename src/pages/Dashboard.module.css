@@ -246,3 +246,10 @@
 @media (max-width: 400px) {
   .statsGrid { grid-template-columns: 1fr; }
 }
+
+/* Semantic hooks with no styling of their own — the parent's flex gap does
+   the layout. Declared empty (like .weakSection above) so `npm run
+   check:styles` can treat a missing rule as a typo rather than a maybe. */
+.statsSection {}
+.recentSection {}
+.sessionItems {}

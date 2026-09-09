@@ -14,7 +14,8 @@
     "db:migrate:create": "wrangler d1 migrations create DB",
     "schema:manifest": "node scripts/build-schema-manifest.mjs",
     "health": "node scripts/check-health.mjs",
-    "check:content": "node scripts/check-content.mjs"
+    "check:content": "node scripts/check-content.mjs",
+    "check:styles": "node scripts/check-styles.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

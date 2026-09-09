@@ -250,3 +250,9 @@
   color: var(--text-muted);
   font-size: 0.9375rem;
 }
+
+/* Semantic hooks with no styling of their own — see Dashboard.module.css. */
+.pageHeader {}
+.sounds {}
+.tips {}
+.examples {}
