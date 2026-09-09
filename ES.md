@@ -1121,8 +1121,18 @@ rather than rolling another one.
 
 - **Cloudflare Pages is Git-integrated via the dashboard**, not CLI-deployed.
   Pushing to `main` auto-triggers a build; PRs get their own preview
-  deployment + a `cloudflare-workers-and-pages[bot]` PR comment, which is the
-  only CI check currently configured on this repo.
+  deployment + a `cloudflare-workers-and-pages[bot]` PR comment.
+- **`.github/workflows/checks.yml` is the repo's own CI** (added
+  09-09-2026). One job, ~1 minute, on every PR and push to `main`:
+  `npm run build`, then a guard that
+  `functions/_lib/schemaManifest.generated.js` isn't stale (a migration
+  added without a rebuild would make `/api/health` compare production
+  against the wrong expectations — the one thing it exists to get right),
+  then `npm run check:content`, `npm run check:styles`, and
+  `node --check` over every file in `functions/` (Vite doesn't bundle
+  those, so a syntax error there otherwise surfaces at deploy time).
+  Before it, the Cloudflare deploy comment was the only check on a PR, and
+  it proves the build compiles and nothing else.
 - **`wrangler.toml` is the source of truth for D1/KV bindings and build
   config** once `pages_build_output_dir` is set — the Cloudflare dashboard's
   "Variables and secrets" UI can only manage **Secrets** (encrypted), not
