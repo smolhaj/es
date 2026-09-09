@@ -1,23 +1,31 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar.jsx';
 import ClickableSpanish from '../components/ClickableSpanish.jsx';
 import { REGIONAL_SECTIONS, CATEGORIES } from '../content/regional.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
+import { initialQueryParam } from '../lib/queryParam.js';
+import { textOf } from '../lib/search.js';
 import styles from './Regional.module.css';
 
 export default function Regional() {
   useDocumentTitle('Regional Spanish');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
   const [filterCategory, setFilterCategory] = useState('');
 
-  const filtered = filterCategory
-    ? REGIONAL_SECTIONS.filter(s => s.category === filterCategory)
-    : REGIONAL_SECTIONS;
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return REGIONAL_SECTIONS.filter(section => {
+      if (filterCategory && section.category !== filterCategory) return false;
+      if (!q) return true;
+      return textOf(section).toLowerCase().includes(q);
+    });
+  }, [search, filterCategory]);
 
   return (
     <div className={styles.page}>
       <NavBar />
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           <header>
             <Link to="/dashboard" className={styles.backLink}>← Dashboard</Link>
@@ -26,6 +34,15 @@ export default function Regional() {
               Spain vs. Latin America — pronunciation, grammar, and vocabulary differences.
             </p>
           </header>
+
+          <input
+            type="search"
+            className={styles.searchInput}
+            placeholder="Search regional differences…"
+            aria-label="Search regional differences"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
 
           <div className={styles.filterRow}>
             {CATEGORIES.map(c => (
@@ -38,6 +55,10 @@ export default function Regional() {
               </button>
             ))}
           </div>
+
+          {filtered.length === 0 && (
+            <p className={styles.noResults}>Nothing matches that search.</p>
+          )}
 
           <div className={styles.cardList}>
             {filtered.map(section => (

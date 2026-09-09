@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './hooks/useAuth.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import RouteAnnouncer from './components/RouteAnnouncer.jsx';
 import RouteFallback from './components/RouteFallback.jsx';
 import { lazyRoute } from './lib/lazyRoute.js';
 
@@ -55,6 +56,7 @@ export default function App() {
   return (
     <AuthProvider>
       <ScrollToTop />
+      <RouteAnnouncer />
       <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route path="/" element={<Guest><Landing /></Guest>} />

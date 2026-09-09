@@ -1084,11 +1084,38 @@ pages it lived on.
   phrase falls back to "every term appears somewhere" — that's what makes
   "past subjunctive" find the card titled "Imperfect Subjunctive".
 - **Results carry the answer inline** (gloss, rule, example) so the common
-  lookup needs no second click, and link back to the source page. The eight
-  reference pages with their own search box seed it from `?q=`
-  (`src/lib/queryParam.js`), so a result lands on its own row.
+  lookup needs no second click, and link back to the source page. Every
+  reference page seeds its own search box from `?q=`
+  (`src/lib/queryParam.js`), so a result lands on its own row —
+  Pronunciation and Regional had no search box at all until 09-09-2026 and
+  got one for exactly this reason.
+- Reference pages that filter their own list by free text use `textOf()`
+  from `src/lib/search.js`, which walks every string in a record rather
+  than naming fields. See the "content file's shape" gotcha below for why
+  that matters.
 - `/` opens search from anywhere (handled in `NavBar`, which is on every
   signed-in page); ↑↓ moves, Enter opens.
+
+### Accessibility affordances
+
+Site-wide, added 09-09-2026 alongside the code-splitting work (which made
+the second one matter):
+
+- **Skip link** — the first focusable element on every page (in `NavBar`,
+  hidden until focused), jumping to `#main-content`, which every `<main>`
+  landmark now carries. Six nav links and two dropdowns used to sit ahead
+  of the content with no way past them.
+- **`RouteAnnouncer`** — a visually-hidden `aria-live="polite"` region that
+  announces each new page by its document title 300ms after a route
+  change. An SPA replaces the page with no page load, so a screen reader
+  otherwise says nothing at all on navigation; lazily-loaded routes turned
+  that from theoretical into a real gap. The 300ms is not cosmetic — it
+  has to outlast the chunk resolving *and* the page's `useDocumentTitle`
+  effect, or the announcement reads out the previous page's name.
+- **`aria-current="page"`** on nav links for the current route.
+
+`.sr-only` in `index.css` is the shared visually-hidden utility; use it
+rather than rolling another one.
 
 ## Deployment & ops conventions
 
@@ -1290,6 +1317,15 @@ pages it lived on.
   possible, so one odd shape fails loudly in a build instead of silently
   disabling a feature. `entry()` in
   `scripts/vite-plugin-derived-content.js` now does exactly that.
+  **It happened twice in one session.** The Pronunciation and Regional
+  free-text filters were first written against `sounds[].sound`,
+  `sounds[].example` and `comparisons[].concept` — none of which exist; the
+  real shapes are `{letter, ipa, like}` and `{context, spain, latam}` — so
+  both filters silently matched almost nothing. The durable fix for a
+  filter is not to hand-list fields at all: `textOf()` in
+  `src/lib/search.js` walks every string in a record, keys excluded, and
+  can't drift when a content file nests something differently. Use it for
+  any new "search this list" box.
 - **`vite preview` inherits `server.proxy` when `preview.proxy` isn't set**,
   so `/api/*` from a preview build is proxied to `localhost:8788` — the same
   target `vite dev` uses. That's convenient when `wrangler pages dev` is
@@ -2142,6 +2178,14 @@ measures):**
   eleven content files in one box; full current state in "Site search"
   above. Also corrected punch-list item 26, which listed Gemini
   retry/backoff as unstarted when it was already built.
+  (5) **Accessibility**: skip link, route announcements, `aria-current` —
+  see "Accessibility affordances" above.
+  (6) **Search boxes for Pronunciation and Regional**, the two reference
+  pages that had none, so every search result can now deep-link to its own
+  row rather than just its page.
+  The health check found real production drift on its first live run
+  against a deployment — see the PRODUCTION IS CURRENTLY BEHIND entry under
+  "Deployment & ops conventions", which is open and needs a hand-run repair.
 
 - **07-09-2026** — 22 new verbs added to `/verbs` (9 C1, 14 C2 — one
   C1 candidate dropped as a duplicate of an existing B2 entry), closing

@@ -120,7 +120,7 @@ export default function GrammarRef() {
     <div className={styles.page}>
       <NavBar />
 
-      <main className={styles.main}>
+      <main id="main-content" className={styles.main}>
         <div className={styles.inner}>
           <header className={styles.pageHeader}>
             <div>

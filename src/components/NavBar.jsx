@@ -77,6 +77,12 @@ export default function NavBar({ cefrLevel }) {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [isLoggedIn, navigate]);
 
+  // Marks the link for the page you're already on, so a screen reader says
+  // "current page" instead of offering it as somewhere to go.
+  function current(to) {
+    return location.pathname === to ? 'page' : undefined;
+  }
+
   function handleLogout() {
     logout();
     navigate('/');
@@ -91,6 +97,11 @@ export default function NavBar({ cefrLevel }) {
     // top/bottom against the ~60px header box instead of the viewport
     // and collapses to nothing instead of covering the page.
     <div ref={menuRef}>
+      {/* First focusable element on every page: lets a keyboard or screen
+          reader user jump past the nav (which is 6 links plus two menus)
+          straight to the page content. Hidden until focused. */}
+      <a href="#main-content" className={styles.skipLink}>Skip to content</a>
+
       <header className={styles.header}>
       <nav className={styles.nav} aria-label="Main navigation">
         <Link to={isLoggedIn ? '/dashboard' : '/'} className={styles.logo}>
@@ -104,12 +115,12 @@ export default function NavBar({ cefrLevel }) {
 
           {isLoggedIn ? (
             <>
-              <Link to="/search" className={`btn btn-ghost ${styles.navLink} ${styles.searchLink}`} aria-label="Search (press /)">
+              <Link to="/search" className={`btn btn-ghost ${styles.navLink} ${styles.searchLink}`} aria-label="Search (press /)" aria-current={current('/search')}>
                 <span aria-hidden="true">⌕</span> Search
               </Link>
-              <Link to="/learn" className={`btn btn-ghost ${styles.navLink}`}>Learn</Link>
-              <Link to="/session" className={`btn btn-ghost ${styles.navLink}`}>Practice</Link>
-              <Link to="/flashcards" className={`btn btn-ghost ${styles.navLink}`}>Flashcards</Link>
+              <Link to="/learn" className={`btn btn-ghost ${styles.navLink}`} aria-current={current('/learn')}>Learn</Link>
+              <Link to="/session" className={`btn btn-ghost ${styles.navLink}`} aria-current={current('/session')}>Practice</Link>
+              <Link to="/flashcards" className={`btn btn-ghost ${styles.navLink}`} aria-current={current('/flashcards')}>Flashcards</Link>
 
               <div className={styles.dropdown}>
                 <button
@@ -123,13 +134,13 @@ export default function NavBar({ cefrLevel }) {
                 {openMenu === 'reference' && (
                   <div className={styles.dropdownMenu} role="menu">
                     {REFERENCE_LINKS.map(l => (
-                      <Link key={l.to} to={l.to} className={styles.dropdownLink} role="menuitem">{l.label}</Link>
+                      <Link key={l.to} to={l.to} className={styles.dropdownLink} role="menuitem" aria-current={current(l.to)}>{l.label}</Link>
                     ))}
                   </div>
                 )}
               </div>
 
-              <Link to="/dashboard" className={`btn btn-ghost ${styles.navLink}`}>Dashboard</Link>
+              <Link to="/dashboard" className={`btn btn-ghost ${styles.navLink}`} aria-current={current('/dashboard')}>Dashboard</Link>
 
               <div className={styles.dropdown}>
                 <button

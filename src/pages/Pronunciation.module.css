@@ -230,3 +230,23 @@
   .soundRow { grid-template-columns: 50px 55px 1fr; }
   .soundExample { display: none; }
 }
+
+.searchInput {
+  width: 100%;
+  max-width: 380px;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9375rem;
+  font-family: inherit;
+  outline: none;
+}
+.searchInput::placeholder { color: var(--text-placeholder); }
+.searchInput:focus { border-color: var(--accent); }
+
+.noResults {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
