@@ -1368,6 +1368,32 @@ rather than rolling another one.
 
 ## Testing/verification approach used
 
+**`npm run check:content` is the first thing to run after any content
+change** (added 09-09-2026). It replaces the ad-hoc grep passes this
+section used to describe with one script that fails on real drift:
+
+- every concept in `concepts.js` appears in `_gemini.js`'s prompt
+  whitelist and vice versa (the whitelist is prose inside a system prompt
+  and can't import anything, so nothing else keeps it honest);
+- every `FALLBACK_EXERCISES` and `GRAMMAR_CARDS` `concept_id` exists, and
+  each grammar card's CEFR matches its concept's;
+- every concept has a `CONCEPT_LABELS` entry (warning — a missing one
+  shows the raw id on the dashboard);
+- prereqs exist and never sit at a *higher* CEFR level than the concept
+  that requires them;
+- every concept is taught by exactly one curriculum unit — none untaught,
+  none double-taught;
+- CEFR tags are one of A1-C2 everywhere;
+- duplicate entries across `vocabulary.js`, `idioms.js`,
+  `false-friends.js`, `verbs.js`, `grammar.js` — same level *and* same
+  gloss is an error, same word at two levels is a warning (a real
+  homograph like `tío` A1/C2 or `banco` bank/bench).
+
+It found real drift the first time it ran: 25 concepts missing from the
+Gemini whitelist (so the tutor could never once choose them), 13 duplicate
+`false-friends.js` entries, and 37 concepts with no display label. See the
+09-09-2026 session entry.
+
 No test suite exists in this repo. Verification for changes so far has been:
 `npm run build` (catches syntax/bundling errors), `node --check <file>` for
 Cloudflare Functions files (ES modules, not bundled by Vite), `node -e
@@ -1834,6 +1860,25 @@ measures):**
     stored instead of the fake `estimated_cefr`.
 
 **Housekeeping:**
+23b. **`_gemini.js`'s CONTENT SCOPE prose contradicts its own concept
+    whitelist** (found 09-09-2026 by `npm run check:content`, open). The
+    system prompt carries two CEFR-grouped lists: the `concept_id must be
+    one of:` whitelist (now regenerated from `concepts.js`) and, ~40 lines
+    later, a human-readable `CONTENT SCOPE:` topic list that predates the
+    07-09-2026 CEFR audit (item 27) and never got updated. Seven confirmed
+    contradictions inside the one prompt: present perfect (scope B2 vs.
+    concepts.js A2), pluperfect (B2/C1 vs. B1), saber vs. conocer (B1 vs.
+    A2), imperfect subjunctive (B2 vs. B1), si-clauses (B2 vs. B1),
+    comparatives (A2/B2 vs. B1), quantifiers (C1 vs. B1). Effect: for an
+    A2 learner the whitelist offers `present_perfect` while CONTENT SCOPE
+    tells the model that topic is B2 material, so it likely holds it back —
+    against the binding rule that this site's levels mirror real CEFR and
+    that the real standard wins. Left open deliberately rather than
+    hand-edited at the end of a session: the fix is a prose rewrite of
+    those scope lines with pedagogical judgment in it, not a mechanical
+    substitution. `npm run check:content` warns on all seven (best-effort
+    phrase probes — it reports a probe as absent rather than passing
+    silently if the prose gets reworded).
 24. **Confirm GitHub branch protection is actually enabled** on
     `smolhaj/es` — shown to the user but never verified done; no API this
     session type has access to for checking directly.
@@ -2183,6 +2228,18 @@ measures):**
   (6) **Search boxes for Pronunciation and Regional**, the two reference
   pages that had none, so every search result can now deep-link to its own
   row rather than just its page.
+  (7) **`npm run check:content`** — the cross-file consistency checks this
+  file's "Testing/verification approach" section used to describe as manual
+  grep passes, made into one script. It found real drift immediately: 25
+  concepts in `concepts.js` that `_gemini.js`'s prompt whitelist never
+  listed (so the adaptive tutor could never choose them — all the
+  functional/situational concepts plus `se_accidental`,
+  `sequence_of_tenses`, `correlative_comparatives` and others added in
+  recent sessions), 13 genuinely duplicated `false-friends.js` entries
+  (130 → 117; the fuller of each pair kept), and 37 concepts with no
+  `CONCEPT_LABELS` entry, which rendered as raw ids on the dashboard. All
+  three fixed; the whitelist is now regenerated from `concepts.js` rather
+  than hand-edited.
   The health check found real production drift on its first live run
   against a deployment — see the PRODUCTION IS CURRENTLY BEHIND entry under
   "Deployment & ops conventions", which is open and needs a hand-run repair.
