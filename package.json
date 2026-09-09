@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run schema:manifest && vite build",
     "preview": "vite preview",
-    "cf:dev": "wrangler pages dev dist --d1 DB --kv KV --port 8788",
+    "cf:dev": "wrangler pages dev dist --d1 DB=a6b128d4-5bb1-4b1a-944a-eb82fdf940f0 --kv KV --port 8788",
     "cf:deploy": "npm run build && wrangler pages deploy dist",
     "db:migrate": "wrangler d1 migrations apply DB --remote",
     "db:migrate:local": "wrangler d1 migrations apply DB --local",
-    "db:migrate:create": "wrangler d1 migrations create DB"
+    "db:migrate:create": "wrangler d1 migrations create DB",
+    "schema:manifest": "node scripts/build-schema-manifest.mjs",
+    "health": "node scripts/check-health.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
