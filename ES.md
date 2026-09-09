@@ -1860,25 +1860,33 @@ measures):**
     stored instead of the fake `estimated_cefr`.
 
 **Housekeeping:**
-23b. **`_gemini.js`'s CONTENT SCOPE prose contradicts its own concept
-    whitelist** (found 09-09-2026 by `npm run check:content`, open). The
-    system prompt carries two CEFR-grouped lists: the `concept_id must be
-    one of:` whitelist (now regenerated from `concepts.js`) and, ~40 lines
-    later, a human-readable `CONTENT SCOPE:` topic list that predates the
-    07-09-2026 CEFR audit (item 27) and never got updated. Seven confirmed
-    contradictions inside the one prompt: present perfect (scope B2 vs.
-    concepts.js A2), pluperfect (B2/C1 vs. B1), saber vs. conocer (B1 vs.
-    A2), imperfect subjunctive (B2 vs. B1), si-clauses (B2 vs. B1),
-    comparatives (A2/B2 vs. B1), quantifiers (C1 vs. B1). Effect: for an
-    A2 learner the whitelist offers `present_perfect` while CONTENT SCOPE
-    tells the model that topic is B2 material, so it likely holds it back —
-    against the binding rule that this site's levels mirror real CEFR and
-    that the real standard wins. Left open deliberately rather than
-    hand-edited at the end of a session: the fix is a prose rewrite of
-    those scope lines with pedagogical judgment in it, not a mechanical
-    substitution. `npm run check:content` warns on all seven (best-effort
-    phrase probes — it reports a probe as absent rather than passing
-    silently if the prose gets reworded).
+23b. ~~`_gemini.js`'s CONTENT SCOPE prose contradicts its own concept
+    whitelist~~ — **done** (09-09-2026, found and fixed the same day by
+    `npm run check:content`). The system prompt carries two CEFR-grouped
+    lists: the `concept_id must be one of:` whitelist (now regenerated
+    from `concepts.js`) and, ~40 lines later, a human-readable
+    `CONTENT SCOPE:` topic list that predated the 07-09-2026 CEFR audit
+    (item 27) and never got updated. Eleven contradictions inside one
+    prompt, each a phrase mapping to exactly one concept: present perfect
+    (scope B2 → A2), saber vs. conocer (B1 → A2), pluperfect (B2 → B1),
+    imperfect subjunctive (B2 → B1), si-clauses (B2 → B1), comparatives
+    (B2 → B1, A2 keeps "basic comparatives" for `comparatives_basic`),
+    quantifiers (C1 → B1), subjunctive in adverbial clauses (B2 → B1),
+    advanced verb periphrases (C1 → B1), verbs with fixed prepositions
+    (C1 → B1), pluperfect subjunctive (C1 → B2), concessive aunque
+    (C1 → B2). Effect while it stood: for an A2 learner the whitelist
+    offered `present_perfect` while CONTENT SCOPE told the model that
+    topic was B2 material, so it would hold it back — against the binding
+    rule that this site's levels mirror real CEFR and that the real
+    standard wins. Every move was one phrase to the level `concepts.js`
+    assigns; compound phrases spanning two concepts at different levels
+    (`passive constructions` = passive_voice B2 + passive_se B1,
+    `subjunctive in noun/adjective clauses` = C1 + B2,
+    `future/conditional for probability inference` = B1 + B2) were left
+    alone — splitting those is a wording decision, not a relocation.
+    `check:content` keeps 17 phrase probes over this block so it can't
+    drift again; a probe reports as absent rather than passing silently if
+    the prose gets reworded.
 24. **Confirm GitHub branch protection is actually enabled** on
     `smolhaj/es` — shown to the user but never verified done; no API this
     session type has access to for checking directly.

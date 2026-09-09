@@ -106,6 +106,15 @@ const conceptIds = new Set(Object.keys(CONCEPTS));
       'comparatives': 'comparatives',
       'quantifiers': 'cuantificadores',
       'passive constructions': 'passive_voice',
+      'subjunctive in adverbial clauses': 'subjunctive_adverbial',
+      'concessive aunque': 'aunque_concessive',
+      'advanced verb periphrases': 'perifraseis_avanzadas',
+      'verbs with fixed prepositions': 'verbos_preposicionales',
+      'present perfect subjunctive': 'perfect_subjunctive',
+      'nominalisation': 'nominalisation',
+      'indirect speech': 'estilo_indirecto',
+      'ser passive': 'ser_passive',
+      'pluperfect subjunctive': 'pluperfect_subjunctive',
     };
     for (const [phrase, id] of Object.entries(PROBES)) {
       const concept = CONCEPTS[id];
