@@ -22,6 +22,13 @@ import path from 'node:path';
 //     order the unit sits at. Review checkpoints pool these across every
 //     unit up to their own position; nothing else in a unit is involved.
 //
+//   virtual:search-index — one flat, compact record per searchable thing on
+//     the site (words, verbs, grammar rules, idioms, false friends, reading
+//     passages, units, pronunciation and regional notes, cognate patterns,
+//     free resources). Site search needs a field or two from all eleven
+//     content files at once; loading them whole would be ~1.5MB for what
+//     compresses to a fraction of that as an index.
+//
 // Anything added here must stay a pure function of the content files, so a
 // content edit is still the only place a fact lives.
 
@@ -67,6 +74,13 @@ const MODULES = {
       return { UNIT_VOCAB: entries };
     }
   },
+  'virtual:search-index': {
+    sources: () => [
+      ...SEARCH_SOURCES.map((f) => fileURLToPath(new URL(f, CONTENT))),
+      ...curriculumFiles()
+    ],
+    build: buildSearchIndex
+  },
   'virtual:practice-pool': {
     sources: curriculumFiles,
     async build(load) {
@@ -82,6 +96,89 @@ const MODULES = {
     }
   }
 };
+
+// One searchable record. Keys are one letter because there are ~3,000 of
+// them and this ships to the browser: t=type, a=primary (usually Spanish),
+// b=secondary (usually English), c=supporting detail, l=CEFR level, u=an
+// explicit URL. Anything absent is omitted rather than sent as null, and u
+// is only carried for the two types whose link needs an id — everywhere
+// else Search.jsx derives it from the type plus `a`, which is a real chunk
+// of payload across 3,000 rows.
+function entry(t, a, b, c, l, u) {
+  // Every field is asserted to be a string rather than trusted: these come
+  // from eleven independently-shaped content files, and one field that turns
+  // out to be an object (cognate patterns' `watchOut` was one) would
+  // otherwise sail through the build and break the whole index at runtime,
+  // taking search down entirely rather than degrading one row.
+  for (const [name, value] of [['a', a], ['b', b], ['c', c], ['l', l], ['u', u]]) {
+    if (value != null && typeof value !== 'string') {
+      throw new Error(`search index: ${t} field "${name}" is ${typeof value}, expected string (got ${JSON.stringify(value).slice(0, 80)})`);
+    }
+  }
+  if (!a) throw new Error(`search index: ${t} entry has no primary text`);
+
+  const out = { t, a };
+  if (b) out.b = b;
+  if (c) out.c = c;
+  if (l) out.l = l;
+  if (u) out.u = u;
+  return out;
+}
+
+const SEARCH_SOURCES = [
+  'grammar.js', 'vocabulary.js', 'verbs.js', 'idioms.js', 'false-friends.js',
+  'pronunciation.js', 'regional.js', 'cognate-patterns.js', 'resources.js',
+  'readings.js'
+];
+
+async function buildSearchIndex(load) {
+  const [grammar, vocabulary, verbs, idioms, falseFriends, pronunciation,
+         regional, cognates, resources, readings] = await Promise.all(
+    SEARCH_SOURCES.map((f) => load(new URL(f, CONTENT)))
+  );
+  const curriculum = await load(new URL('curriculum/index.js', CONTENT));
+
+  const index = [];
+
+  for (const v of vocabulary.VOCABULARY) {
+    index.push(entry('word', v.es, v.en, v.example, v.cefr, null));
+  }
+  for (const v of verbs.VERBS) {
+    index.push(entry('verb', v.infinitive, v.meaning, v.note, v.cefr, null));
+  }
+  for (const c of grammar.GRAMMAR_CARDS) {
+    index.push(entry('grammar', c.title, c.rule, c.examples?.[0]?.es, c.cefr, null));
+  }
+  for (const i of idioms.IDIOMS) {
+    index.push(entry('idiom', i.idiom, i.meaning, i.literal && `literally: ${i.literal}`, i.cefr, null));
+  }
+  for (const f of falseFriends.FALSE_FRIENDS) {
+    index.push(entry('false friend', f.spanish, f.actualMeaning, `looks like "${f.looksLike}"`, f.cefr, null));
+  }
+  for (const r of readings.PASSAGES) {
+    index.push(entry('reading', r.title, r.summary, null, r.level, `/readings/${r.id}`));
+  }
+  for (const u of curriculum.UNIT_METADATA) {
+    index.push(entry('lesson', u.title, u.summary, null, u.level, `/lessons/${u.id}`));
+  }
+  for (const p of pronunciation.PRONUNCIATION_RULES) {
+    index.push(entry('pronunciation', p.title, p.rule, p.sounds?.[0]?.example, null, null));
+  }
+  for (const r of regional.REGIONAL_SECTIONS) {
+    index.push(entry('regional', r.title, r.summary, r.tip, null, null));
+  }
+  for (const c of cognates.COGNATE_PATTERNS) {
+    // `watchOut` is a structured false-friend object here, not prose — the
+    // worked examples are what a searcher is actually scanning for.
+    const examples = (c.examples ?? []).slice(0, 3).map(e => `${e.es} → ${e.en}`).join(', ');
+    index.push(entry('cognate', c.pattern, c.explanation, examples || null, null, null));
+  }
+  for (const r of resources.RESOURCES) {
+    index.push(entry('resource', r.name, r.description, r.why, r.level, null));
+  }
+
+  return { SEARCH_INDEX: index };
+}
 
 function curriculumFiles() {
   return readdirSync(CURRICULUM_DIR)

@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar.jsx';
 import { RESOURCES, CATEGORIES } from '../content/resources.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 import styles from './Resources.module.css';
+import { initialQueryParam } from '../lib/queryParam.js';
 
 function ResourceCard({ item }) {
   const [open, setOpen] = useState(false);
@@ -55,7 +56,7 @@ function ResourceCard({ item }) {
 
 export default function Resources() {
   useDocumentTitle('Resources');
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(() => initialQueryParam('q'));
   const [filterCat, setFilterCat] = useState('');
 
   const filtered = useMemo(() => {

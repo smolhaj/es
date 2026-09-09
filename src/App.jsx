@@ -14,6 +14,7 @@ import { lazyRoute } from './lib/lazyRoute.js';
 import Landing from './pages/Landing.jsx';
 import Auth from './pages/Auth.jsx';
 
+const Search = lazyRoute(() => import('./pages/Search.jsx'));
 const Dashboard = lazyRoute(() => import('./pages/Dashboard.jsx'));
 const GetStarted = lazyRoute(() => import('./pages/GetStarted.jsx'));
 const Lesson = lazyRoute(() => import('./pages/Lesson.jsx'));
@@ -59,6 +60,7 @@ export default function App() {
           <Route path="/" element={<Guest><Landing /></Guest>} />
           <Route path="/login" element={<Guest><Auth mode="login" /></Guest>} />
           <Route path="/register" element={<Guest><Auth mode="register" /></Guest>} />
+          <Route path="/search" element={<Protected><Search /></Protected>} />
           <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
           <Route path="/learn" element={<Protected><GetStarted /></Protected>} />
           <Route path="/get-started" element={<Navigate to="/learn" replace />} />
